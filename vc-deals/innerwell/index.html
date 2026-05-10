@@ -1,0 +1,2050 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Innerwell · Investment Committee Memo · Market Logic</title>
+<style>
+:root {
+  --ink: #0a1929;
+  --ink-soft: #1c2e44;
+  --paper: #faf9f4;
+  --paper-warm: #f3efe3;
+  --rule: #d4cfbf;
+  --rule-soft: #e8e3d4;
+  --muted: #5b6b7a;
+  --muted-light: #8a98a5;
+  --accent: #b8391c;
+  --accent-soft: #d65a3a;
+  --teal: #1f6b6b;
+  --teal-soft: #4a8b8b;
+  --teal-light: #b8d4d4;
+  --positive: #2d6a4f;
+  --warning: #b08800;
+  --negative: #9b2226;
+  --negative-light: #e8c5c5;
+
+  --serif: 'Iowan Old Style', 'Palatino Linotype', Palatino, 'Book Antiqua', Georgia, serif;
+  --sans: 'Helvetica Neue', Helvetica, -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --mono: 'SF Mono', SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', monospace;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { font-size: 16px; -webkit-text-size-adjust: 100%; }
+body {
+  font-family: var(--sans);
+  background: var(--paper);
+  color: var(--ink);
+  line-height: 1.55;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.page {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 56px 56px 80px;
+}
+
+/* ===== Typography ===== */
+h1, h2, h3, h4, h5 { font-family: var(--serif); font-weight: 400; color: var(--ink); }
+h1 { font-size: 3.6rem; line-height: 1.02; letter-spacing: -0.025em; }
+h2 { font-size: 2.05rem; line-height: 1.12; letter-spacing: -0.015em; }
+h3 { font-size: 1.3rem; line-height: 1.25; letter-spacing: -0.005em; }
+h4 {
+  font-family: var(--sans); font-weight: 600; font-size: 0.7rem;
+  text-transform: uppercase; letter-spacing: 0.16em; color: var(--muted);
+}
+h5 { font-size: 1rem; font-family: var(--sans); font-weight: 600; }
+p { font-size: 0.95rem; line-height: 1.7; color: var(--ink-soft); }
+strong { color: var(--ink); font-weight: 600; }
+em { font-style: italic; color: var(--ink); }
+
+.eyebrow {
+  font-family: var(--sans);
+  font-size: 0.7rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.2em;
+  color: var(--accent);
+  display: block;
+  margin-bottom: 18px;
+}
+
+.lede {
+  font-family: var(--serif);
+  font-size: 1.25rem; line-height: 1.5;
+  color: var(--ink); font-weight: 400;
+  letter-spacing: -0.005em;
+}
+
+.kicker {
+  font-family: var(--sans);
+  font-size: 0.75rem; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.12em;
+  color: var(--teal);
+}
+
+.label {
+  font-family: var(--sans);
+  font-size: 0.7rem; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.1em;
+  color: var(--muted);
+}
+
+.mono { font-family: var(--mono); font-size: 0.85rem; }
+
+/* ===== Cover ===== */
+.cover {
+  border-top: 1px solid var(--ink);
+  padding-top: 32px;
+  position: relative;
+}
+.cover-meta {
+  display: flex; justify-content: space-between; align-items: flex-start;
+  margin-bottom: 84px;
+}
+.cover-meta .left, .cover-meta .right { font-family: var(--sans); font-size: 0.78rem; color: var(--muted); }
+.cover-meta .right { text-align: right; }
+.cover-meta .right .stamp {
+  display: inline-block; padding: 4px 10px;
+  border: 1px solid var(--accent); color: var(--accent);
+  font-weight: 600; letter-spacing: 0.12em;
+  font-size: 0.65rem; text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.cover-title {
+  margin-bottom: 28px;
+}
+.cover-title .legal {
+  display: block;
+  font-family: var(--sans); font-size: 0.78rem;
+  color: var(--muted); margin-top: 8px; letter-spacing: 0.04em;
+}
+.cover-tag {
+  font-family: var(--serif); font-style: italic;
+  font-size: 1.4rem; line-height: 1.45;
+  color: var(--ink-soft);
+  max-width: 720px;
+  margin-bottom: 56px;
+}
+.cover-tag::before { content: "“"; font-size: 2.2rem; line-height: 0; vertical-align: -0.3em; color: var(--accent); margin-right: 4px; }
+.cover-tag::after  { content: "”"; font-size: 2.2rem; line-height: 0; vertical-align: -0.3em; color: var(--accent); margin-left: 2px; }
+
+/* ===== Metric grid ===== */
+.metric-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 0;
+  border-top: 1px solid var(--ink);
+  border-bottom: 1px solid var(--ink);
+  margin: 32px 0;
+}
+.metric {
+  padding: 22px 16px 20px;
+  border-right: 1px solid var(--rule);
+  text-align: left;
+}
+.metric:last-child { border-right: none; }
+.metric .v {
+  font-family: var(--serif); font-size: 2.1rem;
+  line-height: 1; letter-spacing: -0.02em; color: var(--ink);
+  display: block; margin-bottom: 6px;
+}
+.metric .v small { font-size: 0.95rem; color: var(--muted); font-family: var(--serif); margin-left: 1px; }
+.metric .l {
+  font-family: var(--sans); font-size: 0.68rem;
+  font-weight: 600; text-transform: uppercase;
+  letter-spacing: 0.12em; color: var(--muted);
+  line-height: 1.3;
+}
+.metric.accent .v { color: var(--accent); }
+.metric.teal .v { color: var(--teal); }
+
+/* ===== Section ===== */
+section {
+  margin-top: 64px;
+  padding-top: 32px;
+  border-top: 1px solid var(--rule);
+}
+section.no-rule { border-top: none; }
+
+.section-head {
+  display: grid; grid-template-columns: 120px 1fr;
+  gap: 32px; margin-bottom: 28px;
+  align-items: baseline;
+}
+.section-num {
+  font-family: var(--mono); font-size: 0.78rem;
+  color: var(--muted); letter-spacing: 0.05em;
+  border-top: 2px solid var(--ink); padding-top: 8px;
+  text-transform: uppercase; font-weight: 600;
+}
+.section-title h2 { margin-bottom: 8px; }
+.section-title .sub {
+  font-family: var(--serif); font-style: italic;
+  color: var(--muted); font-size: 1.05rem;
+}
+
+/* ===== Two columns ===== */
+.cols-2 {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 36px; margin-top: 16px;
+}
+.cols-3 {
+  display: grid; grid-template-columns: 1fr 1fr 1fr;
+  gap: 24px; margin-top: 16px;
+}
+.cols-12-1 {
+  display: grid; grid-template-columns: 1fr 2fr;
+  gap: 36px; margin-top: 16px;
+}
+
+/* ===== Cards / blocks ===== */
+.card {
+  background: var(--paper-warm);
+  padding: 22px 24px;
+  border: 1px solid var(--rule);
+}
+.card.dark {
+  background: var(--ink); color: var(--paper);
+}
+.card.dark h3, .card.dark h4 { color: var(--paper); }
+.card.dark p { color: rgba(250, 249, 244, 0.85); }
+.card.dark .label { color: var(--muted-light); }
+
+.callout {
+  border-left: 3px solid var(--accent);
+  padding: 4px 0 4px 20px;
+  margin: 18px 0;
+  font-family: var(--serif); font-style: italic;
+  font-size: 1.05rem; color: var(--ink);
+}
+
+.pull-quote {
+  font-family: var(--serif);
+  font-size: 1.4rem; line-height: 1.4;
+  color: var(--ink);
+  border-top: 1px solid var(--ink);
+  border-bottom: 1px solid var(--ink);
+  padding: 28px 0;
+  margin: 32px 0;
+  text-align: center;
+  letter-spacing: -0.005em;
+}
+.pull-quote .attr {
+  display: block;
+  font-family: var(--sans); font-size: 0.72rem;
+  font-weight: 600; text-transform: uppercase; letter-spacing: 0.14em;
+  color: var(--muted); margin-top: 14px;
+}
+
+/* ===== Tables ===== */
+table { width: 100%; border-collapse: collapse; font-family: var(--sans); font-size: 0.88rem; margin-top: 14px; }
+thead th {
+  text-align: left; font-weight: 600;
+  font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em;
+  color: var(--muted); padding: 10px 14px 10px 0;
+  border-bottom: 1.5px solid var(--ink);
+}
+thead th.num { text-align: right; }
+tbody td {
+  padding: 14px 14px 14px 0;
+  border-bottom: 1px solid var(--rule);
+  color: var(--ink-soft);
+  vertical-align: top;
+}
+tbody td.num { text-align: right; font-variant-numeric: tabular-nums; font-family: var(--mono); font-size: 0.82rem; }
+tbody td strong { color: var(--ink); }
+tbody tr.highlight { background: var(--paper-warm); }
+tbody tr.highlight td { color: var(--ink); }
+tbody tr.highlight td:first-child { padding-left: 12px; border-left: 3px solid var(--accent); }
+
+/* ===== Lists ===== */
+ul.clean, ol.clean { list-style: none; }
+ul.clean li, ol.clean li {
+  padding: 12px 0 12px 24px;
+  border-bottom: 1px solid var(--rule-soft);
+  position: relative;
+  font-size: 0.93rem; color: var(--ink-soft); line-height: 1.6;
+}
+ul.clean li::before {
+  content: "→";
+  position: absolute; left: 0; top: 12px;
+  color: var(--accent); font-weight: 600;
+}
+ol.clean { counter-reset: ck; }
+ol.clean li { counter-increment: ck; padding-left: 36px; }
+ol.clean li::before {
+  content: counter(ck, decimal-leading-zero);
+  position: absolute; left: 0; top: 12px;
+  font-family: var(--mono); font-size: 0.78rem;
+  color: var(--accent); font-weight: 600;
+}
+
+ul.checklist { list-style: none; }
+ul.checklist li {
+  padding: 14px 0 14px 32px;
+  border-bottom: 1px solid var(--rule-soft);
+  position: relative;
+  font-size: 0.92rem; color: var(--ink-soft);
+}
+ul.checklist li::before {
+  content: "☐";
+  position: absolute; left: 0; top: 12px;
+  color: var(--accent); font-size: 1.1rem; line-height: 1;
+}
+ul.checklist li .qmeta {
+  display: block; margin-top: 6px;
+  font-family: var(--mono); font-size: 0.72rem;
+  color: var(--muted); letter-spacing: 0.04em;
+}
+
+/* ===== Tags ===== */
+.tag {
+  display: inline-block;
+  font-family: var(--sans); font-size: 0.68rem; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.1em;
+  padding: 3px 9px; margin-right: 6px; margin-bottom: 4px;
+  border: 1px solid var(--rule);
+  color: var(--ink-soft);
+  background: var(--paper);
+}
+.tag.accent { border-color: var(--accent); color: var(--accent); }
+.tag.teal { border-color: var(--teal); color: var(--teal); }
+.tag.warn { border-color: var(--warning); color: var(--warning); }
+.tag.neg { border-color: var(--negative); color: var(--negative); }
+.tag.pos { border-color: var(--positive); color: var(--positive); }
+
+/* ===== Bull / Bear ===== */
+.thesis-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 0; margin-top: 24px;
+  border: 1px solid var(--ink);
+}
+.thesis-col { padding: 28px 28px 24px; }
+.thesis-col.bull { border-right: 1px solid var(--ink); }
+.thesis-col h3 { margin-bottom: 6px; }
+.thesis-col .head {
+  font-family: var(--mono); font-size: 0.72rem;
+  text-transform: uppercase; letter-spacing: 0.14em;
+  margin-bottom: 8px; font-weight: 600;
+}
+.thesis-col.bull .head { color: var(--positive); }
+.thesis-col.bear .head { color: var(--negative); }
+.thesis-col ul { list-style: none; margin-top: 14px; }
+.thesis-col ul li {
+  padding: 10px 0 10px 22px; position: relative;
+  font-size: 0.9rem; color: var(--ink-soft); line-height: 1.55;
+  border-bottom: 1px dashed var(--rule-soft);
+}
+.thesis-col.bull ul li::before {
+  content: "+"; position: absolute; left: 0; top: 9px;
+  color: var(--positive); font-weight: 700;
+}
+.thesis-col.bear ul li::before {
+  content: "−"; position: absolute; left: 0; top: 9px;
+  color: var(--negative); font-weight: 700;
+}
+
+/* ===== Recommendation banner ===== */
+.recommendation {
+  background: var(--ink);
+  color: var(--paper);
+  padding: 40px 44px;
+  margin-top: 40px;
+  border-left: 6px solid var(--accent);
+}
+.recommendation .head {
+  font-family: var(--mono); font-size: 0.74rem;
+  text-transform: uppercase; letter-spacing: 0.18em;
+  color: var(--accent-soft); margin-bottom: 12px; font-weight: 600;
+}
+.recommendation h2 { color: var(--paper); margin-bottom: 14px; }
+.recommendation p { color: rgba(250, 249, 244, 0.86); font-size: 1rem; }
+.recommendation .actions {
+  margin-top: 24px; padding-top: 20px;
+  border-top: 1px solid rgba(250, 249, 244, 0.18);
+  display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
+}
+.recommendation .actions .h {
+  font-family: var(--mono); font-size: 0.7rem;
+  text-transform: uppercase; letter-spacing: 0.14em;
+  color: var(--accent-soft); margin-bottom: 10px;
+}
+.recommendation .actions ul { list-style: none; }
+.recommendation .actions ul li {
+  padding: 6px 0 6px 22px; position: relative;
+  font-size: 0.9rem; color: rgba(250, 249, 244, 0.92);
+  line-height: 1.5;
+}
+.recommendation .actions ul li::before {
+  content: "▸"; position: absolute; left: 0; top: 5px;
+  color: var(--accent-soft);
+}
+
+/* ===== Footer ===== */
+footer {
+  margin-top: 80px;
+  padding-top: 28px;
+  border-top: 1px solid var(--ink);
+  font-family: var(--sans); font-size: 0.74rem;
+  color: var(--muted);
+  display: flex; justify-content: space-between;
+}
+footer .right { text-align: right; }
+
+/* ===== Charts ===== */
+.chart {
+  width: 100%; margin: 18px 0 6px;
+  background: var(--paper);
+}
+.chart-caption {
+  font-family: var(--sans); font-size: 0.72rem;
+  color: var(--muted); margin-top: 4px;
+  font-style: italic; line-height: 1.5;
+}
+
+/* ===== Print ===== */
+@media print {
+  html, body { background: white; }
+  .page { padding: 0.6in; max-width: none; }
+  section { break-inside: avoid; page-break-inside: avoid; }
+  .recommendation, .thesis-grid, .metric-grid, table { break-inside: avoid; page-break-inside: avoid; }
+  h2 { break-after: avoid; }
+  .cover, section.major-break { break-before: page; page-break-before: always; }
+  a { color: inherit; text-decoration: none; }
+  .no-print { display: none !important; }
+}
+
+@media (max-width: 760px) {
+  .page { padding: 32px 22px; }
+  h1 { font-size: 2.4rem; }
+  h2 { font-size: 1.6rem; }
+  .metric-grid { grid-template-columns: repeat(2, 1fr); }
+  .metric { border-bottom: 1px solid var(--rule); }
+  .cols-2, .cols-3, .cols-12-1, .thesis-grid, .recommendation .actions { grid-template-columns: 1fr; }
+  .thesis-col.bull { border-right: none; border-bottom: 1px solid var(--ink); }
+  .section-head { grid-template-columns: 1fr; gap: 8px; }
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+<!-- ============================================================
+     COVER
+============================================================ -->
+<header class="cover">
+  <div class="cover-meta">
+    <div class="left">
+      <strong style="color: var(--ink); display:block; margin-bottom:4px;">Market Logic Investors LLC</strong>
+      Frontier Tech · Healthcare AI · Behavioral Health<br>
+      Investment Memorandum · Confidential
+    </div>
+    <div class="right">
+      <span class="stamp">Pre-Diligence</span><br>
+      <strong style="color: var(--ink);">Memo Ref: ML-2026-IW-01</strong><br>
+      Prepared: May 10, 2026<br>
+      Author: H. Reganti
+    </div>
+  </div>
+
+  <span class="eyebrow">Behavioral Health · Series A Watch</span>
+  <div class="cover-title">
+    <h1>Innerwell</h1>
+    <span class="legal">KBS, Inc. · helloinnerwell.com · New York, NY · Founded 2021</span>
+  </div>
+  <p class="cover-tag">A virtual-first behavioral health platform pairing in-network ketamine-assisted psychotherapy with a structured outcomes data layer. Capital-efficient, payer-integrated, and quietly stalled.</p>
+
+  <div class="metric-grid">
+    <div class="metric"><span class="v">$4.5<small>M</small></span><span class="l">Total Capital Raised <span style="color: var(--teal);">[Ext: PitchBook]</span></span></div>
+    <div class="metric"><span class="v">~4<small> yrs</small></span><span class="l">Since Last Round <span style="color: var(--accent);">[Inferred]</span></span></div>
+    <div class="metric teal"><span class="v">22<small>M</small></span><span class="l">Covered Lives in Network <span style="color: var(--muted-light);">[Deck]</span></span></div>
+    <div class="metric teal"><span class="v">87<small>%</small></span><span class="l">Improve Within 4 Weeks <span style="color: var(--muted-light);">[Deck / Ext]</span></span></div>
+    <div class="metric"><span class="v">41</span><span class="l">Employees <span style="color: var(--teal);">[Ext: PitchBook]</span></span></div>
+    <div class="metric accent"><span class="v">5.3<small>/10</small></span><span class="l">Composite Score <span style="color: var(--accent);">[Inferred]</span></span></div>
+  </div>
+
+  <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0; margin-top: 8px; font-family: var(--sans); font-size: 0.82rem;">
+    <div style="border-right: 1px solid var(--rule); padding: 16px 18px 16px 0;">
+      <span class="label" style="display:block; margin-bottom:6px;">Stage</span>
+      <strong>Seed-funded · Series A pending</strong>
+    </div>
+    <div style="border-right: 1px solid var(--rule); padding: 16px 0 16px 22px;">
+      <span class="label" style="display:block; margin-bottom:6px;">Lead Investors</span>
+      <strong>Greycroft, WTI</strong>
+    </div>
+    <div style="padding: 16px 0 16px 22px;">
+      <span class="label" style="display:block; margin-bottom:6px;">Recommendation</span>
+      <strong style="color: var(--accent);">Track · Conditional Pass</strong>
+    </div>
+  </div>
+</header>
+
+<!-- ============================================================
+     1. EXECUTIVE SUMMARY
+============================================================ -->
+<section class="no-rule" style="margin-top: 72px;">
+  <div class="section-head">
+    <div class="section-num">§ 01 · Executive Summary</div>
+    <div class="section-title">
+      <h2>The thesis in one paragraph</h2>
+      <div class="sub">What you'd say if the partner stopped you in the hallway.</div>
+    </div>
+  </div>
+
+  <p class="lede">Innerwell is the most credible insurance-accessible ketamine-assisted psychotherapy platform we've found. Five major payers in-network, ~22M covered lives, defensible clinical outcomes (87% report improvement within four weeks), and a structured data layer that could plausibly support an AI clinical decision engine. It is also a company that has not raised institutional capital in nearly four years despite a Greycroft seed lead, employs roughly 41 people, and discloses no revenue. The single most important diligence task is not on this memo. It is a 30-minute call with the CEO to determine whether the funding silence is profitable bootstrapping or quiet stagnation. Until that call happens, every other data point is provisional.</p>
+
+  <div class="callout">
+    Capital efficiency is a virtue at Series Seed. At month 47 with no follow-on, it becomes a question of whether the team chose not to raise, or could not. The answer determines whether this is a Series A at $8–15M pre or a structured M&A conversation at strategic value.
+  </div>
+
+  <div class="cols-3">
+    <div class="card">
+      <h4>What we like</h4>
+      <p style="margin-top: 10px;">First-mover position in <strong>insurance-accessible</strong> ketamine teletherapy. Clinical outcomes materially differentiated from SSRI baseline. Natural acquisition target for Optum, CVS, Teladoc.</p>
+    </div>
+    <div class="card">
+      <h4>What concerns us</h4>
+      <p style="margin-top: 10px;">Funding gap signals stalled growth or undisclosed restructure. Founder visibility is thin. DEA Schedule III in-person eval rules remain a structural overhang on at-home ketamine.</p>
+    </div>
+    <div class="card">
+      <h4>Recommended next step</h4>
+      <p style="margin-top: 10px;">Issue data-room request: ARR, growth, payer mix, CAC/LTV, cap table, regulatory posture. <strong>Decision deadline: T+10 business days.</strong> No response → drop.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SOURCES & METHODOLOGY
+============================================================ -->
+<section style="margin-top: 56px;">
+  <div class="section-head">
+    <div class="section-num">§ · Sources &amp; Methodology</div>
+    <div class="section-title">
+      <h2>How this memo was built</h2>
+      <div class="sub">Three streams of input, tagged inline. Treat each accordingly.</div>
+    </div>
+  </div>
+
+  <p>This memo synthesizes three distinct streams of information. Each numeric or factual claim is tagged on first appearance so the reader can apply the appropriate confidence discount. The orchestration of these streams, rather than any single stream alone, is the analytical contribution.</p>
+
+  <div class="cols-3" style="margin-top: 24px;">
+    <div class="card">
+      <h4 style="color: var(--muted);">[Deck]</h4>
+      <p style="margin-top: 10px;"><strong>Company-supplied materials under NDA.</strong> Pitch deck, public website claims, founder narrative. High specificity, zero independent verification. Treat as the company's best-foot-forward framing of itself. Any number tagged [Deck] must be confirmed in the data room or in audited financials before it informs a final IC vote.</p>
+    </div>
+    <div class="card">
+      <h4 style="color: var(--teal);">[Ext: PitchBook] &nbsp; [Ext: Perplexity]</h4>
+      <p style="margin-top: 10px;"><strong>External research.</strong> PitchBook Premium pulls on funding history, investor syndicate, employee counts, and comparable company sets. Perplexity-generated category research on TAM, CAGR, and competitive positioning. Verified to the limit of the source; PitchBook is generally reliable on funding events, less so on private revenue.</p>
+    </div>
+    <div class="card">
+      <h4 style="color: var(--accent);">[Inferred]</h4>
+      <p style="margin-top: 10px;"><strong>Analyst-derived.</strong> Computations, judgments, scorecard weights, and pattern-recognition reads drawn from the underlying data. Includes the 47-month gap calculation (derived from PitchBook financing dates), the composite scorecard, and the bull/bear thesis framing. Confidence depends on the analyst, not the source.</p>
+    </div>
+  </div>
+
+  <div class="callout" style="margin-top: 24px;">
+    Where deck claims and external research diverge (notably on clinical outcomes), the discrepancy itself becomes a diligence item. Both numbers are preserved with their tags so the IC can see the shape of the gap rather than a sanitized consensus figure.
+  </div>
+</section>
+
+<!-- ============================================================
+     2. COMPANY & PRODUCT
+============================================================ -->
+<section>
+  <div class="section-head">
+    <div class="section-num">§ 02 · Company & Product</div>
+    <div class="section-title">
+      <h2>What Innerwell actually does</h2>
+      <div class="sub">Stack, modalities, distribution model.</div>
+    </div>
+  </div>
+
+  <div class="cols-12-1">
+    <div>
+      <h4>At a Glance</h4>
+      <table style="margin-top: 8px;">
+        <tbody>
+          <tr><td><strong>Legal Entity</strong></td><td>KBS, Inc.</td></tr>
+          <tr><td><strong>Founded</strong></td><td>2021</td></tr>
+          <tr><td><strong>HQ</strong></td><td>New York, NY</td></tr>
+          <tr><td><strong>Web</strong></td><td>helloinnerwell.com</td></tr>
+          <tr><td><strong>Headcount</strong></td><td>~41</td></tr>
+          <tr><td><strong>Geography</strong></td><td>Multi-state, CA/NY focus</td></tr>
+          <tr><td><strong>Distribution</strong></td><td>D2C + payer in-network</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div>
+      <p>Innerwell operates a <strong>virtual-first behavioral health stack</strong> spanning psychiatry, evidence-based talk therapy (CBT, DBT, EMDR, psychodynamic), and ketamine-assisted psychotherapy with structured psychedelic integration sessions. The product wedge is not the therapy modality itself (every cash-pay tele-ketamine clinic offers similar). The wedge is the <strong>insurance posture</strong>: Innerwell has converted from a cash-pay model into an in-network platform with five major commercial payers, accepting Aetna, Anthem, Blue Shield of California, Magellan, and Optum.</p>
+      <p style="margin-top: 14px;">Underneath the clinical layer sits a proprietary data infrastructure ingesting patient-reported outcomes (PHQ-9, GAD-7), encounter notes, and adherence signals. The platform benchmarks each patient against expected response trajectories and surfaces next-best-action prompts to clinicians. This is the foundation of what could become an AI clinical decision engine if the dataset depth supports it.</p>
+      <div style="margin-top: 18px;">
+        <span class="tag teal">Ketamine-Assisted Psychotherapy</span>
+        <span class="tag teal">Insurance In-Network</span>
+        <span class="tag teal">Structured Outcomes Data</span>
+        <span class="tag">CBT / DBT / EMDR</span>
+        <span class="tag">Psychiatric Medication Mgmt</span>
+        <span class="tag">Telehealth Multi-State</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     3. CLINICAL OUTCOMES
+============================================================ -->
+<section>
+  <div class="section-head">
+    <div class="section-num">§ 03 · Clinical Outcomes</div>
+    <div class="section-title">
+      <h2>Point 1: the clinical engine</h2>
+      <div class="sub">PHQ-9 trajectories, response rates, durability.</div>
+    </div>
+  </div>
+
+  <p class="lede">The clinical case is Innerwell's strongest single argument. Reported outcomes, if they hold under independent audit, materially exceed standard-of-care SSRI cohorts on both speed of response and 12-month durability.</p>
+
+  <div class="cols-2" style="margin-top: 28px;">
+    <div>
+      <h4>Reported Outcomes</h4>
+      <table>
+        <thead>
+          <tr><th>Measure</th><th class="num">Innerwell</th><th class="num">Baseline</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Improvement reported by week 4</td><td class="num"><strong>87%</strong> <span style="color: var(--teal); font-size: 0.7rem;">[Ext]</span></td><td class="num">~30–40%</td></tr>
+          <tr><td>Response rate <span style="color: var(--muted); font-size: 0.78rem;">(alt deck framing)</span></td><td class="num"><strong>65%</strong> <span style="color: var(--muted-light); font-size: 0.7rem;">[Deck]</span></td><td class="num">n/a</td></tr>
+          <tr><td>Lasting improvement <span style="color: var(--muted); font-size: 0.78rem;">(deck claim)</span></td><td class="num"><strong>80%</strong> <span style="color: var(--muted-light); font-size: 0.7rem;">[Deck]</span></td><td class="num">n/a</td></tr>
+          <tr><td>Meaningful PHQ-9 reduction by ~10 wks</td><td class="num"><strong>69%</strong> <span style="color: var(--muted-light); font-size: 0.7rem;">[Deck]</span></td><td class="num">~40–50%</td></tr>
+          <tr><td>Anxiety reduction (GAD-7)</td><td class="num"><strong>60%</strong> <span style="color: var(--muted-light); font-size: 0.7rem;">[Deck]</span></td><td class="num">~40%</td></tr>
+          <tr><td>Patient satisfaction</td><td class="num"><strong>4.7 / 5</strong> <span style="color: var(--muted-light); font-size: 0.7rem;">[Deck]</span></td><td class="num">n/a</td></tr>
+          <tr><td>12-mo relapse (vs SSRI cohort)</td><td class="num"><strong>Lower</strong> <span style="color: var(--accent); font-size: 0.7rem;">[Inferred]</span></td><td class="num">~45%</td></tr>
+        </tbody>
+      </table>
+      <p class="chart-caption">Baseline figures derived from STAR*D and major SSRI trials; not directly head-to-head.</p>
+    </div>
+    <div class="card">
+      <h4>Why it matters</h4>
+      <p style="margin-top: 10px;">Mental health outcomes are notoriously difficult to commercialize because <strong>nobody pays for outcome. They pay for visit</strong>. Innerwell's data layer is the foundation of a future value-based contract: if response durability is real, payers will eventually pay for it directly.</p>
+      <p style="margin-top: 12px;">The 12-month relapse delta is the metric that matters most for IC. SSRI augmentation cycles are expensive for payers; durable remission is worth real dollars per member per month. <strong>Need third-party audit before underwriting this claim.</strong></p>
+    </div>
+  </div>
+
+  <!-- Deck vs External discrepancy callout -->
+  <div style="margin-top: 28px; border: 1px solid var(--accent); padding: 22px 26px; background: #fdf4ef;">
+    <h4 style="color: var(--accent); margin-bottom: 8px;">Discrepancy · Deck vs. External</h4>
+    <p style="font-size: 0.92rem;">The pitch deck reports a <strong>65% response rate</strong> and <strong>80% lasting improvement</strong>. External research (Perplexity / company public-website scrape) reports <strong>87% report improvement within 4 weeks</strong>. These are not directly contradictory (different denominators, different time windows, different definitions of "improvement"), but they are not obviously consistent either. The same patient cohort can produce both numbers only under a specific operational definition that should be made explicit.</p>
+    <p style="font-size: 0.92rem; margin-top: 10px;"><strong>Diligence ask C2 in the data-room request</strong> covers exactly this: the written methodology underlying each cited figure, including denominator, intent-to-treat vs. per-protocol, handling of dropouts, and time-to-measurement window. Until that methodology arrives, treat all three numbers as upper-bound marketing claims, not underwritable outcomes.</p>
+  </div>
+
+  <!-- PHQ-9 Trajectory Chart -->
+  <div style="margin-top: 36px;">
+    <h3 style="margin-bottom: 4px;">PHQ-9 Trajectory · 12 months post-enrollment</h3>
+    <p style="font-family: var(--sans); font-size: 0.85rem; color: var(--muted); margin-bottom: 12px;">Modeled trajectory based on company-reported milestones; SSRI baseline derived from STAR*D durability data.</p>
+
+    <svg class="chart" viewBox="0 0 720 420" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" role="img" aria-label="PHQ-9 trajectory chart">
+      <defs>
+        <linearGradient id="iwFill" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#1f6b6b" stop-opacity="0.18"/>
+          <stop offset="100%" stop-color="#1f6b6b" stop-opacity="0"/>
+        </linearGradient>
+      </defs>
+      <!-- Plot area background -->
+      <rect x="60" y="30" width="610" height="320" fill="#fafaf6"/>
+
+      <!-- Y gridlines -->
+      <g stroke="#e8e3d4" stroke-width="1">
+        <line x1="60" y1="350" x2="670" y2="350"/>
+        <line x1="60" y1="286" x2="670" y2="286"/>
+        <line x1="60" y1="222" x2="670" y2="222"/>
+        <line x1="60" y1="158" x2="670" y2="158"/>
+        <line x1="60" y1="94"  x2="670" y2="94"/>
+        <line x1="60" y1="30"  x2="670" y2="30"/>
+      </g>
+
+      <!-- Severity bands (right-edge labels) -->
+      <g font-family="Helvetica, sans-serif" font-size="9" fill="#8a98a5" text-anchor="start">
+        <text x="676" y="350">0</text>
+        <text x="676" y="286">5 · None</text>
+        <text x="676" y="222">10 · Mild</text>
+        <text x="676" y="158">15 · Moderate</text>
+        <text x="676" y="94">20 · Severe</text>
+      </g>
+
+      <!-- Reference lines: response & remission -->
+      <line x1="60" y1="222" x2="670" y2="222" stroke="#b08800" stroke-width="1" stroke-dasharray="4 3" opacity="0.7"/>
+      <text x="64" y="218" font-family="Helvetica, sans-serif" font-size="9" fill="#b08800" font-weight="600">RESPONSE THRESHOLD (PHQ-9 ≤ 10)</text>
+      <line x1="60" y1="286" x2="670" y2="286" stroke="#2d6a4f" stroke-width="1" stroke-dasharray="4 3" opacity="0.7"/>
+      <text x="64" y="282" font-family="Helvetica, sans-serif" font-size="9" fill="#2d6a4f" font-weight="600">REMISSION THRESHOLD (PHQ-9 ≤ 5)</text>
+
+      <!-- X-axis labels (months) -->
+      <g font-family="Helvetica, sans-serif" font-size="10" fill="#5b6b7a" text-anchor="middle">
+        <text x="60"  y="372">M0</text>
+        <text x="111" y="372">M1</text>
+        <text x="161" y="372">M2</text>
+        <text x="212" y="372">M3</text>
+        <text x="263" y="372">M4</text>
+        <text x="314" y="372">M5</text>
+        <text x="365" y="372">M6</text>
+        <text x="416" y="372">M7</text>
+        <text x="467" y="372">M8</text>
+        <text x="517" y="372">M9</text>
+        <text x="568" y="372">M10</text>
+        <text x="619" y="372">M11</text>
+        <text x="670" y="372">M12</text>
+      </g>
+      <text x="365" y="395" font-family="Helvetica, sans-serif" font-size="10" fill="#5b6b7a" text-anchor="middle" font-weight="600" letter-spacing="0.1em">MONTHS POST-ENROLLMENT</text>
+      <text x="20" y="195" font-family="Helvetica, sans-serif" font-size="10" fill="#5b6b7a" text-anchor="middle" font-weight="600" letter-spacing="0.1em" transform="rotate(-90 20 195)">PHQ-9 SCORE</text>
+
+      <!-- Axes -->
+      <line x1="60" y1="30" x2="60" y2="350" stroke="#0a1929" stroke-width="1.5"/>
+      <line x1="60" y1="350" x2="670" y2="350" stroke="#0a1929" stroke-width="1.5"/>
+
+      <!-- Innerwell area fill -->
+      <!-- M0=18 -> y=120, M1=13 -> y=184, M2=9 -> y=235, M3=7 -> y=261, M4=6 -> y=274, M6=5 -> y=286, M8=5 -> y=286, M10=6 -> y=274, M12=6 -> y=274 -->
+      <path d="M60,120 L111,184 L161,235 L212,261 L263,274 L365,286 L467,286 L568,274 L670,274 L670,350 L60,350 Z" fill="url(#iwFill)"/>
+
+      <!-- SSRI line: M0=18,M1=16,M2=14,M3=13,M4=12,M6=11,M8=12.5,M10=14,M12=15 -->
+      <polyline points="60,120 111,146 161,171 212,184 263,197 365,210 467,191 568,171 670,158" fill="none" stroke="#9b2226" stroke-width="2" stroke-dasharray="6 4"/>
+      <g fill="#9b2226">
+        <circle cx="60"  cy="120" r="3"/>
+        <circle cx="111" cy="146" r="3"/>
+        <circle cx="161" cy="171" r="3"/>
+        <circle cx="212" cy="184" r="3"/>
+        <circle cx="263" cy="197" r="3"/>
+        <circle cx="365" cy="210" r="3"/>
+        <circle cx="467" cy="191" r="3"/>
+        <circle cx="568" cy="171" r="3"/>
+        <circle cx="670" cy="158" r="3"/>
+      </g>
+
+      <!-- Innerwell line on top -->
+      <polyline points="60,120 111,184 161,235 212,261 263,274 365,286 467,286 568,274 670,274" fill="none" stroke="#1f6b6b" stroke-width="2.5"/>
+      <g fill="#1f6b6b">
+        <circle cx="60"  cy="120" r="3.5"/>
+        <circle cx="111" cy="184" r="3.5"/>
+        <circle cx="161" cy="235" r="3.5"/>
+        <circle cx="212" cy="261" r="3.5"/>
+        <circle cx="263" cy="274" r="3.5"/>
+        <circle cx="365" cy="286" r="3.5"/>
+        <circle cx="467" cy="286" r="3.5"/>
+        <circle cx="568" cy="274" r="3.5"/>
+        <circle cx="670" cy="274" r="3.5"/>
+      </g>
+
+      <!-- Legend -->
+      <g font-family="Helvetica, sans-serif" font-size="11" fill="#0a1929">
+        <line x1="395" y1="44" x2="425" y2="44" stroke="#1f6b6b" stroke-width="2.5"/>
+        <circle cx="410" cy="44" r="3.5" fill="#1f6b6b"/>
+        <text x="432" y="48" font-weight="600">Innerwell Cohort</text>
+
+        <line x1="540" y1="44" x2="570" y2="44" stroke="#9b2226" stroke-width="2" stroke-dasharray="6 4"/>
+        <circle cx="555" cy="44" r="3" fill="#9b2226"/>
+        <text x="577" y="48" font-weight="600">SSRI Baseline</text>
+      </g>
+
+      <!-- Annotations -->
+      <text x="295" y="290" font-family="Helvetica, sans-serif" font-size="10" fill="#1f6b6b" font-weight="600">87% improved by week 4</text>
+      <text x="500" y="186" font-family="Helvetica, sans-serif" font-size="10" fill="#9b2226" font-weight="600">SSRI relapse window</text>
+    </svg>
+    <p class="chart-caption">PHQ-9 = Patient Health Questionnaire-9, validated depression severity instrument (range 0–27; ≤ 10 = response, ≤ 5 = remission). Innerwell trajectory based on company-reported milestone data; SSRI baseline based on published meta-analyses of selective serotonin reuptake inhibitor durability.</p>
+  </div>
+</section>
+
+<!-- ============================================================
+     4. PLATFORM, DATA & AI
+============================================================ -->
+<section>
+  <div class="section-head">
+    <div class="section-num">§ 04 · Platform & Data Layer</div>
+    <div class="section-title">
+      <h2>The thing that's actually defensible</h2>
+      <div class="sub">Why the data layer matters more than the modality.</div>
+    </div>
+  </div>
+
+  <p>Ketamine-assisted psychotherapy is, on its own, a commodity service. Multiple cash-pay competitors offer it; the molecule is generic; the protocol is published. <strong>What is not commodity is a longitudinal, structured, payer-aligned outcomes dataset</strong> on thousands of mental health patients across modalities (depression, anxiety, treatment-resistant depression) with linked encounter data and adherence signals.</p>
+
+  <div class="cols-2" style="margin-top: 24px;">
+    <div class="card">
+      <h4>What's in the layer</h4>
+      <ul class="clean" style="margin-top: 10px;">
+        <li>Standardized assessments (PHQ-9, GAD-7) at intake and recurring intervals</li>
+        <li>Encounter notes from psychiatry, therapy, and ketamine sessions</li>
+        <li>Medication adherence and titration history</li>
+        <li>Patient-reported integration outcomes post-ketamine</li>
+        <li>Benchmarked against expected response trajectories</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h4>What it could become</h4>
+      <ul class="clean" style="margin-top: 10px;">
+        <li>Clinical decision support: next-best-action surfaced to clinician</li>
+        <li>Risk stratification for non-responders → escalation to ketamine</li>
+        <li>Foundation for value-based contracts with payers</li>
+        <li>Extensible to chronic pain and PTSD (large adjacent TAM)</li>
+        <li>Defensible AI training corpus if FDA/CMS validate response prediction</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout">
+    The dataset is the thesis. If Innerwell has assembled the most depth-rich payer-linked behavioral health outcomes corpus in the U.S., that alone is a multi-hundred-million-dollar strategic asset to Optum, Evernorth, or Anthem's clinical analytics arms, irrespective of underlying revenue.
+  </div>
+</section>
+
+<!-- ============================================================
+     5. COMMERCIAL & PAYERS
+============================================================ -->
+<section>
+  <div class="section-head">
+    <div class="section-num">§ 05 · Commercial & Payer Footprint</div>
+    <div class="section-title">
+      <h2>Point 2: payer GTM moat</h2>
+      <div class="sub">Five contracts, ~22M lives, concentrated geography.</div>
+    </div>
+  </div>
+
+  <p class="lede">Innerwell is one of a small number of behavioral health platforms that has crossed the chasm from cash-pay to in-network. The payer panel is real, the contracts exist, and the geographic concentration in CA and NY aligns with both the highest-density treatment markets and the most progressive state regulatory environments for at-home ketamine.</p>
+
+  <!-- Payer Footprint Bar -->
+  <div style="margin-top: 28px;">
+    <h3 style="margin-bottom: 4px;">Estimated Distribution of ~22M Covered Lives</h3>
+    <p style="font-family: var(--sans); font-size: 0.85rem; color: var(--muted); margin-bottom: 14px;">Approximate apportionment based on payer market share in Innerwell's primary geographies (CA, NY, multi-state network); precise per-payer enrollment not disclosed.</p>
+
+    <svg class="chart" viewBox="0 0 720 240" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Payer footprint distribution">
+      <!-- Total bar -->
+      <rect x="60" y="60" width="600" height="60" fill="#fafaf6" stroke="#0a1929" stroke-width="1"/>
+      <!-- Segments: Anthem 6/22, Aetna 5/22, Optum 5/22, Blue Shield CA 4/22, Magellan 2/22 -->
+      <!-- widths: Anthem 163.6, Aetna 136.4, Optum 136.4, BS-CA 109.1, Magellan 54.5 -->
+      <rect x="60"    y="60" width="163" height="60" fill="#1f6b6b"/>
+      <rect x="223"   y="60" width="136" height="60" fill="#2d8585"/>
+      <rect x="359"   y="60" width="136" height="60" fill="#4a8b8b"/>
+      <rect x="495"   y="60" width="109" height="60" fill="#7aa9a9"/>
+      <rect x="604"   y="60" width="56"  height="60" fill="#a8c8c8"/>
+      <!-- Inline labels -->
+      <g font-family="Helvetica, sans-serif" font-size="11" fill="#fafaf6" font-weight="700" text-anchor="middle">
+        <text x="142" y="86">Anthem</text>
+        <text x="142" y="104" font-size="10" font-weight="500" opacity="0.85">~6M lives</text>
+        <text x="291" y="86">Aetna</text>
+        <text x="291" y="104" font-size="10" font-weight="500" opacity="0.85">~5M</text>
+        <text x="427" y="86">Optum</text>
+        <text x="427" y="104" font-size="10" font-weight="500" opacity="0.85">~5M</text>
+      </g>
+      <g font-family="Helvetica, sans-serif" font-size="10" fill="#0a1929" font-weight="700" text-anchor="middle">
+        <text x="550" y="86">BS California</text>
+        <text x="550" y="104" font-size="9" font-weight="500" opacity="0.75">~4M</text>
+        <text x="632" y="86">Magellan</text>
+        <text x="632" y="104" font-size="9" font-weight="500" opacity="0.75">~2M</text>
+      </g>
+
+      <!-- Total -->
+      <text x="60" y="48" font-family="Helvetica, sans-serif" font-size="10" font-weight="600" fill="#5b6b7a" letter-spacing="0.1em" text-transform="uppercase">TOTAL ADDRESSABLE</text>
+      <text x="660" y="48" font-family="Helvetica, sans-serif" font-size="10" font-weight="600" fill="#b8391c" letter-spacing="0.05em" text-anchor="end">22 MILLION COVERED LIVES</text>
+
+      <!-- Geographic context -->
+      <g font-family="Helvetica, sans-serif" font-size="10" fill="#5b6b7a">
+        <text x="60" y="160" font-weight="600" letter-spacing="0.05em">GEOGRAPHIC CONCENTRATION</text>
+        <text x="60" y="180" font-size="11" fill="#0a1929">California &amp; New York (highest-density behavioral health markets, progressive at-home ketamine regulatory posture)</text>
+      </g>
+
+      <g font-family="Helvetica, sans-serif" font-size="10" fill="#5b6b7a">
+        <text x="60" y="210" font-weight="600" letter-spacing="0.05em">PAYER MIX RISK</text>
+        <text x="60" y="226" font-size="11" fill="#0a1929">No single payer &gt; ~30% of network. Diversified, but renegotiation cycle exposure remains</text>
+      </g>
+    </svg>
+  </div>
+
+  <div class="cols-2" style="margin-top: 28px;">
+    <div>
+      <h4>Why this is the thesis</h4>
+      <p style="margin-top: 8px;">Cash-pay tele-ketamine is a saturated market with negative selection. Patients who try cash-pay first have already exhausted insurance options. Insurance-accessible ketamine inverts the funnel and unlocks the <strong>treatment-resistant depression</strong> patient population, where the clinical and economic case is strongest.</p>
+    </div>
+    <div>
+      <h4>Open questions</h4>
+      <ul class="clean" style="margin-top: 8px;">
+        <li>Cash-pay vs in-network revenue mix today</li>
+        <li>Payer reimbursement rates per ketamine episode</li>
+        <li>In-network credentialing timeline for net-new payers</li>
+        <li>Risk-sharing or value-based contract terms (if any)</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Payer-type mix breakdown -->
+  <div style="margin-top: 36px;">
+    <h3 style="margin-bottom: 14px;">Modeled revenue mix by payer type <span style="font-size: 0.7rem; color: var(--teal); font-weight: 400;">[Ext: Perplexity · Modeled]</span></h3>
+    <table>
+      <thead>
+        <tr><th>Payer Type</th><th class="num">Est. % Revenue</th><th>Margin profile</th><th>Strategic value</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Self-Pay</strong></td><td class="num">~45%</td><td>High margin, high churn</td><td>D2C brand value, fast cash conversion</td></tr>
+        <tr><td><strong>Commercial Insurance</strong></td><td class="num">~35%</td><td>Lower margin, lower churn</td><td>Payer-contract moat, the wedge</td></tr>
+        <tr><td><strong>Employer Benefits</strong></td><td class="num">~15%</td><td>Mid margin, sticky</td><td>B2B2C scale potential, multi-year contracts</td></tr>
+        <tr><td>Medicare / Medicaid</td><td class="num">~5%</td><td>Low margin, complex</td><td>Limited for ketamine; mostly therapy / psychiatry</td></tr>
+      </tbody>
+    </table>
+    <p class="chart-caption">This breakdown is an analyst model. If accurate, it complicates the in-network narrative: roughly 45% of revenue is still cash-pay (Self-Pay), which means the "insurance-accessible" positioning is more aspiration than current reality. Diligence ask A2 verifies the actual split.</p>
+  </div>
+</section>
+
+<!-- ============================================================
+     5A. UNIT ECONOMICS DEEP-DIVE
+============================================================ -->
+<section class="major-break">
+  <div class="section-head">
+    <div class="section-num">§ 05A · Unit Economics</div>
+    <div class="section-title">
+      <h2>CAC and LTV, with the math shown</h2>
+      <div class="sub">Modeled per-channel economics with explicit assumptions. To be replaced with disclosed data when the data room arrives.</div>
+    </div>
+  </div>
+
+  <p class="lede">No CAC or LTV figures have been disclosed by the company. The numbers below are <strong>analyst-modeled estimates</strong> <span style="color: var(--teal); font-size: 0.78rem;">[Ext: Perplexity · Modeled]</span> derived from industry benchmarks, public reimbursement rates, and reasonable assumptions about KAP treatment completion. They exist to frame the diligence ask and to make the gap between deck-claimed economics and externally plausible economics visible.</p>
+
+  <div class="callout" style="margin-top: 20px;">
+    <strong>Why this section exists before the data room arrives.</strong> CAC and LTV claims without underlying methodology are unfalsifiable. By building the per-channel math from first principles now, we convert the diligence question from "what is your LTV/CAC?" into "here is our model, where does yours differ and why?" The company's response then has to engage with specific assumptions rather than offering an unverifiable summary number.
+  </div>
+
+  <!-- CAC vs LTV by Channel Chart -->
+  <div style="margin-top: 36px;">
+    <h3 style="margin-bottom: 14px;">Estimated CAC vs LTV by Channel <span style="font-size: 0.7rem; color: var(--teal); font-weight: 400;">[Ext: Perplexity · Modeled]</span></h3>
+    <svg class="chart" viewBox="0 0 720 420" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" role="img" aria-label="CAC vs LTV by channel">
+      <!-- Grid lines -->
+      <g stroke="#e5e0d6" stroke-width="1">
+        <line x1="80" y1="380" x2="700" y2="380"/>
+        <line x1="80" y1="303" x2="700" y2="303" stroke-dasharray="3 3"/>
+        <line x1="80" y1="226" x2="700" y2="226" stroke-dasharray="3 3"/>
+        <line x1="80" y1="149" x2="700" y2="149" stroke-dasharray="3 3"/>
+        <line x1="80" y1="72" x2="700" y2="72" stroke-dasharray="3 3"/>
+      </g>
+      <!-- Y-axis -->
+      <line x1="80" y1="40" x2="80" y2="380" stroke="#0a1929" stroke-width="1.2"/>
+      <g font-family="Helvetica, sans-serif" font-size="10" fill="#5b6b7a" text-anchor="end">
+        <text x="74" y="384">$0</text>
+        <text x="74" y="307">$500</text>
+        <text x="74" y="230">$1,000</text>
+        <text x="74" y="153">$1,500</text>
+        <text x="74" y="76">$2,000</text>
+      </g>
+      <text x="20" y="210" font-family="Helvetica, sans-serif" font-size="10" fill="#5b6b7a" transform="rotate(-90 20 210)" text-anchor="middle" letter-spacing="0.1em">DOLLARS</text>
+
+      <!-- Bars: each channel has CAC (gray) and LTV (teal) pair -->
+      <!-- D2C / Paid Social: CAC $320, LTV $1,400 -->
+      <rect x="125" y="331" width="28" height="49" fill="#5b6b7a"/>
+      <text x="139" y="324" font-family="Helvetica, sans-serif" font-size="10" font-weight="600" fill="#5b6b7a" text-anchor="middle">$320</text>
+      <rect x="158" y="165" width="28" height="215" fill="#1f6b6b"/>
+      <text x="172" y="158" font-family="Helvetica, sans-serif" font-size="10" font-weight="600" fill="#1f6b6b" text-anchor="middle">$1,400</text>
+      <text x="155" y="400" font-family="Helvetica, sans-serif" font-size="10" font-weight="600" fill="#0a1929" text-anchor="middle">D2C / Paid Social</text>
+      <text x="155" y="413" font-family="Helvetica, sans-serif" font-size="9" fill="#9b2226" text-anchor="middle" font-weight="600">4.4x</text>
+
+      <!-- Organic / SEO: CAC $90, LTV $1,600 -->
+      <rect x="270" y="366" width="28" height="14" fill="#5b6b7a"/>
+      <text x="284" y="358" font-family="Helvetica, sans-serif" font-size="10" font-weight="600" fill="#5b6b7a" text-anchor="middle">$90</text>
+      <rect x="303" y="134" width="28" height="246" fill="#1f6b6b"/>
+      <text x="317" y="127" font-family="Helvetica, sans-serif" font-size="10" font-weight="600" fill="#1f6b6b" text-anchor="middle">$1,600</text>
+      <text x="300" y="400" font-family="Helvetica, sans-serif" font-size="10" font-weight="600" fill="#0a1929" text-anchor="middle">Organic / SEO</text>
+      <text x="300" y="413" font-family="Helvetica, sans-serif" font-size="9" fill="#2d6a4f" text-anchor="middle" font-weight="600">17.8x</text>
+
+      <!-- Insurance Referral: CAC $180, LTV $1,900 -->
+      <rect x="415" y="352" width="28" height="28" fill="#5b6b7a"/>
+      <text x="429" y="345" font-family="Helvetica, sans-serif" font-size="10" font-weight="600" fill="#5b6b7a" text-anchor="middle">$180</text>
+      <rect x="448" y="88" width="28" height="292" fill="#1f6b6b"/>
+      <text x="462" y="81" font-family="Helvetica, sans-serif" font-size="10" font-weight="600" fill="#1f6b6b" text-anchor="middle">$1,900</text>
+      <text x="445" y="400" font-family="Helvetica, sans-serif" font-size="10" font-weight="600" fill="#0a1929" text-anchor="middle">Insurance Referral</text>
+      <text x="445" y="413" font-family="Helvetica, sans-serif" font-size="9" fill="#2d6a4f" text-anchor="middle" font-weight="600">10.6x</text>
+
+      <!-- Provider Referral: CAC $130, LTV $2,100 -->
+      <rect x="560" y="360" width="28" height="20" fill="#5b6b7a"/>
+      <text x="574" y="353" font-family="Helvetica, sans-serif" font-size="10" font-weight="600" fill="#5b6b7a" text-anchor="middle">$130</text>
+      <rect x="593" y="57" width="28" height="323" fill="#1f6b6b"/>
+      <text x="607" y="50" font-family="Helvetica, sans-serif" font-size="10" font-weight="600" fill="#1f6b6b" text-anchor="middle">$2,100</text>
+      <text x="590" y="400" font-family="Helvetica, sans-serif" font-size="10" font-weight="600" fill="#0a1929" text-anchor="middle">Provider Referral</text>
+      <text x="590" y="413" font-family="Helvetica, sans-serif" font-size="9" fill="#2d6a4f" text-anchor="middle" font-weight="600">16.2x</text>
+
+      <!-- Legend -->
+      <g font-family="Helvetica, sans-serif" font-size="10" fill="#5b6b7a">
+        <rect x="520" y="32" width="12" height="12" fill="#5b6b7a"/>
+        <text x="538" y="42">CAC</text>
+        <rect x="572" y="32" width="12" height="12" fill="#1f6b6b"/>
+        <text x="590" y="42">LTV</text>
+        <text x="628" y="42" font-style="italic">ratio below</text>
+      </g>
+    </svg>
+    <p class="chart-caption">Numbers below the channel label show LTV/CAC ratio. Insurance and Provider referral channels dominate on both efficiency and absolute LTV. D2C / Paid Social is the only channel below 5x. <span style="color: var(--teal);">[Ext: Perplexity · Modeled]</span></p>
+  </div>
+
+  <!-- Math: how CAC is built -->
+  <div class="cols-2" style="margin-top: 36px;">
+    <div>
+      <h3 style="margin-bottom: 14px;">CAC build · how each number is constructed</h3>
+      <table>
+        <thead>
+          <tr><th>Channel</th><th class="num">CAC</th><th>Component math</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>D2C / Paid Social</strong></td>
+            <td class="num">$320</td>
+            <td>~$80 effective ad spend per qualified lead × ~4.0 conversion ratio (form fill → booked intake → first paid visit). Includes Meta / Google CPC of ~$3–6, landing-page conversion of ~5–8%, and intake-to-paid conversion of ~50%.</td>
+          </tr>
+          <tr>
+            <td><strong>Organic / SEO</strong></td>
+            <td class="num">$90</td>
+            <td>~$50K/month sustained content and SEO investment ÷ ~550 monthly organic conversions. Reflects content compounding effect, not new-content marginal cost. Sensitive to traffic stability if Google algorithm shifts.</td>
+          </tr>
+          <tr>
+            <td><strong>Insurance Referral</strong></td>
+            <td class="num">$180</td>
+            <td>Payer match-engine routing fees ($80–120 per referred patient) + credentialing amortization ($30–50) + intake-team conversion friction ($30–50). Largest underlying variable: how many payer-routed patients actually book and show up.</td>
+          </tr>
+          <tr>
+            <td><strong>Provider Referral</strong></td>
+            <td class="num">$130</td>
+            <td>~$100 average referral fee or revenue share per onboarded patient + ~$30 BD overhead amortization. Network-effect dependent: scales sub-linearly with provider count, plateaus at clinical capacity.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div>
+      <h3 style="margin-bottom: 14px;">LTV build · same patient, different completion</h3>
+      <table>
+        <thead>
+          <tr><th>Component</th><th>Assumption</th><th class="num">$/patient</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Initial psychiatric eval</td><td>1 × $200</td><td class="num">$200</td></tr>
+          <tr><td>KAP induction</td><td>6 sessions × $400</td><td class="num">$2,400</td></tr>
+          <tr><td>Integration therapy</td><td>8 sessions × $175</td><td class="num">$1,400</td></tr>
+          <tr><td>Maintenance (6mo)</td><td>4 sessions × $300</td><td class="num">$1,200</td></tr>
+          <tr><td><strong>Gross billing per completed patient</strong></td><td></td><td class="num"><strong>$5,200</strong></td></tr>
+          <tr><td>Insurance contractual write-down</td><td>~40% of gross</td><td class="num">($2,080)</td></tr>
+          <tr><td><strong>Collected revenue per completed patient</strong></td><td></td><td class="num"><strong>$3,120</strong></td></tr>
+          <tr><td>Contribution margin assumption</td><td>~55%</td><td class="num">×&nbsp;0.55</td></tr>
+          <tr><td><strong>Contribution per completed patient</strong></td><td></td><td class="num"><strong>$1,716</strong></td></tr>
+        </tbody>
+      </table>
+      <p style="font-size: 0.86rem; margin-top: 12px;"><strong>Why channel LTV varies.</strong> Channels differ on completion rate. D2C / Paid Social: ~40% complete the full course → ~$1,400 LTV. Provider Referral: ~65% complete (pre-qualified, higher intent) → ~$2,100 LTV. The channel-LTV spread is almost entirely a completion-rate spread, not a price spread.</p>
+    </div>
+  </div>
+
+  <!-- Blended computation and deck reconciliation -->
+  <div style="margin-top: 36px;">
+    <h3>Blended unit economics · channel-mix-weighted</h3>
+    <table>
+      <thead>
+        <tr><th>Channel</th><th class="num">Mix assumption</th><th class="num">CAC</th><th class="num">LTV</th><th class="num">Weighted CAC</th><th class="num">Weighted LTV</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>D2C / Paid Social</td><td class="num">40%</td><td class="num">$320</td><td class="num">$1,400</td><td class="num">$128</td><td class="num">$560</td></tr>
+        <tr><td>Organic / SEO</td><td class="num">20%</td><td class="num">$90</td><td class="num">$1,600</td><td class="num">$18</td><td class="num">$320</td></tr>
+        <tr><td>Insurance Referral</td><td class="num">25%</td><td class="num">$180</td><td class="num">$1,900</td><td class="num">$45</td><td class="num">$475</td></tr>
+        <tr><td>Provider Referral</td><td class="num">15%</td><td class="num">$130</td><td class="num">$2,100</td><td class="num">$20</td><td class="num">$315</td></tr>
+        <tr class="highlight"><td><strong>Blended</strong></td><td class="num">100%</td><td class="num"></td><td class="num"></td><td class="num"><strong>$211</strong></td><td class="num"><strong>$1,670</strong></td></tr>
+      </tbody>
+    </table>
+    <p class="chart-caption">Channel mix is an analyst assumption [Inferred] reflecting Innerwell's stated transition from cash-pay D2C toward insurance-channel acquisition. <strong>Modeled blended LTV/CAC: $1,670 / $211 = 7.9x.</strong> Modeled blended payback: ~3.0 months.</p>
+  </div>
+
+  <!-- Deck vs Modeled reconciliation -->
+  <div style="margin-top: 28px; border: 1px solid var(--accent); padding: 22px 26px; background: #fdf4ef;">
+    <h4 style="color: var(--accent); margin-bottom: 8px;">Discrepancy · Modeled vs Deck</h4>
+    <p style="font-size: 0.92rem;">The pitch deck claims a blended <strong>LTV/CAC of 2.6x</strong> <span style="color: var(--muted-light); font-size: 0.75rem;">[Deck]</span>. The Perplexity per-channel model implies blended <strong>~7.9x</strong>. These cannot both be right under the same definition. Three reconciliations are plausible:</p>
+    <ol style="font-size: 0.92rem; margin-top: 10px; padding-left: 22px;">
+      <li><strong>Different LTV horizon.</strong> The deck may be reporting first-year LTV only ($800–1,200 range) rather than full-treatment-course LTV. Under this reading, blended LTV ≈ $550 ÷ blended CAC $211 ≈ 2.6x. <em>Plausible. Probably correct.</em></li>
+      <li><strong>Different completion-rate assumption.</strong> If actual treatment completion is ~25% rather than ~50%, the per-channel LTVs would compress proportionally and the ratio collapses. <em>Possible. Pessimistic case.</em></li>
+      <li><strong>Different CAC definition.</strong> If the deck includes fully-loaded sales and clinical-acquisition overhead (true total acquisition cost rather than channel-attribution CAC), the denominator could be 2–3x larger. <em>Possible. Most likely combined with reading 1.</em></li>
+    </ol>
+    <p style="font-size: 0.92rem; margin-top: 10px;"><strong>Diligence ask A4.b (added).</strong> Request the company's CAC and LTV methodology document explicitly. Specifically: (i) the time horizon used for LTV (12-month / 24-month / lifetime), (ii) whether CAC is channel-attributed or fully-loaded, (iii) what completion rate underlies the LTV calculation. Until that arrives, neither the 2.6x nor the 7.9x is underwritable. Both are working hypotheses.</p>
+  </div>
+
+  <p style="margin-top: 24px;"><strong>What this section establishes for IC.</strong> The unit economics are <em>plausibly very strong</em> on a per-channel basis under reasonable assumptions, especially in the insurance-channel and provider-referral arms where LTV/CAC ratios above 10x are not unusual for in-network behavioral health. The deck claim of 2.6x is consistent with first-year revenue rather than lifetime LTV, which is a fair reporting convention. <strong>The strategic question is not whether the unit economics work in any one channel. It is whether the channel mix is actually shifting toward the high-efficiency channels at the rate the strategy requires, or whether D2C / Paid Social remains the volume engine with its much weaker 4.4x economics.</strong> That answer is in the trailing 18-month channel-mix waterfall (Diligence Ask A1 and A4).</p>
+</section>
+
+<!-- ============================================================
+     6. FUNDING & CAP STRUCTURE
+============================================================ -->
+<section class="major-break">
+  <div class="section-head">
+    <div class="section-num">§ 06 · Funding & Cap Structure</div>
+    <div class="section-title">
+      <h2>The 47-month silence</h2>
+      <div class="sub">Total raised, syndicate composition, the gap nobody is talking about.</div>
+    </div>
+  </div>
+
+  <p class="lede">Per PitchBook, Innerwell raised a <strong>$3.0M seed in June 2022</strong> (8 investors, Greycroft lead) <span style="color: var(--teal); font-size: 0.78rem;">[Ext: PitchBook]</span>, followed by a <strong>$1.5M venture debt facility from WTI in December 2022</strong> <span style="color: var(--teal); font-size: 0.78rem;">[Ext: PitchBook]</span>. No equity round has been disclosed since mid-2022. That is roughly <strong>3.5 years of equity silence</strong> before the current Series A approach. The 47-month gap signal we have been weighting throughout this memo is not a vibes-level concern. It is a verifiable, externally-sourced data point.</p>
+
+  <div class="callout" style="margin-top: 20px;">
+    <strong>The shape of the post-seed capital is its own signal.</strong> A $1.5M venture debt facility taken six months after a $3.0M seed, with no subsequent equity round, is the pattern of a company that either chose bridge financing over a priced round (capital-efficient posture) or could not get a priced round done at acceptable terms. Both are plausible. Only the founders can say which.
+  </div>
+
+  <!-- Funding Timeline Chart -->
+  <div style="margin-top: 28px;">
+    <h3 style="margin-bottom: 14px;">Funding Timeline · June 2022 → May 2026 <span style="font-size: 0.7rem; color: var(--teal); font-weight: 400;">[Ext: PitchBook]</span></h3>
+    <svg class="chart" viewBox="0 0 720 240" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Funding timeline">
+      <!-- Timeline base -->
+      <line x1="60" y1="120" x2="660" y2="120" stroke="#0a1929" stroke-width="2"/>
+
+      <!-- The gap region -->
+      <rect x="160" y="115" width="450" height="10" fill="#e8c5c5" opacity="0.6"/>
+      <text x="385" y="100" font-family="Helvetica, sans-serif" font-size="11" fill="#9b2226" font-weight="700" text-anchor="middle" letter-spacing="0.06em">47 MONTHS · NO DISCLOSED FINANCING</text>
+      <text x="385" y="86" font-family="Helvetica, sans-serif" font-size="9" fill="#9b2226" text-anchor="middle" font-style="italic">profitable bootstrap or stalled? · this is the question</text>
+
+      <!-- Seed marker -->
+      <line x1="100" y1="120" x2="100" y2="158" stroke="#1f6b6b" stroke-width="2"/>
+      <circle cx="100" cy="120" r="8" fill="#1f6b6b"/>
+      <circle cx="100" cy="120" r="3" fill="#fafaf6"/>
+      <text x="100" y="178" font-family="Helvetica, sans-serif" font-size="11" fill="#0a1929" font-weight="700" text-anchor="middle">SEED</text>
+      <text x="100" y="194" font-family="Helvetica, sans-serif" font-size="11" fill="#1f6b6b" font-weight="700" text-anchor="middle">$3.0M</text>
+      <text x="100" y="210" font-family="Helvetica, sans-serif" font-size="9" fill="#5b6b7a" text-anchor="middle">Jun 2022 · Greycroft lead</text>
+      <text x="100" y="222" font-family="Helvetica, sans-serif" font-size="9" fill="#5b6b7a" text-anchor="middle">8 investors</text>
+
+      <!-- Debt marker -->
+      <line x1="160" y1="120" x2="160" y2="158" stroke="#b08800" stroke-width="2"/>
+      <circle cx="160" cy="120" r="7" fill="#b08800"/>
+      <text x="160" y="178" font-family="Helvetica, sans-serif" font-size="11" fill="#0a1929" font-weight="700" text-anchor="middle">DEBT</text>
+      <text x="160" y="194" font-family="Helvetica, sans-serif" font-size="11" fill="#b08800" font-weight="700" text-anchor="middle">$1.5M</text>
+      <text x="160" y="210" font-family="Helvetica, sans-serif" font-size="9" fill="#5b6b7a" text-anchor="middle">Dec 2022 · WTI</text>
+
+      <!-- Today marker -->
+      <line x1="660" y1="120" x2="660" y2="158" stroke="#b8391c" stroke-width="2" stroke-dasharray="3 2"/>
+      <circle cx="660" cy="120" r="9" fill="#fafaf6" stroke="#b8391c" stroke-width="2.5"/>
+      <text x="660" cy="120" y="124" font-family="Helvetica, sans-serif" font-size="13" fill="#b8391c" font-weight="800" text-anchor="middle">?</text>
+      <text x="660" y="178" font-family="Helvetica, sans-serif" font-size="11" fill="#0a1929" font-weight="700" text-anchor="middle">TODAY</text>
+      <text x="660" y="194" font-family="Helvetica, sans-serif" font-size="11" fill="#b8391c" font-weight="700" text-anchor="middle">Series A?</text>
+      <text x="660" y="210" font-family="Helvetica, sans-serif" font-size="9" fill="#5b6b7a" text-anchor="middle">May 2026</text>
+
+      <!-- Year labels -->
+      <g font-family="Helvetica, sans-serif" font-size="9" fill="#8a98a5" text-anchor="middle">
+        <text x="100" y="138">'22</text>
+        <text x="225" y="138">'23</text>
+        <text x="370" y="138">'24</text>
+        <text x="515" y="138">'25</text>
+        <text x="660" y="138">'26</text>
+      </g>
+
+      <!-- Total -->
+      <text x="60" y="40" font-family="Helvetica, sans-serif" font-size="10" font-weight="600" fill="#5b6b7a" letter-spacing="0.1em">TOTAL CAPITAL DEPLOYED</text>
+      <text x="60" y="64" font-family="'Iowan Old Style', Palatino, serif" font-size="22" font-weight="600" fill="#0a1929">$4.5M ($3.0M equity + $1.5M debt)</text>
+    </svg>
+  </div>
+
+  <div class="cols-2" style="margin-top: 36px;">
+    <div>
+      <h4>Investor Syndicate</h4>
+      <table>
+        <thead><tr><th>Tier</th><th>Investor</th><th>Notable</th></tr></thead>
+        <tbody>
+          <tr class="highlight">
+            <td><span class="tag accent">T1</span></td>
+            <td><strong>Greycroft</strong></td>
+            <td>BetterHelp, Acorns, Venmo</td>
+          </tr>
+          <tr class="highlight">
+            <td><span class="tag accent">T1</span></td>
+            <td><strong>WTI</strong></td>
+            <td>Venture debt, follow-on</td>
+          </tr>
+          <tr><td><span class="tag">T2</span></td><td>Greenpoint Capital</td><td>n/a</td></tr>
+          <tr><td><span class="tag">T2</span></td><td>Gershon Capital</td><td>n/a</td></tr>
+          <tr><td><span class="tag">T2</span></td><td>Max Ventures</td><td>n/a</td></tr>
+          <tr><td><span class="tag">T3</span></td><td>Mana Ventures</td><td>n/a</td></tr>
+          <tr><td><span class="tag">T3</span></td><td>Riverside Ventures</td><td>n/a</td></tr>
+          <tr><td><span class="tag">T3</span></td><td>Looking Glass Capital</td><td>n/a</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div>
+      <h4>Syndicate Read</h4>
+      <p style="margin-top: 8px;"><strong>Greycroft as lead is meaningful</strong>. They own BetterHelp and have decades of behavioral health pattern matching. The presence is positive signal at seed.</p>
+      <p style="margin-top: 12px;"><strong>The 8-investor seed on $3M is unusual</strong> <span style="color: var(--accent); font-size: 0.78rem;">[Inferred]</span>. A check-size distribution this fragmented for a seed of this size often signals one of two things: a hard raise that needed many small commitments to close, or a party-round dynamic with no clear lead-investor conviction. PitchBook's syndicate composition supports either read.</p>
+      <p style="margin-top: 12px;"><strong>The absence of a healthtech-specialist lead is louder.</strong> a16z Bio, General Catalyst, 7wireVentures, Define, Echo Health Ventures, and OakHC/FT did not enter at Series A despite four years of access. Possible explanations: founders chose not to run a process, valuation gap, or fund-internal signals from Greycroft.</p>
+      <p style="margin-top: 12px;"><strong>Cap table risk at Series A:</strong> 8 seed investors create pro-rata complexity. Lead investor will want significant ownership; secondary market for early shares may be necessary. No valuation disclosed for either prior round <span style="color: var(--teal); font-size: 0.78rem;">[Ext: PitchBook]</span>, which removes the usual anchor point for Series A pricing conversations.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     6A. ARR SCENARIOS & VALUATION FRAMING
+============================================================ -->
+<section class="major-break">
+  <div class="section-head">
+    <div class="section-num">§ 06A · ARR Scenarios &amp; Valuation Framing</div>
+    <div class="section-title">
+      <h2>Bull, base, bear projections</h2>
+      <div class="sub">Modeled ARR trajectories with entry-multiple framing. Every number subject to verification.</div>
+    </div>
+  </div>
+
+  <p class="lede">Innerwell has not disclosed ARR. The scenarios below are <strong>analyst-modeled trajectories</strong> <span style="color: var(--teal); font-size: 0.78rem;">[Ext: Perplexity · Modeled]</span> built from public-market behavioral-health benchmarks, the company's stated payer network expansion, and the channel-mix assumptions in §05A. They function as the IC's framing for what valuation we would be paying for in each scenario, not as a forecast of where Innerwell actually is.</p>
+
+  <!-- ARR Scenarios Chart -->
+  <div style="margin-top: 28px;">
+    <h3 style="margin-bottom: 14px;">Modeled ARR Trajectories · 2024E → 2027E ($M) <span style="font-size: 0.7rem; color: var(--teal); font-weight: 400;">[Ext: Perplexity · Modeled]</span></h3>
+    <svg class="chart" viewBox="0 0 720 440" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" role="img" aria-label="ARR scenarios bull base bear">
+      <!-- Grid lines -->
+      <g stroke="#e5e0d6" stroke-width="1">
+        <line x1="80" y1="380" x2="700" y2="380"/>
+        <line x1="80" y1="319" x2="700" y2="319" stroke-dasharray="3 3"/>
+        <line x1="80" y1="258" x2="700" y2="258" stroke-dasharray="3 3"/>
+        <line x1="80" y1="197" x2="700" y2="197" stroke-dasharray="3 3"/>
+        <line x1="80" y1="136" x2="700" y2="136" stroke-dasharray="3 3"/>
+        <line x1="80" y1="75" x2="700" y2="75" stroke-dasharray="3 3"/>
+      </g>
+      <!-- Y-axis labels -->
+      <g font-family="Helvetica, sans-serif" font-size="10" fill="#5b6b7a" text-anchor="end">
+        <text x="74" y="384">$0</text>
+        <text x="74" y="323">$6M</text>
+        <text x="74" y="262">$12M</text>
+        <text x="74" y="201">$18M</text>
+        <text x="74" y="140">$24M</text>
+        <text x="74" y="79">$30M</text>
+      </g>
+      <text x="20" y="220" font-family="Helvetica, sans-serif" font-size="10" fill="#5b6b7a" transform="rotate(-90 20 220)" text-anchor="middle" letter-spacing="0.1em">ARR ($M)</text>
+
+      <!-- X-axis labels -->
+      <line x1="80" y1="380" x2="700" y2="380" stroke="#0a1929" stroke-width="1.2"/>
+      <g font-family="Helvetica, sans-serif" font-size="11" fill="#0a1929" text-anchor="middle" font-weight="600">
+        <text x="160" y="400">2024E</text>
+        <text x="333" y="400">2025E</text>
+        <text x="506" y="400">2026E</text>
+        <text x="660" y="400">2027E</text>
+      </g>
+
+      <!-- y mapping: $0 = y380, $30M = y75 → y = 380 - (val/30)*305 -->
+      <!-- Bull: 3, 6.5, 14, 28 → y = 380 - 30.5, 66.1, 142.3, 284.7 → 349.5, 313.9, 237.7, 95.3 -->
+      <!-- Base: 2, 4, 8, 15 → y = 380 - 20.3, 40.7, 81.3, 152.5 → 359.7, 339.3, 298.7, 227.5 -->
+      <!-- Bear: 1, 1.8, 3, 5 → y = 380 - 10.2, 18.3, 30.5, 50.8 → 369.8, 361.7, 349.5, 329.2 -->
+
+      <!-- Bull line (green) -->
+      <polyline points="160,349.5 333,313.9 506,237.7 660,95.3" fill="none" stroke="#2d6a4f" stroke-width="2.5"/>
+      <g fill="#2d6a4f">
+        <circle cx="160" cy="349.5" r="4.5"/>
+        <circle cx="333" cy="313.9" r="4.5"/>
+        <circle cx="506" cy="237.7" r="4.5"/>
+        <circle cx="660" cy="95.3" r="4.5"/>
+      </g>
+      <text x="660" y="84" font-family="Helvetica, sans-serif" font-size="10" font-weight="700" fill="#2d6a4f" text-anchor="middle">$28M</text>
+
+      <!-- Base line (teal, dashed) -->
+      <polyline points="160,359.7 333,339.3 506,298.7 660,227.5" fill="none" stroke="#1f6b6b" stroke-width="2.5" stroke-dasharray="6 3"/>
+      <g fill="#1f6b6b">
+        <circle cx="160" cy="359.7" r="4.5"/>
+        <circle cx="333" cy="339.3" r="4.5"/>
+        <circle cx="506" cy="298.7" r="4.5"/>
+        <circle cx="660" cy="227.5" r="4.5"/>
+      </g>
+      <text x="660" y="216" font-family="Helvetica, sans-serif" font-size="10" font-weight="700" fill="#1f6b6b" text-anchor="middle">$15M</text>
+
+      <!-- Bear line (gray, dotted) -->
+      <polyline points="160,369.8 333,361.7 506,349.5 660,329.2" fill="none" stroke="#9b2226" stroke-width="2.5" stroke-dasharray="2 3"/>
+      <g fill="#9b2226">
+        <circle cx="160" cy="369.8" r="4.5"/>
+        <circle cx="333" cy="361.7" r="4.5"/>
+        <circle cx="506" cy="349.5" r="4.5"/>
+        <circle cx="660" cy="329.2" r="4.5"/>
+      </g>
+      <text x="660" y="318" font-family="Helvetica, sans-serif" font-size="10" font-weight="700" fill="#9b2226" text-anchor="middle">$5M</text>
+
+      <!-- Legend -->
+      <g font-family="Helvetica, sans-serif" font-size="10">
+        <line x1="100" y1="38" x2="118" y2="38" stroke="#2d6a4f" stroke-width="2.5"/>
+        <circle cx="109" cy="38" r="3.5" fill="#2d6a4f"/>
+        <text x="125" y="42" fill="#2d6a4f" font-weight="600">Bull</text>
+
+        <line x1="180" y1="38" x2="198" y2="38" stroke="#1f6b6b" stroke-width="2.5" stroke-dasharray="6 3"/>
+        <circle cx="189" cy="38" r="3.5" fill="#1f6b6b"/>
+        <text x="205" y="42" fill="#1f6b6b" font-weight="600">Base</text>
+
+        <line x1="260" y1="38" x2="278" y2="38" stroke="#9b2226" stroke-width="2.5" stroke-dasharray="2 3"/>
+        <circle cx="269" cy="38" r="3.5" fill="#9b2226"/>
+        <text x="285" y="42" fill="#9b2226" font-weight="600">Bear</text>
+      </g>
+    </svg>
+    <p class="chart-caption">Bull case assumes insurance channel expansion plus employer-benefits launch. Base assumes steady D2C with partial insurance growth. Bear assumes DEA tightening plus CAC headwinds.</p>
+  </div>
+
+  <!-- Scenario data + assumption table -->
+  <div style="margin-top: 36px;">
+    <h3>Scenario detail with key assumption per case</h3>
+    <table>
+      <thead>
+        <tr><th>Scenario</th><th class="num">2024E</th><th class="num">2025E</th><th class="num">2026E</th><th class="num">2027E</th><th>Key assumption</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong style="color: #2d6a4f;">Bull</strong></td><td class="num">$3.0M</td><td class="num">$6.5M</td><td class="num">$14.0M</td><td class="num">$28.0M</td><td>Insurance channel expansion + employer benefits launch + outcomes-based contracting</td></tr>
+        <tr><td><strong style="color: #1f6b6b;">Base</strong></td><td class="num">$2.0M</td><td class="num">$4.0M</td><td class="num">$8.0M</td><td class="num">$15.0M</td><td>Steady D2C growth + partial insurance lift; no DEA disruption; no employer launch</td></tr>
+        <tr><td><strong style="color: #9b2226;">Bear</strong></td><td class="num">$1.0M</td><td class="num">$1.8M</td><td class="num">$3.0M</td><td class="num">$5.0M</td><td>DEA tightens at-home ketamine + CAC inflation + payer reimbursement compression</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Valuation mapping -->
+  <div style="margin-top: 28px;">
+    <h3>Implied entry valuation by scenario</h3>
+    <table>
+      <thead>
+        <tr><th>Scenario</th><th>Pre-Money Valuation</th><th>Entry Multiple</th><th>Rationale</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong style="color: #2d6a4f;">Bull</strong></td><td>$25–35M</td><td>~10x 2025E ARR</td><td>Strong growth, insurance moat, scarcity premium for in-network KAP</td></tr>
+        <tr><td><strong style="color: #1f6b6b;">Base</strong></td><td>$15–22M</td><td>~5x 2025E ARR</td><td>Standard healthtech seed-to-A step-up; market-rate pricing</td></tr>
+        <tr><td><strong style="color: #9b2226;">Bear</strong></td><td>$8–12M</td><td>~3–4x ARR</td><td>Distressed or bridge round; structured terms likely (liquidation preference &gt; 1x, ratchets)</td></tr>
+      </tbody>
+    </table>
+    <p class="chart-caption" style="margin-top: 8px;">Entry multiples reflect 2026 behavioral-health Series A comparables [Ext: Perplexity · Modeled]. Bull-case multiple is achievable only if outcomes data is independently audited and payer contracts include outcomes-based components.</p>
+  </div>
+
+  <div class="callout" style="margin-top: 28px;">
+    <strong>What the scenarios actually tell us.</strong> The spread between Bull and Bear at 2027 is 5.6x ($28M vs $5M). That spread is almost entirely a function of two binary variables: (i) whether the DEA Schedule III in-person eval rules tighten, and (ii) whether the insurance / employer channel actually scales. Neither of those is something the company controls. The IC vote is therefore not really a vote on Innerwell's execution. It is a vote on regulatory direction and payer-channel velocity, with Innerwell as the levered bet. That framing changes the diligence emphasis: less on management and more on regulatory expert calls and payer-side reference checks.
+  </div>
+
+  <p style="margin-top: 22px; font-size: 0.92rem;"><strong>IC implication.</strong> A Series A check at $8–15M pre-money pays the Base-case multiple for the Bear-case ARR. That asymmetry is not coincidental. It is precisely what a structured down-round or bridge-style entry looks like, and it is the price band where the deal would clear most easily if the data room confirms the soft signals. Above $15M pre, we are paying Base for Base, which requires conviction the company is currently executing the Base path. Above $22M pre, we are paying for the Bull case and need outcomes-data audit before underwriting.</p>
+</section>
+
+<!-- ============================================================
+     7. COMPETITIVE LANDSCAPE
+============================================================ -->
+<section>
+  <div class="section-head">
+    <div class="section-num">§ 07 · Competitive Landscape</div>
+    <div class="section-title">
+      <h2>Where Innerwell sits</h2>
+      <div class="sub">Capital scale × payer integration. M&A vs scale paths.</div>
+    </div>
+  </div>
+
+  <table>
+    <thead>
+      <tr><th>Company</th><th>Focus</th><th>Stage</th><th class="num">Raised</th><th>Outcome / Path</th></tr>
+    </thead>
+    <tbody>
+      <tr class="highlight">
+        <td><strong>Innerwell</strong></td>
+        <td>KAP + psychiatry + therapy, in-network</td>
+        <td>Seed</td>
+        <td class="num">$4.5M</td>
+        <td><span class="tag accent">M&A target</span></td>
+      </tr>
+      <tr><td>Mindbloom</td><td>Cash-pay at-home ketamine therapy</td><td>Series A</td><td class="num">~$15M</td><td><span class="tag warn">D2C cash-pay</span></td></tr>
+      <tr><td>Talkiatry</td><td>In-network psychiatry, virtual-first</td><td>Series C</td><td class="num">~$250M</td><td><span class="tag teal">Scale path</span></td></tr>
+      <tr><td>Headway</td><td>Payer-network credentialing infra</td><td>Series C</td><td class="num">~$225M</td><td><span class="tag teal">Infrastructure</span></td></tr>
+      <tr><td>Osmind</td><td>EHR + outcomes platform for KAP clinics</td><td>Series A</td><td class="num">~$50M</td><td><span class="tag">SaaS / data</span></td></tr>
+      <tr><td>Lyra Health</td><td>Employer mental health</td><td>Series F</td><td class="num">$1.1B</td><td><span class="tag teal">IPO likely</span></td></tr>
+      <tr><td>Quartet Health</td><td>Payer integration</td><td>Series D</td><td class="num">$160M</td><td><span class="tag">M&A</span></td></tr>
+      <tr><td>AbleTo</td><td>Structured CBT</td><td>Acquired</td><td class="num">~$87M</td><td><span class="tag pos">Optum (exited)</span></td></tr>
+      <tr><td>Wheel Health</td><td>Telehealth infrastructure</td><td>Series B</td><td class="num">$66M</td><td><span class="tag">Strategic</span></td></tr>
+      <tr><td>Forta Health</td><td>ABA / autism</td><td>Series B</td><td class="num">$55M</td><td><span class="tag">Strategic</span></td></tr>
+      <tr><td>BetterHelp / Talkspace / Cerebral</td><td>D2C teletherapy at scale</td><td>Public / late</td><td class="num">$100M+</td><td><span class="tag warn">Volatile</span></td></tr>
+    </tbody>
+  </table>
+  <p class="chart-caption" style="margin-top: 8px;">Comp set assembled from PitchBook <span style="color: var(--teal);">[Ext: PitchBook]</span> with non-Innerwell raise figures rounded to nearest reported aggregate. Direct head-to-head ARR comparison not possible without disclosed company-level revenue.</p>
+
+  <!-- Competitive 2x2 Chart -->
+  <div style="margin-top: 36px;">
+    <h3 style="margin-bottom: 14px;">Strategic Positioning · Payer Integration vs. Capital Scale</h3>
+
+    <svg class="chart" viewBox="0 0 720 520" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Competitive positioning 2x2">
+      <!-- Quadrant background -->
+      <rect x="80" y="40" width="580" height="400" fill="#fafaf6" stroke="#0a1929" stroke-width="1.5"/>
+
+      <!-- Quadrant divider lines -->
+      <line x1="370" y1="40" x2="370" y2="440" stroke="#0a1929" stroke-width="1" stroke-dasharray="3 4" opacity="0.5"/>
+      <line x1="80" y1="240" x2="660" y2="240" stroke="#0a1929" stroke-width="1" stroke-dasharray="3 4" opacity="0.5"/>
+
+      <!-- Quadrant labels (top-corner) -->
+      <g font-family="Helvetica, sans-serif" font-size="9" font-weight="700" letter-spacing="0.1em" fill="#8a98a5">
+        <text x="92" y="58">M&amp;A TARGET ZONE</text>
+        <text x="650" y="58" text-anchor="end">STRATEGIC ACQUIRER ZONE</text>
+        <text x="92" y="432">NICHE / VULNERABLE</text>
+        <text x="650" y="432" text-anchor="end">D2C SCALE</text>
+      </g>
+
+      <!-- Axis labels -->
+      <text x="370" y="475" font-family="Helvetica, sans-serif" font-size="10" font-weight="700" letter-spacing="0.1em" fill="#0a1929" text-anchor="middle">CAPITAL RAISED  →</text>
+      <text x="40" y="240" font-family="Helvetica, sans-serif" font-size="10" font-weight="700" letter-spacing="0.1em" fill="#0a1929" text-anchor="middle" transform="rotate(-90 40 240)">PAYER INTEGRATION DEPTH  →</text>
+
+      <!-- X-axis ticks -->
+      <g font-family="Helvetica, sans-serif" font-size="9" fill="#5b6b7a" text-anchor="middle">
+        <text x="120" y="455">$5M</text>
+        <text x="220" y="455">$50M</text>
+        <text x="370" y="455">$150M</text>
+        <text x="500" y="455">$500M</text>
+        <text x="630" y="455">$1B+</text>
+      </g>
+
+      <!-- Bubbles: cx,cy,r,color,label -->
+      <!-- Innerwell: low capital ($4.5M), HIGH payer integration -->
+      <circle cx="115" cy="100" r="20" fill="#b8391c" fill-opacity="0.18" stroke="#b8391c" stroke-width="2.5"/>
+      <text x="115" y="103" font-family="Helvetica, sans-serif" font-size="10" font-weight="700" fill="#b8391c" text-anchor="middle">Innerwell</text>
+
+      <!-- AbleTo: ~$87M, very high payer integration -->
+      <circle cx="270" cy="80" r="22" fill="#2d6a4f" fill-opacity="0.16" stroke="#2d6a4f" stroke-width="1.8"/>
+      <text x="270" y="83" font-family="Helvetica, sans-serif" font-size="10" font-weight="600" fill="#2d6a4f" text-anchor="middle">AbleTo</text>
+      <text x="270" y="96" font-family="Helvetica, sans-serif" font-size="8" fill="#2d6a4f" text-anchor="middle">(Optum)</text>
+
+      <!-- Osmind: ~$50M, KAP-specific EHR, payer-adjacent data play -->
+      <circle cx="200" cy="155" r="14" fill="#2d6a4f" fill-opacity="0.14" stroke="#2d6a4f" stroke-width="1.5"/>
+      <text x="200" y="158" font-family="Helvetica, sans-serif" font-size="10" font-weight="600" fill="#2d6a4f" text-anchor="middle">Osmind</text>
+
+      <!-- Headway: ~$225M, payer credentialing infrastructure (very high payer integration) -->
+      <circle cx="435" cy="95" r="22" fill="#1f6b6b" fill-opacity="0.16" stroke="#1f6b6b" stroke-width="1.8"/>
+      <text x="435" y="98" font-family="Helvetica, sans-serif" font-size="10" font-weight="600" fill="#1f6b6b" text-anchor="middle">Headway</text>
+
+      <!-- Talkiatry: ~$250M, in-network psychiatry, high payer integration -->
+      <circle cx="480" cy="135" r="23" fill="#1f6b6b" fill-opacity="0.16" stroke="#1f6b6b" stroke-width="1.8"/>
+      <text x="480" y="138" font-family="Helvetica, sans-serif" font-size="10" font-weight="600" fill="#1f6b6b" text-anchor="middle">Talkiatry</text>
+
+      <!-- Quartet: $160M, high payer integration -->
+      <circle cx="390" cy="125" r="26" fill="#1f6b6b" fill-opacity="0.14" stroke="#1f6b6b" stroke-width="1.6"/>
+      <text x="390" y="128" font-family="Helvetica, sans-serif" font-size="10" font-weight="600" fill="#1f6b6b" text-anchor="middle">Quartet</text>
+
+      <!-- Lyra: $1.1B, medium-high payer integration (employer-led) -->
+      <circle cx="600" cy="190" r="40" fill="#1f6b6b" fill-opacity="0.13" stroke="#1f6b6b" stroke-width="1.8"/>
+      <text x="600" y="193" font-family="Helvetica, sans-serif" font-size="11" font-weight="600" fill="#1f6b6b" text-anchor="middle">Lyra Health</text>
+
+      <!-- Wheel: $66M, medium -->
+      <circle cx="240" cy="225" r="18" fill="#5b6b7a" fill-opacity="0.15" stroke="#5b6b7a" stroke-width="1.5"/>
+      <text x="240" y="228" font-family="Helvetica, sans-serif" font-size="10" font-weight="600" fill="#5b6b7a" text-anchor="middle">Wheel</text>
+
+      <!-- Forta: $55M, medium -->
+      <circle cx="225" cy="195" r="17" fill="#5b6b7a" fill-opacity="0.15" stroke="#5b6b7a" stroke-width="1.5"/>
+      <text x="225" y="198" font-family="Helvetica, sans-serif" font-size="10" font-weight="600" fill="#5b6b7a" text-anchor="middle">Forta</text>
+
+      <!-- Mindbloom: ~$15M, D2C cash-pay ketamine (closest direct competitor in modality, opposite in distribution) -->
+      <circle cx="170" cy="370" r="14" fill="#b08800" fill-opacity="0.14" stroke="#b08800" stroke-width="1.6"/>
+      <text x="170" y="373" font-family="Helvetica, sans-serif" font-size="10" font-weight="600" fill="#b08800" text-anchor="middle">Mindbloom</text>
+
+      <!-- BetterHelp (Teladoc) - large, low payer integration -->
+      <circle cx="610" cy="340" r="35" fill="#9b2226" fill-opacity="0.13" stroke="#9b2226" stroke-width="1.5"/>
+      <text x="610" y="343" font-family="Helvetica, sans-serif" font-size="11" font-weight="600" fill="#9b2226" text-anchor="middle">BetterHelp</text>
+
+      <!-- Talkspace - public, low payer -->
+      <circle cx="450" cy="370" r="25" fill="#9b2226" fill-opacity="0.13" stroke="#9b2226" stroke-width="1.5"/>
+      <text x="450" y="373" font-family="Helvetica, sans-serif" font-size="10" font-weight="600" fill="#9b2226" text-anchor="middle">Talkspace</text>
+
+      <!-- Cerebral - $462M, low payer (mostly D2C) -->
+      <circle cx="535" cy="400" r="28" fill="#9b2226" fill-opacity="0.13" stroke="#9b2226" stroke-width="1.5"/>
+      <text x="535" y="403" font-family="Helvetica, sans-serif" font-size="10" font-weight="600" fill="#9b2226" text-anchor="middle">Cerebral</text>
+
+      <!-- Strategic vector -->
+      <path d="M 115,100 Q 200,60 270,80" stroke="#b8391c" stroke-width="1" stroke-dasharray="4 3" fill="none" opacity="0.6"/>
+      <text x="180" y="48" font-family="Helvetica, sans-serif" font-size="9" font-style="italic" fill="#b8391c">"AbleTo path" likely Innerwell trajectory</text>
+
+      <!-- Legend -->
+      <g font-family="Helvetica, sans-serif" font-size="9" fill="#5b6b7a">
+        <text x="80" y="500" font-weight="600" letter-spacing="0.06em">BUBBLE SIZE = APPROX. ENTERPRISE SCALE</text>
+        <circle cx="320" cy="497" r="4" fill="#b8391c" fill-opacity="0.18" stroke="#b8391c" stroke-width="1.5"/>
+        <text x="330" y="500">Innerwell</text>
+        <circle cx="395" cy="497" r="4" fill="#1f6b6b" fill-opacity="0.16" stroke="#1f6b6b" stroke-width="1.5"/>
+        <text x="405" y="500">Payer-integrated</text>
+        <circle cx="490" cy="497" r="4" fill="#b08800" fill-opacity="0.14" stroke="#b08800" stroke-width="1.5"/>
+        <text x="500" y="500">D2C cash-pay</text>
+        <circle cx="570" cy="497" r="4" fill="#9b2226" fill-opacity="0.13" stroke="#9b2226" stroke-width="1.5"/>
+        <text x="580" y="500">D2C insurance scale</text>
+      </g>
+    </svg>
+    <p class="chart-caption">Innerwell sits in the upper-left "M&A target" quadrant: high payer integration depth at low capital scale. Direct modality competitor (Mindbloom) sits in the opposite quadrant on distribution. Closest strategic neighbors are Talkiatry and Headway, both of which scaled the in-network playbook in adjacent categories without ketamine. The thesis is whether Innerwell can scale the payer-integrated KAP wedge that no incumbent has yet built. <span style="color: var(--teal);">[Ext: PitchBook comp set]</span></p>
+  </div>
+</section>
+
+<!-- ============================================================
+     8. MARKET OPPORTUNITY
+============================================================ -->
+<section>
+  <div class="section-head">
+    <div class="section-num">§ 08 · Market Opportunity</div>
+    <div class="section-title">
+      <h2>TAM, tailwinds, friction</h2>
+      <div class="sub">$280B market with structural macro support and structural macro friction.</div>
+    </div>
+  </div>
+
+  <div class="cols-3">
+    <div class="card">
+      <h4>Total Addressable <span style="color: var(--teal); font-weight: 400; font-size: 0.65rem;">[Ext: PitchBook]</span></h4>
+      <span style="font-family: var(--serif); font-size: 2.4rem; color: var(--ink); display: block; margin: 8px 0; line-height: 1;">$280B+</span>
+      <p style="font-size: 0.88rem;">U.S. mental health market. Ketamine sub-segment growing <strong>6–8% CAGR</strong>. Adjacent expansion into chronic pain and PTSD doubles addressable population.</p>
+    </div>
+    <div class="card">
+      <h4>Insurance Pool <span style="color: var(--teal); font-weight: 400; font-size: 0.65rem;">[Ext]</span></h4>
+      <span style="font-family: var(--serif); font-size: 2.4rem; color: var(--ink); display: block; margin: 8px 0; line-height: 1;">~160M</span>
+      <p style="font-size: 0.88rem;">Commercially insured lives in the U.S. <strong>~22M</strong> currently addressable through Innerwell's five-payer network (Aetna, Anthem, BS California, Magellan, Optum). The other ~140M is the growth runway if the network expands.</p>
+    </div>
+    <div class="card">
+      <h4>Wedge Take-rate <span style="color: var(--accent); font-weight: 400; font-size: 0.65rem;">[Inferred]</span></h4>
+      <p style="font-size: 0.88rem; margin-top: 8px;">At ~22M lives accessible and conservative behavioral health utilization rates (3–5% annual incidence of MDD requiring treatment, ~10–15% of those treatment-resistant), the underwriteable patient pool through current payer relationships is roughly <strong>60K–150K patients</strong> over a multi-year horizon. ARR upside is a function of penetration rate and per-patient economics, neither of which is currently disclosed.</p>
+    </div>
+  </div>
+
+  <div class="cols-2" style="margin-top: 24px;">
+    <div class="card">
+      <h4>Tailwinds</h4>
+      <ul class="clean" style="margin-top: 8px;">
+        <li>Sustained post-COVID demand surge</li>
+        <li>FDA breakthrough designations (psilocybin, MDMA-AT)</li>
+        <li>Employer behavioral health benefits expanding</li>
+        <li>DEA telehealth rules under active revision</li>
+        <li>Parity enforcement strengthening</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h4>Headwinds</h4>
+      <ul class="clean" style="margin-top: 8px;">
+        <li>DEA Schedule III in-person eval requirements</li>
+        <li>BetterHelp / Talkspace D2C brand dominance</li>
+        <li>State medical board scrutiny on at-home ketamine</li>
+        <li>Payer reimbursement-rate compression</li>
+        <li>Adverse-event headline risk</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     9. RISKS
+============================================================ -->
+<section>
+  <div class="section-head">
+    <div class="section-num">§ 09 · Risk Heatmap</div>
+    <div class="section-title">
+      <h2>Where this deal could break</h2>
+      <div class="sub">Severity × likelihood, ranked.</div>
+    </div>
+  </div>
+
+  <!-- Risk Heatmap -->
+  <div style="margin-top: 24px;">
+    <svg class="chart" viewBox="0 0 720 520" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Risk heatmap">
+      <!-- Grid 5x5 -->
+      <!-- Cells: 80px wide, 80px tall, starting at x=120, y=60 -->
+      <!-- Color from green (low/low) to red (high/high) -->
+      <g>
+        <!-- Row 5 (top, severity=very high) -->
+        <rect x="120" y="60"  width="80" height="80" fill="#f4dede"/>
+        <rect x="200" y="60"  width="80" height="80" fill="#eecaca"/>
+        <rect x="280" y="60"  width="80" height="80" fill="#e0a8a8"/>
+        <rect x="360" y="60"  width="80" height="80" fill="#cd7878"/>
+        <rect x="440" y="60"  width="80" height="80" fill="#b04848"/>
+        <!-- Row 4 -->
+        <rect x="120" y="140" width="80" height="80" fill="#eee5d8"/>
+        <rect x="200" y="140" width="80" height="80" fill="#ecd0c8"/>
+        <rect x="280" y="140" width="80" height="80" fill="#e0a8a8"/>
+        <rect x="360" y="140" width="80" height="80" fill="#cd7878"/>
+        <rect x="440" y="140" width="80" height="80" fill="#b04848"/>
+        <!-- Row 3 -->
+        <rect x="120" y="220" width="80" height="80" fill="#e8e3d4"/>
+        <rect x="200" y="220" width="80" height="80" fill="#ecd0c8"/>
+        <rect x="280" y="220" width="80" height="80" fill="#ecc8a8"/>
+        <rect x="360" y="220" width="80" height="80" fill="#e0a8a8"/>
+        <rect x="440" y="220" width="80" height="80" fill="#cd7878"/>
+        <!-- Row 2 -->
+        <rect x="120" y="300" width="80" height="80" fill="#dceadb"/>
+        <rect x="200" y="300" width="80" height="80" fill="#e8e3d4"/>
+        <rect x="280" y="300" width="80" height="80" fill="#ecd0c8"/>
+        <rect x="360" y="300" width="80" height="80" fill="#ecc8a8"/>
+        <rect x="440" y="300" width="80" height="80" fill="#e0a8a8"/>
+        <!-- Row 1 (bottom, severity=very low) -->
+        <rect x="120" y="380" width="80" height="80" fill="#cae0c8"/>
+        <rect x="200" y="380" width="80" height="80" fill="#dceadb"/>
+        <rect x="280" y="380" width="80" height="80" fill="#e8e3d4"/>
+        <rect x="360" y="380" width="80" height="80" fill="#ecd0c8"/>
+        <rect x="440" y="380" width="80" height="80" fill="#ecc8a8"/>
+      </g>
+
+      <!-- Cell borders -->
+      <g stroke="#fafaf6" stroke-width="2" fill="none">
+        <rect x="120" y="60" width="400" height="400"/>
+        <line x1="200" y1="60" x2="200" y2="460"/>
+        <line x1="280" y1="60" x2="280" y2="460"/>
+        <line x1="360" y1="60" x2="360" y2="460"/>
+        <line x1="440" y1="60" x2="440" y2="460"/>
+        <line x1="120" y1="140" x2="520" y2="140"/>
+        <line x1="120" y1="220" x2="520" y2="220"/>
+        <line x1="120" y1="300" x2="520" y2="300"/>
+        <line x1="120" y1="380" x2="520" y2="380"/>
+      </g>
+
+      <!-- Y-axis labels -->
+      <g font-family="Helvetica, sans-serif" font-size="9" fill="#5b6b7a" text-anchor="end" font-weight="600">
+        <text x="115" y="105">VERY HIGH</text>
+        <text x="115" y="185">HIGH</text>
+        <text x="115" y="265">MEDIUM</text>
+        <text x="115" y="345">LOW</text>
+        <text x="115" y="425">VERY LOW</text>
+      </g>
+      <text x="50" y="260" font-family="Helvetica, sans-serif" font-size="10" font-weight="700" letter-spacing="0.12em" fill="#0a1929" text-anchor="middle" transform="rotate(-90 50 260)">SEVERITY  →</text>
+
+      <!-- X-axis labels -->
+      <g font-family="Helvetica, sans-serif" font-size="9" fill="#5b6b7a" text-anchor="middle" font-weight="600">
+        <text x="160" y="478">VERY LOW</text>
+        <text x="240" y="478">LOW</text>
+        <text x="320" y="478">MEDIUM</text>
+        <text x="400" y="478">HIGH</text>
+        <text x="480" y="478">VERY HIGH</text>
+      </g>
+      <text x="320" y="500" font-family="Helvetica, sans-serif" font-size="10" font-weight="700" letter-spacing="0.12em" fill="#0a1929" text-anchor="middle">LIKELIHOOD  →</text>
+
+      <!-- Risk dots -->
+      <!-- DEA Schedule III: high likelihood, very high severity -->
+      <circle cx="400" cy="100" r="9" fill="#9b2226" stroke="#fafaf6" stroke-width="2"/>
+      <text x="400" y="104" font-family="Helvetica, sans-serif" font-size="10" font-weight="700" fill="#fafaf6" text-anchor="middle">1</text>
+
+      <!-- Funding gap signal: very high likelihood, high severity -->
+      <circle cx="480" cy="180" r="9" fill="#9b2226" stroke="#fafaf6" stroke-width="2"/>
+      <text x="480" y="184" font-family="Helvetica, sans-serif" font-size="10" font-weight="700" fill="#fafaf6" text-anchor="middle">2</text>
+
+      <!-- D2C CAC competition: high likelihood, medium severity -->
+      <circle cx="400" cy="260" r="9" fill="#b08800" stroke="#fafaf6" stroke-width="2"/>
+      <text x="400" y="264" font-family="Helvetica, sans-serif" font-size="10" font-weight="700" fill="#fafaf6" text-anchor="middle">3</text>
+
+      <!-- Founder visibility: high likelihood, low severity (will get raised, fixable by hiring) -->
+      <circle cx="400" cy="340" r="9" fill="#5b6b7a" stroke="#fafaf6" stroke-width="2"/>
+      <text x="400" y="344" font-family="Helvetica, sans-serif" font-size="10" font-weight="700" fill="#fafaf6" text-anchor="middle">4</text>
+
+      <!-- Payer concentration: medium likelihood, high severity -->
+      <circle cx="320" cy="180" r="9" fill="#cd7878" stroke="#fafaf6" stroke-width="2"/>
+      <text x="320" y="184" font-family="Helvetica, sans-serif" font-size="10" font-weight="700" fill="#fafaf6" text-anchor="middle">5</text>
+
+      <!-- Clinical adverse event: low likelihood, very high severity -->
+      <circle cx="240" cy="100" r="9" fill="#cd7878" stroke="#fafaf6" stroke-width="2"/>
+      <text x="240" y="104" font-family="Helvetica, sans-serif" font-size="10" font-weight="700" fill="#fafaf6" text-anchor="middle">6</text>
+
+      <!-- Cap table complexity at A: medium likelihood, low severity -->
+      <circle cx="320" cy="340" r="9" fill="#5b6b7a" stroke="#fafaf6" stroke-width="2"/>
+      <text x="320" y="344" font-family="Helvetica, sans-serif" font-size="10" font-weight="700" fill="#fafaf6" text-anchor="middle">7</text>
+
+      <!-- Reimbursement compression: medium likelihood, medium severity -->
+      <circle cx="320" cy="260" r="9" fill="#b08800" stroke="#fafaf6" stroke-width="2"/>
+      <text x="320" y="264" font-family="Helvetica, sans-serif" font-size="10" font-weight="700" fill="#fafaf6" text-anchor="middle">8</text>
+
+      <!-- Risk legend on right -->
+      <g font-family="Helvetica, sans-serif" font-size="11" fill="#0a1929">
+        <rect x="540" y="60" width="160" height="380" fill="#fafaf6" stroke="#d4cfbf" stroke-width="1"/>
+        <text x="552" y="80" font-weight="700" font-size="10" letter-spacing="0.1em" fill="#5b6b7a">RISK REGISTER</text>
+
+        <text x="552" y="108" font-weight="700" fill="#9b2226">1.</text>
+        <text x="568" y="108" font-size="10">DEA Schedule III rules</text>
+
+        <text x="552" y="138" font-weight="700" fill="#9b2226">2.</text>
+        <text x="568" y="138" font-size="10">Funding gap signal</text>
+
+        <text x="552" y="168" font-weight="700" fill="#b08800">3.</text>
+        <text x="568" y="168" font-size="10">D2C CAC competition</text>
+
+        <text x="552" y="198" font-weight="700" fill="#5b6b7a">4.</text>
+        <text x="568" y="198" font-size="10">Founder visibility</text>
+
+        <text x="552" y="228" font-weight="700" fill="#cd7878">5.</text>
+        <text x="568" y="228" font-size="10">Payer concentration</text>
+
+        <text x="552" y="258" font-weight="700" fill="#cd7878">6.</text>
+        <text x="568" y="258" font-size="10">Clinical adverse event</text>
+
+        <text x="552" y="288" font-weight="700" fill="#5b6b7a">7.</text>
+        <text x="568" y="288" font-size="10">Cap table at Series A</text>
+
+        <text x="552" y="318" font-weight="700" fill="#b08800">8.</text>
+        <text x="568" y="318" font-size="10">Reimbursement comp.</text>
+      </g>
+    </svg>
+    <p class="chart-caption">Likelihood and severity assessments are pre-diligence judgments based on company-disclosed information and industry base rates; these will be refined post data-room review.</p>
+  </div>
+
+  <div class="cols-2" style="margin-top: 28px;">
+    <div class="card">
+      <h4>Top three risks · narrative</h4>
+      <p style="margin-top: 10px;"><strong>1. DEA Schedule III rules.</strong> The post-COVID telehealth flexibility for Schedule III prescribing remains under active DEA revision. A reversion to strict in-person evaluation requirements would compress Innerwell's at-home ketamine model directly. Compliance posture and contingency plan are essential pre-IC.</p>
+      <p style="margin-top: 12px;"><strong>2. Funding gap signal.</strong> Forty-seven months without disclosed financing in the most active mental health funding environment in a decade is the single loudest signal in this deck. Either the company is profitably bootstrapping (verifiable) or it has run an unsuccessful process (also verifiable). The gap itself is information.</p>
+      <p style="margin-top: 12px;"><strong>3. D2C CAC competition.</strong> BetterHelp, Talkspace, and Cerebral collectively spend hundreds of millions in performance marketing annually. Innerwell cannot win the D2C CAC war and should not try; the strategy must lean into payer-channel acquisition where the larger players are structurally weaker.</p>
+    </div>
+    <div>
+      <h4>Risk-mitigated thesis preconditions</h4>
+      <p style="margin-top: 8px;">For this deal to clear IC at Series A pre-money $8–15M, three conditions must hold simultaneously:</p>
+      <ul class="clean" style="margin-top: 10px;">
+        <li>Verified ARR of <strong>$3M+ growing at &gt; 10% MoM</strong>, with insurance &gt; 60% of revenue mix</li>
+        <li><strong>Demonstrated DEA compliance posture</strong> (written SOP, in-person eval workflow, regulatory counsel sign-off)</li>
+        <li>Plausible founder narrative for the funding gap (profitable bootstrap, deliberate slow-build, or current Series A process with named lead)</li>
+      </ul>
+      <p style="margin-top: 14px; font-size: 0.88rem; color: var(--muted);">Failure of any one of the three above → recommend pass.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     10. SCORECARD
+============================================================ -->
+<section>
+  <div class="section-head">
+    <div class="section-num">§ 10 · VC Scorecard</div>
+    <div class="section-title">
+      <h2>The numbers, scored</h2>
+      <div class="sub">Six dimensions, composite 5/10. Average deal in the funnel.</div>
+    </div>
+  </div>
+
+  <div class="cols-12-1">
+    <div>
+      <h4>Composite</h4>
+      <div style="font-family: var(--serif); font-size: 4.4rem; line-height: 1; color: var(--accent); margin: 18px 0 6px; letter-spacing: -0.04em;">5.3<span style="font-size: 1.6rem; color: var(--muted);">/10</span></div>
+      <p style="font-size: 0.86rem; color: var(--muted);">Below internal threshold of 6.5/10 for unconditional advance. Within "track-with-conditions" band.</p>
+
+      <table style="margin-top: 28px;">
+        <thead>
+          <tr><th>Dimension</th><th class="num">Ours</th><th class="num">Perplexity</th><th>Read</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Market Size</td><td class="num"><strong>9</strong></td><td class="num">9</td><td><span class="tag pos">Converge</span></td></tr>
+          <tr><td>Product Moat</td><td class="num"><strong>7</strong></td><td class="num">7</td><td><span class="tag pos">Converge</span></td></tr>
+          <tr><td>Investor Quality</td><td class="num"><strong>7</strong></td><td class="num">7</td><td><span class="tag pos">Converge</span></td></tr>
+          <tr><td>Regulatory Profile</td><td class="num"><strong>4</strong></td><td class="num">4</td><td><span class="tag pos">Converge</span></td></tr>
+          <tr><td>Traction Signal</td><td class="num"><strong>5</strong></td><td class="num">n/a</td><td><span class="tag accent">Our add</span></td></tr>
+          <tr><td>Team Signal</td><td class="num"><strong>5</strong></td><td class="num">n/a</td><td><span class="tag accent">Our add</span></td></tr>
+        </tbody>
+      </table>
+      <p class="chart-caption" style="margin-top: 8px;">Perplexity's external scorecard <span style="color: var(--teal);">[Ext: Perplexity]</span> converges with ours on the four dimensions both cover. The two dimensions Perplexity does not score (Traction, Team) are exactly the two where deck-level data is required and we have therefore added them with <span style="color: var(--accent);">[Inferred]</span> tags. Both gaps remain as P0 items in the diligence request.</p>
+    </div>
+
+    <div>
+      <h4>Scorecard radar</h4>
+      <svg class="chart" viewBox="0 0 540 480" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Scorecard radar">
+        <defs>
+          <radialGradient id="radarFill" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#b8391c" stop-opacity="0.3"/>
+            <stop offset="100%" stop-color="#b8391c" stop-opacity="0.1"/>
+          </radialGradient>
+        </defs>
+
+        <!-- Center: 270, 240. Max radius 180 = score 10 -->
+        <!-- Concentric polygons (every 2 score units) -->
+        <g stroke="#d4cfbf" stroke-width="1" fill="none">
+          <!-- Score 2 -->
+          <polygon points="270,204 301.18,222 301.18,258 270,276 238.82,258 238.82,222"/>
+          <!-- Score 4 -->
+          <polygon points="270,168 332.35,204 332.35,276 270,312 207.65,276 207.65,204"/>
+          <!-- Score 6 -->
+          <polygon points="270,132 363.53,186 363.53,294 270,348 176.47,294 176.47,186"/>
+          <!-- Score 8 -->
+          <polygon points="270,96 394.71,168 394.71,312 270,384 145.29,312 145.29,168"/>
+          <!-- Score 10 -->
+          <polygon points="270,60 425.88,150 425.88,330 270,420 114.12,330 114.12,150" stroke="#0a1929" stroke-width="1.5"/>
+        </g>
+
+        <!-- Score number labels along top axis -->
+        <g font-family="Helvetica, sans-serif" font-size="9" fill="#8a98a5" text-anchor="end">
+          <text x="266" y="208">2</text>
+          <text x="266" y="172">4</text>
+          <text x="266" y="136">6</text>
+          <text x="266" y="100">8</text>
+          <text x="266" y="64">10</text>
+        </g>
+
+        <!-- Axes lines -->
+        <g stroke="#d4cfbf" stroke-width="1">
+          <line x1="270" y1="60" x2="270" y2="420"/>
+          <line x1="114.12" y1="150" x2="425.88" y2="330"/>
+          <line x1="114.12" y1="330" x2="425.88" y2="150"/>
+        </g>
+
+        <!-- Innerwell scores polygon -->
+        <!-- Market 9, Moat 7, Investors 7, Regulatory 4, Traction 5, Team 5 -->
+        <!-- Convert: r = score * 18 -->
+        <!-- Vertex angles (from top, clockwise): 0°, 60°, 120°, 180°, 240°, 300° -->
+        <!-- Market(top): r=162, x=270, y=240-162=78 -->
+        <!-- Moat(top-right, 60°): r=126, x=270+126*sin60=270+109.1=379.1, y=240-126*cos60=240-63=177 -->
+        <!-- Investors(bottom-right, 120°): r=126, x=270+126*sin60=379.1, y=240+63=303 -->
+        <!-- Regulatory(bottom, 180°): r=72, x=270, y=240+72=312 -->
+        <!-- Traction(bottom-left, 240°): r=90, x=270-90*sin60=270-77.94=192.06, y=240+45=285 -->
+        <!-- Team(top-left, 300°): r=90, x=270-77.94=192.06, y=240-45=195 -->
+        <polygon points="270,78 379.1,177 379.1,303 270,312 192.06,285 192.06,195"
+                 fill="url(#radarFill)" stroke="#b8391c" stroke-width="2.5"/>
+
+        <!-- Score dots -->
+        <g fill="#b8391c" stroke="#fafaf6" stroke-width="2">
+          <circle cx="270" cy="78" r="5"/>
+          <circle cx="379.1" cy="177" r="5"/>
+          <circle cx="379.1" cy="303" r="5"/>
+          <circle cx="270" cy="312" r="5"/>
+          <circle cx="192.06" cy="285" r="5"/>
+          <circle cx="192.06" cy="195" r="5"/>
+        </g>
+
+        <!-- Axis labels -->
+        <g font-family="Helvetica, sans-serif" font-size="11" font-weight="700" fill="#0a1929" text-anchor="middle">
+          <text x="270" y="48">MARKET SIZE</text>
+          <text x="270" y="34" font-size="13" fill="#1f6b6b">9</text>
+        </g>
+        <g font-family="Helvetica, sans-serif" font-size="11" font-weight="700" fill="#0a1929" text-anchor="start">
+          <text x="438" y="148">PRODUCT MOAT</text>
+          <text x="438" y="134" font-size="13" fill="#1f6b6b">7</text>
+        </g>
+        <g font-family="Helvetica, sans-serif" font-size="11" font-weight="700" fill="#0a1929" text-anchor="start">
+          <text x="438" y="338">INVESTORS</text>
+          <text x="438" y="354" font-size="13" fill="#1f6b6b">7</text>
+        </g>
+        <g font-family="Helvetica, sans-serif" font-size="11" font-weight="700" fill="#0a1929" text-anchor="middle">
+          <text x="270" y="442">REGULATORY</text>
+          <text x="270" y="458" font-size="13" fill="#9b2226">4</text>
+        </g>
+        <g font-family="Helvetica, sans-serif" font-size="11" font-weight="700" fill="#0a1929" text-anchor="end">
+          <text x="100" y="338">TRACTION</text>
+          <text x="100" y="354" font-size="13" fill="#b08800">5</text>
+        </g>
+        <g font-family="Helvetica, sans-serif" font-size="11" font-weight="700" fill="#0a1929" text-anchor="end">
+          <text x="100" y="148">TEAM</text>
+          <text x="100" y="134" font-size="13" fill="#b08800">5</text>
+        </g>
+      </svg>
+      <p class="chart-caption">Strong on market and moat dimensions. Weak on regulatory profile (DEA / state board exposure) and the two signals most diagnostic for a Series A check: traction depth and team visibility.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     11. DILIGENCE CHECKLIST
+============================================================ -->
+<section>
+  <div class="section-head">
+    <div class="section-num">§ 11 · Diligence Status</div>
+    <div class="section-title">
+      <h2>What we know, what we don't</h2>
+      <div class="sub">Pending data-room request issued separately (Ref: ML-2026-IW-DR-01).</div>
+    </div>
+  </div>
+
+  <p>A formal information request has been transmitted to Innerwell leadership requesting written responses by EOD ET, Tuesday, May 19, 2026. The questions below frame the diligence gaps that must close before any term sheet conversation. Items marked <strong style="color: var(--accent);">P0</strong> are blocking; the deal cannot advance without them.</p>
+
+  <div style="margin-top: 24px;">
+    <h4>Critical (P0): required to advance</h4>
+    <ul class="checklist">
+      <li>
+        <strong>Why no Series A in nearly four years?</strong> Direct narrative: strategic choice, failed process, or quiet stagnation?
+        <span class="qmeta">Ref: G1 · Funding gap narrative</span>
+      </li>
+      <li>
+        <strong>Current TTM ARR and trailing 18-month monthly waterfall.</strong> Expecting $2–6M ARR at 41 FTEs.
+        <span class="qmeta">Ref: A1 · ARR waterfall (CSV/XLSX)</span>
+      </li>
+      <li>
+        <strong>Cash-pay vs in-network revenue mix</strong>, quarterly, last 8 quarters.
+        <span class="qmeta">Ref: A2 · Revenue mix breakdown</span>
+      </li>
+      <li>
+        <strong>CAC by channel and LTV by cohort.</strong> Channel breakdown plus methodology.
+        <span class="qmeta">Ref: A4 · CAC/LTV table</span>
+      </li>
+      <li>
+        <strong>Cash position and runway.</strong> WTI debt status, covenants, amortization.
+        <span class="qmeta">Ref: A5 · Runway and debt schedule</span>
+      </li>
+      <li>
+        <strong>Payer mix table</strong> by payer with reimbursement rates.
+        <span class="qmeta">Ref: B1 · Payer-level revenue and rates</span>
+      </li>
+      <li>
+        <strong>PHQ-9 cohort dataset</strong> for 1,000-patient sample with ≥6 months follow-up.
+        <span class="qmeta">Ref: C1 · Anonymized PHQ-9 CSV</span>
+      </li>
+      <li>
+        <strong>Outcomes methodology</strong> for the 87% / 69% / 60% claims.
+        <span class="qmeta">Ref: C2 · Methodology document</span>
+      </li>
+      <li>
+        <strong>DEA Schedule III compliance SOP and contingency plan.</strong>
+        <span class="qmeta">Ref: D1 · Written SOP + post-flexibility plan</span>
+      </li>
+      <li>
+        <strong>State licensing footprint and any open medical board actions.</strong>
+        <span class="qmeta">Ref: D2 · State map + inquiry log</span>
+      </li>
+      <li>
+        <strong>Founder bios and clinical leadership credentials.</strong>
+        <span class="qmeta">Ref: F1, F2 · Bios + ownership</span>
+      </li>
+      <li>
+        <strong>Current cap table including option pool, WTI warrants, side letters.</strong>
+        <span class="qmeta">Ref: G2 · Fully diluted cap table</span>
+      </li>
+    </ul>
+  </div>
+
+  <div style="margin-top: 28px;">
+    <h4>Important (P1): material to underwriting</h4>
+    <ul class="checklist">
+      <li>Cohort retention curves at M1/M3/M6/M12 by channel <span class="qmeta">Ref: A6</span></li>
+      <li>CAC payback period for ketamine vs. non-ketamine cohorts <span class="qmeta">Ref: A7</span></li>
+      <li>Credentialing roadmap and any payer rejections <span class="qmeta">Ref: B2</span></li>
+      <li>Value-based or risk-sharing contracts (presence + terms) <span class="qmeta">Ref: B3</span></li>
+      <li>Independent third-party outcomes audit / publications <span class="qmeta">Ref: C3</span></li>
+      <li>Adverse event quarterly safety report <span class="qmeta">Ref: C4</span></li>
+      <li>Outside counsel opinion letters on telehealth ketamine <span class="qmeta">Ref: D3</span></li>
+      <li>Platform architecture and dataset depth <span class="qmeta">Ref: E1, E2</span></li>
+      <li>Org chart reconciling to ~41 FTEs <span class="qmeta">Ref: F3</span></li>
+      <li>Series A round parameters and active lead conversations <span class="qmeta">Ref: G3</span></li>
+      <li>Strategic acquirer conversations to date <span class="qmeta">Ref: H1</span></li>
+    </ul>
+  </div>
+
+  <div class="callout" style="margin-top: 28px;">
+    Decision rule: a non-response or partial response by EOD May 19 → mark deal as <strong>deprioritized</strong> at IC and exit the funnel. The willingness to engage substantively under a 7-business-day data-room request is itself diligence.
+  </div>
+</section>
+
+<!-- ============================================================
+     12. INVESTMENT THESIS
+============================================================ -->
+<section class="major-break">
+  <div class="section-head">
+    <div class="section-num">§ 12 · Investment Thesis</div>
+    <div class="section-title">
+      <h2>Bull and bear, side by side</h2>
+      <div class="sub">Both cases assume successful response to the Information Request.</div>
+    </div>
+  </div>
+
+  <div class="thesis-grid">
+    <div class="thesis-col bull">
+      <div class="head">↑ Bull Case</div>
+      <h3>Strategic-asset path to Optum-style exit</h3>
+      <p style="font-size: 0.92rem; margin-top: 8px;">If diligence confirms revenue traction and DEA compliance posture, Innerwell sits in a structurally rare position: the most credible insurance-accessible KAP platform in market.</p>
+      <ul>
+        <li><strong>First-mover</strong> in insurance-accessible ketamine teletherapy; payer panel is 18–24 months ahead of would-be competitors</li>
+        <li><strong>Capital-efficient</strong>: $4.5M raised vs. peers' $50M+ at similar stage suggests clean unit economics</li>
+        <li><strong>Differentiated outcomes data</strong>: longitudinal payer-linked behavioral health corpus is a multi-hundred-million-dollar strategic asset to UNH/CVS/Teladoc</li>
+        <li><strong>Defensible Series A</strong> at $8–15M pre-money on revenue proof points; healthtech-specialist lead would clean up the cap table</li>
+        <li><strong>Natural M&A target.</strong> AbleTo precedent ($87M total raised → Optum acquisition)</li>
+        <li><strong>Adjacent expansion</strong>: same data infrastructure extends to chronic pain and PTSD (TAM doubles)</li>
+      </ul>
+    </div>
+    <div class="thesis-col bear">
+      <div class="head">↓ Bear Case</div>
+      <h3>Quietly stalled with regulatory tail risk</h3>
+      <p style="font-size: 0.92rem; margin-top: 8px;">If diligence reveals weak ARR or weak DEA posture, the funding gap is the answer, not the question, and the deal is a structured liquidation conversation, not a Series A.</p>
+      <ul>
+        <li><strong>47-month funding silence</strong> in the most active mental health funding cycle in history strongly suggests either failed process or insufficient growth</li>
+        <li><strong>DEA Schedule III in-person eval rules</strong> remain a live regulatory overhang; reversion compresses the at-home model</li>
+        <li><strong>D2C CAC compression</strong> from BetterHelp / Talkspace / Cerebral makes payer-independent acquisition uneconomic</li>
+        <li><strong>Thin founder visibility.</strong> Neither co-founder maintains a profile commensurate with category leadership</li>
+        <li><strong>State medical board scrutiny</strong> on at-home ketamine is increasing; one adverse event becomes a category event</li>
+        <li><strong>Cap table complexity</strong>: 8 seed investors with pro-rata at Series A creates a structural drag on lead-investor ownership target</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="pull-quote">
+    The decision is not about Innerwell. It is about what the company tells us when we ask why no Series A in nearly four years. Their answer to that one question reveals whether this is an undervalued first-mover or a stalled bootstrapper trading on category enthusiasm.
+    <span class="attr">Investment Thesis Summary</span>
+  </div>
+</section>
+
+<!-- ============================================================
+     13. RECOMMENDATION
+============================================================ -->
+<section>
+  <div class="section-head">
+    <div class="section-num">§ 13 · Recommendation</div>
+    <div class="section-title">
+      <h2>Decision and conditions</h2>
+      <div class="sub">For IC vote.</div>
+    </div>
+  </div>
+
+  <div class="recommendation">
+    <div class="head">Recommendation</div>
+    <h2>Track · Conditional Pass · Re-evaluate Post-Data-Room</h2>
+    <p>Innerwell warrants further diligence, not yet a term sheet. The clinical case and payer footprint are real and structurally interesting; the funding history and absent founder visibility are not. We recommend transmitting the formal Information Request (Ref: ML-2026-IW-DR-01) immediately, scheduling team conversations post-IC contingent on substantive response, and re-presenting to IC within 30 days if the responses clear the P0 thresholds defined in §11.</p>
+
+    <div class="actions">
+      <div>
+        <div class="h">Conditions to Advance</div>
+        <ul>
+          <li>Verified TTM ARR ≥ $3M growing &gt; 10% MoM</li>
+          <li>In-network revenue ≥ 60% of total</li>
+          <li>Coherent narrative for 47-month funding gap</li>
+          <li>DEA SOP and post-flexibility contingency plan</li>
+          <li>Founder + CMO bios meeting category bar</li>
+          <li>Cap table with manageable Series A pro-rata</li>
+        </ul>
+      </div>
+      <div>
+        <div class="h">Conditions to Pass</div>
+        <ul>
+          <li>Non-response or evasive response by May 19 deadline</li>
+          <li>ARR &lt; $2M or flat / declining MoM growth</li>
+          <li>In-network revenue &lt; 30% (still cash-pay company)</li>
+          <li>No DEA SOP or reliance on COVID flexibilities only</li>
+          <li>Failed prior Series A process within last 12 months</li>
+          <li>Adverse state medical board action of material scope</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <p style="margin-top: 28px; font-size: 0.92rem;"><strong>Proposed indicative terms</strong> if conditions are met: $0.5–1.5M check size into Series A at $8–15M pre-money, with information rights and pro-rata. Lead position not pursued at this size; participation rights under a healthtech-specialist lead preferred.</p>
+</section>
+
+<!-- ============================================================
+     WHAT THIS ARTIFACT DEMONSTRATES (RESUME-FACING)
+============================================================ -->
+<section style="margin-top: 64px; padding-top: 32px; border-top: 2px solid var(--ink);">
+  <div class="section-head">
+    <div class="section-num">§ · Artifact Notes</div>
+    <div class="section-title">
+      <h2>What this artifact demonstrates</h2>
+      <div class="sub">Methodology and analytical contributions, for the reader evaluating the work itself.</div>
+    </div>
+  </div>
+
+  <p>This memo was produced as a portfolio artifact for the GoingVC investment analyst track. The underlying deal is real and under active evaluation; the memo is structured to function as both a working IC document and a demonstration of the analytical workflow.</p>
+
+  <div class="cols-2" style="margin-top: 24px;">
+    <div class="card">
+      <h4>Multi-source orchestration</h4>
+      <p style="margin-top: 10px;">Three streams of input synthesized with explicit tagging on first appearance of each datum: <strong>[Deck]</strong> for company-supplied material under NDA, <strong>[Ext: PitchBook]</strong> and <strong>[Ext: Perplexity]</strong> for independent external research, and <strong>[Inferred]</strong> for analyst-derived computations and judgments. The discipline of tagging is itself the value, because it forces the reader to apply the correct confidence discount per claim.</p>
+    </div>
+    <div class="card">
+      <h4>Decision framework before decision</h4>
+      <p style="margin-top: 10px;">The recommendation is structured as a conditional pass with explicit advance-conditions and pass-conditions written before the data-room response arrives. This converts the IC decision from a discussion into a mechanical check against pre-committed criteria, which is the discipline that separates repeatable diligence from one-off pattern matching.</p>
+    </div>
+  </div>
+
+  <div class="cols-2" style="margin-top: 18px;">
+    <div class="card">
+      <h4>Discrepancy as diligence signal</h4>
+      <p style="margin-top: 10px;">Where deck claims and external research diverged (notably the 65% / 80% / 87% outcomes triangle), the memo preserves both numbers with their tags rather than picking one. The discrepancy itself becomes the diligence question. This is the move that separates a synthesis memo from a marketing summary.</p>
+    </div>
+    <div class="card">
+      <h4>Companion artifact</h4>
+      <p style="margin-top: 10px;">A formal Information Request (Ref: ML-2026-IW-DR-01) was issued in parallel with this memo, containing 31 P0/P1/P2-prioritized diligence questions cross-referenced to the gaps identified in §11 of this document. The companion artifact converts the memo's open questions into a concrete data-room ask with a 7-business-day deadline.</p>
+    </div>
+  </div>
+
+  <div class="callout" style="margin-top: 24px;">
+    Skills on display: enterprise-grade pattern recognition in healthcare AI and digital health; multi-source research synthesis under uncertainty; structured decision frameworks suitable for IC defense; technical fluency to produce executive-grade deliverables (SVG visualization, semantic information architecture, print-ready typography) end-to-end.
+  </div>
+</section>
+
+<!-- ============================================================
+     FOOTER
+============================================================ -->
+<footer>
+  <div>
+    <strong style="color: var(--ink);">Market Logic Investors LLC</strong> · Investment Memorandum<br>
+    Confidential. Prepared for internal investment committee use only.<br>
+    <span style="font-style: italic;">Not investment advice. All deck-derived figures subject to verification.</span>
+  </div>
+  <div class="right">
+    <strong style="color: var(--ink);">Innerwell · ML-2026-IW-01</strong><br>
+    Author: H. Reganti · Prepared May 10, 2026<br>
+    Companion artifact: ML-2026-IW-DR-01 (Information Request)
+  </div>
+</footer>
+
+</div>
+</body>
+</html>
