@@ -14,6 +14,7 @@ Confidential venture deal memos and supporting files. Organize one folder per co
 ## Active deals
 
 - innerwell/ — Series A digital mental health (active IC)
+- - aldabra-4/ — Trust-stage SPAC, Terrapin Partners sponsor (active IC)
 
 ## Confidentiality
 
