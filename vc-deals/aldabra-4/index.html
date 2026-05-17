@@ -240,6 +240,49 @@ Author: H. Reganti
 <h4 style="color:var(--accent);margin-bottom:8px">Discrepancy: Deck Framing vs. Public-Shareholder Read</h4>
 <p style="font-size:0.92rem">The deck reports <strong>100% success rate</strong> and headline IRRs of 100.6% / 14.2% on Aldabra 1 and Aldabra 2. It also discloses that Yatra's stock currently sits at $1.73. These are not contradictory (different vehicles, different time windows) but they are not obviously consistent with the &ldquo;100% success&rdquo; framing either. <strong>Diligence ask D1</strong> covers exactly this&mdash;an independently computed public-shareholder return ledger for each prior SPAC.</p>
 </div>
+  
+<!-- Prior SPAC outcomes chart -->
+<div style="margin-top:36px">
+<h3 style="margin-bottom:4px">Prior Terrapin SPAC outcomes: combination value vs. public-shareholder result</h3>
+<svg class="chart" viewBox="0 0 720 340" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Prior Terrapin SPAC outcomes">
+<rect x="60" y="30" width="610" height="240" fill="#fafaf6"/>
+<!-- Y gridlines -->
+<line x1="60" y1="270" x2="670" y2="270" stroke="#0a1929" stroke-width="1.5"/>
+<line x1="60" y1="30" x2="60" y2="270" stroke="#0a1929" stroke-width="1.5"/>
+<line x1="60" y1="205" x2="670" y2="205" stroke="#e8e3d4" stroke-width="1" stroke-dasharray="3 3"/>
+<line x1="60" y1="140" x2="670" y2="140" stroke="#e8e3d4" stroke-width="1" stroke-dasharray="3 3"/>
+<line x1="60" y1="75" x2="670" y2="75" stroke="#e8e3d4" stroke-width="1" stroke-dasharray="3 3"/>
+<!-- Y labels -->
+<text x="54" y="274" font-family="Helvetica,sans-serif" font-size="10" fill="#5b6b7a" text-anchor="end">0</text>
+<text x="54" y="209" font-family="Helvetica,sans-serif" font-size="10" fill="#5b6b7a" text-anchor="end">$500M</text>
+<text x="54" y="144" font-family="Helvetica,sans-serif" font-size="10" fill="#5b6b7a" text-anchor="end">$1.0B</text>
+<text x="54" y="79" font-family="Helvetica,sans-serif" font-size="10" fill="#5b6b7a" text-anchor="end">$1.5B</text>
+<!-- Aldabra 1 bar: $410M -->
+<rect x="135" y="217" width="80" height="53" fill="#2d6a4f"/>
+<text x="175" y="210" font-family="Helvetica,sans-serif" font-size="11" font-weight="700" fill="#2d6a4f" text-anchor="middle">$410M</text>
+<text x="175" y="290" font-family="Helvetica,sans-serif" font-size="11" font-weight="700" fill="#0a1929" text-anchor="middle">Aldabra (GLDD)</text>
+<text x="175" y="305" font-family="Helvetica,sans-serif" font-size="9" fill="#2d6a4f" text-anchor="middle" font-weight="600">2006 &bull; Strong outcome</text>
+<text x="175" y="318" font-family="Helvetica,sans-serif" font-size="9" fill="#5b6b7a" text-anchor="middle">100.6% deck IRR</text>
+<!-- Aldabra 2 bar: $1.6B -->
+<rect x="310" y="62" width="80" height="208" fill="#2d6a4f"/>
+<text x="350" y="55" font-family="Helvetica,sans-serif" font-size="11" font-weight="700" fill="#2d6a4f" text-anchor="middle">$1.6B</text>
+<text x="350" y="290" font-family="Helvetica,sans-serif" font-size="11" font-weight="700" fill="#0a1929" text-anchor="middle">Aldabra 2 (Boise)</text>
+<text x="350" y="305" font-family="Helvetica,sans-serif" font-size="9" fill="#2d6a4f" text-anchor="middle" font-weight="600">2008 &bull; Sold to PKG $2.0B</text>
+<text x="350" y="318" font-family="Helvetica,sans-serif" font-size="9" fill="#5b6b7a" text-anchor="middle">14.2% deck IRR</text>
+<!-- Terrapin 3 bar: $346M -->
+<rect x="485" y="225" width="80" height="45" fill="#9b2226"/>
+<text x="525" y="218" font-family="Helvetica,sans-serif" font-size="11" font-weight="700" fill="#9b2226" text-anchor="middle">$346M</text>
+<text x="525" y="290" font-family="Helvetica,sans-serif" font-size="11" font-weight="700" fill="#0a1929" text-anchor="middle">Terrapin 3 (Yatra)</text>
+<text x="525" y="305" font-family="Helvetica,sans-serif" font-size="9" fill="#9b2226" text-anchor="middle" font-weight="600">2016 &bull; Stock $1.73 Oct 2025</text>
+<text x="525" y="318" font-family="Helvetica,sans-serif" font-size="9" fill="#5b6b7a" text-anchor="middle">vs. $14.79 unit high</text>
+<!-- Legend -->
+<rect x="500" y="34" width="12" height="12" fill="#2d6a4f"/>
+<text x="518" y="44" font-family="Helvetica,sans-serif" font-size="11" font-weight="600" fill="#0a1929">Win for holders</text>
+<rect x="610" y="34" width="12" height="12" fill="#9b2226"/>
+<text x="628" y="44" font-family="Helvetica,sans-serif" font-size="11" font-weight="600" fill="#0a1929">Loss for holders</text>
+</svg>
+<p style="font-family:var(--sans);font-size:0.72rem;color:var(--muted);margin-top:4px;font-style:italic">Deal-size bars are deck-disclosed combination values. Color coding is an <span style="color:var(--accent)">Inferred</span> public-shareholder-outcome read.</p>
+</div>
 </section>
 
 <!-- 04. LEADERSHIP -->
@@ -299,6 +342,36 @@ Author: H. Reganti
 
 <!-- 06. TARGET STRATEGY -->
 <section>
+  
+<!-- Capital structure waterfall -->
+<div style="margin-top:36px">
+<h3 style="margin-bottom:4px">Capital structure at IPO close <span style="font-size:0.7rem;color:var(--teal);font-weight:400">Ext: SEC S-1</span></h3>
+<svg class="chart" viewBox="0 0 720 200" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Cap structure at IPO">
+<rect x="60" y="50" width="600" height="60" fill="#fafaf6" stroke="#0a1929" stroke-width="1"/>
+<!-- Class A: 30,015,000 shares => ~425px -->
+<rect x="60" y="50" width="425" height="60" fill="#1f6b6b"/>
+<!-- Founder shares: 7,503,750 => ~106px -->
+<rect x="485" y="50" width="106" height="60" fill="#b8391c"/>
+<!-- PPW: 4,866,666 warrants => ~69px -->
+<rect x="591" y="50" width="69" height="60" fill="#7aa9a9"/>
+<!-- Labels -->
+<text x="272" y="76" font-family="Helvetica,sans-serif" font-size="11" fill="#fafaf6" font-weight="700" text-anchor="middle">Public Class A</text>
+<text x="272" y="94" font-family="Helvetica,sans-serif" font-size="10" fill="#fafaf6" font-weight="500" text-anchor="middle" opacity="0.9">30,015,000 shares &bull; $300.15M trust</text>
+<text x="538" y="76" font-family="Helvetica,sans-serif" font-size="11" fill="#fafaf6" font-weight="700" text-anchor="middle">Founder</text>
+<text x="538" y="94" font-family="Helvetica,sans-serif" font-size="9" fill="#fafaf6" font-weight="500" text-anchor="middle" opacity="0.9">7,503,750 @ $0.003</text>
+<text x="625" y="76" font-family="Helvetica,sans-serif" font-size="10" fill="#0a1929" font-weight="700" text-anchor="middle">PPW</text>
+<text x="625" y="92" font-family="Helvetica,sans-serif" font-size="8.5" fill="#0a1929" font-weight="500" text-anchor="middle" opacity="0.85">4.87M @ $1.50</text>
+<!-- Title -->
+<text x="60" y="38" font-family="Helvetica,sans-serif" font-size="10" font-weight="600" fill="#5b6b7a" letter-spacing="0.1em">PRO FORMA DILUTIVE STACK</text>
+<text x="660" y="38" font-family="Helvetica,sans-serif" font-size="10" font-weight="600" fill="#b8391c" text-anchor="end">~20% PROMOTE+WARRANT DILUTION</text>
+<!-- Public warrants note -->
+<text x="60" y="140" font-family="Helvetica,sans-serif" font-size="10" fill="#5b6b7a" font-weight="600">PUBLIC WARRANTS</text>
+<text x="60" y="158" font-family="Helvetica,sans-serif" font-size="11" fill="#0a1929">10,005,000 (1/3 per unit) &bull; $11.50 strike &bull; 30-day exercise post-combination &bull; 5-year life</text>
+<text x="60" y="180" font-family="Helvetica,sans-serif" font-size="10" fill="#5b6b7a" font-weight="600">CONVERTIBLE WORKING CAPITAL LOAN</text>
+<text x="60" y="196" font-family="Helvetica,sans-serif" font-size="11" fill="#0a1929">Up to $1.5M convertible into warrants at $1.50/warrant</text>
+</svg>
+<p style="font-family:var(--sans);font-size:0.72rem;color:var(--muted);margin-top:4px;font-style:italic">Founder shares acquired for $25,000 total ($0.003/share). PPW = private placement warrants (sponsor 3,126,666; underwriters 1,740,000). Up to 978,750 founder shares subject to surrender.</p>
+</div>
 <div class="section-head"><div class="section-num">06 &mdash; Target Strategy &amp; Sourcing</div><div class="section-title"><h2>Six themes, one EV band</h2><div class="sub">Credible but broad&mdash;sponsor edge needs further proof.</div></div></div>
 <p>The deck states an ideal target enterprise value of <strong>$500M to $2B</strong> and articulates six investment themes. The S-1 narrows this slightly toward technology-enabled targets. Reconciling deck vs. S-1 framing is a structural-diligence item.</p>
 <div class="cols-2" style="margin-top:24px">
@@ -367,6 +440,53 @@ Author: H. Reganti
 
 <!-- 09. INVESTMENT THESIS -->
 <section>
+  
+<!-- Scorecard radar -->
+<div style="margin-top:36px">
+<h4>Scorecard radar</h4>
+<svg class="chart" viewBox="0 0 540 480" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Scorecard radar">
+<defs><radialGradient id="rf" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#b8391c" stop-opacity="0.3"/><stop offset="100%" stop-color="#b8391c" stop-opacity="0.1"/></radialGradient></defs>
+<!-- Grid rings center 270,240 max-r 180 -->
+<g stroke="#d4cfbf" stroke-width="1" fill="none">
+<polygon points="270,204 301.18,222 301.18,258 270,276 238.82,258 238.82,222"/>
+<polygon points="270,168 332.35,204 332.35,276 270,312 207.65,276 207.65,204"/>
+<polygon points="270,132 363.53,186 363.53,294 270,348 176.47,294 176.47,186"/>
+<polygon points="270,96 394.71,168 394.71,312 270,384 145.29,312 145.29,168"/>
+<polygon points="270,60 425.88,150 425.88,330 270,420 114.12,330 114.12,150" stroke="#0a1929" stroke-width="1.5"/>
+</g>
+<!-- Scale labels -->
+<g font-family="Helvetica,sans-serif" font-size="9" fill="#8a98a5" text-anchor="end">
+<text x="266" y="208">2</text><text x="266" y="172">4</text><text x="266" y="136">6</text><text x="266" y="100">8</text><text x="266" y="64">10</text>
+</g>
+<!-- Axis spokes -->
+<g stroke="#d4cfbf" stroke-width="1">
+<line x1="270" y1="60" x2="270" y2="420"/>
+<line x1="114.12" y1="150" x2="425.88" y2="330"/>
+<line x1="114.12" y1="330" x2="425.88" y2="150"/>
+</g>
+<!-- Data: Sponsor 9, Team 9, Strategy 6, Structure 6, PublicMkt 4, Asymmetry 7 -->
+<polygon points="270,78 410.3,159 363.5,294 270,348 207.65,276 160.9,177" fill="url(#rf)" stroke="#b8391c" stroke-width="2.5"/>
+<!-- Data points -->
+<g fill="#b8391c" stroke="#fafaf6" stroke-width="2">
+<circle cx="270" cy="78" r="5"/><circle cx="410.3" cy="159" r="5"/><circle cx="363.5" cy="294" r="5"/>
+<circle cx="270" cy="348" r="5"/><circle cx="207.65" cy="276" r="5"/><circle cx="160.9" cy="177" r="5"/>
+</g>
+<!-- Labels -->
+<text x="270" y="48" font-family="Helvetica,sans-serif" font-size="11" font-weight="700" fill="#0a1929" text-anchor="middle">SPONSOR EXP.</text>
+<text x="270" y="34" font-family="Helvetica,sans-serif" font-size="13" fill="#2d6a4f" text-anchor="middle">9</text>
+<text x="438" y="148" font-family="Helvetica,sans-serif" font-size="11" font-weight="700" fill="#0a1929" text-anchor="start">TEAM CONT.</text>
+<text x="438" y="134" font-family="Helvetica,sans-serif" font-size="13" fill="#2d6a4f" text-anchor="start">9</text>
+<text x="438" y="338" font-family="Helvetica,sans-serif" font-size="11" font-weight="700" fill="#0a1929" text-anchor="start">STRATEGY</text>
+<text x="438" y="354" font-family="Helvetica,sans-serif" font-size="13" fill="#b08800" text-anchor="start">6</text>
+<text x="270" y="442" font-family="Helvetica,sans-serif" font-size="11" font-weight="700" fill="#0a1929" text-anchor="middle">STRUCTURE</text>
+<text x="270" y="458" font-family="Helvetica,sans-serif" font-size="13" fill="#b08800" text-anchor="middle">6</text>
+<text x="100" y="338" font-family="Helvetica,sans-serif" font-size="11" font-weight="700" fill="#0a1929" text-anchor="end">PUBLIC MKT</text>
+<text x="100" y="354" font-family="Helvetica,sans-serif" font-size="13" fill="#9b2226" text-anchor="end">4</text>
+<text x="100" y="148" font-family="Helvetica,sans-serif" font-size="11" font-weight="700" fill="#0a1929" text-anchor="end">ASYMMETRY</text>
+<text x="100" y="134" font-family="Helvetica,sans-serif" font-size="13" fill="#2d6a4f" text-anchor="end">7</text>
+</svg>
+<p style="font-family:var(--sans);font-size:0.72rem;color:var(--muted);margin-top:4px;font-style:italic">Strong on Sponsor and Team (the underwritable dimensions). Weak on Public-Market Outcome Confidence (the Yatra precedent). Asymmetry is favorable at trust value but degrades with redemption rate.</p>
+</div>
 <div class="section-head"><div class="section-num">09 &mdash; Investment Thesis</div><div class="section-title"><h2>Bull and bear, side by side</h2><div class="sub">Both cases assume successful completion of the structural-diligence pack.</div></div></div>
 <div class="thesis-grid">
 <div class="thesis-col bull">
