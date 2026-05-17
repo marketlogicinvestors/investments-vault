@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aldabra 4 Liquidity Opportunity Vehicle — Investment Committee Memo — Market Logic</title>
+<style>
+:root {
+  --ink: #0a1929;
+  --ink-soft: #1c2e44;
+  --paper: #faf9f4;
+  --paper-warm: #f3efe3;
+  --rule: #d4cfbf;
+  --rule-soft: #e8e3d4;
+  --muted: #5b6b7a;
+  --muted-light: #8a98a5;
+  --accent: #b8391c;
+  --accent-soft: #d65a3a;
+  --teal: #1f6b6b;
+  --teal-soft: #4a8b8b;
+  --positive: #2d6a4f;
+  --warning: #b08800;
+  --negative: #9b2226;
+  --serif: 'Iowan Old Style', 'Palatino Linotype', Palatino, 'Book Antiqua', Georgia, serif;
+  --sans: 'Helvetica Neue', Helvetica, -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --mono: 'SF Mono', SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', monospace;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 16px; }
+body { font-family: var(--sans); background: var(--paper); color: var(--ink); line-height: 1.55; -webkit-font-smoothing: antialiased; }
+.page { max-width: 1000px; margin: 0 auto; padding: 56px 56px 80px; }
+h1, h2, h3 { font-family: var(--serif); font-weight: 400; color: var(--ink); }
+h1 { font-size: 3.6rem; line-height: 1.02; letter-spacing: -0.025em; }
+h2 { font-size: 2.05rem; line-height: 1.12; letter-spacing: -0.015em; }
+h3 { font-size: 1.3rem; line-height: 1.25; }
+h4 { font-family: var(--sans); font-weight: 600; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.16em; color: var(--muted); }
+p { font-size: 0.95rem; line-height: 1.7; color: var(--ink-soft); }
+strong { color: var(--ink); font-weight: 600; }
+.eyebrow { font-family: var(--sans); font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.2em; color: var(--accent); display: block; margin-bottom: 18px; }
+.lede { font-family: var(--serif); font-size: 1.25rem; line-height: 1.5; color: var(--ink); }
+.label { font-family: var(--sans); font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); }
+
+/* Cover */
+.cover { border-top: 1px solid var(--ink); padding-top: 32px; }
+.cover-meta { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 84px; }
+.cover-meta .left, .cover-meta .right { font-family: var(--sans); font-size: 0.78rem; color: var(--muted); }
+.cover-meta .right { text-align: right; }
+.cover-meta .right .stamp { display: inline-block; padding: 4px 10px; border: 1px solid var(--accent); color: var(--accent); font-weight: 600; letter-spacing: 0.12em; font-size: 0.65rem; text-transform: uppercase; margin-bottom: 8px; }
+.cover-title { margin-bottom: 28px; }
+.cover-title .legal { display: block; font-family: var(--sans); font-size: 0.78rem; color: var(--muted); margin-top: 8px; }
+.cover-tag { font-family: var(--serif); font-style: italic; font-size: 1.4rem; line-height: 1.45; color: var(--ink-soft); max-width: 720px; margin-bottom: 56px; }
+.cover-tag:before { content: '\201C'; font-size: 2.2rem; color: var(--accent); margin-right: 4px; }
+.cover-tag:after { content: '\201D'; font-size: 2.2rem; color: var(--accent); margin-left: 2px; }
+
+/* Metric grid */
+.metric-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 0; border-top: 1px solid var(--ink); border-bottom: 1px solid var(--ink); margin: 32px 0; }
+.metric { padding: 22px 16px 20px; border-right: 1px solid var(--rule); text-align: left; }
+.metric:last-child { border-right: none; }
+.metric .v { font-family: var(--serif); font-size: 2.1rem; line-height: 1; color: var(--ink); display: block; margin-bottom: 6px; }
+.metric .v small { font-size: 0.95rem; color: var(--muted); font-family: var(--serif); }
+.metric .l { font-family: var(--sans); font-size: 0.68rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); line-height: 1.3; }
+.metric.accent .v { color: var(--accent); }
+.metric.teal .v { color: var(--teal); }
+
+/* Section */
+section { margin-top: 64px; padding-top: 32px; border-top: 1px solid var(--rule); }
+section.no-rule { border-top: none; }
+.section-head { display: grid; grid-template-columns: 120px 1fr; gap: 32px; margin-bottom: 28px; align-items: baseline; }
+.section-num { font-family: var(--mono); font-size: 0.78rem; color: var(--muted); border-top: 2px solid var(--ink); padding-top: 8px; text-transform: uppercase; font-weight: 600; }
+.section-title h2 { margin-bottom: 8px; }
+.section-title .sub { font-family: var(--serif); font-style: italic; color: var(--muted); font-size: 1.05rem; }
+
+/* Columns */
+.cols-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 36px; margin-top: 16px; }
+.cols-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; margin-top: 16px; }
+
+/* Cards */
+.card { background: var(--paper-warm); padding: 22px 24px; border: 1px solid var(--rule); }
+.callout { border-left: 3px solid var(--accent); padding: 4px 0 4px 20px; margin: 18px 0; font-family: var(--serif); font-style: italic; font-size: 1.05rem; color: var(--ink); }
+
+/* Tables */
+table { width: 100%; border-collapse: collapse; font-family: var(--sans); font-size: 0.88rem; margin-top: 14px; }
+thead th { text-align: left; font-weight: 600; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); padding: 10px 14px 10px 0; border-bottom: 1.5px solid var(--ink); }
+thead th.num { text-align: right; }
+tbody td { padding: 14px 14px 14px 0; border-bottom: 1px solid var(--rule); color: var(--ink-soft); vertical-align: top; }
+tbody td.num { text-align: right; font-variant-numeric: tabular-nums; font-family: var(--mono); font-size: 0.82rem; }
+tbody td strong { color: var(--ink); }
+tbody tr.highlight { background: var(--paper-warm); }
+
+/* Tags */
+.tag { display: inline-block; font-family: var(--sans); font-size: 0.68rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; padding: 3px 9px; margin-right: 6px; border: 1px solid var(--rule); color: var(--ink-soft); }
+.tag.accent { border-color: var(--accent); color: var(--accent); }
+.tag.teal { border-color: var(--teal); color: var(--teal); }
+.tag.warn { border-color: var(--warning); color: var(--warning); }
+.tag.neg { border-color: var(--negative); color: var(--negative); }
+.tag.pos { border-color: var(--positive); color: var(--positive); }
+
+/* Bull/Bear */
+.thesis-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; margin-top: 24px; border: 1px solid var(--ink); }
+.thesis-col { padding: 28px; }
+.thesis-col.bull { border-right: 1px solid var(--ink); }
+.thesis-col .head { font-family: var(--mono); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.14em; margin-bottom: 8px; font-weight: 600; }
+.thesis-col.bull .head { color: var(--positive); }
+.thesis-col.bear .head { color: var(--negative); }
+.thesis-col ul { list-style: none; margin-top: 14px; }
+.thesis-col ul li { padding: 10px 0 10px 22px; position: relative; font-size: 0.9rem; color: var(--ink-soft); line-height: 1.55; border-bottom: 1px dashed var(--rule-soft); }
+.thesis-col.bull ul li:before { content: '+'; position: absolute; left: 0; top: 9px; color: var(--positive); font-weight: 700; }
+.thesis-col.bear ul li:before { content: '\2013'; position: absolute; left: 0; top: 9px; color: var(--negative); font-weight: 700; }
+
+/* Recommendation */
+.recommendation { background: var(--ink); color: var(--paper); padding: 40px 44px; margin-top: 40px; border-left: 6px solid var(--accent); }
+.recommendation .head { font-family: var(--mono); font-size: 0.74rem; text-transform: uppercase; letter-spacing: 0.18em; color: var(--accent-soft); margin-bottom: 12px; font-weight: 600; }
+.recommendation h2 { color: var(--paper); margin-bottom: 14px; }
+.recommendation p { color: rgba(250,249,244,0.86); font-size: 1rem; }
+
+/* Footer */
+footer { margin-top: 80px; padding-top: 28px; border-top: 1px solid var(--ink); font-family: var(--sans); font-size: 0.74rem; color: var(--muted); display: flex; justify-content: space-between; }
+footer .right { text-align: right; }
+
+/* Responsive */
+@media (max-width: 760px) {
+  .page { padding: 32px 22px; }
+  h1 { font-size: 2.4rem; }
+  .metric-grid { grid-template-columns: repeat(2, 1fr); }
+  .cols-2, .cols-3, .thesis-grid { grid-template-columns: 1fr; }
+  .section-head { grid-template-columns: 1fr; gap: 8px; }
+  .thesis-col.bull { border-right: none; border-bottom: 1px solid var(--ink); }
+}
+</style>
+</head>
+<body>
+  <nav style="position:sticky;top:0;z-index:999;background:#0a1929;border-bottom:1px solid #1c2e44;padding:10px 24px;display:flex;gap:16px;align-items:center;font-family:sans-serif;font-size:0.85rem"><span style="color:#8a98a5;margin-right:8px">Market Logic Investors</span><a href="." style="color:#d65a3a;font-weight:600;text-decoration:none">IC Memo</a><span style="color:#1c2e44">|</span><a href="diligence-request.md" style="color:#8a98a5;text-decoration:none">Diligence Request &rarr;</a><span style="color:#1c2e44">|</span><a href="../innerwell/" style="color:#8a98a5;text-decoration:none">Innerwell</a></nav>
+<div class="page">
+
+<!-- COVER -->
+<header class="cover">
+<div class="cover-meta">
+<div class="left">
+<strong style="color:var(--ink);display:block;margin-bottom:4px">Market Logic Investors LLC</strong>
+Capital Markets &middot; SPAC &middot; Sponsor-Quality Underwriting<br>
+Investment Memorandum &middot; Confidential
+</div>
+<div class="right">
+<span class="stamp">Trust-Stage Diligence</span><br>
+<strong style="color:var(--ink)">Memo Ref: ML-2026-A4-01</strong><br>
+Prepared: May 17, 2026<br>
+Author: H. Reganti
+</div>
+</div>
+
+<span class="eyebrow">Capital Markets &middot; SPAC &middot; Pre-Target Watch</span>
+<div class="cover-title">
+<h1>Aldabra 4</h1>
+<span class="legal">Aldabra 4 Liquidity Opportunity Vehicle, Inc. &middot; Nasdaq: ALOV / ALOVU / ALOVW &middot; Cayman exempted &middot; Miami, FL &middot; Sponsored by Terrapin Partners</span>
+</div>
+
+<p class="cover-tag">A fourth-generation Terrapin SPAC with a 3-of-3 sponsor completion record, $300.15M in trust, a clean 1/3-warrant structure, and a credible if broad $500M&ndash;$2B target mandate tilted toward technology and PE-owned liquidity opportunities.</p>
+
+<div class="metric-grid">
+<div class="metric"><span class="v">300.15<small>M</small></span><span class="l">Gross IPO Proceeds <span style="color:var(--teal)">Ext: SEC/PR</span></span></div>
+<div class="metric"><span class="v">30.015<small>M</small></span><span class="l">Units Issued (incl. greenshoe) <span style="color:var(--teal)">Ext: SEC</span></span></div>
+<div class="metric teal"><span class="v">3<small>/3</small></span><span class="l">Prior Sponsor Combinations Closed <span style="color:var(--muted-light)">Deck</span></span></div>
+<div class="metric teal"><span class="v">2.36<small>B</small></span><span class="l">Cumulative Prior Combination Value <span style="color:var(--muted-light)">Deck</span></span></div>
+<div class="metric"><span class="v">9.88</span><span class="l">ALOV Last Print (15 May 2026) <span style="color:var(--teal)">Ext: MarketBeat</span></span></div>
+<div class="metric accent"><span class="v">6.4<small>/10</small></span><span class="l">Composite Score <span style="color:var(--accent)">Inferred</span></span></div>
+</div>
+
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;margin-top:8px;font-family:var(--sans);font-size:0.82rem">
+<div style="border-right:1px solid var(--rule);padding:16px 18px 16px 0"><span class="label" style="display:block;margin-bottom:6px">Stage</span><strong>Post-IPO &middot; Pre-target &middot; Trust-stage</strong></div>
+<div style="border-right:1px solid var(--rule);padding:16px 0 16px 22px"><span class="label" style="display:block;margin-bottom:6px">Bookrunner / Sponsor</span><strong>Cantor Fitzgerald / Terrapin Partners</strong></div>
+<div style="padding:16px 0 16px 22px"><span class="label" style="display:block;margin-bottom:6px">Recommendation</span><strong style="color:var(--accent)">Track &mdash; Conditional Advance</strong></div>
+</div>
+</header>
+
+<!-- 01. EXECUTIVE SUMMARY -->
+<section class="no-rule" style="margin-top:72px">
+<div class="section-head"><div class="section-num">01 &mdash; Executive Summary</div><div class="section-title"><h2>The thesis in one paragraph</h2><div class="sub">What you'd say if the partner stopped you in the hallway.</div></div></div>
+<p class="lede">Aldabra 4 is a structurally clean, post-IPO SPAC sponsored by a team with the most credible <em>completion</em> record in the category&mdash;three prior Terrapin SPACs (Aldabra/GLDD, Aldabra 2/Boise, Terrapin 3/Yatra), all of which closed business combinations across three different market regimes. The vehicle holds approximately $300.15M of public trust at $10.00 per unit, trades at $9.88 (May 15, 2026), and discloses a $500M&ndash;$2B EV target framework across six themes. The deck's &ldquo;100% success&rdquo; framing, however, conflates <strong>deal completion with shareholder return</strong>&mdash;the most recent precedent (Yatra) currently sits near $1.73 despite operational recovery. The single most important diligence task is a structural read of the S-1, 10-K, and most recent 8-Ks to model trust per share, redemption mechanics, founder promote dilution, and PIPE/forward-purchase availability before any position is sized.</p>
+<div class="callout">Completion durability is real and rare. But the asymmetric setup at trust value is only as good as the structure underneath it. The deck is sponsor marketing&mdash;the SEC filings control.</div>
+<div class="cols-3">
+<div class="card"><h4>What we like</h4><p style="margin-top:10px">Repeat sponsor with operator-led CEO seat (Yanofsky, Dunkin/Panera/Fidelity Ventures). Team continuity across all three prior SPACs. Trading at or near trust preserves an asymmetric downside.</p></div>
+<div class="card"><h4>What concerns us</h4><p style="margin-top:10px">Yatra precedent: operating recovery did not translate into public-equity recovery. Mandate breadth (six themes) makes sourcing edge hard to underwrite. Standard SPAC promote and warrant dilution still applies at de-SPAC.</p></div>
+<div class="card"><h4>Recommended next step</h4><p style="margin-top:10px">Issue structural-diligence pack (EDGAR pull, de-SPAC return ledger on Terrapin precedents, conflicts register, entry-price discipline test). <strong>Re-present to IC within 21 calendar days.</strong></p></div>
+</div>
+</section>
+
+<!-- 02. VEHICLE SNAPSHOT -->
+<section>
+<div class="section-head"><div class="section-num">02 &mdash; Vehicle Snapshot</div><div class="section-title"><h2>What Aldabra 4 actually is</h2><div class="sub">Cayman-incorporated blank check, $300.15M trust, pre-target.</div></div></div>
+<div class="cols-2">
+<div>
+<h4>At a Glance</h4>
+<table style="margin-top:8px">
+<tbody>
+<tr><td><strong>Legal Entity</strong></td><td>Aldabra 4 Liquidity Opportunity Vehicle, Inc.</td></tr>
+<tr><td><strong>Domicile</strong></td><td>Cayman Islands (exempted)</td></tr>
+<tr><td><strong>HQ</strong></td><td>Miami, FL</td></tr>
+<tr><td><strong>IPO Date</strong></td><td>January 22, 2026</td></tr>
+<tr><td><strong>Tickers</strong></td><td>ALOV &middot; ALOVU &middot; ALOVW</td></tr>
+<tr><td><strong>Sponsor Entity</strong></td><td>Aldabra 4 LOV Sponsor Partnership, LLC</td></tr>
+<tr><td><strong>Bookrunner</strong></td><td>Cantor Fitzgerald (sole)</td></tr>
+<tr><td><strong>Co-Managers</strong></td><td>Ladenburg Thalmann &middot; Benchmark &middot; StoneX</td></tr>
+<tr><td><strong>Lock-up Expiry</strong></td><td>July 21, 2026</td></tr>
+</tbody>
+</table>
+</div>
+<div>
+<p>Aldabra 4 is a Cayman-incorporated blank check company sponsored by the principals of <strong>Terrapin Partners</strong>, a 1998-founded multi-stage investor with a SPAC franchise stretching back to 2005. The Company priced its IPO on January 21, 2026 and closed on January 22, 2026 at <strong>$10.00 per unit</strong>, issuing 26.1M base units plus 3.915M over-allotment units for gross proceeds of <strong>$300.15M</strong>. Each unit comprises one Class A ordinary share and <strong>one-third of one redeemable public warrant</strong> (whole warrants exercisable at <strong>$11.50</strong>, 30 days after a business combination, 5-year life).</p>
+<p style="margin-top:14px">As of May 15, 2026, ALOV last printed at <strong>$9.88</strong>, implying a slight discount to the $10.00 IPO basis. The over-allotment was fully exercised, signaling real book demand. <strong>No business combination target has been selected as of the latest filing.</strong></p>
+<div style="margin-top:18px">
+<span class="tag teal">SPAC Blank Check</span><span class="tag teal">Terrapin-Sponsored</span><span class="tag teal">Trust-Stage</span><span class="tag">Cayman Exempted</span><span class="tag">$500M&ndash;$2B Target</span>
+</div>
+</div>
+</div>
+</section>
+
+<!-- 03. SPONSOR TRACK RECORD -->
+<section>
+<div class="section-head"><div class="section-num">03 &mdash; Sponsor &amp; Track Record</div><div class="section-title"><h2>Completion durability is real, return durability less so</h2><div class="sub">Three prior SPACs, three closes. One excellent, one solid, one publicly disappointing.</div></div></div>
+<p class="lede">The sponsor case is Aldabra 4's strongest single argument. Terrapin's principals have closed business combinations in three different market regimes (2006, 2008, 2016) with the same nucleus of personnel. The completion record is genuinely rare for the category. The unresolved question is whether <em>completion</em> translates into <em>shareholder return</em> in the current de-SPAC environment.</p>
+<div class="cols-2" style="margin-top:28px">
+<div>
+<h4>Prior SPAC Outcomes</h4>
+<table>
+<thead><tr><th>Vehicle</th><th>Target / Year</th><th class="num">Deal Size</th><th class="num">Deck-Cited Return</th></tr></thead>
+<tbody>
+<tr><td><strong>Aldabra</strong> ($55M IPO, 2005)</td><td>Great Lakes Dredge &amp; Dock (GLDD), 2006</td><td class="num">$410M</td><td class="num"><strong>100.6%</strong> 3-yr IRR <span style="color:var(--muted-light);font-size:0.7rem">Deck</span></td></tr>
+<tr><td><strong>Aldabra 2</strong> ($414M IPO, 2007)</td><td>Boise, Inc., 2008 (sold to PKG 2013, $2.0B)</td><td class="num">$1.6B</td><td class="num"><strong>14.2%</strong> IRR to PKG sale <span style="color:var(--muted-light);font-size:0.7rem">Deck</span></td></tr>
+<tr class="highlight"><td><strong>Terrapin 3</strong> ($213M IPO, 2014)</td><td>Yatra Online, 2016</td><td class="num">$346M</td><td class="num"><strong>$1.73</strong> stock (Oct 2025) vs. $14.79 unit high <span style="color:var(--muted-light);font-size:0.7rem">Deck</span></td></tr>
+</tbody>
+</table>
+</div>
+<div class="card">
+<h4>Why it matters</h4>
+<p style="margin-top:10px">A 3-of-3 close rate across two decades is a real signal. <strong>It is not the same as a 3-of-3 win rate for public shareholders.</strong> GLDD and Boise are clean wins; Yatra, the most recent and most relevant precedent, is currently a substantial loss for IPO-basis public holders despite operational recovery.</p>
+<p style="margin-top:12px"><strong>Need an independently computed return ledger before underwriting the headline track record.</strong></p>
+</div>
+</div>
+<div style="margin-top:28px;border:1px solid var(--accent);padding:22px 26px;background:#fdf4ef">
+<h4 style="color:var(--accent);margin-bottom:8px">Discrepancy: Deck Framing vs. Public-Shareholder Read</h4>
+<p style="font-size:0.92rem">The deck reports <strong>100% success rate</strong> and headline IRRs of 100.6% / 14.2% on Aldabra 1 and Aldabra 2. It also discloses that Yatra's stock currently sits at $1.73. These are not contradictory (different vehicles, different time windows) but they are not obviously consistent with the &ldquo;100% success&rdquo; framing either. <strong>Diligence ask D1</strong> covers exactly this&mdash;an independently computed public-shareholder return ledger for each prior SPAC.</p>
+</div>
+</section>
+
+<!-- 04. LEADERSHIP -->
+<section>
+<div class="section-head"><div class="section-num">04 &mdash; Leadership &amp; Team</div><div class="section-title"><h2>The thing that's actually defensible</h2><div class="sub">Continuity of named principals across multiple completed SPACs.</div></div></div>
+<p>SPAC structures are commodity. <strong>What is not commodity is a sponsor team that has worked together across multiple complete-cycle vehicles</strong>&mdash;origination, signing, financing, redemption management, and post-close governance.</p>
+<div class="cols-2" style="margin-top:24px">
+<div class="card">
+<h4>Principals (executive)</h4>
+<ul style="list-style:none;margin-top:10px;font-size:0.92rem;color:var(--ink-soft)">
+<li style="padding:10px 0;border-bottom:1px solid var(--rule-soft)"><strong>Nathan Leight</strong> &mdash; Executive Chairman. Chairman of all three prior Terrapin SPACs. Co-Founder &amp; CIO of Terrapin Partners since 1998; prior CIO of Gabriel Capital (&gt;$1B AUM), Managing Director at Dillon Read &amp; Co.</li>
+<li style="padding:10px 0;border-bottom:1px solid var(--rule-soft)"><strong>Neal Yanofsky</strong> &mdash; CEO. Independent consultant to L Catterton, JANA Partners, AEA Investors, General Catalyst. Former President International at Dunkin' Brands (2011); EVP then President at Panera Bread (2003&ndash;2008); formed Fidelity Ventures early-stage healthcare tech team. <strong>Operator-led CEO seat is unusual in current SPAC cohort.</strong></li>
+<li style="padding:10px 0;border-bottom:1px solid var(--rule-soft)"><strong>Irina O'Berry</strong> &mdash; CFO. Key team member on Terrapin 3 (Yatra). CFO of Terrapin Partners.</li>
+<li style="padding:10px 0;border-bottom:1px solid var(--rule-soft)"><strong>Stephen Schifrin</strong> &mdash; General Counsel &amp; Corporate Secretary. Key team member on Terrapin 3. GC and Chief Compliance Officer at Terrapin Partners.</li>
+<li style="padding:10px 0"><strong>Robert Plotkin</strong> &mdash; CTO. <strong>Key team member on all three prior Terrapin SPACs.</strong> CTO at Terrapin Partners. Prior senior staff at IBM T.J. Watson Research Center.</li>
+</ul>
+</div>
+<div class="card">
+<h4>Independent directors</h4>
+<ul style="list-style:none;margin-top:10px;font-size:0.92rem;color:var(--ink-soft)">
+<li style="padding:10px 0;border-bottom:1px solid var(--rule-soft)"><strong>Ana Dutra</strong> &mdash; Veteran board director, 2x CEO, Fortune 250 senior executive. Current/past boards: Pembina Pipeline (PBA), Carparts.com (PRTS), CME Group (CME), First Internet Bancorp (INBK). Former CEO of Korn Ferry (KFY).</li>
+<li style="padding:10px 0;border-bottom:1px solid var(--rule-soft)"><strong>Jonathan Intrater</strong> &mdash; MD, Investment Banking at Ladenburg Thalmann. Director/officer of 3 prior SPACs. <strong>Note: related-party flag below.</strong></li>
+<li style="padding:10px 0"><strong>Carl Schecter</strong> &mdash; Family office manager since 2015. Prior roles at Diamondback Securities, Nomura Securities International, NatWest Bank, L.F. Rothschild.</li>
+</ul>
+</div>
+</div>
+<div class="callout">Continuity is the moat. Plotkin's presence across all three prior SPACs plus this fourth, and the dual presence of O'Berry and Schifrin from Terrapin 3, means this is not a first-time team executing its first deal.</div>
+<div style="margin-top:28px;border:1px solid var(--warning);padding:22px 26px;background:#fbf6e6">
+<h4 style="color:var(--warning);margin-bottom:8px">Conflict register: Ladenburg Thalmann dual role</h4>
+<p style="font-size:0.92rem">Ladenburg Thalmann appears in two capacities: (i) as a <strong>co-manager on the IPO</strong> alongside Cantor Fitzgerald, and (ii) as the <strong>current employer of independent director Jonathan Intrater</strong> (MD, Investment Banking). This is disclosable, not disqualifying, but it should be tracked. Diligence ask <strong>D2</strong> covers verification of conflicts disclosures in the S-1 and S-K Item 404 references.</p>
+</div>
+</section>
+
+<!-- 05. STRUCTURE & CAP TABLE -->
+<section>
+<div class="section-head"><div class="section-num">05 &mdash; Structure &amp; Cap Table</div><div class="section-title"><h2>Clean structure, standard promote</h2><div class="sub">$300.15M trust &middot; 1/3-warrant unit &middot; $11.50 strike &middot; sponsor promote per industry norm.</div></div></div>
+<p class="lede">Aldabra 4's structure reads as a current-vintage market-standard SPAC&mdash;clean trust mechanics, conservative warrant coverage, and a sponsor promote that will dilute Class A public holders at de-SPAC in line with industry norms.</p>
+<div class="cols-2" style="margin-top:28px">
+<div>
+<h4>Why this is the thesis</h4>
+<p style="margin-top:8px">Trust trades at $9.88 vs. $10.00 IPO basis. If no combination closes, public holders recover trust minus expense leakage and warrants expire worthless. <strong>Downside is structurally floored. Upside is sponsor-edge-dependent.</strong> The clean 1/3-warrant unit (vs. heavier 1/2-warrant structures in older vintages) and standard $11.50 strike are net positives for new entrants today.</p>
+</div>
+<div>
+<h4>Modeled dilution scenarios</h4>
+<table>
+<thead><tr><th>Scenario</th><th class="num">Redemption %</th><th class="num">Public FD%</th><th class="num">Sponsor FD%</th></tr></thead>
+<tbody>
+<tr><td><strong>Low-redemption</strong></td><td class="num">10%</td><td class="num">~74%</td><td class="num">~20%</td></tr>
+<tr><td><strong>Mid-redemption (typical 2026)</strong></td><td class="num">50%</td><td class="num">~58%</td><td class="num">~32%</td></tr>
+<tr><td><strong>High-redemption</strong></td><td class="num">85%</td><td class="num">~30%</td><td class="num">~55%</td></tr>
+</tbody>
+</table>
+<p style="font-size:0.78rem;color:var(--muted);margin-top:8px">Illustrative&mdash;actual outcome depends on PIPE size, forward-purchase terms, and warrant exercise behavior. <span style="color:var(--accent)">Inferred</span></p>
+</div>
+</div>
+</section>
+
+<!-- 06. TARGET STRATEGY -->
+<section>
+<div class="section-head"><div class="section-num">06 &mdash; Target Strategy &amp; Sourcing</div><div class="section-title"><h2>Six themes, one EV band</h2><div class="sub">Credible but broad&mdash;sponsor edge needs further proof.</div></div></div>
+<p>The deck states an ideal target enterprise value of <strong>$500M to $2B</strong> and articulates six investment themes. The S-1 narrows this slightly toward technology-enabled targets. Reconciling deck vs. S-1 framing is a structural-diligence item.</p>
+<div class="cols-2" style="margin-top:24px">
+<div class="card">
+<h4>Stated themes (deck p. 8)</h4>
+<ul style="list-style:none;margin-top:10px;font-size:0.92rem;color:var(--ink-soft)">
+<li style="padding:8px 0;border-bottom:1px solid var(--rule-soft)">Fundamental changes in socio-economics and demographics</li>
+<li style="padding:8px 0;border-bottom:1px solid var(--rule-soft)">Under-managed IP, proprietary practices, or other intangible assets</li>
+<li style="padding:8px 0;border-bottom:1px solid var(--rule-soft)">Competitive advantage / sustainable barriers to entry</li>
+<li style="padding:8px 0;border-bottom:1px solid var(--rule-soft)">Fundamental changes in competitive dynamics</li>
+<li style="padding:8px 0;border-bottom:1px solid var(--rule-soft)">Technology disrupting markets</li>
+<li style="padding:8px 0">Large mature PE-backed companies seeking liquidity</li>
+</ul>
+</div>
+<div class="card">
+<h4>How to read it</h4>
+<p style="margin-top:10px">The framework is consistent with Terrapin's historical sourcing logic (GLDD&mdash;Jones Act moat, Boise&mdash;subsidiary in out-of-favor industry, Yatra&mdash;growth in fast-growing major economy). It is also <strong>broad</strong>&mdash;six themes effectively give the sponsor permission to chase almost anything.</p>
+<p style="margin-top:12px"><strong>What we want to see in diligence:</strong> proprietary access, sourcing infrastructure, or repeatable pattern recognition that converts breadth into edge.</p>
+</div>
+</div>
+</section>
+
+<!-- 07. RISK HEATMAP -->
+<section>
+<div class="section-head"><div class="section-num">07 &mdash; Risk Heatmap</div><div class="section-title"><h2>What can go wrong, ordered</h2><div class="sub">Eight tracked risks, severity-rated.</div></div></div>
+<table>
+<thead><tr><th></th><th>Risk</th><th>Severity</th><th>Diligence ask</th></tr></thead>
+<tbody>
+<tr><td>R1</td><td><strong>Target sourcing</strong>&mdash;no live target, broad six-theme mandate</td><td><span class="tag warn">Medium</span></td><td>E1: Form 4/13D scan, advisory mandate overlap</td></tr>
+<tr><td>R2</td><td><strong>De-SPAC market quality</strong>&mdash;Yatra precedent shows operational &ne; equity recovery</td><td><span class="tag neg">High</span></td><td>D1: Public-shareholder return ledger on prior SPACs</td></tr>
+<tr><td>R3</td><td><strong>Redemption financing</strong>&mdash;PIPE backstop, forward-purchase posture unknown</td><td><span class="tag neg">High</span></td><td>A2: Trust, extensions, PIPE language from S-1/8-K</td></tr>
+<tr><td>R4</td><td><strong>Sponsor promote dilution</strong>&mdash;7.5M founder + 4.87M PPW + $1.5M conv WC loan</td><td><span class="tag warn">Medium-High</span></td><td>A3: Fully-diluted cap-table model</td></tr>
+<tr><td>R5</td><td><strong>Conflicts / related-party</strong>&mdash;Ladenburg dual role, director founder-share allocation</td><td><span class="tag warn">Medium</span></td><td>D2: S-K Item 404, conflict register</td></tr>
+<tr><td>R6</td><td><strong>Disclosure gap</strong>&mdash;deck explicitly states SEC filings control</td><td><span class="tag">Standard</span></td><td>A1: Full EDGAR pull and reconciliation</td></tr>
+<tr><td>R7</td><td><strong>Lock-up cliff</strong>&mdash;insider lock-up expiry July 21, 2026</td><td><span class="tag">Low-Medium</span></td><td>F1: Monitor 13D/G and Form 4 post-cliff</td></tr>
+<tr><td>R8</td><td><strong>Cohort &amp; regulatory</strong>&mdash;Cayman exempted, ongoing SEC SPAC regime</td><td><span class="tag">Standard</span></td><td>F2: Re-check 10-K risk factors for 2026 rule updates</td></tr>
+</tbody>
+</table>
+<div class="callout" style="margin-top:24px">R2 and R3 are the dominant risks. R2 is a sponsor-track-record interpretation question that gets answered by the return ledger. R3 is a structural-mechanics question that gets answered by the EDGAR pull. Neither is exotic&mdash;both are tractable in a 2&ndash;4 week diligence sprint.</div>
+</section>
+
+<!-- 08. SCORECARD -->
+<section>
+<div class="section-head"><div class="section-num">08 &mdash; SPAC Scorecard</div><div class="section-title"><h2>The numbers, scored</h2><div class="sub">Six dimensions, composite 6.4/10. Above watchlist threshold, below conviction.</div></div></div>
+<div class="cols-2">
+<div>
+<h4>Composite</h4>
+<div style="font-family:var(--serif);font-size:4.4rem;line-height:1;color:var(--accent);margin:18px 0 6px">6.4<span style="font-size:1.6rem;color:var(--muted)">/10</span></div>
+<p style="font-size:0.86rem;color:var(--muted)">At internal threshold for track-with-conditions advance. Materially driven by Sponsor/Team strength offsetting average Strategy Clarity and below-average Public-Market Outcome Confidence.</p>
+</div>
+<div>
+<table style="margin-top:28px">
+<thead><tr><th>Dimension</th><th class="num">Score</th><th>Read</th></tr></thead>
+<tbody>
+<tr><td>Sponsor Experience</td><td class="num"><strong>9</strong></td><td><span class="tag pos">Strength</span></td></tr>
+<tr><td>Team Continuity</td><td class="num"><strong>9</strong></td><td><span class="tag pos">Strength</span></td></tr>
+<tr><td>Strategy Clarity</td><td class="num"><strong>6</strong></td><td><span class="tag warn">Average</span></td></tr>
+<tr><td>Structural Visibility</td><td class="num"><strong>6</strong></td><td><span class="tag warn">Pending DR</span></td></tr>
+<tr><td>Public-Market Outcome Confidence</td><td class="num"><strong>4</strong></td><td><span class="tag neg">Weak</span></td></tr>
+<tr><td>Asymmetry at Current Price</td><td class="num"><strong>7</strong></td><td><span class="tag pos">Favorable</span></td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+
+<!-- 09. INVESTMENT THESIS -->
+<section>
+<div class="section-head"><div class="section-num">09 &mdash; Investment Thesis</div><div class="section-title"><h2>Bull and bear, side by side</h2><div class="sub">Both cases assume successful completion of the structural-diligence pack.</div></div></div>
+<div class="thesis-grid">
+<div class="thesis-col bull">
+<div class="head">Bull Case</div>
+<h3>Sponsor-edge SPAC at trust with asymmetric upside</h3>
+<ul>
+<li><strong>3-of-3 completion record</strong> across three different market regimes is structurally rare</li>
+<li><strong>Operator-led CEO seat</strong> (Yanofsky) reduces post-close governance risk</li>
+<li><strong>Continuity of named principals</strong> across multiple SPACs (Leight, O'Berry, Plotkin, Schifrin)</li>
+<li><strong>Clean structure:</strong> 1/3-warrant unit, $11.50 strike, market-standard promote, Cantor bookrunner</li>
+<li><strong>Entry near trust</strong> ($9.88 vs. $10.00) preserves an asymmetric downside profile</li>
+</ul>
+</div>
+<div class="thesis-col bear">
+<div class="head">Bear Case</div>
+<h3>Completion record without shareholder return</h3>
+<ul>
+<li><strong>Yatra precedent</strong> shows operational recovery did not translate into public-equity recovery</li>
+<li><strong>Six-theme mandate breadth</strong> makes sourcing edge hard to underwrite ex ante</li>
+<li><strong>Standard SPAC promote dilution</strong> applies at de-SPAC (7.5M founder shares + 4.87M PPW + $1.5M conv WC loan)</li>
+<li><strong>Cohort risk:</strong> 2024&ndash;2026 SPAC vintages remain under structural skepticism</li>
+<li><strong>Conflict-register flags</strong> (Ladenburg dual role) need explicit governance treatment</li>
+</ul>
+</div>
+</div>
+</section>
+
+<!-- 10. RECOMMENDATION -->
+<section>
+<div class="section-head"><div class="section-num">10 &mdash; Recommendation</div><div class="section-title"><h2>Decision and conditions</h2><div class="sub">For IC vote.</div></div></div>
+<div class="recommendation">
+<div class="head">Recommendation</div>
+<h2>Track &mdash; Conditional Advance to Structural Diligence</h2>
+<p>Aldabra 4 warrants a dedicated 21-day structural-diligence sprint, not yet a position. The sponsor-quality and completion-durability case is genuinely strong; the public-shareholder-return case requires the return ledger on prior SPACs before any conviction is earned. We recommend executing the seven P0 diligence items, re-presenting to IC with a structure sheet and return ledger, and only then defining a position size and entry-price discipline.</p>
+</div>
+<div style="margin-top:24px">
+<h4>Conditions to Advance</h4>
+<ul style="list-style:none;margin-top:10px;font-size:0.92rem;color:var(--ink-soft)">
+<li style="padding:8px 0;border-bottom:1px solid var(--rule-soft)">Return ledger shows &ge;1 of 3 prior SPACs produced &gt;10% public-shareholder IRR from de-SPAC</li>
+<li style="padding:8px 0;border-bottom:1px solid var(--rule-soft)">Trust per share verified at or above $10.00</li>
+<li style="padding:8px 0;border-bottom:1px solid var(--rule-soft)">Combination deadline &ge;9 months forward at IC date</li>
+<li style="padding:8px 0;border-bottom:1px solid var(--rule-soft)">PIPE / forward-purchase posture documented or credibly available</li>
+<li style="padding:8px 0;border-bottom:1px solid var(--rule-soft)">Promote dilution under base-case redemption &le;25 percentage points to public Class A</li>
+<li style="padding:8px 0">Conflict register documented, no undisclosed related-party items</li>
+</ul>
+</div>
+<div style="margin-top:24px">
+<h4>Conditions to Pass</h4>
+<ul style="list-style:none;margin-top:10px;font-size:0.92rem;color:var(--ink-soft)">
+<li style="padding:8px 0;border-bottom:1px solid var(--rule-soft)">Return ledger shows all 3 prior SPACs produced negative public-shareholder IRR from de-SPAC</li>
+<li style="padding:8px 0;border-bottom:1px solid var(--rule-soft)">Trust per share below $10.00 due to expense leakage or prior extension</li>
+<li style="padding:8px 0;border-bottom:1px solid var(--rule-soft)">Combination deadline &lt;6 months without credible extension mechanic</li>
+<li style="padding:8px 0;border-bottom:1px solid var(--rule-soft)">Promote dilution under base-case redemption &gt;35 percentage points to public Class A</li>
+<li style="padding:8px 0">Undisclosed related-party item discovered in S-K 404 review</li>
+</ul>
+</div>
+<p style="margin-top:28px;font-size:0.92rem"><strong>Proposed indicative posture:</strong> if conditions are met, small position sized at or below trust value, with a defined re-evaluation gate at announce. No position to be opened above $10.05 absent a specific structural reason.</p>
+</section>
+
+</div><!-- end .page -->
+
+<!-- FOOTER -->
+<footer style="max-width:1000px;margin:0 auto;padding:28px 56px 40px">
+<div>
+<strong style="color:var(--ink)">Market Logic Investors LLC</strong> &middot; Investment Memorandum<br>
+Confidential. Prepared for internal investment committee use only.<br>
+<span style="font-style:italic">Not investment advice. Public-filings figures subject to verification against EDGAR; deck figures subordinated to SEC filings.</span>
+</div>
+<div class="right">
+<strong style="color:var(--ink)">Aldabra 4 &middot; ML-2026-A4-01</strong><br>
+Author: H. Reganti &middot; Prepared: May 17, 2026<br>
+Companion artifact: ML-2026-A4-DR-01 (Structural-Diligence Pack)
+</div>
+</footer>
+</body>
+</html>
