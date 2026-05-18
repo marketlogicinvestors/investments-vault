@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SPAC Deals — Market Logic Investors</title>
+<style>
+:root {
+  --ink: #0a1929; --ink-soft: #1c2e44;
+  --paper: #faf9f4; --paper-warm: #f3efe3;
+  --rule: #d4cfbf; --rule-soft: #e8e3d4;
+  --muted: #5b6b7a; --accent: #b8391c; --accent-soft: #d65a3a;
+  --teal: #1f6b6b; --positive: #2d6a4f; --warning: #b08800; --negative: #9b2226;
+  --serif: 'Iowan Old Style', 'Palatino Linotype', Palatino, 'Book Antiqua', Georgia, serif;
+  --sans: 'Helvetica Neue', Helvetica, -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 16px; }
+body { font-family: var(--sans); background: var(--paper); color: var(--ink); line-height: 1.55; -webkit-font-smoothing: antialiased; }
+.page { max-width: 1000px; margin: 0 auto; padding: 56px 56px 80px; }
+h1, h2, h3 { font-family: var(--serif); font-weight: 400; color: var(--ink); }
+p { font-size: 0.95rem; line-height: 1.7; color: var(--ink-soft); }
+strong { color: var(--ink); font-weight: 600; }
+.eyebrow { font-family: var(--sans); font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.2em; color: var(--accent); display: block; margin-bottom: 18px; }
+.site-nav { display: flex; align-items: center; gap: 8px; font-size: 0.78rem; font-family: var(--sans); margin-bottom: 48px; flex-wrap: wrap; }
+.site-nav a { color: var(--muted); text-decoration: none; }
+.site-nav a:hover { color: var(--accent); }
+.site-nav span { color: var(--rule); }
+.hub-header { border-top: 1px solid var(--ink); padding-top: 32px; margin-bottom: 48px; }
+.deal-list { margin-top: 32px; }
+.deal-row { display: flex; align-items: stretch; text-decoration: none; color: inherit; border-top: 1px solid var(--rule-soft); padding: 20px 0; gap: 16px; transition: background 0.15s; }
+.deal-row:hover { background: var(--paper-warm); }
+.deal-row:last-child { border-bottom: 1px solid var(--rule-soft); }
+.deal-num { font-family: var(--sans); font-size: 0.7rem; font-weight: 700; color: #fff; background: var(--ink); width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
+.deal-body { flex: 1; min-width: 0; }
+.deal-tags { font-size: 0.68rem; font-family: var(--sans); font-weight: 600; text-transform: uppercase; letter-spacing: 0.15em; color: var(--muted); margin-bottom: 4px; }
+.deal-name { font-family: var(--serif); font-size: 1.35rem; line-height: 1.15; margin-bottom: 4px; color: var(--ink); }
+.deal-sub { font-size: 0.82rem; color: var(--muted); margin-bottom: 6px; }
+.deal-desc { font-size: 0.88rem; line-height: 1.55; color: var(--ink-soft); }
+.deal-meta { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; flex-shrink: 0; width: 130px; padding-top: 2px; }
+.score { font-family: var(--sans); font-size: 1.4rem; font-weight: 700; color: var(--ink); }
+.score-label { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); }
+.rec-badge { font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; padding: 3px 7px; background: var(--paper-warm); border: 1px solid var(--rule); color: var(--ink-soft); text-align: center; }
+.deal-status { font-size: 0.72rem; color: var(--teal); font-weight: 600; }
+.deal-arrow { font-size: 1rem; color: var(--rule); align-self: center; }
+.back-link { display: inline-flex; align-items: center; gap: 6px; font-size: 0.82rem; color: var(--muted); text-decoration: none; margin-top: 48px; border-top: 1px solid var(--rule-soft); padding-top: 20px; }
+.back-link:hover { color: var(--accent); }
+</style>
+</head>
+<body>
+<div class="page">
+
+<nav class="site-nav" aria-label="breadcrumb">
+  <a href="../">Market Logic Investors</a>
+  <span aria-hidden="true">/</span>
+  <a href="../">Deal Vault</a>
+  <span aria-hidden="true">/</span>
+  <span>SPAC Deals</span>
+</nav>
+
+<div class="hub-header">
+  <span class="eyebrow">Deal Vault › SPAC Deals</span>
+  <h1>SPAC<br>Deals</h1>
+  <p style="margin-top:16px;max-width:560px;">Capital markets vehicles, trust-stage watches, and sponsor-quality underwriting. One IC memo per deal. Click any row to open the full report.</p>
+</div>
+
+<div class="deal-list">
+
+  <a class="deal-row" href="aldabra-4/">
+    <div class="deal-num">01</div>
+    <div class="deal-body">
+      <div class="deal-tags">SPAC · Capital Markets · ML-2026-A4-01 · May 2026</div>
+      <div class="deal-name">Aldabra 4</div>
+      <div class="deal-sub">Aldabra 4 Liquidity Opportunity Vehicle, Inc. · Nasdaq: ALOV / ALOVU / ALOVW · $300.15M trust · Terrapin Partners</div>
+      <div class="deal-desc">Fourth-generation Terrapin SPAC with 3-of-3 sponsor completion record. Trust-stage, pre-target. $500M–$2B EV mandate. Cantor Fitzgerald bookrunner. Neal Yanofsky (Dunkin’, Panera) as operator-led CEO.</div>
+    </div>
+    <div class="deal-meta">
+      <div class="score">6.4<span class="score-label">/10</span></div>
+      <div class="rec-badge">Track — Conditional</div>
+      <div class="deal-status">● Trust-Stage</div>
+    </div>
+    <div class="deal-arrow">→</div>
+  </a>
+
+</div>
+
+<a class="back-link" href="../">← Back to Deal Vault</a>
+
+</div>
+</body>
+</html>
