@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VC Deals — Market Logic Investors</title>
+<style>
+:root{--ink:#0a1929;--ink-soft:#1c2e44;--paper:#faf9f4;--paper-warm:#f3efe3;--rule:#d4cfbf;--muted:#5b6b7a;--muted-light:#8a98a5;--accent:#b8391c;--accent-soft:#d65a3a;--teal:#1f6b6b;--positive:#2d6a4f;--negative:#9b2226;--serif:'Iowan Old Style','Palatino Linotype',Palatino,'Book Antiqua',Georgia,serif;--sans:'Helvetica Neue',Helvetica,-apple-system,BlinkMacSystemFont,system-ui,sans-serif;--mono:'SF Mono',SFMono-Regular,Menlo,Monaco,Consolas,'Liberation Mono',monospace}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--sans);background:var(--paper);color:var(--ink);line-height:1.55;-webkit-font-smoothing:antialiased}
+.page{max-width:1000px;margin:0 auto;padding:56px 56px 80px}
+h1,h2,h3{font-family:var(--serif);font-weight:400}
+h1{font-size:2.8rem;line-height:1.06;letter-spacing:-0.02em}
+h2{font-size:1.4rem}
+p{font-size:0.95rem;line-height:1.7;color:var(--ink-soft)}
+nav{position:sticky;top:0;z-index:999;background:#0a1929;border-bottom:1px solid #1c2e44;padding:10px 24px;display:flex;gap:12px;align-items:center;font-family:var(--sans);font-size:0.85rem;flex-wrap:wrap}
+nav .brand{color:#d65a3a;font-weight:700;text-decoration:none}
+nav a{color:#8a98a5;text-decoration:none;transition:color .15s}
+nav a:hover,nav a.active{color:#d65a3a}
+nav .sep{color:#2a3f54}
+nav .spacer{flex:1}
+.cover{border-top:3px solid var(--ink);padding-top:28px;margin-bottom:44px}
+.breadcrumb{font-family:var(--sans);font-size:0.78rem;color:var(--muted);margin-bottom:18px}
+.breadcrumb a{color:var(--teal);text-decoration:none}
+.eyebrow{font-family:var(--sans);font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.2em;color:var(--accent);display:block;margin-bottom:12px}
+.deal-row{display:grid;grid-template-columns:56px 1fr auto;border:1px solid var(--ink);margin-bottom:2px;text-decoration:none;color:inherit;transition:background .12s}
+.deal-row:hover{background:var(--paper-warm)}
+.deal-num{background:var(--ink);color:#f3efe3;font-family:var(--mono);font-size:0.68rem;display:flex;align-items:center;justify-content:center;padding:22px 0;writing-mode:vertical-rl;text-transform:uppercase;letter-spacing:0.12em;font-weight:600}
+.deal-body{padding:22px 26px;border-left:1px solid var(--rule)}
+.deal-body .tag{font-family:var(--mono);font-size:0.63rem;font-weight:600;text-transform:uppercase;letter-spacing:0.12em;color:var(--muted);display:block;margin-bottom:7px}
+.deal-body h3{font-family:var(--serif);font-size:1.35rem;font-weight:400;margin-bottom:4px;color:var(--ink)}
+.deal-body .sub{font-size:0.8rem;color:var(--muted);margin-bottom:9px}
+.deal-body p{font-size:0.87rem;color:var(--ink-soft);line-height:1.55}
+.deal-meta{padding:22px 26px;display:flex;flex-direction:column;align-items:flex-end;justify-content:center;gap:8px;min-width:150px;border-left:1px solid var(--rule)}
+.deal-meta .score{font-family:var(--serif);font-size:2.2rem;line-height:1;color:var(--accent)}
+.deal-meta .score em{font-family:var(--sans);font-size:0.68rem;color:var(--muted);font-style:normal}
+.deal-meta .rec{font-family:var(--mono);font-size:0.6rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--accent);border:1px solid var(--accent);padding:3px 8px;text-align:center}
+.deal-meta .status{font-family:var(--mono);font-size:0.6rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--positive)}
+.deal-meta .arrow{font-size:1.2rem;color:var(--muted);margin-top:auto}
+.summary{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--rule);margin-top:32px}
+.summary-item{padding:14px 18px;border-right:1px solid var(--rule)}
+.summary-item:last-child{border-right:none}
+.summary-item .label{font-family:var(--sans);font-size:0.65rem;font-weight:600;text-transform:uppercase;letter-spacing:0.12em;color:var(--muted);display:block;margin-bottom:4px}
+.summary-item strong{font-size:0.88rem}
+footer{margin-top:80px;padding-top:24px;border-top:1px solid var(--ink);font-family:var(--sans);font-size:0.74rem;color:var(--muted);display:flex;justify-content:space-between}
+@media(max-width:720px){.page{padding:28px 18px}h1{font-size:2rem}.deal-row{grid-template-columns:40px 1fr}.deal-meta{display:none}.summary{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../" class="brand">Market Logic Investors</a>
+  <span class="sep">/</span>
+  <a href="../">Deal Vault</a>
+  <span class="sep">/</span>
+  <a href="." class="active">VC Deals</a>
+  <span class="spacer"></span>
+  <a href="../pe-deals/" style="font-size:0.8rem;color:#5b6b7a">PE Deals &rarr;</a>
+</nav>
+<div class="page">
+<header class="cover">
+  <div class="breadcrumb"><a href="../">Deal Vault</a> &rsaquo; VC Deals</div>
+  <span class="eyebrow">Venture Capital &middot; All Active Positions</span>
+  <h1>VC Deals</h1>
+  <p style="margin-top:14px;max-width:540px">Early and growth-stage equity investments. One IC memo per deal. Click any row to open the full report.</p>
+</header>
+
+<a class="deal-row" href="aldabra-4/">
+  <div class="deal-num">01</div>
+  <div class="deal-body">
+    <span class="tag">SPAC &middot; Capital Markets &middot; ML-2026-A4-01 &middot; May 2026</span>
+    <h3>Aldabra 4</h3>
+    <div class="sub">Aldabra 4 Liquidity Opportunity Vehicle, Inc. &middot; Nasdaq: ALOV / ALOVU / ALOVW &middot; $300.15M trust &middot; Terrapin Partners</div>
+    <p>Fourth-generation Terrapin SPAC with 3-of-3 sponsor completion record. Trust-stage, pre-target. $500M&ndash;$2B EV mandate. Cantor Fitzgerald bookrunner. Neal Yanofsky (Dunkin&rsquo;, Panera) as operator-led CEO.</p>
+  </div>
+  <div class="deal-meta">
+    <div class="score">6.4<em>/10</em></div>
+    <div class="rec">Track &mdash; Conditional</div>
+    <div class="status">&#9679; Trust-Stage</div>
+    <div class="arrow">&rarr;</div>
+  </div>
+</a>
+
+<a class="deal-row" href="innerwell/">
+  <div class="deal-num">02</div>
+  <div class="deal-body">
+    <span class="tag">Behavioral Health &middot; Series A Watch &middot; ML-2026-IW-01 &middot; May 2026</span>
+    <h3>Innerwell</h3>
+    <div class="sub">Virtual-first ketamine-assisted psychotherapy platform &middot; Series A stage</div>
+    <p>In-network behavioral health platform pairing structured ketamine-assisted therapy with digital protocols. Series A watch-list with diligence required on clinical outcomes and regulatory posture.</p>
+  </div>
+  <div class="deal-meta">
+    <div class="score">6.5<em>/10</em></div>
+    <div class="rec">Watch &mdash; Diligence</div>
+    <div class="status">&#9679; Series A</div>
+    <div class="arrow">&rarr;</div>
+  </div>
+</a>
+
+<div class="summary">
+  <div class="summary-item"><span class="label">Deal Count</span><strong>2 active &middot; more incoming</strong></div>
+  <div class="summary-item"><span class="label">Vintage</span><strong>ML-2026 (May)</strong></div>
+  <div class="summary-item"><span class="label">Categories</span><strong>SPAC &middot; Behavioral Health</strong></div>
+</div>
+</div>
+<footer style="max-width:1000px;margin:0 auto;padding:24px 56px 40px">
+<div><strong style="color:var(--ink)">Market Logic Investors LLC</strong> &middot; VC Deals<br>Internal use only. Not investment advice.</div>
+<div style="text-align:right"><a href="../" style="color:var(--teal);text-decoration:none">&larr; Back to Deal Vault</a></div>
+</footer>
+</body>
+</html>
