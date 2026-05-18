@@ -5,117 +5,139 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Market Logic Investors — Deal Vault</title>
 <style>
-:root{--ink:#0a1929;--ink-soft:#1c2e44;--paper:#faf9f4;--paper-warm:#f3efe3;--rule:#d4cfbf;--muted:#5b6b7a;--accent:#b8391c;--accent-soft:#d65a3a;--teal:#1f6b6b;--positive:#2d6a4f;--serif:'Iowan Old Style','Palatino Linotype',Palatino,'Book Antiqua',Georgia,serif;--sans:'Helvetica Neue',Helvetica,-apple-system,BlinkMacSystemFont,system-ui,sans-serif;--mono:'SF Mono',SFMono-Regular,Menlo,Monaco,Consolas,'Liberation Mono',monospace}
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:var(--sans);background:var(--paper);color:var(--ink);line-height:1.55;-webkit-font-smoothing:antialiased}
-.page{max-width:1000px;margin:0 auto;padding:56px 56px 80px}
-h1,h2{font-family:var(--serif);font-weight:400}
-h1{font-size:3rem;line-height:1.05;letter-spacing:-0.02em}
-h2{font-size:1.5rem}
-p{font-size:0.95rem;line-height:1.7;color:var(--ink-soft)}
-nav{position:sticky;top:0;z-index:999;background:#0a1929;border-bottom:1px solid #1c2e44;padding:10px 24px;display:flex;gap:12px;align-items:center;font-family:var(--sans);font-size:0.85rem}
-nav .brand{color:#d65a3a;font-weight:700;text-decoration:none}
-nav a{color:#8a98a5;text-decoration:none;transition:color .15s}
-nav a:hover,nav a.active{color:#d65a3a}
-nav .sep{color:#2a3f54}
-nav .spacer{flex:1}
-.cover{border-top:3px solid var(--ink);padding-top:32px;margin-bottom:52px}
-.eyebrow{font-family:var(--sans);font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.2em;color:var(--accent);display:block;margin-bottom:14px}
-.meta{display:flex;justify-content:space-between;margin-bottom:56px;font-family:var(--sans);font-size:0.78rem;color:var(--muted)}
-.stats{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);margin:36px 0 0}
-.stat{padding:18px 20px;border-right:1px solid var(--rule)}
-.stat:last-child{border-right:none}
-.stat .v{font-family:var(--serif);font-size:2rem;line-height:1;color:var(--ink);display:block;margin-bottom:4px}
-.stat.accent .v{color:var(--accent)}
-.stat.teal .v{color:var(--teal)}
-.stat .l{font-family:var(--sans);font-size:0.66rem;font-weight:600;text-transform:uppercase;letter-spacing:0.12em;color:var(--muted)}
-.category{margin-top:56px;padding-top:28px;border-top:1px solid var(--rule)}
-.cat-head{display:grid;grid-template-columns:120px 1fr;gap:24px;margin-bottom:22px;align-items:baseline}
-.cat-num{font-family:var(--mono);font-size:0.72rem;color:var(--muted);border-top:2px solid var(--ink);padding-top:6px;text-transform:uppercase;font-weight:600}
-.deals{display:grid;grid-template-columns:1fr 1fr;gap:2px;border:1px solid var(--ink)}
-.deal{padding:24px 26px;background:var(--paper);border-right:1px solid var(--rule);text-decoration:none;color:inherit;display:block;transition:background .15s;position:relative}
-.deal:last-child{border-right:none}
-.deal:hover{background:var(--paper-warm)}
-.deal-tag{font-family:var(--mono);font-size:0.63rem;font-weight:600;text-transform:uppercase;letter-spacing:0.12em;color:var(--muted);display:block;margin-bottom:7px}
-.deal h3{font-family:var(--serif);font-size:1.4rem;font-weight:400;color:var(--ink);margin-bottom:5px}
-.deal .sub{font-size:0.78rem;color:var(--muted);margin-bottom:10px}
-.deal p{font-size:0.86rem;color:var(--ink-soft);line-height:1.55}
-.deal .score{position:absolute;top:22px;right:24px;font-family:var(--serif);font-size:1.5rem;color:var(--accent);line-height:1}
-.deal .score em{font-family:var(--sans);font-size:0.68rem;color:var(--muted);font-style:normal}
-.deal .rec{display:inline-block;margin-top:12px;font-family:var(--mono);font-size:0.63rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;padding:3px 8px;border:1px solid var(--accent);color:var(--accent)}
-.deal.empty{background:repeating-linear-gradient(45deg,var(--paper),var(--paper) 10px,var(--paper-warm) 10px,var(--paper-warm) 20px);cursor:default;opacity:.5}
-.deal.empty:hover{background:repeating-linear-gradient(45deg,var(--paper),var(--paper) 10px,var(--paper-warm) 10px,var(--paper-warm) 20px)}
-footer{margin-top:80px;padding-top:24px;border-top:1px solid var(--ink);font-family:var(--sans);font-size:0.74rem;color:var(--muted);display:flex;justify-content:space-between}
-@media(max-width:720px){.page{padding:28px 18px}h1{font-size:2rem}.deals{grid-template-columns:1fr}.cat-head{grid-template-columns:1fr;gap:6px}.stats{grid-template-columns:1fr 1fr}}
+:root {
+  --ink: #0a1929; --ink-soft: #1c2e44;
+  --paper: #faf9f4; --paper-warm: #f3efe3;
+  --rule: #d4cfbf; --rule-soft: #e8e3d4;
+  --muted: #5b6b7a; --accent: #b8391c; --accent-soft: #d65a3a;
+  --teal: #1f6b6b; --positive: #2d6a4f; --warning: #b08800; --negative: #9b2226;
+  --serif: 'Iowan Old Style', 'Palatino Linotype', Palatino, 'Book Antiqua', Georgia, serif;
+  --sans: 'Helvetica Neue', Helvetica, -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 16px; }
+body { font-family: var(--sans); background: var(--paper); color: var(--ink); line-height: 1.55; -webkit-font-smoothing: antialiased; }
+.page { max-width: 1000px; margin: 0 auto; padding: 56px 56px 80px; }
+h1, h2, h3 { font-family: var(--serif); font-weight: 400; color: var(--ink); }
+p { font-size: 0.95rem; line-height: 1.7; color: var(--ink-soft); }
+strong { color: var(--ink); font-weight: 600; }
+.eyebrow { font-family: var(--sans); font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.2em; color: var(--accent); display: block; margin-bottom: 18px; }
+.site-nav { display: flex; align-items: center; gap: 10px; font-size: 0.78rem; font-family: var(--sans); margin-bottom: 48px; flex-wrap: wrap; }
+.site-nav a { color: var(--muted); text-decoration: none; padding: 4px 10px; border: 1px solid var(--rule); }
+.site-nav a:hover { border-color: var(--accent); color: var(--accent); }
+.site-nav span { color: var(--rule); }
+.cover { border-top: 1px solid var(--ink); padding-top: 32px; margin-bottom: 48px; }
+.cover-meta { font-size: 0.7rem; font-family: var(--sans); text-transform: uppercase; letter-spacing: 0.15em; color: var(--muted); margin-bottom: 16px; }
+.cover-title { font-size: 3.2rem; font-family: var(--serif); line-height: 1.05; letter-spacing: -0.02em; margin-bottom: 12px; }
+.cover-title span { display: block; }
+.cover-lede { font-size: 1.05rem; font-family: var(--serif); line-height: 1.5; color: var(--ink-soft); max-width: 560px; margin-bottom: 28px; }
+.stats-bar { display: flex; gap: 32px; padding: 20px 0; border-top: 1px solid var(--rule-soft); border-bottom: 1px solid var(--rule-soft); margin-bottom: 48px; flex-wrap: wrap; }
+.stat { min-width: 80px; }
+.stat-num { font-size: 1.6rem; font-family: var(--serif); font-weight: 400; color: var(--ink); line-height: 1; margin-bottom: 4px; }
+.stat-label { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); }
+.category { margin-bottom: 40px; padding-bottom: 40px; border-bottom: 1px solid var(--rule-soft); }
+.category:last-child { border-bottom: none; }
+.cat-header { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 20px; gap: 16px; }
+.cat-title { font-size: 1.1rem; font-family: var(--sans); font-weight: 700; letter-spacing: -0.01em; color: var(--ink); }
+.cat-sub { font-size: 0.75rem; color: var(--muted); font-style: italic; }
+.cat-link { font-size: 0.75rem; color: var(--accent); text-decoration: none; font-weight: 600; white-space: nowrap; }
+.cat-link:hover { text-decoration: underline; }
+.deals { display: grid; gap: 12px; }
+.deal-card { display: flex; align-items: flex-start; gap: 14px; text-decoration: none; color: inherit; padding: 16px; background: var(--paper-warm); border: 1px solid var(--rule-soft); transition: border-color 0.15s; }
+.deal-card:hover { border-color: var(--accent); }
+.deal-score { font-size: 1.3rem; font-family: var(--serif); font-weight: 400; color: var(--ink); min-width: 42px; text-align: center; line-height: 1; padding-top: 2px; }
+.deal-info { flex: 1; min-width: 0; }
+.deal-tags { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); margin-bottom: 3px; }
+.deal-name { font-size: 1.05rem; font-family: var(--serif); color: var(--ink); margin-bottom: 3px; }
+.deal-sub { font-size: 0.8rem; color: var(--muted); margin-bottom: 4px; }
+.deal-desc { font-size: 0.82rem; line-height: 1.45; color: var(--ink-soft); }
+.deal-rec { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; padding: 2px 6px; background: var(--paper); border: 1px solid var(--rule); color: var(--ink-soft); white-space: nowrap; margin-top: 4px; display: inline-block; }
+.empty-state { padding: 20px; background: var(--paper-warm); border: 1px dashed var(--rule); font-size: 0.85rem; color: var(--muted); font-style: italic; }
 </style>
 </head>
 <body>
-<nav>
-  <a href="." class="brand">Market Logic Investors</a>
-  <span class="sep">|</span>
-  <a href="." class="active">Deal Vault</a>
-  <span class="spacer"></span>
-  <a href="vc-deals/" style="font-size:0.8rem">VC Deals</a>
-  <span class="sep">|</span>
-  <a href="pe-deals/" style="font-size:0.8rem">PE Deals</a>
-</nav>
 <div class="page">
-<header class="cover">
-<div class="meta">
-  <div><strong style="color:var(--ink);display:block;margin-bottom:4px">Market Logic Investors LLC</strong>Capital Markets &middot; Venture Capital &middot; Private Equity<br>Investment Intelligence Platform &middot; Internal Use Only</div>
-  <div style="text-align:right"><strong style="color:var(--ink)">investments-vault</strong><br>Updated: May 17, 2026<br>H. Reganti</div>
-</div>
-<span class="eyebrow">Deal Vault &middot; All Active Positions &amp; Watch List</span>
-<h1>Market Logic<br>Investors</h1>
-<p style="margin-top:18px;font-family:var(--serif);font-size:1.15rem;color:var(--ink);line-height:1.5;max-width:600px">IC memos, diligence packs, and deal intelligence across venture, private equity, and capital markets. One folder per deal. Everything version-controlled.</p>
-<div class="stats">
-  <div class="stat accent"><span class="v">2</span><span class="l">Active VC Deals</span></div>
-  <div class="stat"><span class="v">0</span><span class="l">Active PE Deals</span></div>
-  <div class="stat teal"><span class="v">2</span><span class="l">Reports Live</span></div>
-  <div class="stat"><span class="v">ML-2026</span><span class="l">Current Vintage</span></div>
-</div>
-</header>
 
-<div class="category">
-<div class="cat-head">
-  <div class="cat-num">VC Deals</div>
-  <div><h2>Venture Capital</h2><p style="margin-top:6px;font-size:0.88rem">Early and growth-stage equity. <a href="vc-deals/" style="color:var(--teal);text-decoration:none;font-weight:600">View all &rarr;</a></p></div>
+<nav class="site-nav" aria-label="breadcrumb">
+  <span>Market Logic Investors</span>
+  <span aria-hidden="true">|</span>
+  <span>Deal Vault</span>
+  <span aria-hidden="true">|</span>
+  <a href="vc-deals/">VC Deals</a>
+  <span aria-hidden="true">|</span>
+  <a href="spac-deals/">SPAC Deals</a>
+  <span aria-hidden="true">|</span>
+  <a href="pe-deals/">PE Deals</a>
+</nav>
+
+<div class="cover">
+  <div class="cover-meta">Market Logic Investors LLC &nbsp;&middot;&nbsp; investments-vault &nbsp;&middot;&nbsp; Updated: May 17, 2026 &nbsp;&middot;&nbsp; H. Reganti</div>
+  <div class="cover-title"><span>Market Logic</span><span>Investors</span></div>
+  <p class="cover-lede">IC memos, diligence packs, and deal intelligence across venture, private equity, and capital markets. One folder per deal. Everything version-controlled.</p>
 </div>
-<div class="deals">
-  <a class="deal" href="vc-deals/aldabra-4/">
-    <span class="deal-tag">SPAC &middot; Capital Markets &middot; ML-2026-A4-01</span>
-    <div class="score">6.4<em>/10</em></div>
-    <h3>Aldabra 4</h3>
-    <div class="sub">Aldabra 4 Liquidity Opportunity Vehicle &middot; Nasdaq: ALOV &middot; $300.15M trust</div>
-    <p>Fourth-generation Terrapin SPAC with 3-of-3 sponsor completion record. Trust-stage, pre-target. Cantor Fitzgerald bookrunner.</p>
-    <div class="rec">Track &mdash; Conditional Advance</div>
-  </a>
-  <a class="deal" href="vc-deals/innerwell/">
-    <span class="deal-tag">Behavioral Health &middot; Series A &middot; ML-2026-IW-01</span>
-    <div class="score">6.5<em>/10</em></div>
-    <h3>Innerwell</h3>
-    <div class="sub">Virtual-first ketamine-assisted psychotherapy &middot; Series A</div>
-    <p>In-network behavioral health platform. Structured ketamine-assisted therapy with digital protocols. Series A watch.</p>
-    <div class="rec">Watch &mdash; Diligence Required</div>
-  </a>
-</div>
+
+<div class="stats-bar">
+  <div class="stat"><div class="stat-num">1</div><div class="stat-label">Active VC Deals</div></div>
+  <div class="stat"><div class="stat-num">1</div><div class="stat-label">Active SPAC Deals</div></div>
+  <div class="stat"><div class="stat-num">0</div><div class="stat-label">Active PE Deals</div></div>
+  <div class="stat"><div class="stat-num">2</div><div class="stat-label">Reports Live</div></div>
+  <div class="stat"><div class="stat-num">ML-2026</div><div class="stat-label">Current Vintage</div></div>
 </div>
 
 <div class="category">
-<div class="cat-head">
-  <div class="cat-num">PE Deals</div>
-  <div><h2>Private Equity</h2><p style="margin-top:6px;font-size:0.88rem">Buyout, carve-out, and special situations. <a href="pe-deals/" style="color:var(--teal);text-decoration:none;font-weight:600">View all &rarr;</a></p></div>
+  <div class="cat-header">
+    <div>
+      <div class="cat-title">VC Deals</div>
+      <div class="cat-sub">Venture Capital &mdash; Early and growth-stage equity. <a class="cat-link" href="vc-deals/">View all &rarr;</a></div>
+    </div>
+  </div>
+  <div class="deals">
+    <a class="deal-card" href="vc-deals/innerwell/">
+      <div class="deal-score">6.5</div>
+      <div class="deal-info">
+        <div class="deal-tags">Behavioral Health &middot; Series A &middot; ML-2026-IW-01</div>
+        <div class="deal-name">Innerwell</div>
+        <div class="deal-sub">Innerwell Inc. &middot; Ketamine-Assisted Psychotherapy Platform &middot; NY</div>
+        <div class="deal-desc">AI-guided KAP platform combining at-home ketamine with structured psychotherapy. 600+ patients, ~$2.4K LTV, Series A raise.</div>
+        <div class="deal-rec">Conditional Advance</div>
+      </div>
+    </a>
+  </div>
 </div>
-<div class="deals">
-  <div class="deal empty"><span class="deal-tag">PE &middot; Coming Soon</span><h3 style="color:var(--muted);font-style:italic">No active PE deals</h3><p>Pipeline building. First memo expected Q3 2026.</p></div>
-  <div class="deal empty"><span class="deal-tag">Reserved</span><h3 style="color:var(--muted)">&mdash;</h3></div>
+
+<div class="category">
+  <div class="cat-header">
+    <div>
+      <div class="cat-title">SPAC Deals</div>
+      <div class="cat-sub">Capital Markets &mdash; Blank-check vehicles, trust-stage watches &amp; sponsor underwriting. <a class="cat-link" href="spac-deals/">View all &rarr;</a></div>
+    </div>
+  </div>
+  <div class="deals">
+    <a class="deal-card" href="spac-deals/aldabra-4/">
+      <div class="deal-score">6.4</div>
+      <div class="deal-info">
+        <div class="deal-tags">SPAC &middot; Capital Markets &middot; ML-2026-A4-01</div>
+        <div class="deal-name">Aldabra 4</div>
+        <div class="deal-sub">Aldabra 4 Liquidity Opportunity Vehicle, Inc. &middot; Nasdaq: ALOV &middot; $300.15M trust</div>
+        <div class="deal-desc">Fourth-generation Terrapin SPAC with 3-of-3 sponsor completion record. Trust-stage, pre-target. Cantor Fitzgerald bookrunner.</div>
+        <div class="deal-rec">Track &mdash; Conditional Advance</div>
+      </div>
+    </a>
+  </div>
 </div>
+
+<div class="category">
+  <div class="cat-header">
+    <div>
+      <div class="cat-title">PE Deals</div>
+      <div class="cat-sub">Private Equity &mdash; Buyout, carve-out, and special situations. <a class="cat-link" href="pe-deals/">View all &rarr;</a></div>
+    </div>
+  </div>
+  <div class="deals">
+    <div class="empty-state">PE &middot; Coming Soon &mdash; No active PE deal memos at this time.</div>
+  </div>
 </div>
 
 </div>
-<footer style="max-width:1000px;margin:0 auto;padding:24px 56px 40px">
-<div><strong style="color:var(--ink)">Market Logic Investors LLC</strong> &middot; investments-vault<br>Internal use only. Not investment advice.</div>
-<div style="text-align:right">May 17, 2026 &middot; H. Reganti<br><a href="https://github.com/marketlogicinvestors/investments-vault" target="_blank" style="color:var(--teal);text-decoration:none;font-size:0.72rem">View on GitHub &rarr;</a></div>
-</footer>
 </body>
 </html>
