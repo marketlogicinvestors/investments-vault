@@ -14,152 +14,298 @@
   --beige: #F0EDE6;
   --beige-deep: #E8E3D6;
   --rule: #C9C2B0;
+  --rule-soft: #DDD7C5;
   --muted: #6b6b75;
-  --green: #2F6B47;
-  --red: #B0331F;
 }
 * { box-sizing: border-box; }
 html, body { margin: 0; padding: 0; background: var(--bg); color: var(--ink); -webkit-font-smoothing: antialiased; }
 body { font-family: Georgia, 'Times New Roman', serif; line-height: 1.55; font-size: 16px; }
 
-.wrap { max-width: 1080px; margin: 0 auto; padding: 32px 56px 80px; }
+.wrap { max-width: 1080px; margin: 0 auto; padding: 28px 56px 80px; }
 
-/* TOP NAV */
-.topbar { display: flex; justify-content: space-between; align-items: flex-start; padding-bottom: 16px; border-bottom: 1px solid var(--rule); font-family: system-ui, -apple-system, sans-serif; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
-.crumb a, .crumb span { color: var(--muted); text-decoration: none; }
+/* === FIX 1: TOPBAR — title case, no letter-spacing, dark ink links === */
+.topbar {
+  display: flex; justify-content: space-between; align-items: flex-start;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--rule);
+  font-family: Georgia, serif;
+  font-size: 13px;
+  color: var(--ink);
+}
+.crumb { line-height: 1.5; }
+.crumb a { color: var(--ink); text-decoration: none; border-bottom: 1px solid transparent; }
+.crumb a:hover { border-bottom-color: var(--rust); }
 .crumb .here { color: var(--ink); font-weight: 600; }
-.status-badge { border: 1px solid var(--rust); color: var(--rust); padding: 4px 10px; font-weight: 600; }
-.memo-ref { text-align: right; font-family: system-ui, sans-serif; font-size: 11px; color: var(--muted); margin-top: 14px; line-height: 1.6; }
+.crumb .sep { color: var(--muted); margin: 0 4px; }
+.crumb .counter { color: var(--muted); font-size: 12px; margin-left: 6px; }
+.crumb .dilig-link { color: var(--rust); font-weight: 600; margin-left: 10px; }
+
+.topright { text-align: right; }
+
+/* === FIX 5: STATUS BADGE — rust border, uppercase, light bg === */
+.stamp {
+  display: inline-block;
+  border: 1.5px solid var(--rust);
+  color: var(--rust);
+  background: #F8EEEF;
+  padding: 4px 10px;
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+/* === FIX 6: MEMO REF — sentence case, right-aligned, bold key === */
+.memo-ref {
+  margin-top: 12px;
+  font-family: Georgia, serif;
+  font-size: 12.5px;
+  color: var(--muted);
+  line-height: 1.65;
+  text-align: right;
+}
+.memo-ref .k { color: var(--ink); font-weight: 600; }
 
 /* HEADER */
-header.head { padding-top: 28px; padding-bottom: 28px; border-bottom: 1px solid var(--rule); }
-.firm { font-family: system-ui, sans-serif; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink); font-weight: 600; }
-.confidential { font-family: system-ui, sans-serif; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-top: 4px; }
-.sector-tag { font-family: system-ui, sans-serif; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--rust); font-weight: 600; margin-top: 22px; }
-h1.company { font-family: Georgia, serif; font-size: 88px; line-height: 0.95; margin: 12px 0 14px; font-weight: 400; letter-spacing: -0.02em; }
-.subline { font-family: system-ui, sans-serif; font-size: 13px; color: var(--muted); letter-spacing: 0.04em; }
-.thesis-pull { margin-top: 26px; font-style: italic; font-size: 19px; line-height: 1.5; color: var(--ink); border-left: 3px solid var(--rust); padding-left: 18px; max-width: 880px; }
+header.head { padding-top: 30px; padding-bottom: 28px; border-bottom: 1px solid var(--rule); }
+/* === FIX 2: FIRM NAME — sentence case, bold === */
+.firm {
+  font-family: Georgia, serif;
+  font-size: 15px;
+  color: var(--ink);
+  font-weight: 700;
+  letter-spacing: 0;
+}
+.confidential {
+  font-family: Georgia, serif;
+  font-size: 12.5px;
+  color: var(--muted);
+  margin-top: 4px;
+  font-style: italic;
+  letter-spacing: 0;
+  text-transform: none;
+}
 
-/* STAT ROW */
-.stat-row { display: grid; grid-template-columns: repeat(6, 1fr); gap: 28px; padding: 32px 0; border-bottom: 1px solid var(--rule); }
-.stat .num { font-family: Georgia, serif; font-size: 36px; line-height: 1; color: var(--ink); }
-.stat .num.rust { color: var(--rust); }
-.stat .num.teal { color: var(--teal); }
-.stat .lbl { font-family: system-ui, sans-serif; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-top: 8px; line-height: 1.4; }
-.stat .src { font-family: system-ui, sans-serif; font-size: 9px; letter-spacing: 0.1em; color: var(--rust); font-weight: 700; margin-top: 6px; }
+.sector-tag {
+  font-family: system-ui, sans-serif;
+  font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--rust); font-weight: 600; margin-top: 22px;
+}
+h1.company {
+  font-family: Georgia, serif;
+  font-size: 88px; line-height: 0.95; margin: 12px 0 14px;
+  font-weight: 400; letter-spacing: -0.02em;
+}
+.subline {
+  font-family: Georgia, serif;
+  font-size: 13.5px; color: var(--muted); letter-spacing: 0;
+  font-style: italic;
+}
+.thesis-pull {
+  margin-top: 26px; font-style: italic; font-size: 19px; line-height: 1.5;
+  color: var(--ink); border-left: 3px solid var(--rust); padding-left: 18px; max-width: 880px;
+}
 
-.stat-row.secondary { grid-template-columns: 1fr 1.4fr 1fr; padding: 18px 0; }
-.stat-row.secondary .stat .num { font-size: 18px; font-family: Georgia, serif; }
-.stat-row.secondary .stat .num.rec { color: var(--rust); font-weight: 600; }
+/* === FIX 3 + 4: STAT ROW — top rule, vertical dividers, unit-as-superscript === */
+.stat-row {
+  display: grid; grid-template-columns: repeat(6, 1fr); gap: 0;
+  padding: 28px 0;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+}
+.stat {
+  padding: 0 22px;
+  border-right: 1px solid var(--rule-soft);
+}
+.stat:first-child { padding-left: 0; }
+.stat:last-child { border-right: none; padding-right: 0; }
 
-/* SECTIONS */
+.stat .v { font-family: Georgia, serif; font-size: 34px; line-height: 1.05; color: var(--ink); }
+.stat .v.rust { color: var(--rust); }
+.stat .v.teal { color: var(--teal); }
+.stat .v .u {
+  font-size: 0.5em;
+  vertical-align: super;
+  margin-left: 1px;
+  letter-spacing: 0;
+  font-weight: 400;
+}
+.stat .v.small { font-size: 22px; line-height: 1.2; }
+.stat .l {
+  font-family: system-ui, sans-serif;
+  font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--muted); margin-top: 10px; line-height: 1.45;
+}
+.stat .src {
+  font-family: system-ui, sans-serif;
+  font-size: 9px; letter-spacing: 0.1em; color: var(--rust); font-weight: 700;
+  margin-top: 6px;
+}
+.stat .src.teal { color: var(--teal); }
+
+.stat-row.secondary { grid-template-columns: 1fr 1.4fr 1fr; padding: 20px 0; }
+.stat-row.secondary .stat .v { font-size: 15px; line-height: 1.4; }
+.stat-row.secondary .stat .v.rec { color: var(--rust); font-weight: 600; }
+.stat-row.secondary .stat .kicker {
+  font-family: system-ui, sans-serif;
+  font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--muted); font-weight: 600; margin-bottom: 8px;
+}
+
+/* === FIX 7: SECTION HEADING — 200px left column with § num and label === */
 section { padding: 48px 0; border-bottom: 1px solid var(--rule); }
 section:last-of-type { border-bottom: none; }
-.sec-row { display: grid; grid-template-columns: 170px 1fr; gap: 36px; }
-.sec-label { font-family: system-ui, sans-serif; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--rust); font-weight: 600; line-height: 1.6; }
-.sec-label .num { color: var(--ink); }
-h2.sec-h { font-family: Georgia, serif; font-size: 38px; line-height: 1.1; margin: 0 0 8px; font-weight: 400; letter-spacing: -0.01em; }
+.sec-row { display: grid; grid-template-columns: 200px 1fr; gap: 40px; }
+.sec-label {
+  font-family: system-ui, sans-serif;
+  font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--rust); font-weight: 600; line-height: 1.7;
+}
+.sec-label .num { color: var(--ink); display: block; margin-bottom: 4px; font-weight: 700; }
+h2.sec-h {
+  font-family: Georgia, serif;
+  font-size: 38px; line-height: 1.1; margin: 0 0 10px;
+  font-weight: 400; letter-spacing: -0.01em;
+}
 .sec-subtitle { font-style: italic; color: var(--muted); font-size: 16px; margin-bottom: 26px; }
 p.body { margin: 0 0 16px; font-size: 16px; line-height: 1.65; }
 p.body.lead { font-size: 17px; }
 
-/* SOURCE TAGS */
-.tag { font-family: system-ui, sans-serif; font-size: 10px; letter-spacing: 0.08em; font-weight: 700; padding: 2px 6px; border-radius: 2px; display: inline-block; }
+/* TAGS */
+.tag {
+  font-family: system-ui, sans-serif;
+  font-size: 10px; letter-spacing: 0.06em; font-weight: 700;
+  padding: 2px 6px; border-radius: 2px; display: inline-block;
+}
 .tag.deck { background: var(--beige-deep); color: var(--ink); }
-.tag.ext { background: #E5EBED; color: var(--teal); }
+.tag.ext { background: #DDE7EA; color: var(--teal); }
+.tag.ext-strong { background: var(--teal); color: white; }
 .tag.inf { background: #F2E6E8; color: var(--rust); }
+.tag.contra { background: var(--rust); color: white; }
 
-/* RED BLOCKQUOTE PULL */
-blockquote.pull { border-left: 3px solid var(--rust); padding: 12px 0 12px 20px; margin: 24px 0; font-style: italic; font-size: 18px; line-height: 1.45; color: var(--ink); }
+blockquote.pull {
+  border-left: 3px solid var(--rust);
+  padding: 12px 0 12px 20px;
+  margin: 24px 0;
+  font-style: italic;
+  font-size: 18px;
+  line-height: 1.45;
+  color: var(--ink);
+}
 
-/* CARDS GRID */
 .cards-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin-top: 24px; }
 .cards-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 24px; }
 .card { background: var(--beige); border-radius: 2px; padding: 22px; }
-.card h4 { font-family: system-ui, sans-serif; font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--rust); font-weight: 700; margin: 0 0 10px; }
-.card p { font-family: Georgia, serif; font-size: 15px; line-height: 1.55; margin: 0; }
-.card ul { margin: 6px 0 0; padding-left: 18px; font-family: Georgia, serif; font-size: 15px; line-height: 1.6; }
+.card h4 {
+  font-family: system-ui, sans-serif;
+  font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--rust); font-weight: 700; margin: 0 0 10px;
+}
+.card p { font-family: Georgia, serif; font-size: 14.5px; line-height: 1.55; margin: 0; }
+.card ul { margin: 6px 0 0; padding-left: 18px; font-family: Georgia, serif; font-size: 14px; line-height: 1.6; }
 
-/* AT A GLANCE TABLE */
-.glance-grid { display: grid; grid-template-columns: 280px 1fr; gap: 36px; align-items: start; }
+.glance-grid { display: grid; grid-template-columns: 290px 1fr; gap: 36px; align-items: start; }
 table.glance { width: 100%; border-collapse: collapse; font-family: Georgia, serif; font-size: 14px; }
 table.glance td { padding: 8px 0; border-bottom: 1px solid var(--rule); vertical-align: top; }
-table.glance td.k { font-family: system-ui, sans-serif; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); width: 110px; }
+table.glance td.k {
+  font-family: system-ui, sans-serif;
+  font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--muted); width: 110px;
+}
 .feature-tags { margin-top: 14px; }
-.feature-tags span { display: inline-block; background: var(--beige); color: var(--ink); padding: 5px 10px; margin: 0 6px 6px 0; font-family: system-ui, sans-serif; font-size: 11px; letter-spacing: 0.06em; }
+.feature-tags span {
+  display: inline-block; background: var(--beige); color: var(--ink);
+  padding: 5px 10px; margin: 0 6px 6px 0;
+  font-family: system-ui, sans-serif; font-size: 11px; letter-spacing: 0.06em;
+}
 
-/* DATA TABLE */
 table.data { width: 100%; border-collapse: collapse; margin: 20px 0; font-family: Georgia, serif; font-size: 14px; }
-table.data th { font-family: system-ui, sans-serif; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); font-weight: 600; text-align: left; padding: 10px 12px 10px 0; border-bottom: 1.5px solid var(--ink); }
+table.data th {
+  font-family: system-ui, sans-serif;
+  font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--muted); font-weight: 600; text-align: left;
+  padding: 10px 12px 10px 0; border-bottom: 1.5px solid var(--ink);
+}
 table.data td { padding: 10px 12px 10px 0; border-bottom: 1px solid var(--rule); vertical-align: top; }
 table.data td.num { font-variant-numeric: tabular-nums; }
 
-/* DISCREPANCY BOX */
 .discrepancy { border-left: 4px solid #C75A3A; background: #FBF1EC; padding: 16px 20px; margin: 24px 0; }
-.discrepancy h5 { font-family: system-ui, sans-serif; font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: #B04A2A; font-weight: 700; margin: 0 0 8px; }
+.discrepancy h5 {
+  font-family: system-ui, sans-serif;
+  font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase;
+  color: #B04A2A; font-weight: 700; margin: 0 0 8px;
+}
 .discrepancy p { margin: 0 0 8px; font-size: 14px; line-height: 1.55; }
+.discrepancy.major { border-left-width: 6px; background: #F8E5DC; }
+.discrepancy.major h5 { color: var(--rust); }
 
-/* WHY IT MATTERS */
 .sidebar-card { background: var(--beige); padding: 22px; margin: 20px 0; border-left: 3px solid var(--teal); }
-.sidebar-card h5 { font-family: system-ui, sans-serif; font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--teal); font-weight: 700; margin: 0 0 10px; }
+.sidebar-card h5 {
+  font-family: system-ui, sans-serif;
+  font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--teal); font-weight: 700; margin: 0 0 10px;
+}
 .sidebar-card p { margin: 0; font-size: 14px; line-height: 1.6; }
 
-/* CHARTS */
 .chart-box { background: var(--bg); padding: 18px 0 6px; margin: 20px 0; }
-.chart-title { font-family: system-ui, sans-serif; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink); font-weight: 700; }
-.chart-foot { font-family: system-ui, sans-serif; font-size: 10px; letter-spacing: 0.04em; color: var(--muted); margin-top: 8px; }
+.chart-title {
+  font-family: system-ui, sans-serif;
+  font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--ink); font-weight: 700;
+}
+.chart-foot {
+  font-family: system-ui, sans-serif;
+  font-size: 10.5px; letter-spacing: 0.04em; color: var(--muted); margin-top: 8px; line-height: 1.5;
+}
 
-/* TIMELINE */
-.timeline { position: relative; margin: 26px 0; padding-left: 0; }
-.timeline-track { position: relative; height: 2px; background: var(--rule); margin: 56px 0 30px; }
+.timeline-track { position: relative; height: 2px; background: var(--rule); margin: 80px 0 60px; }
 .tl-event { position: absolute; top: -8px; width: 14px; height: 14px; background: var(--rust); border-radius: 50%; transform: translateX(-50%); }
 .tl-event.teal { background: var(--teal); }
-.tl-label { position: absolute; top: -50px; transform: translateX(-50%); font-family: system-ui, sans-serif; font-size: 10px; text-align: center; line-height: 1.4; letter-spacing: 0.04em; width: 130px; }
+.tl-event.gold { background: var(--gold); }
+.tl-label { position: absolute; top: -60px; transform: translateX(-50%); font-family: system-ui, sans-serif; font-size: 10px; text-align: center; line-height: 1.4; letter-spacing: 0.04em; width: 140px; }
 .tl-label strong { display: block; color: var(--ink); font-family: Georgia, serif; font-size: 13px; }
 .tl-foot { position: absolute; top: 18px; transform: translateX(-50%); font-family: system-ui, sans-serif; font-size: 9px; letter-spacing: 0.1em; color: var(--muted); text-transform: uppercase; }
 
-/* INVESTOR TABLE */
-.tier { display: inline-block; padding: 2px 7px; font-family: system-ui, sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.08em; border-radius: 2px; }
+.tier {
+  display: inline-block; padding: 2px 7px;
+  font-family: system-ui, sans-serif;
+  font-size: 9px; font-weight: 700; letter-spacing: 0.08em; border-radius: 2px;
+}
 .tier.t1 { background: var(--rust); color: white; }
 .tier.t2 { background: var(--teal); color: white; }
 .tier.t3 { background: var(--beige-deep); color: var(--ink); }
+.tier.exit { background: var(--gold); color: white; }
 
-/* RISK HEATMAP */
 .heatmap { display: grid; grid-template-columns: 80px repeat(5, 1fr); gap: 4px; margin: 20px 0; }
 .hm-axis-y { writing-mode: vertical-rl; transform: rotate(180deg); font-family: system-ui, sans-serif; font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); align-self: center; justify-self: center; }
 .hm-cell { aspect-ratio: 1.6 / 1; display: flex; align-items: center; justify-content: center; position: relative; font-family: system-ui, sans-serif; font-size: 11px; font-weight: 700; color: white; }
 .hm-x-labels { display: grid; grid-template-columns: 80px repeat(5, 1fr); gap: 4px; }
 .hm-x-labels div { font-family: system-ui, sans-serif; font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); text-align: center; padding-top: 6px; }
-.hm-y-labels { display: grid; grid-template-rows: repeat(5, 1fr); gap: 4px; }
-.hm-y-labels div { font-family: system-ui, sans-serif; font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); text-align: right; padding-right: 8px; display: flex; align-items: center; justify-content: flex-end; }
 
-/* RISK REGISTER */
-.risk-register { font-family: Georgia, serif; font-size: 14px; }
+.risk-register { font-family: Georgia, serif; font-size: 13.5px; padding-left: 0; }
 .risk-register li { margin-bottom: 10px; line-height: 1.5; list-style: none; padding-left: 28px; position: relative; }
 .risk-register li .rnum { position: absolute; left: 0; top: 0; background: var(--rust); color: white; width: 20px; height: 20px; border-radius: 50%; font-family: system-ui, sans-serif; font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; }
 
-/* SCORECARD */
-.score-header { display: grid; grid-template-columns: 220px 1fr; gap: 32px; align-items: center; margin: 22px 0; }
+.score-header { display: grid; grid-template-columns: 240px 1fr; gap: 32px; align-items: center; margin: 22px 0; }
 .score-big { font-family: Georgia, serif; font-size: 96px; line-height: 1; color: var(--rust); font-weight: 400; }
 .score-big .over { color: var(--muted); font-size: 36px; }
 .score-note { font-family: system-ui, sans-serif; font-size: 11px; letter-spacing: 0.08em; color: var(--muted); margin-top: 4px; }
+.score-delta { font-family: system-ui, sans-serif; font-size: 10px; letter-spacing: 0.1em; color: var(--rust); font-weight: 700; margin-top: 6px; }
 .converge { background: var(--teal); color: white; padding: 2px 8px; font-family: system-ui, sans-serif; font-size: 9px; letter-spacing: 0.08em; font-weight: 700; border-radius: 2px; }
 .our-add { background: var(--rust); color: white; padding: 2px 8px; font-family: system-ui, sans-serif; font-size: 9px; letter-spacing: 0.08em; font-weight: 700; border-radius: 2px; }
 .diverge { background: var(--gold); color: white; padding: 2px 8px; font-family: system-ui, sans-serif; font-size: 9px; letter-spacing: 0.08em; font-weight: 700; border-radius: 2px; }
 
-/* TEAM */
-.team-list { font-family: Georgia, serif; font-size: 15px; line-height: 1.65; }
+.team-list { font-family: Georgia, serif; font-size: 15px; line-height: 1.65; padding-left: 0; }
 .team-list li { list-style: none; padding-left: 18px; position: relative; margin-bottom: 14px; }
 .team-list li::before { content: "→"; position: absolute; left: 0; color: var(--rust); font-weight: 700; }
 .team-list strong { color: var(--ink); }
 
-/* DILIGENCE */
-.dilig-list { font-family: Georgia, serif; font-size: 14px; line-height: 1.6; }
+.dilig-list { font-family: Georgia, serif; font-size: 14px; line-height: 1.6; padding-left: 0; }
 .dilig-list li { list-style: none; padding-left: 28px; position: relative; margin-bottom: 10px; }
 .dilig-list li::before { content: "☐"; position: absolute; left: 0; color: var(--rust); font-size: 16px; top: -2px; }
 .dilig-list .ref { font-family: system-ui, sans-serif; font-size: 10px; color: var(--muted); letter-spacing: 0.08em; }
 
-/* BULL / BEAR */
 .bull-bear { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 24px 0; }
 .bb { background: var(--ink); color: #f0ede6; padding: 28px; border-radius: 2px; }
 .bb h4 { font-family: system-ui, sans-serif; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; margin: 0 0 16px; font-weight: 700; }
@@ -170,10 +316,9 @@ table.data td.num { font-variant-numeric: tabular-nums; }
 .bb.bull ul li::before { content: "+"; position: absolute; left: 0; color: #6BAF7F; font-weight: 700; }
 .bb.bear ul li::before { content: "−"; position: absolute; left: 0; color: #E58A6A; font-weight: 700; }
 
-/* RECOMMENDATION */
 .rec-block { background: var(--ink); color: #f0ede6; padding: 40px 48px; margin: 24px 0; border-radius: 2px; border-left: 6px solid var(--rust); }
 .rec-block .lbl { font-family: system-ui, sans-serif; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--rust); font-weight: 700; }
-.rec-block h3 { font-family: Georgia, serif; font-size: 36px; line-height: 1.15; margin: 10px 0 18px; font-weight: 400; }
+.rec-block h3 { font-family: Georgia, serif; font-size: 34px; line-height: 1.2; margin: 10px 0 18px; font-weight: 400; }
 .rec-block p { font-family: Georgia, serif; font-size: 16px; line-height: 1.6; margin: 0; color: #e0dccc; }
 .cond-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 36px; margin-top: 24px; }
 .cond-grid h5 { font-family: system-ui, sans-serif; font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--rust); font-weight: 700; margin: 0 0 12px; }
@@ -182,146 +327,145 @@ table.data td.num { font-variant-numeric: tabular-nums; }
 .cond-grid .adv li::before { content: "→"; position: absolute; left: 0; color: var(--rust); font-weight: 700; }
 .cond-grid .pass li::before { content: "—"; position: absolute; left: 0; color: var(--rust); font-weight: 700; }
 
-/* TWO COL */
 .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin: 20px 0; }
 .two-col h5 { font-family: system-ui, sans-serif; font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--rust); font-weight: 700; margin: 0 0 10px; }
 .two-col p, .two-col li { font-size: 14px; line-height: 1.6; }
 .two-col ul { padding-left: 18px; }
 
-/* TAILWINDS / HEADWINDS */
 .tw-list { font-family: Georgia, serif; font-size: 14px; line-height: 1.6; list-style: none; padding: 0; }
 .tw-list li { padding-left: 22px; position: relative; margin-bottom: 10px; }
 .tw-list.up li::before { content: "↑"; position: absolute; left: 0; color: var(--teal); font-weight: 700; font-size: 16px; }
 .tw-list.dn li::before { content: "↓"; position: absolute; left: 0; color: var(--rust); font-weight: 700; font-size: 16px; }
-
-/* MISC */
-.kicker { font-family: system-ui, sans-serif; font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); font-weight: 600; margin-bottom: 8px; }
-hr.soft { border: none; border-top: 1px dashed var(--rule); margin: 32px 0; }
-
 </style>
 </head>
 <body>
 <div class="wrap">
 
-<!-- TOPBAR -->
+<!-- FIX 1: TOPBAR — Title Case linked breadcrumb -->
 <div class="topbar">
   <div class="crumb">
-    <a href="#">Market Logic Investors</a> / <a href="#">Deal Vault</a> / <a href="#">VC Deals</a> / <span class="here">Dapper Boi</span>
-    &nbsp;·&nbsp; 22 of 22 &nbsp;|&nbsp; <a href="diligence-request.md" style="color: var(--rust); font-weight: 600;">Diligence Request →</a>
+    <a href="#">Market Logic Investors</a><span class="sep">/</span><a href="#">Deal Vault</a><span class="sep">/</span><a href="#">VC Deals</a><span class="sep">/</span><span class="here">Dapper Boi</span>
+    <span class="counter">· 22 of 22</span>
+    <span class="sep">|</span>
+    <a href="diligence-request.md" class="dilig-link">Diligence Request →</a>
   </div>
-  <div>
-    <div class="status-badge">PRE-DILIGENCE · WATCH</div>
+  <div class="topright">
+    <!-- FIX 5: STATUS BADGE -->
+    <span class="stamp">Pre-Diligence · Watch</span>
+    <!-- FIX 6: MEMO REF sentence case -->
     <div class="memo-ref">
-      Memo Ref: ML-2026-05-01<br>
-      Prepared: May 17, 2026<br>
-      Author: H. Reganti
+      <span class="k">Memo Ref:</span> ML-2026-05-01<br>
+      <span class="k">Prepared:</span> May 17, 2026<br>
+      <span class="k">Author:</span> H. Reganti
     </div>
   </div>
 </div>
 
 <!-- HEADER -->
 <header class="head">
+  <!-- FIX 2: Firm name sentence case bold -->
   <div class="firm">Market Logic Investors LLC</div>
-  <div class="confidential">Investment Memorandum · Confidential · Not for distribution</div>
-  <div class="sector-tag">INCLUSIVE APPAREL · DTC · SEED-EXTENSION WATCH</div>
+  <div class="confidential">Investment Memorandum · Confidential</div>
+  <div class="sector-tag">Inclusive Apparel · DTC · Seed Extension Watch</div>
   <h1 class="company">Dapper Boi</h1>
   <div class="subline">Dapper Boi S.L. · dapperboi.com · Barcelona, Spain (HQ) / San Diego, CA (US ops) · Founded 2015</div>
   <div class="thesis-pull">
-    A decade-old, founder-led, capital-efficient inclusive apparel brand with real product distinction and media tailwinds — projecting a 72× revenue ramp from a $1.4M base to $101M in six years on a $1M round, while reporting a "$6.7M run rate" that reconciles only to cumulative lifetime revenue, not annualized. The deal is interesting; the math is the problem.
+    The deck described a $6.7M run-rate, $1.75M-raised, 55%-YoY growing business in a $119B market with an established Nordstrom wholesale channel. External validation, in 24 hours, found a $1.36M-revenue, ~$555K-raised, 13%-over-two-years business in a ~$4B segment with a Nordstrom drop-ship marketplace listing. Each discrepancy is individually correctable; the pattern is the diligence finding.
   </div>
 </header>
 
-<!-- STAT ROW -->
+<!-- FIX 3 + 4: STAT ROW with vertical dividers, unit-as-superscript -->
 <div class="stat-row">
   <div class="stat">
-    <div class="num rust">$1.4M</div>
-    <div class="lbl">2024 Reported Revenue</div>
-    <div class="src">[DECK]</div>
+    <div class="v rust">$1.36<span class="u">M</span></div>
+    <div class="l">2024 Revenue (External Confirmed)</div>
+    <div class="src teal">[Ext: Ecommerce Masterplan]</div>
   </div>
   <div class="stat">
-    <div class="num">+55%</div>
-    <div class="lbl">YoY Growth 2023→2024</div>
-    <div class="src">[DECK]</div>
+    <div class="v small">+13<span class="u">%</span> / 2 yrs</div>
+    <div class="l">Real Growth 2022→2024</div>
+    <div class="src teal">[Ext: Shark Tank + Podcast]</div>
   </div>
   <div class="stat">
-    <div class="num teal">51%</div>
-    <div class="lbl">Repeat Purchase Rate</div>
-    <div class="src">[DECK]</div>
+    <div class="v teal">~$555<span class="u">K</span></div>
+    <div class="l">External-Tracked Capital</div>
+    <div class="src teal">[Ext: CB Insights / KingsCrowd]</div>
   </div>
   <div class="stat">
-    <div class="num">3.0×</div>
-    <div class="lbl">LTV : CAC Ratio</div>
-    <div class="src">[DECK]</div>
+    <div class="v">$3–5<span class="u">B</span></div>
+    <div class="l">Segment TAM (Gender-Neutral)</div>
+    <div class="src teal">[Ext: 3 Research Firms]</div>
   </div>
   <div class="stat">
-    <div class="num">$1.75M</div>
-    <div class="lbl">Cumulative Raised (10 yrs)</div>
-    <div class="src">[DECK / INFERRED]</div>
+    <div class="v teal">51<span class="u">%</span></div>
+    <div class="l">Repeat Purchase Rate</div>
+    <div class="src">[Deck · Unverified]</div>
   </div>
   <div class="stat">
-    <div class="num rust">$1.0M</div>
-    <div class="lbl">Current Ask</div>
-    <div class="src">[DECK]</div>
+    <div class="v rust">$1.0<span class="u">M</span></div>
+    <div class="l">Current Ask</div>
+    <div class="src">[Deck]</div>
   </div>
 </div>
 
 <div class="stat-row secondary">
   <div class="stat">
     <div class="kicker">Stage</div>
-    <div class="num">Seed Extension / Bridge</div>
+    <div class="v">Seed Extension — no lead identified</div>
   </div>
   <div class="stat">
-    <div class="kicker">Lead Investors / Syndicate</div>
-    <div class="num">No lead identified · prior backers undisclosed · open to lead</div>
+    <div class="kicker">Investor Base (External-Verified)</div>
+    <div class="v">Kickstarter · StartEngine Reg CF · K. Winget (AWP)</div>
   </div>
   <div class="stat">
     <div class="kicker">Recommendation</div>
-    <div class="num rec">PASS-WITH-WATCH · Reconcile metrics before re-engagement</div>
+    <div class="v rec">WATCH — Re-engagement contingent on founder-led reset</div>
   </div>
 </div>
 
-<!-- § 01 EXECUTIVE SUMMARY -->
+<!-- § 01 -->
 <section>
   <div class="sec-row">
-    <div class="sec-label"><span class="num">§ 01</span><br>Executive Summary</div>
+    <div class="sec-label"><span class="num">§ 01</span>Executive Summary</div>
     <div>
       <h2 class="sec-h">The thesis in one paragraph</h2>
       <div class="sec-subtitle">What you'd say if the partner stopped you in the hallway.</div>
 
       <p class="body lead">
-        Dapper Boi is a gender-neutral apparel brand founded 2015 by Vicky Pasche, with a real product story (chest-gap snaps, deep pockets, extended sizing across body types), genuine repeat behavior (<span class="tag deck">DECK</span> 51% repeat vs. ~25% DTC benchmark), and credible media validation (Inc Female Founder 2025, Tory Burch Foundation Fellow 2025, CBS Mornings). The team has compounded $6.7M cumulative lifetime revenue on $1.75M cumulative capital — that is genuinely capital-efficient for DTC apparel. The bull case is a "Levi's of inclusive apparel" wedge into a real, underserved $100B+ gender-neutral + workwear market. The bear case — and the one we are unable to dismiss — is that after ten years the business is at $1.4M ARR, the $6.7M "run rate" figure in the deck reconciles only to cumulative lifetime revenue not annualized, the company is now projecting 72× growth in six years from that base on a sub-$1M round, and after a decade of operations no tier-1 institutional investor has led a priced round. The product and founder are real; the venture math is not yet earned.
+        Dapper Boi is a real product company with a real founder (Vicky Pasche · Inc Female Founder 2025 · Tory Burch Foundation Fellow 2025 · CBS Mornings · Shark Tank — no on-air deal <span class="tag ext">Ext: Women's Sources</span>), real customer affinity (51% repeat rate per deck), and a real positioning in inclusive apparel. The bull thesis from one read of the deck is plausible. The problem is that the deck does not survive its first round of external validation. Five distinct framing claims — total raised, run-rate revenue, 2022 baseline, TAM, Nordstrom channel — each resolve in the same direction (favorable to the deck) and each by a material multiple (3–25×). External sources confirm 2024 revenue at <span class="tag ext-strong">$1.36M</span> <span class="tag ext">Ext: Ecommerce Masterplan</span>, 2022 revenue at <span class="tag ext-strong">$1.2M</span> <span class="tag ext">Ext: Shark Tank Recap</span> (not $600K as deck states), and tracked external capital at <span class="tag ext-strong">~$555K</span> <span class="tag ext">Ext: CB Insights / KingsCrowd</span> against the deck's $1.75M raised claim. Real two-year growth is approximately 13%, not the compounded 55% YoY arc the deck constructs. The decisive question is not "are these errors?" — it is "what is the systematic explanation for a five-discrepancy pattern, all pointing the same way?"
       </p>
 
       <blockquote class="pull">
-        The deck is selling a venture-scale hockey stick. The financials describe a capital-efficient bootstrapped lifestyle brand. Those are different businesses, and we cannot underwrite both at once.
+        We hold this on WATCH, not active diligence. The disclosure baseline has to be reset before any number in the deck can be used to underwrite, and the reset has to come from the founder, unprompted. If it does not arrive within six months, WATCH becomes PASS by default.
       </blockquote>
 
       <div class="cards-3">
         <div class="card">
           <h4>What We Like</h4>
           <ul>
-            <li>51% repeat rate — 2× DTC average, signals real customer love</li>
-            <li>Capital efficiency: $6.7M lifetime rev on $1.75M raised (≈3.8× capital efficiency)</li>
-            <li>Founder grit + media validation (Inc, Tory Burch, CBS)</li>
-            <li>Genuine product differentiation (chest-gap snaps proprietary)</li>
-            <li>Real underserved category — gender-neutral + extended sizing is a structural gap</li>
+            <li>Genuine founder credibility (Inc, Forbes, Tory Burch, CBS) <span class="tag ext">Ext</span></li>
+            <li>51% repeat rate (deck-only) suggests real customer affinity</li>
+            <li>Real product distinction (chest-gap snaps, deep pockets, extended sizing)</li>
+            <li>Underserved category — gender-neutral fit-first is a structural gap</li>
+            <li>Capital-efficient: brand alive 10 years on ~$555K external <span class="tag ext">Ext</span></li>
           </ul>
         </div>
         <div class="card">
           <h4>What Concerns Us</h4>
           <ul>
-            <li>10 years to $1.4M revenue — growth rate inconsistent with venture math</li>
-            <li>"$6.7M run rate" claim does not reconcile with stated 2024 revenue of $1.4M</li>
-            <li>$1M raise after 10 yrs implies no prior tier-1 lead — signal, not noise</li>
-            <li>72× growth to $101M by 2030 from $1.4M base requires four concurrent strategies (DTC + Retail + Enterprise + Geo)</li>
-            <li>Spain HQ for primarily US-targeted brand — adds tax/ops complexity</li>
-            <li>Enterprise workwear is a different business, not a line extension</li>
+            <li><strong>Five-discrepancy pattern</strong>: all overstated, all same direction</li>
+            <li>Real 2-yr growth is +13%, not the +55% YoY narrative</li>
+            <li>~$555K tracked over 10 yrs; Shark Tank no deal; no tier-1 VC <span class="tag ext">Ext</span></li>
+            <li>Nordstrom "channel" is drop-ship/marketplace, not wholesale POs <span class="tag ext">Ext</span></li>
+            <li>$119B TAM is all apparel; segment is $3–5B <span class="tag ext">Ext</span></li>
+            <li>TomboyX (closest comp) raised 30–85× DB's tracked capital</li>
+            <li>True Classic built ~$850M EV in 6 years; DB at $1.36M in 10</li>
           </ul>
         </div>
         <div class="card">
           <h4>Recommended Next Step</h4>
           <p>
-            Do <strong>not</strong> commit until founder reconciles the "$6.7M run rate" claim against 2024 reported revenue of $1.4M, provides monthly revenue and cohort retention data for the last 24 months, and explains the 10-year revenue curve. If reconciliation holds and 2025 YTD is tracking the $3M projection, revisit as a <strong>$50–150K check at the back of a syndicate</strong>, not a leading position. Decision-ready in 4–6 weeks pending data-room.
+            <strong>Hold on WATCH; do not commit.</strong> Communicate respectfully through Joel that the external pattern is the gate, not any single number. <strong>Re-engagement remains open</strong> if the founder, unprompted, sends a revised data sheet aligned to external sources with explanation of each gap. We do not initiate the reset for her. Absent founder-led action within 6 months, WATCH lapses to PASS.
           </p>
         </div>
       </div>
@@ -329,63 +473,79 @@ hr.soft { border: none; border-top: 1px dashed var(--rule); margin: 32px 0; }
   </div>
 </section>
 
-<!-- § SOURCES & METHODOLOGY -->
+<!-- § Sources -->
 <section>
   <div class="sec-row">
-    <div class="sec-label"><span class="num">§</span><br>Sources & Methodology</div>
+    <div class="sec-label"><span class="num">§</span>Sources &amp; Methodology</div>
     <div>
       <h2 class="sec-h">How this memo was built</h2>
-      <div class="sec-subtitle">Three source classes, one rule for handling conflict.</div>
+      <div class="sec-subtitle">Three source classes. External research was decisive on five of six core claims.</div>
 
       <div class="cards-3">
         <div class="card">
           <h4>[Deck]</h4>
-          <p>April 2026 Dapper Boi investor deck delivered via Joel Palathinkal in cohort-sutton-global, May 14 2026. Source of all financial claims, unit economics, traction figures, and growth plan. Deck is founder-prepared; no third-party audit referenced.</p>
+          <p>April 2026 Dapper Boi investor deck via Joel Palathinkal, cohort-sutton-global, May 14 2026. Founder-prepared. Source of all deck-side claims. No third-party audit referenced.</p>
         </div>
         <div class="card">
-          <h4>[Ext: PitchBook] [Ext: Perplexity]</h4>
-          <p>External validation against PitchBook/Crunchbase for funding history, public press (Inc, Forbes, Entrepreneur, Out100), and competitive comp set (TomboyX, Wildfang, Good American, True Classic, Levi's). Market sizing cross-referenced to Verified Market Research 2024 cited in deck.</p>
+          <h4>[Ext: Multi-Source]</h4>
+          <p>External validation across <strong>CB Insights, KingsCrowd, Ecommerce Masterplan podcast, Shark Tank recap sources, Women's-focused press, Forbes 2020, The MBS Group (April 2025), Growjo, Prospeo, Digital Chapter, Deep Market Insights 2025, WiseGuy Reports 2024, DataIntelo, Straits Research 2025, Nordstrom/LinkedIn supplier-program sources, Entrepreneur 2023</strong>. Sources reconcile to one another and contradict the deck on five material points.</p>
         </div>
         <div class="card">
           <h4>[Inferred]</h4>
-          <p>Where deck data is incomplete or internally inconsistent — most notably the "$6.7M run rate" versus "$1.4M 2024 revenue" gap — we mark the analyst inference explicitly. Inferred figures are placeholders pending founder reconciliation.</p>
+          <p>Used sparingly — blended CAC/LTV decomposition (§05A) and forward-scenario modeling (§06A). All inferences flagged. No inference contradicts external research.</p>
         </div>
       </div>
 
       <blockquote class="pull">
-        When deck and external sources conflict, we lead with the more conservative figure and flag the discrepancy. When the deck conflicts with itself, we mark it as a reconciliation item and do not pick a winner.
+        When deck and external sources conflict — and they do, materially, in five places — we lead with external and flag the deck-side claim as unreconciled. The convention is not punitive; it is the only honest way to compose a memo when the deck and the world disagree.
       </blockquote>
+
+      <div class="discrepancy major">
+        <h5>The Five-Discrepancy Pattern · Summary Index</h5>
+        <p>Each individual reconciliation could be sloppy framing. Five of them, all pointing favorably, is the diligence finding itself.</p>
+        <table class="data" style="margin: 8px 0;">
+          <thead><tr><th>#</th><th>Deck Claim</th><th>External Finding</th><th>Magnitude</th><th>Detail In</th></tr></thead>
+          <tbody>
+            <tr><td>1</td><td>$6.7M revenue run rate</td><td>$1.36M actual 2024 revenue</td><td class="num"><strong>~5× overstated</strong></td><td>§ 03</td></tr>
+            <tr><td>2</td><td>$1.75M total raised</td><td>~$555K tracked external capital</td><td class="num"><strong>~3× overstated</strong></td><td>§ 06</td></tr>
+            <tr><td>3</td><td>2022 $600K → 2024 $1.4M (+55% YoY)</td><td>2022 $1.2M → 2024 $1.36M (+13% / 2 yrs)</td><td class="num"><strong>Growth narrative reversed</strong></td><td>§ 03</td></tr>
+            <tr><td>4</td><td>$119B TAM</td><td>$3–5B segment-specific (gender-neutral)</td><td class="num"><strong>~25–40× overstated</strong></td><td>§ 08</td></tr>
+            <tr><td>5</td><td>Established Nordstrom retail channel</td><td>Drop-ship/marketplace listing, not wholesale</td><td><strong>Different channel economics</strong></td><td>§ 05</td></tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- § 02 COMPANY & PRODUCT -->
+<!-- § 02 -->
 <section>
   <div class="sec-row">
-    <div class="sec-label"><span class="num">§ 02</span><br>Company &amp; Product</div>
+    <div class="sec-label"><span class="num">§ 02</span>Company &amp; Product</div>
     <div>
       <h2 class="sec-h">What Dapper Boi actually does</h2>
       <div class="sec-subtitle">A founder-led DTC apparel brand attacking a real, structurally underserved category.</div>
 
       <div class="glance-grid">
         <table class="glance">
-          <tr><td class="k">Legal Entity</td><td>Dapper Boi S.L. (Spain) / US ops <span class="tag inf">INFERRED</span></td></tr>
+          <tr><td class="k">Legal Entity</td><td>Dapper Boi S.L. (Spain) / US ops <span class="tag inf">Inf</span></td></tr>
           <tr><td class="k">Founded</td><td>2015 (10 yrs)</td></tr>
           <tr><td class="k">HQ</td><td>Barcelona, Spain · US ops San Diego, CA</td></tr>
           <tr><td class="k">Web</td><td>dapperboi.com</td></tr>
-          <tr><td class="k">Headcount</td><td>Not disclosed in deck <span class="tag inf">INFERRED &lt; 15</span></td></tr>
-          <tr><td class="k">Geography</td><td>US (primary), UK launching, Canada/AU planned, EU base via Spain</td></tr>
-          <tr><td class="k">Distribution</td><td>DTC primary · Nordstrom (active, growing) · Wolf &amp; Badger (onboarding US+UK)</td></tr>
-          <tr><td class="k">Total Raised</td><td>$1.75M cumulative (2015–2026)</td></tr>
-          <tr><td class="k">Total Customers</td><td>50K+ unique · 60K+ orders</td></tr>
+          <tr><td class="k">Headcount</td><td>Not disclosed; <span class="tag inf">Inf &lt; 15</span></td></tr>
+          <tr><td class="k">Geography</td><td>US (primary), UK launching, CA/AU planned</td></tr>
+          <tr><td class="k">Distribution</td><td>DTC primary · Nordstrom <strong>drop-ship/marketplace</strong> <span class="tag ext">Ext</span> · W&amp;B onboarding</td></tr>
+          <tr><td class="k">Capital (Ext.)</td><td>~$555K tracked <span class="tag ext">Ext: CB Insights</span></td></tr>
+          <tr><td class="k">2024 Revenue</td><td>$1.36M <span class="tag ext">Ext: Podcast</span></td></tr>
+          <tr><td class="k">Media</td><td>Shark Tank — no on-air deal <span class="tag ext">Ext</span></td></tr>
         </table>
 
         <div>
-          <p class="body">Dapper Boi sells gender-neutral, fit-first apparel — primarily denim, tops, and emerging workwear — designed for the body shapes legacy brands ignore: people who want masculine cuts in extended sizing, queer customers, butch/non-binary identifying customers, and increasingly cis women and men who want the functional details (deep pockets in jeans, chest-gap snaps on button-downs) the mainstream removed.</p>
+          <p class="body">Dapper Boi sells gender-neutral, fit-first apparel — denim, tops, emerging workwear — engineered for body shapes legacy brands ignore: customers who want masculine cuts in extended sizing, queer customers, butch/non-binary identifying customers, and a broader audience that wants functional details (deep pockets, chest-gap snaps) the mainstream removed.</p>
 
-          <p class="body">The product line is narrow and intentional: jeans that fit hips/thighs without gapping at the waist, button-downs that don't gape at the chest, and workwear/utility pieces with usable pocketing. The chest-gap snap is referenced in the deck as proprietary; we have not yet confirmed IP filing status.</p>
+          <p class="body">The product is narrow and intentional, the brand voice is sharp, and the founder's community presence is real. Vicky Pasche has built the company over a decade through Kickstarter (2015 · ~$26K, exceeded $18K target <span class="tag ext">Ext: Perplexity/CB Insights</span>), a StartEngine Reg CF round closed April 29, 2020 (~$285K at ~$6M pre-money <span class="tag ext">Ext: KingsCrowd</span>), a Shark Tank appearance with no on-air deal, and a $250K private check from Kelly Ann Winget at Alternative Wealth Partners — signed the morning of Shark Tank filming <span class="tag ext">Ext: Women's Sources</span>. Sister Charisse Pasche runs retail operations.</p>
 
-          <p class="body">Founder Vicky Pasche has built the company over a decade on bootstrapped capital, with sister Charisse Pasche running retail operations (Nordstrom, Wolf &amp; Badger). The team is small, the brand voice is sharp, and the customer love — as measured by 51% repeat — is real.</p>
+          <p class="body">The 51% repeat purchase rate cited in the deck — if it holds in cohort data — is the single most defensible asset. Everything else in the bull case depends on that number being verifiable in monthly cohort breakdowns we have not yet seen.</p>
 
           <div class="feature-tags">
             <span>Chest-Gap Snaps</span>
@@ -394,7 +554,6 @@ hr.soft { border: none; border-top: 1px dashed var(--rule); margin: 32px 0; }
             <span>Gender-Neutral Fit</span>
             <span>Denim Core</span>
             <span>Workwear Adjacency</span>
-            <span>DTC + Wholesale</span>
           </div>
         </div>
       </div>
@@ -402,50 +561,55 @@ hr.soft { border: none; border-top: 1px dashed var(--rule); margin: 32px 0; }
   </div>
 </section>
 
-<!-- § 03 TRACTION / CAPITAL EFFICIENCY -->
+<!-- § 03 -->
 <section>
   <div class="sec-row">
-    <div class="sec-label"><span class="num">§ 03</span><br>Traction &amp; Capital Efficiency</div>
+    <div class="sec-label"><span class="num">§ 03</span>Traction &amp; Growth Reality</div>
     <div>
-      <h2 class="sec-h">Point 1: Capital-efficient brand-building, slow-growing business</h2>
-      <div class="sec-subtitle">The repeat rate is real. The growth rate is not yet venture-scale.</div>
+      <h2 class="sec-h">Point 1: The growth story does not survive external check</h2>
+      <div class="sec-subtitle">The deck shows acceleration. External sources show plateau.</div>
 
-      <p class="body">The first thing to like about Dapper Boi is that it has compounded into a real brand on very little capital. $1.75M raised over a decade producing $6.7M in cumulative lifetime revenue is a capital efficiency multiple of ~3.8× — well above the DTC apparel cohort, which typically burns multiples of revenue to acquire customers. The 51% repeat rate is the metric that justifies the bull case: customers who buy once come back, and that is the precondition for a brand business that compounds rather than churns.</p>
+      <p class="body">The deck presents 2022 $600K → 2023 $900K → 2024 $1.4M as a 50–55% YoY growth narrative. Two external sources contradict the 2022 figure directly: a Shark Tank recap covering Dapper Boi's appearance states <span class="tag ext-strong">2022 revenue at $1.2M</span> <span class="tag ext">Ext: Perplexity/Shark Tank</span>, and an Ecommerce Masterplan podcast interview with the founder reports <span class="tag ext-strong">2024 revenue at $1.36M</span> <span class="tag ext">Ext: Perplexity/Ecommerce Masterplan</span>. Reconciled to external evidence, the real two-year arc is $1.2M → $1.36M — approximately <strong>13% total growth across two years</strong>, or roughly 6% CAGR. Forbes (2020) <span class="tag ext">Ext</span> separately reports the company had passed $1M cumulative by 2019.</p>
 
-      <p class="body">But the second thing to notice is that this capital efficiency has not yet translated into a growth rate that warrants a venture round. The reported sequence is <span class="tag deck">DECK</span> 2022 $600K, 2023 $900K (+50%), 2024 $1.4M (+55%). That's strong percentage growth on a small base but absolute growth of $500K/year, with cumulative lifetime revenue of $6.7M after ten years. The deck's projection then steps to $3M (2025), $10.8M (2026), $30.1M (2027), $61.3M (2028), $101.3M (2030) — implying a sustained 100%+ CAGR that the company has never demonstrated.</p>
+      <p class="body">The deck's "$6.7M revenue run rate" claim is most plausibly cumulative lifetime revenue from 2015 through ~2024, not annualized 2024 revenue. We find no external source supporting a $6.7M annualized figure at any point. A separate Prospeo modeled estimate suggests ~$4M annualized <span class="tag ext">Ext: Perplexity/Prospeo</span> with implied ~$12.8M modeled valuation, but Prospeo's methodology is algorithmic; we treat it as speculative and not actionable.</p>
+
+      <div class="discrepancy major">
+        <h5>Discrepancy 1 · Run Rate vs. Revenue (Deck vs. External)</h5>
+        <p><strong>Deck claim:</strong> "$6.7M revenue run rate"</p>
+        <p><strong>External finding:</strong> 2024 annual revenue = $1.36M <span class="tag ext">Ext: Perplexity/Ecommerce Masterplan</span>. No external source supports $6.7M annualized.</p>
+        <p><strong>Most likely explanation:</strong> $6.7M is cumulative lifetime revenue 2015–2024 (consistent with Forbes 2020 "&gt;$1M cumulative by 2019" + reported figures since).</p>
+        <p><strong>Materiality:</strong> Critical. A $1.36M business raising $1M underwrites differently from a $6.7M run-rate business at any valuation.</p>
+      </div>
+
+      <div class="discrepancy major">
+        <h5>Discrepancy 3 · 2022 Revenue Baseline</h5>
+        <p><strong>Deck claim:</strong> 2022 revenue = $600K (then 2023 $900K +50%, then 2024 $1.4M +55%)</p>
+        <p><strong>External finding:</strong> 2022 revenue = $1.2M per Shark Tank recap <span class="tag ext">Ext: Perplexity/Women's Sources</span></p>
+        <p><strong>Implication:</strong> If both the external 2022 figure and the 2024 figure are correct, the real arc is $1.2M → $1.36M over two years — <strong>13% cumulative growth, ~6% CAGR</strong>. The deck's "+55% YoY" narrative is not present in the external record. This is not a labeling issue; it is a reframing of the growth story.</p>
+        <p><strong>Resolution required:</strong> Either Shark Tank source is wrong (founder can correct on record), or the deck's 2022 figure is wrong. We cannot proceed without alignment.</p>
+      </div>
 
       <table class="data">
-        <thead>
-          <tr><th>Measure</th><th>Dapper Boi</th><th>DTC Apparel Baseline</th><th>Source</th></tr>
-        </thead>
+        <thead><tr><th>Measure</th><th>Deck</th><th>External</th><th>Read</th></tr></thead>
         <tbody>
-          <tr><td>Repeat Purchase Rate</td><td class="num">51%</td><td class="num">~25%</td><td><span class="tag deck">DECK</span> <span class="tag ext">EXT</span></td></tr>
-          <tr><td>LTV : CAC</td><td class="num">3.0×</td><td class="num">3.0× (minimum healthy)</td><td><span class="tag deck">DECK</span></td></tr>
-          <tr><td>CAC (blended)</td><td class="num">$81.36</td><td class="num">$60–$120</td><td><span class="tag deck">DECK</span></td></tr>
-          <tr><td>LTV</td><td class="num">$248.61</td><td class="num">$150–$350</td><td><span class="tag deck">DECK</span></td></tr>
-          <tr><td>E-Com Gross Margin</td><td class="num">64%+</td><td class="num">55–65%</td><td><span class="tag deck">DECK</span></td></tr>
-          <tr><td>2024 Revenue</td><td class="num">$1.4M</td><td class="num">n/a</td><td><span class="tag deck">DECK</span></td></tr>
-          <tr><td>Capital Efficiency (Lifetime Rev / Cap Raised)</td><td class="num">3.8×</td><td class="num">0.5–1.5× typical</td><td><span class="tag inf">INFERRED</span></td></tr>
+          <tr><td>2022 Revenue</td><td class="num">$600K</td><td class="num">$1.2M <span class="tag ext">Ext</span></td><td><span class="tag contra">Contradicted</span></td></tr>
+          <tr><td>2023 Revenue</td><td class="num">$900K</td><td class="num">— not externally captured</td><td>Implied dip if 2022 = $1.2M</td></tr>
+          <tr><td>2024 Revenue</td><td class="num">$1.4M</td><td class="num">$1.36M <span class="tag ext">Ext</span></td><td><span class="converge">Converge</span></td></tr>
+          <tr><td>"Run Rate"</td><td class="num">$6.7M</td><td class="num">No external support</td><td><span class="tag contra">Unverified</span></td></tr>
+          <tr><td>Pre-2019 Cumulative</td><td class="num">—</td><td class="num">&gt;$1M <span class="tag ext">Ext: Forbes 2020</span></td><td>Confirms long ramp</td></tr>
+          <tr><td>Prospeo Modeled ARR</td><td class="num">—</td><td class="num">~$4M (algorithmic) <span class="tag ext">Ext</span></td><td>Speculative; ignore</td></tr>
+          <tr><td>Repeat Rate</td><td class="num">51%</td><td class="num">No external validation</td><td>Cohort data required</td></tr>
         </tbody>
       </table>
 
       <div class="sidebar-card">
         <h5>Why It Matters</h5>
-        <p>The 51% repeat rate is the single most important data point in this memo. It is the only metric that distinguishes Dapper Boi from a long tail of bootstrapped DTC apparel businesses that stall sub-$5M. If the repeat rate holds at 51% in cohorts of 5K+ customers (not just the early adopter base), the brand has the customer economics to compound. If it degrades materially in later cohorts — which is the typical DTC pattern as you acquire less-loyal traffic — the entire thesis collapses, because everything else (workwear, retail, geo) depends on a profitable DTC engine.</p>
-      </div>
-
-      <div class="discrepancy">
-        <h5>Discrepancy · Deck vs. Itself</h5>
-        <p><strong>Deck claim:</strong> "$6.7M run rate" cited as a topline indicator.</p>
-        <p><strong>Deck claim:</strong> 2024 revenue $1.4M (+55% YoY from $900K in 2023).</p>
-        <p><strong>Reconciliation:</strong> $6.7M cannot be 2024 annualized revenue if 2024 revenue is $1.4M. Most plausible interpretation: $6.7M is <em>cumulative lifetime revenue</em> across 2015–2024. The deck appears to use "run rate" loosely. <span class="tag inf">INFERRED</span></p>
-        <p><strong>Materiality:</strong> High. A "$6.7M run rate" business raising $1M at presumed seed valuation is very different from a $1.4M business raising $1M. Founder must reconcile before any IC vote.</p>
+        <p>If the 51% repeat rate proves out in cohort data, this is still a real customer-loved brand. But the absolute revenue ($1.36M, 2024) and absolute growth velocity (13% over two years) bound the financial outcome severely. The $1.36M trajectory at 6% CAGR projects to ~$1.9M in 2030 — not $101M. The bull case requires the company to break a 10-year compound growth pattern in the next 12 months. Nothing in the external record suggests this is happening yet.</p>
       </div>
 
       <div class="chart-box">
-        <div class="chart-title">Revenue: Actuals 2022–2024 vs. Deck Projection 2025–2030</div>
+        <div class="chart-title">Revenue: Deck Narrative vs. External-Verified Reality</div>
         <svg viewBox="0 0 800 380" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: auto;">
-          <!-- Background grid -->
           <g stroke="#C9C2B0" stroke-width="0.5" stroke-dasharray="2 3">
             <line x1="70" y1="60" x2="780" y2="60"/>
             <line x1="70" y1="120" x2="780" y2="120"/>
@@ -453,344 +617,294 @@ hr.soft { border: none; border-top: 1px dashed var(--rule); margin: 32px 0; }
             <line x1="70" y1="240" x2="780" y2="240"/>
             <line x1="70" y1="300" x2="780" y2="300"/>
           </g>
-          <!-- Y axis labels ($M) -->
           <g font-family="system-ui, sans-serif" font-size="10" fill="#6b6b75" text-anchor="end">
-            <text x="62" y="64">$120M</text>
-            <text x="62" y="124">$90M</text>
-            <text x="62" y="184">$60M</text>
-            <text x="62" y="244">$30M</text>
+            <text x="62" y="64">$3.0M</text>
+            <text x="62" y="124">$2.25M</text>
+            <text x="62" y="184">$1.5M</text>
+            <text x="62" y="244">$0.75M</text>
             <text x="62" y="304">$0M</text>
           </g>
-          <!-- X axis labels (years) -->
           <g font-family="system-ui, sans-serif" font-size="10" fill="#6b6b75" text-anchor="middle">
-            <text x="115" y="325">2022</text>
-            <text x="195" y="325">2023</text>
-            <text x="275" y="325">2024</text>
-            <text x="355" y="325">2025E</text>
-            <text x="435" y="325">2026E</text>
-            <text x="515" y="325">2027E</text>
-            <text x="595" y="325">2028E</text>
-            <text x="675" y="325">2029E</text>
-            <text x="755" y="325">2030E</text>
+            <text x="140" y="325">2019 Cum.</text>
+            <text x="280" y="325">2022</text>
+            <text x="420" y="325">2023</text>
+            <text x="560" y="325">2024</text>
+            <text x="700" y="325">2025E</text>
           </g>
-          <!-- Vertical divider between actuals and projection -->
-          <line x1="315" y1="40" x2="315" y2="300" stroke="#8B2635" stroke-width="1" stroke-dasharray="3 3"/>
-          <text x="315" y="34" font-family="system-ui, sans-serif" font-size="9" fill="#8B2635" text-anchor="middle" letter-spacing="0.08em">ACTUAL  |  PROJECTED</text>
 
-          <!-- Actuals line (teal solid) -->
-          <!-- $600K=298.8 ; $900K=298.2 ; $1.4M=297.2 (squeezed near baseline because of $101M scale) -->
-          <polyline fill="none" stroke="#2C5F6A" stroke-width="2.5" points="115,298.8 195,298.2 275,297.2"/>
-          <circle cx="115" cy="298.8" r="4" fill="#2C5F6A"/>
-          <circle cx="195" cy="298.2" r="4" fill="#2C5F6A"/>
-          <circle cx="275" cy="297.2" r="4" fill="#2C5F6A"/>
+          <polyline fill="none" stroke="#8B2635" stroke-width="2.5" stroke-dasharray="6 4" points="280,252 420,228 560,188 700,60"/>
+          <circle cx="280" cy="252" r="4" fill="#8B2635"/>
+          <circle cx="420" cy="228" r="4" fill="#8B2635"/>
+          <circle cx="560" cy="188" r="4" fill="#8B2635"/>
+          <circle cx="700" cy="60" r="5" fill="#8B2635"/>
 
-          <!-- Projection line (rust dashed) -->
-          <!-- 300 - (rev/120 * 240). $3M=294; $10.8M=278.4; $30.1M=239.8; $61.3M=177.4; $101.3M=97.4 -->
-          <polyline fill="none" stroke="#8B2635" stroke-width="2.5" stroke-dasharray="6 4" points="275,297.2 355,294 435,278.4 515,239.8 595,177.4 675,140 755,97.4"/>
-          <circle cx="355" cy="294" r="4" fill="#8B2635"/>
-          <circle cx="435" cy="278.4" r="4" fill="#8B2635"/>
-          <circle cx="515" cy="239.8" r="4" fill="#8B2635"/>
-          <circle cx="595" cy="177.4" r="4" fill="#8B2635"/>
-          <circle cx="675" cy="140" r="4" fill="#8B2635"/>
-          <circle cx="755" cy="97.4" r="4" fill="#8B2635"/>
+          <polyline fill="none" stroke="#2C5F6A" stroke-width="2.5" points="140,220 280,204 560,191.2"/>
+          <circle cx="140" cy="220" r="4" fill="#2C5F6A"/>
+          <circle cx="280" cy="204" r="4" fill="#2C5F6A"/>
+          <circle cx="560" cy="191.2" r="4" fill="#2C5F6A"/>
 
-          <!-- Data labels on projection -->
           <g font-family="system-ui, sans-serif" font-size="10" fill="#8B2635" text-anchor="middle" font-weight="600">
-            <text x="355" y="287">$3M</text>
-            <text x="435" y="271">$10.8M</text>
-            <text x="515" y="232">$30.1M</text>
-            <text x="595" y="170">$61.3M</text>
-            <text x="675" y="133">$83M</text>
-            <text x="755" y="90">$101.3M</text>
+            <text x="280" y="244">$0.6M (deck)</text>
+            <text x="420" y="220">$0.9M (deck)</text>
+            <text x="560" y="180">$1.4M (deck)</text>
+            <text x="700" y="52">$3M (proj.)</text>
           </g>
-
-          <!-- Actuals labels -->
           <g font-family="system-ui, sans-serif" font-size="10" fill="#2C5F6A" text-anchor="middle" font-weight="600">
-            <text x="115" y="290">$0.6M</text>
-            <text x="195" y="290">$0.9M</text>
-            <text x="275" y="290">$1.4M</text>
+            <text x="140" y="212">&gt;$1M cum (Forbes)</text>
+            <text x="280" y="196">$1.2M (ext)</text>
+            <text x="560" y="210">$1.36M (ext)</text>
           </g>
 
-          <!-- Legend -->
           <g font-family="system-ui, sans-serif" font-size="11">
-            <line x1="500" y1="58" x2="528" y2="58" stroke="#2C5F6A" stroke-width="2.5"/>
-            <text x="535" y="62" fill="#1a1a2e">Actuals (decade-to-date)</text>
-            <line x1="500" y1="78" x2="528" y2="78" stroke="#8B2635" stroke-width="2.5" stroke-dasharray="6 4"/>
-            <text x="535" y="82" fill="#1a1a2e">Deck projection (forward)</text>
+            <line x1="100" y1="50" x2="128" y2="50" stroke="#8B2635" stroke-width="2.5" stroke-dasharray="6 4"/>
+            <text x="135" y="54" fill="#1a1a2e">Deck Narrative</text>
+            <line x1="270" y1="50" x2="298" y2="50" stroke="#2C5F6A" stroke-width="2.5"/>
+            <text x="305" y="54" fill="#1a1a2e">External-Verified Reality</text>
           </g>
         </svg>
-        <div class="chart-foot">Source: Dapper Boi April 2026 deck. Actuals 2022–2024 reported; 2025–2030 projected. Note the discontinuity at 2025: the inflection from $1.4M actual (2024) to $101.3M projected (2030) implies a six-year compound annual growth rate of approximately 105%, sustained for six consecutive years.</div>
+        <div class="chart-foot">External-verified line: Forbes 2020 (&gt;$1M cumulative by 2019), Shark Tank recap ($1.2M, 2022), Ecommerce Masterplan podcast ($1.36M, 2024). Deck line: deck-stated figures. The two arcs are not the same business.</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- § 04 BRAND & PRODUCT MOAT -->
+<!-- § 04 -->
 <section>
   <div class="sec-row">
-    <div class="sec-label"><span class="num">§ 04</span><br>Brand &amp; Product Moat</div>
+    <div class="sec-label"><span class="num">§ 04</span>Brand &amp; Product Moat</div>
     <div>
       <h2 class="sec-h">The thing that's actually defensible</h2>
-      <div class="sec-subtitle">Not the snaps. The customer relationship.</div>
+      <div class="sec-subtitle">Not the snaps. The relationship — if it survives external check.</div>
 
-      <p class="body">Functional product details — deep pockets, chest-gap snaps, extended-sizing fit blocks — are improvable but not defensible. A well-capitalized incumbent (Levi's, Madewell, Old Navy) could engineer around all three in a season. The same is true of the size-inclusive positioning: Universal Standard, Old Navy's Bodequality, and others have shown that mass brands can expand size ranges when they choose to.</p>
+      <p class="body">Functional product details — deep pockets, chest-gap snaps, extended-sizing fit blocks — are improvable but not defensible. A capitalized incumbent (Levi's, Madewell, Old Navy) could engineer around all three in a season. Size-inclusivity has already been adopted by mass brands (Universal Standard, Old Navy Bodequality).</p>
 
-      <p class="body">What is defensible — if it holds — is the <em>relationship</em> between Dapper Boi and a specific customer who has been ignored by mainstream apparel for a long time. The 51% repeat rate, the social following, the media coverage (Inc, Forbes, Out100), and the founder's personal authority within the community are all expressions of one underlying asset: a brand that is trusted by an audience that does not trust mass apparel brands. Replicating that trust is what an incumbent cannot do quickly with a product line extension.</p>
+      <p class="body">What is defensible — <em>if</em> the 51% repeat rate holds in cohort data — is the relationship between Dapper Boi and a specific customer who has been ignored by mainstream apparel for a decade. The founder's authority in the community is real (Tory Burch Fellow 2025 · Inc Female Founder 2025 · Out100 coverage <span class="tag ext">Ext</span>). Replicating that authority is what an incumbent cannot do quickly.</p>
 
       <div class="cards-2">
         <div class="card">
           <h4>What's in the Layer Today</h4>
           <ul>
-            <li>51% repeat purchase rate</li>
-            <li>158K+ social followers</li>
-            <li>Earned media: Inc, Forbes, Entrepreneur, Out100, CBS Mornings</li>
-            <li>Founder credibility (Tory Burch Fellow, Inc Female Founder 2025)</li>
+            <li>51% repeat purchase rate (deck-only, cohort detail not seen)</li>
+            <li>158K+ social followers (engagement metrics unverified)</li>
+            <li>Earned media: Inc, Forbes, Entrepreneur, Out100, CBS Mornings <span class="tag ext">Ext</span></li>
+            <li>Tory Burch Foundation Fellow 2025 (non-equity recognition)</li>
+            <li>Shark Tank appearance — no on-air deal <span class="tag ext">Ext</span></li>
             <li>Functional product distinction (snaps, pockets, fit)</li>
-            <li>Nordstrom wholesale relationship (real, growing)</li>
+            <li>Founder personal authority within target community</li>
           </ul>
         </div>
         <div class="card">
           <h4>What It Could Become</h4>
           <ul>
-            <li>Category-defining brand for inclusive fit (the "Levi's of…" framing)</li>
-            <li>Multi-channel: DTC anchor + curated wholesale + B2B workwear</li>
-            <li>Geographic platform: US/UK/EU/AU/CA with one supply chain</li>
-            <li>Acquisition target for a mainstream player needing inclusive credibility</li>
-            <li>Adjacent line extensions: footwear, accessories, kids (Phase 4)</li>
+            <li>Category-defining brand for inclusive fit (aspirational)</li>
+            <li>Multi-channel: DTC + curated wholesale + B2B workwear</li>
+            <li>Acquisition target for mainstream player needing inclusive credibility</li>
+            <li>Geographic platform across US/UK/EU/AU/CA with one supply chain</li>
+            <li>Adjacent line extensions: footwear, accessories, kids</li>
           </ul>
         </div>
       </div>
 
       <blockquote class="pull">
-        The IP isn't the snap. The IP is being the first brand a queer/non-binary customer thinks of when they need jeans that fit. That asset is real — and it took ten years to build. The question is whether $1M is enough capital to defend it before a better-funded entrant decides to compete.
+        The moat is a community trust asset that took ten years to build. The same asset can be eroded in twelve months if founder credibility is damaged in a public investor process — which is what the five-discrepancy pattern risks. The disclosure problem is not just a financing problem; it is a brand-protection problem.
       </blockquote>
     </div>
   </div>
 </section>
 
-<!-- § 05 COMMERCIAL & CHANNEL FOOTPRINT -->
+<!-- § 05 -->
 <section>
   <div class="sec-row">
-    <div class="sec-label"><span class="num">§ 05</span><br>Commercial &amp; Channel Footprint</div>
+    <div class="sec-label"><span class="num">§ 05</span>Commercial &amp; Channel Footprint</div>
     <div>
-      <h2 class="sec-h">Point 2: Three channels, three margin profiles, one team</h2>
-      <div class="sec-subtitle">DTC pays the bills. Retail builds the brand. Enterprise workwear is the call option — and the focus risk.</div>
+      <h2 class="sec-h">Point 2: What the "Nordstrom channel" actually is</h2>
+      <div class="sec-subtitle">Drop-ship marketplace economics ≠ wholesale relationship economics.</div>
 
-      <p class="body">Dapper Boi is pursuing three distinct go-to-market motions simultaneously: a DTC e-commerce engine (64%+ gross margin), a curated wholesale program (Nordstrom + Wolf &amp; Badger, 55% margin), and a planned enterprise workwear vertical targeting hospitality and similar uniform contracts (68% margin). The case for doing all three is that they share a product base, a brand, and a supply chain. The case against is that each has different sales motions, customer cycles, and operational requirements — and the team is small enough that pursuing all three could slow each.</p>
+      <p class="body">The deck refers to "an established and growing retail channel with Nordstrom." External review of Nordstrom's emerging-brand model <span class="tag ext">Ext: Perplexity/Nordstrom Supplier Program</span> indicates Nordstrom engages smaller brands through a <strong>drop-ship / marketplace model</strong>, not seasonal wholesale POs. In this model: the brand ships direct to the customer; Nordstrom takes a commission (rather than purchasing inventory upfront); payouts are weekly or regular; floor space and inventory commitment are not part of the deal. This is materially different from a traditional wholesale channel.</p>
+
+      <p class="body">This is not necessarily bad — drop-ship reduces working-capital exposure and accelerates listing. But it changes how revenue and margin should be modeled, and it changes what "an established retail channel" means as a signal of velocity. Without sell-through data, we cannot tell whether Nordstrom is a contributing revenue channel or a discovery-only listing.</p>
+
+      <div class="discrepancy">
+        <h5>Discrepancy 5 · Nordstrom Channel Characterization</h5>
+        <p><strong>Deck claim:</strong> "Established and growing retail channel with Nordstrom"</p>
+        <p><strong>External finding:</strong> Nordstrom emerging-brand engagements typically use drop-ship/marketplace model <span class="tag ext">Ext</span>. Traditional wholesale (seasonal POs, floor space) requires proven velocity at scale Dapper Boi has not externally demonstrated.</p>
+        <p><strong>Implication:</strong> Revenue from this channel is likely commission-based marketplace revenue, not wholesale POs. Margin profile, working-capital intensity, and revenue durability differ materially.</p>
+        <p><strong>Resolution required:</strong> Specify channel type (drop-ship vs. wholesale POs), revenue contribution 2024, sell-through metrics, payout terms.</p>
+      </div>
 
       <div class="two-col">
         <div>
-          <h5>Why This Is the Thesis</h5>
+          <h5>What "DTC + Marketplace + Wholesale" Adds Up To</h5>
           <ul>
-            <li>Three margin profiles diversify revenue resilience (DTC volatility offset by wholesale + enterprise recurring)</li>
-            <li>Enterprise workwear at 68% GM with contract revenue is the highest-quality dollar in the model</li>
-            <li>Nordstrom relationship is already producing — the wholesale motion is proven, not theoretical</li>
-            <li>Hotel workwear pipeline is a credible adjacency (gender-neutral uniforms = real procurement demand)</li>
+            <li>DTC e-commerce: primary channel, 64% GM per deck</li>
+            <li>Nordstrom drop-ship: marketplace economics, commission-based</li>
+            <li>Wolf &amp; Badger: marketplace model, onboarding US+UK</li>
+            <li>Enterprise workwear: pipeline only; no contracts disclosed</li>
           </ul>
         </div>
         <div>
-          <h5>Open Questions</h5>
+          <h5>Open Questions Post-External Review</h5>
           <ul>
-            <li>What is the current channel mix by % of revenue? Deck does not break it out.</li>
-            <li>How many enterprise workwear contracts are signed vs. in pipeline? Deck implies "pipeline" only.</li>
-            <li>Nordstrom doors / SKUs / sell-through — undisclosed</li>
-            <li>Wolf &amp; Badger contribution — onboarding, not yet revenue-generating</li>
-            <li>Does the team have B2B sales experience for enterprise workwear, or is this an "if we hire it" plan?</li>
+            <li>What % of 2024 $1.36M came from DTC vs. Nordstrom marketplace?</li>
+            <li>What is the actual Nordstrom commission rate (typically 8–15%)?</li>
+            <li>Has any wholesale PO actually been issued, or is it all drop-ship?</li>
+            <li>Wolf &amp; Badger marketplace economics — same questions</li>
+            <li>Enterprise workwear: any signed LOI, or is this aspiration?</li>
           </ul>
         </div>
-      </div>
-
-      <div class="chart-box">
-        <div class="chart-title">Channel Mix — Implied 2030 Revenue Split (Deck Projection)</div>
-        <svg viewBox="0 0 800 240" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: auto;">
-          <!-- Stacked bar showing 2024 actual and 2030 projected mix -->
-          <!-- 2024: mostly DTC -->
-          <g font-family="system-ui, sans-serif" font-size="11" fill="#1a1a2e">
-            <text x="50" y="60">2024</text>
-            <text x="50" y="160">2030E</text>
-          </g>
-          <!-- 2024 bar: $1.4M, mostly DTC ~95% -->
-          <rect x="100" y="40" width="180" height="40" fill="#2C5F6A"/>
-          <rect x="280" y="40" width="15" height="40" fill="#B8860B"/>
-          <text x="115" y="65" font-family="system-ui, sans-serif" font-size="12" fill="white" font-weight="600">DTC ~95%</text>
-          <text x="285" y="100" font-family="system-ui, sans-serif" font-size="9" fill="#6b6b75">Wholesale ~5%</text>
-
-          <!-- 2030 bar: split per deck phasing -->
-          <!-- DTC 45%, Retail 25%, Enterprise 30% -->
-          <rect x="100" y="140" width="320" height="40" fill="#2C5F6A"/>
-          <rect x="420" y="140" width="170" height="40" fill="#B8860B"/>
-          <rect x="590" y="140" width="170" height="40" fill="#8B2635"/>
-          <text x="220" y="165" font-family="system-ui, sans-serif" font-size="12" fill="white" font-weight="600">DTC ~45%</text>
-          <text x="475" y="165" font-family="system-ui, sans-serif" font-size="12" fill="white" font-weight="600">Retail ~25%</text>
-          <text x="640" y="165" font-family="system-ui, sans-serif" font-size="12" fill="white" font-weight="600">Enterprise ~30%</text>
-
-          <!-- Legend -->
-          <g font-family="system-ui, sans-serif" font-size="11" fill="#1a1a2e">
-            <rect x="100" y="210" width="14" height="14" fill="#2C5F6A"/>
-            <text x="120" y="222">DTC (64% GM)</text>
-            <rect x="240" y="210" width="14" height="14" fill="#B8860B"/>
-            <text x="260" y="222">Retail / Wholesale (55% GM)</text>
-            <rect x="470" y="210" width="14" height="14" fill="#8B2635"/>
-            <text x="490" y="222">Enterprise Workwear (68% GM)</text>
-          </g>
-        </svg>
-        <div class="chart-foot">Implied channel mix per deck Phase 1–4 plan. 2024 actual mix is inferred (deck does not break out wholesale revenue contribution). 2030 is analyst inference from phased growth narrative; founder has not provided explicit channel split.</div>
       </div>
 
       <table class="data">
         <thead>
-          <tr><th>Channel</th><th>Gross Margin</th><th>Status</th><th>Margin Profile</th><th>Strategic Value</th></tr>
+          <tr><th>Channel</th><th>Reality Per External</th><th>Margin Profile</th><th>Status</th></tr>
         </thead>
         <tbody>
-          <tr><td>DTC E-Commerce</td><td class="num">64%+</td><td>Live, primary</td><td>High margin, marketing-led acquisition cost</td><td>Brand control, data, customer relationship</td></tr>
-          <tr><td>Wholesale Retail (Nordstrom)</td><td class="num">55%</td><td>Active, growing</td><td>Lower margin but lower acquisition cost</td><td>Brand validation, discovery, foot traffic</td></tr>
-          <tr><td>Wholesale Retail (Wolf &amp; Badger)</td><td class="num">55%</td><td>Onboarding US+UK</td><td>Marketplace economics, mid-margin</td><td>UK launch wedge, low-risk geo entry</td></tr>
-          <tr><td>Enterprise Workwear</td><td class="num">68%</td><td>Pipeline only <span class="tag inf">INFERRED</span></td><td>Contract recurring, highest margin</td><td>$19B sub-TAM, defensible if won</td></tr>
+          <tr><td>DTC E-Commerce</td><td>Primary; deck 64%+ GM</td><td>High margin, marketing-led CAC</td><td>Live</td></tr>
+          <tr><td>Nordstrom</td><td>Drop-ship marketplace <span class="tag ext">Ext</span></td><td>Marketplace commission (8–15% to Nordstrom)</td><td>Live; sell-through undisclosed</td></tr>
+          <tr><td>Wolf &amp; Badger</td><td>Marketplace platform US+UK</td><td>Marketplace commission</td><td>Onboarding</td></tr>
+          <tr><td>Enterprise Workwear</td><td>Pipeline language only <span class="tag inf">Inf</span></td><td>Aspirational 68% GM</td><td>No signed contract disclosed</td></tr>
         </tbody>
       </table>
     </div>
   </div>
 </section>
 
-<!-- § 05A UNIT ECONOMICS -->
+<!-- § 05A -->
 <section>
   <div class="sec-row">
-    <div class="sec-label"><span class="num">§ 05A</span><br>Unit Economics</div>
+    <div class="sec-label"><span class="num">§ 05A</span>Unit Economics</div>
     <div>
       <h2 class="sec-h">CAC and LTV, with the math shown</h2>
-      <div class="sec-subtitle">Why this section exists before the data room arrives.</div>
+      <div class="sec-subtitle">Deck-side figures unverified; structurally plausible but unprovable on current information.</div>
 
       <blockquote class="pull">
-        The deck reports CAC $81.36 and LTV $248.61 for an LTV:CAC of 3.0×. These are healthy numbers. They are also blended, unsegmented by channel or cohort, and unverified. We rebuild the implied math here so the discrepancies surface before the data room does.
+        Deck reports CAC $81.36 and LTV $248.61 (LTV:CAC 3.0×). These are healthy numbers and they are blended, unsegmented by channel or cohort, and not externally verifiable. After the five-discrepancy pattern in §03–§08, we treat deck-side unit-economics figures as <em>unconfirmed</em> until cohort data is reviewed — not known-false, but not-yet-credible.
       </blockquote>
 
       <div class="two-col">
         <div>
-          <h5>CAC Build (Implied)</h5>
+          <h5>CAC Build (Reconstruction)</h5>
           <table class="data">
-            <thead><tr><th>Channel</th><th>CAC</th><th>Component Math</th></tr></thead>
+            <thead><tr><th>Channel</th><th>CAC</th><th>Math</th></tr></thead>
             <tbody>
-              <tr><td>Paid Social (Meta/TikTok)</td><td class="num">~$95 <span class="tag inf">INF</span></td><td>Higher than blend; primary acquisition source</td></tr>
-              <tr><td>Organic / Earned Media</td><td class="num">~$25 <span class="tag inf">INF</span></td><td>Inc/Forbes/CBS coverage halo; near-zero direct cost</td></tr>
-              <tr><td>Referral / Repeat-Driven</td><td class="num">~$15 <span class="tag inf">INF</span></td><td>Word-of-mouth from 51% repeat base</td></tr>
-              <tr><td class="num"><strong>Blended CAC</strong></td><td class="num"><strong>$81.36</strong></td><td><strong>Per deck</strong></td></tr>
+              <tr><td>Paid Social</td><td class="num">~$95 <span class="tag inf">Inf</span></td><td>Primary acquisition source</td></tr>
+              <tr><td>Organic / Earned Media</td><td class="num">~$25 <span class="tag inf">Inf</span></td><td>Inc/Forbes/CBS halo; near-zero direct cost</td></tr>
+              <tr><td>Referral / Repeat-Driven</td><td class="num">~$15 <span class="tag inf">Inf</span></td><td>WOM from repeat base</td></tr>
+              <tr><td class="num"><strong>Blended CAC</strong></td><td class="num"><strong>$81.36 (deck)</strong></td><td><strong>Methodology not disclosed</strong></td></tr>
             </tbody>
           </table>
         </div>
         <div>
-          <h5>LTV Build (Implied)</h5>
+          <h5>LTV Build (Reconstruction)</h5>
           <table class="data">
             <thead><tr><th>Component</th><th>Assumption</th><th>$ / Unit</th></tr></thead>
             <tbody>
-              <tr><td>AOV (Initial)</td><td>Jeans $98 + Top $52 (typical)</td><td class="num">~$120</td></tr>
-              <tr><td>Repeat Rate</td><td>51%</td><td class="num">—</td></tr>
-              <tr><td>Repeat Purchases / Customer</td><td>~2.1 over 3 yrs <span class="tag inf">INF</span></td><td class="num">—</td></tr>
-              <tr><td>Gross Revenue / Customer</td><td>3-yr horizon</td><td class="num">~$388 <span class="tag inf">INF</span></td></tr>
-              <tr><td>Gross Margin Applied</td><td>64% (DTC)</td><td class="num">—</td></tr>
-              <tr><td class="num"><strong>LTV (Gross Margin Basis)</strong></td><td class="num"><strong>$248.61</strong></td><td><strong>Per deck</strong></td></tr>
+              <tr><td>AOV (Initial)</td><td>Jeans + top mix</td><td class="num">~$120</td></tr>
+              <tr><td>Repeat Rate</td><td>51% (deck-only)</td><td class="num">—</td></tr>
+              <tr><td>Purchases / Customer</td><td>~2.1 over 3 yrs <span class="tag inf">Inf</span></td><td class="num">—</td></tr>
+              <tr><td>Gross Margin Applied</td><td>64% DTC</td><td class="num">—</td></tr>
+              <tr><td class="num"><strong>LTV</strong></td><td class="num"><strong>$248.61 (deck)</strong></td><td><strong>Horizon not specified</strong></td></tr>
             </tbody>
           </table>
         </div>
       </div>
 
-      <table class="data">
-        <thead>
-          <tr><th>Channel</th><th>Mix (Inf)</th><th>CAC (Inf)</th><th>LTV (Inf)</th><th>Weighted CAC</th><th>Weighted LTV</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>Paid Social</td><td class="num">55%</td><td class="num">$95</td><td class="num">$240</td><td class="num">$52.25</td><td class="num">$132.00</td></tr>
-          <tr><td>Organic / Earned</td><td class="num">30%</td><td class="num">$25</td><td class="num">$260</td><td class="num">$7.50</td><td class="num">$78.00</td></tr>
-          <tr><td>Referral / Repeat-Driven</td><td class="num">15%</td><td class="num">$15</td><td class="num">$280</td><td class="num">$2.25</td><td class="num">$42.00</td></tr>
-          <tr style="background: var(--beige);"><td><strong>Blended</strong></td><td class="num"><strong>100%</strong></td><td class="num"><strong>—</strong></td><td class="num"><strong>—</strong></td><td class="num"><strong>$62.00</strong></td><td class="num"><strong>$252.00</strong></td></tr>
-        </tbody>
-      </table>
-      <p class="body" style="font-size: 13px; color: var(--muted); font-style: italic;">Our blended model produces CAC ~$62 and LTV ~$252 (LTV:CAC 4.06×) — modestly better than deck. The discrepancy is on the CAC side; we infer the deck CAC is reported on a fully-loaded basis (allocating overhead and headcount, not just paid spend). Founder should clarify.</p>
-
       <div class="discrepancy">
-        <h5>Discrepancy · Model vs. Deck</h5>
-        <p><strong>Deck:</strong> CAC $81.36, LTV $248.61, LTV:CAC 3.0×.</p>
-        <p><strong>Our build:</strong> CAC ~$62 (paid-only) or $81+ (fully-loaded). LTV ~$252.</p>
-        <p><strong>Resolution required:</strong> (a) Is CAC paid-marketing-only, or fully-loaded with overhead? (b) Is LTV gross-margin-based or revenue-based? (c) What is the LTV time horizon — 3 years, 5 years, lifetime? Three answers determine whether 3.0× is a floor or a ceiling. <span class="tag inf">INFERRED</span></p>
+        <h5>Open Questions on Unit Economics</h5>
+        <p><strong>CAC:</strong> Is $81.36 (a) paid-marketing-only or (b) fully-loaded with overhead, headcount, content?</p>
+        <p><strong>LTV:</strong> Gross-margin-based or revenue-based? Horizon: 3, 5, lifetime?</p>
+        <p><strong>Cohort proof:</strong> Does the 51% repeat hold in the last 6 quarterly cohorts? Is it concentrated in early-adopter cohorts or distributed?</p>
+        <p>Until founder responds, unit economics figures cannot be used in any underwriting model.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- § 06 FUNDING & CAP STRUCTURE -->
+<!-- § 06 -->
 <section>
   <div class="sec-row">
-    <div class="sec-label"><span class="num">§ 06</span><br>Funding &amp; Cap Structure</div>
+    <div class="sec-label"><span class="num">§ 06</span>Funding &amp; Cap Structure</div>
     <div>
-      <h2 class="sec-h">The 10-year, $1.75M signal</h2>
-      <div class="sec-subtitle">What the cap table tells you that the deck doesn't.</div>
+      <h2 class="sec-h">The $1.75M-vs-$555K gap</h2>
+      <div class="sec-subtitle">External-tracked capital is ~1/3 of the deck claim.</div>
 
-      <p class="body">Dapper Boi has raised $1.75M cumulative across ten years. That number is doing two jobs in the deck — it is presented (correctly) as evidence of capital efficiency, and it is presented (less explicitly) as the runway that funded $6.7M of lifetime revenue. We grant the capital efficiency. We are more cautious about the second framing.</p>
+      <p class="body">The deck represents $1.75M total raised over ten years. External sources <span class="tag ext">Ext: Perplexity/CB Insights · KingsCrowd · Women's Coverage</span> account for approximately <strong>$555K</strong> in tracked external capital: ~$26K Kickstarter (2015, funded above an $18K target), ~$285K via StartEngine Regulation Crowdfunding round closed April 29 2020 at ~$6M pre-money valuation, and one $250K private investment from Kelly Ann Winget at Alternative Wealth Partners (signed the day of Shark Tank filming; not an on-air Shark Tank deal).</p>
 
-      <p class="body">A decade of operations producing a maximum total raise of $1.75M, and no priced round led by a tier-1 institutional investor that we have been able to identify, is a signal. Founders who raise from tier-1 firms typically do so because the firms write the check that scales the business; founders who do not, often have not been able to. The deck does not name the prior backers. This needs to be verified — either the absence of a tier-1 in the cap table is an unambiguous historical signal, or there is a name we have not yet found.</p>
+      <p class="body">CB Insights' public listing confirms approximately $280–284K in tracked funding (Reg CF only). The CB Insights total is consistent with the StartEngine round; it does not capture the Kickstarter (pre-equity crowdfunding) or the private Winget check, both of which we have confirmed from other external sources.</p>
+
+      <div class="discrepancy major">
+        <h5>Discrepancy 2 · "$1.75M Raised" vs. ~$555K External-Tracked</h5>
+        <p><strong>Deck claim:</strong> "$1.75M total raised" over 10 years</p>
+        <p><strong>External finding:</strong> ~$555K tracked across three documented capital events (Kickstarter $26K · StartEngine $285K · AWP $250K) <span class="tag ext">Ext</span></p>
+        <p><strong>Three possible explanations:</strong> (a) The $1.75M figure is cumulative <em>revenue</em>, not capital raised, similar to the run-rate mislabeling — but this is inconsistent with how the deck uses the phrase. (b) There are ~$1.2M in undisclosed angel checks not picked up by CB Insights/KingsCrowd — possible but unusual for a Reg CF–using brand. (c) The $1.75M figure is overstated. <strong>The first diligence ask is for the founder to itemize every capital event and source.</strong></p>
+        <p><strong>Materiality:</strong> Critical. A $555K-funded business raising another $1M is in a very different valuation conversation than a $1.75M-funded business doing the same thing.</p>
+      </div>
 
       <blockquote class="pull">
-        Capital efficiency is admirable when the strategic choice is "stay lean." It is a constraint when the strategic intent is "scale to $100M revenue." Dapper Boi has now declared the latter intent and is raising $1M to execute it. Those two numbers — the goal and the round — do not match.
+        Capital efficiency is admirable on a true $555K base — that's $1.36M revenue on roughly $555K of cumulative capital, a 2.5× efficiency multiple. On the deck-claimed $1.75M base it's worse (0.78×). Either way the next $1M must produce growth velocity the past decade has not produced. The number that doesn't change is the velocity required.
       </blockquote>
 
-      <div class="timeline">
-        <div class="timeline-track">
-          <div class="tl-event" style="left: 5%;"></div>
-          <div class="tl-label" style="left: 5%;"><strong>2015</strong>Founded San Diego, CA</div>
-          <div class="tl-foot" style="left: 5%;">YR 0</div>
+      <div class="timeline-track">
+        <div class="tl-event teal" style="left: 5%;"></div>
+        <div class="tl-label" style="left: 5%;"><strong>2015</strong>Founded · Kickstarter ~$26K <span class="tag ext">Ext</span></div>
+        <div class="tl-foot" style="left: 5%;">Yr 0</div>
 
-          <div class="tl-event teal" style="left: 22%;"></div>
-          <div class="tl-label" style="left: 22%;"><strong>~2018–2020</strong>Early angel rounds (undisclosed)</div>
-          <div class="tl-foot" style="left: 22%;">~$0.75M raised</div>
+        <div class="tl-event" style="left: 28%;"></div>
+        <div class="tl-label" style="left: 28%;"><strong>2019</strong>Forbes: &gt;$1M cumulative revenue <span class="tag ext">Ext</span></div>
+        <div class="tl-foot" style="left: 28%;">~$26K raised</div>
 
-          <div class="tl-event teal" style="left: 50%;"></div>
-          <div class="tl-label" style="left: 50%;"><strong>2022</strong>$0.6M revenue · brand traction</div>
-          <div class="tl-foot" style="left: 50%;">~$1.5M cumulative</div>
+        <div class="tl-event teal" style="left: 42%;"></div>
+        <div class="tl-label" style="left: 42%;"><strong>Apr 2020</strong>StartEngine Reg CF ~$285K at $6M pre <span class="tag ext">Ext</span></div>
+        <div class="tl-foot" style="left: 42%;">~$311K cumulative</div>
 
-          <div class="tl-event teal" style="left: 70%;"></div>
-          <div class="tl-label" style="left: 70%;"><strong>2024</strong>$1.4M rev · Nordstrom live</div>
-          <div class="tl-foot" style="left: 70%;">$1.75M cumulative</div>
+        <div class="tl-event gold" style="left: 62%;"></div>
+        <div class="tl-label" style="left: 62%;"><strong>2022</strong>Shark Tank (no deal) · $1.2M revenue <span class="tag ext">Ext</span></div>
+        <div class="tl-foot" style="left: 62%;">AWP $250K signed day-of</div>
 
-          <div class="tl-event" style="left: 92%;"></div>
-          <div class="tl-label" style="left: 92%;"><strong>Apr 2026</strong>$1M raise launched</div>
-          <div class="tl-foot" style="left: 92%;">CURRENT</div>
-        </div>
+        <div class="tl-event teal" style="left: 78%;"></div>
+        <div class="tl-label" style="left: 78%;"><strong>2024</strong>$1.36M revenue <span class="tag ext">Ext</span></div>
+        <div class="tl-foot" style="left: 78%;">~$555K cumulative</div>
+
+        <div class="tl-event" style="left: 94%;"></div>
+        <div class="tl-label" style="left: 94%;"><strong>Apr 2026</strong>$1M raise launched</div>
+        <div class="tl-foot" style="left: 94%;">Current</div>
       </div>
 
       <div class="two-col" style="margin-top: 40px;">
         <div>
-          <h5>Investor Syndicate (Implied)</h5>
+          <h5>Investor Syndicate (External-Verified)</h5>
           <table class="data">
-            <thead><tr><th>Tier</th><th>Investor</th><th>Notable</th></tr></thead>
+            <thead><tr><th>Tier</th><th>Investor / Event</th><th>Year</th><th>Amount</th></tr></thead>
             <tbody>
-              <tr><td><span class="tier t3">T3</span></td><td>Undisclosed angels</td><td>Cumulative $1.75M across decade</td></tr>
-              <tr><td><span class="tier t3">T3</span></td><td>Tory Burch Foundation (Fellowship, non-equity)</td><td>2025 Fellow — credibility signal</td></tr>
-              <tr><td><span class="tier t1">T1?</span></td><td><em>None identified</em></td><td>No tier-1 institutional lead in 10 years</td></tr>
+              <tr><td><span class="tier t3">T3</span></td><td>Kickstarter backers</td><td>2015</td><td class="num">~$26K</td></tr>
+              <tr><td><span class="tier t3">T3</span></td><td>StartEngine Reg CF crowd</td><td>2020</td><td class="num">~$285K</td></tr>
+              <tr><td><span class="tier t3">T3</span></td><td>Kelly Ann Winget / AWP (private)</td><td>2022</td><td class="num">$250K</td></tr>
+              <tr><td><span class="tier exit">Shark</span></td><td>Shark Tank — no deal</td><td>2022</td><td class="num">$0</td></tr>
+              <tr><td>—</td><td><em>Tory Burch Foundation Fellow (non-equity)</em></td><td>2025</td><td class="num">—</td></tr>
+              <tr><td><span class="tier t1">T1</span></td><td><em>None identified in 10 years</em></td><td>—</td><td class="num">—</td></tr>
             </tbody>
           </table>
         </div>
         <div>
           <h5>Syndicate Read</h5>
-          <p class="body" style="font-size: 14px;">The absence of a tier-1 lead after ten years of operation, three rounds of media validation (Inc, Forbes, Out100), and a clear brand thesis is the most important data point in this section. There are three possible explanations: (1) the founder has chosen not to take institutional capital, preferring control — defensible but cuts against the current scale narrative; (2) tier-1 firms have looked and passed — most likely interpretation, and the one that should inform our own decision; (3) the company has never been pitched at the right venue — unlikely given the founder's network and media presence. Until reconciled, we read this signal as <strong>cautionary</strong>.</p>
+          <p class="body" style="font-size: 14px;">Three capital events in ten years, totaling ~$555K externally. No institutional VC. A Shark Tank pitch that did not produce an on-air deal. One sophisticated private angel (Winget, Alternative Wealth Partners). The pattern is consistent: this brand has been pitched into the institutional market and the institutional market has not committed. The "$1.75M raised" framing in the deck obscures that pattern by aggregating to a larger number than external sources can substantiate. Until reconciled, we read this as <strong>strongly cautionary</strong>.</p>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- § 06A ARR SCENARIOS & VALUATION -->
+<!-- § 06A -->
 <section>
   <div class="sec-row">
-    <div class="sec-label"><span class="num">§ 06A</span><br>ARR Scenarios &amp; Valuation</div>
+    <div class="sec-label"><span class="num">§ 06A</span>ARR Scenarios &amp; Valuation</div>
     <div>
-      <h2 class="sec-h">Three trajectories, three valuations, one decision</h2>
-      <div class="sec-subtitle">Modeling the bull, base, and bear from the same starting point.</div>
-
-      <p class="body">Starting from $1.4M actual 2024 revenue, we model three forward trajectories. The deck case is the bull; our base case applies historical growth velocity (the 2022→2024 trend extended); our bear case assumes the company continues at its 10-year average $140K/yr revenue add. Each implies a different entry valuation if we participate.</p>
+      <h2 class="sec-h">Three trajectories from a $1.36M starting point</h2>
+      <div class="sec-subtitle">Bull case requires breaking a 10-year compound growth pattern. Base case extends current velocity. Bear is the trendline.</div>
 
       <div class="chart-box">
         <div class="chart-title">Modeled ARR Trajectories (2024–2030)</div>
         <svg viewBox="0 0 800 380" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: auto;">
-          <!-- Grid -->
           <g stroke="#C9C2B0" stroke-width="0.5" stroke-dasharray="2 3">
             <line x1="70" y1="60" x2="780" y2="60"/>
             <line x1="70" y1="120" x2="780" y2="120"/>
@@ -814,175 +928,174 @@ hr.soft { border: none; border-top: 1px dashed var(--rule); margin: 32px 0; }
             <text x="670" y="325">2030</text>
           </g>
 
-          <!-- Bull (deck): teal solid; 1.4, 3, 10.8, 30.1, 61.3, 101.3 -->
-          <polyline fill="none" stroke="#2C5F6A" stroke-width="2.5" points="120,297.2 230,294 340,278.4 450,239.8 560,177.4 670,97.4"/>
+          <polyline fill="none" stroke="#2C5F6A" stroke-width="2.5" stroke-dasharray="6 4" points="120,297.2 230,294 340,278.4 450,239.8 560,177.4 670,97.4"/>
           <circle cx="670" cy="97.4" r="5" fill="#2C5F6A"/>
-          <text x="678" y="92" font-family="system-ui, sans-serif" font-size="10" fill="#2C5F6A" font-weight="600">BULL $101M</text>
+          <text x="678" y="92" font-family="system-ui, sans-serif" font-size="10" fill="#2C5F6A" font-weight="600">DECK $101M</text>
 
-          <!-- Base: rust dashed; 50% CAGR from 1.4 -> 1.4, 2.1, 3.2, 4.7, 7.1, 16 -->
-          <polyline fill="none" stroke="#8B2635" stroke-width="2.5" stroke-dasharray="6 4" points="120,297.2 230,295.8 340,293.6 450,290.6 560,285.8 670,268"/>
-          <circle cx="670" cy="268" r="5" fill="#8B2635"/>
-          <text x="678" y="265" font-family="system-ui, sans-serif" font-size="10" fill="#8B2635" font-weight="600">BASE $16M</text>
+          <polyline fill="none" stroke="#8B2635" stroke-width="2.5" points="120,297.3 230,296.6 340,295.8 450,294.6 560,293.4 670,289.6"/>
+          <circle cx="670" cy="289.6" r="5" fill="#8B2635"/>
+          <text x="678" y="285" font-family="system-ui, sans-serif" font-size="10" fill="#8B2635" font-weight="600">BASE $5M</text>
 
-          <!-- Bear: gold dotted; 25% CAGR from 1.4 -> 1.4, 1.75, 2.2, 2.7, 3.4, 5.3 -->
-          <polyline fill="none" stroke="#B8860B" stroke-width="2" stroke-dasharray="2 3" points="120,297.2 230,296.5 340,295.6 450,294.6 560,293.2 670,289.4"/>
-          <circle cx="670" cy="289.4" r="5" fill="#B8860B"/>
-          <text x="678" y="286" font-family="system-ui, sans-serif" font-size="10" fill="#B8860B" font-weight="600">BEAR $5M</text>
+          <polyline fill="none" stroke="#B8860B" stroke-width="2" stroke-dasharray="2 3" points="120,297.3 230,297.1 340,296.9 450,296.8 560,296.6 670,296.2"/>
+          <circle cx="670" cy="296.2" r="5" fill="#B8860B"/>
+          <text x="678" y="301" font-family="system-ui, sans-serif" font-size="10" fill="#B8860B" font-weight="600">BEAR $1.9M</text>
 
-          <!-- Legend -->
-          <g font-family="system-ui, sans-serif" font-size="11" fill="#1a1a2e">
-            <line x1="100" y1="50" x2="128" y2="50" stroke="#2C5F6A" stroke-width="2.5"/>
-            <text x="135" y="54">Bull (Deck): 105% CAGR · 4 channels execute simultaneously</text>
-            <line x1="100" y1="70" x2="128" y2="70" stroke="#8B2635" stroke-width="2.5" stroke-dasharray="6 4"/>
-            <text x="135" y="74">Base: 50% CAGR · DTC scales, retail contributes, no enterprise</text>
+          <g font-family="system-ui, sans-serif" font-size="11">
+            <line x1="100" y1="50" x2="128" y2="50" stroke="#2C5F6A" stroke-width="2.5" stroke-dasharray="6 4"/>
+            <text x="135" y="54" fill="#1a1a2e">Deck (105% CAGR): Requires breaking 10-yr pattern</text>
+            <line x1="100" y1="70" x2="128" y2="70" stroke="#8B2635" stroke-width="2.5"/>
+            <text x="135" y="74" fill="#1a1a2e">Base (25% CAGR): Capital + execution produce step-change</text>
             <line x1="100" y1="90" x2="128" y2="90" stroke="#B8860B" stroke-width="2" stroke-dasharray="2 3"/>
-            <text x="135" y="94">Bear: 25% CAGR · DTC-only, plateau by 2028</text>
+            <text x="135" y="94" fill="#1a1a2e">Bear (6% CAGR): External-verified historical velocity continues</text>
           </g>
         </svg>
-        <div class="chart-foot">Bull = deck case. Base = 50% CAGR (consistent with 2022→2024 actuals extended). Bear = 25% CAGR (consistent with 10-year average growth dollar add).</div>
+        <div class="chart-foot">Bear case = continuation of external-verified $1.2M (2022) → $1.36M (2024) trajectory (~6% CAGR). Base case assumes $1M raise produces a step-change to 25% CAGR — generous given history. Bull = deck case.</div>
       </div>
 
       <table class="data">
-        <thead><tr><th>Scenario</th><th>2027 ARR</th><th>2030 ARR</th><th>Pre-money (Now)</th><th>Entry Multiple</th><th>Rationale</th></tr></thead>
+        <thead><tr><th>Scenario</th><th>2027 ARR</th><th>2030 ARR</th><th>Implied Outcome</th><th>Probability (Our View)</th></tr></thead>
         <tbody>
-          <tr><td>Bull (Deck)</td><td class="num">$30.1M</td><td class="num">$101.3M</td><td class="num">$15–20M</td><td class="num">10–14× '24 rev</td><td>Requires all four growth phases to execute concurrently; demands tier-1 follow-on capital not yet in cap table</td></tr>
-          <tr><td>Base (Our Model)</td><td class="num">$4.7M</td><td class="num">$16M</td><td class="num">$7–10M</td><td class="num">5–7× '24 rev</td><td>DTC scales with capital, Nordstrom contributes, enterprise stays optionality; reasonable for the business as observed</td></tr>
-          <tr><td>Bear</td><td class="num">$2.7M</td><td class="num">$5M</td><td class="num">$3–5M</td><td class="num">2–3× '24 rev</td><td>Lifestyle/bootstrap trajectory continues; reasonable strategic acquirer outcome only</td></tr>
+          <tr><td>Bull (Deck)</td><td class="num">$30.1M</td><td class="num">$101.3M</td><td>$500M–1B outcome</td><td class="num">&lt;5%</td></tr>
+          <tr><td>Base</td><td class="num">$2.7M</td><td class="num">$5.2M</td><td>$20–40M strategic acquisition</td><td class="num">25–35%</td></tr>
+          <tr><td>Bear</td><td class="num">$1.62M</td><td class="num">$1.9M</td><td>Lifestyle / IP-only acquisition $5–10M or no exit</td><td class="num">60–70%</td></tr>
         </tbody>
       </table>
 
       <blockquote class="pull">
-        IC implication: if the deck is asking at $15–20M pre on the bull case, we are underwriting the bull case with sub-10% probability of execution. If the round prices at base-case ($7–10M pre), the entry is fair. We will not learn the actual pre-money until founder discloses; this is question one in the diligence-request.
+        IC implication: a probability-weighted outcome (weights above × midpoints) is approximately $20–30M company value at exit. After dilution for the $1M round and a 12–18 month bridge, the new money's return on a $1M check is roughly 1.5–2.5× over five years — below our required return for a single-name DTC apparel position.
       </blockquote>
     </div>
   </div>
 </section>
 
-<!-- § 07 COMPETITIVE LANDSCAPE -->
+<!-- § 07 -->
 <section>
   <div class="sec-row">
-    <div class="sec-label"><span class="num">§ 07</span><br>Competitive Landscape</div>
+    <div class="sec-label"><span class="num">§ 07</span>Competitive Landscape</div>
     <div>
-      <h2 class="sec-h">Where Dapper Boi sits on the map</h2>
-      <div class="sec-subtitle">Three credible benchmarks, one different positioning.</div>
+      <h2 class="sec-h">Where Dapper Boi sits — externally-anchored</h2>
+      <div class="sec-subtitle">Concrete numbers from external sources. The capital and revenue gap to the closest comp set is large.</div>
 
       <table class="data">
-        <thead><tr><th>Company</th><th>Positioning</th><th>Stage / Status</th><th>Capital Raised</th><th>Read</th></tr></thead>
+        <thead><tr><th>Company</th><th>Positioning</th><th>Capital Raised</th><th>Revenue / Value</th><th>Source / Read</th></tr></thead>
         <tbody>
-          <tr><td>TomboyX</td><td>LGBTQ+ inclusive underwear/loungewear</td><td>Growth / mature DTC</td><td class="num">~$30M+</td><td><span class="tier t2">DIRECT</span> Closest analog; underwear-led, retail breadth at Target/Macy's/Nordstrom</td></tr>
-          <tr><td>Wildfang</td><td>Tomboy/queer womenswear</td><td>Growth / mature DTC</td><td class="num">~$15M+</td><td><span class="tier t2">DIRECT</span> Style-driven, less fit-engineered</td></tr>
-          <tr><td>Good American</td><td>Inclusive sizing, mainstream women</td><td>Scaled (~$100M+ rev)</td><td class="num">Backed by Khloé K. + L Catterton</td><td><span class="tier t1">ADJ</span> Size inclusivity at mainstream scale; women-only positioning</td></tr>
-          <tr><td>True Classic</td><td>Men's basics DTC</td><td>Exit announced ~$850M</td><td class="num">Bootstrap-led</td><td><span class="tier t1">EXIT COMP</span> $200M rev → $850M exit; closest economic outcome reference</td></tr>
-          <tr><td>Universal Standard</td><td>Size-inclusive womenswear</td><td>Growth</td><td class="num">~$20M+</td><td><span class="tier t2">ADJ</span> Size-inclusive but women-focused, not gender-neutral</td></tr>
-          <tr><td>Levi's</td><td>Heritage denim</td><td>Public · $6.2B mkt cap</td><td class="num">Public</td><td><span class="tier t3">ASPIRATIONAL</span> "Levi's of inclusive" is the framing; not a comp set</td></tr>
+          <tr><td>TomboyX</td><td>LGBTQ+ inclusive underwear/loungewear; closest direct positioning analog</td><td class="num">$18–24.3M</td><td class="num">~$7.1M revenue · ~$26.7M (modeled) · ~$85.5M (modeled val)</td><td><span class="tier t2">Direct</span> <span class="tag ext">Ext: Growjo/Prospeo</span> Raised 30–85× DB's tracked capital</td></tr>
+          <tr><td>Wildfang</td><td>Tomboy/queer womenswear</td><td class="num">$4–6M</td><td class="num">~$14.2M revenue · ~72 employees · independent 2024–2025</td><td><span class="tier t2">Direct</span> <span class="tag ext">Ext: Growjo</span></td></tr>
+          <tr><td>Good American</td><td>Inclusive sizing, mainstream women; celebrity-led</td><td class="num">≥$1.5M (CB Insights, paywall)</td><td class="num">$200M+ revenue · ~$3.2B est. valuation (vs. Skims $4B)</td><td><span class="tier t1">Adj</span> <span class="tag ext">Ext: Entrepreneur 2023 / Industry Data</span></td></tr>
+          <tr><td>True Classic</td><td>Men's basics DTC; bootstrap-led</td><td class="num">~Bootstrap</td><td class="num">~$700M valuation in ~2 yrs · ~$850M EV April 2025 (minority/strategic PE from 1686 Partners — David Wertheimer)</td><td><span class="tier exit">Exit Comp</span> <span class="tag ext">Ext: MBS Group Apr 2025 · Digital Chapter</span> Founded 2019 — built 500× more value in half the time</td></tr>
+          <tr><td>Universal Standard</td><td>Size-inclusive womenswear</td><td class="num">~$20M+</td><td class="num">Growth-stage</td><td><span class="tier t2">Adj</span> <span class="tag ext">Ext</span></td></tr>
+          <tr><td>Skims</td><td>Shapewear / loungewear; celebrity-led scale exemplar</td><td class="num">Multiple rounds</td><td class="num">~$4B valuation</td><td><span class="tier t1">Scale Benchmark</span> <span class="tag ext">Ext</span></td></tr>
+          <tr><td>Levi's</td><td>Heritage denim; aspirational comp</td><td class="num">Public</td><td class="num">$6.2B mkt cap</td><td><span class="tier t3">Aspirational</span> Not a comp set</td></tr>
         </tbody>
       </table>
 
+      <div class="sidebar-card">
+        <h5>The Scale Gap</h5>
+        <p>The most striking external finding in the comp set: <strong>True Classic was founded in 2019 and reached an ~$850M strategic-PE valuation by April 2025</strong> <span class="tag ext">Ext: MBS Group</span>. Dapper Boi was founded in 2015 and is currently at $1.36M revenue. True Classic built ~500× more enterprise value in half the time, on bootstrap-only capital. The category produces fast-growth outcomes; this specific brand has not produced one yet. The bull case requires accepting that the next 18 months will be unlike the prior 10 years.</p>
+      </div>
+
       <div class="chart-box">
-        <div class="chart-title">Strategic Positioning · Inclusivity × Capital Scale</div>
+        <div class="chart-title">Strategic Positioning · Inclusivity × Capital Scale (External-Anchored)</div>
         <svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: auto;">
-          <!-- Axes -->
           <line x1="80" y1="380" x2="780" y2="380" stroke="#1a1a2e" stroke-width="1"/>
           <line x1="80" y1="30" x2="80" y2="380" stroke="#1a1a2e" stroke-width="1"/>
-          <!-- Axis labels -->
           <text x="430" y="408" font-family="system-ui, sans-serif" font-size="11" fill="#1a1a2e" text-anchor="middle" letter-spacing="0.1em">→ CAPITAL RAISED (LOG SCALE)</text>
           <text x="35" y="200" font-family="system-ui, sans-serif" font-size="11" fill="#1a1a2e" text-anchor="middle" letter-spacing="0.1em" transform="rotate(-90 35 200)">→ INCLUSIVITY / GENDER-NEUTRAL FIT</text>
 
-          <!-- Quadrant labels -->
           <text x="220" y="50" font-family="system-ui, sans-serif" font-size="10" fill="#6b6b75" text-anchor="middle" letter-spacing="0.1em">UNDERFUNDED · HIGH-INCLUSIVITY</text>
           <text x="620" y="50" font-family="system-ui, sans-serif" font-size="10" fill="#6b6b75" text-anchor="middle" letter-spacing="0.1em">WELL-CAPITALIZED · HIGH-INCLUSIVITY</text>
           <text x="220" y="370" font-family="system-ui, sans-serif" font-size="10" fill="#6b6b75" text-anchor="middle" letter-spacing="0.1em">BOOTSTRAP · MAINSTREAM</text>
           <text x="620" y="370" font-family="system-ui, sans-serif" font-size="10" fill="#6b6b75" text-anchor="middle" letter-spacing="0.1em">SCALED · MAINSTREAM</text>
 
-          <!-- Bubbles -->
-          <!-- Dapper Boi: low cap, very high inclusivity. ($1.75M, top-left) -->
-          <circle cx="170" cy="100" r="22" fill="#8B2635" opacity="0.85"/>
-          <text x="170" y="105" font-family="system-ui, sans-serif" font-size="10" fill="white" text-anchor="middle" font-weight="700">DB</text>
-          <text x="170" y="138" font-family="Georgia, serif" font-size="11" fill="#1a1a2e" text-anchor="middle">Dapper Boi</text>
+          <circle cx="135" cy="95" r="14" fill="#8B2635" opacity="0.9"/>
+          <text x="135" y="100" font-family="system-ui, sans-serif" font-size="9" fill="white" text-anchor="middle" font-weight="700">DB</text>
+          <text x="135" y="130" font-family="Georgia, serif" font-size="11" fill="#1a1a2e" text-anchor="middle">Dapper Boi</text>
+          <text x="135" y="145" font-family="system-ui, sans-serif" font-size="9" fill="#6b6b75" text-anchor="middle">~$555K · $1.36M rev</text>
 
-          <!-- TomboyX: moderate cap, high inclusivity -->
-          <circle cx="350" cy="130" r="28" fill="#2C5F6A" opacity="0.75"/>
-          <text x="350" y="135" font-family="system-ui, sans-serif" font-size="11" fill="white" text-anchor="middle" font-weight="700">TX</text>
-          <text x="350" y="172" font-family="Georgia, serif" font-size="11" fill="#1a1a2e" text-anchor="middle">TomboyX</text>
+          <circle cx="450" cy="130" r="30" fill="#2C5F6A" opacity="0.75"/>
+          <text x="450" y="135" font-family="system-ui, sans-serif" font-size="11" fill="white" text-anchor="middle" font-weight="700">TX</text>
+          <text x="450" y="178" font-family="Georgia, serif" font-size="11" fill="#1a1a2e" text-anchor="middle">TomboyX · $18–24M</text>
 
-          <!-- Wildfang: mod cap, high incl -->
-          <circle cx="290" cy="170" r="22" fill="#2C5F6A" opacity="0.6"/>
+          <circle cx="290" cy="170" r="20" fill="#2C5F6A" opacity="0.6"/>
           <text x="290" y="175" font-family="system-ui, sans-serif" font-size="10" fill="white" text-anchor="middle" font-weight="700">WF</text>
-          <text x="290" y="202" font-family="Georgia, serif" font-size="11" fill="#1a1a2e" text-anchor="middle">Wildfang</text>
+          <text x="290" y="202" font-family="Georgia, serif" font-size="10" fill="#1a1a2e" text-anchor="middle">Wildfang $4–6M</text>
 
-          <!-- Good American: well-capped, moderate incl -->
-          <circle cx="560" cy="240" r="40" fill="#2C5F6A" opacity="0.7"/>
-          <text x="560" y="245" font-family="system-ui, sans-serif" font-size="11" fill="white" text-anchor="middle" font-weight="700">GA</text>
-          <text x="560" y="295" font-family="Georgia, serif" font-size="11" fill="#1a1a2e" text-anchor="middle">Good American</text>
+          <circle cx="600" cy="220" r="42" fill="#2C5F6A" opacity="0.7"/>
+          <text x="600" y="225" font-family="system-ui, sans-serif" font-size="11" fill="white" text-anchor="middle" font-weight="700">GA</text>
+          <text x="600" y="276" font-family="Georgia, serif" font-size="10" fill="#1a1a2e" text-anchor="middle">Good American · ~$3.2B</text>
 
-          <!-- True Classic: well-capped, mainstream -->
-          <circle cx="630" cy="320" r="35" fill="#B8860B" opacity="0.7"/>
-          <text x="630" y="325" font-family="system-ui, sans-serif" font-size="11" fill="white" text-anchor="middle" font-weight="700">TC</text>
-          <text x="630" y="370" font-family="Georgia, serif" font-size="10" fill="#1a1a2e" text-anchor="middle">True Classic</text>
+          <circle cx="270" cy="320" r="38" fill="#B8860B" opacity="0.8"/>
+          <text x="270" y="325" font-family="system-ui, sans-serif" font-size="11" fill="white" text-anchor="middle" font-weight="700">TC</text>
+          <text x="270" y="372" font-family="Georgia, serif" font-size="10" fill="#1a1a2e" text-anchor="middle">True Classic · ~$850M EV</text>
 
-          <!-- Levi's: top-right (huge, mainstream) -->
-          <circle cx="730" cy="340" r="50" fill="#1a1a2e" opacity="0.5"/>
-          <text x="730" y="345" font-family="system-ui, sans-serif" font-size="11" fill="white" text-anchor="middle" font-weight="700">LEVI</text>
-
-          <!-- Universal Standard -->
-          <circle cx="440" cy="200" r="20" fill="#2C5F6A" opacity="0.5"/>
-          <text x="440" y="205" font-family="system-ui, sans-serif" font-size="9" fill="white" text-anchor="middle" font-weight="700">US</text>
+          <circle cx="710" cy="280" r="48" fill="#1a1a2e" opacity="0.5"/>
+          <text x="710" y="285" font-family="system-ui, sans-serif" font-size="11" fill="white" text-anchor="middle" font-weight="700">SK</text>
+          <text x="710" y="340" font-family="Georgia, serif" font-size="10" fill="#1a1a2e" text-anchor="middle">Skims ~$4B</text>
         </svg>
-        <div class="chart-foot">Bubble size approximates capital raised. Dapper Boi occupies a defensible quadrant — highest inclusivity at lowest capital base — but is also the only player in the quadrant. That can mean "wedge" or "no one else thinks it's winnable at this capitalization."</div>
+        <div class="chart-foot">Bubble size approximates capital raised. Dapper Boi occupies the underfunded/high-inclusivity quadrant alone. That can be a wedge — or, more troubling, an indication that institutional capital has chosen not to fund this position at this scale. TomboyX has raised 30–85× DB's tracked external capital in the same positioning, with ~5× the revenue.</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- § 08 MARKET OPPORTUNITY -->
+<!-- § 08 -->
 <section>
   <div class="sec-row">
-    <div class="sec-label"><span class="num">§ 08</span><br>Market Opportunity</div>
+    <div class="sec-label"><span class="num">§ 08</span>Market Opportunity</div>
     <div>
       <h2 class="sec-h">TAM, tailwinds, friction</h2>
-      <div class="sec-subtitle">The market is real. The composite figure is doing some work.</div>
+      <div class="sec-subtitle">The category is real and growing. The deck's framing is not the category.</div>
 
       <div class="cards-3">
         <div class="card">
-          <h4>TAM</h4>
+          <h4>Deck TAM</h4>
           <p style="font-size: 24px; font-family: Georgia, serif; color: var(--rust); margin-bottom: 8px;">$119B</p>
-          <p>Gender-neutral apparel ($98.2B '24 → $209B '32) + Workwear ($19B). <span class="tag ext">EXT: VMR 2024</span></p>
+          <p>Per deck: gender-neutral apparel + workwear composite. <span class="tag deck">Deck</span></p>
         </div>
         <div class="card">
-          <h4>SAM</h4>
-          <p style="font-size: 24px; font-family: Georgia, serif; color: var(--teal); margin-bottom: 8px;">$50B</p>
-          <p>US + UK addressable subset, near-term reachable with current product line. <span class="tag deck">DECK</span></p>
+          <h4>External Segment TAM</h4>
+          <p style="font-size: 24px; font-family: Georgia, serif; color: var(--teal); margin-bottom: 8px;">$3–5B</p>
+          <p>Gender-neutral apparel segment, mid-2020s. <span class="tag ext">Ext: 3 Research Firms</span></p>
         </div>
         <div class="card">
-          <h4>SOM (Near-Term)</h4>
-          <p style="font-size: 24px; font-family: Georgia, serif; color: var(--ink); margin-bottom: 8px;">$3.2B</p>
-          <p>$100M revenue target by 2030 = ~3% of SOM. <span class="tag inf">INFERRED · DECK</span></p>
+          <h4>Corporate/Uniform Subsegment</h4>
+          <p style="font-size: 24px; font-family: Georgia, serif; color: var(--ink); margin-bottom: 8px;">$6–9B</p>
+          <p>~40–50% of $19B total workwear is non-protective. <span class="tag ext">Ext: Straits Research</span></p>
         </div>
       </div>
 
-      <p class="body" style="margin-top: 24px;">The TAM composite combines two distinct markets (gender-neutral apparel + workwear) into a single headline. Each is real and growing; combining them is a directional aid, not a diligence-grade figure. The more useful frame is that <em>any</em> of these markets, executed well, is large enough to support a $500M–1B outcome — so TAM is not the constraint. Execution, focus, and capital are.</p>
+      <div class="discrepancy major">
+        <h5>Discrepancy 4 · TAM Framing</h5>
+        <p><strong>Deck claim:</strong> $119B TAM (global gender-neutral apparel + enterprise workwear)</p>
+        <p><strong>External findings:</strong></p>
+        <p>· Gender-neutral apparel segment: $3.87B (2024) → $7.19B (2030) per Deep Market Insights 2025 <span class="tag ext">Ext</span></p>
+        <p>· Alternative: $5.06B (2023) → $15.2B (2032) per WiseGuy Reports 2024 <span class="tag ext">Ext</span></p>
+        <p>· Alternative: $2.1B (2023) → $5.6B (2032) per DataIntelo <span class="tag ext">Ext</span></p>
+        <p>· Total workwear $19.08B (2024) → $30.6B (2033) per Straits Research <span class="tag ext">Ext</span>; corporate/uniform subsegment ~40–50% of total</p>
+        <p><strong>Resolution:</strong> The deck's $119B figure includes all apparel categories adjacent to gender-neutral, not the gender-neutral segment itself. Segment-specific addressable market is $3–5B in the mid-2020s, growing to $7–15B by early 2030s.</p>
+        <p><strong>Implication:</strong> The market is real and growing 10–13% CAGR. A $500M brand outcome would be ~10% of segment TAM, which is achievable but requires category leadership the company has not yet demonstrated. The $119B framing is rhetorically misleading rather than business-disqualifying.</p>
+      </div>
 
       <div class="two-col">
         <div>
           <h5>Tailwinds</h5>
           <ul class="tw-list up">
-            <li>Gender-neutral fashion category growing ~10% CAGR (VMR 2024)</li>
-            <li>Consumer preference shifting toward inclusive sizing and gender-fluid wardrobe building</li>
-            <li>Wholesale buyers actively seeking inclusive/diverse brands for assortment</li>
-            <li>UK-India FTA reducing apparel production costs (cited 30% reduction)</li>
-            <li>B2B/uniform demand for gender-neutral options (hospitality, services)</li>
-            <li>Founder's media footprint and community trust are appreciating assets</li>
+            <li>Gender-neutral apparel category growing 10–13% CAGR across multiple external sources <span class="tag ext">Ext</span></li>
+            <li>Consumer preference shift toward inclusive sizing and gender-fluid wardrobing</li>
+            <li>UK-India FTA reducing apparel production costs (deck claim 30% reduction)</li>
+            <li>B2B gender-neutral uniform demand (hospitality, services) real</li>
+            <li>Founder media footprint and Tory Burch network are appreciating assets</li>
           </ul>
         </div>
         <div>
           <h5>Headwinds</h5>
           <ul class="tw-list dn">
-            <li>Mass brands (Levi's, Old Navy, Madewell) can expand fit ranges and absorb the wedge with marketing scale</li>
-            <li>DTC apparel is structurally difficult — high return rates, fashion risk, inventory exposure</li>
-            <li>"Inclusive apparel" is now a crowded narrative; differentiation must be product-level, not positioning-level</li>
-            <li>Three concurrent channel strategies (DTC + Retail + Enterprise) on $1M strain focus</li>
-            <li>International expansion adds working capital intensity and operational complexity</li>
-            <li>Macro: apparel discretionary spend sensitive to consumer downturn</li>
+            <li>Mass brands can absorb the wedge with marketing scale</li>
+            <li>DTC apparel structurally difficult — returns, fashion risk, inventory exposure</li>
+            <li>"Inclusive apparel" is now crowded; differentiation must be product-level</li>
+            <li>TomboyX has raised 30–85× more capital in the same positioning <span class="tag ext">Ext</span></li>
+            <li>International expansion adds working-capital intensity</li>
+            <li>Apparel discretionary spend sensitive to consumer downturn</li>
           </ul>
         </div>
       </div>
@@ -990,39 +1103,38 @@ hr.soft { border: none; border-top: 1px dashed var(--rule); margin: 32px 0; }
   </div>
 </section>
 
-<!-- § 09 RISK HEATMAP -->
+<!-- § 09 -->
 <section>
   <div class="sec-row">
-    <div class="sec-label"><span class="num">§ 09</span><br>Risk Heatmap</div>
+    <div class="sec-label"><span class="num">§ 09</span>Risk Heatmap</div>
     <div>
-      <h2 class="sec-h">Where this deal could break</h2>
-      <div class="sec-subtitle">Severity × likelihood, ranked.</div>
+      <h2 class="sec-h">Where this deal could break — escalated post-external review</h2>
+      <div class="sec-subtitle">Severity × likelihood, ranked. New top risks emerge from the five-discrepancy pattern.</div>
 
       <div style="display: grid; grid-template-columns: 1fr 320px; gap: 32px; align-items: start;">
         <div>
           <div class="heatmap">
-            <!-- Row 1 (Severity HIGH/Critical) -->
             <div class="hm-axis-y" style="grid-row: span 5;">Severity →</div>
             <div class="hm-cell" style="background: #F4D6CC;"></div>
             <div class="hm-cell" style="background: #E89B7E;"></div>
-            <div class="hm-cell" style="background: #C75A3A;">1</div>
-            <div class="hm-cell" style="background: #8B2635;">2</div>
+            <div class="hm-cell" style="background: #C75A3A;">2</div>
+            <div class="hm-cell" style="background: #8B2635;">1</div>
             <div class="hm-cell" style="background: #5A1620;">3</div>
 
             <div class="hm-cell" style="background: #E8EDD8;"></div>
             <div class="hm-cell" style="background: #F4D6CC;"></div>
-            <div class="hm-cell" style="background: #E89B7E;">4</div>
-            <div class="hm-cell" style="background: #C75A3A;">5</div>
-            <div class="hm-cell" style="background: #8B2635;"></div>
+            <div class="hm-cell" style="background: #E89B7E;">5</div>
+            <div class="hm-cell" style="background: #C75A3A;">4</div>
+            <div class="hm-cell" style="background: #8B2635;">6</div>
 
             <div class="hm-cell" style="background: #C9D9A8;"></div>
-            <div class="hm-cell" style="background: #E8EDD8;">6</div>
-            <div class="hm-cell" style="background: #F4D6CC;">7</div>
-            <div class="hm-cell" style="background: #E89B7E;"></div>
+            <div class="hm-cell" style="background: #E8EDD8;">7</div>
+            <div class="hm-cell" style="background: #F4D6CC;"></div>
+            <div class="hm-cell" style="background: #E89B7E;">8</div>
             <div class="hm-cell" style="background: #C75A3A;"></div>
 
             <div class="hm-cell" style="background: #9BBF73;"></div>
-            <div class="hm-cell" style="background: #C9D9A8;">8</div>
+            <div class="hm-cell" style="background: #C9D9A8;">9</div>
             <div class="hm-cell" style="background: #E8EDD8;"></div>
             <div class="hm-cell" style="background: #F4D6CC;"></div>
             <div class="hm-cell" style="background: #E89B7E;"></div>
@@ -1046,14 +1158,15 @@ hr.soft { border: none; border-top: 1px dashed var(--rule); margin: 32px 0; }
         <div>
           <h5 style="font-family: system-ui, sans-serif; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--rust); font-weight: 700; margin: 0 0 14px;">Risk Register</h5>
           <ul class="risk-register">
-            <li><span class="rnum">1</span>Metric reconciliation fails (run rate vs. revenue gap is real misrepresentation)</li>
-            <li><span class="rnum">2</span>Revenue trajectory plateaus at $2–5M (decade-long pattern continues)</li>
-            <li><span class="rnum">3</span>Mass brand competitor (Levi's, Old Navy) absorbs the inclusive wedge</li>
-            <li><span class="rnum">4</span>$1M proves insufficient; founder forced into dilutive bridge in 12 mo</li>
-            <li><span class="rnum">5</span>Enterprise workwear pipeline does not convert; channel mix never diversifies</li>
-            <li><span class="rnum">6</span>Cohort retention degrades below 51% as customer base broadens</li>
-            <li><span class="rnum">7</span>Spain HQ creates US tax/legal complexity for follow-on rounds</li>
-            <li><span class="rnum">8</span>Key-person risk: Vicky Pasche is the brand</li>
+            <li><span class="rnum">1</span><strong>Disclosure pattern</strong>: 5 favorable overstatements; signals approach to investor relations</li>
+            <li><span class="rnum">2</span>Revenue trajectory plateaus at $1.5–3M (10-yr pattern continues)</li>
+            <li><span class="rnum">3</span>Mass brand absorbs the wedge before DB capitalizes</li>
+            <li><span class="rnum">4</span>$1M proves insufficient; bridge dilution at flat/down round in 12 mo</li>
+            <li><span class="rnum">5</span>Enterprise workwear pipeline never converts; channel mix stays DTC-bound</li>
+            <li><span class="rnum">6</span>TomboyX (30–85× capitalized) defends the queer/non-binary positioning</li>
+            <li><span class="rnum">7</span>Cohort retention degrades below 51% as customer base broadens</li>
+            <li><span class="rnum">8</span>Spain HQ creates US tax/legal complexity for follow-on capital</li>
+            <li><span class="rnum">9</span>Key-person risk: Vicky Pasche is the brand</li>
           </ul>
         </div>
       </div>
@@ -1061,20 +1174,20 @@ hr.soft { border: none; border-top: 1px dashed var(--rule); margin: 32px 0; }
       <div class="two-col" style="margin-top: 32px;">
         <div>
           <h5>Top Three Risks · Narrative</h5>
-          <p class="body" style="font-size: 14px;"><strong>R1 (Critical):</strong> The "$6.7M run rate" vs. $1.4M 2024 revenue gap is the foundational risk. If this is sloppy framing, it is correctable. If it is intentional, it is disqualifying. Either way, we cannot underwrite until reconciled.</p>
-          <p class="body" style="font-size: 14px;"><strong>R2 (High):</strong> The base-rate outcome for a 10-year-old DTC apparel brand at $1.4M revenue is to plateau between $2M and $5M. The 51% repeat rate is the only data point that suggests Dapper Boi could break that pattern; it is necessary but not sufficient.</p>
-          <p class="body" style="font-size: 14px;"><strong>R3 (High):</strong> A mass apparel brand with marketing budget can expand its size range and add functional details in one season. The defensive moat is the community trust, which is real but fragile and tied to the founder's continued presence.</p>
+          <p class="body" style="font-size: 14px;"><strong>R1 (Critical):</strong> Five concurrent favorable overstatements in the deck is the foundational risk. It is not yet a fraud finding — it could be a fundraising-deck inflation pattern the founder learned in early-stage and never reset. It is, however, a pattern. We cannot underwrite without a founder-led acknowledgement.</p>
+          <p class="body" style="font-size: 14px;"><strong>R2 (High):</strong> Real two-year growth is ~13% (6% CAGR). Apparel brands at this velocity rarely produce $50M+ outcomes. The base-rate outcome is a $5–15M strategic acquisition or no exit at all.</p>
+          <p class="body" style="font-size: 14px;"><strong>R6 (Material):</strong> TomboyX is 30–85× better capitalized, in the same positioning, with ~5× the revenue. If TomboyX expands category coverage into denim/workwear (which is one product roadmap away), Dapper Boi's positioning is competed for, not contested.</p>
         </div>
         <div>
-          <h5>Risk-Mitigated Thesis Preconditions (Conditions to Clear IC)</h5>
+          <h5>Risk-Mitigated Thesis Preconditions (Conditions to Move Off WATCH)</h5>
           <ul class="tw-list up" style="margin: 0;">
-            <li>Founder reconciles "$6.7M run rate" claim in writing with 2024 audited or reviewed financials</li>
-            <li>2025 YTD revenue tracking $2M+ (consistent with $3M FY '25 projection)</li>
-            <li>Cohort retention data for last 6 quarterly cohorts shows 51%+ holding</li>
-            <li>Channel mix breakdown 2024 actuals (DTC vs. wholesale split)</li>
-            <li>Enterprise workwear: at least one signed pilot contract or LOI</li>
-            <li>Cap table fully disclosed including prior round pre-money valuations</li>
-            <li>Current round terms: pre-money, target syndicate, lead status</li>
+            <li>Founder, unprompted, sends revised data sheet aligning to external sources, with explanation of each gap</li>
+            <li>2025 YTD revenue tracking $2M+ (departure from historical 6% CAGR)</li>
+            <li>Cohort retention data confirms 51%+ across last 6 quarterly cohorts</li>
+            <li>Itemized capital history reconciling to $1.75M claim — every check, every event</li>
+            <li>Nordstrom channel: revenue contribution, payout terms, channel type confirmed</li>
+            <li>Enterprise workwear: at least one signed pilot or LOI</li>
+            <li>Round price disclosed; pre-money at $4–7M (commensurate with $1.36M revenue)</li>
           </ul>
         </div>
       </div>
@@ -1082,56 +1195,50 @@ hr.soft { border: none; border-top: 1px dashed var(--rule); margin: 32px 0; }
   </div>
 </section>
 
-<!-- § 10 MARKETLOGIC FIT SCORE -->
+<!-- § 10 -->
 <section>
   <div class="sec-row">
-    <div class="sec-label"><span class="num">§ 10</span><br>Marketlogic Fit Score</div>
+    <div class="sec-label"><span class="num">§ 10</span>Marketlogic Fit Score</div>
     <div>
-      <h2 class="sec-h">Six dimensions, one composite</h2>
-      <div class="sec-subtitle">Threshold for "track-with-conditions" is 6.5/10. Dapper Boi composite is below threshold.</div>
+      <h2 class="sec-h">Six dimensions, one composite — revised post-external research</h2>
+      <div class="sec-subtitle">Threshold for "track-with-conditions" is 6.5/10. Composite drops from 5.3 (v1) to 4.83 (v2) on external enrichment.</div>
 
       <div class="score-header">
         <div>
-          <div class="score-big">5.3<span class="over">/10</span></div>
-          <div class="score-note">Threshold: 6.5/10 · Below threshold by 1.2 points</div>
+          <div class="score-big">4.8<span class="over">/10</span></div>
+          <div class="score-note">Threshold: 6.5/10 · Below threshold by 1.7 points</div>
+          <div class="score-delta">▼ 0.5 vs. v1 (5.3 → 4.83) on external research</div>
         </div>
         <div>
-          <p class="body">The composite score reflects a clear pattern: Dapper Boi scores at or above benchmark on Market Size, Regulatory Profile, and Team Signal, but well below on Investor Quality and Product Moat. The deal is not disqualified by any single dimension; it is disqualified by the combination. Investor Quality (3) is the single largest drag — the absence of a tier-1 institutional lead after ten years is reading as substantive, not procedural.</p>
+          <p class="body">Two dimensions move on external research: Market Size revises from 7 to 5 (segment TAM is $3–5B, not $119B), and Traction Signal revises from 4 to 3 (real two-year growth is 13%, not 110% compounded). Investor Quality stays at 3 — external sources confirm no tier-1 lead in 10 years and add color (Shark Tank no-deal, Reg CF base). The composite below threshold is now structural, not provisional.</p>
         </div>
       </div>
 
       <table class="data">
-        <thead><tr><th>Dimension</th><th>Our Score</th><th>External Reference</th><th>Read</th></tr></thead>
+        <thead><tr><th>Dimension</th><th>v1 Score</th><th>v2 Score</th><th>External Driver</th><th>Read</th></tr></thead>
         <tbody>
-          <tr><td>Market Size</td><td class="num">7 / 10</td><td>Gender-neutral + workwear composite real; $119B claim aggressive</td><td><span class="converge">CONVERGE</span> Real market; sizing is composite</td></tr>
-          <tr><td>Product Moat</td><td class="num">4 / 10</td><td>Functional features copyable; brand is the actual moat</td><td><span class="our-add">OUR ADD</span> Deck overstates IP defensibility</td></tr>
-          <tr><td>Investor Quality</td><td class="num">3 / 10</td><td>No tier-1 lead in 10 yrs; angels only; Tory Burch fellowship (non-equity)</td><td><span class="diverge">DIVERGE</span> Cap table is a substantive signal</td></tr>
-          <tr><td>Regulatory Profile</td><td class="num">8 / 10</td><td>Apparel = low regulatory burden; minor int'l trade considerations</td><td><span class="converge">CONVERGE</span> Low risk</td></tr>
-          <tr><td>Traction Signal</td><td class="num">4 / 10</td><td>51% repeat is real strength; $1.4M after 10 yrs is real weakness</td><td><span class="our-add">OUR ADD</span> Repeat rate ≠ growth rate</td></tr>
-          <tr><td>Team Signal</td><td class="num">6 / 10</td><td>Founder grit + accolades; small team; sister COO; B2B sales unproven</td><td><span class="converge">CONVERGE</span> Genuine but unproven at scale</td></tr>
-          <tr style="background: var(--beige);"><td><strong>Composite (Avg)</strong></td><td class="num"><strong>5.3 / 10</strong></td><td><strong>Below threshold (6.5)</strong></td><td><strong>Track-with-reconciliation, not invest-now</strong></td></tr>
+          <tr><td>Market Size</td><td class="num">7</td><td class="num">5</td><td>Segment-specific TAM $3–5B, not $119B <span class="tag ext">Ext</span></td><td><span class="our-add">Revised Down</span></td></tr>
+          <tr><td>Product Moat</td><td class="num">4</td><td class="num">4</td><td>Brand asset depends on founder credibility; disclosure pattern at risk</td><td><span class="converge">Confirmed</span></td></tr>
+          <tr><td>Investor Quality</td><td class="num">3</td><td class="num">3</td><td>~$555K tracked over 10 yrs; Shark Tank no deal; Reg CF + 1 angel <span class="tag ext">Ext</span></td><td><span class="diverge">Confirmed + Detail Added</span></td></tr>
+          <tr><td>Regulatory Profile</td><td class="num">8</td><td class="num">8</td><td>Low regulatory burden; minor int'l trade considerations</td><td><span class="converge">Confirmed</span></td></tr>
+          <tr><td>Traction Signal</td><td class="num">4</td><td class="num">3</td><td>Real 2-yr growth +13% (not +55% YoY) <span class="tag ext">Ext</span></td><td><span class="our-add">Revised Down</span></td></tr>
+          <tr><td>Team Signal</td><td class="num">6</td><td class="num">6</td><td>Founder credibility confirmed (CBS, Tory Burch, Inc) <span class="tag ext">Ext</span></td><td><span class="converge">Confirmed</span></td></tr>
+          <tr style="background: var(--beige);"><td><strong>Composite</strong></td><td class="num"><strong>5.3</strong></td><td class="num"><strong>4.83</strong></td><td><strong>Below threshold (6.5)</strong></td><td><strong>Structural — WATCH not Active</strong></td></tr>
         </tbody>
       </table>
 
       <div class="chart-box">
-        <div class="chart-title">Marketlogic Fit Score · Radar</div>
+        <div class="chart-title">Marketlogic Fit Score · Radar (v2 · External-Enriched)</div>
         <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" style="width: 100%; max-width: 480px; display: block; margin: 0 auto;">
           <g transform="translate(200,200)">
-            <!-- Hexagonal grid: 6 axes -->
-            <!-- Radii at 2, 4, 6, 8, 10 -->
-            <!-- Center, axes at 0, 60, 120, 180, 240, 300 deg -->
-
-            <!-- Background polygons at score levels -->
             <polygon points="0,-150 130,-75 130,75 0,150 -130,75 -130,-75" fill="none" stroke="#C9C2B0" stroke-width="0.5"/>
             <polygon points="0,-120 104,-60 104,60 0,120 -104,60 -104,-60" fill="none" stroke="#C9C2B0" stroke-width="0.5"/>
             <polygon points="0,-90 78,-45 78,45 0,90 -78,45 -78,-45" fill="none" stroke="#C9C2B0" stroke-width="0.5"/>
             <polygon points="0,-60 52,-30 52,30 0,60 -52,30 -52,-30" fill="none" stroke="#C9C2B0" stroke-width="0.5"/>
             <polygon points="0,-30 26,-15 26,15 0,30 -26,15 -26,-15" fill="none" stroke="#C9C2B0" stroke-width="0.5"/>
 
-            <!-- Threshold line at 6.5 -->
             <polygon points="0,-97.5 84.5,-48.75 84.5,48.75 0,97.5 -84.5,48.75 -84.5,-48.75" fill="none" stroke="#8B2635" stroke-width="1" stroke-dasharray="3 3"/>
 
-            <!-- Axes -->
             <g stroke="#C9C2B0" stroke-width="0.5">
               <line x1="0" y1="0" x2="0" y2="-150"/>
               <line x1="0" y1="0" x2="130" y2="-75"/>
@@ -1141,24 +1248,22 @@ hr.soft { border: none; border-top: 1px dashed var(--rule); margin: 32px 0; }
               <line x1="0" y1="0" x2="-130" y2="-75"/>
             </g>
 
-            <!-- Data polygon: Market 7, Moat 4, Investor 3, Reg 8, Traction 4, Team 6 -->
-            <!-- Order around: top(Market), upper-right(Moat), lower-right(Investor), bottom(Reg), lower-left(Traction), upper-left(Team) -->
-            <!-- Scaled: 7=105 (radial), 4=60, 3=45, 8=120, 4=60, 6=90 -->
             <polygon points="0,-105 52,-30 39,22.5 0,120 -52,30 -78,-45"
-                    fill="#2C5F6A" fill-opacity="0.35" stroke="#2C5F6A" stroke-width="2"/>
+                    fill="#B8860B" fill-opacity="0.15" stroke="#B8860B" stroke-width="1" stroke-dasharray="3 3"/>
 
-            <!-- Data points -->
-            <circle cx="0" cy="-105" r="3.5" fill="#2C5F6A"/>
+            <polygon points="0,-75 52,-30 39,22.5 0,120 -39,22.5 -78,-45"
+                    fill="#2C5F6A" fill-opacity="0.45" stroke="#2C5F6A" stroke-width="2"/>
+
+            <circle cx="0" cy="-75" r="3.5" fill="#2C5F6A"/>
             <circle cx="52" cy="-30" r="3.5" fill="#2C5F6A"/>
             <circle cx="39" cy="22.5" r="3.5" fill="#2C5F6A"/>
             <circle cx="0" cy="120" r="3.5" fill="#2C5F6A"/>
-            <circle cx="-52" cy="30" r="3.5" fill="#2C5F6A"/>
+            <circle cx="-39" cy="22.5" r="3.5" fill="#2C5F6A"/>
             <circle cx="-78" cy="-45" r="3.5" fill="#2C5F6A"/>
 
-            <!-- Axis labels -->
             <g font-family="system-ui, sans-serif" font-size="10" fill="#1a1a2e" font-weight="600">
               <text x="0" y="-165" text-anchor="middle">MARKET SIZE</text>
-              <text x="0" y="-156" text-anchor="middle" fill="#2C5F6A" font-size="11">7</text>
+              <text x="0" y="-156" text-anchor="middle" fill="#2C5F6A" font-size="11">5 <tspan fill="#B8860B" font-size="9">(was 7)</tspan></text>
               <text x="155" y="-78" text-anchor="middle">PRODUCT MOAT</text>
               <text x="155" y="-68" text-anchor="middle" fill="#2C5F6A" font-size="11">4</text>
               <text x="155" y="83" text-anchor="middle">INVESTOR QUALITY</text>
@@ -1166,122 +1271,122 @@ hr.soft { border: none; border-top: 1px dashed var(--rule); margin: 32px 0; }
               <text x="0" y="170" text-anchor="middle">REGULATORY</text>
               <text x="0" y="182" text-anchor="middle" fill="#2C5F6A" font-size="11">8</text>
               <text x="-155" y="83" text-anchor="middle">TRACTION</text>
-              <text x="-155" y="95" text-anchor="middle" fill="#2C5F6A" font-size="11">4</text>
+              <text x="-155" y="95" text-anchor="middle" fill="#2C5F6A" font-size="11">3 <tspan fill="#B8860B" font-size="9">(was 4)</tspan></text>
               <text x="-155" y="-78" text-anchor="middle">TEAM</text>
               <text x="-155" y="-68" text-anchor="middle" fill="#2C5F6A" font-size="11">6</text>
             </g>
           </g>
         </svg>
-        <div class="chart-foot" style="text-align: center;">Teal fill = Dapper Boi score. Rust dashed hexagon = 6.5/10 threshold. The shape's two long axes (Regulatory, Market) and two short axes (Investor Quality, Product Moat) tell the story: real market, low capital validation, copyable product.</div>
+        <div class="chart-foot" style="text-align: center;">Teal filled = v2 (external-enriched). Gold dashed = v1 (deck-only). Rust dashed hexagon = 6.5 threshold. Market and Traction axes shrink on external enrichment; the composite gap to threshold widens by 0.5 points.</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- § 10.5 TEAM -->
+<!-- § 10.5 -->
 <section>
   <div class="sec-row">
-    <div class="sec-label"><span class="num">§ 10.5</span><br>Team &amp; Leadership</div>
+    <div class="sec-label"><span class="num">§ 10.5</span>Team &amp; Leadership</div>
     <div>
       <h2 class="sec-h">Two founders, ten years, one brand</h2>
-      <div class="sec-subtitle">Real grit. Limited operating bench. Hiring plan exists; track record of hiring at scale does not.</div>
+      <div class="sec-subtitle">Founder credibility externally confirmed. Operating bench unchanged.</div>
 
       <div class="two-col">
         <div>
           <h5>Founders &amp; Executives</h5>
           <ul class="team-list">
-            <li><strong>Vicky Pasche</strong> — CEO &amp; Founder. 10+ years marketing, brand, fundraising. CBS Mornings featured (2024). Inc 2025 Female Founder. Tory Burch Foundation Fellow 2025. Personal authority within community is the brand's largest non-financial asset. <span class="tag deck">DECK</span> <span class="tag ext">EXT</span></li>
-            <li><strong>Charisse Pasche</strong> — COO. Sister of Vicky. Built Nordstrom + Wolf &amp; Badger wholesale channels. Retail partnerships and operations focus. <span class="tag deck">DECK</span></li>
+            <li><strong>Vicky Pasche</strong> — CEO &amp; Founder. CBS Mornings featured. Inc 2025 Female Founder. Tory Burch Foundation Fellow 2025. Personal authority within community is the brand's largest non-financial asset. <span class="tag deck">Deck</span> <span class="tag ext">Ext: Multiple</span></li>
+            <li><strong>Charisse Pasche</strong> — COO. Sister of Vicky. Retail partnerships and operations focus. <span class="tag deck">Deck</span></li>
           </ul>
         </div>
         <div>
           <h5>Org &amp; Hiring Plan</h5>
           <ul class="team-list">
-            <li><strong>CFO</strong> — Planned hire from current $1M round ($200K team allocation). Currently no full-time CFO. <span class="tag deck">DECK</span></li>
-            <li><strong>Fulfillment ramp</strong> — Planned ops hires for US/UK dual production. <span class="tag deck">DECK</span></li>
-            <li><strong>B2B enterprise sales</strong> — Critical hire for workwear pipeline; not currently on team. <span class="tag inf">INFERRED</span></li>
-            <li><strong>UK launch lead</strong> — Implied need; not specified in deck. <span class="tag inf">INFERRED</span></li>
+            <li><strong>CFO</strong> — Planned hire from current $1M round ($200K team allocation). Currently no full-time CFO — likely explains some of the metric-reporting issues.</li>
+            <li><strong>Fulfillment ramp</strong> — Planned ops hires for US/UK dual production.</li>
+            <li><strong>B2B enterprise sales</strong> — Critical hire for workwear pipeline; not currently on team.</li>
+            <li><strong>UK launch lead</strong> — Implied need; not specified in deck.</li>
           </ul>
         </div>
       </div>
 
       <blockquote class="pull">
-        Team signal read: The founders have demonstrated they can build a brand at small scale on minimal capital. They have not yet demonstrated they can hire, manage, and operate a 25+ person team executing four concurrent go-to-market motions. Those are different jobs. The $1M round funds one CFO hire — not the team this growth plan requires.
+        Team signal read: the founder has compounded a real brand on real grit for a decade. She has not built the internal financial reporting discipline that institutional investors require. The absence of a CFO is the most charitable explanation for the five-discrepancy pattern. Hiring one is necessary; it is also not sufficient — the disclosure reset needs to come from the founder, not from a hired CFO who will inherit whatever framing the founder establishes.
       </blockquote>
     </div>
   </div>
 </section>
 
-<!-- § 11 DILIGENCE STATUS -->
+<!-- § 11 -->
 <section>
   <div class="sec-row">
-    <div class="sec-label"><span class="num">§ 11</span><br>Diligence Status</div>
+    <div class="sec-label"><span class="num">§ 11</span>Diligence Status</div>
     <div>
-      <h2 class="sec-h">What we know, what we don't</h2>
-      <div class="sec-subtitle">Priority 0 items must be resolved before any IC vote.</div>
+      <h2 class="sec-h">What we know, what we need before moving off WATCH</h2>
+      <div class="sec-subtitle">Reconciliation items now lead. Standard data-room items follow only if reconciliation lands.</div>
 
-      <h5 style="font-family: system-ui, sans-serif; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--rust); font-weight: 700; margin: 24px 0 12px;">Priority 0 · Block IC Vote</h5>
+      <h5 style="font-family: system-ui, sans-serif; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--rust); font-weight: 700; margin: 24px 0 12px;">Priority 0 · Five-Discrepancy Reconciliation (Required to Move Off WATCH)</h5>
       <ul class="dilig-list">
-        <li>Reconcile "$6.7M run rate" claim vs. $1.4M 2024 revenue. Founder statement + supporting financials. <span class="ref">[REF: DB-P0-01]</span></li>
-        <li>Monthly revenue data, Jan 2024 – present (24 mo). <span class="ref">[REF: DB-P0-02]</span></li>
-        <li>Cohort retention table — last 6 quarterly cohorts, retention curve. <span class="ref">[REF: DB-P0-03]</span></li>
-        <li>Current round terms: pre-money, post-money, instrument type, target lead. <span class="ref">[REF: DB-P0-04]</span></li>
-        <li>Full cap table including all prior round pre-money valuations and instrument types. <span class="ref">[REF: DB-P0-05]</span></li>
-        <li>Channel mix 2024 actuals: DTC / Nordstrom / Wolf &amp; Badger / other, by revenue. <span class="ref">[REF: DB-P0-06]</span></li>
-        <li>CAC build: is the $81.36 paid-marketing-only or fully-loaded? Source data. <span class="ref">[REF: DB-P0-07]</span></li>
+        <li>Reconcile "$6.7M revenue run rate" against $1.36M 2024 revenue (external-confirmed). Founder statement + 2022/2023/2024 P&amp;L. <span class="ref">[Ref: DB-P0-01 · v2]</span></li>
+        <li>Reconcile "$1.75M raised" against ~$555K external-tracked capital. Itemize every capital event (date, instrument, investor, amount, valuation). <span class="ref">[Ref: DB-P0-02 · v2]</span></li>
+        <li>Reconcile 2022 revenue: deck $600K vs. Shark Tank recap $1.2M. Which is correct? Supporting financials. <span class="ref">[Ref: DB-P0-03 · v2]</span></li>
+        <li>Reconcile TAM framing: $119B vs. $3–5B segment-specific. Acknowledge segment-specific is the correct frame and revise growth model accordingly. <span class="ref">[Ref: DB-P0-04 · v2]</span></li>
+        <li>Reconcile Nordstrom characterization: "established and growing retail channel" vs. drop-ship marketplace listing. Channel type, payout terms, revenue contribution 2024. <span class="ref">[Ref: DB-P0-05 · v2]</span></li>
+        <li>Disclose Shark Tank appearance and no-on-air-deal outcome in any future investor materials. <span class="ref">[Ref: DB-P0-06 · v2]</span></li>
+        <li>Current round terms: pre-money, post-money, instrument, target lead status. <span class="ref">[Ref: DB-P0-07 · v2]</span></li>
       </ul>
 
-      <h5 style="font-family: system-ui, sans-serif; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--teal); font-weight: 700; margin: 24px 0 12px;">Extended Diligence · Required Before Term Sheet</h5>
+      <h5 style="font-family: system-ui, sans-serif; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--teal); font-weight: 700; margin: 24px 0 12px;">Extended Diligence · Only If P0 Reconciliation Lands</h5>
       <ul class="dilig-list">
-        <li>Bank statements 2023–2024 supporting reported revenue. <span class="ref">[REF: DB-E1-01]</span></li>
-        <li>Nordstrom sell-through data: doors, SKUs, sell-thru rate, reorder cadence. <span class="ref">[REF: DB-E1-02]</span></li>
-        <li>Wolf &amp; Badger pipeline status: contracts signed, expected launch, GMV expectations. <span class="ref">[REF: DB-E1-03]</span></li>
-        <li>Enterprise workwear: any signed contracts, LOIs, or named pipeline customers. <span class="ref">[REF: DB-E1-04]</span></li>
-        <li>Inventory aging report; markdown history; sell-through by SKU. <span class="ref">[REF: DB-E1-05]</span></li>
-        <li>Return rate by channel + by product category. <span class="ref">[REF: DB-E1-06]</span></li>
-        <li>Spain S.L. corporate structure: rationale for jurisdiction, US tax implications for US-based LPs. <span class="ref">[REF: DB-E1-07]</span></li>
-        <li>Chest-gap snap IP filings (patent / design-patent / TM) status and jurisdictions. <span class="ref">[REF: DB-E1-08]</span></li>
-        <li>Founder references: 3 customers, 2 wholesale buyers, 1 prior investor. <span class="ref">[REF: DB-E1-09]</span></li>
-        <li>Use of proceeds detail: how does $1M produce a path to $10.8M ARR in 2026? <span class="ref">[REF: DB-E1-10]</span></li>
-        <li>UK-India FTA assumption: 30% cost reduction — supply chain partner letter or quote. <span class="ref">[REF: DB-E1-11]</span></li>
-        <li>Social audience quality audit: 158K followers — engagement rate, conversion to email/customer. <span class="ref">[REF: DB-E1-12]</span></li>
+        <li>Monthly revenue, Jan 2024 – present (24 mo). <span class="ref">[Ref: DB-E1-01]</span></li>
+        <li>Cohort retention table — last 6 quarterly cohorts. 51% repeat must be verifiable. <span class="ref">[Ref: DB-E1-02]</span></li>
+        <li>Full cap table including every prior round, pre-money valuations, all instrument types. <span class="ref">[Ref: DB-E1-03]</span></li>
+        <li>2024 channel mix: DTC / Nordstrom marketplace / Wolf &amp; Badger / other, by dollar and %. <span class="ref">[Ref: DB-E1-04]</span></li>
+        <li>CAC methodology: paid-only vs. fully-loaded; LTV horizon and basis. <span class="ref">[Ref: DB-E1-05]</span></li>
+        <li>Bank statements 2023–2024 supporting reported revenue. <span class="ref">[Ref: DB-E1-06]</span></li>
+        <li>Nordstrom sell-through: doors/SKUs/sell-thru rate; AWP investor reference. <span class="ref">[Ref: DB-E1-07]</span></li>
+        <li>Enterprise workwear: signed contracts, LOIs, named pipeline customers. <span class="ref">[Ref: DB-E1-08]</span></li>
+        <li>Inventory aging; return rate by channel and category. <span class="ref">[Ref: DB-E1-09]</span></li>
+        <li>Spain S.L. structure rationale; US tax implications for US LPs. <span class="ref">[Ref: DB-E1-10]</span></li>
+        <li>Chest-gap snap IP filing status (patent/design/TM). <span class="ref">[Ref: DB-E1-11]</span></li>
+        <li>References: 3 customers, 2 wholesale buyers, Kelly Ann Winget (prior investor). <span class="ref">[Ref: DB-E1-12]</span></li>
       </ul>
     </div>
   </div>
 </section>
 
-<!-- § 12 BULL/BEAR -->
+<!-- § 12 -->
 <section>
   <div class="sec-row">
-    <div class="sec-label"><span class="num">§ 12</span><br>Investment Thesis</div>
+    <div class="sec-label"><span class="num">§ 12</span>Investment Thesis</div>
     <div>
-      <h2 class="sec-h">Bull Case / Bear Case</h2>
-      <div class="sec-subtitle">Two-sided framing of what makes this work and what makes it not.</div>
+      <h2 class="sec-h">Bull Case / Bear Case · v2</h2>
+      <div class="sec-subtitle">Both cases revised on external enrichment. The bear case is now the base rate.</div>
 
       <div class="bull-bear">
         <div class="bb bull">
-          <h4>Bull Case · The brand becomes a category</h4>
+          <h4>Bull Case · Founder resets, brand inflects</h4>
           <ul>
-            <li>51% repeat rate holds across larger cohorts → DTC compounds organically</li>
-            <li>$1M unlocks UK launch + Nordstrom expansion → channel mix diversifies in 18 mo</li>
-            <li>Founder's media presence + Tory Burch network → next round led by tier-1 in 2027</li>
-            <li>Enterprise workwear pilot lands → high-margin recurring revenue at 68% GM</li>
-            <li>Three years of execution gets to $20–30M ARR, attracts strategic acquirer at $200–400M</li>
-            <li>True Classic ($850M exit, $200M rev) is the success template; Dapper Boi has 2× the customer love metric</li>
-            <li>Capital efficiency advantage: every dollar buys more revenue than competitors</li>
+            <li>Founder, unprompted, sends reconciled data sheet — the act of doing so is the signal</li>
+            <li>51% repeat rate verified in cohort data → DTC compounds organically</li>
+            <li>$1M unlocks UK launch + Nordstrom marketplace velocity → real channel diversification</li>
+            <li>Founder's Tory Burch network produces a tier-1 lead in 2027 round at fair price</li>
+            <li>Enterprise workwear pilot lands with one hospitality contract → recurring revenue</li>
+            <li>Three years gets to $8–12M ARR, attracts strategic acquirer at $50–100M</li>
+            <li>True Classic-style outcome remains structurally available — different scale, same category dynamics</li>
           </ul>
         </div>
         <div class="bb bear">
-          <h4>Bear Case · The decade was the data</h4>
+          <h4>Bear Case · The pattern is the data</h4>
           <ul>
-            <li>10 years to $1.4M is the trajectory, not the prequel; growth rate continues at $200–500K/yr add</li>
-            <li>"$6.7M run rate" claim collapses on reconciliation → trust deficit halts round</li>
-            <li>$1M raise dilutes ~10%+ at suppressed valuation → founder loses upside in any decent outcome</li>
-            <li>Mass brand (Levi's, Old Navy) launches inclusive line → wedge closes in 12 mo</li>
-            <li>Cohort retention degrades from 51% as customer base broadens beyond loyal early adopters</li>
-            <li>Three-channel execution stalls; team capacity bottleneck; CFO hire helps reporting not selling</li>
-            <li>Bridge round required in 12 mo at flat or down valuation; cap table gets messy</li>
-            <li>Outcome: $5–8M acquisition by strategic acquirer = ~0–2× outcome for new money</li>
+            <li>10 years to $1.36M is the trajectory; real 2-yr growth of 13% continues</li>
+            <li>Disclosure pattern repeats in next round — institutional door closes permanently</li>
+            <li>TomboyX (30–85× capitalized) expands category and Dapper Boi's wedge closes</li>
+            <li>$1M raise dilutes ~15–20% at suppressed valuation</li>
+            <li>Bridge required in 12 mo at flat or down; cap table gets messy</li>
+            <li>Mass brand (Levi's, Old Navy) launches inclusive line → wedge closes faster</li>
+            <li>Founder credibility damaged by investor process; brand asset erodes</li>
+            <li>Outcome: $5–10M strategic acquisition or no exit; 0–1× outcome for new money</li>
           </ul>
         </div>
       </div>
@@ -1289,41 +1394,41 @@ hr.soft { border: none; border-top: 1px dashed var(--rule); margin: 32px 0; }
   </div>
 </section>
 
-<!-- § 13 RECOMMENDATION -->
+<!-- § 13 -->
 <section>
   <div class="sec-row">
-    <div class="sec-label"><span class="num">§ 13</span><br>Recommendation</div>
+    <div class="sec-label"><span class="num">§ 13</span>Recommendation</div>
     <div>
       <h2 class="sec-h">Decision and conditions</h2>
-      <div class="sec-subtitle">A clear answer, not a hedge.</div>
+      <div class="sec-subtitle">WATCH posture with a six-month sunset clause.</div>
 
       <div class="rec-block">
-        <div class="lbl">Recommendation</div>
-        <h3>PASS-with-WATCH. Do not commit on current information.</h3>
-        <p>The product is real, the founder is credible, the customer love is unusual, and the market is large. None of that is in dispute. What is in dispute is whether $1.4M of 2024 revenue, after ten years, on $1.75M of cumulative capital, with no tier-1 lead, justifies a venture-priced entry at the deck's implied trajectory. Our composite Marketlogic Fit Score is 5.3/10 — 1.2 points below our 6.5 threshold. We recommend we do not write a check on current information, that we hold the relationship open with the founder, and that we revisit in 4–6 weeks if and only if the Priority 0 diligence items reconcile cleanly. If reconciliation holds and 2025 YTD revenue is tracking the $3M projection, we re-engage as a small back-of-syndicate participant ($50–150K), not a leading position. We do not lead this round.</p>
+        <div class="lbl">Recommendation · Hybrid Posture</div>
+        <h3>WATCH. Hold the relationship open; do not commit to this round.</h3>
+        <p>The analysis supports a harder verdict. The composite Marketlogic Fit Score is 4.83/10 (vs. 6.5 threshold), the five-discrepancy pattern is materially adverse, the real two-year growth velocity is 13%, and the comp set indicates institutional capital has chosen not to fund this position at this scale. A literal reading of the data points to PASS. We are recommending WATCH instead — explicitly — because the founder is real, the customer affinity (if cohort-verified) is real, the brand is real, and the relationship is worth preserving in case the founder chooses to reset the disclosure baseline. Re-engagement remains open if she does so, unprompted, within six months. <strong>We will not initiate the reset for her.</strong> Absent founder-led action by November 17, 2026, this WATCH lapses to PASS and the file closes. The cohort and Joel should know that WATCH means "open door, not active interest" — we are not pursuing diligence; we are waiting to see whether the founder treats the gaps as a problem to solve.</p>
       </div>
 
       <div class="cond-grid">
         <div class="adv">
-          <h5>Conditions to Advance (Re-Engage in 4–6 Weeks)</h5>
+          <h5>Conditions to Move From WATCH → Active</h5>
           <ul>
-            <li>Founder reconciles run-rate vs. revenue gap in writing with supporting financials</li>
-            <li>2025 YTD revenue (through May 2026) demonstrates $2M+ run-rate consistent with $3M FY projection</li>
-            <li>Cohort retention data confirms 51%+ holding across last 6 quarterly cohorts</li>
-            <li>Round price disclosed; pre-money at $7–10M range (not $15–20M)</li>
-            <li>Lead investor identified or commitment to syndicate-only with named co-investors</li>
-            <li>At least one signed enterprise workwear LOI/pilot to validate the third channel</li>
+            <li>Founder sends revised data sheet, unprompted, aligning to external sources</li>
+            <li>Written acknowledgement of each of the five framing gaps with explanation</li>
+            <li>2025 YTD revenue tracking $2M+ (departure from 6% CAGR baseline)</li>
+            <li>Cohort retention data confirms 51%+ holding</li>
+            <li>Round priced at $4–7M pre-money (commensurate with $1.36M revenue)</li>
+            <li>CFO hired and in seat before next pitch (operationalizes the reset)</li>
           </ul>
         </div>
         <div class="pass">
-          <h5>Conditions to Pass Permanently</h5>
+          <h5>Conditions to Lapse WATCH → PASS</h5>
           <ul>
-            <li>Run-rate claim is unrepairable — founder cannot or will not reconcile</li>
-            <li>2025 YTD revenue tracking below $1.5M (continuation of historical curve)</li>
-            <li>Pre-money priced above $15M on current information</li>
-            <li>Cohort retention degrading materially below 51% in recent cohorts</li>
-            <li>Cap table includes terms (preferred stack, ratchets, complex liquidation prefs) that misalign new money with founder upside</li>
-            <li>Founder responds to diligence questions with defensiveness rather than disclosure</li>
+            <li>Six months elapse (by Nov 17 2026) without founder-led disclosure reset</li>
+            <li>Founder responds to discrepancy questions with reframing rather than acknowledgement</li>
+            <li>Next investor deck includes the same five claims unchanged</li>
+            <li>2025 YTD revenue tracking below $1.8M (6% CAGR continues)</li>
+            <li>Pre-money pitched above $10M on current information</li>
+            <li>Bridge round needed before priced round closes</li>
           </ul>
         </div>
       </div>
@@ -1336,6 +1441,8 @@ hr.soft { border: none; border-top: 1px dashed var(--rule); margin: 32px 0; }
   Market Logic Investors LLC · Confidential Investment Memorandum · Memo Ref ML-2026-05-01 · Dapper Boi · Prepared May 17, 2026
   <br><br>
   Deal source: Joel Palathinkal, cohort-sutton-global Slack, May 14 2026 · Deal champion: Joel Palathinkal · Author: H. Reganti
+  <br><br>
+  External sources: CB Insights · KingsCrowd · Ecommerce Masterplan podcast · Shark Tank recap sources · Forbes 2020 · The MBS Group (April 2025) · Growjo · Prospeo · Digital Chapter · Deep Market Insights 2025 · WiseGuy Reports 2024 · DataIntelo · Straits Research 2025 · Entrepreneur 2023 · Nordstrom supplier-program sources · Women's-focused press
   <br><br>
   Not investment advice. Confidential and proprietary. Do not distribute.
 </div>
