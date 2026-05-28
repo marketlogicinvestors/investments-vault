@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Intellectible · Investment Committee Memo · Market Logic</title>
+<style>
+:root {
+--ink: #0a1929;
+--ink-soft: #1c2e44;
+--paper: #faf9f4;
+--paper-warm: #f3efe3;
+--rule: #d4cfbf;
+--rule-soft: #e8e3d4;
+--muted: #5b6b7a;
+--muted-light: #8a98a5;
+--accent: #b8391c;
+--accent-soft: #d65a3a;
+--teal: #1f6b6b;
+--teal-soft: #4a8b8b;
+--teal-light: #b8d4d4;
+--positive: #2d6a4f;
+--warning: #b08800;
+--negative: #9b2226;
+--negative-light: #e8c5c5;
+--serif: 'Iowan Old Style', 'Palatino Linotype', Palatino, 'Book Antiqua', Georgia, serif;
+--sans: 'Helvetica Neue', Helvetica, -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+--mono: 'SF Mono', SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', monospace;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 16px; -webkit-text-size-adjust: 100%; }
+body { font-family: var(--sans); background: var(--paper); color: var(--ink); line-height: 1.55; font-weight: 400; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+.page { max-width: 1000px; margin: 0 auto; padding: 56px 56px 80px; }
+h1, h2, h3, h4, h5 { font-family: var(--serif); font-weight: 400; color: var(--ink); }
+h1 { font-size: 3.6rem; line-height: 1.02; letter-spacing: -0.025em; }
+h2 { font-size: 2.05rem; line-height: 1.12; letter-spacing: -0.015em; }
+h3 { font-size: 1.3rem; line-height: 1.25; letter-spacing: -0.005em; }
+h4 { font-family: var(--sans); font-weight: 600; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.16em; color: var(--muted); }
+h5 { font-size: 1rem; font-family: var(--sans); font-weight: 600; }
+p { font-size: 0.95rem; line-height: 1.7; color: var(--ink-soft); }
+strong { color: var(--ink); font-weight: 600; }
+em { font-style: italic; color: var(--ink); }
+.eyebrow { font-family: var(--sans); font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.2em; color: var(--accent); display: block; margin-bottom: 18px; }
+.lede { font-family: var(--serif); font-size: 1.25rem; line-height: 1.5; color: var(--ink); font-weight: 400; letter-spacing: -0.005em; }
+.kicker { font-family: var(--sans); font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; color: var(--teal); }
+.label { font-family: var(--sans); font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); }
+.mono { font-family: var(--mono); font-size: 0.85rem; }
+.cover { border-top: 1px solid var(--ink); padding-top: 32px; position: relative; }
+.cover-meta { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 84px; }
+.cover-meta .left, .cover-meta .right { font-family: var(--sans); font-size: 0.78rem; color: var(--muted); }
+.cover-meta .right { text-align: right; }
+.cover-meta .right .stamp { display: inline-block; padding: 4px 10px; border: 1px solid var(--accent); color: var(--accent); font-weight: 600; letter-spacing: 0.12em; font-size: 0.65rem; text-transform: uppercase; margin-bottom: 8px; }
+.cover-title { margin-bottom: 28px; }
+.cover-title .legal { display: block; font-family: var(--sans); font-size: 0.78rem; color: var(--muted); margin-top: 8px; letter-spacing: 0.04em; }
+.cover-tag { font-family: var(--serif); font-style: italic; font-size: 1.4rem; line-height: 1.45; color: var(--ink-soft); max-width: 720px; margin-bottom: 56px; }
+.cover-tag::before { content: "\201c"; font-size: 2.2rem; line-height: 0; vertical-align: -0.3em; color: var(--accent); margin-right: 4px; }
+.cover-tag::after { content: "\201d"; font-size: 2.2rem; line-height: 0; vertical-align: -0.3em; color: var(--accent); margin-left: 2px; }
+.metric-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 0; border-top: 1px solid var(--ink); border-bottom: 1px solid var(--ink); margin: 32px 0; }
+.metric { padding: 22px 16px 20px; border-right: 1px solid var(--rule); text-align: left; }
+.metric:last-child { border-right: none; }
+.metric .v { font-family: var(--serif); font-size: 2.1rem; line-height: 1; letter-spacing: -0.02em; color: var(--ink); display: block; margin-bottom: 6px; }
+.metric .v small { font-size: 0.95rem; color: var(--muted); font-family: var(--serif); margin-left: 1px; }
+.metric .l { font-family: var(--sans); font-size: 0.68rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); line-height: 1.3; }
+.metric.accent .v { color: var(--accent); }
+.metric.teal .v { color: var(--teal); }
+section { margin-top: 64px; padding-top: 32px; border-top: 1px solid var(--rule); }
+section.no-rule { border-top: none; }
+.section-head { display: grid; grid-template-columns: 120px 1fr; gap: 32px; margin-bottom: 28px; align-items: baseline; }
+.section-num { font-family: var(--mono); font-size: 0.78rem; color: var(--muted); letter-spacing: 0.05em; border-top: 2px solid var(--ink); padding-top: 8px; text-transform: uppercase; font-weight: 600; }
+.section-title h2 { margin-bottom: 8px; }
+.section-title .sub { font-family: var(--serif); font-style: italic; color: var(--muted); font-size: 1.05rem; }
+.cols-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 36px; margin-top: 16px; }
+.cols-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; margin-top: 16px; }
+.cols-12-1 { display: grid; grid-template-columns: 1fr 2fr; gap: 36px; margin-top: 16px; }
+.card { background: var(--paper-warm); padding: 22px 24px; border: 1px solid var(--rule); }
+.card.dark { background: var(--ink); color: var(--paper); }
+.card.dark h3, .card.dark h4 { color: var(--paper); }
+.card.dark p { color: rgba(250, 249, 244, 0.85); }
+.card.dark .label { color: var(--muted-light); }
+.callout { border-left: 3px solid var(--accent); padding: 4px 0 4px 20px; margin: 18px 0; font-family: var(--serif); font-style: italic; font-size: 1.05rem; color: var(--ink); }
+.pull-quote { font-family: var(--serif); font-size: 1.4rem; line-height: 1.4; color: var(--ink); border-top: 1px solid var(--ink); border-bottom: 1px solid var(--ink); padding: 28px 0; margin: 32px 0; text-align: center; letter-spacing: -0.005em; }
+.pull-quote .attr { display: block; font-family: var(--sans); font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.14em; color: var(--muted); margin-top: 14px; }
+table { width: 100%; border-collapse: collapse; font-family: var(--sans); font-size: 0.88rem; margin-top: 14px; }
+thead th { text-align: left; font-weight: 600; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); padding: 10px 14px 10px 0; border-bottom: 1.5px solid var(--ink); }
+thead th.num { text-align: right; }
+tbody td { padding: 14px 14px 14px 0; border-bottom: 1px solid var(--rule); color: var(--ink-soft); vertical-align: top; }
+tbody td.num { text-align: right; font-variant-numeric: tabular-nums; font-family: var(--mono); font-size: 0.82rem; }
+tbody td strong { color: var(--ink); }
+tbody tr.highlight { background: var(--paper-warm); }
+tbody tr.highlight td { color: var(--ink); }
+tbody tr.highlight td:first-child { padding-left: 12px; border-left: 3px solid var(--accent); }
+ul.clean, ol.clean { list-style: none; }
+ul.clean li, ol.clean li { padding: 12px 0 12px 24px; border-bottom: 1px solid var(--rule-soft); position: relative; font-size: 0.93rem; color: var(--ink-soft); line-height: 1.6; }
+ul.clean li::before { content: "\2192"; position: absolute; left: 0; top: 12px; color: var(--accent); font-weight: 600; }
+ol.clean { counter-reset: ck; }
+ol.clean li { counter-increment: ck; padding-left: 36px; }
+ol.clean li::before { content: counter(ck, decimal-leading-zero); position: absolute; left: 0; top: 12px; font-family: var(--mono); font-size: 0.78rem; color: var(--accent); font-weight: 600; }
+ul.checklist { list-style: none; }
+ul.checklist li { padding: 14px 0 14px 32px; border-bottom: 1px solid var(--rule-soft); position: relative; font-size: 0.92rem; color: var(--ink-soft); }
+ul.checklist li::before { content: "\2610"; position: absolute; left: 0; top: 12px; color: var(--accent); font-size: 1.1rem; line-height: 1; }
+ul.checklist li .qmeta { display: block; margin-top: 6px; font-family: var(--mono); font-size: 0.72rem; color: var(--muted); letter-spacing: 0.04em; }
+.tag { display: inline-block; font-family: var(--sans); font-size: 0.68rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; padding: 3px 9px; margin-right: 6px; margin-bottom: 4px; border: 1px solid var(--rule); color: var(--ink-soft); background: var(--paper); }
+.tag.accent { border-color: var(--accent); color: var(--accent); }
+.tag.teal { border-color: var(--teal); color: var(--teal); }
+.tag.warn { border-color: var(--warning); color: var(--warning); }
+.tag.neg { border-color: var(--negative); color: var(--negative); }
+.tag.pos { border-color: var(--positive); color: var(--positive); }
+.thesis-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; margin-top: 24px; border: 1px solid var(--ink); }
+.thesis-col { padding: 28px 28px 24px; }
+.thesis-col.bull { border-right: 1px solid var(--ink); }
+.thesis-col h3 { margin-bottom: 6px; }
+.thesis-col .head { font-family: var(--mono); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.14em; margin-bottom: 8px; font-weight: 600; }
+.thesis-col.bull .head { color: var(--positive); }
+.thesis-col.bear .head { color: var(--negative); }
+.thesis-col ul { list-style: none; margin-top: 14px; }
+.thesis-col ul li { padding: 10px 0 10px 22px; position: relative; font-size: 0.9rem; color: var(--ink-soft); line-height: 1.55; border-bottom: 1px dashed var(--rule-soft); }
+.thesis-col.bull ul li::before { content: "+"; position: absolute; left: 0; top: 9px; color: var(--positive); font-weight: 700; }
+.thesis-col.bear ul li::before { content: "\2212"; position: absolute; left: 0; top: 9px; color: var(--negative); font-weight: 700; }
+.recommendation { background: var(--ink); color: var(--paper); padding: 40px 44px; margin-top: 40px; border-left: 6px solid var(--accent); }
+.recommendation .head { font-family: var(--mono); font-size: 0.74rem; text-transform: uppercase; letter-spacing: 0.18em; color: var(--accent-soft); margin-bottom: 12px; font-weight: 600; }
+.recommendation h2 { color: var(--paper); margin-bottom: 14px; }
+.recommendation p { color: rgba(250, 249, 244, 0.86); font-size: 1rem; }
+.recommendation .actions { margin-top: 24px; padding-top: 20px; border-top: 1px solid rgba(250, 249, 244, 0.18); display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.recommendation .actions .h { font-family: var(--mono); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.14em; color: var(--accent-soft); margin-bottom: 10px; }
+.recommendation .actions ul { list-style: none; }
+.recommendation .actions ul li { padding: 6px 0 6px 22px; position: relative; font-size: 0.9rem; color: rgba(250, 249, 244, 0.92); line-height: 1.5; }
+.recommendation .actions ul li::before { content: "\25b8"; position: absolute; left: 0; top: 5px; color: var(--accent-soft); }
+footer { margin-top: 80px; padding-top: 28px; border-top: 1px solid var(--ink); font-family: var(--sans); font-size: 0.74rem; color: var(--muted); display: flex; justify-content: space-between; }
+footer .right { text-align: right; }
+.chart { width: 100%; margin: 18px 0 6px; background: var(--paper); }
+.chart-caption { font-family: var(--sans); font-size: 0.72rem; color: var(--muted); margin-top: 4px; font-style: italic; line-height: 1.5; }
+@media print {
+html, body { background: white; }
+.page { padding: 0.6in; max-width: none; }
+section { break-inside: avoid; page-break-inside: avoid; }
+.recommendation, .thesis-grid, .metric-grid, table { break-inside: avoid; page-break-inside: avoid; }
+h2 { break-after: avoid; }
+.cover, section.major-break { break-before: page; page-break-before: always; }
+a { color: inherit; text-decoration: none; }
+.no-print { display: none !important; }
+}
+@media (max-width: 760px) {
+.page { padding: 32px 22px; }
+h1 { font-size: 2.4rem; }
+h2 { font-size: 1.6rem; }
+.metric-grid { grid-template-columns: repeat(2, 1fr); }
+.metric { border-bottom: 1px solid var(--rule); }
+.cols-2, .cols-3, .cols-12-1, .thesis-grid, .recommendation .actions { grid-template-columns: 1fr; }
+.thesis-col.bull { border-right: none; border-bottom: 1px solid var(--ink); }
+.section-head { grid-template-columns: 1fr; gap: 8px; }
+}
+.site-nav { display: flex; align-items: center; justify-content: space-between; background: var(--ink); color: var(--paper); padding: 10px 40px; font-family: var(--sans); font-size: 0.78rem; letter-spacing: 0.04em; position: sticky; top: 0; z-index: 100; gap: 16px; }
+.site-nav a { color: rgba(250,249,244,0.7); text-decoration: none; }
+.site-nav a:hover { color: var(--paper); }
+.site-nav span[aria-hidden] { color: rgba(250,249,244,0.3); margin: 0 4px; }
+.site-nav .nav-meta { color: rgba(250,249,244,0.45); font-size: 0.75rem; }
+.site-nav .nav-action a { color: var(--accent); border: 1px solid rgba(184,131,28,0.5); border-radius: 3px; padding: 3px 10px; }
+.site-nav .nav-action a:hover { background: var(--accent); color: var(--paper); }
+</style>
+</head>
+<body>
+<nav class="site-nav">
+<div><a href="../../">Market Logic Investors</a> <span aria-hidden="true">/</span> <a href="../../">Deal Vault</a> <span aria-hidden="true">/</span> <a href="../">VC Deals</a> <span aria-hidden="true">/</span> <a href="./">Intellectible</a></div>
+<div class="nav-meta">1 of 1</div>
+</nav>
+<div class="page">
+<div class="cover">
+<div class="cover-meta">
+<div class="left">
+<strong>Market Logic Investors LLC</strong><br>
+Frontier Tech &middot; Gov Tech &middot; Public Sector SaaS<br>
+Investment Memorandum &middot; Confidential
+</div>
+<div class="right">
+<div class="stamp">Track</div>
+<strong>Memo Ref: ML-2026-IW-02</strong><br>
+Prepared: May 27, 2026<br>
+Author: H. Reganti
+</div>
+</div>
+<div class="cover-title">
+<h1>Intellectible, Inc.</h1>
+<span class="legal">Opportunity: Open SAFE ($20M cap, ~$250K capacity)</span>
+</div>
+<div class="kicker">Government Contracts &middot; AI Pricing Engine</div>
+<div class="cover-tag">A virtual-first behavioral health platform pairing in-network ketamine-assisted psychotherapy with a structured outcomes data layer. Capital-efficient, payer-integrated, and quietly stalled.</div>
+</div>
+
+<div class="metric-grid">
+<div class="metric">
+<span class="v">$2.95<small>M</small></span>
+<span class="l">Closed Round<br>[Seed-1A]</span>
+</div>
+<div class="metric">
+<span class="v">$20<small>M</small></span>
+<span class="l">SAFE Cap<br>[Open]</span>
+</div>
+<div class="metric accent">
+<span class="v">>50<small>%</small></span>
+<span class="l">HHS ARR<br>[Risk]</span>
+</div>
+<div class="metric">
+<span class="v">15</span>
+<span class="l">Paying<br>Customers</span>
+</div>
+<div class="metric teal">
+<span class="v">$41<small>K</small></span>
+<span class="l">Blended<br>ACV</span>
+</div>
+<div class="metric">
+<span class="v">5.8<small>x</small></span>
+<span class="l">LTV:CAC<br>[Deck]</span>
+</div>
+</div>
+
+<section class="no-rule">
+<div class="section-head">
+<div class="section-num">&sect; 01</div>
+<div class="section-title">
+<h2>Executive Summary</h2>
+<p class="sub">The thesis in one paragraph</p>
+</div>
+</div>
+<p>Intellectible is a government-focused SaaS company building AI-powered proposal and pricing automation for federal contractors. The company has strong early product-market fit with the Department of Health and Human Services (HHS) and adjacent agencies, real revenue (~$760K ARR), and a fundamentally sound technical wedge in the Pricing Engine. However, this is <strong>not</strong> a Series A opportunity. It is a concentrated customer-risk scenario with >50% ARR from a single anchor account, zero disclosed customer churn methodology, unverified GPU cost compression assumptions, and a $250K+ ARR discrepancy between reported figures and the financial model. The recommended action is <strong>Track &middot; Conditional Pass</strong> with a 12-month monitoring deadline: advance criteria require HHS concentration to fall below 40%, Pricing Engine adoption to reach 8+ production deployments with publicly referenceable metrics, and net retention to exceed 90% with 18+ month cohort tenure.</p>
+
+<h4 style="margin-top:28px;">What we like</h4>
+<p>First-mover positioning in AI-powered federal proposal automation. The Pricing Engine represents a category-defining wedge if it can scale before incumbents (Salesforce, ServiceNow, Microsoft) ship overlapping features. The HHS anchor account validates product-market fit in a high-value vertical.</p>
+
+<h4 style="margin-top:18px;">What concerns us</h4>
+<p>HHS concentration risk is the loudest signal. The lack of transparent churn cohort data, unverified GPU cost compression, ARR variance, and missing HHS contract termination clause disclosure creates an information asymmetry that prevents confident underwriting. The company's claims lack independent customer verification.</p>
+
+<h4 style="margin-top:18px;">Recommended next step</h4>
+<p><strong>Track with Q2 2027 monitoring deadline.</strong> Advance requires: (1) HHS dilution below 40% via 4+ new $100K+ logos, (2) Pricing Engine reaches 8+ production instances with customer-verified ROI, (3) net retention >90% with 18+ month cohort data. Pass if HHS contracts delay/decline or ARR growth <3% MoM for two consecutive quarters.</p>
+</section>
+
+<section>
+<div class="section-head">
+<div class="section-num">&sect; 02</div>
+<div class="section-title">
+<h2>The Binary Variables</h2>
+<p class="sub">What this deal actually turns on</p>
+</div>
+</div>
+<p>This is not a vote on whether Intellectible has product-market fit. It is a vote on two variables:</p>
+<ol class="clean">
+<li><strong>Can the Pricing Engine become a category-defining wedge</strong> before point-tool incumbents (Salesforce, ServiceNow, Microsoft) ship overlapping features?</li>
+<li><strong>Can HHS expansion economics replicate</strong> across 5+ comparable logos before concentration becomes a Series A liability?</li>
+</ol>
+<p style="margin-top:18px;">If both answer "yes" by Q2 2027, this becomes a fundable Series A at $15-25M pre. If either answers "no," this becomes an M&A conversation with Deltek, Salesforce Gov Cloud, or a federal systems integrator.</p>
+</section>
+
+<section>
+<div class="section-head">
+<div class="section-num">&sect; 03</div>
+<div class="section-title">
+<h2>Missing Diligence</h2>
+<p class="sub">The hidden data gaps</p>
+</div>
+</div>
+<ul class="clean">
+<li><strong>HHS Contract Structure:</strong> No disclosure of termination clauses or volume commitments for the anchor account (>50% of ARR). Multi-year lock or annual renewal?</li>
+<li><strong>Churn Reconciliation:</strong> "0% actual churn within ICP" lacks cohort-level breakdown. The model includes 25% annual churn, creating an un-reconciled 25-point gap.</li>
+<li><strong>GPU Cost Compression:</strong> Projected reduction from $4K to $2K per $100K ARR lacks vendor commitments or technical validation.</li>
+<li><strong>ARR Discrepancy:</strong> $250K+ variance between $760K reported ARR and $509,782 in the financial model. Which number is auditable?</li>
+</ul>
+</section>
+
+<section>
+<div class="section-head">
+<div class="section-num">&sect; 04</div>
+<div class="section-title">
+<h2>Capital Structure</h2>
+<p class="sub">Closed round + open SAFE</p>
+</div>
+</div>
+<table>
+<thead>
+<tr><th>Component</th><th>Details</th><th class="num">Amount</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>Seed-1A (Closed)</strong></td><td>$12M pre-money, $15M post</td><td class="num">$2.95M</td></tr>
+<tr><td><strong>Open SAFE</strong></td><td>$20M cap, ~$250K capacity</td><td class="num">~$250K</td></tr>
+<tr><td><strong>Cap Table</strong></td><td>Common 62%, Seed-1A 18.75%, ESOP 12.76%</td><td class="num">—</td></tr>
+</tbody>
+</table>
+</section>
+
+<section>
+<div class="section-head">
+<div class="section-num">&sect; 05</div>
+<div class="section-title">
+<h2>Competitive Reality</h2>
+<p class="sub">The incumbent migration risk</p>
+</div>
+</div>
+<p>While the deck highlights workflow runtime as a differentiator, incumbents like <strong>Deltek ProPricer</strong> present significant migration risks. The company's "loudest signal" is the <strong>lack of public ROI validation from customers</strong>. Metrics regarding the HHS EDU rollout are company-reported, not customer-verified.</p>
+<p style="margin-top:14px;">The market window for the Pricing Engine wedge is estimated at 12-18 months before Salesforce Gov Cloud or ServiceNow integrate comparable AI pricing modules into existing federal contractor workflows.</p>
+</section>
+
+<section>
+<div class="section-head">
+<div class="section-num">&sect; 06</div>
+<div class="section-title">
+<h2>Unit Economics</h2>
+<p class="sub">Reconciliation with disclosed data</p>
+</div>
+</div>
+<table>
+<thead>
+<tr><th>Metric</th><th>Value</th><th>Source</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>Blended Mature ACV</strong></td><td class="num">$41K</td><td>Deck</td></tr>
+<tr><td><strong>Gross Margin</strong></td><td class="num">85%+</td><td>Deck</td></tr>
+<tr><td><strong>LTV:CAC</strong></td><td class="num">5.8x</td><td>Deck (methodology opaque)</td></tr>
+<tr><td><strong>Aggregate LTV (standard calc)</strong></td><td class="num">$10.8M</td><td>Inferred</td></tr>
+<tr><td><strong>Aggregate LTV (model)</strong></td><td class="num">$6.7M</td><td>Model discrepancy</td></tr>
+</tbody>
+</table>
+<p style="margin-top:18px;">The LTV:CAC calculation methodology is not transparent. Standard SaaS formulas suggest an aggregate LTV of $10.8M, compared to the model's $6.7M. The $4.1M gap requires clarification.</p>
+</section>
+
+<section>
+<div class="section-head">
+<div class="section-num">&sect; 07</div>
+<div class="section-title">
+<h2>The HHS Paradox</h2>
+<p class="sub">Strongest proof point, greatest risk</p>
+</div>
+</div>
+<div class="callout">HHS is the company's strongest validation but also its concentration risk. The mitigation strategy requires adding <strong>4 new logos per month</strong>, a significant ramp from the current base of 15 paying customers.</div>
+<p style="margin-top:18px;">If the HHS EDU expansion trajectory to $400K continues as projected (currently >50% of ARR), concentration will worsen before it improves. The risk is binary: HHS contract renewal success vs. termination/renegotiation.</p>
+</section>
+
+<section>
+<div class="section-head">
+<div class="section-num">&sect; 08</div>
+<div class="section-title">
+<h2>Advance & Pass Criteria</h2>
+<p class="sub">12-month monitoring gates</p>
+</div>
+</div>
+<h4>Advance Criteria (12-month Track)</h4>
+<ul class="clean">
+<li>HHS concentration dilutes below 40% of ARR through 4+ new $100K+ logos</li>
+<li>Pricing Engine adoption reaches 8+ production deployments with publicly referenceable metrics</li>
+<li>Net retention stabilizes above 90% with cohort data demonstrating 18+ month tenure</li>
+</ul>
+
+<h4 style="margin-top:22px;">Pass Criteria</h4>
+<ul class="clean">
+<li>HHS contracts down or delays Pricing Engine rollout</li>
+<li>ARR growth rate falls below 3% month-over-month for 2 consecutive quarters</li>
+<li>Pricing Engine deployment stalls at <5 production instances by Q4 2026</li>
+</ul>
+
+<p style="margin-top:18px;"><strong>Monitoring Deadline:</strong> May 2027 Series A announcement or next fundraise, whichever occurs first.</p>
+</section>
+
+<section>
+<div class="section-head">
+<div class="section-num">&sect; 09</div>
+<div class="section-title">
+<h2>Conclusion</h2>
+<p class="sub">Fundable, not exceptional</p>
+</div>
+</div>
+<p>The deal is <strong>fundable but not exceptional</strong>. With $1.2M cash projected for the Series A (early 2028), the company faces high macro sensitivity. The Pricing Engine wedge has real category-capture potential, but customer concentration and missing diligence create downside asymmetry.</p>
+<p style="margin-top:14px;">The committee is advised to <strong>Track</strong> until Q2 2027 to see if:</p>
+<ol class="clean">
+<li>The Pricing Engine proves category-defining traction (8+ referenceable deployments)</li>
+<li>HHS concentration dilutes to <40% via new logo acquisition</li>
+<li>Churn, GPU costs, and ARR variance are reconciled with third-party audit</li>
+</ol>
+<p style="margin-top:18px;">If all three resolve positively, re-evaluate at Series A pricing. If any fail, this becomes an M&A target for Deltek or federal systems integrators, not a venture-scale opportunity.</p>
+</section>
+
+<div class="recommendation">
+<div class="head">IC Recommendation</div>
+<h2>Track &middot; Conditional Pass</h2>
+<p>Monitor for 12 months with defined advance/pass gates. Revisit at Series A or next financing event. If HHS concentration persists or Pricing Engine stalls, convert to M&A watch.</p>
+<div class="actions">
+<div>
+<div class="h">If Advance Criteria Met</div>
+<ul>
+<li>Re-evaluate at Series A round</li>
+<li>Request full data room and customer references</li>
+<li>Conduct independent technical audit of Pricing Engine</li>
+</ul>
+</div>
+<div>
+<div class="h">If Pass Criteria Triggered</div>
+<ul>
+<li>Convert to M&A watch (Deltek, Salesforce Gov Cloud)</li>
+<li>Close monitoring, no follow-on engagement</li>
+</ul>
+</div>
+</div>
+</div>
+
+<footer>
+<div class="left">
+&copy; 2026 Market Logic Investors LLC &middot; Confidential
+</div>
+<div class="right">
+Prepared May 27, 2026 &middot; ML-2026-IW-02
+</div>
+</footer>
+</div>
+</body>
+</html>
