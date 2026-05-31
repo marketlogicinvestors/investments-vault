@@ -1,1 +1,772 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PLANET.TECH · Investment Committee Memo · Market Logic</title>
+<style>
+:root{--ink:#0a1929;--ink-soft:#1c2e44;--paper:#faf9f4;--paper-warm:#f3efe3;--rule:#d4cfbf;--rule-soft:#e8e3d4;--muted:#5b6b7a;--muted-light:#8a98a5;--accent:#b8391c;--accent-soft:#d65a3a;--teal:#1f6b6b;--teal-soft:#4a8b8b;--teal-light:#b8d4d4;--positive:#2d6a4f;--warning:#b08800;--negative:#9b2226;--negative-light:#e8c5c5;--serif:'Iowan Old Style','Palatino Linotype',Palatino,'Book Antiqua',Georgia,serif;--sans:'Helvetica Neue',Helvetica,-apple-system,BlinkMacSystemFont,system-ui,sans-serif;--mono:'SF Mono',SFMono-Regular,Menlo,Monaco,Consolas,'Liberation Mono',monospace;}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{font-size:16px;text-size-adjust:100%;}
+body{font-family:var(--sans);background:var(--paper);color:var(--ink);line-height:1.55;font-weight:400;-webkit-font-smoothing:antialiased;}
+.page{max-width:1000px;margin:0 auto;padding:56px 56px 80px;}
+h1,h2,h3,h4,h5{font-family:var(--serif);font-weight:400;color:var(--ink);}
+h1{font-size:3.6rem;line-height:1.02;letter-spacing:-0.025em;}
+h2{font-size:2.05rem;line-height:1.12;letter-spacing:-0.015em;}
+h3{font-size:1.3rem;line-height:1.25;letter-spacing:-0.005em;}
+h4{font-family:var(--sans);font-weight:600;font-size:0.7rem;text-transform:uppercase;letter-spacing:0.16em;color:var(--muted);}
+h5{font-size:1rem;font-family:var(--sans);font-weight:600;}
+p{font-size:0.95rem;line-height:1.7;color:var(--ink-soft);}
+strong{color:var(--ink);font-weight:600;}
+em{font-style:italic;color:var(--ink);}
+.eyebrow{font-family:var(--sans);font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.2em;color:var(--accent);display:block;margin-bottom:18px;}
+.lede{font-family:var(--serif);font-size:1.25rem;line-height:1.5;color:var(--ink);font-weight:400;letter-spacing:-0.005em;}
+.kicker{font-family:var(--sans);font-size:0.75rem;font-weight:600;text-transform:uppercase;letter-spacing:0.12em;color:var(--teal);}
+.label{font-family:var(--sans);font-size:0.7rem;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);}
+.mono{font-family:var(--mono);font-size:0.85rem;}
+.cover{border-top:1px solid var(--ink);padding-top:32px;position:relative;}
+.cover-meta{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:84px;}
+.cover-meta .left,.cover-meta .right{font-family:var(--sans);font-size:0.78rem;color:var(--muted);}
+.cover-meta .right{text-align:right;}
+.cover-meta .right .stamp{display:inline-block;padding:4px 10px;border:1px solid var(--accent);color:var(--accent);font-weight:600;letter-spacing:0.12em;font-size:0.65rem;text-transform:uppercase;margin-bottom:8px;}
+.cover-title{margin-bottom:28px;}
+.cover-title .legal{display:block;font-family:var(--sans);font-size:0.78rem;color:var(--muted);margin-top:8px;letter-spacing:0.04em;}
+.cover-tag{font-family:var(--serif);font-style:italic;font-size:1.4rem;line-height:1.45;color:var(--ink-soft);max-width:720px;margin-bottom:56px;}
+.cover-tag::before{content:'\201C';font-size:2.2rem;line-height:0;vertical-align:-0.3em;color:var(--accent);margin-right:4px;}
+.cover-tag::after{content:'\201D';font-size:2.2rem;line-height:0;vertical-align:-0.3em;color:var(--accent);margin-left:2px;}
+.metric-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:0;border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);margin:32px 0;}
+.metric{padding:22px 16px 20px;border-right:1px solid var(--rule);text-align:left;}
+.metric:last-child{border-right:none;}
+.metric .v{font-family:var(--serif);font-size:2.1rem;line-height:1;letter-spacing:-0.02em;color:var(--ink);display:block;margin-bottom:6px;}
+.metric .v small{font-size:0.95rem;color:var(--muted);font-family:var(--serif);margin-left:1px;}
+.metric .l{font-family:var(--sans);font-size:0.68rem;font-weight:600;text-transform:uppercase;letter-spacing:0.12em;color:var(--muted);line-height:1.3;}
+.metric.accent .v{color:var(--accent);}
+.metric.teal .v{color:var(--teal);}
+section{margin-top:64px;padding-top:32px;border-top:1px solid var(--rule);}
+section.no-rule{border-top:none;}
+.section-head{display:grid;grid-template-columns:120px 1fr;gap:32px;margin-bottom:28px;align-items:baseline;}
+.section-num{font-family:var(--mono);font-size:0.78rem;color:var(--muted);letter-spacing:0.05em;border-top:2px solid var(--ink);padding-top:8px;text-transform:uppercase;font-weight:600;}
+.section-title h2{margin-bottom:8px;}
+.section-title .sub{font-family:var(--serif);font-style:italic;color:var(--muted);font-size:1.05rem;}
+.cols-2{display:grid;grid-template-columns:1fr 1fr;gap:36px;margin-top:16px;}
+.cols-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px;margin-top:16px;}
+.cols-12-1{display:grid;grid-template-columns:1fr 2fr;gap:36px;margin-top:16px;}
+.card{background:var(--paper-warm);padding:22px 24px;border:1px solid var(--rule);}
+.card.dark{background:var(--ink);color:var(--paper);}
+.card.dark h3,.card.dark h4{color:var(--paper);}
+.card.dark p{color:rgba(250,249,244,0.85);}
+.card.dark .label{color:var(--muted-light);}
+.callout{border-left:3px solid var(--accent);padding:4px 0 4px 20px;margin:18px 0;font-family:var(--serif);font-style:italic;font-size:1.05rem;color:var(--ink);}
+.pull-quote{font-family:var(--serif);font-size:1.4rem;line-height:1.4;color:var(--ink);border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);padding:28px 0;margin:32px 0;text-align:center;letter-spacing:-0.005em;}
+.pull-quote .attr{display:block;font-family:var(--sans);font-size:0.72rem;font-weight:600;text-transform:uppercase;letter-spacing:0.14em;color:var(--muted);margin-top:14px;}
+table{width:100%;border-collapse:collapse;font-family:var(--sans);font-size:0.88rem;margin-top:14px;}
+thead th{text-align:left;font-weight:600;font-size:0.7rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);padding:10px 14px 10px 0;border-bottom:1.5px solid var(--ink);}
+thead th.num{text-align:right;}
+tbody td{padding:14px 14px 14px 0;border-bottom:1px solid var(--rule);color:var(--ink-soft);vertical-align:top;}
+tbody td.num{text-align:right;font-variant-numeric:tabular-nums;font-family:var(--mono);font-size:0.82rem;}
+tbody td strong{color:var(--ink);}
+tbody tr.highlight{background:var(--paper-warm);}
+tbody tr.highlight td{color:var(--ink);}
+tbody tr.highlight td:first-child{padding-left:12px;border-left:3px solid var(--accent);}
+ul.clean,ol.clean{list-style:none;}
+ul.clean li,ol.clean li{padding:12px 0 12px 24px;border-bottom:1px solid var(--rule-soft);position:relative;font-size:0.93rem;color:var(--ink-soft);line-height:1.6;}
+ul.clean li::before{content:'\2192';position:absolute;left:0;top:12px;color:var(--accent);font-weight:600;}
+ol.clean{counter-reset:ck 0;}
+ol.clean li{counter-increment:ck 1;padding-left:36px;}
+ol.clean li::before{content:counter(ck,decimal-leading-zero);position:absolute;left:0;top:12px;font-family:var(--mono);font-size:0.78rem;color:var(--accent);font-weight:600;}
+.tag{display:inline-block;font-family:var(--sans);font-size:0.68rem;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;padding:3px 9px;margin-right:6px;margin-bottom:4px;border:1px solid var(--rule);color:var(--ink-soft);background:var(--paper);}
+.tag.accent{border-color:var(--accent);color:var(--accent);}
+.tag.teal{border-color:var(--teal);color:var(--teal);}
+.tag.warn{border-color:var(--warning);color:var(--warning);}
+.tag.neg{border-color:var(--negative);color:var(--negative);}
+.tag.pos{border-color:var(--positive);color:var(--positive);}
+.thesis-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:24px;border:1px solid var(--ink);}
+.thesis-col{padding:28px 28px 24px;}
+.thesis-col.bull{border-right:1px solid var(--ink);}
+.thesis-col h3{margin-bottom:6px;}
+.thesis-col .head{font-family:var(--mono);font-size:0.72rem;text-transform:uppercase;letter-spacing:0.14em;margin-bottom:8px;font-weight:600;}
+.thesis-col.bull .head{color:var(--positive);}
+.thesis-col.bear .head{color:var(--negative);}
+.thesis-col ul{list-style:none;margin-top:14px;}
+.thesis-col ul li{padding:10px 0 10px 22px;position:relative;font-size:0.9rem;color:var(--ink-soft);line-height:1.55;border-bottom:1px dashed var(--rule-soft);}
+.thesis-col.bull ul li::before{content:'+';position:absolute;left:0;top:9px;color:var(--positive);font-weight:700;}
+.thesis-col.bear ul li::before{content:'\2212';position:absolute;left:0;top:9px;color:var(--negative);font-weight:700;}
+ul.checklist{list-style:none;}
+ul.checklist li{padding:14px 0 14px 32px;border-bottom:1px solid var(--rule-soft);position:relative;font-size:0.92rem;color:var(--ink-soft);}
+ul.checklist li::before{content:'\2610';position:absolute;left:0;top:12px;color:var(--accent);font-size:1.1rem;line-height:1;}
+ul.checklist li .qmeta{display:block;margin-top:6px;font-family:var(--mono);font-size:0.72rem;color:var(--muted);letter-spacing:0.04em;}
+.recommendation{background:var(--ink);color:var(--paper);padding:40px 44px;margin-top:40px;border-left:6px solid var(--accent);}
+.recommendation .head{font-family:var(--mono);font-size:0.74rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--accent-soft);margin-bottom:12px;font-weight:600;}
+.recommendation h2{color:var(--paper);margin-bottom:14px;}
+.recommendation p{color:rgba(250,249,244,0.86);font-size:1rem;}
+.recommendation .actions{margin-top:24px;padding-top:20px;border-top:1px solid rgba(250,249,244,0.18);display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+.recommendation .actions .h{font-family:var(--mono);font-size:0.7rem;text-transform:uppercase;letter-spacing:0.14em;color:var(--accent-soft);margin-bottom:10px;}
+.recommendation .actions ul{list-style:none;}
+.recommendation .actions ul li{padding:6px 0 6px 22px;position:relative;font-size:0.9rem;color:rgba(250,249,244,0.92);line-height:1.5;}
+.recommendation .actions ul li::before{content:'\25B8';position:absolute;left:0;top:5px;color:var(--accent-soft);}
+footer{margin-top:80px;padding-top:28px;border-top:1px solid var(--ink);font-family:var(--sans);font-size:0.74rem;color:var(--muted);display:flex;justify-content:space-between;}
+footer .right{text-align:right;}
+.chart{width:100%;margin:18px 0 6px;background:var(--paper);border:1px solid var(--rule);border-radius:4px;overflow:hidden;}
+.chart img{width:100%;display:block;}
+.chart-caption{font-family:var(--sans);font-size:0.72rem;color:var(--muted);margin-top:4px;font-style:italic;line-height:1.5;}
+.site-nav{display:flex;align-items:center;justify-content:space-between;background:var(--ink);color:var(--paper);padding:10px 40px;font-family:var(--sans);font-size:0.78rem;letter-spacing:0.04em;position:sticky;top:0;z-index:100;gap:16px;}
+.site-nav a{color:rgba(250,249,244,0.7);text-decoration:none;}
+.site-nav a:hover{color:var(--paper);}
+.site-nav span[aria-hidden]{color:rgba(250,249,244,0.3);margin:0 4px;}
+.site-nav .nav-meta{color:rgba(250,249,244,0.45);font-size:0.75rem;}
+.site-nav .nav-action a{color:var(--accent-soft);border:1px solid rgba(214,90,58,0.5);border-radius:3px;padding:3px 10px;}
+.site-nav .nav-action a:hover{background:var(--accent);color:var(--paper);}
+.toc-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 36px;margin-top:8px;}
+.toc-grid a{display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-bottom:1px solid var(--rule-soft);font-family:var(--sans);font-size:0.9rem;color:var(--ink-soft);text-decoration:none;}
+.toc-grid a:hover{color:var(--accent);}
+.toc-grid a .n{font-family:var(--mono);font-size:0.75rem;color:var(--muted);}
+@media print{html,body{background:white;}.page{padding:0.6in;max-width:none;}section{break-inside:avoid;}.recommendation,.thesis-grid,.metric-grid,table{break-inside:avoid;}h2{break-after:avoid;}.cover,section.major-break{break-before:page;}a{color:inherit;text-decoration:none;}.no-print{display:none!important;}}
+@media (max-width:760px){.page{padding:32px 22px;}h1{font-size:2.4rem;}h2{font-size:1.6rem;}.metric-grid{grid-template-columns:repeat(2,1fr);}.metric{border-bottom:1px solid var(--rule);}.cols-2,.cols-3,.cols-12-1,.thesis-grid,.recommendation .actions,.toc-grid{grid-template-columns:1fr;}.thesis-col.bull{border-right:none;border-bottom:1px solid var(--ink);}.section-head{grid-template-columns:1fr;gap:8px;}}
+sup{font-size:0.62em;font-weight:600;color:var(--teal);vertical-align:super;line-height:0;}.proj-label{display:inline-block;font-family:var(--mono);font-size:0.62rem;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:var(--warning);border:1px solid var(--warning);border-radius:3px;padding:1px 6px;margin-left:4px;vertical-align:middle;}#references{margin-top:64px;padding-top:32px;border-top:1px solid var(--rule);}#references ol{list-style:none;counter-reset:ref;}#references li{counter-increment:ref;padding:10px 0 10px 36px;border-bottom:1px solid var(--rule-soft);position:relative;font-family:var(--sans);font-size:0.85rem;color:var(--ink-soft);line-height:1.5;}#references li::before{content:"["counter(ref)"]";position:absolute;left:0;top:10px;font-family:var(--mono);font-size:0.78rem;color:var(--accent);font-weight:600;}#references .note{color:var(--muted);font-style:italic;}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="site-nav" aria-label="breadcrumb">
+  <span>
+    <a href="../../">Market Logic Investors</a><span aria-hidden="true">/</span><a href="../../">Deal Vault</a><span aria-hidden="true">/</span><a href="../">VC Deals</a><span aria-hidden="true">/</span><a href="./">PLANET.TECH</a><span aria-hidden="true"></span>
+    <span class="nav-meta">Physical AI · Livestock Health · Climate Tech</span>
+  </span>
+  <span class="nav-action"><a href="#decision">Decision →</a></span>
+</nav>
+
+<div class="page">
+
+<!-- COVER -->
+<header class="cover">
+  <div class="cover-meta">
+    <div class="left">
+      <strong style="color:var(--ink);font-size:0.85rem;">Market Logic Investors LLC</strong><br>
+      Physical AI · Livestock Health · Ag-Tech + Climate<br>
+      Investment Memorandum · Confidential
+    </div>
+    <div class="right">
+      <span class="stamp">Angel Round — Pre-Revenue</span><br>
+      Memo Ref: ML-2026-PT-01<br>
+      Prepared: May 31, 2026<br>
+      Author: Market Logic Research<br>
+      <span style="color:var(--accent);font-weight:600;">$500K Angel SAFE · $6M Post-Money Cap</span>
+    </div>
+  </div>
+
+  <div class="cover-title">
+    <span class="eyebrow">Physical AI · Cattle Health · Ag-Tech Seed</span>
+    <h1>PLANET.TECH</h1>
+    <span class="legal">PLANET.TECH, Inc. · planet.tech · Austin, TX · Founded 2024</span>
+  </div>
+
+  <p class="cover-tag">A physical-AI platform that reads a cow's heartbeat through her hide — combining pulse oximetry, GPS, and behavioral sensors in a $35-COGS collar — to detect cattle illness days before visible symptoms, distributed through veterinary practices as a channel to 50+ farms each, with a second-act methane-capture platform converting cattle burps into renewable natural gas.</p>
+
+  <div class="metric-grid">
+    <div class="metric teal"><span class="v">$500<small>K</small></span><span class="l">Angel Round Size <span style="display:block;font-size:0.85em;opacity:0.72;font-weight:400;text-transform:none;letter-spacing:0;">(SAFE, $6M post-money cap)</span></span></div>
+    <div class="metric"><span class="v">$35</span><span class="l">COGS Per Collar <span style="display:block;font-size:0.85em;opacity:0.72;font-weight:400;text-transform:none;letter-spacing:0;">(claimed; unverified BOM)</span></span></div>
+    <div class="metric"><span class="v">17<small>K</small></span><span class="l">Heads Signed Up <span style="display:block;font-size:0.85em;opacity:0.72;font-weight:400;text-transform:none;letter-spacing:0;">(pre-ship; unaudited)</span></span></div>
+    <div class="metric teal"><span class="v">46</span><span class="l">Farms Pipeline <span style="display:block;font-size:0.85em;opacity:0.72;font-weight:400;text-transform:none;letter-spacing:0;">(106K cattle; pre-launch)</span></span></div>
+    <div class="metric"><span class="v">$10</span><span class="l">Per Head / Month <span style="display:block;font-size:0.85em;opacity:0.72;font-weight:400;text-transform:none;letter-spacing:0;">(subscription; 5-wk payback claimed)</span></span></div>
+    <div class="metric accent"><span class="v">6.2<small>/10</small></span><span class="l">Composite Score <span style="display:block;font-size:0.85em;opacity:0.72;font-weight:400;text-transform:none;letter-spacing:0;">(pending validation)</span></span></div>
+  </div>
+
+  <div class="cols-3" style="margin-top:24px;">
+    <div class="card"><span class="label">Stage</span><p style="margin-top:6px;">Angel / Pre-Seed · Pre-Revenue · First devices shipping July 2026</p></div>
+    <div class="card"><span class="label">Round</span><p style="margin-top:6px;">$500K angel SAFE at $6M post-money cap. Pre-seed opens July 2026 at higher valuation.</p></div>
+    <div class="card dark"><span class="label">Recommendation</span><p style="margin-top:6px;"><strong style="color:var(--accent-soft);">CONDITIONAL SMALL CHECK</strong> — milestone-gated; advance after diligence sprint clears four gates.</p></div>
+  </div>
+</header>
+
+<!-- TOC -->
+<section class="no-rule" style="margin-top:48px;">
+  <div class="section-head">
+    <div class="section-num">Contents</div>
+    <div class="section-title"><h2>Sections</h2></div>
+  </div>
+  <div class="toc-grid">
+    <a href="#s01"><span>The Thesis in One Paragraph</span><span class="n">§ 01</span></a>
+    <a href="#s02"><span>What PLANET.TECH Actually Does</span><span class="n">§ 02</span></a>
+    <a href="#s03"><span>The Pulse Oximetry Wedge</span><span class="n">§ 03</span></a>
+    <a href="#s04"><span>The Competitive Advantage</span><span class="n">§ 04</span></a>
+    <a href="#s05"><span>Traction and Demand Signals</span><span class="n">§ 05</span></a>
+    <a href="#s06"><span>Go-to-Market: Vet Channel</span><span class="n">§ 06</span></a>
+    <a href="#s07"><span>Financial Overview &amp; Unit Economics</span><span class="n">§ 07</span></a>
+    <a href="#s08"><span>Market Context</span><span class="n">§ 08</span></a>
+    <a href="#s09"><span>Risk Register</span><span class="n">§ 09</span></a>
+    <a href="#s10"><span>The Moola / Methane Option</span><span class="n">§ 10</span></a>
+    <a href="#s11"><span>Management Team</span><span class="n">§ 11</span></a>
+    <a href="#s12"><span>Competitive Landscape</span><span class="n">§ 12</span></a>
+    <a href="#s13"><span>Path to Pre-Seed and Beyond</span><span class="n">§ 13</span></a>
+    <a href="#s14"><span>Bull and Bear, Side by Side</span><span class="n">§ 14</span></a>
+    <a href="#s15"><span>Decision and Conditions</span><span class="n">§ 15</span></a>
+  </div>
+</section>
+
+<!-- §01 THESIS -->
+<section id="s01" class="major-break">
+  <div class="section-head">
+    <div class="section-num">§ 01</div>
+    <div class="section-title">
+      <h2>The Thesis in One Paragraph</h2>
+      <div class="sub">What you'd say if the partner stopped you in the hallway.</div>
+    </div>
+  </div>
+  <p class="lede" style="margin-bottom:20px;">PLANET.TECH is a pre-revenue angel bet on a $35-COGS cattle health collar that claims a sensor capability no competitor offers — pulse oximetry through hide — distributed through veterinarians into a cattle health market that sits at the epicenter of a real, government-confirmed biosecurity crisis, at a $6M post-money cap that is 333× cheaper than the category's most recently validated comparable.</p>
+  <p>The company is run by a door-to-door sales founder selling farm-to-farm, a two-time biomedical engineer CTO, and an aerospace engineer VP Engineering — an unconventional team that nobody inside ag would have assembled, which is partly why it might work. The $500K angel round exists to ship 1,000 collars by July 2026, sign paying beta farms, and fund a 100-cow Texas A&M pilot in September 2026, then open a priced pre-seed "from proof, not promises." The entry price is attractive. The core risk is hardware and clinical validation: if the pulse-ox-through-hide signal is noisy or clinically useless in real cattle environments, the differentiation collapses. The committee votes on whether the four diligence gates below — sensor data, verified customer pipeline, manufacturing BOM, and vet channel proof — can be cleared before close.</p>
+
+  <div class="thesis-grid">
+    <div class="thesis-col bull">
+      <div class="head">What We Like</div>
+      <ul>
+        <li>The New World Screwworm outbreak has closed the US–Mexico cattle border for 12+ months — government-confirmed, independently verified urgency, not deck-manufactured.<sup>[1][2]</sup></li>
+        <li>Only cattle collar on the market claiming pulse oximetry. No competitor — Merck/Allflex, CowManager, smaXtec, or Halter — offers heart rate and blood oxygen through hide.<sup>[3]</sup></li>
+        <li>Halter's $220M Series E at $2B valuation led by Founders Fund (March 2026) proves the category and the exit ceiling. PLANET.TECH enters at $6M cap — 333× discount to the validated comparable.<sup>[4]</sup></li>
+        <li>$35 COGS, if verified, is the lowest in the category and directly attacks the primary adoption barrier: upfront hardware cost.</li>
+        <li>Vet channel model is the most original GTM insight in the market — routes around the high-CAC, farm-by-farm direct-sales trap that kills most ag-tech hardware.</li>
+        <li>Dual-product architecture: Mootality provides the health wedge; Moola monetizes methane from the same collar platform — one CAC, two revenue streams.</li>
+      </ul>
+    </div>
+    <div class="thesis-col bear">
+      <div class="head">What Concerns Us</div>
+      <ul>
+        <li>Entire deal is pre-revenue. "17K heads signed up" and "46 farms / 106,000 cattle" are company-provided, unaudited, and contractually undefined. Signed-up is not the same as contracted or paid.</li>
+        <li>Pulse oximetry through bovine hide under motion, mud, rain, temperature extremes, and variable pigmentation is hard. The "BPM 86→112" slide is an anecdote, not validation data. Clinical usefulness is unproven.</li>
+        <li>$35 COGS is likely a component estimate, not fully-loaded. Connectivity, battery, NRE, fulfillment, warranty, and yield assumptions are missing.</li>
+        <li>8-person equity-only team is high-conviction but fragile — no cash runway buffer and no deep ag-industry, regulatory, or supply-chain expertise evident on the deck.</li>
+        <li>Moola / methane capture is a speculative second act. Enteric capture from free-ranging cattle via wearable is unproven at commercial scale and depends on volatile carbon credit and LCFS policy.</li>
+        <li>Halter is actively expanding into the US market — the "NZ only" framing in the deck is stale.<sup>[4]</sup></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- §02 PRODUCT -->
+<section id="s02">
+  <div class="section-head">
+    <div class="section-num">§ 02</div>
+    <div class="section-title">
+      <h2>What PLANET.TECH Actually Does</h2>
+      <div class="sub">Stack, sensor modalities, distribution model.</div>
+    </div>
+  </div>
+  <table>
+    <thead><tr><th>Field</th><th>Detail</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Legal Entity</strong></td><td>PLANET.TECH, Inc.</td></tr>
+      <tr><td><strong>Founded</strong></td><td>2024</td></tr>
+      <tr><td><strong>HQ</strong></td><td>Austin, TX</td></tr>
+      <tr><td><strong>Web</strong></td><td>planet.tech</td></tr>
+      <tr><td><strong>Core Product</strong></td><td>Mootality — cattle health monitoring collar</td></tr>
+      <tr><td><strong>Second Product</strong></td><td>Moola — enteric methane capture and monetization layer on same hardware platform</td></tr>
+      <tr><td><strong>Distribution</strong></td><td>Veterinary practices as channel; each practice covers 50–100 farms. Direct farm-to-farm by CEO as primary near-term motion.</td></tr>
+      <tr><td><strong>Customer Segment</strong></td><td>Beef and dairy cattle farmers and ranchers; vet practices as B2B2C channel partners</td></tr>
+    </tbody>
+  </table>
+
+  <p style="margin-top:24px;">PLANET.TECH's Mootality collar integrates four sensor and compute layers into a single form-factor device. <strong>Pulse oximetry</strong> measures heart rate and blood oxygen through the hide, without shaving — the claimed category differentiator that no competitor offers. <strong>GPS</strong> provides real-time location, geofencing, and herd tracking. A <strong>dual accelerometer</strong> captures activity, gait, posture, and behavioral patterns. <strong>On-device AI</strong> establishes individual per-cow baselines across all parameters simultaneously, enabling anomaly detection relative to that specific animal rather than herd averages. The collar is priced at $10/head/month and targets a 5-week farmer payback from avoided mortality and treatment costs. COGS is claimed at $35/collar — the company states this is the lowest in the industry.</p>
+
+  <p style="margin-top:14px;">The second product, <strong>Moola</strong>, repurposes the same collar platform to capture enteric methane emissions from cattle. The company reports 34% field capture efficiency as of late 2025, up from 3% at launch, and projects $400–600/cow/year in new revenue for farmers through renewable natural gas, carbon credits, or sustainable aviation fuel sales. For investment purposes, Moola should be underwritten as a free call option — the health wearable business stands alone as the base case.</p>
+
+  <div class="callout" style="margin-top:24px;">The product positioning is deliberately sequential: Mootality gets PLANET.TECH on farms, builds trust, and collects biological data. Farmers then upgrade to Moola. One acquisition cost. Two revenue streams. A compounding data moat as the collar population grows.</div>
+</section>
+
+<!-- §03 PULSE OX WEDGE -->
+<section id="s03" class="major-break">
+  <div class="section-head">
+    <div class="section-num">§ 03</div>
+    <div class="section-title">
+      <h2>The Pulse Oximetry Wedge</h2>
+      <div class="sub">From sensor claim to clinical outcome — the make-or-break diligence question.</div>
+    </div>
+  </div>
+  <p>The company's central differentiation claim is that no competitor offers pulse oximetry on a cattle collar. That categorical claim is independently corroborated: a review of Merck/Allflex SenseHub, CowManager, smaXtec, and Halter confirms that current cattle-monitoring products rely on body temperature (infrared thermistor), activity (accelerometer), rumination, and behavioral inference — not direct blood-oxygenation measurement.<sup>[3][5]</sup> The deck's competitive table correctly identifies this gap.</p>
+
+  <p style="margin-top:14px;">The critical unknown is whether the pulse-ox signal is <em>clinically useful</em>, not merely technically novel. The deck shows a single data point: BPM 86 → 112 on Day 01, Test 01. That is an anecdote, not a validation study. The questions the committee needs answered before advancing capital are:</p>
+
+  <h4 style="margin-top:24px;margin-bottom:4px;">Core Sensor Validation Questions</h4>
+  <ul class="checklist">
+    <li>What is the measurement accuracy for heart rate and SpO2 across multiple breeds, hide colors, hair lengths, and movement states compared to a veterinary-grade reference device?
+      <span class="qmeta">DILIGENCE GATE 1 — must be cleared before close</span>
+    </li>
+    <li>How does signal quality degrade under real-field conditions: mud, rain, cold, heat, collar fit variation, sweating, and running?
+      <span class="qmeta">Hardware / sensor robustness</span>
+    </li>
+    <li>What is the detection sensitivity and specificity for each of the 17 targeted disease conditions? What are the false-positive and false-negative rates?
+      <span class="qmeta">Clinical utility threshold</span>
+    </li>
+    <li>What is the measured early-detection lead time versus visual inspection and activity-only systems?
+      <span class="qmeta">Core value proposition proof</span>
+    </li>
+    <li>What is the Texas A&M P1 pilot protocol and what specific endpoints will it measure?
+      <span class="qmeta">Structured validation catalyst</span>
+    </li>
+  </ul>
+
+  <p style="margin-top:20px;">The Pricing Engine analogy from Intellectible applies here: in that deal, production status at named accounts was the most important update. For PLANET.TECH, the equivalent inflection point is Texas A&M pilot data showing signal accuracy and disease detection lead time versus a control group. That is the single most important near-term catalyst for this investment — and why the right posture is a conditional small check now rather than a full allocation before data.</p>
+</section>
+
+<!-- §04 COMPETITIVE ADVANTAGE -->
+<section id="s04">
+  <div class="section-head">
+    <div class="section-num">§ 04</div>
+    <div class="section-title">
+      <h2>The Competitive Advantage</h2>
+      <div class="sub">Why this platform is potentially hard to replicate — and what must be proven.</div>
+    </div>
+  </div>
+  <p>PLANET.TECH's defensibility rests on three layers, in descending order of verifiability:</p>
+  <ol class="clean" style="margin-top:8px;">
+    <li><strong>Sensor IP — Pulse Oximetry Through Bovine Hide.</strong> Seven patents filed covering the sensing method. If the method works and the patents are defensible, this creates a genuine technical moat that cannot be copied by a software update to an existing platform. The moat depends entirely on patent claim scope and sensor accuracy validation. Request patent application numbers and claim summaries.</li>
+    <li><strong>Per-Animal Biological Data Moat.</strong> On-device AI establishes individual baselines per cow. As the collar population grows, PLANET.TECH accumulates the largest and most granular cattle biometric dataset in existence. This creates compounding switching costs — a farmer who leaves loses years of individualized baseline data — and creates a training dataset for disease-detection models that new entrants cannot replicate quickly.</li>
+    <li><strong>Vet Channel Lock-In.</strong> If veterinary practices adopt the multi-farm command center, they become embedded in the distribution and workflow layer. A vet who onboards 50 farms to PLANET.TECH's platform has strong economic and operational incentive to stay. This is a network-effect distribution moat, not a product moat — it depends on execution, not IP.</li>
+    <li><strong>Cost Structure Advantage.</strong> At $35 COGS (if verified), PLANET.TECH has structural room to price aggressively against $75–175/head incumbents while maintaining margin. This advantage is real only if the BOM holds at production volumes, including connectivity, battery, warranty, and NRE amortization.</li>
+  </ol>
+</section>
+
+<!-- §05 TRACTION -->
+<section id="s05" class="major-break">
+  <div class="section-head">
+    <div class="section-num">§ 05</div>
+    <div class="section-title">
+      <h2>Traction and Demand Signals</h2>
+      <div class="sub">Numbers that matter — sources tagged, quality rated.</div>
+    </div>
+  </div>
+  <table>
+    <thead>
+      <tr><th>Metric</th><th>Value</th><th>Source</th><th>Quality</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>Heads signed up</strong></td><td><strong>17,000</strong></td><td><span class="mono" style="color:var(--muted);font-size:0.72rem;">[DECK]</span></td><td><span class="tag warn">UNVERIFIED — contract quality unknown</span></td></tr>
+      <tr><td><strong>Farms in pipeline</strong></td><td><strong>46 farms</strong></td><td><span class="mono" style="color:var(--muted);font-size:0.72rem;">[DECK]</span></td><td><span class="tag warn">UNVERIFIED — LOI vs. paid unknown</span></td></tr>
+      <tr><td><strong>Cattle in pipeline</strong></td><td><strong>106,000</strong></td><td><span class="mono" style="color:var(--muted);font-size:0.72rem;">[DECK]</span></td><td><span class="tag warn">UNVERIFIED — access vs. contracted</span></td></tr>
+      <tr><td><strong>Devices shipped</strong></td><td><strong>0 (pre-launch)</strong></td><td><span class="mono" style="color:var(--muted);font-size:0.72rem;">[DECK]</span></td><td><span class="tag neg">PRE-REVENUE — no paying cohort</span></td></tr>
+      <tr><td><strong>Device target — July 2026</strong></td><td><strong>1,000 shipped</strong></td><td><span class="mono" style="color:var(--muted);font-size:0.72rem;">[DECK]</span></td><td><span class="tag teal">MILESTONE — verify manufacturing readiness</span></td></tr>
+      <tr><td><strong>Device target — EOY 2026</strong></td><td><strong>7,000 deployed</strong></td><td><span class="mono" style="color:var(--muted);font-size:0.72rem;">[DECK]</span></td><td><span class="tag teal">PROJECTION — verify production schedule</span></td></tr>
+      <tr><td><strong>Texas A&amp;M P1 pilot</strong></td><td><strong>100 cows · Sept 2026</strong></td><td><span class="mono" style="color:var(--muted);font-size:0.72rem;">[DECK]</span></td><td><span class="tag teal">KEY CATALYST — request pilot protocol</span></td></tr>
+      <tr><td><strong>Methane capture efficiency</strong></td><td><strong>34% field efficiency</strong></td><td><span class="mono" style="color:var(--muted);font-size:0.72rem;">[DECK / LinkedIn]</span></td><td><span class="tag warn">UNVERIFIED — enteric capture is extraordinary claim</span></td></tr>
+      <tr class="highlight"><td><strong>Paying revenue</strong></td><td><strong>$0 (pre-launch)</strong></td><td><span class="mono" style="color:var(--muted);font-size:0.72rem;">[DECK]</span></td><td><span class="tag neg">PRE-REVENUE — all traction is forward-looking</span></td></tr>
+    </tbody>
+  </table>
+
+  <p style="margin-top:18px;">The entire traction narrative is pre-launch. "Signed up" language throughout the deck is undefined — it can range from a casual waitlist opt-in to a signed LOI with a deposit. The committee should treat the 17K heads / 46 farms / 106K cattle figures as potential-demand signals, not contracted backlog. <strong>Diligence Gate 2</strong> requires the company to provide a named customer pipeline table with contract status, pricing, payment confirmation, and planned deployment timing before capital is committed.</p>
+</section>
+
+<!-- §06 GTM -->
+<section id="s06">
+  <div class="section-head">
+    <div class="section-num">§ 06</div>
+    <div class="section-title">
+      <h2>Go-to-Market: The Vet Channel</h2>
+      <div class="sub">The most original distribution insight in the deck — and the most important unproven thesis.</div>
+    </div>
+  </div>
+  <p><strong>Channel thesis:</strong> There are approximately 2,500 veterinary practices in the US, each managing health across 50–100 farms. PLANET.TECH offers vets a multi-farm command center at $1/head/month — no upfront cost, pure margin for the vet — making each vet practice a warm-introduction funnel to 50+ farms. One vet adoption equals 50+ farm warm intros, compressing the cost and time of farm-by-farm direct sales.</p>
+
+  <div class="cols-2" style="margin-top:20px;">
+    <div class="card">
+      <h4 style="margin-bottom:10px;">Land Motion</h4>
+      <ul class="clean" style="margin-top:0;">
+        <li>CEO sells farm-to-farm directly as primary near-term GTM — top-2% nationally in door-to-door sales</li>
+        <li>Target beachhead: California (2.4M cattle, $288M TAM) as initial geography</li>
+        <li>Direct approach to farm operators; complement with vet-referred intros</li>
+        <li>$10/head/month subscription; 5-week payback claim must be validated with ROI bridge</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h4 style="margin-bottom:10px;">Expand Motion via Vets</h4>
+      <ul class="clean" style="margin-top:0;">
+        <li>Vet platform at $1/head/month — no upfront cost, pure margin for practice</li>
+        <li>No multi-farm vet command center exists anywhere today — claimed whitespace</li>
+        <li>One vet practice = access to 50–100 farms; 2,500 practices nationally</li>
+        <li>Vet endorsement converts cold farm sale into trusted referral with clinical champion</li>
+      </ul>
+    </div>
+  </div>
+
+  <p style="margin-top:20px;"><strong>Diligence Gate 3</strong> requires evidence that at least one veterinary practice has signed a partner agreement, understands the economics, and has begun using or agreed to pilot the multi-farm command center. The vet channel model is compelling in structure but has zero demonstrated traction. Without a live vet partner, it remains a go-to-market hypothesis — and the company's entire low-CAC thesis depends on it.</p>
+</section>
+
+<!-- §07 FINANCIALS -->
+<section id="s07" class="major-break">
+  <div class="section-head">
+    <div class="section-num">§ 07</div>
+    <div class="section-title">
+      <h2>Financial Overview &amp; Unit Economics</h2>
+      <div class="sub">Model, deployment math, and ARR ramp if milestones are met.</div>
+    </div>
+  </div>
+
+  <h4 style="margin-bottom:4px;">Unit Economics — Stated vs. Required Verification</h4>
+  <table>
+    <thead><tr><th>Metric</th><th>Value</th><th>Assumption / Verification Status</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Subscription price</strong></td><td class="num">$10 / head / month</td><td>Deck stated; market comparable ~$40–80/head/year for incumbents suggests premium pricing<sup>[6]</sup></td></tr>
+      <tr><td><strong>ARPU (annualized)</strong></td><td class="num">$120 / head / year</td><td>At top of wearable price band; ARPU compression risk from competitive pressure</td></tr>
+      <tr><td><strong>COGS per collar</strong></td><td class="num">$35</td><td><strong>Unverified</strong> — likely component-only; does not include connectivity, NRE, warranty, or logistics <span class="proj-label">GATE 4</span></td></tr>
+      <tr><td><strong>Vet platform fee</strong></td><td class="num">$1 / head / month</td><td>Part of farmer $10, or additional charge to vet? Unclear — must confirm revenue split</td></tr>
+      <tr><td><strong>Farmer payback</strong></td><td class="num">5 weeks</td><td>Claimed; requires disease-incidence × avoided-loss math to validate</td></tr>
+      <tr><td><strong>Gross margin (target)</strong></td><td class="num">~70–80%</td><td>Estimated if $35 COGS holds at scale; not company-stated explicitly</td></tr>
+    </tbody>
+  </table>
+
+  <h4 style="margin-top:28px;margin-bottom:4px;">Deployment Ramp — ARR Projections at Stated Targets</h4>
+  <table>
+    <thead><tr><th>Period</th><th>Devices / Heads</th><th class="num">Implied MRR</th><th class="num">Implied ARR</th><th>Notes</th></tr></thead>
+    <tbody>
+      <tr><td><strong>July 2026</strong></td><td>1,000 devices</td><td class="num">$10,000</td><td class="num">$120,000</td><td>Target shipment milestone <span class="proj-label">PROJ</span></td></tr>
+      <tr><td><strong>Dec 2026</strong></td><td>7,000 deployed</td><td class="num">$70,000</td><td class="num">$840,000</td><td>Year-end deployment target <span class="proj-label">PROJ</span></td></tr>
+      <tr class="highlight"><td><strong>EOY 2027</strong></td><td>57,000 devices</td><td class="num">$570,000</td><td class="num">$6,840,000</td><td>Full 2027 roadmap target <span class="proj-label">PROJ</span></td></tr>
+      <tr><td><strong>Breakeven path</strong></td><td>~100,000+ heads</td><td class="num">$1,000,000</td><td class="num">$12,000,000</td><td>Dependent on operational leverage, hardware finance</td></tr>
+    </tbody>
+  </table>
+
+  <div class="chart">
+    <div style="padding:22px 26px 18px;">
+      <div style="font-family:var(--serif);font-size:1.05rem;color:var(--ink);margin-bottom:2px;">Hardware Working Capital Trap — COGS vs. Subscription Cashflow</div>
+      <div style="font-family:var(--sans);font-size:0.72rem;color:var(--muted);margin-bottom:18px;">At $35 COGS: 1K units = $35K hardware outlay; recovers in month 3–4 at $10/head/month. Scale to 57K units requires ~$2M COGS before subscription cash covers it. <span class="proj-label">PROJ</span></div>
+      <div style="display:flex;align-items:flex-end;gap:18px;height:160px;border-bottom:1px solid var(--rule);padding-bottom:0;">
+        <div style="flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;height:100%;">
+          <div style="font-family:var(--mono);font-size:0.8rem;color:var(--ink);margin-bottom:6px;">$35K</div>
+          <div style="width:100%;height:5%;background:var(--teal);border-radius:3px 3px 0 0;"></div>
+          <div style="font-family:var(--sans);font-size:0.7rem;color:var(--muted);margin-top:8px;text-align:center;">1K units<br>COGS</div>
+        </div>
+        <div style="flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;height:100%;">
+          <div style="font-family:var(--mono);font-size:0.8rem;color:var(--ink);margin-bottom:6px;">$245K</div>
+          <div style="width:100%;height:36%;background:var(--teal);border-radius:3px 3px 0 0;"></div>
+          <div style="font-family:var(--sans);font-size:0.7rem;color:var(--muted);margin-top:8px;text-align:center;">7K units<br>COGS</div>
+        </div>
+        <div style="flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;height:100%;">
+          <div style="font-family:var(--mono);font-size:0.8rem;color:var(--ink);margin-bottom:6px;">$2.0M</div>
+          <div style="width:100%;height:100%;background:var(--accent);border-radius:3px 3px 0 0;"></div>
+          <div style="font-family:var(--sans);font-size:0.7rem;color:var(--muted);margin-top:8px;text-align:center;">57K units<br>COGS</div>
+        </div>
+        <div style="flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;height:100%;">
+          <div style="font-family:var(--mono);font-size:0.8rem;color:var(--ink);margin-bottom:6px;">$840K</div>
+          <div style="width:100%;height:40%;background:var(--positive);border-radius:3px 3px 0 0;opacity:0.75;"></div>
+          <div style="font-family:var(--sans);font-size:0.7rem;color:var(--muted);margin-top:8px;text-align:center;">7K units<br>ARR (yr1)</div>
+        </div>
+        <div style="flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;height:100%;">
+          <div style="font-family:var(--mono);font-size:0.8rem;color:var(--ink);margin-bottom:6px;">$6.8M</div>
+          <div style="width:100%;height:68%;background:var(--positive);border-radius:3px 3px 0 0;opacity:0.75;"></div>
+          <div style="font-family:var(--sans);font-size:0.7rem;color:var(--muted);margin-top:8px;text-align:center;">57K units<br>ARR (yr2)</div>
+        </div>
+      </div>
+    </div>
+    <div style="padding:0 26px 14px;font-family:var(--sans);font-size:0.72rem;color:var(--muted);font-style:italic;">Hardware COGS (red/teal) vs. Subscription ARR (green) by deployment target. 57K units requires ~$2M COGS before ARR receipts cover it — a bridge financing risk between the angel close and pre-seed. All figures model-projected based on company-stated targets and $35 COGS. <span class="proj-label">PROJ</span></div>
+  </div>
+
+  <p style="margin-top:18px;"><strong>Use of Funds — $500K Angel:</strong> At $35 COGS, 1,000 devices requires $35K in hardware COGS alone. The remaining $465K must fund firmware, app/cloud platform, installation, customer support, warranty reserves, connectivity, Texas A&M pilot, vet onboarding, legal, insurance, patent prosecution, and team. With 8 people working for equity, burn is artificially low today — but that fragility, not durability. <strong>Diligence Gate 4</strong> requires a detailed use-of-funds budget with milestones, cash balance timing, and a bridge plan showing how the company reaches the pre-seed without running out of cash.</p>
+</section>
+
+<!-- §08 MARKET CONTEXT -->
+<section id="s08">
+  <div class="section-head">
+    <div class="section-num">§ 08</div>
+    <div class="section-title">
+      <h2>Market Context</h2>
+      <div class="sub">TAM, the screwworm crisis, and structural opportunity.</div>
+    </div>
+  </div>
+  <p><strong>Market framing:</strong> The US cattle herd stood at approximately 86.2 million head as of January 1, 2026, according to USDA's Cattle Inventory report — in a contraction phase with limited opportunity for meaningful expansion before at least 2028.<sup>[7]</sup> PLANET.TECH's $11.3B US health TAM is based on $10/head/month × 94M cattle — a slightly overstated herd count, and a price point at the top of the wearable price band. A more conservative SAM using $60/head/year (midpoint of current installed-product pricing) and 10% penetration of the US herd implies an initial addressable market of approximately $500M.<sup>[6]</sup></p>
+
+  <h4 style="margin-top:24px;margin-bottom:4px;">Structural Tailwinds</h4>
+  <ul class="clean">
+    <li><strong>New World Screwworm crisis is real and government-confirmed.</strong> As of May 29, 2026, Reuters reported NWS detected 31 miles from the US border in Coahuila, Mexico.<sup>[1]</sup> The US southern border has been closed to cattle imports for over 12 months.<sup>[2]</sup> USDA is still only weighing a phased reopening. This is the highest urgency cattle health context in 60 years and directly validates early-detection demand.</li>
+    <li><strong>Global dairy cattle disease losses estimated at $65B annually</strong>, with $8B in annual losses in the US alone — dominated by mastitis, ketosis, and lameness.<sup>[8]</sup> This is independently peer-reviewed economic burden, not deck-constructed TAM.</li>
+    <li><strong>Precision livestock farming is growing but adoption is uneven.</strong> USDA/NIFA identifies initial cost, uncertain ROI, and technology complexity as the primary adoption barriers.<sup>[9]</sup> A verified 5-week payback would directly address all three — which is why that claim is the most commercially important number in the deck.</li>
+    <li><strong>Category validated by Halter's $220M Series E at $2B.</strong> Founders Fund, Bessemer, DCVC, Bond, and Blackbird all made major bets on cattle-collar AI in March 2026.<sup>[4]</sup> That capital formation proves both market size and exit ceiling.</li>
+  </ul>
+
+  <div class="callout" style="margin-top:24px;">Comparable category outcomes: Halter at $2B (virtual fencing + AI collars, cattle) is the on-point comparable. PLANET.TECH is the analogous platform for cattle health biometrics — with a broader sensor stack and a second-act climate monetization layer that Halter does not have.</div>
+</section>
+
+<!-- §09 RISK REGISTER -->
+<section id="s09" class="major-break">
+  <div class="section-head">
+    <div class="section-num">§ 09</div>
+    <div class="section-title">
+      <h2>Risk Register</h2>
+      <div class="sub">Severity × likelihood, ranked. The IC votes on these variables, not on the company in general.</div>
+    </div>
+  </div>
+  <table>
+    <thead><tr><th>#</th><th>Risk</th><th>Severity</th><th>Likelihood</th><th>Mitigation / Diligence</th></tr></thead>
+    <tbody>
+      <tr><td class="num">1</td><td><strong>Sensor validation failure — pulse oximetry through hide is noisy or clinically useless in field conditions</strong></td><td><span class="tag neg">VERY HIGH</span></td><td>MEDIUM</td><td>Request raw data vs. reference standard across multiple breeds, hide conditions, and movement states. Texas A&M pilot protocol is make-or-break catalyst.</td></tr>
+      <tr><td class="num">2</td><td><strong>Pipeline quality — "17K heads signed up / 46 farms" is soft pipeline, not contracted backlog</strong></td><td><span class="tag neg">HIGH</span></td><td>HIGH (near-term)</td><td>Require named customer pipeline with contract status, pricing, deposits, and deployment dates. No closed commitments = no capital.</td></tr>
+      <tr><td class="num">3</td><td><strong>COGS overstatement — $35 is component-only, not fully-loaded</strong></td><td><span class="tag neg">HIGH</span></td><td>HIGH</td><td>Require BOM with supplier quotes, connectivity cost, NRE amortization, warranty reserve, and yield assumption. Confirm at 1K and 7K unit volumes.</td></tr>
+      <tr><td class="num">4</td><td><strong>Hardware scale execution — 0 to 1,000 shipped devices by July 2026 and 7,000 by year-end</strong></td><td><span class="tag neg">HIGH</span></td><td>MEDIUM-HIGH</td><td>Request production schedule, contract manufacturer identity, long-lead components, and QA plan. Identify what breaks the timeline.</td></tr>
+      <tr><td class="num">5</td><td><strong>Vet channel unproven — no signed vet partner, no live multi-farm command center</strong></td><td><span class="tag warn">MEDIUM-HIGH</span></td><td>MEDIUM</td><td>Require at least one signed vet practice with documented economics and workflow before close.</td></tr>
+      <tr><td class="num">6</td><td><strong>Halter expansion — "NZ only" framing is stale; Halter is actively expanding to the US</strong></td><td><span class="tag warn">MEDIUM-HIGH</span></td><td>HIGH</td><td>PLANET.TECH's defensibility rests on pulse-ox IP and vet distribution, not on Halter's absence. Accelerate vet-channel lock-in to establish distribution before Halter adds biometrics.</td></tr>
+      <tr><td class="num">7</td><td><strong>Use-of-funds gap — $500K is thin for hardware at scale + software + pilots + support</strong></td><td><span class="tag warn">MEDIUM</span></td><td>MEDIUM</td><td>Require detailed budget with cash balance timeline. Confirm bridge plan to pre-seed. All 8 people working for equity creates artificial low-burn that will revert.</td></tr>
+      <tr><td class="num">8</td><td><strong>ARPU compression — $10/head/month is at top of price band; farmers may not pay</strong></td><td><span class="tag warn">MEDIUM</span></td><td>MEDIUM</td><td>Require validated ROI bridge: disease incidence × avoided loss math for each targeted condition. 5-week payback must be independently supportable.</td></tr>
+      <tr><td class="num">9</td><td><strong>Moola / methane thesis — enteric capture from free-ranging cattle is an extraordinary claim</strong></td><td>LOW (to base case)</td><td>HIGH (to Moola)</td><td>Underwrite on Mootality alone. Treat Moola as free option. Do not model Moola revenue in base case.</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- §10 MOOLA OPTION -->
+<section id="s10">
+  <div class="section-head">
+    <div class="section-num">§ 10</div>
+    <div class="section-title">
+      <h2>The Moola / Methane Option</h2>
+      <div class="sub">Extraordinary upside, extraordinary claims — underwrite as a free call option only.</div>
+    </div>
+  </div>
+  <p>PLANET.TECH's second-act vision converts the same collar hardware into a methane-capture device, generating $400–600/cow/year in new farmer revenue from renewable natural gas, carbon credits, or sustainable aviation fuel. Livestock emissions are a documented large problem: FAO estimates livestock supply chains account for approximately 12–14.5% of global anthropogenic greenhouse gas emissions, with cattle responsible for roughly 62% of that.<sup>[10][11]</sup> The commercial opportunity in monetizing those emissions is real — California dairy digesters have demonstrated 80% methane capture from manure lagoons.<sup>[12]</sup></p>
+
+  <p style="margin-top:14px;"><strong>The critical distinction:</strong> economically proven methane capture operates on manure lagoons (point-source, stationary), not on individual free-roaming cattle via wearables. Capturing enteric methane (from cow burps) via a collar on a grazing animal is a fundamentally different and far harder engineering problem. The company's LinkedIn posts claim 34% field capture efficiency with a jump from 3% to 20.8% in six weeks as of late 2025 — an extraordinary claim that has not been independently validated or published.</p>
+
+  <div class="callout" style="margin-top:20px;">For IC purposes: Moola is a free call option on a potentially category-defining climate outcome. If it works, PLANET.TECH becomes a planetary-scale company, not just a cattle-health SaaS. If it fails, the base case — Mootality as a billion-dollar cattle health platform — still stands. Do not let Moola either carry or kill the investment thesis.</div>
+
+  <p style="margin-top:16px;">Additional risk: the revenue economics of Moola depend on California LCFS credit pricing, voluntary carbon markets, and potential regulatory changes. California lawmakers have already moved to eliminate "avoided methane credits" for animal agriculture through A.B. 2870 (did not proceed in 2024 but signals political risk).<sup>[13]</sup> Do not model Moola revenue until (a) capture technology is validated at scale and (b) a buyer or off-take agreement exists.</p>
+</section>
+
+<!-- §11 TEAM -->
+<section id="s11" class="major-break">
+  <div class="section-head">
+    <div class="section-num">§ 11</div>
+    <div class="section-title">
+      <h2>Management Team</h2>
+      <div class="sub">Founders and key hires.</div>
+    </div>
+  </div>
+  <div class="cols-3">
+    <div class="card">
+      <span class="kicker">CEO &amp; Founder</span>
+      <h3 style="margin:6px 0 8px;">Griffin Cherry</h3>
+      <p>Aerospace background; top-2% nationally in door-to-door sales. Sells the product farm-to-farm personally. Founder background in physical products and climate tech (Planet.tech started as methane-capture company before broadening to cattle health). Owns vision, GTM, and fundraising. Appears to be the primary distribution engine — farm-to-farm hustle is a genuine competitive advantage in a trust-driven market.</p>
+    </div>
+    <div class="card">
+      <span class="kicker">CTO &amp; Co-Founder</span>
+      <h3 style="margin:6px 0 8px;">Rex Hearn</h3>
+      <p>Biomedical and electrical engineer. Two-time founder. Direct domain relevance to the core technical challenge: transcutaneous biosensing, pulse oximetry circuit design, and signal processing. The CTO profile is well-matched to the sensor validation problem. References should focus on prior hardware shipping experience and clinical-grade sensing projects.</p>
+    </div>
+    <div class="card">
+      <span class="kicker">VP Engineering &amp; Co-Founder</span>
+      <h3 style="margin:6px 0 8px;">Nicholas Huang</h3>
+      <p>Mechanical and aerospace engineer. Precision hardware specialist. Aerospace background is directly relevant to ruggedized sensor packaging, environmental tolerance engineering, and manufacturing precision. The team has 8 people total — all working for equity. 7 patents filed covering the core sensing method. Key gap: no deep ag-industry, regulatory, or supply-chain operations experience visible on the deck.</p>
+    </div>
+  </div>
+
+  <h4 style="margin-top:28px;margin-bottom:4px;">Team Assessment</h4>
+  <table>
+    <thead><tr><th>Dimension</th><th>Assessment</th><th>Rating</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Sales / GTM execution</strong></td><td>CEO's top-2% door-to-door background directly relevant to low-trust, in-person farm sale</td><td><span class="tag pos">STRONG</span></td></tr>
+      <tr><td><strong>Technical / sensor engineering</strong></td><td>Biomedical EE CTO and aerospace ME VP Eng are well-matched to hardware sensing challenge</td><td><span class="tag pos">STRONG</span></td></tr>
+      <tr><td><strong>Ag domain depth</strong></td><td>No obvious ag-industry operators, vets, or livestock health domain experts on team</td><td><span class="tag neg">GAP</span></td></tr>
+      <tr><td><strong>Manufacturing / supply chain</strong></td><td>No evident production or supply-chain experience for hardware at scale</td><td><span class="tag neg">GAP</span></td></tr>
+      <tr><td><strong>IP / regulatory</strong></td><td>7 patents filed; regulatory and claims-language risk unaddressed</td><td><span class="tag warn">NEEDS CLARITY</span></td></tr>
+      <tr><td><strong>Equity / incentive alignment</strong></td><td>All working for equity — high conviction, but key-person risk concentrated and burn unsustainable at scale</td><td><span class="tag warn">WATCH</span></td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- §12 COMPETITIVE LANDSCAPE -->
+<section id="s12">
+  <div class="section-head">
+    <div class="section-num">§ 12</div>
+    <div class="section-title">
+      <h2>Competitive Landscape</h2>
+      <div class="sub">Direct, adjacent, and structural competitors — and the Halter benchmark.</div>
+    </div>
+  </div>
+  <table>
+    <thead><tr><th>Company</th><th>Pulse Ox</th><th>GPS</th><th>Segment</th><th>Price</th><th>Stage / Funding</th><th>Threat Level</th></tr></thead>
+    <tbody>
+      <tr class="highlight"><td><strong>PLANET.TECH</strong></td><td><span class="tag pos">✓ CLAIMED</span></td><td><span class="tag pos">✓</span></td><td>Beef + Dairy</td><td>$10/head/mo ($120/yr)</td><td>Angel · Pre-revenue</td><td><span class="tag teal">— SUBJECT</span></td></tr>
+      <tr><td><strong>Merck / Allflex SenseHub</strong></td><td><span class="tag neg">✗</span></td><td><span class="tag neg">✗</span></td><td>Beef + Dairy (separate SKUs)</td><td>$80–150/head</td><td>Incumbent · Merck-owned</td><td><span class="tag neg">DIRECT — distribution scale, clinical credibility</span></td></tr>
+      <tr><td><strong>CowManager</strong></td><td><span class="tag neg">✗</span></td><td><span class="tag neg">✗</span></td><td>Dairy only</td><td>$75–150/head</td><td>Established</td><td><span class="tag warn">DIRECT — established dairy install base</span></td></tr>
+      <tr><td><strong>smaXtec</strong></td><td><span class="tag neg">✗</span></td><td><span class="tag neg">✗</span></td><td>Dairy only</td><td>$175/head</td><td>Growth stage</td><td><span class="tag warn">DIRECT — premium dairy; bolus form factor is different</span></td></tr>
+      <tr><td><strong>Halter</strong></td><td><span class="tag neg">✗</span></td><td><span class="tag pos">✓ (fencing)</span></td><td>Beef + Dairy · US expanding<sup>[4]</sup></td><td>~$120/head/year</td><td>Series E · $220M · $2B val<sup>[4]</sup></td><td><span class="tag neg">ADJACENT — virtual fencing; US expansion underway; could add biometrics</span></td></tr>
+      <tr><td><strong>Vence / eShepherd / NoFence</strong></td><td><span class="tag neg">✗</span></td><td><span class="tag pos">✓</span></td><td>Beef (grazing)</td><td>Varies</td><td>VC-backed</td><td><span class="tag teal">ADJACENT — fencing, not health monitoring</span></td></tr>
+    </tbody>
+  </table>
+
+  <p style="margin-top:18px;"><strong>Competitive read:</strong> The pulse-ox differentiation claim is independently corroborated — no current cattle collar product offers transcutaneous blood oxygen measurement.<sup>[3][5]</sup> That categorical gap is real. The competitive risk is not that incumbents have the feature today; it is that (a) Halter is deeply capitalized and expanding into the US, and could add biometric sensors to its next-generation collar within 12–24 months, and (b) Merck/Allflex has deep clinical credibility and veterinary distribution that PLANET.TECH would need years to match. Speed of vet-channel lock-in and patent claim scope are PLANET.TECH's primary defensibility levers before larger competitors respond.</p>
+</section>
+
+<!-- §13 PATH TO PRE-SEED -->
+<section id="s13" class="major-break">
+  <div class="section-head">
+    <div class="section-num">§ 13</div>
+    <div class="section-title">
+      <h2>Path to Pre-Seed and Beyond</h2>
+      <div class="sub">Milestones, timing, and return framing from the $6M cap.</div>
+    </div>
+  </div>
+  <table>
+    <thead><tr><th>Milestone</th><th>Target</th><th>Plan / Status</th></tr></thead>
+    <tbody>
+      <tr><td><strong>1,000 devices shipped</strong></td><td class="num">July 20, 2026</td><td>De-risking milestone; manufacturing readiness unconfirmed</td></tr>
+      <tr><td><strong>Beta farms with paying customers</strong></td><td class="num">July 2026</td><td>First contracted revenue signal; key validation</td></tr>
+      <tr><td><strong>Texas A&amp;M P1 pilot (100 cows)</strong></td><td class="num">Sept 2026</td><td>Most important clinical validation catalyst; protocol TBD</td></tr>
+      <tr><td><strong>7,000 devices deployed</strong></td><td class="num">EOY 2026</td><td>$840K ARR if $10/head/mo holds; pre-seed unlock trigger</td></tr>
+      <tr><td><strong>Pre-seed opens</strong></td><td class="num">July 2026</td><td>Higher valuation than angel; angel round secures early ownership</td></tr>
+      <tr><td><strong>57,000 devices across 2027</strong></td><td class="num">EOY 2027</td><td>$6.84M ARR; Series A territory if retention proves out</td></tr>
+      <tr class="highlight"><td><strong>Series A signal ARR</strong></td><td class="num">~$3–5M</td><td>Implied at ~50–70K deployed heads with 80%+ retention</td></tr>
+    </tbody>
+  </table>
+
+  <div class="chart">
+    <div style="padding:22px 26px 18px;">
+      <div style="font-family:var(--serif);font-size:1.05rem;color:var(--ink);margin-bottom:2px;">Return Multiples from $6M Post-Money SAFE Cap</div>
+      <div style="font-family:var(--sans);font-size:0.72rem;color:var(--muted);margin-bottom:18px;">Entry at $6M cap vs. category ceiling at $2B+ (Halter). Bull case assumes PLANET.TECH captures 2–5% of US herd. <span class="proj-label">PROJ</span></div>
+      <div style="display:flex;align-items:flex-end;gap:18px;height:180px;border-bottom:1px solid var(--rule);padding-bottom:0;">
+        <div style="flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;height:100%;">
+          <div style="font-family:var(--mono);font-size:0.8rem;color:var(--ink);margin-bottom:6px;">1.0×</div>
+          <div style="width:100%;height:5%;background:var(--ink-soft);border-radius:3px 3px 0 0;"></div>
+          <div style="font-family:var(--sans);font-size:0.7rem;color:var(--muted);margin-top:8px;text-align:center;">Fail</div>
+        </div>
+        <div style="flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;height:100%;">
+          <div style="font-family:var(--mono);font-size:0.8rem;color:var(--ink);margin-bottom:6px;">3–4×</div>
+          <div style="width:100%;height:20%;background:var(--teal);border-radius:3px 3px 0 0;"></div>
+          <div style="font-family:var(--sans);font-size:0.7rem;color:var(--muted);margin-top:8px;text-align:center;">Pre-Seed<br>($20–25M)</div>
+        </div>
+        <div style="flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;height:100%;">
+          <div style="font-family:var(--mono);font-size:0.8rem;color:var(--ink);margin-bottom:6px;">8–15×</div>
+          <div style="width:100%;height:50%;background:var(--teal-soft);border-radius:3px 3px 0 0;"></div>
+          <div style="font-family:var(--sans);font-size:0.7rem;color:var(--muted);margin-top:8px;text-align:center;">Series A<br>($50–90M)</div>
+        </div>
+        <div style="flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;height:100%;">
+          <div style="font-family:var(--mono);font-size:0.8rem;color:var(--ink);margin-bottom:6px;">50–100×</div>
+          <div style="width:100%;height:85%;background:var(--positive);border-radius:3px 3px 0 0;"></div>
+          <div style="font-family:var(--sans);font-size:0.7rem;color:var(--muted);margin-top:8px;text-align:center;">Series B+<br>($300–600M)</div>
+        </div>
+        <div style="flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;height:100%;">
+          <div style="font-family:var(--mono);font-size:0.8rem;color:var(--accent);margin-bottom:6px;">200–333×</div>
+          <div style="width:100%;height:100%;background:var(--accent);border-radius:3px 3px 0 0;"></div>
+          <div style="font-family:var(--sans);font-size:0.7rem;color:var(--muted);margin-top:8px;text-align:center;">Bull / Exit<br>($1.2–2B+)</div>
+        </div>
+      </div>
+    </div>
+    <div style="padding:0 26px 14px;font-family:var(--sans);font-size:0.72rem;color:var(--muted);font-style:italic;">Return multiples from $6M post-money cap entry to illustrative outcomes. Halter's $2B Series E valuation provides the category-comparable ceiling. 200–333× bull case requires PLANET.TECH to reach Halter-comparable scale. All outcomes projected; no guarantee of return. <span class="proj-label">PROJ</span></div>
+  </div>
+
+  <p style="margin-top:18px;">The structure of the angel round is the right way to capitalize a hardware de-risking sprint: raise a small amount, hit hard milestones (shipping product, paying customers, funded pilot, patent portfolio), then open a priced pre-seed from proof. The angel investor's advantage is owning a meaningful pre-seed allocation before the institutional markup. The pro-rata right at pre-seed close is the most important structural term to negotiate.</p>
+</section>
+
+<!-- §14 BULL / BEAR -->
+<section id="s14">
+  <div class="section-head">
+    <div class="section-num">§ 14</div>
+    <div class="section-title">
+      <h2>Bull and Bear, Side by Side</h2>
+      <div class="sub">Both cases built from independently verified data and stated company claims.</div>
+    </div>
+  </div>
+  <div class="thesis-grid">
+    <div class="thesis-col bull">
+      <div class="head">↑ Bull Case — Category-defining physical AI for cattle</div>
+      <ul>
+        <li>Pulse oximetry works reliably in field conditions. Texas A&amp;M pilot confirms detection lead time that reduces mortality and drives measurable 5-week payback. Farmers pay $10/head/month at scale.</li>
+        <li>Vet channel converts: one vet adoption = 50+ farm warm intros. 2,500 US vet practices each covering 50–100 farms creates a scalable, low-CAC distribution network no competitor can replicate quickly.</li>
+        <li>7,000 devices by EOY 2026 → $840K ARR → strong pre-seed at $20–30M post. 57,000 devices in 2027 → $6.8M ARR → Series A territory. PLANET.TECH becomes the cattle health operating system.</li>
+        <li>Halter validation proves category ceiling at $2B. PLANET.TECH with deeper biometrics, lower COGS, vet distribution, and US-native positioning captures a comparable or larger outcome. Entry at $6M is 333× discount to comparable.</li>
+        <li>Moola upsell converts: farmers already on Mootality upgrade to methane capture. One acquisition cost, two revenue streams. $400–600/cow/year Moola revenue expands TAM from $11.3B to $58B+ and turns PLANET.TECH into a climate infrastructure company.</li>
+        <li>Patent portfolio covers pulse-ox method. As herd data compounds, the biological intelligence layer becomes a defensible moat that large acquirers — Merck, Zoetis, John Deere, energy companies — would pay a strategic premium to acquire.</li>
+      </ul>
+    </div>
+    <div class="thesis-col bear">
+      <div class="head">↓ Bear Case — Pre-revenue hardware with unvalidated core claim</div>
+      <ul>
+        <li>Pulse-ox signal is noisy under real cattle-field conditions. Accuracy is insufficient for clinical-grade disease detection. False positives undermine farmer and vet trust. The "why and where" value proposition collapses to just GPS + activity — making PLANET.TECH one more cattle-activity monitor against better-funded incumbents.</li>
+        <li>The "17K heads signed up / 46 farms" is a wishlist, not a backlog. When devices ship in July, signed-up farms do not convert to paying customers at the expected rate. The vet channel never materializes because vets are not willing to become software distributors and absorb alert-management and liability burden.</li>
+        <li>$35 COGS understates the real cost. At production volumes with connectivity, battery, warranty, and support, COGS comes in at $65–90/unit. At $120/head/year subscription, gross margin compresses to software-adjacent levels. Hardware cash cycle creates a working capital crunch before the pre-seed closes.</li>
+        <li>Halter adds biometrics in its next collar generation (12–24 months). With $220M in capital and 1M+ collars deployed globally, Halter can commoditize PLANET.TECH's sensor advantage. The window to lock in distribution and data moat is shorter than the deck implies.</li>
+        <li>Moola methane capture remains commercially unviable. Carbon and LCFS credit pricing drops. The climate story distracts the team from the harder but more immediate work of proving the health collar. $500K burns faster than expected on dual-product development. The pre-seed does not materialize on favorable terms.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- §15 DECISION -->
+<section id="s15" class="major-break">
+  <div class="section-head">
+    <div class="section-num">§ 15</div>
+    <div class="section-title">
+      <h2>Decision and Conditions</h2>
+      <div class="sub">For IC vote.</div>
+    </div>
+  </div>
+
+  <div class="recommendation" id="decision">
+    <div class="head">Recommendation</div>
+    <h2>CONDITIONAL SMALL CHECK — Milestone-Gated, Four Diligence Gates Required</h2>
+    <p>PLANET.TECH warrants serious consideration. The macro catalyst is real and government-confirmed. The category has been validated by a top-tier mega-round. The product claims a differentiated sensor no competitor offers. The team is unconventional in the right way. The entry price — $6M post-money cap — is dramatically cheap relative to the validated category ceiling. This is the type of deal that returns a syndicate fund if the core claim is true. It is not yet a full-conviction investment without proof. Advance only after clearing all four gates below.</p>
+    <div class="actions">
+      <div>
+        <div class="h">Gates to Advance (all four required)</div>
+        <ul>
+          <li><strong>Gate 1 — Sensor data:</strong> Raw pulse-ox and heart-rate accuracy data from live cattle vs. veterinary reference standard; field-condition performance across breeds, hide colors, and movement states</li>
+          <li><strong>Gate 2 — Pipeline quality:</strong> Named customer pipeline table with contract status (LOI / paid / deposit), pricing, planned deployment timing, and vet partner evidence</li>
+          <li><strong>Gate 3 — BOM and COGS:</strong> Fully-loaded BOM with supplier quotes supporting $35 COGS including connectivity, battery, NRE, warranty reserve, and yield at 1K and 7K units</li>
+          <li><strong>Gate 4 — Use-of-funds budget:</strong> Detailed budget with cash balance timing, bridge plan to pre-seed, and manufacturing schedule for 1,000 units by July 20, 2026</li>
+        </ul>
+      </div>
+      <div>
+        <div class="h">Conditions to Pass / Track</div>
+        <ul>
+          <li>Pulse-ox signal is shown to be clinically insufficient for disease-state differentiation vs. activity-only systems</li>
+          <li>Pipeline is confirmed as soft waitlist with no signed commercial agreements or deposits</li>
+          <li>Fully-loaded COGS exceeds $70/unit, making $10/head/month subscription uneconomic at near-term deployment volumes</li>
+          <li>Manufacturing readiness is not credible for 1,000 units by July 2026 target</li>
+          <li>No veterinary practice has agreed to pilot the multi-farm command center</li>
+          <li>Cap table shows prior SAFE/note obligations that would materially dilute angel entry before pre-seed conversion</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <h4 style="margin-top:32px;margin-bottom:8px;">Proposed Participation Structure</h4>
+  <ul class="clean">
+    <li><strong>Instrument:</strong> SAFE at $6M post-money valuation cap</li>
+    <li><strong>Recommended check size:</strong> $10K–$50K per syndicate member as option-value position; aggregate syndicate to determine. Size as a high-risk frontier-tech option, not a conviction allocation.</li>
+    <li><strong>Key right to negotiate:</strong> Pro-rata right to participate in the July 2026 pre-seed — the real money is made by doubling down after Texas A&amp;M pilot validates the sensor and paying customers validate the price point</li>
+    <li><strong>Rights:</strong> Information rights proportional to syndicate allocation; MFN rights if available</li>
+    <li><strong>Timing:</strong> Diligence sprint of 10–14 business days to clear four gates; verbal commit + wire within 3 weeks of gate clearance</li>
+    <li><strong>Track condition:</strong> If gates are not cleared before angel close, track until July shipment milestone or September Texas A&amp;M pilot data is available before participating in pre-seed</li>
+  </ul>
+</section>
+
+<!-- REFERENCES -->
+<section id="references">
+  <div class="section-head">
+    <div class="section-num">REF</div>
+    <div class="section-title">
+      <h2>References</h2>
+      <div class="sub">Sources for tagged claims. External sources verified independently by Market Logic Research.</div>
+    </div>
+  </div>
+  <ol>
+    <li>Reuters, "Flesh-eating screwworm found within 31 miles of US border," May 29, 2026 <span class="note">(USDA APHIS current status; independently verified)</span></li>
+    <li>USDA APHIS, "Current Status of New World Screwworm," updated continuously 2025–2026; US–Mexico border closure confirmed May 2025 <span class="note">(government source; publicly available)</span></li>
+    <li>Competitive feature review: Allflex SenseHub, CowManager, smaXtec, Halter product specifications, 2025–2026 <span class="note">(public product documentation; cross-verified)</span></li>
+    <li>Business Wire / Halter press release, "Halter Raises $220M in Series E to Accelerate Global Expansion," March 24, 2026; Founders Fund led at $2B valuation <span class="note">(public announcement; confirmed via Bloomberg and multiple sources)</span></li>
+    <li>Merck Animal Health, SenseHub Feedlot product documentation; DVM360, "New ear tag technology shown to improve illness detection in cattle," January 2022 <span class="note">(public product and clinical documentation)</span></li>
+    <li>CMK.co.nz, "Making Sense of Cow Wearables for your Bottom Line," 2025 — wearable price band $40–197/cow/year; Halter at ~$119/head/year <span class="note">(independent industry source; public)</span></li>
+    <li>USDA NASS, "United States Cattle Inventory," January 30, 2026 — 86.2M head as of January 1, 2026 <span class="note">(government source; public)</span></li>
+    <li>Dairy.extension.wisc.edu / PMC NIH, "Global losses due to dairy cattle diseases — A comorbidity-adjusted analysis," 2024 — $65B global annual losses, $8B US <span class="note">(peer-reviewed; published in preventive veterinary medicine)</span></li>
+    <li>USDA NIFA, "Adoption of Precision Agriculture," 2025 — initial cost, uncertain ROI, and technology complexity as primary adoption barriers <span class="note">(government source; public)</span></li>
+    <li>FAO, "New FAO report maps pathways towards lower livestock emissions," February 2025 — livestock agrifood systems at ~6.2 GtCO2e/year, ~12% of anthropogenic GHG <span class="note">(UN agency; public)</span></li>
+    <li>FAO, "Livestock solutions for climate change" — livestock supply chains at 14.5% of global anthropogenic GHG emissions; cattle responsible for ~62% of livestock emissions <span class="note">(UN agency; public)</span></li>
+    <li>UC Riverside / Reddit r/science, "A California dairy farm tried to capture its methane. It worked." — dairy digesters reduce atmospheric methane emissions by ~80% <span class="note">(peer-reviewed study; public)</span></li>
+    <li>ALDF.org, "A Bill to Eliminate Avoided Methane Credit for Animal Agriculture Facilities — California A.B. 2870," 2024 <span class="note">(public regulatory record; did not proceed in 2024 but signals political risk)</span></li>
+    <li>PLANET.TECH Investor Deck V8, May 2026 — all deck-sourced figures tagged [DECK] and treated as company-provided, unaudited</li>
+  </ol>
+</section>
+
+<footer>
+  <div class="left">Market Logic Investors LLC · Investment Memorandum · Confidential<br>PLANET.TECH · ML-2026-PT-01 · Prepared May 31, 2026</div>
+  <div class="right">Deck claims sourced from PLANET.TECH V8 investor deck and tagged [DECK] — company-provided, unaudited.<br>External claims (NWS outbreak, market data, competitive set, comparable valuations) independently verified via public sources as listed in References.</div>
+</footer>
+
+</div>
+</body>
+</html>
 
