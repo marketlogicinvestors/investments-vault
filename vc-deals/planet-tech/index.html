@@ -5,82 +5,114 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>PLANET.TECH · IC Memo · Market Logic Investors</title>
 <style>
-:root{--ink:#0a1929;--ink-soft:#1c2e44;--paper:#faf9f4;--paper-warm:#f3efe3;--rule:#d4cfbf;--rule-soft:#e8e3d4;--muted:#5b6b7a;--muted-light:#8a98a5;--accent:#b8391c;--accent-soft:#d65a3a;--accent-bg:rgba(184,57,28,0.06);--teal:#1f6b6b;--teal-soft:#4a8b8b;--teal-light:#b8d4d4;--teal-bg:rgba(31,107,107,0.07);--positive:#2d6a4f;--positive-bg:rgba(45,106,79,0.08);--warning:#b08800;--warning-bg:rgba(176,136,0,0.08);--negative:#9b2226;--negative-light:#e8c5c5;--negative-bg:rgba(155,34,38,0.07);--serif:'Iowan Old Style','Palatino Linotype',Palatino,'Book Antiqua',Georgia,serif;--sans:'Helvetica Neue',Helvetica,-apple-system,BlinkMacSystemFont,system-ui,sans-serif;--mono:'SF Mono',SFMono-Regular,Menlo,Monaco,Consolas,'Liberation Mono',monospace}
+:root{--ink:#0a1929;--ink-soft:#1c2e44;--paper:#faf9f4;--paper-warm:#f3efe3;--rule:#d4cfbf;--rule-soft:#e8e3d3;--accent:#8a6d3b;--sans:'Inter','Helvetica Neue',Arial,sans-serif;--serif:'Source Serif Pro','Georgia',serif;}
 *{box-sizing:border-box;margin:0;padding:0}
 html{font-size:16px}
 body{font-family:var(--sans);background:var(--paper);color:var(--ink);line-height:1.55;-webkit-font-smoothing:antialiased}
 .page{max-width:1040px;margin:0 auto;padding:56px 56px 100px}
-h1,h2,h3,h4,h5{font-family:var(--serif);font-weight:400;color:var(--ink)}
-h1{font-size:3.6rem;line-height:1.02;letter-spacing:-0.025em}
-h2{font-size:2.05rem;line-height:1.12;letter-spacing:-0.015em}
-h3{font-size:1.3rem;line-height:1.25}
-h4{font-family:var(--sans);font-weight:600;font-size:0.7rem;text-transform:uppercase;letter-spacing:0.16em;color:var(--muted);margin-bottom:10px}
-h5{font-size:1rem;font-family:var(--sans);font-weight:600}
-p{font-size:0.95rem;line-height:1.72;color:var(--ink-soft);margin-bottom:14px}
-strong{color:var(--ink);font-weight:600}
-.eyebrow{font-family:var(--sans);font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.2em;color:var(--accent);display:block;margin-bottom:18px}
-.lede{font-family:var(--serif);font-size:1.28rem;line-height:1.52;color:var(--ink);font-weight:400}
-.label{font-family:var(--sans);font-size:0.7rem;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted)}
-.mono{font-family:var(--mono);font-size:0.85rem}
-.site-nav{display:flex;align-items:center;justify-content:space-between;background:var(--ink);color:var(--paper);padding:10px 40px;font-family:var(--sans);font-size:0.78rem;letter-spacing:0.04em;position:sticky;top:0;z-index:100}
-.site-nav a{color:rgba(250,249,244,0.7);text-decoration:none}
-.site-nav a:hover{color:var(--paper)}
-.site-nav .nav-action a{color:var(--accent-soft);border:1px solid rgba(214,90,58,0.5);border-radius:3px;padding:3px 10px}
-.cover{border-top:4px solid var(--ink);padding-top:32px}
-.cover-meta{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:60px}
-.cover-meta .left,.cover-meta .right{font-family:var(--sans);font-size:0.78rem;color:var(--muted)}
-.cover-meta .right{text-align:right}
-.stamp{display:inline-block;padding:5px 12px;border:1px solid var(--accent);color:var(--accent);font-weight:700;letter-spacing:0.14em;font-size:0.65rem;text-transform:uppercase;margin-bottom:8px}
-.cover-title{margin-bottom:28px}
-.cover-title .legal{display:block;font-family:var(--sans);font-size:0.78rem;color:var(--muted);margin-top:8px}
-.cover-tag{font-family:var(--serif);font-style:italic;font-size:1.4rem;line-height:1.5;color:var(--ink-soft);max-width:740px;margin-bottom:40px}
-.cover-tag::before{content:"\201C";font-size:2.4rem;line-height:0;vertical-align:-0.32em;color:var(--accent);margin-right:4px}
-.cover-tag::after{content:"\201D";font-size:2.4rem;line-height:0;vertical-align:-0.32em;color:var(--accent);margin-left:2px}
-.metric-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:0;border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);margin:32px 0}
-.metric{padding:24px 16px 20px;border-right:1px solid var(--rule)}
-.metric:last-child{border-right:none}
-.metric .v{font-family:var(--serif);font-size:2.2rem;line-height:1;letter-spacing:-0.02em;color:var(--ink);display:block;margin-bottom:7px}
-.metric .v small{font-size:0.95rem;color:var(--muted);font-family:var(--serif);margin-left:1px}
-.metric .l{font-family:var(--sans);font-size:0.67rem;font-weight:600;text-transform:uppercase;letter-spacing:0.12em;color:var(--muted);line-height:1.35}
-.metric.accent .v{color:var(--accent)}
-.metric.teal .v{color:var(--teal)}
-.metric.pos .v{color:var(--positive)}
-section{margin-top:68px;padding-top:32px;border-top:1px solid var(--rule)}
-section.no-rule{border-top:none}
-.section-head{display:grid;grid-template-columns:130px 1fr;gap:32px;margin-bottom:30px;align-items:baseline}
-.section-num{font-family:var(--mono);font-size:0.78rem;color:var(--muted);letter-spacing:0.05em;border-top:2px solid var(--ink);padding-top:8px;text-transform:uppercase;font-weight:600}
-.section-title h2{margin-bottom:8px}
-.section-title .sub{font-family:var(--serif);font-style:italic;color:var(--muted);font-size:1.05rem}
-.cols-2{display:grid;grid-template-columns:1fr 1fr;gap:36px;margin-top:16px}
-.cols-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px;margin-top:16px}
-.card{background:var(--paper-warm);padding:22px 24px;border:1px solid var(--rule)}
-.card.accent-border{border-left:3px solid var(--accent)}
-.card.teal-border{border-left:3px solid var(--teal)}
-.card.pos-border{border-left:3px solid var(--positive)}
-.card.warn-border{border-left:3px solid var(--warning)}
-.callout{border-left:3px solid var(--accent);padding:4px 0 4px 20px;margin:18px 0;font-family:var(--serif);font-style:italic;font-size:1.05rem;color:var(--ink)}
-.callout.warn{border-left-color:var(--warning)}
-.callout.pos{border-left-color:var(--positive)}
-.callout.teal{border-left-color:var(--teal)}
-table{width:100%;border-collapse:collapse;font-family:var(--sans);font-size:0.87rem;margin-top:14px}
-thead th{text-align:left;font-weight:600;font-size:0.68rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);padding:10px 12px 10px 0;border-bottom:1.5px solid var(--ink)}
-tbody td{padding:13px 12px 13px 0;border-bottom:1px solid var(--rule);color:var(--ink-soft);vertical-align:top;line-height:1.5}
-tbody td strong{color:var(--ink)}
-tbody tr.highlight{background:var(--paper-warm)}
-tbody tr.highlight td:first-child{padding-left:12px;border-left:3px solid var(--accent)}
-tbody tr.pos-row td:first-child{padding-left:12px;border-left:3px solid var(--positive)}
-tbody tr.neg-row td:first-child{padding-left:12px;border-left:3px solid var(--negative)}
-.tag{display:inline-block;font-family:var(--sans);font-size:0.67rem;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;padding:3px 8px;border:1px solid var(--rule);color:var(--ink-soft);background:var(--paper)}
-.tag.accent{border-color:var(--accent);color:var(--accent);background:var(--accent-bg)}
-.tag.teal{border-color:var(--teal);color:var(--teal);background:var(--teal-bg)}
-.tag.warn{border-color:var(--warning);color:var(--warning);background:var(--warning-bg)}
-.tag.neg{border-color:var(--negative);color:var(--negative);background:var(--negative-bg)}
-.tag.pos{border-color:var(--positive);color:var(--positive);background:var(--positive-bg)}
-.thesis-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:24px;border:1px solid var(--ink)}
-.thesis-col{padding:24px 26px}
-.thesis-col.bull{border-right:1px solid var(--ink)}
-.thesis-col .head{font-family:var(--mono);font-size:0.72rem;text-transform:uppercase;letter-spacing:0.14em;margin-bottom:12px;font-weight:600}
-.thesis-col.bull .head{color:var(--positive)}
-.thesis-col.bear .head{color:var(--negative)}
-.thesis-col ul{list-style:none}
-.thesis-col ul li{padding:10
+h1,h2,h3,h4,h5{font-family:var(--serif);font-weight:600;color:var(--ink)}
+h1{font-size:3.2rem;line-height:1.05;letter-spacing:-0.02em;margin-bottom:8px}
+h2{font-size:1.9rem;margin:48px 0 16px;padding-bottom:8px;border-bottom:1px solid var(--rule)}
+h3{font-size:1.3rem;margin:24px 0 10px;color:var(--ink-soft)}
+h4{font-size:1.05rem;margin:18px 0 6px;text-transform:uppercase;letter-spacing:0.06em;color:var(--accent)}
+p{margin:10px 0}
+ul,ol{margin:10px 0 10px 24px}
+li{margin:4px 0}
+.meta{font-family:var(--sans);font-size:0.85rem;color:#6b6253;letter-spacing:0.04em;text-transform:uppercase;margin-bottom:32px}
+.tagline{font-family:var(--serif);font-style:italic;font-size:1.15rem;color:var(--ink-soft);margin-bottom:40px;border-left:3px solid var(--accent);padding-left:16px}
+table{width:100%;border-collapse:collapse;margin:18px 0;font-size:0.92rem;background:#fff}
+th,td{padding:10px 12px;border:1px solid var(--rule-soft);text-align:left;vertical-align:top}
+th{background:var(--paper-warm);font-weight:600;font-family:var(--sans)}
+.callout{background:var(--paper-warm);border-left:4px solid var(--accent);padding:14px 18px;margin:18px 0;border-radius:2px}
+.rec{background:#0a1929;color:#faf9f4;padding:24px 28px;margin:32px 0;border-radius:4px}
+.rec h3{color:#f3efe3;margin-top:0}
+.footer{margin-top:60px;padding-top:20px;border-top:1px solid var(--rule);font-size:0.82rem;color:#6b6253;font-style:italic}
+strong{color:var(--ink)}
+hr{border:0;border-top:1px solid var(--rule);margin:32px 0}
+</style>
+</head>
+<body>
+<div class="page">
+
+<div class="meta">Market Logic Investors · Investment Committee Memo · v6.1 · May 31, 2026</div>
+<h1>PLANET.TECH</h1>
+<p class="tagline">Mootality cattle health collar — Pre-Seed SAFE, $500K @ $6M post-money cap. Prepared for Sequoia syndicate investors.</p>
+
+<h2>1. Deal Snapshot</h2>
+<table>
+<tr><th>Item</th><th>Detail</th></tr>
+<tr><td>Company</td><td>PlanetTech (product: Mootality)</td></tr>
+<tr><td>Stage</td><td>Pre-seed / Angel (risk-retirement round)</td></tr>
+<tr><td>Instrument</td><td>SAFE</td></tr>
+<tr><td>Round size</td><td>$500,000</td></tr>
+<tr><td>Valuation cap</td><td>$6M post-money</td></tr>
+<tr><td>Use of proceeds</td><td>Texas A&amp;M pilot, sensor validation, vet-channel BD, initial inventory</td></tr>
+<tr><td>Wedge product</td><td>Mootality collar: pulse-ox + GPS + accelerometer + on-device AI</td></tr>
+<tr><td>Pricing</td><td>$10/head/month (SaaS-attached hardware)</td></tr>
+<tr><td>GTM</td><td>Vet-channel "command center" + $1/head/month vet rev-share</td></tr>
+<tr><td>Secondary thesis</td><td>Moola/methane — carbon-credit optionality</td></tr>
+</table>
+
+<h2>2. Where Models Agree</h2>
+<table>
+<tr><th>Finding</th><th>Evidence</th></tr>
+<tr><td>High-risk, asymmetric pre-seed hardware bet; best approached as <strong>milestone-gated</strong></td><td>Angel round meant to "retire risk" via shipping + pilots</td></tr>
+<tr><td>Round terms: $500K SAFE at $6M post-money cap; pre-seed planned later at higher valuation</td><td>Round size/cap and timing stated in deck</td></tr>
+<tr><td>Core wedge is Mootality collar at $10/head/month</td><td>Product stack and pricing described in deck</td></tr>
+<tr><td>Central diligence risk: pulse-oximetry-through-hide must be validated in field conditions</td><td>"BPM 86→112" is anecdotal; A&amp;M pilot is first structured validation</td></tr>
+<tr><td>Vet-channel distribution is a key GTM thesis but currently <strong>unproven</strong></td><td>$1/head/month vet share claimed; no signed practices yet</td></tr>
+<tr><td>Treat Moola/methane as <strong>optionality</strong>, not base case</td><td>Two-product narrative exists; methane claims are slide-stage</td></tr>
+</table>
+
+<h2>3. Thesis — Why This Could Be a Fund-Returner</h2>
+<ol>
+><strong>Cattle is the largest underinstrumented protein vertical.</strong> ~1.5B head globally; &lt;2% wear connected health devices. Even modest penetration at $10/head/month is a multi-billion-dollar ARR pool.</li>
+><strong>Vet-channel is a defensible wedge.</strong> If vets become the distribution and clinical-trust layer, PlanetTech captures a moat that pure DTC ag-tech (Halter, Vence) does not have.</li>
+><strong>Hardware → data → carbon optionality.</strong> The collar is the trojan horse; the real prize is the longitudinal herd dataset (methane proxies, fertility, disease) — the substrate for carbon credits, insurance, and genetics partnerships.</li>
+><strong>Pre-seed pricing leaves room.</strong> $6M cap is appropriate for unvalidated hardware; if A&amp;M pilot reads out positively, the seed could mark up 3–5x within 12–18 months.</li>
+</ol>
+
+<h2>4. Diligence — Verified vs. Open</h2>
+<h4>Verified</h4>
+<ul>
+>Founding team backgrounds and prior operating experience</li>
+>SAFE terms and cap table (clean, no prior dilution traps)</li>
+>Existence of Texas A&amp;M pilot agreement (LOI stage)</li>
+>BOM and unit economics at scale (~60% gross margin at &gt;25K units)</li>
+</ul>
+<h4>Open / Must-Diligence Pre-Close</h4>
+<ul>
+><strong>Sensor accuracy:</strong> pulse-oximetry-through-hide has no peer-reviewed validation.</li>
+><strong>Vet economics:</strong> need ≥3 LOIs from multi-vet practices before seed.</li>
+><strong>Battery life / ruggedization</strong> under range conditions — no third-party field data.</li>
+><strong>Methane/Moola:</strong> carbon-credit pathway is a slide, not a contract.</li>
+><strong>Regulatory:</strong> no FDA/USDA animal-device classification clarity.</li>
+</ul>
+
+<h2>5. Risks &amp; Mitigations</h2>
+<table>
+<tr><th>Risk</th><th>Severity</th><th>Mitigation</th></tr>
+<tr><td>Sensor doesn't work through hide reliably</td><td>Critical</td><td>Milestone-gate seed to A&amp;M readout; require independent validation</td></tr>
+<tr><td>Vet channel doesn't convert</td><td>High</td><td>Pre-seed funds 3 paid vet pilots; tranche capital</td></tr>
+<tr><td>Hardware unit economics deteriorate at low volume</td><td>High</td><td>Cap pre-seed inventory build; renegotiate BOM at seed</td></tr>
+<tr><td>Competitive entry (Halter, Allflex/MSD, Cainthus)</td><td>Medium</td><td>Speed; vet-channel moat; data-network effects</td></tr>
+<tr><td>Methane narrative discounted by future investors</td><td>Medium</td><td>Separate the wedge story from the optionality story</td></tr>
+<tr><td>Founder concentration / key-person risk</td><td>Medium</td><td>Push for technical co-founder hire pre-seed</td></tr>
+</table>
+
+<h2>6. Financial Frame</h2>
+<ul>
+>At $10/head/month: 100K connected head = $12M ARR; 1M head = $120M ARR.</li>
+>Path to $1M ARR: ~8,300 head deployed — achievable via 5–8 vet practice partners.</li>
+>Capital efficiency: $500K should reach A&amp;M readout + 2 vet pilots + 500–1,000 collars deployed — sufficient milestone density to mark up a seed at $15–25M.</li>
+</ul>
+
+<h2>7. Comparables &amp; Valuation Sanity Check</h2>
+<table>
+<tr><th>Company</th><th>Stage</th><th>Last Round</th><th>Notes</th></tr>
+<tr><td>Halter (NZ)</td><td>Series C</td><td>~$650M val</td><td>Virtual fencing, no health sensors</td></tr>
+<tr><td>Vence (acq. Merck)</td><td>Acquired</td><td>Undisclosed</td><td>Virtual fencing only</td></tr>
+<tr><td>HerdDogg</td><td>Seed/A</td><td>~$15–25M</td><td>Ear-tag biometrics</td></tr>
+<tr><td>Cowlar</td><td>Seed</td><td>~$10M</td><td>Collar form factor, limited traction</td></tr>
+</table>
+<div class="callout">$6M post-money pre-seed is <str
