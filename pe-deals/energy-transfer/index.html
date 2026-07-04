@@ -1230,6 +1230,105 @@ footer{margin-top:80px;padding-top:28px;border-top:1px solid var(--ink);font-fam
 </section>
 
 
+
+<!-- DISTRIBUTION BOTTLENECK -->
+<section>
+  <div class="section-head">
+    <div class="section-num">&sect;&nbsp;DB</div>
+    <div class="section-title">
+      <h2>Will Distribution Become the Bottleneck?</h2>
+      <p class="sub">Gas generation is not the constraint. Getting it to the data center is. ET sits on both sides of that bottleneck.</p>
+    </div>
+  </div>
+
+  <p style="margin-bottom:16px;">The insight you are developing is sharper than it sounds. The standard analyst framing is: ET generates gas, data centers need gas, ET wins. What you are asking is the next-order question: even if ET produces enough gas, can it physically deliver it at the rate and reliability that AI data centers require? That is a different question, and it has a specific answer. <span style="color:var(--teal);">[Inferred from infrastructure analysis and data center power requirements]</span></p>
+
+  <h4 style="margin-bottom:14px;">The distribution chain: five potential bottlenecks</h4>
+  <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:20px;">
+
+    <div style="border-left:4px solid var(--positive);padding:14px 16px;background:var(--paper-warm);border-top:1px solid var(--rule-soft);border-right:1px solid var(--rule-soft);border-bottom:1px solid var(--rule-soft);">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px;">
+        <span style="font-family:var(--mono);font-size:0.72rem;font-weight:700;color:var(--positive);">NOT A BOTTLENECK</span>
+        <h3 style="font-size:1rem;">Gas supply at the wellhead</h3>
+      </div>
+      <p style="font-size:0.88rem;">Permian Basin production is growing. Waha Hub surplus is the periodic problem, not shortage. The US produces approximately 104 Bcf/d of dry gas. AI data centers in total, even at full buildout of all announced projects, would consume approximately 10 to 15 Bcf/d by 2030. Supply is not the constraint. <span style="color:var(--teal);">[Inferred from EIA production data and data center demand projections]</span></p>
+    </div>
+
+    <div style="border-left:4px solid var(--positive);padding:14px 16px;background:var(--paper-warm);border-top:1px solid var(--rule-soft);border-right:1px solid var(--rule-soft);border-bottom:1px solid var(--rule-soft);">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px;">
+        <span style="font-family:var(--mono);font-size:0.72rem;font-weight:700;color:var(--positive);">ET'S MOAT</span>
+        <h3 style="font-size:1rem;">Mainline interstate and intrastate transmission</h3>
+      </div>
+      <p style="font-size:0.88rem;">ET operates 90,000 miles of inter and intrastate pipe. This is the primary competitive moat. New entrants cannot replicate this in the data center buildout timeline. A new interstate pipeline takes 5 to 7 years from FID to service. ET's existing network reaches 44 states. The question for new data center siting is not whether gas can reach it. It is whether ET's pipe is close enough to make a lateral economical. <span style="color:var(--teal);">[Inferred from ET infrastructure footprint]</span></p>
+    </div>
+
+    <div style="border-left:4px solid var(--warning);padding:14px 16px;background:var(--paper-warm);border-top:1px solid var(--rule-soft);border-right:1px solid var(--rule-soft);border-bottom:1px solid var(--rule-soft);">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px;">
+        <span style="font-family:var(--mono);font-size:0.72rem;font-weight:700;color:var(--warning);">REAL CONSTRAINT</span>
+        <h3 style="font-size:1rem;">Last-mile laterals: permitting speed</h3>
+      </div>
+      <p style="font-size:0.88rem;">The last-mile lateral connecting ET's mainline to a data center site is where the bottleneck actually lives. These are typically intrastate pipes (not FERC-regulated interstate pipes), which means faster permitting. But Texas Railroad Commission permitting, environmental review, land acquisition, and construction still take 12 to 24 months. Data center developers want power in 6 to 12 months. That gap is the real distribution constraint. ET's solution is the behind-the-meter model: existing intrastate pipes with short laterals already contracted. But for new sites outside ET's existing geographic coverage, the 12 to 24 month lateral build timeline is a genuine bottleneck. <span style="color:var(--teal);">[Ext: Criterion Research / Nexus Hubbard timeline data; Inferred]</span></p>
+    </div>
+
+    <div style="border-left:4px solid var(--warning);padding:14px 16px;background:var(--paper-warm);border-top:1px solid var(--rule-soft);border-right:1px solid var(--rule-soft);border-bottom:1px solid var(--rule-soft);">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px;">
+        <span style="font-family:var(--mono);font-size:0.72rem;font-weight:700;color:var(--warning);">REAL CONSTRAINT</span>
+        <h3 style="font-size:1rem;">Gas turbine and reciprocating engine delivery</h3>
+      </div>
+      <p style="font-size:0.88rem;">This is the constraint nobody in the ET analysis is discussing. Generating equipment lead times are 18 to 36 months for large-frame gas turbines (Siemens F-class, GE 7F). VoltaGrid's Qpac modular reciprocating engine platform uses INNIO Jenbacher units with faster delivery but still requires 12 to 18 months. Fermi America secured $500M in MUFG financing specifically to fund Siemens F-class turbine acquisition, and noted they are high-demand assets. The gas can reach the data center. The turbine to convert it to power may not arrive on the hyperscaler's preferred timeline. ET is not the bottleneck here. The generation equipment supply chain is. ET's capital-light model (ET supplies gas, partner builds generation) means ET is insulated from this constraint. Its partners are not. <span style="color:var(--teal);">[Ext: Fermi America 8-K Feb 2026; VoltaGrid / Oracle press release Oct 2025; Inferred]</span></p>
+    </div>
+
+    <div style="border-left:4px solid var(--negative);padding:14px 16px;background:var(--paper-warm);border-top:1px solid var(--rule-soft);border-right:1px solid var(--rule-soft);border-bottom:1px solid var(--rule-soft);">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px;">
+        <span style="font-family:var(--mono);font-size:0.72rem;font-weight:700;color:var(--negative);">STRUCTURAL RISK</span>
+        <h3 style="font-size:1rem;">Grid interconnection for excess power export</h3>
+      </div>
+      <p style="font-size:0.88rem;">Behind-the-meter gas generation produces power for the data center. But if the data center runs at less than 100% utilization, surplus power has to go somewhere. The grid interconnection queue in ERCOT (Texas) is approximately 3 to 5 years for new generation assets. If a data center developer wants the flexibility to sell excess power back to the grid, that interconnection creates a multi-year dependency that behind-the-meter gas alone cannot solve. This is exactly why Meta simultaneously signed a nuclear PPA (Vistra, 2,600 MW) alongside gas agreements. The gas handles the behind-the-meter near-term reliability need. The nuclear handles the long-term carbon-free grid-connected baseload need. These are not competing strategies. They are complementary. ET captures the gas segment. It does not capture the nuclear segment. That is not a risk. It is a scope limitation. <span style="color:var(--teal);">[Ext: irecruit.co data center power report 2026; Meta Vistra PPA Jan 2026; Inferred]</span></p>
+    </div>
+
+  </div>
+
+  <h4 style="margin-bottom:14px;">The distribution question reframed: who owns which piece</h4>
+  <table>
+    <thead><tr><th>Distribution stage</th><th>Owner</th><th>ET's role</th><th>Bottleneck risk</th></tr></thead>
+    <tbody>
+      <tr><td>Gas production</td><td>E&P companies (Permian, Haynesville producers)</td><td>Customer</td><td><span class="tag pos">Low</span></td></tr>
+      <tr><td>Gathering</td><td>ET (WTG, Midstream segment)</td><td>Owner-operator</td><td><span class="tag pos">Low</span></td></tr>
+      <tr><td>Processing</td><td>ET (Mustang Draw, other plants)</td><td>Owner-operator</td><td><span class="tag pos">Low</span></td></tr>
+      <tr><td>Mainline transmission</td><td>ET (90,000 miles)</td><td>Owner-operator</td><td><span class="tag pos">Low / moat</span></td></tr>
+      <tr class="highlight"><td><strong>Last-mile lateral</strong></td><td>ET builds, customer may fund</td><td><strong>Builder</strong></td><td><span class="tag warn"><strong>Medium: permitting 12-24 months</strong></span></td></tr>
+      <tr class="highlight"><td><strong>Power generation</strong></td><td>VoltaGrid, Fermi, Nexus (not ET)</td><td>Fuel supplier only</td><td><span class="tag neg"><strong>High: turbine lead times 18-36 months</strong></span></td></tr>
+      <tr><td>Grid interconnection</td><td>ERCOT, utilities</td><td>No role</td><td><span class="tag neg">High: 3-5 year queue</span></td></tr>
+      <tr><td>Data center operations</td><td>Hyperscaler (Meta, Oracle, Microsoft)</td><td>No role</td><td>Not applicable</td></tr>
+    </tbody>
+  </table>
+
+  <h4 style="margin-bottom:14px;margin-top:24px;">The insight that follows from this analysis</h4>
+  <div class="card" style="border-left:4px solid var(--teal);">
+    <p style="margin-bottom:10px;">ET's capital-light model is not just a financial structure choice. It is an implicit bet that the distribution bottlenecks (turbine lead times, grid interconnection queues) sit outside ET's scope and therefore outside ET's risk. ET collects its tariff whether or not the generation equipment arrives on time. The take-or-pay contract ensures this. The data center developer absorbs the turbine delivery risk. VoltaGrid absorbs the generation execution risk. ET absorbs only the pipeline volume risk, which is protected by MVC minimums.</p>
+    <p style="margin-bottom:10px;">This is the correct model for ET to be in. The risks that are hardest to manage (turbine procurement in a constrained global supply chain, grid interconnection in an oversubscribed queue) are sitting with specialists who have capital allocated specifically for those problems.</p>
+    <p><strong>The talking point for Bramhall:</strong> "The distribution bottleneck in the AI gas story is not pipeline capacity. It is turbine delivery lead times and grid interconnection timelines. ET's capital-light model puts those risks with VoltaGrid and Fermi rather than on ET's balance sheet. Is that structural separation of risk explicit in how ET frames the business model to institutional investors, or is it still being presented primarily as a demand story?" <span style="color:var(--teal);">[Inferred from contract structure and bottleneck analysis]</span></p>
+  </div>
+
+  <h4 style="margin-bottom:14px;margin-top:24px;">The precise debt maturity picture</h4>
+  <div class="card">
+    <p style="margin-bottom:10px;"><em>(Replaces earlier vague interest rate language. All numbers sourced from SEC filings.)</em> <span style="color:var(--teal);">[Ext: ET 424B5 Jan 2026; ET 424B2 2017; StockTitan Q3 2025 summary]</span></p>
+    <table>
+      <thead><tr><th>Tranche</th><th>Principal</th><th>Coupon</th><th>Maturity</th><th>Refi rate today</th><th>Annual delta</th></tr></thead>
+      <tbody>
+        <tr class="highlight"><td><strong>4.200% Senior Notes</strong></td><td><strong>$600M</strong></td><td><strong>4.200%</strong></td><td><strong>Apr 2027</strong></td><td>~5.0-5.5%</td><td><strong>+$5-8M</strong></td></tr>
+        <tr><td>5.500% Senior Notes</td><td>Est. $500M+</td><td>5.500%</td><td>Jun 2027</td><td>~5.0-5.5%</td><td>Flat to slightly down</td></tr>
+        <tr><td>5.875% / legacy tranches</td><td>Various $500M-$1B</td><td>5.875%</td><td>2028</td><td>~5.2-5.5%</td><td>Immaterial or down</td></tr>
+        <tr><td>Jan 2026 new issuance</td><td>$3.0B total</td><td>4.55% / 5.35% / 6.30%</td><td>2031/2036/2056</td><td>Already issued</td><td>Locked</td></tr>
+        <tr><td>Aug 2025 junior sub notes</td><td>$2.0B</td><td>6.50% / 6.75%</td><td>2056</td><td>Already issued</td><td>Locked</td></tr>
+      </tbody>
+    </table>
+    <p style="margin-top:12px;font-size:0.85rem;"><strong>Conclusion:</strong> Near-term fixed-rate refinancing risk is immaterial. The April 2027 $600M tranche at 4.20% is the nearest meaningful maturity. Refinanced today at 5.0 to 5.5%, the annual interest delta is $5 to $8M. That is 0.1% of 2026E EBITDA. The real interest rate risk is the floating rate exposure: approximately 20% of $60B ET-entity debt is floating rate, equal to approximately $12B. At +100bps Fed increase, that adds $120M to annual interest expense with no maturity event required. That is the number that belongs in the bear case model, not the refinancing calendar. ET's January 2026 $3B fixed-rate issuance (4.55 to 6.30%) and August 2025 $2B junior subordinated issuance (6.50 to 6.75%) demonstrate an active liability management program that is extending maturities and locking in fixed rates, which reduces near-term refinancing risk. <span style="color:var(--teal);">[Ext: ET 8-K Jan 12 2026; ET 424B5 Aug 2025; 2017 424B5 filing]</span></p>
+  </div>
+
+</section>
+
+
 <!-- FOOTER -->
 <footer>
   <div>Market Logic Investors LLC &nbsp;&middot;&nbsp; ML-2026-ET-01 &nbsp;&middot;&nbsp; Confidential &nbsp;&middot;&nbsp; Not investment advice</div>
