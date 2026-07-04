@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Energy Transfer LP · PE Research Memo · Market Logic</title>
+<style>
+:root {
+  --ink: #0a1929; --ink-soft: #1c2e44;
+  --paper: #faf9f4; --paper-warm: #f3efe3;
+  --rule: #d4cfbf; --rule-soft: #e8e3d4;
+  --muted: #5b6b7a; --muted-light: #8a98a5;
+  --accent: #b8391c; --accent-soft: #d65a3a;
+  --teal: #1f6b6b; --teal-soft: #4a8b8b; --teal-light: #b8d4d4;
+  --positive: #2d6a4f; --warning: #b08800; --negative: #9b2226;
+  --negative-light: #e8c5c5;
+  --serif: 'Iowan Old Style','Palatino Linotype',Palatino,'Book Antiqua',Georgia,serif;
+  --sans: 'Helvetica Neue',Helvetica,-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
+  --mono: 'SF Mono',SFMono-Regular,Menlo,Monaco,Consolas,'Liberation Mono',monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{font-size:16px;-webkit-text-size-adjust:100%;}
+body{font-family:var(--sans);background:var(--paper);color:var(--ink);line-height:1.55;-webkit-font-smoothing:antialiased;}
+.page{max-width:1000px;margin:0 auto;padding:56px 56px 80px;}
+h1,h2,h3,h4,h5{font-family:var(--serif);font-weight:400;color:var(--ink);}
+h1{font-size:3.6rem;line-height:1.02;letter-spacing:-0.025em;}
+h2{font-size:2.05rem;line-height:1.12;letter-spacing:-0.015em;}
+h3{font-size:1.3rem;line-height:1.25;}
+h4{font-family:var(--sans);font-weight:600;font-size:0.7rem;text-transform:uppercase;letter-spacing:0.16em;color:var(--muted);}
+p{font-size:0.95rem;line-height:1.7;color:var(--ink-soft);}
+strong{color:var(--ink);font-weight:600;}
+.eyebrow{font-family:var(--sans);font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.2em;color:var(--accent);display:block;margin-bottom:18px;}
+.lede{font-family:var(--serif);font-size:1.25rem;line-height:1.5;color:var(--ink);}
+.kicker{font-family:var(--sans);font-size:0.75rem;font-weight:600;text-transform:uppercase;letter-spacing:0.12em;color:var(--teal);}
+.label{font-family:var(--sans);font-size:0.7rem;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);}
+.mono{font-family:var(--mono);font-size:0.85rem;}
+.cover{border-top:1px solid var(--ink);padding-top:32px;position:relative;}
+.cover-meta{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:84px;}
+.cover-meta .left,.cover-meta .right{font-family:var(--sans);font-size:0.78rem;color:var(--muted);}
+.cover-meta .right{text-align:right;}
+.cover-meta .right .stamp{display:inline-block;padding:4px 10px;border:1px solid var(--accent);color:var(--accent);font-weight:600;letter-spacing:0.12em;font-size:0.65rem;text-transform:uppercase;margin-bottom:8px;}
+.cover-title{margin-bottom:28px;}
+.cover-title .legal{display:block;font-family:var(--sans);font-size:0.78rem;color:var(--muted);margin-top:8px;letter-spacing:0.04em;}
+.cover-tag{font-family:var(--serif);font-style:italic;font-size:1.4rem;line-height:1.45;color:var(--ink-soft);max-width:720px;margin-bottom:56px;}
+.cover-tag::before{content:"\201C";font-size:2.2rem;line-height:0;vertical-align:-0.3em;color:var(--accent);margin-right:4px;}
+.cover-tag::after{content:"\201D";font-size:2.2rem;line-height:0;vertical-align:-0.3em;color:var(--accent);margin-left:2px;}
+.metric-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:0;border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);margin:32px 0;}
+.metric{padding:22px 16px 20px;border-right:1px solid var(--rule);text-align:left;}
+.metric:last-child{border-right:none;}
+.metric .v{font-family:var(--serif);font-size:2.1rem;line-height:1;letter-spacing:-0.02em;color:var(--ink);display:block;margin-bottom:6px;}
+.metric .v small{font-size:0.95rem;color:var(--muted);font-family:var(--serif);margin-left:1px;}
+.metric .l{font-family:var(--sans);font-size:0.68rem;font-weight:600;text-transform:uppercase;letter-spacing:0.12em;color:var(--muted);line-height:1.3;}
+.metric.accent .v{color:var(--accent);}
+.metric.teal .v{color:var(--teal);}
+section{margin-top:64px;padding-top:32px;border-top:1px solid var(--rule);}
+section.no-rule{border-top:none;}
+.section-head{display:grid;grid-template-columns:120px 1fr;gap:32px;margin-bottom:28px;align-items:baseline;}
+.section-num{font-family:var(--mono);font-size:0.78rem;color:var(--muted);letter-spacing:0.05em;border-top:2px solid var(--ink);padding-top:8px;text-transform:uppercase;font-weight:600;}
+.section-title h2{margin-bottom:8px;}
+.section-title .sub{font-family:var(--serif);font-style:italic;color:var(--muted);font-size:1.05rem;}
+.cols-2{display:grid;grid-template-columns:1fr 1fr;gap:36px;margin-top:16px;}
+.cols-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px;margin-top:16px;}
+.card{background:var(--paper-warm);padding:22px 24px;border:1px solid var(--rule);}
+.card.dark{background:var(--ink);color:var(--paper);}
+.card.dark h3,.card.dark h4{color:var(--paper);}
+.card.dark p{color:rgba(250,249,244,0.85);}
+.callout{border-left:3px solid var(--accent);padding:4px 0 4px 20px;margin:18px 0;font-family:var(--serif);font-style:italic;font-size:1.05rem;color:var(--ink);}
+.pull-quote{font-family:var(--serif);font-size:1.4rem;line-height:1.4;color:var(--ink);border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);padding:28px 0;margin:32px 0;text-align:center;letter-spacing:-0.005em;}
+table{width:100%;border-collapse:collapse;font-family:var(--sans);font-size:0.88rem;margin-top:14px;}
+thead th{text-align:left;font-weight:600;font-size:0.7rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);padding:10px 14px 10px 0;border-bottom:1.5px solid var(--ink);}
+thead th.num{text-align:right;}
+tbody td{padding:14px 14px 14px 0;border-bottom:1px solid var(--rule);color:var(--ink-soft);vertical-align:top;}
+tbody td.num{text-align:right;font-variant-numeric:tabular-nums;font-family:var(--mono);font-size:0.82rem;}
+tbody td strong{color:var(--ink);}
+tbody tr.highlight td{color:var(--ink);}
+tbody tr.highlight td:first-child{padding-left:12px;border-left:3px solid var(--accent);}
+ul.clean{list-style:none;}
+ul.clean li{padding:12px 0 12px 24px;border-bottom:1px solid var(--rule-soft);position:relative;font-size:0.93rem;color:var(--ink-soft);line-height:1.6;}
+ul.clean li::before{content:"→";position:absolute;left:0;top:12px;color:var(--accent);font-weight:600;}
+ol.clean{list-style:none;counter-reset:ck;}
+ol.clean li{counter-increment:ck;padding:12px 0 12px 36px;border-bottom:1px solid var(--rule-soft);position:relative;font-size:0.93rem;color:var(--ink-soft);line-height:1.6;}
+ol.clean li::before{content:counter(ck,decimal-leading-zero);position:absolute;left:0;top:12px;font-family:var(--mono);font-size:0.78rem;color:var(--accent);font-weight:600;}
+.tag{display:inline-block;font-family:var(--sans);font-size:0.68rem;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;padding:3px 9px;margin-right:6px;margin-bottom:4px;border:1px solid var(--rule);color:var(--ink-soft);background:var(--paper);}
+.tag.accent{border-color:var(--accent);color:var(--accent);}
+.tag.teal{border-color:var(--teal);color:var(--teal);}
+.tag.warn{border-color:var(--warning);color:var(--warning);}
+.tag.neg{border-color:var(--negative);color:var(--negative);}
+.tag.pos{border-color:var(--positive);color:var(--positive);}
+.thesis-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:24px;border:1px solid var(--ink);}
+.thesis-col{padding:28px 28px 24px;}
+.thesis-col.bull{border-right:1px solid var(--ink);}
+.thesis-col ul{list-style:none;margin-top:14px;}
+.thesis-col ul li{padding:10px 0 10px 22px;position:relative;font-size:0.9rem;color:var(--ink-soft);line-height:1.55;border-bottom:1px dashed var(--rule-soft);}
+.thesis-col.bull ul li::before{content:"+";position:absolute;left:0;top:9px;color:var(--positive);font-weight:700;}
+.thesis-col.bear ul li::before{content:"−";position:absolute;left:0;top:9px;color:var(--negative);font-weight:700;}
+.recommendation{background:var(--ink);color:var(--paper);padding:40px 44px;margin-top:40px;border-left:6px solid var(--accent);}
+.recommendation .head{font-family:var(--mono);font-size:0.74rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--accent-soft);margin-bottom:12px;font-weight:600;}
+.recommendation h2{color:var(--paper);margin-bottom:14px;}
+.recommendation p{color:rgba(250,249,244,0.86);font-size:1rem;}
+.recommendation .actions{margin-top:24px;padding-top:20px;border-top:1px solid rgba(250,249,244,0.18);display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+.recommendation .actions .h{font-family:var(--mono);font-size:0.7rem;text-transform:uppercase;letter-spacing:0.14em;color:var(--accent-soft);margin-bottom:10px;}
+.recommendation .actions ul{list-style:none;}
+.recommendation .actions ul li{padding:6px 0 6px 22px;position:relative;font-size:0.9rem;color:rgba(250,249,244,0.92);line-height:1.5;}
+.recommendation .actions ul li::before{content:"▸";position:absolute;left:0;top:5px;color:var(--accent-soft);}
+footer{margin-top:80px;padding-top:28px;border-top:1px solid var(--ink);font-family:var(--sans);font-size:0.74rem;color:var(--muted);display:flex;justify-content:space-between;}
+.chart{width:100%;margin:18px 0 6px;background:var(--paper);}
+.chart-caption{font-family:var(--sans);font-size:0.72rem;color:var(--muted);margin-top:4px;font-style:italic;line-height:1.5;}
+/* Dashboard */
+.dash-panel{background:var(--paper-warm);border:1px solid var(--rule);padding:24px;margin-top:24px;}
+.dash-controls{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:20px;}
+.ctrl-item{display:flex;flex-direction:column;gap:5px;}
+.ctrl-item label{font-family:var(--sans);font-size:0.7rem;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);}
+.ctrl-row{display:flex;align-items:center;gap:8px;}
+.ctrl-row input[type=range]{flex:1;accent-color:var(--teal);cursor:pointer;}
+.ctrl-val{font-family:var(--mono);font-size:0.82rem;font-weight:600;color:var(--ink);min-width:48px;text-align:right;}
+.scen-row{display:flex;gap:8px;margin-bottom:18px;flex-wrap:wrap;}
+.scen-btn{font-family:var(--sans);font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;padding:5px 14px;border:1px solid var(--rule);background:var(--paper);color:var(--muted);cursor:pointer;}
+.scen-btn:hover{border-color:var(--teal);color:var(--teal);}
+.scen-btn.active{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+.output-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--rule);margin-bottom:16px;}
+.output-cell{padding:16px 14px;border-right:1px solid var(--rule);}
+.output-cell:last-child{border-right:none;}
+.output-cell .ov{font-family:var(--serif);font-size:1.8rem;letter-spacing:-0.02em;color:var(--ink);display:block;line-height:1;margin-bottom:4px;}
+.output-cell .ol{font-family:var(--sans);font-size:0.65rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--muted);}
+.output-cell.ok .ov{color:var(--positive);}
+.output-cell.warn .ov{color:var(--warning);}
+.output-cell.bad .ov{color:var(--negative);}
+.verdict-box{padding:16px 20px;font-family:var(--sans);font-size:0.88rem;line-height:1.6;border-left:4px solid var(--rule);margin-bottom:16px;}
+.verdict-box.ok{border-left-color:var(--positive);background:#f0f7f4;}
+.verdict-box.warn{border-left-color:var(--warning);background:#fdf8ec;}
+.verdict-box.bad{border-left-color:var(--negative);background:#fdf0f0;}
+.verdict-box .vl{font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.14em;margin-bottom:5px;color:var(--muted);}
+.assump-list{list-style:none;margin-top:0;}
+.assump-list li{padding:14px 0 14px 24px;border-bottom:1px solid var(--rule-soft);position:relative;font-size:0.88rem;line-height:1.6;color:var(--ink-soft);}
+.assump-list li::before{content:"→";position:absolute;left:0;top:14px;color:var(--accent);font-weight:700;}
+.assump-list li strong{color:var(--ink);}
+.assump-flag{display:inline-block;font-family:var(--mono);font-size:0.65rem;font-weight:700;letter-spacing:0.08em;padding:2px 7px;border:1px solid;margin-left:8px;vertical-align:middle;}
+.assump-flag.ok{border-color:var(--positive);color:var(--positive);}
+.assump-flag.warn{border-color:var(--warning);color:var(--warning);}
+.assump-flag.bad{border-color:var(--negative);color:var(--negative);}
+.signal{font-family:var(--mono);font-size:0.72rem;color:var(--teal);margin-top:6px;display:block;line-height:1.5;}
+.entity-row{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--ink);margin-top:20px;}
+.entity-col{padding:20px 18px;border-right:1px solid var(--rule);}
+.entity-col:last-child{border-right:none;}
+.entity-col h4{margin-bottom:12px;}
+.entity-col.et h4{color:var(--teal);}
+.entity-col.sun h4{color:var(--positive);}
+.entity-col.usac h4{color:var(--warning);}
+.emet{display:flex;justify-content:space-between;font-size:0.8rem;padding:6px 0;border-bottom:1px solid var(--rule-soft);}
+.emet:last-child{border:none;}
+.emet .ek{color:var(--muted);}
+.emet .ev{font-weight:600;color:var(--ink);font-family:var(--mono);font-size:0.78rem;}
+.emet .ev.g{color:var(--positive);}
+.emet .ev.r{color:var(--negative);}
+.emet .ev.w{color:var(--warning);}
+.dc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--rule);margin-top:16px;}
+.dc-cell{padding:18px 16px;border-right:1px solid var(--rule);}
+.dc-cell:last-child{border-right:none;}
+.dc-name{font-family:var(--sans);font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--ink);margin-bottom:4px;}
+.dc-pipe{font-family:var(--sans);font-size:0.7rem;color:var(--muted);margin-bottom:10px;}
+.dc-vol{font-family:var(--serif);font-size:1.8rem;color:var(--teal);letter-spacing:-0.02em;line-height:1;margin-bottom:4px;}
+.dc-ebitda{font-family:var(--mono);font-size:0.8rem;color:var(--positive);font-weight:600;}
+.dc-note{font-size:0.72rem;color:var(--muted);margin-top:6px;line-height:1.45;}
+.site-nav{display:flex;align-items:center;justify-content:space-between;background:var(--ink);color:var(--paper);padding:10px 40px;font-family:var(--sans);font-size:0.78rem;letter-spacing:0.04em;position:sticky;top:0;z-index:100;gap:16px;}
+.site-nav a{color:rgba(250,249,244,0.7);text-decoration:none;}
+.site-nav a:hover{color:var(--paper);}
+.site-nav span[aria-hidden]{color:rgba(250,249,244,0.3);margin:0 4px;}
+.site-nav .nav-meta{color:rgba(250,249,244,0.45);font-size:0.75rem;}
+.site-nav .nav-action a{color:var(--accent);border:1px solid rgba(184,57,28,0.5);border-radius:3px;padding:3px 10px;}
+@media(max-width:760px){
+  .page{padding:32px 22px;}
+  h1{font-size:2.4rem;}
+  .metric-grid{grid-template-columns:repeat(2,1fr);}
+  .cols-2,.cols-3,.thesis-grid,.dash-controls,.output-grid,.entity-row,.dc-grid{grid-template-columns:1fr;}
+  .thesis-col.bull{border-right:none;border-bottom:1px solid var(--ink);}
+  .section-head{grid-template-columns:1fr;gap:8px;}
+  .recommendation .actions{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+<nav class="site-nav" aria-label="breadcrumb">
+  <div style="display:flex;align-items:center;gap:0">
+    <a href="../../">Market Logic Investors</a><span aria-hidden="true">/</span>
+    <a href="../../">Deal Vault</a><span aria-hidden="true">/</span>
+    <a href="../">PE Deals</a><span aria-hidden="true">/</span>
+    <span>Energy Transfer LP</span>
+  </div>
+  <div class="nav-meta">ML-2026-ET-01 &nbsp;|&nbsp; CFO Engagement</div>
+</nav>
+<div class="page">
+
+<!-- COVER -->
+<header class="cover">
+  <div class="cover-meta">
+    <div class="left">
+      <strong style="color:var(--ink);display:block;margin-bottom:4px;">Market Logic Investors LLC</strong>
+      Midstream Infrastructure &middot; Energy Transition &middot; Capital Markets<br>
+      Investment Memorandum &middot; Confidential
+    </div>
+    <div class="right">
+      <span class="stamp">CFO Engagement</span><br>
+      <strong style="color:var(--ink);">Memo Ref: ML-2026-ET-01</strong><br>
+      Prepared: July 4, 2026<br>
+      Author: H. Reganti
+    </div>
+  </div>
+  <span class="eyebrow">Midstream Infrastructure &middot; PE Research</span>
+  <div class="cover-title">
+    <h1>Energy Transfer LP</h1>
+    <span class="legal">NYSE: ET &middot; energytransfer.com &middot; Dallas, TX &middot; Founded 1996</span>
+  </div>
+  <p class="cover-tag">The largest midstream infrastructure partnership in the United States. The market prices it at 8.4x forward EBITDA against peers at 9.7&ndash;11.2x. The discount is real, the infrastructure is irreplaceable, and the AI gas demand inflection is not yet in consensus numbers.</p>
+  <div class="metric-grid">
+    <div class="metric teal"><span class="v">$18.4<small>B</small></span><span class="l">EBITDA 2026E <span style="color:var(--teal);">[Ext: Q1&nbsp;2026&nbsp;8-K]</span></span></div>
+    <div class="metric"><span class="v">$155<small>B</small></span><span class="l">Enterprise Value <span style="color:var(--teal);">[Ext: TIKR]</span></span></div>
+    <div class="metric accent"><span class="v">8.4<small>x</small></span><span class="l">EV/EBITDA vs peers 10.3x <span style="color:var(--teal);">[Inferred]</span></span></div>
+    <div class="metric"><span class="v">3.34<small>x</small></span><span class="l">ET Entity Leverage <span style="color:var(--teal);">[Ext: Q4&nbsp;2025&nbsp;8-K]</span></span></div>
+    <div class="metric"><span class="v">1.72<small>x</small></span><span class="l">Coverage 2026E <span style="color:var(--teal);">[Inferred]</span></span></div>
+    <div class="metric"><span class="v">7.2<small>%</small></span><span class="l">Distribution Yield $19.10 <span style="color:var(--teal);">[Inferred]</span></span></div>
+  </div>
+</header>
+
+<!-- § 01 THESIS -->
+<section>
+  <div class="section-head">
+    <div class="section-num">§&nbsp;01</div>
+    <div class="section-title">
+      <h2>Executive Summary</h2>
+      <p class="sub">The thesis in one paragraph &mdash; what the market is missing</p>
+    </div>
+  </div>
+  <p style="margin-bottom:24px;">Energy Transfer is the infrastructure bet on American energy supremacy &mdash; the toll-road operator for every molecule of natural gas, NGL, crude oil, and refined product that moves through the most prolific production basins in the United States. At $19.10 per unit, it trades at 8.4x 2026E EBITDA against peers at 9.7&ndash;11.2x, yielding 7.2% with 1.72x distribution coverage. The discount reflects a founder-controlled MLP governance structure, a 2020 distribution cut, and a Lake Charles LNG reversal. What the market is not pricing: AI/data center gas demand inflection (<strong>three named contracts, ~$440M unmodeled EBITDA</strong>), the $13&ndash;21B of ET-entity acquisition headroom, and a succession catalyst that could close 1&ndash;2 turns of multiple in a single announcement.</p>
+  <div class="thesis-grid">
+    <div class="thesis-col bull">
+      <div class="head">What we like</div>
+      <ul>
+        <li><strong>Fee-based fortress.</strong> 90%+ of segment margin fee-based. Volume is the only sensitivity &mdash; not price. Take-or-pay and MVC contracts across gathering, transport, and fractionation.</li>
+        <li><strong>AI demand tailwind &mdash; three named contracts.</strong> Meta Hyperion (Tiger Pipeline, 250k MMBtu/d, 20-year, Feb 2028). CloudBurst (Oasis Pipeline, 450k MMBtu/d). Oracle (~900 MMcf/d, active). ~$440M of annual EBITDA not in consensus.</li>
+        <li><strong>Desert Southwest capital efficiency.</strong> Phase 2 upsized: +0.8 Bcf/d for only $900M additional = 4.2x build multiple vs. 6x headline. Market is modeling the wrong return on ET's best project.</li>
+        <li><strong>Valuation gap.</strong> 2-turn discount on $18.4B EBITDA = ~$36.8B of implied market cap gap. At 3.43B units: ~$10.70/unit of trapped value = 56% of current price.</li>
+        <li><strong>Canadian crude hedge.</strong> Southern Illinois Connector (100 MBpd, 2028) and DAPL Phase 2 (250 MBpd, 2029+) provide volume floor independent of Permian drilling.</li>
+      </ul>
+    </div>
+    <div class="thesis-col bear">
+      <div class="head">What concerns us</div>
+      <ul>
+        <li><strong>The DCF leak.</strong> EBITDA grew 3% in 2025. DCF fell $8.4B &rarr; $8.2B. Interest expense absorbed the entire operating improvement &mdash; up $600M to $4.2B.</li>
+        <li><strong>Governance discount is structural.</strong> GP control locks out ~40% of institutional buyer universe permanently until C-Corp conversion. The 2020 Preferred Unit controversy is in institutional memory.</li>
+        <li><strong>Subsidiaries at leverage ceiling.</strong> SUN at 4.0x post-Parkland. USAC at 4.0x post-J-W Power. USAC equity is <em>negative</em> (&minus;$112M). Only ET entity has deal capacity.</li>
+        <li><strong>Capex execution risk.</strong> Desert Southwest at $5.6B, Q4 2029. ET history includes a $3.3B Rover Pipeline write-down. 18-month slip = $800M&ndash;$1.2B 2027 EBITDA miss.</li>
+        <li><strong>Succession unpriced.</strong> Marshall McCrea retiring by Dec 31 2026. No successor named. Single biggest unpriced event in ET's near-term trajectory.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- § 02 ENTITY STRUCTURE -->
+<section>
+  <div class="section-head">
+    <div class="section-num">§&nbsp;02</div>
+    <div class="section-title">
+      <h2>Three Entities &mdash; Know the Separation Cold</h2>
+      <p class="sub">ET consolidates SUN and USAC EBITDA but NOT their debt on ET's direct balance sheet</p>
+    </div>
+  </div>
+  <p style="margin-bottom:16px;">Most candidates collapse ET into a single consolidated number. Bramhall thinks in three separate balance sheets. Match his frame.</p>
+  <table>
+    <thead><tr><th>Entity</th><th>Ticker</th><th class="num">EBITDA 2025A</th><th class="num">Net Debt</th><th class="num">Leverage</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr class="highlight"><td><strong>ET Pipeline</strong></td><td style="font-family:var(--mono);font-size:0.82rem;">NYSE: ET</td><td class="num">$15.98B</td><td class="num">$60.0B</td><td class="num">3.34x</td><td><span class="tag teal">Has capacity</span></td></tr>
+      <tr><td><strong>Sunoco LP</strong></td><td style="font-family:var(--mono);font-size:0.82rem;">NYSE: SUN</td><td class="num">$2.12B</td><td class="num">$13.4B</td><td class="num">4.0x</td><td><span class="tag warn">At ceiling</span></td></tr>
+      <tr><td><strong>USA Compression</strong></td><td style="font-family:var(--mono);font-size:0.82rem;">NYSE: USAC</td><td class="num">$614M</td><td class="num">$2.55B</td><td class="num">4.0x</td><td><span class="tag neg">Negative equity</span></td></tr>
+    </tbody>
+  </table>
+  <div class="callout" style="margin-top:20px;">When Bramhall reports "consolidated EBITDA of $18.4B," that includes SUN and USAC. When he says leverage is 3.34x, that is ET-entity-only. Sunoco's $13.4B sits on Sunoco's balance sheet. Rating agencies calculate leverage on a consolidated basis &mdash; know both numbers.</div>
+</section>
+
+<!-- § 03 DCF LEAK -->
+<section>
+  <div class="section-head">
+    <div class="section-num">§&nbsp;03</div>
+    <div class="section-title">
+      <h2>The DCF Leak</h2>
+      <p class="sub">EBITDA grew. DCF fell. Open every conversation with this tension.</p>
+    </div>
+  </div>
+  <div class="cols-2" style="margin-top:0;">
+    <div>
+      <table>
+        <thead><tr><th>Year</th><th class="num">EBITDA</th><th class="num">DCF</th><th class="num">Interest</th><th class="num">Coverage</th></tr></thead>
+        <tbody>
+          <tr><td>2023A</td><td class="num">$14.5B</td><td class="num">$8.1B</td><td class="num">$3.1B</td><td class="num">1.84x</td></tr>
+          <tr><td>2024A</td><td class="num">$15.5B</td><td class="num">$8.4B</td><td class="num">$3.6B</td><td class="num">1.75x</td></tr>
+          <tr class="highlight"><td><strong>2025A</strong></td><td class="num"><strong>$15.98B</strong></td><td class="num" style="color:var(--negative);"><strong>$8.2B</strong></td><td class="num" style="color:var(--negative);"><strong>$4.2B</strong></td><td class="num" style="color:var(--warning);"><strong>1.67x</strong></td></tr>
+          <tr><td>Q1 2026</td><td class="num">$4.94B</td><td class="num" style="color:var(--positive);">$2.70B</td><td class="num">&mdash;</td><td class="num" style="color:var(--positive);">1.72xE</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div>
+      <div class="card">
+        <h4 style="margin-bottom:12px;">The gap &mdash; what happened</h4>
+        <p>EBITDA grew 3% in 2025. DCF fell $200M. The entire operating improvement was absorbed by a $600M increase in interest expense &mdash; from $3.6B to $4.2B. Q1 2026 shows the inflection: $2.7B DCF vs. $2.3B prior year. The question for Bramhall: is this the capex cycle peaking, or is refinancing activity still building the interest burden?</p>
+      </div>
+    </div>
+  </div>
+  <svg class="chart" viewBox="0 0 640 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="DCF vs EBITDA 2022-2027 line chart">
+    <title>DCF vs EBITDA 2022&ndash;2027</title>
+    <rect width="640" height="200" fill="#faf9f4"/>
+    <line x1="60" y1="20" x2="600" y2="20" stroke="#e8e3d4" stroke-width="0.5"/>
+    <line x1="60" y1="70" x2="600" y2="70" stroke="#e8e3d4" stroke-width="0.5"/>
+    <line x1="60" y1="120" x2="600" y2="120" stroke="#e8e3d4" stroke-width="0.5"/>
+    <line x1="60" y1="170" x2="600" y2="170" stroke="#d4cfbf" stroke-width="0.8"/>
+    <text x="54" y="23" font-family="SF Mono,Menlo,monospace" font-size="9" fill="#5b6b7a" text-anchor="end">$20B</text>
+    <text x="54" y="73" font-family="SF Mono,Menlo,monospace" font-size="9" fill="#5b6b7a" text-anchor="end">$15B</text>
+    <text x="54" y="123" font-family="SF Mono,Menlo,monospace" font-size="9" fill="#5b6b7a" text-anchor="end">$10B</text>
+    <text x="54" y="173" font-family="SF Mono,Menlo,monospace" font-size="9" fill="#5b6b7a" text-anchor="end">$5B</text>
+    <!-- X: 2022=100, 2023=190, 2024=280, 2025=370, 2026=450, 2027=545 -->
+    <text x="100" y="190" font-family="Helvetica Neue,sans-serif" font-size="9" fill="#5b6b7a" text-anchor="middle">2022A</text>
+    <text x="190" y="190" font-family="Helvetica Neue,sans-serif" font-size="9" fill="#5b6b7a" text-anchor="middle">2023A</text>
+    <text x="280" y="190" font-family="Helvetica Neue,sans-serif" font-size="9" fill="#5b6b7a" text-anchor="middle">2024A</text>
+    <text x="370" y="190" font-family="Helvetica Neue,sans-serif" font-size="9" fill="#5b6b7a" text-anchor="middle">2025A</text>
+    <text x="450" y="190" font-family="Helvetica Neue,sans-serif" font-size="9" fill="#5b6b7a" text-anchor="middle">2026E</text>
+    <text x="545" y="190" font-family="Helvetica Neue,sans-serif" font-size="9" fill="#5b6b7a" text-anchor="middle">2027E</text>
+    <!-- scale: 170px=0, 20px=$20B → 7.5px/$1B -->
+    <!-- EBITDA: 13.1→99.25, 14.5→87.25, 15.5→79.75, 15.98→76.15, 18.4→57.0, 19.8→46.5 -->
+    <polyline points="100,99 190,87 280,80 370,76 450,57 545,47" fill="none" stroke="#1f6b6b" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+    <polygon points="100,99 190,87 280,80 370,76 450,57 545,47 545,170 100,170" fill="#1f6b6b" fill-opacity="0.07"/>
+    <!-- DCF: 7.8→111.5, 8.1→109.25, 8.4→107, 8.2→108.5, 10.8→88.5, 11.9→80.75 -->
+    <polyline points="100,112 190,109 280,107 370,109 450,89 545,81" fill="none" stroke="#b8391c" stroke-width="2" stroke-dasharray="6,4" stroke-linejoin="round" stroke-linecap="round"/>
+    <!-- Gap annotation 2025 -->
+    <line x1="370" y1="76" x2="370" y2="109" stroke="#9b2226" stroke-width="1" stroke-dasharray="2,2"/>
+    <text x="380" y="96" font-family="Helvetica Neue,sans-serif" font-size="8" fill="#9b2226" font-weight="600">$200M leak</text>
+    <!-- Dots -->
+    <circle cx="100" cy="99" r="3.5" fill="#1f6b6b"/>
+    <circle cx="190" cy="87" r="3.5" fill="#1f6b6b"/>
+    <circle cx="280" cy="80" r="3.5" fill="#1f6b6b"/>
+    <circle cx="370" cy="76" r="3.5" fill="#1f6b6b"/>
+    <circle cx="450" cy="57" r="3.5" fill="#1f6b6b"/>
+    <circle cx="100" cy="112" r="3.5" fill="#b8391c"/>
+    <circle cx="190" cy="109" r="3.5" fill="#b8391c"/>
+    <circle cx="280" cy="107" r="3.5" fill="#b8391c"/>
+    <circle cx="370" cy="109" r="3.5" fill="#b8391c"/>
+    <circle cx="450" cy="89" r="3.5" fill="#b8391c"/>
+    <!-- Legend -->
+    <line x1="70" y1="12" x2="90" y2="12" stroke="#1f6b6b" stroke-width="2.5"/>
+    <text x="95" y="15" font-family="Helvetica Neue,sans-serif" font-size="9" fill="#374151">Adj. EBITDA</text>
+    <line x1="175" y1="12" x2="195" y2="12" stroke="#b8391c" stroke-width="2" stroke-dasharray="5,3"/>
+    <text x="200" y="15" font-family="Helvetica Neue,sans-serif" font-size="9" fill="#374151">DCF</text>
+  </svg>
+  <p class="chart-caption">[Ext: ET Q4 2025 8-K; ET Q1 2026 8-K; 2026E and 2027E Inferred]</p>
+  <div class="pull-quote">
+    &ldquo;Your 2025 EBITDA hit a record $15.98B &mdash; up 3%. But DCF fell from $8.4B to $8.2B. That gap is interest expense &mdash; up $600M to $4.2B &mdash; absorbing the entire operating improvement. Q1 2026 shows it inflecting: $2.7B vs. $2.3B prior year. Is that capex peaking, or refinancing hitting the income statement first?&rdquo;
+  </div>
+</section>
+
+<!-- § 04 DATA CENTERS -->
+<section>
+  <div class="section-head">
+    <div class="section-num">§&nbsp;04</div>
+    <div class="section-title">
+      <h2>AI / Data Centers &mdash; $440M Unmodeled</h2>
+      <p class="sub">Three named, contracted deals not in 2026 consensus</p>
+    </div>
+  </div>
+  <div class="dc-grid" id="dc-grid">
+    <div class="dc-cell">
+      <div class="dc-name">Meta Hyperion</div>
+      <div class="dc-pipe">Tiger Pipeline &middot; Richland Parish, LA</div>
+      <div class="dc-vol">250k</div>
+      <div style="font-family:var(--sans);font-size:0.7rem;color:var(--muted);margin-bottom:8px;">MMBtu/day</div>
+      <div class="dc-ebitda" id="dc1-ebitda">$68M/yr</div>
+      <div class="dc-note">20-year term &middot; in-service Feb 2028<br>10 gas turbines at Entergy power plants<br>[Ext: Oil Change International investigation]</div>
+    </div>
+    <div class="dc-cell">
+      <div class="dc-name">CloudBurst</div>
+      <div class="dc-pipe">Oasis Pipeline &middot; Central Texas</div>
+      <div class="dc-vol">450k</div>
+      <div style="font-family:var(--sans);font-size:0.7rem;color:var(--muted);margin-bottom:8px;">MMBtu/day</div>
+      <div class="dc-ebitda" id="dc2-ebitda">$123M/yr</div>
+      <div class="dc-note">Behind-the-meter &middot; in-service 2027<br>Next-gen data center complex<br>[Ext: Oil Change International investigation]</div>
+    </div>
+    <div class="dc-cell">
+      <div class="dc-name">Oracle</div>
+      <div class="dc-pipe">Multiple laterals &middot; Active now</div>
+      <div class="dc-vol">900k</div>
+      <div style="font-family:var(--sans);font-size:0.7rem;color:var(--muted);margin-bottom:8px;">MMBtu/day (= 0.9 Bcf/d)</div>
+      <div class="dc-ebitda" id="dc3-ebitda">$246M/yr</div>
+      <div class="dc-note">Contracted &middot; Q1 2026 earnings call<br>900 MMcf/d = ET's single largest DC deal<br>[Ext: ET Q1 2026 earnings call]</div>
+    </div>
+  </div>
+  <div class="callout" style="margin-top:20px;" id="dc-total-callout">Total named DC EBITDA at $0.75/MMBtu: <strong>~$437M/yr</strong> &mdash; not in the $18.4B consensus. Sensitivity: every $0.25/MMBtu tariff change = ~$146M annual EBITDA impact. [Inferred]</div>
+</section>
+
+<!-- § 05 CAPEX -->
+<section>
+  <div class="section-head">
+    <div class="section-num">§&nbsp;05</div>
+    <div class="section-title">
+      <h2>Capex &mdash; Desert Southwest Edge Insight</h2>
+      <p class="sub">The market is modeling the wrong multiple on ET's best project</p>
+    </div>
+  </div>
+  <div class="cols-2" style="margin-top:0;">
+    <div>
+      <table>
+        <thead><tr><th>Phase</th><th class="num">Capacity</th><th class="num">Capex</th><th class="num">Build Multiple</th></tr></thead>
+        <tbody>
+          <tr><td>Phase 1</td><td class="num">1.5 Bcf/d</td><td class="num">$4.7B</td><td class="num">6.0x</td></tr>
+          <tr class="highlight"><td><strong>Phase 2 (upsize)</strong></td><td class="num"><strong>+0.8 Bcf/d</strong></td><td class="num"><strong>$900M</strong></td><td class="num" style="color:var(--teal);"><strong>4.2x</strong></td></tr>
+          <tr><td><strong>Total project</strong></td><td class="num"><strong>2.3 Bcf/d</strong></td><td class="num"><strong>$5.6B</strong></td><td class="num" style="color:var(--teal);"><strong>5.1x blended</strong></td></tr>
+        </tbody>
+      </table>
+      <p style="margin-top:12px;font-size:0.85rem;">53% more capacity for 19% more cost. At 4.2x incremental multiple, Desert Southwest adds <strong>$900M&ndash;$1B</strong> in steady-state EBITDA &mdash; vs. $700&ndash;800M consensus assumes at 6x headline. [Inferred; Ext: Bramhall VettaFi Apr 14 2026]</p>
+    </div>
+    <div>
+      <div class="card">
+        <h4 style="margin-bottom:10px;">Hugh Brinson &mdash; bidirectionality missed</h4>
+        <p>2.2 Bcf/d eastbound Permian takeaway (Q4 2026). Market models east-only. Bramhall flagged <strong>1.0 Bcf/d westbound optionality</strong> into Arizona/Nevada markets. Two pipes creating a bidirectional Permian-to-Southwest corridor. If eastern demand moderates, ET redirects west. The optionality has real value in the bear case. [Ext: Bramhall Apr 2026]</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- § 06 M&A -->
+<section>
+  <div class="section-head">
+    <div class="section-num">§&nbsp;06</div>
+    <div class="section-title">
+      <h2>M&amp;A Stack &amp; Capacity</h2>
+      <p class="sub">$29B in 4 years across the family. The sprint is done.</p>
+    </div>
+  </div>
+  <table>
+    <thead><tr><th>Deal</th><th>Acquirer</th><th>Closed</th><th class="num">Value</th><th>Key fact</th></tr></thead>
+    <tbody>
+      <tr><td>Lotus Midstream</td><td><span class="tag teal">ET direct</span></td><td>May 2023</td><td class="num">$1.45B</td><td>Permian crude gathering</td></tr>
+      <tr><td>Crestwood Equity</td><td><span class="tag teal">ET direct</span></td><td>Nov 2023</td><td class="num">$7.1B</td><td>All-equity; $3.3B debt assumed</td></tr>
+      <tr><td>NuStar Energy</td><td><span class="tag pos">Sunoco LP</span></td><td>May 2024</td><td class="num">$7.3B</td><td>Refined products; crude terminals</td></tr>
+      <tr><td>WTG Midstream</td><td><span class="tag teal">ET direct</span></td><td>Jul 2024</td><td class="num">$3.25B</td><td>6,000mi Midland; 1.3 Bcf/d processing</td></tr>
+      <tr class="highlight"><td><strong>Parkland (PKI)</strong></td><td><span class="tag pos">Sunoco LP</span></td><td>Oct 31 2025</td><td class="num"><strong>$9.1B</strong></td><td>32 countries; SUNC formed; SUN now 4.0x</td></tr>
+      <tr><td>TanQuid</td><td><span class="tag pos">Sunoco LP</span></td><td>Jan 2026</td><td class="num">~$0.3B</td><td>EU terminals; bolt-on</td></tr>
+      <tr><td>J-W Power (USAC)</td><td><span class="tag warn">USAC</span></td><td>Jan 2026</td><td class="num">~$0.5B</td><td>+0.8M active horsepower</td></tr>
+    </tbody>
+  </table>
+  <p style="margin-top:14px;">Every subsidiary is at or near leverage ceiling. The next deal &mdash; if Bramhall means it when he says &ldquo;beyond North America&rdquo; &mdash; must come from ET direct, must be equity-funded, and is most executable as a JV to keep debt off the balance sheet. [Inferred; Ext: Bramhall VettaFi Apr 2026]</p>
+</section>
+
+<!-- § 07 INTERACTIVE DASHBOARD -->
+<section>
+  <div class="section-head">
+    <div class="section-num">§&nbsp;07</div>
+    <div class="section-title">
+      <h2>Assumption Stress Test &mdash; Live Model</h2>
+      <p class="sub">Move the sliders. Every output recalculates. The model tells you where it breaks.</p>
+    </div>
+  </div>
+  <div class="dash-panel">
+    <div class="scen-row">
+      <button class="scen-btn" onclick="setScen('bear',this)">Bear &mdash; recession</button>
+      <button class="scen-btn active" onclick="setScen('base',this)">Base &mdash; guided</button>
+      <button class="scen-btn" onclick="setScen('bull',this)">Bull &mdash; AI surge</button>
+      <button class="scen-btn" onclick="setScen('stress',this)">Stress &mdash; 2020 redux</button>
+    </div>
+    <div class="dash-controls">
+      <div class="ctrl-item">
+        <label>ET EBITDA growth 2026E (%)</label>
+        <div class="ctrl-row"><input type="range" min="-15" max="30" step="1" id="s-etg" value="15" oninput="upd()"><span class="ctrl-val" id="s-etg-o">+15%</span></div>
+      </div>
+      <div class="ctrl-item">
+        <label>Permian volume change (%)</label>
+        <div class="ctrl-row"><input type="range" min="-30" max="20" step="1" id="s-perm" value="5" oninput="upd()"><span class="ctrl-val" id="s-perm-o">+5%</span></div>
+      </div>
+      <div class="ctrl-item">
+        <label>Interest rate delta (bps)</label>
+        <div class="ctrl-row"><input type="range" min="-50" max="300" step="25" id="s-rate" value="0" oninput="upd()"><span class="ctrl-val" id="s-rate-o">0bps</span></div>
+      </div>
+      <div class="ctrl-item">
+        <label>Capex execution (%)</label>
+        <div class="ctrl-row"><input type="range" min="50" max="100" step="5" id="s-cx" value="100" oninput="upd()"><span class="ctrl-val" id="s-cx-o">100%</span></div>
+      </div>
+      <div class="ctrl-item">
+        <label>DC tariff ($/MMBtu)</label>
+        <div class="ctrl-row"><input type="range" min="0.25" max="2.00" step="0.05" id="s-dct" value="0.75" oninput="upd()"><span class="ctrl-val" id="s-dct-o">$0.75</span></div>
+      </div>
+      <div class="ctrl-item">
+        <label>M&amp;A deal size ($B)</label>
+        <div class="ctrl-row"><input type="range" min="0" max="15" step="0.5" id="s-ma" value="0" oninput="upd()"><span class="ctrl-val" id="s-ma-o">$0B</span></div>
+      </div>
+    </div>
+    <div class="output-grid" id="out-grid"></div>
+    <div class="verdict-box" id="verdict"></div>
+    <!-- Entity leverage -->
+    <div class="entity-row" id="ent-row">
+      <div class="entity-col et">
+        <h4>ET pipeline (direct)</h4>
+        <div class="emet"><span class="ek">EBITDA 2026E</span><span class="ev g" id="et-ebitda">$18.4B</span></div>
+        <div class="emet"><span class="ek">Net debt</span><span class="ev">$60B</span></div>
+        <div class="emet"><span class="ek">Leverage</span><span class="ev g" id="et-lev">3.34x</span></div>
+        <div class="emet"><span class="ek">Headroom to 4.5x</span><span class="ev g" id="et-room">$21B</span></div>
+      </div>
+      <div class="entity-col sun">
+        <h4>Sunoco LP (SUN/SUNC)</h4>
+        <div class="emet"><span class="ek">EBITDA 2026E</span><span class="ev">$3.1B</span></div>
+        <div class="emet"><span class="ek">Net debt</span><span class="ev">$13.4B</span></div>
+        <div class="emet"><span class="ek">Leverage</span><span class="ev r">4.0x</span></div>
+        <div class="emet"><span class="ek">Status</span><span class="ev r">At ceiling</span></div>
+      </div>
+      <div class="entity-col usac">
+        <h4>USA Compression (USAC)</h4>
+        <div class="emet"><span class="ek">EBITDA 2026E</span><span class="ev">$785M</span></div>
+        <div class="emet"><span class="ek">Net debt</span><span class="ev">$2.55B</span></div>
+        <div class="emet"><span class="ek">Leverage</span><span class="ev w">4.0x</span></div>
+        <div class="emet"><span class="ek">Equity</span><span class="ev r">&minus;$112M</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- § 08 ASSUMPTION FAILURE -->
+<section>
+  <div class="section-head">
+    <div class="section-num">§&nbsp;08</div>
+    <div class="section-title">
+      <h2>Critical Assumption Failure Analysis</h2>
+      <p class="sub">Where the model breaks first &mdash; and what leaders must watch before it shows in the quarterly report</p>
+    </div>
+  </div>
+  <ul class="assump-list" id="assump-list">
+    <li>
+      <strong>Assumption 1 &mdash; Capex-to-EBITDA conversion on schedule</strong>
+      <span class="assump-flag ok" id="af1">OK</span><br>
+      Desert Southwest ($5.6B, Q4 2029) and Hugh Brinson (Q4 2026) deliver on time. 18-month slip on either project = $800M&ndash;$1.2B 2027 EBITDA miss. Bridge thesis collapses.<br>
+      <span class="signal">&#9654; Signal to watch: FERC permit status for Transwestern Desert Southwest (pre-filing Q1 2026). Quarterly capex spend vs. budget. EPC contractor delay language on earnings calls.</span>
+    </li>
+    <li>
+      <strong>Assumption 2 &mdash; Interest expense stabilizes as capex cycle peaks</strong>
+      <span class="assump-flag ok" id="af2">OK</span><br>
+      Interest at $4.2B in 2025. If refinancing at higher rates or Fed re-hikes, every $500M of incremental interest = $500M of additional DCF compression. At $4.7B interest, 2026E coverage drops to ~1.62x.<br>
+      <span class="signal">&#9654; Signal to watch: Quarterly interest expense line in ET P&amp;L. Debt maturity schedule and refinancing calendar. Fed funds rate trajectory. Floating-rate exposure disclosure (~20% of $60B = $12B).</span>
+    </li>
+    <li>
+      <strong>Assumption 3 &mdash; SUN delivers $250M Parkland synergies by 2028</strong>
+      <span class="assump-flag ok" id="af3">OK</span><br>
+      Parkland closed Oct 31 2025. U.S. Parkland business struggled pre-acquisition. If integration underperforms, SUN EBITDA stays at $2.1B rather than growing to $3.1&ndash;3.3B. Removes ~$1B from consolidated guidance.<br>
+      <span class="signal">&#9654; Signal to watch: SUN quarterly EBITDA by segment. U.S. fuel margin per gallon (Q4 2025 benchmark: 17.7&cent;). Parkland integration update on SUN earnings calls. Any SUN leverage guidance revision.</span>
+    </li>
+    <li>
+      <strong>Assumption 4 &mdash; Data center contracts convert to contracted volumes</strong>
+      <span class="assump-flag ok" id="af4">OK</span><br>
+      Bramhall: "13 or 14 state conversations." Oracle, Meta Hyperion, CloudBurst are named and contracted &mdash; but AI hyperscaler capex compression could slow buildout. At $0.50/MMBtu tariff, named DC EBITDA falls from $437M to ~$291M.<br>
+      <span class="signal">&#9654; Signal to watch: New data center contract announcements. AI hyperscaler capex guidance (Microsoft, Google, Meta quarterly calls). ET disclosing any new "Power &amp; AI Infrastructure" revenue line in segment reporting.</span>
+    </li>
+    <li>
+      <strong>Assumption 5 &mdash; ET entity leverage stays below 4.5x through any acquisition</strong>
+      <span class="assump-flag ok" id="af5">OK</span><br>
+      ET entity at 3.34x with $21B theoretical headroom. But rating agencies calculate leverage on a consolidated family basis. A large ET-entity acquisition could trigger consolidated leverage review even if ET-entity-only stays below 4.5x.<br>
+      <span class="signal">&#9654; Signal to watch: Rating agency leverage methodology notes. Any credit watch or outlook change (Moody's, S&amp;P, Fitch). ET entity debt issuance announcements. Any "beyond North America" deal announcement structure.</span>
+    </li>
+  </ul>
+</section>
+
+<!-- § 09 VALUATION -->
+<section>
+  <div class="section-head">
+    <div class="section-num">§&nbsp;09</div>
+    <div class="section-title">
+      <h2>Valuation &mdash; Structurally Cheap Across Every Lens</h2>
+      <p class="sub">Three methods. Same conclusion.</p>
+    </div>
+  </div>
+  <div class="cols-2" style="margin-top:0;">
+    <div>
+      <h4 style="margin-bottom:12px;">Peer EV / EBITDA</h4>
+      <table>
+        <thead><tr><th>Company</th><th class="num">EBITDA 2026E</th><th class="num">EV/EBITDA</th><th class="num">Yield</th></tr></thead>
+        <tbody>
+          <tr class="highlight"><td><strong>Energy Transfer (ET)</strong></td><td class="num"><strong>$18.4B</strong></td><td class="num" style="color:var(--accent);"><strong>8.4x</strong></td><td class="num"><strong>7.2%</strong></td></tr>
+          <tr><td>Enterprise (EPD)</td><td class="num">$10.5B</td><td class="num">9.7x</td><td class="num">6.5%</td></tr>
+          <tr><td>Kinder Morgan (KMI)</td><td class="num">~$8.2B</td><td class="num">10.5x</td><td class="num">4.8%</td></tr>
+          <tr><td>Williams (WMB)</td><td class="num">~$7.8B</td><td class="num">11.2x</td><td class="num">4.5%</td></tr>
+        </tbody>
+      </table>
+      <p style="margin-top:12px;font-size:0.85rem;">2-turn discount on $18.4B EBITDA = ~$36.8B of implied market cap gap. At 3.43B units: ~$10.70/unit trapped value = 56% of current price. [Inferred]</p>
+    </div>
+    <div>
+      <h4 style="margin-bottom:12px;">DCF intrinsic value [Inferred]</h4>
+      <table>
+        <thead><tr><th>Scenario</th><th>WACC</th><th>Term. Growth</th><th class="num">Value/Unit</th></tr></thead>
+        <tbody>
+          <tr><td>Bear</td><td>9.5%</td><td>1.5%</td><td class="num">$26.10</td></tr>
+          <tr class="highlight"><td><strong>Base</strong></td><td><strong>8.5%</strong></td><td><strong>2.0%</strong></td><td class="num" style="color:var(--teal);"><strong>$35.26</strong></td></tr>
+          <tr><td>Bull</td><td>7.5%</td><td>2.5%</td><td class="num">$47.80</td></tr>
+          <tr><td style="color:var(--accent);">Current</td><td>&mdash;</td><td>&mdash;</td><td class="num" style="color:var(--accent);">$19.10</td></tr>
+        </tbody>
+      </table>
+      <p style="margin-top:12px;font-size:0.85rem;">Base case implies 85% upside. Bear case implies 37% upside. The yield-based floor anchors at $18&ndash;20. Distribution growing 3&ndash;5%/yr means yield compression alone = upside.</p>
+    </div>
+  </div>
+</section>
+
+<!-- § 10 RISK -->
+<section>
+  <div class="section-head">
+    <div class="section-num">§&nbsp;10</div>
+    <div class="section-title">
+      <h2>Risk Register &mdash; Scorecard</h2>
+      <p class="sub">Six dimensions. Composite 7.3/10. Above threshold.</p>
+    </div>
+  </div>
+  <svg class="chart" viewBox="0 0 640 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="PE scorecard radar chart">
+    <title>ET PE IC scorecard radar</title>
+    <rect width="640" height="280" fill="#faf9f4"/>
+    <!-- Center: 320, 140. r=100 -->
+    <!-- Grid polygons at r=20,40,60,80,100 -->
+    <!-- 6 axes: Asset(top=320,40), CF(upper-right=407,90), Lev(lower-right=407,190), Growth(bot=320,240), Gov(lower-left=233,190), Val(upper-left=233,90) -->
+    <polygon points="320,120 333,128 333,152 320,160 307,152 307,128" fill="none" stroke="#e8e3d4" stroke-width="0.7"/>
+    <polygon points="320,100 347,116 347,164 320,180 293,164 293,116" fill="none" stroke="#e8e3d4" stroke-width="0.7"/>
+    <polygon points="320,80 360,104 360,176 320,200 280,176 280,104" fill="none" stroke="#e8e3d4" stroke-width="0.7"/>
+    <polygon points="320,60 373,92 373,188 320,220 267,188 267,92" fill="none" stroke="#e8e3d4" stroke-width="0.7"/>
+    <polygon points="320,40 387,80 387,200 320,240 253,200 253,80" fill="none" stroke="#d4cfbf" stroke-width="1"/>
+    <!-- Axes -->
+    <line x1="320" y1="140" x2="320" y2="40" stroke="#d4cfbf" stroke-width="0.8"/>
+    <line x1="320" y1="140" x2="407" y2="90" stroke="#d4cfbf" stroke-width="0.8"/>
+    <line x1="320" y1="140" x2="407" y2="190" stroke="#d4cfbf" stroke-width="0.8"/>
+    <line x1="320" y1="140" x2="320" y2="240" stroke="#d4cfbf" stroke-width="0.8"/>
+    <line x1="320" y1="140" x2="233" y2="190" stroke="#d4cfbf" stroke-width="0.8"/>
+    <line x1="320" y1="140" x2="233" y2="90" stroke="#d4cfbf" stroke-width="0.8"/>
+    <!-- Scores: Asset=9, CF=8, Lev=6, Growth=7, Gov=5, Val=9 -->
+    <!-- r for each: 9=90, 8=80, 6=60, 7=70, 5=50, 9=90 -->
+    <!-- Asset(top): 320, 140-90=50 -->
+    <!-- CF(upper-right): 320+80*sin60=320+69=389, 140-80*cos60=140-40=100 -->
+    <!-- Lev(lower-right): 320+60*sin60=320+52=372, 140+60*cos60=140+30=170 -->
+    <!-- Growth(bot): 320, 140+70=210 -->
+    <!-- Gov(lower-left): 320-50*sin60=320-43=277, 140+50*cos60=140+25=165 -->
+    <!-- Val(upper-left): 320-90*sin60=320-78=242, 140-90*cos60=140-45=95 -->
+    <polygon points="320,50 389,100 372,170 320,210 277,165 242,95"
+      fill="#1f6b6b" fill-opacity="0.12" stroke="#1f6b6b" stroke-width="2"/>
+    <circle cx="320" cy="50" r="4" fill="#1f6b6b"/>
+    <circle cx="389" cy="100" r="4" fill="#1f6b6b"/>
+    <circle cx="372" cy="170" r="4" fill="#b08800"/>
+    <circle cx="320" cy="210" r="4" fill="#1f6b6b"/>
+    <circle cx="277" cy="165" r="4" fill="#9b2226"/>
+    <circle cx="242" cy="95" r="4" fill="#1f6b6b"/>
+    <!-- Labels -->
+    <text x="320" y="30" font-family="Helvetica Neue,sans-serif" font-size="10" font-weight="600" fill="#5b6b7a" text-anchor="middle">Asset quality</text>
+    <text x="320" y="21" font-family="Georgia,serif" font-size="14" fill="#1f6b6b" text-anchor="middle" font-weight="400">9</text>
+    <text x="420" y="95" font-family="Helvetica Neue,sans-serif" font-size="10" font-weight="600" fill="#5b6b7a">Cash flow</text>
+    <text x="420" y="83" font-family="Georgia,serif" font-size="14" fill="#1f6b6b">8</text>
+    <text x="415" y="175" font-family="Helvetica Neue,sans-serif" font-size="10" font-weight="600" fill="#b08800">Leverage</text>
+    <text x="415" y="189" font-family="Georgia,serif" font-size="14" fill="#b08800">6</text>
+    <text x="320" y="258" font-family="Helvetica Neue,sans-serif" font-size="10" font-weight="600" fill="#5b6b7a" text-anchor="middle">Growth / capex</text>
+    <text x="320" y="271" font-family="Georgia,serif" font-size="14" fill="#1f6b6b" text-anchor="middle">7</text>
+    <text x="175" y="175" font-family="Helvetica Neue,sans-serif" font-size="10" font-weight="600" fill="#9b2226" text-anchor="end">Governance</text>
+    <text x="175" y="189" font-family="Georgia,serif" font-size="14" fill="#9b2226" text-anchor="end">5</text>
+    <text x="230" y="88" font-family="Helvetica Neue,sans-serif" font-size="10" font-weight="600" fill="#5b6b7a" text-anchor="end">Valuation</text>
+    <text x="230" y="75" font-family="Georgia,serif" font-size="14" fill="#1f6b6b" text-anchor="end">9</text>
+    <text x="320" y="140" font-family="Georgia,serif" font-size="20" font-weight="400" fill="#0a1929" text-anchor="middle" dominant-baseline="middle">7.3</text>
+  </svg>
+  <p class="chart-caption">Composite score 7.3/10 &mdash; above threshold for deep engagement. Governance (5/10) and leverage (6/10) are the structural discounts. Valuation (9/10) and asset quality (9/10) are the opportunity.</p>
+</section>
+
+<!-- § 11 RECOMMENDATION -->
+<section class="no-rule">
+  <div class="recommendation">
+    <div class="head">Investment Recommendation &mdash; ML-2026-ET-01</div>
+    <h2>Deep Engage &mdash; CFO Conversation Ready</h2>
+    <p>This is a 30-minute conversation with Dylan Bramhall. Enter with three observations and one peer-level question, in that order. The analytical work is done. What remains is demonstrating that you understand his company at the level of an insider.</p>
+    <div class="actions">
+      <div>
+        <div class="h">Three observations to open with</div>
+        <ul>
+          <li>The DCF leak: EBITDA +3% in 2025. DCF fell $8.4B &rarr; $8.2B. Interest absorbed the improvement. Q1 2026 inflects. Open with this.</li>
+          <li>Desert Southwest: 4.2x incremental multiple, not 6x. Market modeling the wrong return on ET's best project. At correct economics, adds $900M&ndash;$1B EBITDA.</li>
+          <li>Three named DC contracts: Meta Hyperion (250k MMBtu/d, 20-yr, Feb 2028), CloudBurst (450k), Oracle (900k). ~$440M unmodeled EBITDA not in consensus.</li>
+        </ul>
+      </div>
+      <div>
+        <div class="h">The peer-level question (ask last)</div>
+        <ul>
+          <li>Your April "beyond North America" signal was new language. SUN is at 4.0x. USAC in deleverage mode. ET direct has $13&ndash;21B theoretical headroom. Are you thinking JV structure &mdash; same architecture as Parkland &mdash; to keep debt off ET's balance sheet? Or does EBITDA growth give you room for a direct $3&ndash;5B acquisition?</li>
+          <li>Numbers to know cold: 2025A EBITDA $15.98B. DCF $8.2B (down from $8.4B). Q1 2026 DCF $2.7B. Coverage 1.67x (2025). Leverage 3.34x ET entity. SUN 4.0x. USAC equity negative $112M. DSW: $5.6B, 2.3 Bcf/d, Q4 2029. McCrea retiring Dec 2026.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>Market Logic Investors LLC &nbsp;&middot;&nbsp; ML-2026-ET-01 &nbsp;&middot;&nbsp; Confidential &nbsp;&middot;&nbsp; Not investment advice</div>
+  <div class="right">H. Reganti &nbsp;&middot;&nbsp; July 4, 2026<br>All projected figures are analyst estimates</div>
+</footer>
+
+</div><!-- /page -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+const SCENS={
+  bear:{etg:-5,perm:-15,rate:100,cx:70,dct:0.65,ma:0},
+  base:{etg:15,perm:5,rate:0,cx:100,dct:0.75,ma:0},
+  bull:{etg:22,perm:15,rate:-25,cx:100,dct:1.00,ma:0},
+  stress:{etg:-10,perm:-20,rate:200,cx:60,dct:0.50,ma:0},
+};
+function setScen(s,el){
+  document.querySelectorAll('.scen-btn').forEach(b=>b.classList.remove('active'));
+  el.classList.add('active');
+  const sc=SCENS[s];
+  ['etg','perm','rate','cx','dct','ma'].forEach(k=>{
+    document.getElementById('s-'+k).value=sc[k];
+  });
+  upd();
+}
+function B(v){return '$'+Math.round(v/1000*10)/10+'B';}
+function upd(){
+  const etg=+document.getElementById('s-etg').value;
+  const perm=+document.getElementById('s-perm').value;
+  const rate=+document.getElementById('s-rate').value;
+  const cx=+document.getElementById('s-cx').value;
+  const dct=+document.getElementById('s-dct').value;
+  const ma=+document.getElementById('s-ma').value;
+  document.getElementById('s-etg-o').textContent=(etg>=0?'+':'')+etg+'%';
+  document.getElementById('s-perm-o').textContent=(perm>=0?'+':'')+perm+'%';
+  document.getElementById('s-rate-o').textContent=(rate>=0?'+':'')+rate+'bps';
+  document.getElementById('s-cx-o').textContent=cx+'%';
+  document.getElementById('s-dct-o').textContent='$'+dct.toFixed(2);
+  document.getElementById('s-ma-o').textContent='$'+ma.toFixed(1)+'B';
+  const et26=Math.round(15980*(1+etg/100)+15980*perm/100*0.25);
+  const intDelta=Math.round(60000*rate/10000);
+  const newDebt=ma*1000;
+  const postLev=Math.round((61500+newDebt)/et26*100)/100;
+  const dcf=Math.round(et26*0.59-intDelta);
+  const cov=Math.round(dcf/5100*100)/100;
+  const room=Math.max(0,4.5*et26-61500-newDebt);
+  const dc1=Math.round(250000*dct*365/1e6);
+  const dc2=Math.round(450000*dct*365/1e6);
+  const dc3=Math.round(900000*dct*365/1e6);
+  const dcT=dc1+dc2+dc3;
+  // DC cards
+  document.getElementById('dc1-ebitda').textContent='$'+dc1+'M/yr';
+  document.getElementById('dc2-ebitda').textContent='$'+dc2+'M/yr';
+  document.getElementById('dc3-ebitda').textContent='$'+dc3+'M/yr';
+  document.getElementById('dc-total-callout').innerHTML='Total named DC EBITDA at $'+dct.toFixed(2)+'/MMBtu: <strong>~$'+dcT+'M/yr</strong> &mdash; not in the $18.4B consensus. Sensitivity: every $0.25/MMBtu tariff change = ~$'+Math.round(dcT*0.33)+'M annual EBITDA impact. [Inferred]';
+  // Output grid
+  const levCls=postLev>4.5?'bad':postLev>4.0?'warn':'ok';
+  const covCls=cov<1.5?'bad':cov<1.65?'warn':'ok';
+  document.getElementById('out-grid').innerHTML=`
+    <div class="output-cell ${covCls<1?'':'ok'}">
+      <span class="ov">${B(et26)}</span><span class="ol">ET EBITDA 2026E</span>
+    </div>
+    <div class="output-cell ${covCls}">
+      <span class="ov">${cov.toFixed(2)}x</span><span class="ol">Coverage ratio${cov<1.5?' &#9888; KILL SWITCH':''}</span>
+    </div>
+    <div class="output-cell ${levCls}">
+      <span class="ov">${postLev.toFixed(2)}x</span><span class="ol">ET leverage${postLev>4.5?' &#9888; BREACH':''}</span>
+    </div>
+    <div class="output-cell ok">
+      <span class="ov">${B(room)}</span><span class="ol">M&amp;A headroom (ET entity)</span>
+    </div>
+  `;
+  // Entity row
+  const levTxt=postLev.toFixed(2)+'x';
+  const levCl=postLev>4.5?'r':postLev>4.0?'w':'g';
+  document.getElementById('et-ebitda').textContent=B(et26);
+  document.getElementById('et-lev').textContent=levTxt;
+  document.getElementById('et-lev').className='ev '+levCl;
+  document.getElementById('et-room').textContent=B(room);
+  // Verdict
+  let msg,cls;
+  if(cov<1.5&&postLev>4.3){msg='<strong>DUAL KILL SWITCH.</strong> Coverage '+cov.toFixed(2)+'x below 1.5x AND leverage '+postLev.toFixed(2)+'x above 4.3x simultaneously. Two consecutive quarters of this signals structural deterioration &mdash; not noise. Exit thesis.';cls='bad';}
+  else if(cov<1.5){msg='Coverage '+cov.toFixed(2)+'x below the 1.5x kill switch. Distribution sustainability at risk. ET cut in 2020 at this level. Watch one more quarter.';cls='bad';}
+  else if(postLev>4.5){msg='Leverage '+postLev.toFixed(2)+'x breaches the 4.5x ceiling. Rating agency pressure. In Bramhall\'s priority stack: capex cut before distribution cut. Watch capex spend quarterly.';cls='warn';}
+  else if(et26>18000&&cov>1.8&&dcT>400){msg='<strong>Bull case intact.</strong> EBITDA '+B(et26)+', coverage '+cov.toFixed(2)+'x, unmodeled DC EBITDA $'+dcT+'M. M&amp;A headroom '+B(room)+'. This is the scenario where "beyond North America" becomes actionable and the governance discount starts to matter less.';cls='ok';}
+  else{msg='<strong>Base case intact.</strong> EBITDA '+B(et26)+', leverage '+postLev.toFixed(2)+'x, coverage '+cov.toFixed(2)+'x. DCF conversion: '+Math.round(dcf/et26*100)+'%. Watch Desert Southwest permit status and quarterly interest expense trajectory.';cls='ok';}
+  const vd=document.getElementById('verdict');
+  vd.className='verdict-box '+cls;
+  vd.innerHTML='<div class="vl">Model output</div>'+msg;
+  // Assumption flags
+  const af1=cx>=95?'ok':cx>=80?'warn':'bad';
+  const af1t=cx>=95?'OK':cx>=80?'WATCH':'AT RISK';
+  const af2=Math.abs(intDelta)>500?'bad':Math.abs(intDelta)>200?'warn':'ok';
+  const af2t=Math.abs(intDelta)>500?'FAILING':Math.abs(intDelta)>200?'WATCH':'OK';
+  const af4=dct>=0.65?'ok':dct>=0.50?'warn':'bad';
+  const af4t=dct>=0.65?'TRACKING':dct>=0.50?'LOW CONFIDENCE':'AT RISK';
+  const af5=postLev>4.5?'bad':postLev>4.2?'warn':'ok';
+  const af5t=postLev>4.5?'CEILING BREACH':postLev>4.2?'APPROACHING':'SAFE';
+  [['af1',af1,af1t],['af2',af2,af2t],['af3','ok','OK'],['af4',af4,af4t],['af5',af5,af5t]].forEach(([id,cls,txt])=>{
+    const el=document.getElementById(id);
+    if(el){el.className='assump-flag '+cls;el.textContent=txt;}
+  });
+}
+upd();
+</script>
+</body>
+</html>
