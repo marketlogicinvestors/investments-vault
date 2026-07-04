@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PE Deals | Market Logic Investors</title>
+<style>
+:root {
+  --ink:#0a1929;--ink-soft:#1c2e44;--paper:#faf9f4;--paper-warm:#f3efe3;
+  --rule:#d4cfbf;--rule-soft:#e8e3d4;--muted:#5b6b7a;--accent:#b8391c;
+  --teal:#1f6b6b;--positive:#2d6a4f;--warning:#b08800;
+  --serif:'Iowan Old Style','Palatino Linotype',Palatino,'Book Antiqua',Georgia,serif;
+  --sans:'Helvetica Neue',Helvetica,-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
+  --mono:'SF Mono',SFMono-Regular,Menlo,Monaco,Consolas,'Liberation Mono',monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:var(--sans);background:var(--paper);color:var(--ink);line-height:1.55;-webkit-font-smoothing:antialiased;}
+.page{max-width:1000px;margin:0 auto;padding:56px 56px 80px;}
+h1,h2,h3{font-family:var(--serif);font-weight:400;color:var(--ink);}
+h1{font-size:3.2rem;line-height:1.05;letter-spacing:-0.022em;}
+p{font-size:0.95rem;line-height:1.7;color:var(--ink-soft);}
+strong{color:var(--ink);font-weight:600;}
+.eyebrow{font-family:var(--sans);font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.2em;color:var(--accent);display:block;margin-bottom:18px;}
+.cover{border-top:1px solid var(--ink);padding-top:32px;margin-bottom:48px;}
+.cover-meta{font-size:0.7rem;font-family:var(--sans);text-transform:uppercase;letter-spacing:0.15em;color:var(--muted);margin-bottom:16px;}
+.stats-bar{display:flex;gap:32px;padding:20px 0;border-top:1px solid var(--rule-soft);border-bottom:1px solid var(--rule-soft);margin-bottom:48px;flex-wrap:wrap;}
+.stat-num{font-size:1.6rem;font-family:var(--serif);font-weight:400;color:var(--ink);line-height:1;margin-bottom:4px;}
+.stat-label{font-size:0.65rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--muted);}
+.deals{display:grid;gap:12px;}
+.deal-card{display:flex;align-items:flex-start;gap:14px;text-decoration:none;color:inherit;padding:16px;background:var(--paper-warm);border:1px solid var(--rule-soft);transition:border-color 0.15s;}
+.deal-card:hover{border-color:var(--accent);}
+.deal-score{font-size:1.3rem;font-family:var(--serif);font-weight:400;color:var(--ink);min-width:42px;text-align:center;line-height:1;padding-top:2px;}
+.deal-info{flex:1;min-width:0;}
+.deal-tags{font-size:0.65rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--muted);margin-bottom:3px;}
+.deal-name{font-size:1.05rem;font-family:var(--serif);color:var(--ink);margin-bottom:3px;}
+.deal-sub{font-size:0.8rem;color:var(--muted);margin-bottom:4px;}
+.deal-desc{font-size:0.82rem;line-height:1.45;color:var(--ink-soft);}
+.deal-rec{font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;padding:2px 6px;background:var(--paper);border:1px solid var(--rule);color:var(--ink-soft);white-space:nowrap;margin-top:4px;display:inline-block;}
+.site-nav{display:flex;align-items:center;justify-content:space-between;background:var(--ink);color:var(--paper);padding:10px 40px;font-family:var(--sans);font-size:0.78rem;letter-spacing:0.04em;position:sticky;top:0;z-index:100;gap:16px;}
+.site-nav a{color:rgba(250,249,244,0.7);text-decoration:none;}
+.site-nav a:hover{color:var(--paper);}
+.site-nav span[aria-hidden]{color:rgba(250,249,244,0.3);margin:0 4px;}
+footer{margin-top:80px;padding-top:28px;border-top:1px solid var(--ink);font-family:var(--sans);font-size:0.74rem;color:var(--muted);display:flex;justify-content:space-between;}
+@media(max-width:760px){.page{padding:32px 22px;}.stats-bar{gap:20px;}}
+</style>
+</head>
+<body>
+<nav class="site-nav" aria-label="breadcrumb">
+  <div style="display:flex;align-items:center;gap:0">
+    <a href="../">Market Logic Investors</a><span aria-hidden="true">/</span>
+    <a href="../">Deal Vault</a><span aria-hidden="true">/</span>
+    <span>PE Deals</span>
+  </div>
+</nav>
+<div class="page">
+<div class="cover">
+  <div class="cover-meta">Market Logic Investors LLC &nbsp;&middot;&nbsp; investments-vault &nbsp;&middot;&nbsp; Updated: July 4, 2026 &nbsp;&middot;&nbsp; H. Reganti</div>
+  <span class="eyebrow">Private Equity</span>
+  <h1>PE Deals</h1>
+  <p style="margin-top:12px;max-width:560px;">Buyout, infrastructure, carve-out, and special situations. IC memos, financial models, and assumption failure analysis. One folder per deal. Version-controlled.</p>
+</div>
+<div class="stats-bar">
+  <div><div class="stat-num">1</div><div class="stat-label">Active PE Deals</div></div>
+  <div><div class="stat-num">1</div><div class="stat-label">Reports Live</div></div>
+  <div><div class="stat-num">ML-2026</div><div class="stat-label">Current Vintage</div></div>
+</div>
+<div class="deals">
+  <a class="deal-card" href="energy-transfer/">
+    <div class="deal-score">7.3</div>
+    <div class="deal-info">
+      <div class="deal-tags">Midstream Infrastructure &middot; CFO Engagement &middot; ML-2026-ET-01</div>
+      <div class="deal-name">Energy Transfer LP</div>
+      <div class="deal-sub">NYSE: ET &middot; Dallas, TX &middot; 140,000-mile pipeline network &middot; Founded 1996</div>
+      <div class="deal-desc">The largest midstream MLP in the US. 8.4x EV/EBITDA vs peer avg 10.3x. Three named data center contracts (~$440M unmodeled EBITDA). Desert Southwest capital efficiency story mispriced. $21B of ET-entity M&amp;A headroom. CFO engagement preparation for Dylan Bramhall.</div>
+      <div class="deal-rec">Deep Engage</div>
+    </div>
+  </a>
+</div>
+<footer>
+  <div>Market Logic Investors LLC &nbsp;&middot;&nbsp; PE Deals &nbsp;&middot;&nbsp; Confidential</div>
+  <div style="text-align:right;">H. Reganti &nbsp;&middot;&nbsp; July 4, 2026</div>
+</footer>
+</div>
+</body>
+</html>
