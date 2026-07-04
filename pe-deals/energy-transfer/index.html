@@ -1712,230 +1712,336 @@ footer{margin-top:80px;padding-top:28px;border-top:1px solid var(--ink);font-fam
 <!-- ============================================================ -->
 <!-- GAP 1: ENTRY / EXIT / IRR FRAMEWORK -->
 <!-- ============================================================ -->
-<section>
+<section id="irr-calculator">
   <div class="section-head">
     <div class="section-num">&sect;&nbsp;IR</div>
     <div class="section-title">
       <h2>Entry, Exit and IRR Framework</h2>
-      <p class="sub">The return question. At $19.10 entry, what does this investment generate, under which assumptions, and why is that return attractive relative to the risk taken.</p>
+      <p class="sub">Adjust the sliders to model your own entry price, exit multiple, hold period, and EBITDA scenario. All outputs update in real time.</p>
     </div>
   </div>
 
-  <p style="margin-bottom:16px;">All research in this memo serves one question: is ET a good investment at this price, held for this period, with this exit assumption, generating this return? This section answers it directly. <span style="color:var(--teal);">[Inferred from financial model and market data]</span></p>
+  <style>
+    .irr-wrap { display:grid; grid-template-columns:340px 1fr; gap:24px; margin-bottom:20px; }
+    @media(max-width:800px){ .irr-wrap{grid-template-columns:1fr;} }
+    .irr-controls { background:var(--paper-warm); border:1px solid var(--rule-soft); padding:20px; }
+    .ctrl-row { margin-bottom:16px; }
+    .ctrl-label { font-family:var(--mono); font-size:0.72rem; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; color:var(--muted); display:flex; justify-content:space-between; margin-bottom:6px; }
+    .ctrl-val { color:var(--ink); font-weight:800; font-size:0.9rem; }
+    input[type=range] { width:100%; accent-color:var(--teal); cursor:pointer; }
+    .irr-results { display:flex; flex-direction:column; gap:12px; }
+    .irr-card { padding:16px 20px; border:1px solid var(--rule-soft); background:var(--paper); }
+    .irr-card.green { border-left:4px solid var(--positive); background:rgba(30,100,100,0.04); }
+    .irr-card.amber { border-left:4px solid var(--warning); }
+    .irr-card.red   { border-left:4px solid var(--negative); background:rgba(180,40,40,0.04); }
+    .irr-big { font-size:2rem; font-weight:900; font-family:var(--mono); color:var(--ink); line-height:1; }
+    .irr-label { font-family:var(--mono); font-size:0.65rem; text-transform:uppercase; letter-spacing:0.1em; color:var(--muted); margin-bottom:4px; }
+    .irr-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px; margin-top:4px; }
+    .irr-cell { text-align:center; padding:8px; background:var(--paper-warm); border:1px solid var(--rule-soft); }
+    .irr-cell-label { font-size:0.68rem; font-family:var(--mono); color:var(--muted); }
+    .irr-cell-val { font-size:1.05rem; font-weight:800; font-family:var(--mono); }
+  </style>
 
-  <h4 style="margin-bottom:14px;">Base case assumptions</h4>
-  <div class="cols-2" style="margin-top:0;margin-bottom:20px;">
-    <div class="card">
-      <table>
-        <thead><tr><th>Entry parameter</th><th class="num">Value</th></tr></thead>
-        <tbody>
-          <tr><td>Entry unit price</td><td class="num"><strong>$19.10</strong></td></tr>
-          <tr><td>Entry date</td><td class="num">July 2026</td></tr>
-          <tr><td>Entry EV/EBITDA (2026E)</td><td class="num">8.4x</td></tr>
-          <tr><td>2026E EBITDA</td><td class="num">$18.4B</td></tr>
-          <tr><td>Entry EV implied</td><td class="num">~$154.6B</td></tr>
-          <tr><td>Net debt at entry</td><td class="num">~$61.4B</td></tr>
-          <tr><td>Entry equity value</td><td class="num">~$93.2B</td></tr>
-          <tr><td>Units outstanding</td><td class="num">3,460M</td></tr>
-          <tr><td>Annual distribution (2026E)</td><td class="num">$1.37/unit</td></tr>
-          <tr><td>Distribution yield at entry</td><td class="num">7.2%</td></tr>
-        </tbody>
-      </table>
+  <div class="irr-wrap">
+    <div class="irr-controls">
+      <div style="font-family:var(--mono);font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:var(--teal);margin-bottom:16px;">Model inputs</div>
+
+      <div class="ctrl-row">
+        <div class="ctrl-label">Entry price <span class="ctrl-val" id="lbl-entry">$19.10</span></div>
+        <input type="range" id="sl-entry" min="14" max="28" step="0.10" value="19.10"
+          oninput="document.getElementById('lbl-entry').textContent='$'+parseFloat(this.value).toFixed(2);calcIRR()">
+      </div>
+      <div class="ctrl-row">
+        <div class="ctrl-label">2028E EBITDA <span class="ctrl-val" id="lbl-ebitda">$21.8B</span></div>
+        <input type="range" id="sl-ebitda" min="16" max="26" step="0.5" value="21.8"
+          oninput="document.getElementById('lbl-ebitda').textContent='$'+parseFloat(this.value).toFixed(1)+'B';calcIRR()">
+      </div>
+      <div class="ctrl-row">
+        <div class="ctrl-label">Exit EV/EBITDA multiple <span class="ctrl-val" id="lbl-mult">8.4x</span></div>
+        <input type="range" id="sl-mult" min="6.5" max="13" step="0.1" value="8.4"
+          oninput="document.getElementById('lbl-mult').textContent=parseFloat(this.value).toFixed(1)+'x';calcIRR()">
+      </div>
+      <div class="ctrl-row">
+        <div class="ctrl-label">Annual distribution / unit <span class="ctrl-val" id="lbl-dist">$1.37</span></div>
+        <input type="range" id="sl-dist" min="0.80" max="2.00" step="0.01" value="1.37"
+          oninput="document.getElementById('lbl-dist').textContent='$'+parseFloat(this.value).toFixed(2);calcIRR()">
+      </div>
+      <div class="ctrl-row">
+        <div class="ctrl-label">Net debt constant <span class="ctrl-val">$61.4B</span></div>
+        <input type="range" id="sl-debt" min="50" max="70" step="0.5" value="61.4"
+          oninput="document.getElementById('lbl-debt').textContent='$'+parseFloat(this.value).toFixed(1)+'B';calcIRR()">
+        <div class="ctrl-label" style="margin-top:4px;">Net debt <span class="ctrl-val" id="lbl-debt">$61.4B</span></div>
+      </div>
+
+      <div style="border-top:1px solid var(--rule);margin-top:12px;padding-top:12px;font-family:var(--mono);font-size:0.7rem;color:var(--muted);">
+        Units outstanding: 3,460M (fixed)<br>
+        Exit price = (EBITDA x Multiple - Net Debt) / Units
+      </div>
     </div>
-    <div class="card">
-      <table>
-        <thead><tr><th>EBITDA projection</th><th class="num">Bear</th><th class="num">Base</th><th class="num">Bull</th></tr></thead>
-        <tbody>
-          <tr><td>2026E EBITDA</td><td class="num">$17.8B</td><td class="num">$18.4B</td><td class="num">$18.8B</td></tr>
-          <tr><td>2027E EBITDA</td><td class="num">$18.5B</td><td class="num">$20.1B</td><td class="num">$21.4B</td></tr>
-          <tr><td>2028E EBITDA</td><td class="num">$19.2B</td><td class="num">$21.8B</td><td class="num">$24.1B</td></tr>
-          <tr><td>Key 2028 driver (bear)</td><td colspan="3">DSW slip 12 months; AI capex -20%; rates +150bps</td></tr>
-          <tr><td>Key 2028 driver (base)</td><td colspan="3">DSW on schedule; 3 DC contracts execute; rates flat</td></tr>
-          <tr><td>Key 2028 driver (bull)</td><td colspan="3">DSW early; 7 DC contracts + pipeline; rates down 50bps</td></tr>
-        </tbody>
-      </table>
+
+    <div class="irr-results">
+      <div class="irr-card green">
+        <div class="irr-label">Exit unit price (2028 base)</div>
+        <div class="irr-big" id="out-price">$36.06</div>
+        <div style="font-size:0.82rem;color:var(--muted);margin-top:6px;">vs. entry <span id="out-vs-entry" style="font-weight:700;color:var(--positive);">+89%</span> price return</div>
+      </div>
+
+      <div>
+        <div style="font-family:var(--mono);font-size:0.68rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);margin-bottom:8px;">Total return by hold period (price gain + distributions)</div>
+        <div class="irr-row">
+          <div class="irr-cell">
+            <div class="irr-cell-label">1 year (2027)</div>
+            <div class="irr-cell-val" id="out-1yr" style="color:var(--positive);">--</div>
+          </div>
+          <div class="irr-cell">
+            <div class="irr-cell-label">2 years (2028)</div>
+            <div class="irr-cell-val" id="out-2yr" style="color:var(--positive);">--</div>
+          </div>
+          <div class="irr-cell">
+            <div class="irr-cell-label">3 years (2029)</div>
+            <div class="irr-cell-val" id="out-3yr" style="color:var(--positive);">--</div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div style="font-family:var(--mono);font-size:0.68rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);margin-bottom:8px;">Annualised IRR by hold period</div>
+        <div class="irr-row">
+          <div class="irr-cell">
+            <div class="irr-cell-label">1-year IRR</div>
+            <div class="irr-cell-val" id="out-irr1">--</div>
+          </div>
+          <div class="irr-cell">
+            <div class="irr-cell-label">2-year IRR</div>
+            <div class="irr-cell-val" id="out-irr2">--</div>
+          </div>
+          <div class="irr-cell">
+            <div class="irr-cell-label">3-year IRR</div>
+            <div class="irr-cell-val" id="out-irr3">--</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="irr-card" id="out-verdict-card" style="border-left:4px solid var(--teal);">
+        <div class="irr-label">Investment verdict</div>
+        <div id="out-verdict" style="font-size:0.92rem;font-weight:600;"></div>
+        <div id="out-floor" style="font-size:0.82rem;color:var(--muted);margin-top:4px;"></div>
+      </div>
     </div>
   </div>
 
-  <h4 style="margin-bottom:14px;">IRR by exit multiple and hold period</h4>
-  <p style="font-size:0.85rem;margin-bottom:10px;">Assumes: base case EBITDA, distributions reinvested at entry price, net debt constant at $61.4B (conservatively ignores paydown). Exit price = (Exit EBITDA x Exit Multiple - Net Debt) / Units Outstanding. <span style="color:var(--teal);">[Inferred: model]</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Exit scenario</th>
-        <th>Exit multiple</th>
-        <th class="num">Exit 2027 (1yr)</th>
-        <th class="num">Exit 2028 (2yr)</th>
-        <th class="num">Exit 2029 (3yr)</th>
-        <th>Rationale</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr style="background:rgba(180,40,40,0.07);">
-        <td><strong>Flat re-rating</strong></td>
-        <td class="num">8.4x</td>
-        <td class="num">$24.60 / <strong>35%</strong></td>
-        <td class="num">$28.80 / <strong>26%</strong></td>
-        <td class="num">$33.10 / <strong>20%</strong></td>
-        <td>EBITDA growth alone; multiple unchanged; carry trade + growth</td>
-      </tr>
-      <tr style="background:rgba(30,100,100,0.07);">
-        <td><strong>EPD parity</strong></td>
-        <td class="num">10.9x</td>
-        <td class="num">$37.20 / <strong>102%</strong></td>
-        <td class="num">$44.80 / <strong>55%</strong></td>
-        <td class="num">$52.30 / <strong>40%</strong></td>
-        <td>Governance improvement; succession resolves; credit upgrade</td>
-      </tr>
-      <tr style="background:rgba(30,100,100,0.12);">
-        <td><strong>C-Corp parity</strong></td>
-        <td class="num">11.9x</td>
-        <td class="num">$42.10 / <strong>123%</strong></td>
-        <td class="num">$50.60 / <strong>65%</strong></td>
-        <td class="num">$59.40 / <strong>46%</strong></td>
-        <td>C-Corp conversion or S&P 500 inclusion; institutional re-rating</td>
-      </tr>
-      <tr style="background:rgba(180,40,40,0.12);">
-        <td><strong>Bear: multiple compression</strong></td>
-        <td class="num">7.5x</td>
-        <td class="num">$19.30 / <strong>6%</strong></td>
-        <td class="num">$20.40 / <strong>5%</strong></td>
-        <td class="num">$21.50 / <strong>4%</strong></td>
-        <td>AI demand softens; governance discount hardens; distribution flat</td>
-      </tr>
-    </tbody>
-  </table>
-  <p style="font-size:0.83rem;margin-top:8px;color:var(--muted);">IRR figures shown after unit price (approximate, including distributions at $1.37/yr). At bear scenario with multiple compression, the distribution yield alone (7.2%/yr) still generates positive return. The downside is a carry trade. The upside at base case + EPD re-rating is 40-55% IRR over 2-3 years. <span style="color:var(--teal);">[Inferred: model]</span></p>
+  <script>
+  function calcIRR() {
+    const entry  = parseFloat(document.getElementById('sl-entry').value);
+    const ebitda = parseFloat(document.getElementById('sl-ebitda').value);
+    const mult   = parseFloat(document.getElementById('sl-mult').value);
+    const dist   = parseFloat(document.getElementById('sl-dist').value);
+    const debt   = parseFloat(document.getElementById('sl-debt').value);
+    const units  = 3.46; // billion
 
-  <h4 style="margin-bottom:14px;margin-top:24px;">The one-sentence return thesis</h4>
-  <div class="pull-quote">
-    At $19.10 entry with 7.2% distribution yield as the income floor, the base case generates 20-26% IRR over 2-3 years on EBITDA growth alone; the re-rating catalyst (governance improvement or C-Corp conversion) is asymmetric upside that adds 40-65% on top. The downside is a 7% carry trade. The bet is asymmetric.
-  </div>
+    // Exit price at 2028 = (ebitda * mult - debt) / units (in billions -> dollars)
+    // ebitda in $B, debt in $B, units in B -> result in $/unit
+    const exitPrice = (ebitda * mult - debt) / units;
+
+    // For 1yr and 3yr, scale EBITDA linearly (simplified)
+    const ebitda1 = ebitda * (20.1/21.8);  // ~2027E base interpolation
+    const ebitda3 = ebitda * (23.0/21.8);  // ~2029E extrapolation
+    const exit1 = (ebitda1 * mult - debt) / units;
+    const exit3 = (ebitda3 * mult - debt) / units;
+
+    // Total return including distributions
+    const total1 = exit1 - entry + dist * 1;
+    const total2 = exitPrice - entry + dist * 2;
+    const total3 = exit3 - entry + dist * 3;
+
+    const pct1 = (total1 / entry) * 100;
+    const pct2 = (total2 / entry) * 100;
+    const pct3 = (total3 / entry) * 100;
+
+    // IRR approximation (CAGR of total return)
+    const irr1 = pct1;  // 1yr IRR = total return
+    const irr2 = (Math.pow(1 + pct2/100, 0.5) - 1) * 100;
+    const irr3 = (Math.pow(1 + pct3/100, 1/3) - 1) * 100;
+
+    // Price-only return
+    const priceReturn = ((exitPrice - entry) / entry) * 100;
+
+    // Update DOM
+    const fmt = (n, dec=2) => n >= 0 ? '+' + n.toFixed(dec) + '%' : n.toFixed(dec) + '%';
+    const fmtP = (n) => n >= 0 ? '$' + n.toFixed(2) : '($' + Math.abs(n).toFixed(2) + ')';
+    const color = (n) => n >= 15 ? 'var(--positive)' : n >= 0 ? 'var(--warning)' : 'var(--negative)';
+
+    document.getElementById('out-price').textContent = fmtP(exitPrice);
+    document.getElementById('out-price').style.color = exitPrice > entry ? 'var(--positive)' : 'var(--negative)';
+    document.getElementById('out-vs-entry').textContent = fmt(priceReturn, 1);
+    document.getElementById('out-vs-entry').style.color = color(priceReturn);
+
+    document.getElementById('out-1yr').textContent = fmt(pct1, 1);
+    document.getElementById('out-2yr').textContent = fmt(pct2, 1);
+    document.getElementById('out-3yr').textContent = fmt(pct3, 1);
+    document.getElementById('out-1yr').style.color = color(pct1);
+    document.getElementById('out-2yr').style.color = color(pct2);
+    document.getElementById('out-3yr').style.color = color(pct3);
+
+    document.getElementById('out-irr1').textContent = fmt(irr1, 1);
+    document.getElementById('out-irr2').textContent = fmt(irr2, 1);
+    document.getElementById('out-irr3').textContent = fmt(irr3, 1);
+    document.getElementById('out-irr1').style.color = color(irr1);
+    document.getElementById('out-irr2').style.color = color(irr2);
+    document.getElementById('out-irr3').style.color = color(irr3);
+
+    // Verdict
+    let verdict, floor, vcolor;
+    if (irr2 > 30) {
+      verdict = 'Strong buy. 2-year IRR exceeds 30% under current assumptions.';
+      vcolor = 'var(--teal)';
+    } else if (irr2 > 15) {
+      verdict = 'Attractive. 2-year IRR in 15-30% range. Distribution yield provides downside floor.';
+      vcolor = 'var(--positive)';
+    } else if (irr2 > 5) {
+      verdict = 'Marginal. IRR in single digits. Distribution yield is most of the return.';
+      vcolor = 'var(--warning)';
+    } else {
+      verdict = 'Unattractive under these assumptions. Multiple compression erodes gains.';
+      vcolor = 'var(--negative)';
+    }
+    floor = 'Distribution floor: ' + ((dist / entry) * 100).toFixed(1) + '% yield. Even at entry price with no multiple expansion, you earn ' + ((dist / entry) * 100).toFixed(1) + '% annually.';
+
+    document.getElementById('out-verdict').textContent = verdict;
+    document.getElementById('out-verdict').style.color = vcolor;
+    document.getElementById('out-floor').textContent = floor;
+    document.getElementById('out-verdict-card').style.borderLeftColor = vcolor;
+  }
+  // Run on load
+  document.addEventListener('DOMContentLoaded', calcIRR);
+  setTimeout(calcIRR, 200);
+  </script>
+
+  <p style="font-size:0.82rem;color:var(--muted);margin-top:8px;">Model assumptions: 2027E EBITDA interpolated from 2026E to 2028E; 2029E extrapolated +5.5% from 2028E; net debt held constant; exit price = (EBITDA x multiple - net debt) / 3,460M units. <span style="color:var(--teal);">[Inferred: scenario model]</span></p>
 </section>
 
 <!-- ============================================================ -->
 <!-- GAP 2: SENSITIVITY TABLE -->
 <!-- ============================================================ -->
-<section>
+<section id="sensitivity">
   <div class="section-head">
     <div class="section-num">&sect;&nbsp;ST</div>
     <div class="section-title">
-      <h2>Sensitivity Analysis: What You Need to Believe</h2>
-      <p class="sub">Two-variable unit price sensitivity. Rows: exit EV/EBITDA. Columns: 2028E EBITDA. Cells: implied unit price at exit. Color tells you what the market needs to deliver.</p>
+      <h2>Sensitivity Heatmap: What You Need to Believe</h2>
+      <p class="sub">Click any cell to see the IRR and total return at that combination. Hover to explore the full return surface.</p>
     </div>
   </div>
 
-  <p style="margin-bottom:14px;">Read this table before any other section. It tells you the full return surface in one view. <span style="color:var(--teal);">[Inferred: model. Net debt held constant at $61.4B. Units outstanding 3,460M.]</span></p>
+  <style>
+    .heat-wrap { overflow-x:auto; }
+    .heat-table { border-collapse:collapse; font-family:var(--mono); font-size:0.8rem; min-width:600px; }
+    .heat-table th { background:var(--ink); color:var(--paper); padding:8px 10px; text-align:center; font-weight:700; font-size:0.7rem; }
+    .heat-table th.row-head { text-align:left; min-width:110px; }
+    .heat-table td { padding:7px 10px; text-align:center; cursor:pointer; border:1px solid rgba(255,255,255,0.3); font-weight:700; transition:all 0.15s; }
+    .heat-table td:hover { transform:scale(1.08); z-index:2; position:relative; box-shadow:0 2px 12px rgba(0,0,0,0.25); }
+    .heat-table td.selected { outline:3px solid var(--ink); outline-offset:-2px; }
+    .heat-detail { background:var(--ink); color:var(--paper); padding:16px 20px; margin-top:12px; display:none; }
+    .heat-detail.visible { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; }
+    .heat-det-cell { text-align:center; }
+    .heat-det-val { font-size:1.4rem; font-weight:900; font-family:var(--mono); }
+    .heat-det-lbl { font-size:0.65rem; text-transform:uppercase; letter-spacing:0.1em; color:rgba(250,249,244,0.6); margin-top:4px; }
+    .heat-legend { display:flex; gap:16px; margin-top:12px; font-family:var(--mono); font-size:0.7rem; align-items:center; flex-wrap:wrap; }
+    .leg-box { width:18px; height:18px; border-radius:2px; flex-shrink:0; }
+  </style>
 
-  <div style="overflow-x:auto;margin-bottom:16px;">
-  <table style="min-width:700px;">
-    <thead>
-      <tr>
-        <th>Exit EV/EBITDA</th>
-        <th class="num" style="background:rgba(180,40,40,0.15);">$17B EBITDA<br><small>Bear</small></th>
-        <th class="num" style="background:rgba(180,40,40,0.08);">$18B</th>
-        <th class="num" style="background:rgba(255,200,50,0.15);">$19B</th>
-        <th class="num" style="background:rgba(255,200,50,0.15);">$20B</th>
-        <th class="num" style="background:rgba(30,100,100,0.08);">$21B</th>
-        <th class="num" style="background:rgba(30,100,100,0.12);">$22B<br><small>Base</small></th>
-        <th class="num" style="background:rgba(30,100,100,0.18);">$24B<br><small>Bull</small></th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr style="background:rgba(180,40,40,0.15);">
-        <td><strong>7.0x</strong> <small>(distress)</small></td>
-        <td class="num" style="color:var(--negative);font-weight:700;">$7.54</td>
-        <td class="num" style="color:var(--negative);font-weight:700;">$10.44</td>
-        <td class="num" style="color:var(--negative);">$13.34</td>
-        <td class="num" style="color:var(--negative);">$16.24</td>
-        <td class="num" style="color:var(--muted);">$19.14</td>
-        <td class="num" style="color:var(--muted);">$22.04</td>
-        <td class="num">$27.83</td>
-      </tr>
-      <tr style="background:rgba(180,40,40,0.08);">
-        <td><strong>7.5x</strong></td>
-        <td class="num" style="color:var(--negative);font-weight:700;">$10.09</td>
-        <td class="num" style="color:var(--negative);">$13.57</td>
-        <td class="num" style="color:var(--negative);">$17.05</td>
-        <td class="num" style="color:var(--muted);">$20.52</td>
-        <td class="num">$24.00</td>
-        <td class="num">$27.48</td>
-        <td class="num">$34.43</td>
-      </tr>
-      <tr style="background:rgba(255,200,50,0.06);">
-        <td><strong>8.0x</strong></td>
-        <td class="num" style="color:var(--negative);">$12.64</td>
-        <td class="num" style="color:var(--negative);">$16.70</td>
-        <td class="num" style="color:var(--muted);">$20.75</td>
-        <td class="num">$24.80</td>
-        <td class="num">$28.86</td>
-        <td class="num">$32.91</td>
-        <td class="num">$41.02</td>
-      </tr>
-      <tr style="background:rgba(255,200,50,0.10);" class="highlight">
-        <td><strong>8.4x</strong> <small>(current)</small></td>
-        <td class="num" style="color:var(--negative);">$14.35</td>
-        <td class="num" style="color:var(--muted);">$18.69</td>
-        <td class="num">$23.03</td>
-        <td class="num">$27.38</td>
-        <td class="num">$31.72</td>
-        <td class="num"><strong>$36.06</strong></td>
-        <td class="num"><strong>$44.75</strong></td>
-      </tr>
-      <tr style="background:rgba(30,100,100,0.06);">
-        <td><strong>9.0x</strong></td>
-        <td class="num" style="color:var(--muted);">$17.19</td>
-        <td class="num">$21.96</td>
-        <td class="num">$26.74</td>
-        <td class="num">$31.52</td>
-        <td class="num">$36.30</td>
-        <td class="num">$41.07</td>
-        <td class="num">$50.63</td>
-      </tr>
-      <tr style="background:rgba(30,100,100,0.10);">
-        <td><strong>10.0x</strong></td>
-        <td class="num">$21.75</td>
-        <td class="num">$27.09</td>
-        <td class="num">$32.43</td>
-        <td class="num">$37.77</td>
-        <td class="num">$43.12</td>
-        <td class="num">$48.46</td>
-        <td class="num">$59.14</td>
-      </tr>
-      <tr style="background:rgba(30,100,100,0.14);">
-        <td><strong>10.9x</strong> <small>(EPD parity)</small></td>
-        <td class="num">$25.46</td>
-        <td class="num">$31.38</td>
-        <td class="num">$37.30</td>
-        <td class="num">$43.22</td>
-        <td class="num">$49.14</td>
-        <td class="num">$55.06</td>
-        <td class="num">$66.90</td>
-      </tr>
-      <tr style="background:rgba(30,100,100,0.18);">
-        <td><strong>11.9x</strong> <small>(C-Corp avg)</small></td>
-        <td class="num">$29.32</td>
-        <td class="num">$35.82</td>
-        <td class="num">$42.32</td>
-        <td class="num">$48.82</td>
-        <td class="num">$55.31</td>
-        <td class="num">$61.81</td>
-        <td class="num">$74.81</td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="heat-wrap">
+    <table class="heat-table" id="heatmap"></table>
   </div>
 
-  <div class="cols-2" style="margin-top:0;">
-    <div class="card" style="border-left:4px solid var(--negative);">
-      <h4 style="margin-bottom:8px;">Loss zone (below $19.10 entry)</h4>
-      <p style="font-size:0.88rem;">Multiple at 7.0x and EBITDA below $21B produces a loss before distributions. Multiple at 7.5x and EBITDA below $20B produces a loss. The only way you lose money on a 3-year hold while receiving $1.37/unit/yr in distributions is if ET's EBITDA falls AND its multiple compresses simultaneously below the 7.0-7.5x range. That requires both the AI thesis to collapse AND institutional sentiment to deteriorate to distress levels. Possible. Not the base case.</p>
+  <div class="heat-detail" id="heat-detail">
+    <div class="heat-det-cell">
+      <div class="heat-det-val" id="hd-price"></div>
+      <div class="heat-det-lbl">Exit unit price</div>
     </div>
-    <div class="card" style="border-left:4px solid var(--teal);">
-      <h4 style="margin-bottom:8px;">Win zone at flat multiple (8.4x)</h4>
-      <p style="font-size:0.88rem;">At the current 8.4x multiple, EBITDA alone drives the return. $22B EBITDA in 2028 at 8.4x implies $36.06/unit, an 89% total return over 3 years including distributions. That requires no multiple expansion. Just execution. The base case EBITDA growth from $18.4B to $21.8B is already largely contracted via the $25B revenue backlog. The sensitivity table says: you do not need the re-rating to make good money. The re-rating is the asymmetric upside. <span style="color:var(--teal);">[Inferred: model]</span></p>
+    <div class="heat-det-cell">
+      <div class="heat-det-val" id="hd-ret"></div>
+      <div class="heat-det-lbl">2-yr total return</div>
+    </div>
+    <div class="heat-det-cell">
+      <div class="heat-det-val" id="hd-irr"></div>
+      <div class="heat-det-lbl">2-yr IRR</div>
+    </div>
+    <div class="heat-det-cell">
+      <div class="heat-det-val" id="hd-verdict"></div>
+      <div class="heat-det-lbl">Verdict</div>
     </div>
   </div>
+
+  <div class="heat-legend">
+    <div class="leg-box" style="background:#9b2a2a;"></div><span>Loss (&lt;$19.10)</span>
+    <div class="leg-box" style="background:#c4511c;"></div><span>Marginal ($19-25)</span>
+    <div class="leg-box" style="background:#d4962a;"></div><span>Modest ($25-35)</span>
+    <div class="leg-box" style="background:#2a7a4a;"></div><span>Strong ($35-50)</span>
+    <div class="leg-box" style="background:#1a5c3a;"></div><span>Exceptional (&gt;$50)</span>
+    <span style="color:var(--muted);margin-left:8px;">Click any cell for detail view.</span>
+  </div>
+
+  <script>
+  (function buildHeat(){
+    const MULTIPLES = [7.0, 7.5, 8.0, 8.4, 9.0, 9.5, 10.0, 10.9, 11.9];
+    const EBITDAS   = [17, 18, 19, 20, 21, 22, 24];
+    const EBITDA_LABELS = ['$17B','$18B','$19B','$20B','$21B','$22B','$24B'];
+    const ENTRY = 19.10; const DEBT = 61.4; const UNITS = 3.46; const DIST = 1.37;
+    const MULT_LABELS = ['7.0x distress','7.5x','8.0x','8.4x current','9.0x','9.5x','10.0x','10.9x EPD','11.9x C-Corp'];
+
+    function exitPrice(ebitda, mult){ return (ebitda * mult - DEBT) / UNITS; }
+    function cellColor(p){
+      if(p < ENTRY)  return '#9b2a2a';
+      if(p < 25)     return '#c4511c';
+      if(p < 35)     return '#d4962a';
+      if(p < 50)     return '#2a7a4a';
+      return '#1a5c3a';
+    }
+    function textColor(p){ return p < 35 ? '#fff' : '#fff'; }
+
+    const table = document.getElementById('heatmap');
+    // Header row
+    const thead = table.createTHead();
+    const hr = thead.insertRow();
+    const th0 = document.createElement('th'); th0.className='row-head'; th0.textContent='Exit multiple'; hr.appendChild(th0);
+    EBITDA_LABELS.forEach(l => {
+      const th = document.createElement('th'); th.textContent = l; hr.appendChild(th);
+    });
+
+    const tbody = table.createTBody();
+    MULTIPLES.forEach((m, mi) => {
+      const row = tbody.insertRow();
+      const lbl = row.insertCell();
+      lbl.style.cssText = 'background:var(--ink-soft);color:var(--paper);font-weight:700;font-size:0.72rem;padding:7px 10px;text-align:left;';
+      lbl.textContent = MULT_LABELS[mi];
+
+      EBITDAS.forEach((e, ei) => {
+        const p = exitPrice(e, m);
+        const td = row.insertCell();
+        td.style.cssText = `background:${cellColor(p)};color:${textColor(p)};`;
+        td.textContent = p > 0 ? '$' + p.toFixed(1) : '($'+Math.abs(p).toFixed(1)+')';
+        td.title = `Multiple ${m}x, EBITDA $${e}B => exit $${p.toFixed(2)}`;
+        td.dataset.mult = m; td.dataset.ebitda = e; td.dataset.milabel = MULT_LABELS[mi]; td.dataset.elabel = EBITDA_LABELS[ei];
+        td.addEventListener('click', function(){
+          document.querySelectorAll('.heat-table td.selected').forEach(x=>x.classList.remove('selected'));
+          this.classList.add('selected');
+          const ep = exitPrice(parseFloat(this.dataset.ebitda), parseFloat(this.dataset.mult));
+          const totalRet = (ep - ENTRY + DIST*2)/ENTRY*100;
+          const irr = (Math.pow(1+totalRet/100, 0.5)-1)*100;
+          document.getElementById('hd-price').textContent = ep > 0 ? '$'+ep.toFixed(2) : '($'+Math.abs(ep).toFixed(2)+')';
+          document.getElementById('hd-ret').textContent = (totalRet>=0?'+':'')+totalRet.toFixed(1)+'%';
+          document.getElementById('hd-irr').textContent = (irr>=0?'+':'')+irr.toFixed(1)+'%';
+          const v = irr > 30 ? 'Strong' : irr > 15 ? 'Attractive' : irr > 5 ? 'Marginal' : 'Avoid';
+          document.getElementById('hd-verdict').textContent = v;
+          const detail = document.getElementById('heat-detail');
+          detail.classList.add('visible');
+        });
+      });
+    });
+  })();
+  </script>
+
+  <p style="font-size:0.82rem;color:var(--muted);margin-top:12px;">All cells use: entry $19.10, net debt $61.4B, distributions $1.37/yr x2 years, 3,460M units. Detail view shows 2-year hold IRR. <span style="color:var(--teal);">[Inferred: model]</span></p>
 </section>
 
 <!-- ============================================================ -->
@@ -2048,48 +2154,157 @@ footer{margin-top:80px;padding-top:28px;border-top:1px solid var(--ink);font-fam
 <!-- ============================================================ -->
 <!-- GAP 4: FCF BRIDGE -->
 <!-- ============================================================ -->
-<section>
+<section id="fcf-bridge">
   <div class="section-head">
     <div class="section-num">&sect;&nbsp;FC</div>
     <div class="section-title">
-      <h2>Free Cash Flow Bridge: 2026 to 2028</h2>
-      <p class="sub">EBITDA is not cash. This is the bridge from EBITDA to what actually reaches unitholders and what is retained for growth.</p>
+      <h2>Free Cash Flow Bridge: 2025 to 2028</h2>
+      <p class="sub">Adjust the EBITDA growth rate and capex assumptions. The waterfall updates to show the FCF inflection point.</p>
     </div>
   </div>
 
-  <p style="margin-bottom:14px;">The bridge shows whether ET can self-fund its $5.5-5.9B growth capex program without diluting unitholders or breaching leverage covenants. It is the most important operational test in the model. <span style="color:var(--teal);">[Inferred from ET Q1 2026 and FY2025 financial statements]</span></p>
+  <style>
+    .fcf-wrap { display:grid; grid-template-columns:280px 1fr; gap:20px; }
+    @media(max-width:700px){ .fcf-wrap{grid-template-columns:1fr;} }
+    .fcf-controls { background:var(--paper-warm); border:1px solid var(--rule-soft); padding:16px; }
+    .bar-chart { display:flex; flex-direction:column; gap:4px; }
+    .bar-year { font-family:var(--mono); font-size:0.72rem; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; color:var(--muted); margin-top:8px; margin-bottom:2px; }
+    .bar-row { display:flex; align-items:center; gap:8px; margin-bottom:2px; }
+    .bar-label { font-family:var(--mono); font-size:0.68rem; color:var(--muted); min-width:110px; text-align:right; }
+    .bar-track { flex:1; height:20px; background:var(--rule-soft); border-radius:2px; overflow:hidden; position:relative; }
+    .bar-fill { height:100%; border-radius:2px; transition:width 0.3s ease; }
+    .bar-val { font-family:var(--mono); font-size:0.72rem; font-weight:700; min-width:48px; }
+    .fcf-summary { margin-top:16px; display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+    .fcf-sum-cell { padding:10px; text-align:center; background:var(--paper-warm); border:1px solid var(--rule-soft); }
+    .fcf-sum-val { font-family:var(--mono); font-size:1.1rem; font-weight:800; }
+    .fcf-sum-lbl { font-size:0.65rem; font-family:var(--mono); text-transform:uppercase; color:var(--muted); margin-top:2px; }
+  </style>
 
-  <table>
-    <thead>
-      <tr>
-        <th>Line item</th>
-        <th class="num">2025A</th>
-        <th class="num">2026E (base)</th>
-        <th class="num">2027E (base)</th>
-        <th class="num">2028E (base)</th>
-        <th>Notes</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr><td><strong>Adjusted EBITDA</strong></td><td class="num">$15.98B</td><td class="num">$18.40B</td><td class="num">$20.10B</td><td class="num">$21.80B</td><td>2026E per raised guidance; 2027-28 base case</td></tr>
-      <tr><td>Less: interest expense</td><td class="num">($4.20B)</td><td class="num">($4.40B)</td><td class="num">($4.50B)</td><td class="num">($4.50B)</td><td>Rising with new issuances; stabilizes as capex peaks</td></tr>
-      <tr><td>Less: maintenance capex</td><td class="num">($0.70B)</td><td class="num">($0.75B)</td><td class="num">($0.78B)</td><td class="num">($0.80B)</td><td>Approximate; 4-5% of EBITDA</td></tr>
-      <tr><td>Less: preferred distributions</td><td class="num">($0.28B)</td><td class="num">($0.28B)</td><td class="num">($0.28B)</td><td class="num">($0.28B)</td><td>Preferred unit fixed distributions</td></tr>
-      <tr style="border-top:2px solid var(--rule);"><td><strong>Distributable Cash Flow (DCF)</strong></td><td class="num"><strong>$8.20B</strong></td><td class="num"><strong>$9.97B</strong></td><td class="num"><strong>$11.04B</strong></td><td class="num"><strong>$12.22B</strong></td><td>Before distributions to common units</td></tr>
-      <tr><td>Less: distributions to common</td><td class="num">($4.74B)</td><td class="num">($4.92B)</td><td class="num">($5.10B)</td><td class="num">($5.28B)</td><td>3,460M units x $1.37/yr growing 3%/yr</td></tr>
-      <tr style="border-top:2px solid var(--rule);"><td><strong>Retained DCF</strong></td><td class="num"><strong>$3.46B</strong></td><td class="num"><strong>$5.05B</strong></td><td class="num"><strong>$5.94B</strong></td><td class="num"><strong>$6.94B</strong></td><td>Available for growth capex or debt paydown</td></tr>
-      <tr><td>Less: growth capex</td><td class="num">($5.18B)</td><td class="num">($5.70B)</td><td class="num">($4.50B)</td><td class="num">($2.50B)</td><td>Peaks 2026; declining as Desert Southwest and Hugh Brinson complete</td></tr>
-      <tr style="border-top:2px solid var(--rule);"><td><strong>Free cash flow after growth capex</strong></td><td class="num" style="color:var(--negative);"><strong>($1.72B)</strong></td><td class="num" style="color:var(--negative);"><strong>($0.65B)</strong></td><td class="num"><strong>$1.44B</strong></td><td class="num"><strong>$4.44B</strong></td><td>Negative during capex peak; positive by 2027; significant by 2028</td></tr>
-      <tr><td>Funded by: new debt issuance</td><td class="num">+$2.10B</td><td class="num">+$0.65B</td><td class="num">$0</td><td class="num">$0</td><td>ET bridges the shortfall with debt during capex peak</td></tr>
-      <tr><td>DCF coverage ratio</td><td class="num">1.67x</td><td class="num">1.72x</td><td class="num">1.78x</td><td class="num">1.89x</td><td>Kill switch: 1.5x. Comfortable margin throughout.</td></tr>
-    </tbody>
-  </table>
+  <div class="fcf-wrap">
+    <div class="fcf-controls">
+      <div style="font-family:var(--mono);font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:var(--teal);margin-bottom:14px;">Assumptions</div>
+      <div class="ctrl-row">
+        <div class="ctrl-label">EBITDA growth (YoY) <span class="ctrl-val" id="lbl-growth">9%</span></div>
+        <input type="range" id="sl-growth" min="2" max="20" step="1" value="9"
+          oninput="document.getElementById('lbl-growth').textContent=this.value+'%';calcFCF()">
+      </div>
+      <div class="ctrl-row">
+        <div class="ctrl-label">Growth capex 2026 <span class="ctrl-val" id="lbl-capex26">$5.7B</span></div>
+        <input type="range" id="sl-capex26" min="4" max="7" step="0.1" value="5.7"
+          oninput="document.getElementById('lbl-capex26').textContent='$'+parseFloat(this.value).toFixed(1)+'B';calcFCF()">
+      </div>
+      <div class="ctrl-row">
+        <div class="ctrl-label">Growth capex 2027 <span class="ctrl-val" id="lbl-capex27">$4.5B</span></div>
+        <input type="range" id="sl-capex27" min="2" max="6" step="0.1" value="4.5"
+          oninput="document.getElementById('lbl-capex27').textContent='$'+parseFloat(this.value).toFixed(1)+'B';calcFCF()">
+      </div>
+      <div class="ctrl-row">
+        <div class="ctrl-label">Growth capex 2028 <span class="ctrl-val" id="lbl-capex28">$2.5B</span></div>
+        <input type="range" id="sl-capex28" min="1" max="5" step="0.1" value="2.5"
+          oninput="document.getElementById('lbl-capex28').textContent='$'+parseFloat(this.value).toFixed(1)+'B';calcFCF()">
+      </div>
+      <div class="ctrl-row">
+        <div class="ctrl-label">Interest expense (flat) <span class="ctrl-val" id="lbl-int">$4.4B</span></div>
+        <input type="range" id="sl-int" min="3.8" max="5.5" step="0.1" value="4.4"
+          oninput="document.getElementById('lbl-int').textContent='$'+parseFloat(this.value).toFixed(1)+'B';calcFCF()">
+      </div>
+      <div class="fcf-summary" id="fcf-summary"></div>
+    </div>
 
-  <div class="card" style="margin-top:14px;border-left:4px solid var(--teal);">
-    <h4 style="margin-bottom:8px;">The FCF inflection: 2027 is the turning point</h4>
-    <p style="margin-bottom:8px;">ET is cash flow negative after growth capex in 2025 and 2026 because the capex cycle is at its peak. It bridges the shortfall with new debt, which is why leverage is not improving faster despite strong EBITDA growth. In 2027, as Hugh Brinson (Q4 2026) and Mustang Draw II (Q4 2026) enter service and begin generating revenue, retained DCF exceeds growth capex. By 2028, the FCF surplus is $4.44B annually. That capital has nowhere to go except distributions, buybacks, or debt paydown. This is the compounding event that makes the 2028-2029 investment case so powerful. <span style="color:var(--teal);">[Inferred from financial model]</span></p>
-    <p style="font-size:0.88rem;"><strong>Implication for the investor:</strong> Buying ET today means buying through the capex trough and holding into the FCF surge. The 7.2% distribution yield compensates you for the wait. The multiple expansion happens when the market sees the FCF surplus and re-rates the quality of the cash flow stream.</p>
+    <div>
+      <div class="bar-chart" id="fcf-bars"></div>
+    </div>
   </div>
+
+  <script>
+  function calcFCF(){
+    const growth  = parseFloat(document.getElementById('sl-growth').value)/100;
+    const cx26    = parseFloat(document.getElementById('sl-capex26').value);
+    const cx27    = parseFloat(document.getElementById('sl-capex27').value);
+    const cx28    = parseFloat(document.getElementById('sl-capex28').value);
+    const intExp  = parseFloat(document.getElementById('sl-int').value);
+    const MAINT   = 0.75; const PREF = 0.28; const DIST_PU = 1.37; const UNITS_B = 3.46;
+
+    const years = [
+      { yr:'2025A', ebitda:15.98, cx:5.18 },
+      { yr:'2026E', ebitda:15.98*(1+growth), cx:cx26 },
+      { yr:'2027E', ebitda:15.98*Math.pow(1+growth,2), cx:cx27 },
+      { yr:'2028E', ebitda:15.98*Math.pow(1+growth,3), cx:cx28 },
+    ];
+
+    const rows = [];
+    let inflectionYear = null;
+    years.forEach(y => {
+      const dcf = y.ebitda - intExp - MAINT - PREF;
+      const distTotal = DIST_PU * UNITS_B;
+      const retained = dcf - distTotal;
+      const fcf = retained - y.cx;
+      if(fcf > 0 && inflectionYear === null) inflectionYear = y.yr;
+      const coverage = dcf / distTotal;
+      rows.push({ ...y, dcf, retained, fcf, coverage });
+    });
+
+    // Draw bars
+    const maxVal = Math.max(...rows.map(r=>r.ebitda)) * 1.1;
+    const bars = document.getElementById('fcf-bars');
+    bars.innerHTML = '';
+
+    const items = [
+      { key:'ebitda',   label:'Adjusted EBITDA',   color:'var(--teal)' },
+      { key:'dcf',      label:'DCF (after int+maint)', color:'#2a7a4a' },
+      { key:'retained', label:'Retained DCF',       color:'var(--warning)' },
+      { key:'fcf',      label:'FCF after growth cx',color:'var(--accent)' },
+    ];
+
+    rows.forEach(r => {
+      const yr = document.createElement('div');
+      yr.className = 'bar-year';
+      yr.textContent = r.yr + (r.yr !== '2025A' ? '  |  Coverage: ' + r.coverage.toFixed(2) + 'x' : '  |  Actual');
+      bars.appendChild(yr);
+
+      items.forEach(item => {
+        const val = r[item.key];
+        const row = document.createElement('div'); row.className = 'bar-row';
+        const lbl = document.createElement('div'); lbl.className = 'bar-label'; lbl.textContent = item.label;
+        const track = document.createElement('div'); track.className = 'bar-track';
+        const fill = document.createElement('div'); fill.className = 'bar-fill';
+        const pct = Math.max(0, val/maxVal*100);
+        fill.style.cssText = `width:${pct}%;background:${val<0?'var(--negative)':item.color};`;
+        track.appendChild(fill);
+        const valEl = document.createElement('div'); valEl.className = 'bar-val';
+        valEl.style.color = val < 0 ? 'var(--negative)' : 'var(--ink)';
+        valEl.textContent = (val<0?'(':'')+' $'+Math.abs(val).toFixed(1)+'B'+(val<0?')':'');
+        row.appendChild(lbl); row.appendChild(track); row.appendChild(valEl);
+        bars.appendChild(row);
+      });
+    });
+
+    // Summary
+    const sum = document.getElementById('fcf-summary');
+    const fcf28 = rows[3].fcf;
+    sum.innerHTML = `
+      <div class="fcf-sum-cell">
+        <div class="fcf-sum-val" style="color:${inflectionYear?'var(--positive)':'var(--negative)'}">${inflectionYear||'None'}</div>
+        <div class="fcf-sum-lbl">FCF inflection year</div>
+      </div>
+      <div class="fcf-sum-cell">
+        <div class="fcf-sum-val" style="color:${fcf28>0?'var(--positive)':'var(--negative)'}">$${fcf28.toFixed(1)}B</div>
+        <div class="fcf-sum-lbl">2028 free cash flow</div>
+      </div>
+      <div class="fcf-sum-cell">
+        <div class="fcf-sum-val">${rows[3].coverage.toFixed(2)}x</div>
+        <div class="fcf-sum-lbl">2028 DCF coverage</div>
+      </div>
+      <div class="fcf-sum-cell">
+        <div class="fcf-sum-val" style="color:${rows[3].ebitda>20?'var(--positive)':'var(--warning)'}">$${rows[3].ebitda.toFixed(1)}B</div>
+        <div class="fcf-sum-lbl">2028E EBITDA</div>
+      </div>`;
+  }
+  document.addEventListener('DOMContentLoaded', calcFCF);
+  setTimeout(calcFCF, 300);
+  </script>
+
+  <p style="font-size:0.82rem;color:var(--muted);margin-top:10px;">Base: 2025A EBITDA $15.98B. Interest $4.4B flat. Maintenance capex $0.75B. Preferred $0.28B. Distributions $1.37/unit x 3,460M units = $4.74B growing 3%/yr. <span style="color:var(--teal);">[Inferred: model]</span></p>
 </section>
 
 <!-- ============================================================ -->
