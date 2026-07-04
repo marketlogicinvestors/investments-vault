@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Energy Transfer LP | Financial Model | Market Logic Investors</title>
+<style>
+:root{--ink:#0a1929;--ink-soft:#1c2e44;--paper:#faf9f4;--paper-warm:#f3efe3;--rule:#d4cfbf;--rule-soft:#e8e3d4;--muted:#5b6b7a;--teal:#1f6b6b;--teal-lt:#e8f4f4;--accent:#b8391c;--positive:#1d6f42;--pos-lt:#e8f5ee;--warning:#92600a;--warn-lt:#fef3cd;--negative:#8b1a1a;--neg-lt:#fdeaea;--mono:"SF Mono","Fira Mono","Consolas",monospace;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:system-ui,sans-serif;background:var(--paper);color:var(--ink);font-size:13px;line-height:1.5;}
+.page-header{background:var(--ink);color:var(--paper);padding:24px 32px 20px;}
+.page-header h1{font-size:1.4rem;font-weight:800;}
+.page-header .sub{font-family:var(--mono);font-size:0.68rem;color:rgba(250,249,244,0.55);margin-top:5px;text-transform:uppercase;letter-spacing:0.08em;}
+.nav-bar{background:var(--ink-soft);display:flex;overflow-x:auto;border-bottom:2px solid var(--teal);}
+.nav-btn{font-family:var(--mono);font-size:0.67rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:rgba(250,249,244,0.55);padding:10px 16px;cursor:pointer;border:none;background:transparent;white-space:nowrap;transition:all 0.15s;}
+.nav-btn:hover{color:var(--paper);background:rgba(255,255,255,0.07);}
+.nav-btn.active{color:var(--paper);background:var(--teal);}
+.tab{display:none;padding:20px 28px 40px;max-width:1200px;margin:0 auto;}
+.tab.active{display:block;}
+.sec-title h2{font-size:1.1rem;font-weight:800;margin-bottom:4px;}
+.sec-title p{font-size:0.8rem;color:var(--muted);margin-bottom:18px;}
+.model-table{width:100%;border-collapse:collapse;font-family:var(--mono);font-size:0.73rem;margin-bottom:20px;}
+.model-table th{background:var(--ink);color:var(--paper);padding:7px 10px;text-align:right;font-weight:700;font-size:0.67rem;letter-spacing:0.04em;}
+.model-table th.row-h{text-align:left;min-width:190px;}
+.model-table th.hist{background:#1c3a6b;}
+.model-table th.proj{background:#6b4a1c;}
+.model-table td{padding:5px 10px;text-align:right;border-bottom:1px solid var(--rule-soft);}
+.model-table td.label{text-align:left;color:var(--ink);font-weight:600;}
+.model-table td.label.sub{font-weight:400;color:var(--muted);padding-left:18px;font-style:italic;}
+.model-table td.label.section{font-weight:800;color:var(--teal);background:var(--teal-lt);font-size:0.67rem;text-transform:uppercase;letter-spacing:0.08em;border-bottom:none;}
+.model-table td.label.total{font-weight:800;}
+.model-table td.hist{background:rgba(219,234,254,0.2);}
+.model-table td.proj{background:rgba(254,243,205,0.25);}
+.model-table td.total{font-weight:800;border-top:2px solid var(--ink);}
+.model-table td.neg{color:var(--negative);}
+.model-table td.pos{color:var(--positive);}
+.model-table tr:hover td{filter:brightness(0.96);}
+.entity-tabs{display:flex;gap:8px;margin-bottom:14px;}
+.ent-btn{font-family:var(--mono);font-size:0.68rem;font-weight:700;text-transform:uppercase;padding:5px 13px;border:2px solid var(--rule);border-radius:2px;cursor:pointer;background:var(--paper);color:var(--muted);transition:all 0.15s;}
+.ent-btn.active{border-color:var(--teal);color:var(--teal);background:var(--teal-lt);}
+.chart-wrap{background:var(--paper-warm);border:1px solid var(--rule-soft);padding:16px;margin-bottom:18px;}
+.bar-chart-row{display:flex;align-items:flex-end;gap:5px;height:150px;}
+.bar-grp{display:flex;flex-direction:column;align-items:center;flex:1;}
+.bar{border-radius:2px 2px 0 0;width:100%;min-height:2px;transition:height 0.3s;}
+.bar-lbl{font-family:var(--mono);font-size:0.58rem;color:var(--muted);margin-top:3px;}
+.bar-val{font-family:var(--mono);font-size:0.6rem;font-weight:700;}
+.leg{display:flex;gap:14px;margin-top:8px;flex-wrap:wrap;font-family:var(--mono);font-size:0.67rem;color:var(--muted);}
+.leg-box{width:11px;height:11px;border-radius:2px;display:inline-block;margin-right:4px;}
+.grid2{display:grid;grid-template-columns:300px 1fr;gap:18px;}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:12px;}
+.grid2c{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px;}
+@media(max-width:680px){.grid2,.grid2c,.grid3{grid-template-columns:1fr;}}
+.ctrl-panel{background:var(--paper-warm);border:1px solid var(--rule-soft);padding:16px;height:fit-content;}
+.ctrl-row{margin-bottom:13px;}
+.ctrl-label{font-family:var(--mono);font-size:0.67rem;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;color:var(--muted);display:flex;justify-content:space-between;margin-bottom:4px;}
+.ctrl-val{color:var(--ink);font-weight:800;}
+input[type=range]{width:100%;accent-color:var(--teal);}
+.rbox{padding:14px 16px;text-align:center;border:1px solid var(--rule-soft);background:var(--paper);}
+.rbig{font-family:var(--mono);font-size:1.7rem;font-weight:900;}
+.rlbl{font-family:var(--mono);font-size:0.6rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);margin-top:3px;}
+.insight{background:var(--teal-lt);border-left:4px solid var(--teal);padding:12px 14px;margin-bottom:14px;font-size:0.83rem;}
+.warn{background:var(--warn-lt);border-left:4px solid var(--warning);padding:12px 14px;margin-bottom:14px;font-size:0.83rem;}
+.peer-row{display:flex;align-items:center;gap:8px;padding:7px 12px;background:var(--paper-warm);border:1px solid var(--rule-soft);margin-bottom:6px;}
+.peer-name{font-family:var(--mono);font-size:0.73rem;font-weight:700;min-width:55px;}
+.peer-track{flex:1;background:var(--rule-soft);height:18px;border-radius:2px;overflow:hidden;}
+.peer-fill{height:100%;border-radius:2px;}
+.peer-val{font-family:var(--mono);font-size:0.73rem;font-weight:700;min-width:45px;text-align:right;}
+.wf-bar{display:flex;height:30px;border-radius:2px;overflow:hidden;margin:6px 0;}
+.wf-seg{display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:0.62rem;font-weight:700;color:#fff;overflow:hidden;white-space:nowrap;padding:0 4px;transition:width 0.3s;}
+footer{background:var(--ink);color:rgba(250,249,244,0.35);font-family:var(--mono);font-size:0.62rem;padding:14px 28px;text-align:center;margin-top:32px;}
+</style></head><body>
+
+<div class="page-header">
+  <h1>Energy Transfer LP &mdash; Financial Model</h1>
+  <div class="sub">Market Logic Investors &nbsp;|&nbsp; 3-Statement Model &middot; DCF &middot; LBO Returns &middot; Peer Benchmarks &nbsp;|&nbsp; July 2026 &nbsp;|&nbsp; Internal Use Only</div>
+</div>
+
+<div class="nav-bar">
+  <button class="nav-btn active" onclick="showTab('overview',this)">Overview</button>
+  <button class="nav-btn" onclick="showTab('income',this)">Income Statement</button>
+  <button class="nav-btn" onclick="showTab('balance',this)">Balance Sheet</button>
+  <button class="nav-btn" onclick="showTab('cashflow',this)">Cash Flow</button>
+  <button class="nav-btn" onclick="showTab('dcf',this)">DCF Valuation</button>
+  <button class="nav-btn" onclick="showTab('lbo',this)">LBO Returns</button>
+  <button class="nav-btn" onclick="showTab('peer',this)">Peer Benchmarks</button>
+</div>
+
+<!-- OVERVIEW -->
+<div class="tab active" id="tab-overview">
+<div class="sec-title" style="margin-top:8px;"><h2>Consolidated Snapshot</h2><p>All three entities combined. $mm unless noted. 2022-2025A historical, 2026-2028E projected.</p></div>
+
+<div class="chart-wrap">
+  <div style="font-family:var(--mono);font-size:0.67rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);margin-bottom:10px;">Consolidated Adjusted EBITDA ($mm)</div>
+  <div class="bar-chart-row" id="chart-ebitda"></div>
+  <div class="leg">
+    <span><span class="leg-box" style="background:#1c3a6b;"></span>Historical 2022-2025A</span>
+    <span><span class="leg-box" style="background:#92600a;"></span>Projected 2026-2028E</span>
+  </div>
+</div>
+
+<table class="model-table">
+<thead><tr><th class="row-h">Metric ($mm)</th><th class="hist">2022A</th><th class="hist">2023A</th><th class="hist">2024A</th><th class="hist">2025A</th><th class="proj">2026E</th><th class="proj">2027E</th><th class="proj">2028E</th></tr></thead>
+<tbody>
+<tr><td class="label section" colspan="8">Income</td></tr>
+<tr><td class="label">Consolidated Revenue</td><td class="hist ">98,580</td><td class="hist ">103,550</td><td class="hist ">103,550</td><td class="hist ">108,710</td><td class="proj ">140,760</td><td class="proj ">151,580</td><td class="proj ">160,450</td></tr>
+<tr><td class="label">Consolidated Adj. EBITDA</td><td class="hist pos">14,040</td><td class="hist pos">15,690</td><td class="hist pos">17,270</td><td class="hist pos">18,464</td><td class="proj pos">22,035</td><td class="proj pos">24,110</td><td class="proj pos">25,960</td></tr>
+<tr><td class="label sub">EBITDA margin</td><td class="hist ">14.2%</td><td class="hist ">15.2%</td><td class="hist ">16.7%</td><td class="hist ">17.0%</td><td class="proj ">15.7%</td><td class="proj ">15.9%</td><td class="proj ">16.2%</td></tr>
+<tr><td class="label">Consolidated Net Income</td><td class="hist ">3,330</td><td class="hist ">4,240</td><td class="hist ">5,550</td><td class="hist ">4,427</td><td class="proj ">6,280</td><td class="proj ">7,390</td><td class="proj ">8,190</td></tr>
+<tr><td class="label section" colspan="8">Cash Flow</td></tr>
+<tr><td class="label">Consolidated DCF</td><td class="hist pos">8,480</td><td class="hist pos">8,990</td><td class="hist pos">9,820</td><td class="hist pos">9,966</td><td class="proj pos">12,970</td><td class="proj pos">14,450</td><td class="proj pos">15,700</td></tr>
+<tr><td class="label">ET entity DCF coverage</td><td class="hist">1.86x</td><td class="hist">1.84x</td><td class="hist">1.75x</td><td class="hist">1.67x</td><td class="proj">2.12x</td><td class="proj">2.20x</td><td class="proj">2.25x</td></tr>
+<tr><td class="label section" colspan="8">Balance Sheet</td></tr>
+<tr><td class="label">Consolidated Net Debt</td><td class="hist ">53,300</td><td class="hist ">59,200</td><td class="hist ">70,100</td><td class="hist ">75,950</td><td class="proj ">77,300</td><td class="proj ">76,300</td><td class="proj ">73,800</td></tr>
+<tr><td class="label">ET entity leverage (net debt/EBITDA)</td><td class="hist">3.65x</td><td class="hist">3.64x</td><td class="hist">3.84x</td><td class="hist">3.73x</td><td class="proj">3.32x</td><td class="proj">3.05x</td><td class="proj">2.75x</td></tr>
+<tr><td class="label section" colspan="8">Entity EBITDA breakdown</td></tr>
+<tr><td class="label">ET Pipeline (direct)</td><td class="hist ">13,100</td><td class="hist ">14,500</td><td class="hist ">15,500</td><td class="hist ">15,980</td><td class="proj ">18,400</td><td class="proj ">19,800</td><td class="proj ">21,200</td></tr>
+<tr><td class="label">Sunoco LP (SUN)</td><td class="hist ">850</td><td class="hist ">1,000</td><td class="hist ">1,460</td><td class="hist ">2,120</td><td class="proj ">3,200</td><td class="proj ">3,800</td><td class="proj ">4,200</td></tr>
+<tr><td class="label">USA Compression (USAC)</td><td class="hist ">340</td><td class="hist ">440</td><td class="hist ">560</td><td class="hist ">614</td><td class="proj ">785</td><td class="proj ">860</td><td class="proj ">910</td></tr>
+<tr><td class="label sub">Eliminations</td><td class="hist ">(250)</td><td class="hist ">(250)</td><td class="hist ">(250)</td><td class="hist ">(250)</td><td class="proj ">(350)</td><td class="proj ">(350)</td><td class="proj ">(350)</td></tr>
+</tbody>
+</table>
+<div class="insight"><strong>Key narrative:</strong> 2025A EBITDA hit record $15.98B but DCF fell $200M as interest expense absorbed the full operating improvement. 2026-2028E represents the FCF inflection: growth capex peaks in 2026, Hugh Brinson enters service Q4 2026, and retained DCF exceeds growth capex for the first time in 2027. Consolidated debt peaks in 2026 and begins declining.</div>
+</div>
+
+<!-- INCOME STATEMENT -->
+<div class="tab" id="tab-income">
+<div class="sec-title" style="margin-top:8px;"><h2>Income Statement</h2><p>Full P&L by entity. Toggle between ET Pipeline, Sunoco LP, and USA Compression.</p></div>
+<div class="entity-tabs">
+  <button class="ent-btn active" onclick="showEnt('is','et',this)">ET Pipeline</button>
+  <button class="ent-btn" onclick="showEnt('is','sun',this)">Sunoco LP</button>
+  <button class="ent-btn" onclick="showEnt('is','usac',this)">USA Compression</button>
+</div>
+<div id="is-et">
+<table class="model-table">
+<thead><tr><th class="row-h">ET Pipeline ($mm)</th><th class="hist">2022A</th><th class="hist">2023A</th><th class="hist">2024A</th><th class="hist">2025A</th><th class="proj">2026E</th><th class="proj">2027E</th><th class="proj">2028E</th></tr></thead>
+<tbody>
+<tr><td class="label">Revenue</td><td class="hist ">83,100</td><td class="hist ">86,100</td><td class="hist ">82,900</td><td class="hist ">85,500</td><td class="proj ">109,000</td><td class="proj ">117,000</td><td class="proj ">124,000</td></tr>
+<tr><td class="label sub">Cost of Revenue</td><td class="hist neg ">(67,200)</td><td class="hist neg ">(69,400)</td><td class="hist neg ">(66,400)</td><td class="hist neg ">(68,100)</td><td class="proj neg ">(87,200)</td><td class="proj neg ">(93,500)</td><td class="proj neg ">(99,000)</td></tr>
+<tr><td class="label total">Gross Profit</td><td class="hist total ">15,900</td><td class="hist total ">16,700</td><td class="hist total ">16,500</td><td class="hist total ">17,400</td><td class="proj total ">21,800</td><td class="proj total ">23,500</td><td class="proj total ">25,000</td></tr>
+<tr><td class="label sub">Gross Margin</td><td class="hist ">19.1%</td><td class="hist ">19.4%</td><td class="hist ">19.9%</td><td class="hist ">20.4%</td><td class="proj ">20.0%</td><td class="proj ">20.1%</td><td class="proj ">20.2%</td></tr>
+<tr><td class="label sub">Operating Expenses</td><td class="hist neg ">(2,800)</td><td class="hist neg ">(2,200)</td><td class="hist neg ">(1,000)</td><td class="hist neg ">(1,420)</td><td class="proj neg ">(1,800)</td><td class="proj neg ">(2,000)</td><td class="proj neg ">(2,200)</td></tr>
+<tr><td class="label total">Adj. EBITDA</td><td class="hist total pos">13,100</td><td class="hist total pos">14,500</td><td class="hist total pos">15,500</td><td class="hist total pos">15,980</td><td class="proj total pos">18,400</td><td class="proj total pos">19,800</td><td class="proj total pos">21,200</td></tr>
+<tr><td class="label sub">EBITDA Margin</td><td class="hist ">15.8%</td><td class="hist ">16.8%</td><td class="hist ">18.7%</td><td class="hist ">18.7%</td><td class="proj ">16.9%</td><td class="proj ">16.9%</td><td class="proj ">17.1%</td></tr>
+<tr><td class="label sub">D&amp;A</td><td class="hist neg ">(3,200)</td><td class="hist neg ">(3,500)</td><td class="hist neg ">(3,800)</td><td class="hist neg ">(4,000)</td><td class="proj neg ">(4,400)</td><td class="proj neg ">(4,700)</td><td class="proj neg ">(5,000)</td></tr>
+<tr><td class="label total">EBIT</td><td class="hist total ">9,900</td><td class="hist total ">11,000</td><td class="hist total ">11,700</td><td class="hist total ">11,980</td><td class="proj total ">14,000</td><td class="proj total ">15,100</td><td class="proj total ">16,200</td></tr>
+<tr><td class="label sub">Interest Expense</td><td class="hist neg ">(2,800)</td><td class="hist neg ">(3,100)</td><td class="hist neg ">(3,600)</td><td class="hist neg ">(4,200)</td><td class="proj neg ">(4,600)</td><td class="proj neg ">(4,800)</td><td class="proj neg ">(4,900)</td></tr>
+<tr><td class="label sub">Tax (MLP: pass-through, $0)</td><td class="hist">-</td><td class="hist">-</td><td class="hist">-</td><td class="hist">-</td><td class="proj">-</td><td class="proj">-</td><td class="proj">-</td></tr>
+<tr><td class="label total">Net Income</td><td class="hist total ">2,900</td><td class="hist total ">3,700</td><td class="hist total ">4,800</td><td class="hist total ">3,800</td><td class="proj total ">5,000</td><td class="proj total ">5,800</td><td class="proj total ">6,400</td></tr>
+<tr><td class="label section" colspan="8">Distribution Analysis</td></tr>
+<tr><td class="label">Distributable Cash Flow (DCF)</td><td class="hist pos">7,800</td><td class="hist pos">8,100</td><td class="hist pos">8,400</td><td class="hist pos">8,200</td><td class="proj pos">10,800</td><td class="proj pos">11,900</td><td class="proj pos">12,800</td></tr>
+<tr><td class="label sub">Distributions Declared</td><td class="hist neg ">(4,200)</td><td class="hist neg ">(4,400)</td><td class="hist neg ">(4,800)</td><td class="hist neg ">(4,900)</td><td class="proj neg ">(5,100)</td><td class="proj neg ">(5,400)</td><td class="proj neg ">(5,700)</td></tr>
+<tr><td class="label total">Retained DCF</td><td class="hist total ">3,600</td><td class="hist total ">3,700</td><td class="hist total ">3,600</td><td class="hist total ">3,300</td><td class="proj total ">5,700</td><td class="proj total ">6,500</td><td class="proj total ">7,100</td></tr>
+<tr><td class="label">DCF Coverage Ratio</td><td class="hist">1.86x</td><td class="hist">1.84x</td><td class="hist">1.75x</td><td class="hist">1.67x</td><td class="proj">2.12x</td><td class="proj">2.20x</td><td class="proj">2.25x</td></tr>
+<tr><td class="label">Interest / EBITDA</td><td class="hist">21%</td><td class="hist">21%</td><td class="hist">23%</td><td class="hist">26%</td><td class="proj">25%</td><td class="proj">24%</td><td class="proj">23%</td></tr>
+</tbody>
+</table>
+<div class="warn"><strong>DCF Leak 2025A:</strong> EBITDA grew 3.1% to $15.98B. DCF fell from $8.4B to $8.2B. Interest expense grew $600M to $4.2B, absorbing the entire operating improvement. This is the core valuation debate. Q1 2026 shows inflection: quarterly DCF $2.70B vs $2.30B prior year.</div>
+</div>
+<div id="is-sun" style="display:none">
+<table class="model-table">
+<thead><tr><th class="row-h">Sunoco LP ($mm)</th><th class="hist">2022A</th><th class="hist">2023A</th><th class="hist">2024A</th><th class="hist">2025A</th><th class="proj">2026E</th><th class="proj">2027E</th><th class="proj">2028E</th></tr></thead>
+<tbody>
+<tr><td class="label">Revenue</td><td class="hist ">18,000</td><td class="hist ">20,000</td><td class="hist ">22,700</td><td class="hist ">25,200</td><td class="proj ">34,000</td><td class="proj ">37,000</td><td class="proj ">39,000</td></tr>
+<tr><td class="label total">Adj. EBITDA</td><td class="hist total pos">850</td><td class="hist total pos">1,000</td><td class="hist total pos">1,460</td><td class="hist total pos">2,120</td><td class="proj total pos">3,200</td><td class="proj total pos">3,800</td><td class="proj total pos">4,200</td></tr>
+<tr><td class="label sub">EBITDA Margin</td><td class="hist ">4.7%</td><td class="hist ">5.0%</td><td class="hist ">6.4%</td><td class="hist ">8.4%</td><td class="proj ">9.4%</td><td class="proj ">10.3%</td><td class="proj ">10.8%</td></tr>
+<tr><td class="label sub">D&amp;A</td><td class="hist neg ">(280)</td><td class="hist neg ">(320)</td><td class="hist neg ">(380)</td><td class="hist neg ">(500)</td><td class="proj neg ">(900)</td><td class="proj neg ">(950)</td><td class="proj neg ">(1,000)</td></tr>
+<tr><td class="label sub">Interest Expense</td><td class="hist neg ">(180)</td><td class="hist neg ">(200)</td><td class="hist neg ">(380)</td><td class="hist neg ">(541)</td><td class="proj neg ">(750)</td><td class="proj neg ">(780)</td><td class="proj neg ">(780)</td></tr>
+<tr><td class="label total">Net Income</td><td class="hist total ">360</td><td class="hist total ">440</td><td class="hist total ">650</td><td class="hist total ">527</td><td class="proj total ">1,000</td><td class="proj total ">1,250</td><td class="proj total ">1,400</td></tr>
+<tr><td class="label">DCF</td><td class="hist pos">500</td><td class="hist pos">650</td><td class="hist pos">1,080</td><td class="hist pos">1,380</td><td class="proj pos">1,680</td><td class="proj pos">2,000</td><td class="proj pos">2,300</td></tr>
+<tr><td class="label">DCF Coverage</td><td class="hist">1.50x</td><td class="hist">1.55x</td><td class="hist">1.60x</td><td class="hist">1.60x</td><td class="proj">1.63x</td><td class="proj">1.68x</td><td class="proj">1.72x</td></tr>
+<tr><td class="label">Net Debt / EBITDA</td><td class="hist">3.76x</td><td class="hist">4.00x</td><td class="hist">5.34x</td><td class="hist">6.32x</td><td class="proj">4.12x</td><td class="proj">3.37x</td><td class="proj">2.95x</td></tr>
+</tbody>
+</table>
+<div class="insight"><strong>Parkland acquisition impact (closed Oct 31 2025):</strong> SUN EBITDA jumped from $1.46B (2024A) to $2.12B (2025A). Revenue doubled. Leverage at 4.0x ceiling, zero M&A capacity. 2026-2028E shows integration synergies driving EBITDA toward $4.2B as leverage declines toward 3.0x.</div>
+</div>
+<div id="is-usac" style="display:none">
+<table class="model-table">
+<thead><tr><th class="row-h">USA Compression ($mm)</th><th class="hist">2022A</th><th class="hist">2023A</th><th class="hist">2024A</th><th class="hist">2025A</th><th class="proj">2026E</th><th class="proj">2027E</th><th class="proj">2028E</th></tr></thead>
+<tbody>
+<tr><td class="label">Revenue</td><td class="hist ">480</td><td class="hist ">650</td><td class="hist ">950</td><td class="hist ">1,010</td><td class="proj ">1,260</td><td class="proj ">1,380</td><td class="proj ">1,450</td></tr>
+<tr><td class="label total">Adj. EBITDA</td><td class="hist total pos">340</td><td class="hist total pos">440</td><td class="hist total pos">560</td><td class="hist total pos">614</td><td class="proj total pos">785</td><td class="proj total pos">860</td><td class="proj total pos">910</td></tr>
+<tr><td class="label sub">EBITDA Margin</td><td class="hist ">70.8%</td><td class="hist ">67.7%</td><td class="hist ">58.9%</td><td class="hist ">60.8%</td><td class="proj ">62.3%</td><td class="proj ">62.3%</td><td class="proj ">62.8%</td></tr>
+<tr><td class="label sub">Interest Expense</td><td class="hist neg ">(120)</td><td class="hist neg ">(150)</td><td class="hist neg ">(180)</td><td class="hist neg ">(181)</td><td class="proj neg ">(200)</td><td class="proj neg ">(195)</td><td class="proj neg ">(185)</td></tr>
+<tr><td class="label total">Net Income</td><td class="hist total ">70</td><td class="hist total ">100</td><td class="hist total ">100</td><td class="hist total ">100</td><td class="proj total ">280</td><td class="proj total ">340</td><td class="proj total ">390</td></tr>
+<tr><td class="label">Book Equity</td><td class="hist ">100</td><td class="hist ">50</td><td class="hist ">-50</td><td class="hist ">-112</td><td class="proj ">20</td><td class="proj ">120</td><td class="proj ">250</td></tr>
+<tr><td class="label">DCF</td><td class="hist pos">180</td><td class="hist pos">240</td><td class="hist pos">340</td><td class="hist pos">386</td><td class="proj pos">490</td><td class="proj pos">550</td><td class="proj pos">600</td></tr>
+<tr><td class="label">DCF Coverage</td><td class="hist">1.40x</td><td class="hist">1.44x</td><td class="hist">1.55x</td><td class="hist">1.55x</td><td class="proj">1.60x</td><td class="proj">1.65x</td><td class="proj">1.70x</td></tr>
+</tbody>
+</table>
+<div class="warn"><strong>Negative equity -$112M at 2025A:</strong> Book equity is negative because accumulated distributions have exceeded retained earnings. Not a solvency issue: USAC generates $386M DCF on $614M EBITDA at 1.55x coverage. Equity turns positive 2026E as EBITDA growth outpaces distributions.</div>
+</div>
+</div>
+
+<!-- BALANCE SHEET -->
+<div class="tab" id="tab-balance">
+<div class="sec-title" style="margin-top:8px;"><h2>Balance Sheet</h2><p>ET Pipeline entity. Asset-heavy infrastructure: ~66% PP&E as share of total assets.</p></div>
+<table class="model-table">
+<thead><tr><th class="row-h">ET Pipeline ($mm)</th><th class="hist">2022A</th><th class="hist">2023A</th><th class="hist">2024A</th><th class="hist">2025A</th><th class="proj">2026E</th><th class="proj">2027E</th><th class="proj">2028E</th></tr></thead>
+<tbody>
+<tr><td class="label section" colspan="8">Current Assets</td></tr>
+<tr><td class="label">Cash</td><td class="hist ">250</td><td class="hist ">280</td><td class="hist ">312</td><td class="hist ">400</td><td class="proj ">500</td><td class="proj ">600</td><td class="proj ">700</td></tr>
+<tr><td class="label">Accounts Receivable</td><td class="hist ">4,800</td><td class="hist ">5,000</td><td class="hist ">5,200</td><td class="hist ">5,400</td><td class="proj ">5,800</td><td class="proj ">6,100</td><td class="proj ">6,400</td></tr>
+<tr><td class="label">Inventory</td><td class="hist ">2,900</td><td class="hist ">3,000</td><td class="hist ">3,100</td><td class="hist ">3,200</td><td class="proj ">3,300</td><td class="proj ">3,400</td><td class="proj ">3,500</td></tr>
+<tr><td class="label total">Total Current Assets</td><td class="hist total ">7,950</td><td class="hist total ">8,280</td><td class="hist total ">8,612</td><td class="hist total ">9,000</td><td class="proj total ">9,600</td><td class="proj total ">10,100</td><td class="proj total ">10,600</td></tr>
+<tr><td class="label section" colspan="8">Non-Current Assets</td></tr>
+<tr><td class="label">PP&amp;E (net)</td><td class="hist ">87,000</td><td class="hist ">91,000</td><td class="hist ">95,000</td><td class="hist ">100,000</td><td class="proj ">107,000</td><td class="proj ">113,000</td><td class="proj ">118,000</td></tr>
+<tr><td class="label">Goodwill</td><td class="hist ">25,000</td><td class="hist ">27,000</td><td class="hist ">28,000</td><td class="hist ">28,500</td><td class="proj ">29,000</td><td class="proj ">29,000</td><td class="proj ">29,000</td></tr>
+<tr><td class="label total">Total Assets</td><td class="hist total ">119,950</td><td class="hist total ">126,280</td><td class="hist total ">131,612</td><td class="hist total ">137,500</td><td class="proj total ">145,600</td><td class="proj total ">152,100</td><td class="proj total ">157,600</td></tr>
+<tr><td class="label section" colspan="8">Liabilities</td></tr>
+<tr><td class="label">Accounts Payable</td><td class="hist ">5,000</td><td class="hist ">5,200</td><td class="hist ">5,500</td><td class="hist ">5,800</td><td class="proj ">6,200</td><td class="proj ">6,500</td><td class="proj ">6,800</td></tr>
+<tr><td class="label">Current Maturities LTD</td><td class="hist ">3,000</td><td class="hist ">3,500</td><td class="hist ">4,000</td><td class="hist ">4,200</td><td class="proj ">4,500</td><td class="proj ">4,700</td><td class="proj ">5,000</td></tr>
+<tr><td class="label">Long-Term Debt</td><td class="hist neg">48,000</td><td class="hist neg">53,000</td><td class="hist neg">59,800</td><td class="hist neg">60,000</td><td class="proj neg">61,500</td><td class="proj neg">61,000</td><td class="proj neg">59,000</td></tr>
+<tr><td class="label section" colspan="8">Equity</td></tr>
+<tr><td class="label">LP Equity</td><td class="hist ">43,500</td><td class="hist ">46,000</td><td class="hist ">48,000</td><td class="hist ">49,300</td><td class="proj ">52,000</td><td class="proj ">56,000</td><td class="proj ">60,000</td></tr>
+<tr><td class="label">Non-Controlling Interests</td><td class="hist ">7,200</td><td class="hist ">7,800</td><td class="hist ">8,300</td><td class="hist ">8,600</td><td class="proj ">11,000</td><td class="proj ">11,500</td><td class="proj ">12,000</td></tr>
+<tr><td class="label section" colspan="8">Key Ratios</td></tr>
+<tr><td class="label">Net Debt / EBITDA</td><td class="hist">3.65x</td><td class="hist">3.64x</td><td class="hist">3.84x</td><td class="hist">3.73x</td><td class="proj">3.32x</td><td class="proj">3.05x</td><td class="proj">2.75x</td></tr>
+<tr><td class="label">Debt / Equity</td><td class="hist">1.10x</td><td class="hist">1.15x</td><td class="hist">1.25x</td><td class="hist">1.22x</td><td class="proj">1.18x</td><td class="proj">1.09x</td><td class="proj">0.98x</td></tr>
+<tr><td class="label">PP&amp;E % Total Assets</td><td class="hist">73%</td><td class="hist">72%</td><td class="hist">72%</td><td class="hist">73%</td><td class="proj">73%</td><td class="proj">74%</td><td class="proj">75%</td></tr>
+</tbody>
+</table>
+</div>
+
+<!-- CASH FLOW -->
+<div class="tab" id="tab-cashflow">
+<div class="sec-title" style="margin-top:8px;"><h2>Cash Flow Statement</h2><p>FCF bridge: EBITDA to free cash flow after growth capex. The inflection story lives here.</p></div>
+<table class="model-table">
+<thead><tr><th class="row-h">ET Pipeline ($mm)</th><th class="hist">2022A</th><th class="hist">2023A</th><th class="hist">2024A</th><th class="hist">2025A</th><th class="proj">2026E</th><th class="proj">2027E</th><th class="proj">2028E</th></tr></thead>
+<tbody>
+<tr><td class="label section" colspan="8">Operating</td></tr>
+<tr><td class="label">Adj. EBITDA</td><td class="hist pos">13,100</td><td class="hist pos">14,500</td><td class="hist pos">15,500</td><td class="hist pos">15,980</td><td class="proj pos">18,400</td><td class="proj pos">19,800</td><td class="proj pos">21,200</td></tr>
+<tr><td class="label sub">Interest Expense</td><td class="hist neg ">(2,800)</td><td class="hist neg ">(3,100)</td><td class="hist neg ">(3,600)</td><td class="hist neg ">(4,200)</td><td class="proj neg ">(4,600)</td><td class="proj neg ">(4,800)</td><td class="proj neg ">(4,900)</td></tr>
+<tr><td class="label sub">Maintenance Capex</td><td class="hist neg ">(900)</td><td class="hist neg ">(1,000)</td><td class="hist neg ">(1,100)</td><td class="hist neg ">(1,100)</td><td class="proj neg ">(1,200)</td><td class="proj neg ">(1,200)</td><td class="proj neg ">(1,200)</td></tr>
+<tr><td class="label sub">Preferred Distributions</td><td class="hist neg">(280)</td><td class="hist neg">(280)</td><td class="hist neg">(280)</td><td class="hist neg">(280)</td><td class="proj neg">(280)</td><td class="proj neg">(280)</td><td class="proj neg">(280)</td></tr>
+<tr><td class="label total">Distributable Cash Flow (DCF)</td><td class="hist total pos">7,800</td><td class="hist total pos">8,100</td><td class="hist total pos">8,400</td><td class="hist total pos">8,200</td><td class="proj total pos">10,800</td><td class="proj total pos">11,900</td><td class="proj total pos">12,800</td></tr>
+<tr><td class="label sub">Distributions Declared</td><td class="hist neg ">(4,200)</td><td class="hist neg ">(4,400)</td><td class="hist neg ">(4,800)</td><td class="hist neg ">(4,900)</td><td class="proj neg ">(5,100)</td><td class="proj neg ">(5,400)</td><td class="proj neg ">(5,700)</td></tr>
+<tr><td class="label total">Retained DCF</td><td class="hist total ">3,600</td><td class="hist total ">3,700</td><td class="hist total ">3,600</td><td class="hist total ">3,300</td><td class="proj total ">5,700</td><td class="proj total ">6,500</td><td class="proj total ">7,100</td></tr>
+<tr><td class="label section" colspan="8">Investing</td></tr>
+<tr><td class="label sub">Growth Capex</td><td class="hist neg ">(3,100)</td><td class="hist neg ">(2,600)</td><td class="hist neg ">(2,900)</td><td class="hist neg ">(4,500)</td><td class="proj neg ">(5,700)</td><td class="proj neg ">(5,800)</td><td class="proj neg ">(5,000)</td></tr>
+<tr><td class="label sub">Acquisitions</td><td class="hist neg ">(500)</td><td class="hist neg ">(8,500)</td><td class="hist neg ">(3,250)</td><td class="hist neg ">(9,400)</td><td class="proj neg ">(500)</td><td class="proj neg ">(0)</td><td class="proj neg ">(0)</td></tr>
+<tr><td class="label total">FCF after Growth Capex</td><td class="hist total neg">500</td><td class="hist total neg">1,100</td><td class="hist total neg">700</td><td class="hist total neg">-1,200</td><td class="proj total neg">0</td><td class="proj total neg">700</td><td class="proj total neg">2,100</td></tr>
+<tr><td class="label section" colspan="8">Coverage Metrics</td></tr>
+<tr><td class="label">DCF Coverage</td><td class="hist">1.86x</td><td class="hist">1.84x</td><td class="hist">1.75x</td><td class="hist">1.67x</td><td class="proj">2.12x</td><td class="proj">2.20x</td><td class="proj">2.25x</td></tr>
+<tr><td class="label">Growth Capex / EBITDA</td><td class="hist">24%</td><td class="hist">18%</td><td class="hist">19%</td><td class="hist">28%</td><td class="proj">31%</td><td class="proj">29%</td><td class="proj">24%</td></tr>
+<tr><td class="label">Interest Burden (int/EBITDA)</td><td class="hist">21%</td><td class="hist">21%</td><td class="hist">23%</td><td class="hist">26%</td><td class="proj">25%</td><td class="proj">24%</td><td class="proj">23%</td></tr>
+</tbody>
+</table>
+<div class="insight"><strong>FCF inflection 2027:</strong> ET goes FCF-positive after growth capex in 2027 for the first time since 2022. By 2028E, the surplus is approximately $2.1B annually. That capital has three destinations: distribution growth (+3%), debt paydown, or unit buybacks. Long has flagged buybacks as preferred once leverage hits target.</div>
+</div>
+
+<!-- DCF -->
+<div class="tab" id="tab-dcf">
+<div class="sec-title" style="margin-top:8px;"><h2>DCF Valuation</h2><p>Adjust WACC, terminal growth rate, and EBITDA assumption. Implied unit price updates live.</p></div>
+<div class="grid2">
+  <div class="ctrl-panel">
+    <div style="font-family:var(--mono);font-size:0.67rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--teal);margin-bottom:14px;">Assumptions</div>
+    <div class="ctrl-row"><div class="ctrl-label">WACC <span class="ctrl-val" id="lbl-wacc">8.5%</span></div><input type="range" id="sl-wacc" min="6" max="12" step="0.1" value="8.5" oninput="document.getElementById('lbl-wacc').textContent=parseFloat(this.value).toFixed(1)+'%';calcDCF()"></div>
+    <div class="ctrl-row"><div class="ctrl-label">Terminal Growth Rate <span class="ctrl-val" id="lbl-tgr">2.0%</span></div><input type="range" id="sl-tgr" min="0" max="4" step="0.1" value="2.0" oninput="document.getElementById('lbl-tgr').textContent=parseFloat(this.value).toFixed(1)+'%';calcDCF()"></div>
+    <div class="ctrl-row"><div class="ctrl-label">2028E EBITDA ($mm) <span class="ctrl-val" id="lbl-de">$21,200</span></div><input type="range" id="sl-de" min="16000" max="26000" step="200" value="21200" oninput="document.getElementById('lbl-de').textContent='$'+parseInt(this.value).toLocaleString();calcDCF()"></div>
+    <div class="ctrl-row"><div class="ctrl-label">FCF conversion % <span class="ctrl-val" id="lbl-conv">52%</span></div><input type="range" id="sl-conv" min="40" max="70" step="1" value="52" oninput="document.getElementById('lbl-conv').textContent=this.value+'%';calcDCF()"></div>
+    <div class="ctrl-row"><div class="ctrl-label">Net Debt ($mm) <span class="ctrl-val" id="lbl-nd">$61,400</span></div><input type="range" id="sl-nd" min="50000" max="75000" step="500" value="61400" oninput="document.getElementById('lbl-nd').textContent='$'+parseInt(this.value).toLocaleString();calcDCF()"></div>
+    <div style="font-family:var(--mono);font-size:0.65rem;color:var(--muted);border-top:1px solid var(--rule);padding-top:10px;margin-top:4px;">Units outstanding: 3,460M (fixed)</div>
+  </div>
+  <div>
+    <div class="grid2c">
+      <div class="rbox" style="border-left:4px solid var(--teal)"><div class="rbig" id="dcf-price" style="color:var(--teal)">--</div><div class="rlbl">DCF Implied Unit Price</div></div>
+      <div class="rbox"><div class="rbig" id="dcf-prem">--</div><div class="rlbl">vs $19.10 Entry</div></div>
+    </div>
+    <div class="grid3">
+      <div class="rbox"><div class="rbig" id="dcf-equity" style="font-size:1.1rem">--</div><div class="rlbl">Equity Value ($B)</div></div>
+      <div class="rbox"><div class="rbig" id="dcf-ev" style="font-size:1.1rem">--</div><div class="rlbl">Enterprise Value ($B)</div></div>
+      <div class="rbox"><div class="rbig" id="dcf-mult" style="font-size:1.1rem">--</div><div class="rlbl">Implied EV/EBITDA</div></div>
+    </div>
+    <div style="background:var(--paper-warm);border:1px solid var(--rule-soft);padding:12px;margin-bottom:12px;">
+      <div style="font-family:var(--mono);font-size:0.67rem;font-weight:700;text-transform:uppercase;color:var(--muted);margin-bottom:8px;">FCF Build ($mm)</div>
+      <table class="model-table" style="margin:0;"><thead><tr><th class="row-h" style="font-size:0.62rem">Line</th><th style="font-size:0.62rem">2026E</th><th style="font-size:0.62rem">2027E</th><th style="font-size:0.62rem">2028E</th><th style="font-size:0.62rem">Terminal</th></tr></thead><tbody id="dcf-tbody"></tbody></table>
+    </div>
+    <div class="insight" id="dcf-verdict" style="margin:0;"></div>
+  </div>
+</div>
+</div>
+
+<!-- LBO -->
+<div class="tab" id="tab-lbo">
+<div class="sec-title" style="margin-top:8px;"><h2>LBO Returns Framework</h2><p>Models a large minority stake (1-15%) or hypothetical take-private. Adjust parameters to stress-test the return.</p></div>
+<div class="grid2">
+  <div class="ctrl-panel">
+    <div style="font-family:var(--mono);font-size:0.67rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--teal);margin-bottom:14px;">Parameters</div>
+    <div class="ctrl-row"><div class="ctrl-label">Entry unit price <span class="ctrl-val" id="lbl-ent">$19.10</span></div><input type="range" id="sl-ent" min="14" max="28" step="0.10" value="19.10" oninput="document.getElementById('lbl-ent').textContent='$'+parseFloat(this.value).toFixed(2);calcLBO()"></div>
+    <div class="ctrl-row"><div class="ctrl-label">Stake size <span class="ctrl-val" id="lbl-stk">5.0%</span></div><input type="range" id="sl-stk" min="1" max="15" step="0.5" value="5" oninput="document.getElementById('lbl-stk').textContent=parseFloat(this.value).toFixed(1)+'%';calcLBO()"></div>
+    <div class="ctrl-row"><div class="ctrl-label">Exit EV/EBITDA <span class="ctrl-val" id="lbl-em">10.0x</span></div><input type="range" id="sl-em" min="7" max="14" step="0.1" value="10.0" oninput="document.getElementById('lbl-em').textContent=parseFloat(this.value).toFixed(1)+'x';calcLBO()"></div>
+    <div class="ctrl-row"><div class="ctrl-label">2028E EBITDA ($mm) <span class="ctrl-val" id="lbl-le">$21,200</span></div><input type="range" id="sl-le" min="16000" max="26000" step="200" value="21200" oninput="document.getElementById('lbl-le').textContent='$'+parseInt(this.value).toLocaleString();calcLBO()"></div>
+    <div class="ctrl-row"><div class="ctrl-label">Hold period <span class="ctrl-val" id="lbl-hp">3 years</span></div><input type="range" id="sl-hp" min="1" max="5" step="1" value="3" oninput="document.getElementById('lbl-hp').textContent=this.value+' year'+(parseInt(this.value)>1?'s':'');calcLBO()"></div>
+    <div class="ctrl-row"><div class="ctrl-label">Annual distribution/unit <span class="ctrl-val" id="lbl-dp">$1.37</span></div><input type="range" id="sl-dp" min="0.80" max="2.00" step="0.01" value="1.37" oninput="document.getElementById('lbl-dp').textContent='$'+parseFloat(this.value).toFixed(2);calcLBO()"></div>
+  </div>
+  <div>
+    <div class="grid2c">
+      <div class="rbox" style="border-left:4px solid var(--teal)"><div class="rbig" id="lbo-irr" style="color:var(--teal)">--</div><div class="rlbl">IRR (annualised)</div></div>
+      <div class="rbox"><div class="rbig" id="lbo-moic">--</div><div class="rlbl">MOIC</div></div>
+    </div>
+    <div class="grid3">
+      <div class="rbox"><div class="rbig" id="lbo-inv" style="font-size:1rem">--</div><div class="rlbl">Capital Invested</div></div>
+      <div class="rbox"><div class="rbig" id="lbo-proc" style="font-size:1rem">--</div><div class="rlbl">Exit Proceeds</div></div>
+      <div class="rbox"><div class="rbig" id="lbo-dist" style="font-size:1rem">--</div><div class="rlbl">Distributions Recv.</div></div>
+    </div>
+    <div style="background:var(--paper-warm);border:1px solid var(--rule-soft);padding:12px;margin-bottom:12px;">
+      <div style="font-family:var(--mono);font-size:0.67rem;font-weight:700;text-transform:uppercase;color:var(--muted);margin-bottom:6px;">Capital structure (per unit basis)</div>
+      <div class="wf-bar" id="lbo-wf"></div>
+      <div style="display:flex;gap:12px;margin-top:6px;flex-wrap:wrap;">
+        <span style="font-family:var(--mono);font-size:0.65rem;color:var(--muted);"><span class="leg-box" style="background:#1c3a6b;"></span>Senior debt ~$17.75/unit</span>
+        <span style="font-family:var(--mono);font-size:0.65rem;color:var(--muted);"><span class="leg-box" style="background:#92600a;"></span>Preferred ~$1.00/unit</span>
+        <span style="font-family:var(--mono);font-size:0.65rem;color:var(--muted);"><span class="leg-box" style="background:#1d6f42;"></span>Common equity (entry)</span>
+      </div>
+    </div>
+    <div class="insight" id="lbo-verdict" style="margin:0;"></div>
+  </div>
+</div>
+</div>
+
+<!-- PEER -->
+<div class="tab" id="tab-peer">
+<div class="sec-title" style="margin-top:8px;"><h2>Peer Benchmarks</h2><p>Q1 2026 actuals where available. ET is highlighted in teal.</p></div>
+
+<div style="margin-bottom:16px;">
+<div style="font-family:var(--mono);font-size:0.67rem;font-weight:700;text-transform:uppercase;color:var(--muted);margin-bottom:8px;">EV/EBITDA Forward Multiple (lower = cheaper)</div>
+<div class="peer-row"><span class="peer-name" style="color:var(--teal);font-weight:800;">ET</span><div class="peer-track"><div class="peer-fill" style="width:65%;background:var(--teal);"></div></div><span class="peer-val">8.4x</span><span style="font-family:var(--mono);font-size:0.65rem;color:var(--muted);margin-left:8px;">Most discounted</span></div>
+<div class="peer-row"><span class="peer-name" >EPD</span><div class="peer-track"><div class="peer-fill" style="width:84%;background:var(--ink-soft);"></div></div><span class="peer-val">10.9x</span><span style="font-family:var(--mono);font-size:0.65rem;color:var(--muted);margin-left:8px;">MLP - closest comp</span></div>
+<div class="peer-row"><span class="peer-name" >KMI</span><div class="peer-track"><div class="peer-fill" style="width:81%;background:var(--ink-soft);"></div></div><span class="peer-val">10.5x</span><span style="font-family:var(--mono);font-size:0.65rem;color:var(--muted);margin-left:8px;">C-Corp</span></div>
+<div class="peer-row"><span class="peer-name" >ONEOK</span><div class="peer-track"><div class="peer-fill" style="width:85%;background:var(--ink-soft);"></div></div><span class="peer-val">11.0x</span><span style="font-family:var(--mono);font-size:0.65rem;color:var(--muted);margin-left:8px;">C-Corp</span></div>
+<div class="peer-row"><span class="peer-name" >WMB</span><div class="peer-track"><div class="peer-fill" style="width:86%;background:var(--ink-soft);"></div></div><span class="peer-val">11.2x</span><span style="font-family:var(--mono);font-size:0.65rem;color:var(--muted);margin-left:8px;">C-Corp</span></div>
+</div>
+<div style="margin-bottom:16px;">
+<div style="font-family:var(--mono);font-size:0.67rem;font-weight:700;text-transform:uppercase;color:var(--muted);margin-bottom:8px;">2026E EBITDA Growth YoY</div>
+<div class="peer-row"><span class="peer-name" style="color:var(--teal);font-weight:800;">ET</span><div class="peer-track"><div class="peer-fill" style="width:92%;background:var(--teal);"></div></div><span class="peer-val" style="color:var(--positive);">+15%</span></div>
+<div class="peer-row"><span class="peer-name" >EPD</span><div class="peer-track"><div class="peer-fill" style="width:62%;background:var(--ink-soft);"></div></div><span class="peer-val" style="color:var(--positive);">+10%</span></div>
+<div class="peer-row"><span class="peer-name" >ONEOK</span><div class="peer-track"><div class="peer-fill" style="width:38%;background:var(--ink-soft);"></div></div><span class="peer-val" style="color:var(--positive);">+6%</span></div>
+<div class="peer-row"><span class="peer-name" >WMB</span><div class="peer-track"><div class="peer-fill" style="width:34%;background:var(--ink-soft);"></div></div><span class="peer-val" style="color:var(--positive);">+6%</span></div>
+<div class="peer-row"><span class="peer-name" >KMI</span><div class="peer-track"><div class="peer-fill" style="width:25%;background:var(--ink-soft);"></div></div><span class="peer-val" style="color:var(--positive);">+4%</span></div>
+</div>
+<table class="model-table">
+<thead><tr><th class="row-h">Metric</th><th style="color:#4ade80;">ET</th><th>EPD</th><th>KMI</th><th>WMB</th><th>ONEOK</th></tr></thead>
+<tbody>
+<tr><td class="label">2026E EBITDA ($B)</td><td class="pos">$18.4</td><td>$10.8</td><td>$8.2</td><td>$7.6</td><td>$7.8</td></tr>
+<tr><td class="label">EV/EBITDA (forward)</td><td class="pos">8.4x</td><td>10.9x</td><td>10.5x</td><td>11.2x</td><td>11.0x</td></tr>
+<tr><td class="label">Net Debt / EBITDA</td><td>3.34x</td><td>3.1x</td><td>4.2x</td><td>3.5x</td><td>3.7x</td></tr>
+<tr><td class="label">DCF Coverage</td><td>1.72x</td><td>1.80x</td><td>1.60x</td><td>1.90x</td><td>1.50x</td></tr>
+<tr><td class="label">Distribution Yield</td><td class="pos">7.2%</td><td>4.7%</td><td>4.2%</td><td>3.8%</td><td>4.5%</td></tr>
+<tr><td class="label">Fee-Based Revenue</td><td>~90%</td><td>~85%</td><td>~95%</td><td>~95%</td><td>~75%</td></tr>
+<tr><td class="label">Credit Rating (S&P)</td><td class="neg">BBB-</td><td class="pos">A-</td><td>BBB</td><td>BBB+</td><td>BBB</td></tr>
+<tr><td class="label">Structure</td><td>MLP</td><td>MLP</td><td>C-Corp</td><td>C-Corp</td><td>C-Corp</td></tr>
+<tr><td class="label">S&P 500 included</td><td class="neg">No</td><td class="neg">No</td><td class="pos">Yes</td><td class="pos">Yes</td><td class="pos">Yes</td></tr>
+<tr><td class="label">DEXIT (TX redomicile)</td><td class="pos">Yes (Jul 2026)</td><td>No</td><td>No</td><td>No</td><td>No</td></tr>
+</tbody>
+</table>
+<div class="insight"><strong>Valuation gap:</strong> ET trades at 8.4x vs C-Corp peers at 10.5-11.2x. That 2-3 turn discount at $18.4B EBITDA equals approximately $37-55B of "missing" equity value. The gap is not fundamental - it is structural (MLP governance, BBB- rating, 2020 cut memory, no S&P 500 inclusion). Each of those four factors is addressable. None has been addressed yet.</div>
+</div>
+
+<footer>Market Logic Investors LLC &nbsp;|&nbsp; Energy Transfer LP Financial Model &nbsp;|&nbsp; Internal Use Only &nbsp;|&nbsp; July 2026<br>
+Sources: ET Q1 2026 10-Q, ET FY2025 10-K, SUN Q1 2026, USAC Q1 2026, EPD Q1 2026 8-K, SEC filings, company investor presentations. Projections are estimates only.</footer>
+
+<script>
+function showTab(id,btn) {
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  btn.classList.add('active');
+}
+function showEnt(section,entity,btn) {
+  ['et','sun','usac'].forEach(e=>{
+    const el=document.getElementById(section+'-'+e);
+    if(el) el.style.display=e===entity?'block':'none';
+  });
+  btn.closest('.entity-tabs').querySelectorAll('.ent-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+}
+
+// Overview bar chart
+(function(){
+  const data=[14040, 15690, 17270, 18464, 22035, 24110, 25960];
+  const yrs=["2022A", "2023A", "2024A", "2025A", "2026E", "2027E", "2028E"];
+  const max=Math.max(...data);
+  const c=document.getElementById('chart-ebitda');
+  data.forEach((v,i)=>{
+    const g=document.createElement('div');g.className='bar-grp';
+    const val=document.createElement('div');val.className='bar-val';val.textContent='$'+(v/1000).toFixed(0)+'B';
+    const bar=document.createElement('div');bar.className='bar';
+    bar.style.cssText='height:'+Math.round(v/max*135)+'px;background:'+(i<4?'#1c3a6b':'#92600a')+';';
+    const lbl=document.createElement('div');lbl.className='bar-lbl';lbl.textContent=yrs[i];
+    g.appendChild(val);g.appendChild(bar);g.appendChild(lbl);
+    c.appendChild(g);
+  });
+})();
+
+function calcDCF(){
+  const wacc=parseFloat(document.getElementById('sl-wacc').value)/100;
+  const tgr=parseFloat(document.getElementById('sl-tgr').value)/100;
+  const ebitda28=parseFloat(document.getElementById('sl-de').value);
+  const conv=parseFloat(document.getElementById('sl-conv').value)/100;
+  const nd=parseFloat(document.getElementById('sl-nd').value);
+  const units=3460;
+  const ebitdas=[18400,19800,ebitda28];
+  const fcfs=ebitdas.map(e=>e*conv);
+  let pv=0;
+  fcfs.forEach((f,i)=>{pv+=f/Math.pow(1+wacc,i+1);});
+  const tv=fcfs[2]*(1+tgr)/(wacc-tgr);
+  const pvTV=tv/Math.pow(1+wacc,3);
+  const ev=Math.round(pv+pvTV);
+  const equity=ev-nd;
+  const unitPrice=equity/units*1000;
+  const prem=((unitPrice/19.10)-1)*100;
+  const impl=ev/ebitda28;
+  document.getElementById('dcf-price').textContent='$'+unitPrice.toFixed(2);
+  document.getElementById('dcf-price').style.color=unitPrice>19.10?'var(--positive)':'var(--negative)';
+  document.getElementById('dcf-prem').textContent=(prem>=0?'+':'')+prem.toFixed(1)+'%';
+  document.getElementById('dcf-prem').style.color=prem>0?'var(--positive)':'var(--negative)';
+  document.getElementById('dcf-equity').textContent='$'+Math.round(equity/1000)+'B';
+  document.getElementById('dcf-ev').textContent='$'+Math.round(ev/1000)+'B';
+  document.getElementById('dcf-mult').textContent=impl.toFixed(1)+'x';
+  const tb=document.getElementById('dcf-tbody');
+  tb.innerHTML='';
+  const rows=[
+    ['EBITDA',ebitdas.map(e=>Math.round(e).toLocaleString()),Math.round(ebitdas[2]*(1+tgr)).toLocaleString()],
+    ['FCF ('+Math.round(conv*100)+'% conv)',fcfs.map(f=>Math.round(f).toLocaleString()),Math.round(fcfs[2]*(1+tgr)).toLocaleString()],
+    ['Discount factor',[1,2,3].map(n=>(1/Math.pow(1+wacc,n)).toFixed(3)),'PV TV: $'+Math.round(pvTV/1000)+'B'],
+    ['PV of FCF',fcfs.map((f,i)=>Math.round(f/Math.pow(1+wacc,i+1)).toLocaleString()),'Total EV: $'+Math.round(ev/1000)+'B'],
+  ];
+  rows.forEach(([lbl,vals,term])=>{
+    const tr=tb.insertRow();
+    const td0=tr.insertCell();td0.className='label sub';td0.textContent=lbl;
+    vals.forEach(v=>{const td=tr.insertCell();td.style.cssText='text-align:right;font-family:var(--mono);font-size:0.7rem;';td.textContent=v;});
+    const tdt=tr.insertCell();tdt.style.cssText='text-align:right;font-family:var(--mono);font-size:0.7rem;font-weight:800;';tdt.textContent=term;
+  });
+  const v=unitPrice>30?'Strong buy on DCF basis. Significant upside to intrinsic value.':unitPrice>22?'Modest DCF upside. Distribution yield compensates for limited appreciation.':'At or below DCF intrinsic value. Upside requires multiple expansion not EBITDA.';
+  document.getElementById('dcf-verdict').innerHTML='<strong>DCF verdict:</strong> At WACC '+(wacc*100).toFixed(1)+'% and TGR '+(tgr*100).toFixed(1)+'%, implied unit price <strong>$'+unitPrice.toFixed(2)+'</strong> ('+(prem>=0?'+':'')+prem.toFixed(1)+'% vs $19.10 entry). Implied EV/EBITDA: '+impl.toFixed(1)+'x. '+v;
+}
+
+function calcLBO(){
+  const entry=parseFloat(document.getElementById('sl-ent').value);
+  const stake=parseFloat(document.getElementById('sl-stk').value)/100;
+  const exitMult=parseFloat(document.getElementById('sl-em').value);
+  const ebitda28=parseFloat(document.getElementById('sl-le').value);
+  const hold=parseInt(document.getElementById('sl-hp').value);
+  const distPU=parseFloat(document.getElementById('sl-dp').value);
+  const UNITS=3460;const ND=61400;
+  const exitEV=ebitda28*exitMult;
+  const exitEq=exitEV-ND;
+  const exitPU=exitEq/UNITS*1000;
+  const stakeUnits=UNITS*stake;
+  const invested=entry*stakeUnits;
+  const exitProc=exitPU*stakeUnits;
+  const distRec=distPU*stakeUnits*hold;
+  const total=exitProc+distRec;
+  const moic=total/invested;
+  const irr=(Math.pow(moic,1/hold)-1)*100;
+  document.getElementById('lbo-irr').textContent=(irr>=0?'+':'')+irr.toFixed(1)+'%';
+  document.getElementById('lbo-irr').style.color=irr>20?'var(--positive)':irr>10?'var(--warning)':'var(--negative)';
+  document.getElementById('lbo-moic').textContent=moic.toFixed(2)+'x';
+  document.getElementById('lbo-moic').style.color=moic>1.5?'var(--positive)':'var(--warning)';
+  document.getElementById('lbo-inv').textContent='$'+Math.round(invested/1000)+'B';
+  document.getElementById('lbo-proc').textContent='$'+Math.round(exitProc/1000)+'B';
+  document.getElementById('lbo-dist').textContent='$'+Math.round(distRec)+'mm';
+  const tot=entry+ND/UNITS*1000+1;
+  const dp=ND/UNITS*1000/tot*100;const pp=1/tot*100;const ep=entry/tot*100;
+  document.getElementById('lbo-wf').innerHTML=
+    '<div class="wf-seg" style="width:'+dp.toFixed(0)+'%;background:#1c3a6b;">Sr Debt</div>'+
+    '<div class="wf-seg" style="width:'+pp.toFixed(0)+'%;background:#92600a;">Pref</div>'+
+    '<div class="wf-seg" style="width:'+ep.toFixed(0)+'%;background:#1d6f42;">Eq $'+entry.toFixed(2)+'</div>';
+  const v=irr>25?'Exceptional. PE-grade returns driven by re-rating + EBITDA growth.':irr>15?'Attractive. Income floor + moderate upside. Asymmetric risk/reward.':irr>8?'Marginal. Primarily a yield trade. Limited capital appreciation.':'Unattractive at these assumptions. Reconsider entry or exit multiple.';
+  document.getElementById('lbo-verdict').innerHTML='<strong>Returns verdict ('+hold+'-yr hold, '+(stake*100).toFixed(1)+'% stake):</strong> IRR '+(irr>=0?'+':'')+irr.toFixed(1)+'%, MOIC '+moic.toFixed(2)+'x. Capital $'+Math.round(invested/1000)+'B. Total proceeds $'+Math.round(total/1000)+'B ($'+Math.round(exitProc/1000)+'B exit + $'+Math.round(distRec)+'mm distributions). '+v;
+}
+
+document.addEventListener('DOMContentLoaded',()=>{calcDCF();calcLBO();});
+setTimeout(()=>{calcDCF();calcLBO();},200);
+</script></body></html>
