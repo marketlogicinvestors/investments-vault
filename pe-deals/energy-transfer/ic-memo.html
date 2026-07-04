@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>ET IC Memo | Market Logic Investors | July 2026</title>
+<style>
+:root{
+  --ink:#0a1929;--paper:#ffffff;--paper-warm:#f8f7f2;
+  --rule:#d0ccc0;--rule-soft:#e8e4d8;
+  --teal:#1f6b6b;--teal-lt:#edf6f6;
+  --accent:#b8391c;--accent-lt:#fdf0ec;
+  --positive:#1d6f42;--pos-lt:#edf7f1;
+  --warning:#92600a;--warn-lt:#fef8ec;
+  --negative:#8b1a1a;--neg-lt:#fdf0f0;
+  --muted:#5b6b7a;
+  --mono:'SF Mono','Fira Mono','Consolas',monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{font-size:13px;}
+body{font-family:'Georgia',serif;background:var(--paper);color:var(--ink);line-height:1.55;max-width:900px;margin:0 auto;padding:0 32px 64px;}
+
+/* NAV */
+.nav-bar{background:var(--ink);margin:0 -32px;padding:10px 32px;display:flex;align-items:center;justify-content:space-between;margin-bottom:0;}
+.nav-back{color:rgba(250,249,244,0.8);font-family:var(--mono);font-size:0.72rem;font-weight:700;text-decoration:none;letter-spacing:0.06em;display:flex;align-items:center;gap:8px;}
+.nav-back:hover{color:#fff;}
+.nav-links{display:flex;gap:12px;}
+.nav-link{color:rgba(250,249,244,0.55);font-family:var(--mono);font-size:0.68rem;text-decoration:none;padding:4px 10px;border:1px solid rgba(250,249,244,0.2);border-radius:2px;}
+.nav-link:hover{color:#fff;border-color:rgba(250,249,244,0.5);}
+.nav-link.active{background:var(--accent);color:#fff;border-color:var(--accent);}
+
+/* HEADER */
+.memo-header{border-bottom:3px solid var(--ink);padding:32px 0 20px;margin-bottom:0;}
+.firm-line{font-family:var(--mono);font-size:0.68rem;font-weight:700;text-transform:uppercase;letter-spacing:0.16em;color:var(--muted);margin-bottom:16px;}
+.memo-title{font-size:1.9rem;font-weight:700;letter-spacing:-0.02em;line-height:1.15;margin-bottom:6px;}
+.memo-sub{font-size:1.05rem;color:var(--muted);font-style:italic;margin-bottom:20px;}
+.memo-meta{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);}
+.meta-cell{padding:10px 0;border-right:1px solid var(--rule);}
+.meta-cell:last-child{border-right:none;}
+.meta-label{font-family:var(--mono);font-size:0.62rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);display:block;margin-bottom:3px;}
+.meta-val{font-size:0.9rem;font-weight:700;}
+.meta-val.green{color:var(--positive);}
+.meta-val.red{color:var(--negative);}
+.meta-val.teal{color:var(--teal);}
+
+/* RECOMMENDATION BANNER */
+.rec-banner{background:var(--ink);color:#fff;padding:18px 24px;margin:0 -32px;display:flex;align-items:center;justify-content:space-between;gap:20px;}
+.rec-label{font-family:var(--mono);font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:rgba(250,249,244,0.55);}
+.rec-action{font-size:1.5rem;font-weight:800;letter-spacing:-0.01em;}
+.rec-action.buy{color:#4ade80;}
+.rec-thesis{font-size:0.88rem;color:rgba(250,249,244,0.8);max-width:500px;line-height:1.5;font-style:italic;}
+.rec-metrics{display:flex;gap:24px;flex-shrink:0;}
+.rec-metric{text-align:center;}
+.rec-metric .val{font-family:var(--mono);font-size:1.25rem;font-weight:800;}
+.rec-metric .lbl{font-family:var(--mono);font-size:0.58rem;text-transform:uppercase;color:rgba(250,249,244,0.5);letter-spacing:0.08em;}
+
+/* SECTIONS */
+section{margin-top:32px;}
+.sec-head{display:flex;align-items:baseline;gap:12px;border-bottom:2px solid var(--ink);padding-bottom:6px;margin-bottom:16px;}
+.sec-num{font-family:var(--mono);font-size:0.7rem;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:0.1em;min-width:32px;}
+.sec-title{font-size:1.05rem;font-weight:700;}
+.sec-sub{font-size:0.8rem;color:var(--muted);font-style:italic;margin-top:2px;}
+
+p{margin-bottom:12px;font-size:0.9rem;}
+p strong{color:var(--ink);}
+
+/* KEY STAT BOXES */
+.stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule);margin-bottom:20px;}
+.stat-cell{background:var(--paper-warm);padding:12px 14px;}
+.stat-label{font-family:var(--mono);font-size:0.6rem;font-weight:700;text-transform:uppercase;letter-spacing:0.09em;color:var(--muted);display:block;margin-bottom:4px;}
+.stat-val{font-family:var(--mono);font-size:1.15rem;font-weight:800;display:block;}
+.stat-note{font-size:0.72rem;color:var(--muted);margin-top:2px;}
+
+/* TABLES */
+table{width:100%;border-collapse:collapse;font-size:0.83rem;margin-bottom:16px;}
+th{background:var(--ink);color:#fff;font-family:var(--mono);font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;padding:7px 10px;text-align:right;}
+th:first-child{text-align:left;}
+td{padding:6px 10px;text-align:right;border-bottom:1px solid var(--rule-soft);}
+td:first-child{text-align:left;font-weight:600;}
+td.sub{font-weight:400;color:var(--muted);padding-left:22px;font-size:0.8rem;}
+td.total{font-weight:800;border-top:2px solid var(--ink);}
+td.pos{color:var(--positive);}
+td.neg{color:var(--negative);}
+td.hl{background:var(--teal-lt);font-weight:800;}
+tr:hover td{background:var(--paper-warm);}
+.th-hist{background:#1c3a6b;}
+.th-proj{background:#7c4a1c;}
+
+/* TWO COL */
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:16px;}
+.cols-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:16px;}
+@media(max-width:680px){.cols,.cols-3{grid-template-columns:1fr;}}
+
+/* CALL-OUT BOXES */
+.box{border:1px solid var(--rule-soft);padding:14px 16px;margin-bottom:14px;}
+.box.teal{border-left:4px solid var(--teal);background:var(--teal-lt);}
+.box.red{border-left:4px solid var(--negative);background:var(--neg-lt);}
+.box.amber{border-left:4px solid var(--warning);background:var(--warn-lt);}
+.box.ink{background:var(--ink);color:#fff;padding:18px 22px;border:none;}
+.box.ink strong{color:#4ade80;}
+.box h4{font-size:0.82rem;font-weight:800;margin-bottom:7px;text-transform:uppercase;letter-spacing:0.05em;}
+
+/* BULL BEAR */
+.thesis-cols{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--rule);}
+.t-col{padding:16px;}
+.t-col.bull{border-right:1px solid var(--rule);background:var(--pos-lt);}
+.t-col.bear{background:var(--neg-lt);}
+.t-col h4{font-size:0.75rem;font-weight:800;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:10px;padding-bottom:6px;border-bottom:2px solid currentColor;}
+.t-col.bull h4{color:var(--positive);}
+.t-col.bear h4{color:var(--negative);}
+.t-col ul{list-style:none;padding:0;}
+.t-col li{font-size:0.82rem;padding:5px 0;border-bottom:1px solid rgba(0,0,0,0.06);line-height:1.45;}
+.t-col li:last-child{border-bottom:none;}
+.t-col li::before{content:'';margin-right:6px;}
+.t-col.bull li::before{content:'+';}
+.t-col.bear li::before{content:'-';}
+
+/* RISK GRID */
+.risk-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:16px;}
+.risk-cell{border:1px solid var(--rule-soft);padding:10px 12px;}
+.risk-cell h5{font-family:var(--mono);font-size:0.65rem;font-weight:800;text-transform:uppercase;letter-spacing:0.07em;margin-bottom:5px;}
+.risk-cell p{font-size:0.78rem;margin:0;color:var(--muted);}
+.risk-cell.high{border-left:4px solid var(--negative);}
+.risk-cell.med{border-left:4px solid var(--warning);}
+.risk-cell.low{border-left:4px solid var(--positive);}
+
+/* CONVERSATION GUIDE */
+.obs-block{border:1px solid var(--rule);margin-bottom:12px;}
+.obs-header{background:var(--ink);color:#fff;padding:8px 14px;font-family:var(--mono);font-size:0.68rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;display:flex;justify-content:space-between;}
+.obs-body{padding:12px 14px;background:var(--paper-warm);}
+.obs-quote{font-size:0.88rem;font-style:italic;border-left:3px solid var(--teal);padding-left:12px;margin-bottom:8px;line-height:1.55;}
+.obs-why{font-family:var(--mono);font-size:0.7rem;color:var(--muted);}
+
+/* WATERFALL */
+.wf{display:flex;height:28px;border-radius:2px;overflow:hidden;margin:8px 0 4px;}
+.wf-seg{display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:0.62rem;font-weight:700;color:#fff;overflow:hidden;white-space:nowrap;padding:0 6px;}
+
+/* SENSITIVITY MINI */
+.sens-table td{font-family:var(--mono);font-size:0.72rem;text-align:center;}
+.sens-table td:first-child{text-align:left;}
+.sens-red{background:#c94040;color:#fff;}
+.sens-amber{background:#d4962a;color:#fff;}
+.sens-green{background:#2a7a4a;color:#fff;}
+.sens-dkgreen{background:#1a5c3a;color:#fff;}
+
+/* SCORECARD */
+.scorecard{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--rule);}
+.sc-row{display:contents;}
+.sc-cell{padding:8px 14px;border-bottom:1px solid var(--rule-soft);font-size:0.82rem;}
+.sc-cell.label{font-weight:700;background:var(--paper-warm);}
+.sc-cell.score{font-family:var(--mono);font-weight:800;text-align:right;}
+.sc-cell.total{font-weight:900;font-size:1rem;background:var(--ink);color:#fff;}
+
+/* PAGE BREAK */
+.break{page-break-before:always;margin-top:40px;}
+
+/* PRINT */
+@media print{
+  body{padding:0 20px;font-size:11px;}
+  .nav-bar{display:none;}
+  .rec-banner{margin:0;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  section{page-break-inside:avoid;}
+  .stat-grid{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<div class="nav-bar">
+  <a href="index.html" class="nav-back">&#8592; Research Memo</a>
+  <div class="nav-links">
+    <a href="index.html" class="nav-link">Full Report</a>
+    <a href="model.html" class="nav-link">Financial Model</a>
+    <a href="ic-memo.html" class="nav-link active">IC Memo</a>
+  </div>
+</div>
+
+<!-- HEADER -->
+<div class="memo-header">
+  <div class="firm-line">Market Logic Investors LLC &nbsp;|&nbsp; Investment Committee Memorandum &nbsp;|&nbsp; Confidential</div>
+  <h1 class="memo-title">Energy Transfer LP (NYSE: ET)</h1>
+  <div class="memo-sub">America's largest midstream operator at its cheapest multiple in five years, with an AI demand inflection the market hasn't modeled and a succession catalyst nobody has priced.</div>
+  <div class="memo-meta">
+    <div class="meta-cell">
+      <span class="meta-label">Date</span>
+      <span class="meta-val">July 4, 2026</span>
+    </div>
+    <div class="meta-cell" style="padding-left:14px;">
+      <span class="meta-label">Analyst</span>
+      <span class="meta-val">Hemanth Reganti</span>
+    </div>
+    <div class="meta-cell" style="padding-left:14px;">
+      <span class="meta-label">Engagement</span>
+      <span class="meta-val teal">CFO Meeting: Dylan Bramhall</span>
+    </div>
+    <div class="meta-cell" style="padding-left:14px;">
+      <span class="meta-label">Status</span>
+      <span class="meta-val green">Deep Engage &mdash; 7.3 / 10</span>
+    </div>
+  </div>
+</div>
+
+<!-- RECOMMENDATION BANNER -->
+<div class="rec-banner">
+  <div>
+    <div class="rec-label">Investment Recommendation</div>
+    <div class="rec-action buy">DEEP ENGAGE &mdash; HIGH CONVICTION</div>
+    <div class="rec-thesis">"Buy infrastructure at 8.4x that the M&A market clears at 10-13x. Collect 7.2% yield while you wait for the governance catalyst that closes a $37B valuation gap."</div>
+  </div>
+  <div class="rec-metrics">
+    <div class="rec-metric">
+      <div class="val" style="color:#4ade80;">$19.10</div>
+      <div class="lbl">Entry price</div>
+    </div>
+    <div class="rec-metric">
+      <div class="val" style="color:#fbbf24;">$32-40</div>
+      <div class="lbl">Base target (3yr)</div>
+    </div>
+    <div class="rec-metric">
+      <div class="val" style="color:#4ade80;">7.2%</div>
+      <div class="lbl">Distribution yield</div>
+    </div>
+    <div class="rec-metric">
+      <div class="val" style="color:#4ade80;">20-40%</div>
+      <div class="lbl">3yr IRR range</div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 1: EXECUTIVE SUMMARY -->
+<section>
+  <div class="sec-head">
+    <div class="sec-num">01</div>
+    <div>
+      <div class="sec-title">Executive Summary</div>
+      <div class="sec-sub">What the market is missing. Why now. What we need to believe.</div>
+    </div>
+  </div>
+
+  <p>Energy Transfer is the toll-road operator for American energy: 140,000 miles of pipeline, 44 states, every major production basin. At $19.10, it trades at <strong>8.4x 2026E EBITDA of $18.4B</strong> against MLP peer Enterprise Products at 10.9x and C-Corp peers at 10.5-11.2x. The discount is real. It reflects governance (founder-controlled GP, 2020 distribution cut, no S&P 500 inclusion) and a credit rating (BBB-) one notch below peers. What the discount does not reflect is the AI demand inflection now showing up in signed contracts, the free cash flow surge arriving in 2027 as the capex cycle peaks, and the succession catalyst that could close 1-2 valuation turns in a single announcement.</p>
+
+  <div class="stat-grid">
+    <div class="stat-cell">
+      <span class="stat-label">2025A Adj. EBITDA</span>
+      <span class="stat-val">$15.98B</span>
+      <span class="stat-note">Record. Up 3.1% YoY.</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-label">2026E Adj. EBITDA</span>
+      <span class="stat-val" style="color:var(--positive);">$18.4B</span>
+      <span class="stat-note">Guidance raised $750M post Q1 beat</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-label">EV/EBITDA (current)</span>
+      <span class="stat-val" style="color:var(--teal);">8.4x</span>
+      <span class="stat-note">vs EPD 10.9x / KMI 10.5x / WMB 11.2x</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-label">Distribution yield</span>
+      <span class="stat-val" style="color:var(--positive);">7.2%</span>
+      <span class="stat-note">$1.37/unit annualized. 1.72x coverage.</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-label">ET entity leverage</span>
+      <span class="stat-val">3.34x</span>
+      <span class="stat-note">$21B headroom to 4.5x ceiling</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-label">Q1 2026 DCF</span>
+      <span class="stat-val" style="color:var(--positive);">$2.70B</span>
+      <span class="stat-note">vs $2.30B prior year. Inflection confirmed.</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-label">$25B contracted backlog</span>
+      <span class="stat-val" style="color:var(--teal);">18yr WAL</span>
+      <span class="stat-note">6 Bcf/d new capacity. Not in consensus.</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-label">Valuation gap (2-turn)</span>
+      <span class="stat-val" style="color:var(--accent);">$37B</span>
+      <span class="stat-note">~$10.70/unit of trapped value = 56% upside</span>
+    </div>
+  </div>
+
+  <div class="box ink">
+    <strong>The one-sentence thesis:</strong> Buy the largest midstream operator in America at an 8.4x multiple that the private M&A market clears at 10-13x, collect a 7.2% annual yield while the FCF cycle inflects in 2027, and wait for the governance catalyst that closes the gap. The downside is a 7% carry trade. The upside is 60-110% total return. The bet is asymmetric.
+  </div>
+</section>
+
+<!-- SECTION 2: THE THREE-ENTITY STRUCTURE -->
+<section>
+  <div class="sec-head">
+    <div class="sec-num">02</div>
+    <div>
+      <div class="sec-title">The Three-Entity Structure</div>
+      <div class="sec-sub">Know these numbers cold before entering the room.</div>
+    </div>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Entity</th>
+        <th>Ticker</th>
+        <th>2025A EBITDA</th>
+        <th>Net Debt</th>
+        <th>Leverage</th>
+        <th>M&A capacity</th>
+        <th>Strategic role</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="">
+        <td><strong>ET Pipeline (direct)</strong></td>
+        <td>ET</td>
+        <td class="pos">$15.98B</td>
+        <td>~$60B</td>
+        <td>3.34x</td>
+        <td class="pos">$21B to 4.5x ceiling</td>
+        <td>Gas transport, NGL, crude, fractionation</td>
+      </tr>
+      <tr>
+        <td><strong>Sunoco LP</strong></td>
+        <td>SUN / SUNC</td>
+        <td>$2.12B</td>
+        <td>$13.4B</td>
+        <td>4.0x</td>
+        <td class="neg">None: at ceiling post-PKI</td>
+        <td>Fuel distribution, 32 countries, Canada</td>
+      </tr>
+      <tr>
+        <td><strong>USA Compression</strong></td>
+        <td>USAC</td>
+        <td>$614M</td>
+        <td>$2.55B</td>
+        <td>4.0x</td>
+        <td class="neg">Minimal: delevering</td>
+        <td>Compression services, Permian/Appalachia</td>
+      </tr>
+      <tr>
+        <td class="total"><strong>Consolidated</strong></td>
+        <td>-</td>
+        <td class="total pos">$18.1B (adj.)</td>
+        <td class="total">~$76.4B</td>
+        <td class="total">-</td>
+        <td class="total">ET entity only</td>
+        <td>-</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="box amber">
+    <h4>July 2 2026 redomiciliation &mdash; just happened</h4>
+    <p style="font-size:0.83rem;margin:0;">All four entities (ET, SUN, SUNC, USAC) redomiciled from Delaware to Texas, effective July 6. Market purposes: July 13. This is not administrative. Delaware Chancery handed ET a $410M verdict in the Williams Companies breakup case. Texas statutory law is structurally more favorable to controlling-party GPs. Bramhall knows this is two days old. Noting it in the conversation signals you read the filings, not just the reports.</p>
+  </div>
+</section>
+
+<!-- SECTION 3: FINANCIAL SUMMARY -->
+<section>
+  <div class="sec-head">
+    <div class="sec-num">03</div>
+    <div>
+      <div class="sec-title">Financial Model Summary</div>
+      <div class="sec-sub">3-statement highlights. ET Pipeline entity. Full model at model.html.</div>
+    </div>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>P&L ($mm)</th>
+        <th class="th-hist">2022A</th>
+        <th class="th-hist">2023A</th>
+        <th class="th-hist">2024A</th>
+        <th class="th-hist">2025A</th>
+        <th class="th-proj">2026E</th>
+        <th class="th-proj">2027E</th>
+        <th class="th-proj">2028E</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Revenue</td><td>83,100</td><td>86,100</td><td>82,900</td><td>85,500</td><td>109,000</td><td>117,000</td><td>124,000</td></tr>
+      <tr><td class="total">Adj. EBITDA</td><td class="total">13,100</td><td class="total">14,500</td><td class="total">15,500</td><td class="total">15,980</td><td class="total pos">18,400</td><td class="total pos">19,800</td><td class="total pos">21,200</td></tr>
+      <tr><td class="sub">EBITDA margin</td><td>15.8%</td><td>16.8%</td><td>18.7%</td><td>18.7%</td><td>16.9%</td><td>16.9%</td><td>17.1%</td></tr>
+      <tr><td class="sub">Interest expense</td><td>(2,800)</td><td>(3,100)</td><td>(3,600)</td><td>(4,200)</td><td>(4,600)</td><td>(4,800)</td><td>(4,900)</td></tr>
+      <tr><td>DCF</td><td>7,800</td><td>8,100</td><td>8,400</td><td class="neg">8,200</td><td class="pos">10,800</td><td class="pos">11,900</td><td class="pos">12,800</td></tr>
+      <tr><td>DCF Coverage</td><td>1.86x</td><td>1.84x</td><td>1.75x</td><td class="neg">1.67x</td><td class="pos">2.12x</td><td class="pos">2.20x</td><td class="pos">2.25x</td></tr>
+      <tr><td>Growth Capex</td><td>(3,100)</td><td>(2,600)</td><td>(2,900)</td><td>(4,500)</td><td class="neg">(5,700)</td><td>(5,800)</td><td>(5,000)</td></tr>
+      <tr><td class="total">FCF after growth capex</td><td class="total">500</td><td class="total pos">1,100</td><td class="total pos">700</td><td class="total neg">(1,200)</td><td class="total neg">(1,000)</td><td class="total pos">700</td><td class="total pos">2,800</td></tr>
+      <tr><td>Net Debt</td><td>47,750</td><td>52,720</td><td>59,488</td><td>59,600</td><td>61,000</td><td>60,400</td><td>58,300</td></tr>
+      <tr><td>Net Debt / EBITDA</td><td>3.64x</td><td>3.64x</td><td>3.84x</td><td>3.73x</td><td>3.34x</td><td>3.05x</td><td>2.75x</td></tr>
+    </tbody>
+  </table>
+
+  <div class="box teal">
+    <h4>FCF inflection thesis</h4>
+    <p style="font-size:0.83rem;margin:0;">ET is FCF-negative after growth capex in 2025 and 2026 because the capex cycle is at its peak. Hugh Brinson enters service Q4 2026. Mustang Draw II enters service Q4 2026. By 2027, retained DCF exceeds growth capex. By 2028, the FCF surplus is approximately $2.8B annually. At that point, the only question is how Bramhall deploys it: distribution growth, buybacks, or the "beyond North America" acquisition. Long has flagged buybacks. That means the 2028 unit price is driven by both EBITDA growth AND capital return compression.</p>
+  </div>
+</section>
+
+<!-- SECTION 4: THE AI/POWER DEMAND THESIS -->
+<section>
+  <div class="sec-head">
+    <div class="sec-num">04</div>
+    <div>
+      <div class="sec-title">The AI / Power Demand Thesis</div>
+      <div class="sec-sub">Seven named deals. $25B contracted backlog. The number the market is not using.</div>
+    </div>
+  </div>
+
+  <p>Most sell-side models have three named data center contracts. The June 2026 JPMorgan investor presentation shows seven, plus a $25B contracted revenue backlog at 18-year weighted average life from 6+ Bcf/d of new capacity signed in the last year alone. That is a project-finance-grade revenue backlog being reported as a quarterly EBITDA segment line. The market is using the wrong valuation framework.</p>
+
+  <table>
+    <thead>
+      <tr><th>Customer</th><th>Volume</th><th>Power equiv.</th><th>Duration</th><th>Status</th><th>EBITDA est.</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>Oracle / VoltaGrid</strong></td><td>900,000 MMcf/d</td><td>2.3 GW</td><td>Long-term</td><td class="pos">Active</td><td>~$180M</td></tr>
+      <tr><td><strong>Meta Hyperion</strong></td><td>250,000 MMBtu/d</td><td>est. 1.0 GW</td><td>20 years</td><td>Feb 2028</td><td>~$50M</td></tr>
+      <tr><td><strong>CloudBurst</strong></td><td>450,000 MMBtu/d</td><td>1.2 GW</td><td>Long-term</td><td>2027</td><td>~$90M</td></tr>
+      <tr><td><strong>Nexus Hubbard Campus</strong></td><td>150,000 MMcf/d</td><td>600 MW</td><td>Long-term</td><td>End 2026</td><td>~$30M</td></tr>
+      <tr><td><strong>Fermi America HyperGrid</strong></td><td>300,000 MMBtu/d</td><td>2.0 GW</td><td>10 years</td><td>Active</td><td>~$60M</td></tr>
+      <tr><td><strong>Oklahoma power plants (x4)</strong></td><td>300,000 MMcf/d</td><td>est. 1.2 GW</td><td>Long-term</td><td>Q3 2026+</td><td>~$60M</td></tr>
+      <tr><td><strong>Transwestern coal replacement</strong></td><td>TBD</td><td>TBD</td><td>20 years</td><td>Q4 2029</td><td>~$TBD</td></tr>
+      <tr class="hl"><td><strong>Total (named)</strong></td><td>~2.35 Bcf/d</td><td>~8.3 GW</td><td>Avg 15+ yr</td><td>-</td><td><strong>~$470M (unmodeled)</strong></td></tr>
+    </tbody>
+  </table>
+
+  <div class="cols">
+    <div class="box teal">
+      <h4>ET's model: capital-light</h4>
+      <p style="font-size:0.82rem;margin:0;">ET supplies firm gas via existing and lateral pipelines. VoltaGrid, Fermi, Nexus own and operate the generation. ET earns transportation tariff without generation capex or merchant power risk. Williams is spending $5.1B building power plants. ET is spending only on laterals and interconnections. ET gets the AI infrastructure revenue without the generation risk.</p>
+    </div>
+    <div class="box amber">
+      <h4>Real constraint: turbines, not pipelines</h4>
+      <p style="font-size:0.82rem;margin:0;">Gas supply is not the bottleneck (US produces 104 Bcf/d). ET's mainline network is the moat (140,000 miles, 44 states). The real bottleneck is F-class gas turbine delivery (18-36 month lead times) and ERCOT grid interconnection (3-5 year queue). Both sit with ET's partners, not ET. Take-or-pay protects ET regardless of turbine delivery schedule.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 5: GROWTH PROJECTS -->
+<section>
+  <div class="sec-head">
+    <div class="sec-num">05</div>
+    <div>
+      <div class="sec-title">Major Growth Projects</div>
+      <div class="sec-sub">The $5.5-5.9B 2026 capex program. Know the timing, capacity, and capital efficiency of each.</div>
+    </div>
+  </div>
+
+  <table>
+    <thead>
+      <tr><th>Project</th><th>Capacity</th><th>In-service</th><th>Capex</th><th>Build multiple</th><th>Status</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>Hugh Brinson Phase 1</strong></td><td>1.5 Bcf/d</td><td>Q4 2026</td><td rowspan="2" style="vertical-align:middle;">$2.7B total</td><td rowspan="2" style="vertical-align:middle;">~5.5x blended</td><td class="pos">Construction underway</td></tr>
+      <tr><td><strong>Hugh Brinson Phase 2</strong></td><td>+0.7 Bcf/d (to 2.2)</td><td>Q1 2027</td><td>Compression addition</td></tr>
+      <tr><td><strong>Desert Southwest Phase 1</strong></td><td>1.5 Bcf/d</td><td>Q4 2029</td><td rowspan="2" style="vertical-align:middle;">$5.6-6.2B</td><td>6.0x Phase 1</td><td>FERC pre-filing Mar 2026. 100% pipe secured.</td></tr>
+      <tr><td><strong>Desert Southwest Phase 2</strong></td><td>+0.8 Bcf/d (to 2.3)</td><td>Q4 2029</td><td class="pos">4.2x incremental</td><td>Certificate application Q4 2026</td></tr>
+      <tr><td><strong>Mustang Draw I</strong></td><td>275 MMcf/d processing</td><td>Jun 2026</td><td>Included in capex</td><td>-</td><td class="pos">Commissioning now</td></tr>
+      <tr><td><strong>Mustang Draw II</strong></td><td>275 MMcf/d processing</td><td>Q4 2026</td><td>Included in capex</td><td>-</td><td>Under construction</td></tr>
+      <tr><td><strong>FGT Phase IX (JV)</strong></td><td>525 MMcf/d</td><td>Q4 2028</td><td>-</td><td>-</td><td>Open season complete. 15-25yr agreements.</td></tr>
+      <tr><td><strong>FGT South Florida (JV)</strong></td><td>230 MMcf/d</td><td>Q1 2030</td><td>-</td><td>-</td><td>Subject to FID</td></tr>
+    </tbody>
+  </table>
+
+  <div class="box red">
+    <h4>Desert Southwest: the market is modeling the wrong number</h4>
+    <p style="font-size:0.83rem;margin:0;">The Desert Southwest Phase 1 build multiple is 6.0x on $4.7B for 1.5 Bcf/d. The Phase 2 upsize adds 0.8 Bcf/d for only $900M, a 4.2x incremental multiple. Blended across both phases: approximately 5.1x on $5.6B for 2.3 Bcf/d. At correct economics, Desert Southwest adds $900M-$1B in steady-state EBITDA, not the ~$650M the market is modeling on headline capex and capacity. This is the single most underappreciated capital efficiency story in the memo.</p>
+  </div>
+</section>
+
+<!-- SECTION 6: VALUATION -->
+<section>
+  <div class="sec-head">
+    <div class="sec-num">06</div>
+    <div>
+      <div class="sec-title">Valuation</div>
+      <div class="sec-sub">Three methods. Entry/exit framework. Sensitivity table.</div>
+    </div>
+  </div>
+
+  <div class="cols-3">
+    <div class="box teal">
+      <h4>EV/EBITDA comps</h4>
+      <p style="font-size:0.82rem;margin-bottom:6px;"><strong>Current: 8.4x</strong> on 2026E $18.4B</p>
+      <p style="font-size:0.82rem;margin-bottom:6px;">At EPD parity (10.9x): <strong>$40/unit</strong></p>
+      <p style="font-size:0.82rem;margin:0;">At C-Corp parity (11.9x): <strong>$46/unit</strong></p>
+    </div>
+    <div class="box teal">
+      <h4>DCF (WACC 8.5%, TGR 2%)</h4>
+      <p style="font-size:0.82rem;margin-bottom:6px;"><strong>Implied: $28-34/unit</strong></p>
+      <p style="font-size:0.82rem;margin-bottom:6px;">Base FCF conversion: 52%</p>
+      <p style="font-size:0.82rem;margin:0;">+47% to +78% vs entry</p>
+    </div>
+    <div class="box teal">
+      <h4>Transaction comps</h4>
+      <p style="font-size:0.82rem;margin-bottom:6px;">ONEOK/Magellan: <strong>13.2x</strong></p>
+      <p style="font-size:0.82rem;margin-bottom:6px;">SUN/NuStar: <strong>10.5x</strong></p>
+      <p style="font-size:0.82rem;margin:0;">ET/Crestwood: <strong>9.5x</strong></p>
+    </div>
+  </div>
+
+  <table class="sens-table">
+    <thead>
+      <tr><th>Exit EV/EBITDA</th><th>$18B EBITDA</th><th>$19B</th><th>$20B</th><th>$21B</th><th>$22B (base)</th><th>$24B (bull)</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>7.5x (bear)</strong></td><td class="sens-red">$10.1</td><td class="sens-red">$13.6</td><td class="sens-red">$17.1</td><td class="sens-amber">$20.5</td><td class="sens-amber">$24.0</td><td class="sens-green">$31.0</td></tr>
+      <tr><td><strong>8.4x (flat)</strong></td><td class="sens-red">$14.4</td><td class="sens-amber">$18.7</td><td class="sens-amber">$23.0</td><td class="sens-green">$27.4</td><td class="sens-green">$31.7</td><td class="sens-dkgreen">$40.5</td></tr>
+      <tr><td><strong>10.0x</strong></td><td class="sens-amber">$21.7</td><td class="sens-green">$27.1</td><td class="sens-green">$32.4</td><td class="sens-green">$37.8</td><td class="sens-dkgreen">$43.1</td><td class="sens-dkgreen">$53.8</td></tr>
+      <tr><td><strong>10.9x (EPD)</strong></td><td class="sens-green">$25.5</td><td class="sens-green">$31.4</td><td class="sens-green">$37.3</td><td class="sens-dkgreen">$43.2</td><td class="sens-dkgreen">$49.1</td><td class="sens-dkgreen">$60.9</td></tr>
+      <tr><td><strong>11.9x (C-Corp)</strong></td><td class="sens-green">$29.3</td><td class="sens-green">$35.8</td><td class="sens-dkgreen">$42.3</td><td class="sens-dkgreen">$48.8</td><td class="sens-dkgreen">$55.3</td><td class="sens-dkgreen">$68.3</td></tr>
+    </tbody>
+  </table>
+  <p style="font-size:0.75rem;color:var(--muted);">Implied unit prices. Entry $19.10. Net debt $61.4B. Units 3,460M. Cells include $2.74 in distributions (2yr hold at $1.37/yr). Red = loss. Amber = modest return. Green = strong. Dark green = exceptional.</p>
+</section>
+
+<!-- SECTION 7: RISK REGISTER -->
+<section>
+  <div class="sec-head">
+    <div class="sec-num">07</div>
+    <div>
+      <div class="sec-title">Risk Register</div>
+      <div class="sec-sub">Probability-weighted. The ones that can actually kill the thesis are marked high.</div>
+    </div>
+  </div>
+
+  <div class="risk-grid">
+    <div class="risk-cell high">
+      <h5>Desert Southwest execution</h5>
+      <p>$5.6B, Q4 2029. Any 12+ month slip removes $500M+ of 2028 EBITDA. FERC certificate Q4 2026 is the signal. 100% of pipe already secured.</p>
+    </div>
+    <div class="risk-cell high">
+      <h5>Succession / governance</h5>
+      <p>McCrea retires Dec 31 2026. Long becomes sole CEO. Two finance operators at top with no commercial originator. Who builds the next contract wave?</p>
+    </div>
+    <div class="risk-cell med">
+      <h5>AI demand softening</h5>
+      <p>Meta selling spare compute externally signals buildout ahead of absorption. Contracted deals safe (take-or-pay). New contract pipeline at risk. Signal: hyperscaler capex guidance.</p>
+    </div>
+    <div class="risk-cell med">
+      <h5>Interest rate rise</h5>
+      <p>$12B floating exposure. +100bps = $120M annual interest. +150bps with AI softening simultaneously = DCF coverage 1.56x. Close to 1.5x kill switch.</p>
+    </div>
+    <div class="risk-cell med">
+      <h5>Distribution cut repeat</h5>
+      <p>2020 cut is permanent institutional memory. Kill switch at 1.5x. Coverage at 1.72x provides 22bps cushion. Not the base case. The fear is structural.</p>
+    </div>
+    <div class="risk-cell low">
+      <h5>DEXIT governance impact</h5>
+      <p>Texas law is more favorable to controlling GP, less protective of minority unitholders. Some institutional mandates require Delaware domicile. Limited in scope.</p>
+    </div>
+    <div class="risk-cell low">
+      <h5>Nuclear / alternative power</h5>
+      <p>Meta signed 2,600 MW nuclear PPA (Vistra) alongside gas. SMRs a 2030+ issue. All 20-year gas contracts are protected through any SMR commercialization window.</p>
+    </div>
+    <div class="risk-cell low">
+      <h5>Permian / Waha basis</h5>
+      <p>Waha Hub has gone negative. Hugh Brinson and Desert Southwest are the cure. Completion of both eliminates Waha basis risk permanently by late 2029.</p>
+    </div>
+    <div class="risk-cell low">
+      <h5>SUN / USAC leverage ceiling</h5>
+      <p>Both at 4.0x ceiling with no M&A capacity. Not a risk to ET entity. Next deal must route through ET direct or JV structure. Bramhall knows this.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 8: BULL / BEAR -->
+<section>
+  <div class="sec-head">
+    <div class="sec-num">08</div>
+    <div>
+      <div class="sec-title">Bull vs Bear</div>
+      <div class="sec-sub">The full return surface in one view.</div>
+    </div>
+  </div>
+
+  <div class="thesis-cols">
+    <div class="t-col bull">
+      <h4>Bull case: $40-55 unit price by 2028</h4>
+      <ul>
+        <li><strong>EBITDA executes to $21B+.</strong> Desert Southwest on schedule, Hugh Brinson Phase 2 Q1 2027, AI contracts ramp to $700M+ EBITDA.</li>
+        <li><strong>McCrea succession lands well.</strong> Named commercial successor with midstream credibility. Market closes 1-2 turns of governance discount in a single announcement.</li>
+        <li><strong>Multiple re-rates from 8.4x to 10x+.</strong> Institutional re-entry as governance improves. C-Corp discussion resurfaces. S&P 500 eligibility becomes real.</li>
+        <li><strong>FCF surplus deployed as buybacks.</strong> Long uses 2027-2028 FCF surplus at $19-25/unit to reduce share count by 3-8%. Accretive at any price below $35.</li>
+        <li><strong>International JV announced.</strong> "Beyond North America" materializes. JV with infrastructure fund or sovereign wealth fund. Off-balance-sheet accretive EBITDA.</li>
+        <li><strong>Credit upgrade to BBB.</strong> Reduced leverage + stronger coverage + governance improvement triggers upgrade. Lowers interest cost on $60B+ of debt materially.</li>
+      </ul>
+    </div>
+    <div class="t-col bear">
+      <h4>Bear case: $17-22 unit price, flat returns</h4>
+      <ul>
+        <li><strong>AI capex moderates 20%.</strong> New contract pipeline dries up. DC EBITDA stays at $440M, doesn't grow to $700M-$1B. Unmodeled upside never shows up.</li>
+        <li><strong>Desert Southwest slips 12 months.</strong> FERC certificate delayed. $500M of 2028 EBITDA slides to 2030. Thesis intact but extended by 12 months.</li>
+        <li><strong>Rates rise 150bps.</strong> Floating exposure of $12B adds $180M annual interest. Coverage drops to 1.56x. Distribution preservation mode replaces distribution growth mode.</li>
+        <li><strong>Succession disappoints.</strong> No named successor by Q3 2026. Governance discount hardens. Multiple stays at 8.4x or compresses further. $37B valuation gap persists.</li>
+        <li><strong>Both AI and rates move against simultaneously.</strong> Dual compression scenario. 2028E EBITDA $18.5B not $21.8B. Coverage 1.56x. Unit price flat to down at $17-20.</li>
+        <li><strong>Return profile: 7% carry trade.</strong> In the bear scenario, ET does not break. Distribution is safe. Coverage stays above 1.5x kill switch. But total return over 3 years is distribution income only. Capital appreciation: zero.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 9: THE MEETING -->
+<section>
+  <div class="sec-head">
+    <div class="sec-num">09</div>
+    <div>
+      <div class="sec-title">The Bramhall Conversation</div>
+      <div class="sec-sub">30 minutes. Three observations. One peer-level question. Sequence matters.</div>
+    </div>
+  </div>
+
+  <div class="obs-block">
+    <div class="obs-header">
+      <span>Observation 01 &mdash; Open with this</span>
+      <span style="color:rgba(250,249,244,0.55);">The DCF Leak</span>
+    </div>
+    <div class="obs-body">
+      <div class="obs-quote">"Your 2025 EBITDA hit a record $15.98B, up 3%. But DCF fell from $8.4B to $8.2B. That gap is interest expense, up $600M to $4.2B, absorbing the entire operating improvement. Q1 2026 shows the inflection: $2.7B DCF vs $2.3B prior year. Is that capex peaking, or refinancing hitting the income statement first?"</div>
+      <div class="obs-why">WHY THIS WORKS: Opens with a number Bramhall knows intimately. Shows you read the P&L, not just the EBITDA line. The question gives him an opening to discuss the January 2026 $3B refinancing and the interest rate management strategy, which is genuinely interesting to him.</div>
+    </div>
+  </div>
+
+  <div class="obs-block">
+    <div class="obs-header">
+      <span>Observation 02</span>
+      <span style="color:rgba(250,249,244,0.55);">Desert Southwest Capital Efficiency</span>
+    </div>
+    <div class="obs-body">
+      <div class="obs-quote">"The upsize from 1.5 to 2.3 Bcf/d for only $900M additional, that is 4.2x on the incremental capacity, not 6x. The market is modeling the wrong return on your best project. At correct economics, Desert Southwest adds closer to $900M-$1B in steady-state EBITDA, not the $650M consensus is using."</div>
+      <div class="obs-why">WHY THIS WORKS: Most analysts cite the $5.6B headline and the 2.3 Bcf/d capacity without separating Phase 1 and Phase 2 economics. Showing you disaggregated the phases tells Bramhall you read the June JPMorgan presentation, not just the earnings summary. He will confirm or correct the EBITDA number. Either way you have moved into a technical peer conversation.</div>
+    </div>
+  </div>
+
+  <div class="obs-block">
+    <div class="obs-header">
+      <span>Observation 03</span>
+      <span style="color:rgba(250,249,244,0.55);">The $25B Backlog and Disclosure Opportunity</span>
+    </div>
+    <div class="obs-body">
+      <div class="obs-quote">"The June presentation shows seven named power and data center agreements, 8.3+ GW of behind-the-meter capacity, $25B of contracted firm transportation fee revenue at 18-year weighted average life. Most analysts are still modeling three contracts. Has ET considered presenting the AI/power segment with a backlog-style disclosure, the way LNG terminals do, rather than embedding it in segment EBITDA? At 18-year WAL, this is structurally closer to a regulated utility than a commodity midstream operator."</div>
+      <div class="obs-why">WHY THIS WORKS: The backlog disclosure question is genuinely new. LNG terminal operators like Cheniere disclose contracted revenue backlogs as a headline metric because it drives their valuation. ET is not doing this. The suggestion that ET should consider it is either something Bramhall has already thought about (in which case you have validated his thinking) or something he hasn't (in which case you have given him something useful). Both outcomes serve you.</div>
+    </div>
+  </div>
+
+  <div class="obs-block">
+    <div class="obs-header">
+      <span>Peer-Level Question &mdash; Ask Last</span>
+      <span style="color:rgba(250,249,244,0.55);">M&A Architecture</span>
+    </div>
+    <div class="obs-body">
+      <div class="obs-quote">"Your April comments about beyond North America were new language. SUN is at 4.0x ceiling. USAC in deleverage mode. ET direct has $13-21B of theoretical headroom. With Tom Long becoming sole CEO, is the international M&A signal something he has personally committed to, or was that framing more reflective of Mackie's commercial vision? And if it's live, are you thinking JV structure, same architecture as Parkland, to keep it off ET's balance sheet?"</div>
+      <div class="obs-why">WHY THIS WORKS: This question names the succession dynamic directly without being provocative. It connects the "beyond North America" signal to the leadership change. Bramhall cannot answer it publicly and will not answer it fully privately. But the question tells him you understand the post-McCrea strategic question that he is living with right now. That is the peer signal. You are not asking him to confirm a fact. You are asking him to react to a thesis you have already formed.</div>
+    </div>
+  </div>
+
+  <div class="obs-block">
+    <div class="obs-header">
+      <span>Downside Question &mdash; Use if tone is right</span>
+      <span style="color:rgba(250,249,244,0.55);">The Meta Signal and Distribution Bottleneck</span>
+    </div>
+    <div class="obs-body">
+      <div class="obs-quote">"Meta offering spare compute externally is the first signal that AI buildout may have gotten ahead of near-term demand absorption. ET's contracts are protected by take-or-pay minimums. But the pipeline of new deals may face tougher MVC negotiations. The real distribution bottleneck in the AI gas story is not pipeline capacity, it's turbine delivery lead times. ET's capital-light model puts that risk with VoltaGrid and Fermi. Is that structural risk separation explicit in how ET frames the model to institutional investors?"</div>
+      <div class="obs-why">WHY THIS WORKS: Shows you have read current news (Meta signal is two weeks old). Frames the risk specifically. Acknowledges ET's protection (take-or-pay). Asks about investor communication strategy, not about whether the risk is real. Bramhall will either say it's already in the investor narrative (which tells you he's thought about it) or he'll be interested in how you framed it (which tells you it isn't yet).</div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 10: INVESTMENT SCORECARD -->
+<section>
+  <div class="sec-head">
+    <div class="sec-num">10</div>
+    <div>
+      <div class="sec-title">Investment Scorecard</div>
+      <div class="sec-sub">7.3 / 10. Not a bet on perfection. A bet on the gap closing.</div>
+    </div>
+  </div>
+
+  <div class="cols">
+    <table>
+      <thead><tr><th>Category</th><th>Score</th><th>Weight</th><th>Wtd</th></tr></thead>
+      <tbody>
+        <tr><td>Business quality</td><td class="pos">8.5</td><td>20%</td><td class="pos">1.70</td></tr>
+        <tr><td>Financial health</td><td>7.0</td><td>15%</td><td>1.05</td></tr>
+        <tr><td>Growth visibility</td><td class="pos">8.0</td><td>20%</td><td class="pos">1.60</td></tr>
+        <tr><td>Valuation</td><td class="pos">9.0</td><td>20%</td><td class="pos">1.80</td></tr>
+        <tr><td>Governance</td><td class="neg">5.0</td><td>15%</td><td class="neg">0.75</td></tr>
+        <tr><td>Catalyst visibility</td><td>7.5</td><td>10%</td><td>0.75</td></tr>
+        <tr class="hl"><td><strong>Total</strong></td><td class="hl"><strong>7.3</strong></td><td>100%</td><td class="hl"><strong>7.65</strong></td></tr>
+      </tbody>
+    </table>
+    <div>
+      <div class="box ink">
+        <p style="font-size:0.88rem;margin-bottom:10px;"><strong>Why 7.3 and not higher:</strong> The governance score of 5.0 is the anchor. Kelcy Warren's GP control, the July 2026 DEXIT reducing minority unitholder legal recourse, and the 2020 distribution cut are structural discounts that will not close until Warren restructures the governance. That is not something Bramhall controls.</p>
+        <p style="font-size:0.88rem;margin:0;"><strong>Why 7.3 and not lower:</strong> The business quality, growth visibility, and valuation scores are all strong. 90% fee-based revenue, $25B contracted backlog at 18-year WAL, 8.4x vs peers at 10.9x, and a 7.2% distribution yield are genuinely compelling. You are not buying governance quality. You are buying infrastructure quality at a governance discount.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 11: 22 NUMBERS TO KNOW COLD -->
+<section>
+  <div class="sec-head">
+    <div class="sec-num">11</div>
+    <div>
+      <div class="sec-title">22 Numbers to Know Cold</div>
+      <div class="sec-sub">Before you walk in. If you hesitate on any of these, you are not ready.</div>
+    </div>
+  </div>
+
+  <div class="cols">
+    <table>
+      <thead><tr><th>#</th><th>Number</th><th>What it means</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td class="pos"><strong>$15.98B</strong></td><td>2025A Adj. EBITDA. Record. Know it cold.</td></tr>
+        <tr><td>2</td><td class="neg"><strong>$8.2B</strong></td><td>2025A DCF. Down from $8.4B. The DCF leak.</td></tr>
+        <tr><td>3</td><td class="pos"><strong>$18.2-18.6B</strong></td><td>2026E EBITDA guidance range (raised $750M post Q1).</td></tr>
+        <tr><td>4</td><td class="pos"><strong>$4.94B</strong></td><td>Q1 2026 EBITDA. +19.5% YoY. Quarterly record.</td></tr>
+        <tr><td>5</td><td class="pos"><strong>$2.70B</strong></td><td>Q1 2026 DCF. vs $2.30B prior year. Inflection confirmed.</td></tr>
+        <tr><td>6</td><td><strong>1.72x</strong></td><td>2026E DCF coverage. Kill switch: 1.5x.</td></tr>
+        <tr><td>7</td><td><strong>3.34x</strong></td><td>ET entity net debt/EBITDA. $21B headroom to 4.5x.</td></tr>
+        <tr><td>8</td><td><strong>4.0x</strong></td><td>SUN and USAC leverage. Both at ceiling. No M&A room.</td></tr>
+        <tr><td>9</td><td class="neg"><strong>-$112M</strong></td><td>USAC book equity. Negative. Not a solvency issue.</td></tr>
+        <tr><td>10</td><td><strong>8.4x</strong></td><td>ET current EV/EBITDA. vs EPD 10.9x / WMB 11.2x.</td></tr>
+        <tr><td>11</td><td><strong>7.2%</strong></td><td>Distribution yield at $19.10. $1.37/unit annualized.</td></tr>
+      </tbody>
+    </table>
+    <table>
+      <thead><tr><th>#</th><th>Number</th><th>What it means</th></tr></thead>
+      <tbody>
+        <tr><td>12</td><td><strong>$5.5-5.9B</strong></td><td>2026E growth capex. Largest in ET history.</td></tr>
+        <tr><td>13</td><td><strong>$25B</strong></td><td>Contracted firm transport revenue backlog. 18-yr WAL.</td></tr>
+        <tr><td>14</td><td><strong>6 Bcf/d</strong></td><td>New pipeline capacity contracted in last 12 months.</td></tr>
+        <tr><td>15</td><td><strong>1.5 Bcf/d</strong></td><td>Hugh Brinson Phase 1 capacity. Q4 2026. NOT 2.2 Bcf/d.</td></tr>
+        <tr><td>16</td><td><strong>$2.7B</strong></td><td>Hugh Brinson total capex (both phases).</td></tr>
+        <tr><td>17</td><td><strong>$5.6B</strong></td><td>Desert Southwest total capex. 2.3 Bcf/d. Q4 2029.</td></tr>
+        <tr><td>18</td><td><strong>4.2x</strong></td><td>Desert Southwest Phase 2 build multiple. Market uses 6x.</td></tr>
+        <tr><td>19</td><td><strong>8.3 GW</strong></td><td>Total named behind-the-meter AI power capacity.</td></tr>
+        <tr><td>20</td><td><strong>Dec 31 2026</strong></td><td>McCrea retirement deadline. Long becomes sole CEO.</td></tr>
+        <tr><td>21</td><td><strong>Jul 13 2026</strong></td><td>DEXIT effective market date. Delaware to Texas.</td></tr>
+        <tr><td>22</td><td><strong>$410M</strong></td><td>Williams Companies verdict in Delaware Chancery. Why they left.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<div style="margin-top:40px;border-top:2px solid var(--ink);padding-top:16px;display:flex;justify-content:space-between;align-items:center;">
+  <div style="font-family:var(--mono);font-size:0.65rem;color:var(--muted);">
+    Market Logic Investors LLC &nbsp;|&nbsp; ML-2026-ET-01 &nbsp;|&nbsp; July 4, 2026 &nbsp;|&nbsp; Confidential &mdash; Internal Use Only
+  </div>
+  <div style="display:flex;gap:12px;">
+    <a href="index.html" style="font-family:var(--mono);font-size:0.68rem;color:var(--teal);text-decoration:none;border:1px solid var(--teal);padding:4px 12px;border-radius:2px;">Full Report</a>
+    <a href="model.html" style="font-family:var(--mono);font-size:0.68rem;color:var(--accent);text-decoration:none;border:1px solid var(--accent);padding:4px 12px;border-radius:2px;">Financial Model</a>
+  </div>
+</div>
+
+</body>
+</html>
