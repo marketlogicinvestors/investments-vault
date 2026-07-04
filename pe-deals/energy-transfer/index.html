@@ -176,6 +176,17 @@ footer{margin-top:80px;padding-top:28px;border-top:1px solid var(--ink);font-fam
   .section-head{grid-template-columns:1fr;gap:8px;}
   .recommendation .actions{grid-template-columns:1fr;}
 }
+
+/* ===== Glossary ===== */
+.glossary-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:0;border:1px solid var(--ink);margin-top:16px;}
+.glossary-col{padding:0;}
+.gterm{display:grid;grid-template-columns:160px 1fr;gap:0;border-bottom:1px solid var(--rule-soft);}
+.gterm:last-child{border-bottom:none;}
+.gt{font-family:var(--mono);font-size:0.78rem;font-weight:700;color:var(--teal);padding:12px 14px;border-right:1px solid var(--rule-soft);background:var(--paper-warm);display:flex;align-items:flex-start;}
+.gd{font-size:0.82rem;color:var(--ink-soft);padding:12px 14px;line-height:1.55;}
+.gd strong{color:var(--ink);}
+@media(max-width:760px){.glossary-grid{grid-template-columns:1fr;}.gterm{grid-template-columns:120px 1fr;}}
+
 </style>
 </head>
 <body>
@@ -685,6 +696,87 @@ footer{margin-top:80px;padding-top:28px;border-top:1px solid var(--ink);font-fam
     </div>
   </div>
 </section>
+
+
+<!-- GLOSSARY -->
+<section>
+  <div class="section-head">
+    <div class="section-num">&sect;&nbsp;GL</div>
+    <div class="section-title">
+      <h2>Glossary of Terms</h2>
+      <p class="sub">Every unit, abbreviation, and metric used in this memo &mdash; expanded</p>
+    </div>
+  </div>
+
+  <h4 style="margin-bottom:12px;">Volume &amp; flow units</h4>
+  <div class="glossary-grid">
+    <div class="glossary-col">
+      <div class="gterm"><span class="gt">BTU</span><span class="gd"><strong>British Thermal Unit.</strong> The base energy unit. Amount of heat needed to raise 1 pound of water by 1&deg;F. Everything in natural gas is measured in multiples of BTU.</span></div>
+      <div class="gterm"><span class="gt">MMBtu</span><span class="gd"><strong>One Million BTU.</strong> The standard trading unit for natural gas. Roughly equivalent to 1,000 cubic feet (1 Mcf) of gas at standard conditions. When ET charges a tariff of $0.75/MMBtu, it earns $0.75 for every million BTUs transported.</span></div>
+      <div class="gterm"><span class="gt">MMBtu/d</span><span class="gd"><strong>Million BTU per day.</strong> Daily flow rate. The Meta Hyperion deal: 250,000 MMBtu/d = 250 million BTUs flowing through Tiger Pipeline every single day for 20 years.</span></div>
+      <div class="gterm"><span class="gt">Mcf</span><span class="gd"><strong>One Thousand cubic feet</strong> of natural gas. Standard field measurement. 1 Mcf &asymp; 1 MMBtu (the exact ratio depends on gas energy content, but they are used interchangeably in modelling).</span></div>
+      <div class="gterm"><span class="gt">MMcf</span><span class="gd"><strong>One Million cubic feet.</strong> 1,000 Mcf. Oracle&rsquo;s deal: ~900 MMcf/d means 900 million cubic feet of gas per day flowing to Oracle data centers.</span></div>
+      <div class="gterm"><span class="gt">MMcf/d</span><span class="gd"><strong>Million cubic feet per day.</strong> Daily pipeline flow rate. The Oracle deal at 900 MMcf/d is the same as 0.9 Bcf/d. Used interchangeably with MMBtu/d in ET filings.</span></div>
+    </div>
+    <div class="glossary-col">
+      <div class="gterm"><span class="gt">Bcf</span><span class="gd"><strong>One Billion cubic feet</strong> of natural gas. 1,000 MMcf. The unit used for large pipeline capacities. Desert Southwest at 2.3 Bcf/d carries 2.3 billion cubic feet of gas every day &mdash; enough to supply roughly 23 million homes.</span></div>
+      <div class="gterm"><span class="gt">Bcf/d</span><span class="gd"><strong>Billion cubic feet per day.</strong> The primary capacity unit for major interstate pipelines. Hugh Brinson: 2.2 Bcf/d eastbound. Desert Southwest: 2.3 Bcf/d total. Oracle: 0.9 Bcf/d. Higher Bcf/d = bigger pipe, more tariff revenue.</span></div>
+      <div class="gterm"><span class="gt">Tcf</span><span class="gd"><strong>One Trillion cubic feet.</strong> 1,000 Bcf. Used for annual production or reserve estimates at the national level. US dry gas production is roughly 100 Bcf/d &asymp; 36.5 Tcf/yr. Rarely used at the project level.</span></div>
+      <div class="gterm"><span class="gt">MBpd</span><span class="gd"><strong>Thousand barrels per day.</strong> Used for crude oil and NGLs. Southern Illinois Connector: 100 MBpd of Canadian crude. DAPL Phase 2: 250 MBpd. One barrel = 42 US gallons.</span></div>
+      <div class="gterm"><span class="gt">MMBpd</span><span class="gd"><strong>Million barrels per day.</strong> National-scale crude oil flow. US crude production is roughly 13 MMBpd. ET&rsquo;s crude segment moves hundreds of MBpd, not millions &mdash; but still among the largest single-operator crude networks.</span></div>
+      <div class="gterm"><span class="gt">Horsepower (HP)</span><span class="gd"><strong>Compression power unit.</strong> USA Compression (USAC) operates compressors measured in HP. J-W Power added 0.8 million active HP. More HP = more compression capacity = more gas moved through gathering pipes at higher pressure.</span></div>
+    </div>
+  </div>
+
+  <h4 style="margin-bottom:12px;margin-top:28px;">Financial metrics</h4>
+  <div class="glossary-grid">
+    <div class="glossary-col">
+      <div class="gterm"><span class="gt">EBITDA</span><span class="gd"><strong>Earnings Before Interest, Taxes, Depreciation &amp; Amortization.</strong> ET&rsquo;s primary operating performance metric. Strips out capital structure and accounting choices. 2025A: $15.98B. The number Bramhall leads every earnings call with.</span></div>
+      <div class="gterm"><span class="gt">Adj. EBITDA</span><span class="gd"><strong>Adjusted EBITDA.</strong> EBITDA further adjusted to remove one-time items (transaction costs, integration charges, mark-to-market gains/losses). ET uses Adj. EBITDA as its official guidance metric. Always use Adj. EBITDA when comparing to guidance.</span></div>
+      <div class="gterm"><span class="gt">DCF</span><span class="gd"><strong>Distributable Cash Flow.</strong> The cash available to pay unitholders after operating expenses, interest, maintenance capex, and preferred distributions. ET&rsquo;s 2025A DCF: $8.2B. The number that determines whether the distribution is safe. DCF &divide; distributions = coverage ratio.</span></div>
+      <div class="gterm"><span class="gt">Coverage ratio</span><span class="gd"><strong>DCF &divide; total distributions paid.</strong> ET&rsquo;s kill switch: 1.5x. At 1.5x, ET generates $1.50 of DCF for every $1.00 paid in distributions. Below 1.5x for two consecutive quarters = distribution sustainability question. 2025A: 1.67x. 2026E: 1.72x.</span></div>
+      <div class="gterm"><span class="gt">MVC</span><span class="gd"><strong>Minimum Volume Commitment.</strong> A contract clause requiring a shipper to pay a deficiency fee if it ships less than a contractually agreed minimum. ET&rsquo;s primary protection against volume risk. If a producer drills less, they still pay the MVC deficiency.</span></div>
+    </div>
+    <div class="glossary-col">
+      <div class="gterm"><span class="gt">EV / EBITDA</span><span class="gd"><strong>Enterprise Value divided by EBITDA.</strong> The primary valuation multiple for infrastructure. ET: 8.4x. Peers: 9.7&ndash;11.2x. A higher multiple means the market pays more per dollar of EBITDA. ET&rsquo;s 2-turn discount = the market pays ~$25B less than peers for the same cash flow.</span></div>
+      <div class="gterm"><span class="gt">Build multiple</span><span class="gd"><strong>Capex &divide; annual EBITDA generated.</strong> How much ET spends to build $1 of annual EBITDA. Desert Southwest Phase 1: $4.7B capex &divide; $783M EBITDA = 6.0x. Phase 2: $900M &divide; $214M = 4.2x. Lower is better. ET targets sub-6x across its growth capex portfolio.</span></div>
+      <div class="gterm"><span class="gt">IDR</span><span class="gd"><strong>Incentive Distribution Right.</strong> A legacy MLP feature giving the General Partner an escalating share of distributions as they grow. ET eliminated its IDRs in 2018. Sunoco LP IDRs are owned by ET. Historically, IDRs transferred value from limited partners to the GP &mdash; their elimination was a structural improvement for unitholders.</span></div>
+      <div class="gterm"><span class="gt">K-1</span><span class="gd"><strong>IRS Schedule K-1.</strong> The tax form MLP unitholders receive instead of a 1099. Requires different tax treatment, delays filing season, and is incompatible with most IRAs and many institutional mandates. The K-1 requirement is a structural reason why &sim;40% of institutional capital cannot hold ET units &mdash; contributing directly to the valuation discount.</span></div>
+      <div class="gterm"><span class="gt">GP / LP</span><span class="gd"><strong>General Partner / Limited Partner.</strong> MLP ownership structure. The GP controls the partnership and its management. Kelcy Warren controls ET&rsquo;s GP. LP unitholders (public investors) own economic rights but limited governance rights. This is the governance discount in three letters.</span></div>
+    </div>
+  </div>
+
+  <h4 style="margin-bottom:12px;margin-top:28px;">Infrastructure &amp; pipeline terms</h4>
+  <div class="glossary-grid">
+    <div class="glossary-col">
+      <div class="gterm"><span class="gt">Gathering</span><span class="gd"><strong>Collecting gas from wellheads.</strong> The first stage of the midstream chain. ET&rsquo;s WTG acquisition added 6,000 miles of Midland Basin gathering lines. Gathering pipes are smaller-diameter, shorter-distance, and carry lower pressures than interstate transmission pipes.</span></div>
+      <div class="gterm"><span class="gt">Processing</span><span class="gd"><strong>Separating gas components.</strong> Raw wellhead gas contains methane (dry gas) plus heavier hydrocarbons (NGLs). Processing plants separate them. ET&rsquo;s Mustang Draw facilities process Permian gas before it enters the interstate system. ET earns a per-MMBtu processing fee.</span></div>
+      <div class="gterm"><span class="gt">NGL</span><span class="gd"><strong>Natural Gas Liquids.</strong> The heavier components extracted during gas processing: ethane, propane, butane, isobutane, and natural gasoline. NGLs are transported as liquids in separate pipelines and fractionated at Mont Belvieu. ET&rsquo;s NGL &amp; refined products segment: $4.15B EBITDA in 2025A &mdash; the largest single segment.</span></div>
+      <div class="gterm"><span class="gt">Fractionation</span><span class="gd"><strong>Separating the NGL mix into individual components.</strong> Mixed NGL liquid (y-grade) arrives at Mont Belvieu and is fractured into its individual components by boiling point. ET operates one of the world&rsquo;s largest fractionation complexes. Charges a per-barrel fee regardless of the price of the resulting products.</span></div>
+    </div>
+    <div class="glossary-col">
+      <div class="gterm"><span class="gt">FERC</span><span class="gd"><strong>Federal Energy Regulatory Commission.</strong> The US regulator governing interstate natural gas pipelines. FERC sets the maximum tariff ET can charge on interstate pipes using a cost-of-service methodology that allows ET a ~10&ndash;12% regulated return on invested capital. More pipeline under FERC = more predictable revenue.</span></div>
+      <div class="gterm"><span class="gt">Take-or-pay</span><span class="gd"><strong>Contract requiring payment whether or not volumes flow.</strong> The strongest form of volume protection. A producer commits to minimum throughput and pays even if they drill less. ET&rsquo;s gathering and processing contracts are predominantly take-or-pay. This is the reason &ldquo;fee-based&rdquo; is meaningful rather than just marketing language.</span></div>
+      <div class="gterm"><span class="gt">Behind-the-meter</span><span class="gd"><strong>Gas delivered directly to a facility, bypassing the utility grid.</strong> CloudBurst&rsquo;s data center receives gas directly from the Oasis Pipeline rather than through a local distribution company. Allows higher volumes, faster permitting, and avoids utility rate cases. ET earns the full tariff without sharing with a utility intermediary.</span></div>
+      <div class="gterm"><span class="gt">DAPL</span><span class="gd"><strong>Dakota Access Pipeline.</strong> ET owns 36.4% of this 1,172-mile crude oil pipeline from the Bakken formation in North Dakota to Patoka, Illinois. Controversial at construction (Standing Rock). Now one of the most efficient Bakken crude takeaway routes. Phase 2 would add Canadian crude volumes from Enbridge&rsquo;s Main Line system.</span></div>
+    </div>
+  </div>
+
+  <h4 style="margin-bottom:12px;margin-top:28px;">Key projects &amp; contracts &mdash; expanded</h4>
+  <div class="glossary-grid">
+    <div class="glossary-col">
+      <div class="gterm"><span class="gt">Desert Southwest</span><span class="gd"><strong>$5.6B natural gas pipeline.</strong> Runs from the Permian Basin to Arizona and Nevada markets. Initially planned at 1.5 Bcf/d for $4.7B. Upsized to 2.3 Bcf/d for only $900M additional. In-service: Q4 2029. The most capital-efficient project in ET&rsquo;s history on an incremental-capacity basis (4.2x build multiple on Phase 2).</span></div>
+      <div class="gterm"><span class="gt">Hugh Brinson</span><span class="gd"><strong>Permian Basin natural gas pipeline.</strong> 2.2 Bcf/d eastbound capacity from the Midland Basin. Q4 2026 in-service. Also has 1.0 Bcf/d <em>westbound</em> optionality &mdash; a bidirectional pipe that can redirect volumes if eastern demand slackens. Named after a former ET executive.</span></div>
+      <div class="gterm"><span class="gt">SIC</span><span class="gd"><strong>Southern Illinois Connector.</strong> 60-mile crude oil pipeline built jointly by ET and Enbridge. Connects Canadian crude from Wood River (where Enbridge&rsquo;s Main Line terminates in Illinois) to ET&rsquo;s Crude Oil Pipeline at Patoka, Illinois. Capacity: 100 MBpd. In-service: 2028. Feeds ET&rsquo;s Nederland export terminal.</span></div>
+    </div>
+    <div class="glossary-col">
+      <div class="gterm"><span class="gt">Tiger Pipeline</span><span class="gd"><strong>ET&rsquo;s interstate natural gas pipeline</strong> running through Louisiana. The conduit for the Meta Hyperion data center deal. Entergy&rsquo;s gas turbines at its Richland Parish, Louisiana power plant receive 250,000 MMBtu/d via Tiger for 20 years beginning February 2028 to power Meta&rsquo;s Hyperion AI data center complex.</span></div>
+      <div class="gterm"><span class="gt">Oasis Pipeline</span><span class="gd"><strong>ET&rsquo;s intrastate natural gas pipeline</strong> in Texas. The conduit for the CloudBurst data center deal. 450,000 MMBtu/d delivered directly behind-the-meter to CloudBurst&rsquo;s next-generation data center complex in central Texas. Intrastate means FERC does not regulate the tariff &mdash; ET sets market-based rates.</span></div>
+      <div class="gterm"><span class="gt">Mont Belvieu</span><span class="gd"><strong>The global hub for NGL fractionation and storage.</strong> Located east of Houston, Texas. ET operates one of the world&rsquo;s largest fractionation complexes here. Essentially every NGL produced in the Permian, Eagle Ford, or Haynesville eventually flows through Mont Belvieu. ET&rsquo;s Nederland terminal sits 60 miles southeast for LPG exports.</span></div>
+    </div>
+  </div>
+</section>
+
 
 <!-- FOOTER -->
 <footer>
