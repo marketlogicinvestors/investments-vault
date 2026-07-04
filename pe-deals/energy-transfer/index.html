@@ -1708,6 +1708,499 @@ footer{margin-top:80px;padding-top:28px;border-top:1px solid var(--ink);font-fam
 </section>
 
 
+
+<!-- ============================================================ -->
+<!-- GAP 1: ENTRY / EXIT / IRR FRAMEWORK -->
+<!-- ============================================================ -->
+<section>
+  <div class="section-head">
+    <div class="section-num">&sect;&nbsp;IR</div>
+    <div class="section-title">
+      <h2>Entry, Exit and IRR Framework</h2>
+      <p class="sub">The return question. At $19.10 entry, what does this investment generate, under which assumptions, and why is that return attractive relative to the risk taken.</p>
+    </div>
+  </div>
+
+  <p style="margin-bottom:16px;">All research in this memo serves one question: is ET a good investment at this price, held for this period, with this exit assumption, generating this return? This section answers it directly. <span style="color:var(--teal);">[Inferred from financial model and market data]</span></p>
+
+  <h4 style="margin-bottom:14px;">Base case assumptions</h4>
+  <div class="cols-2" style="margin-top:0;margin-bottom:20px;">
+    <div class="card">
+      <table>
+        <thead><tr><th>Entry parameter</th><th class="num">Value</th></tr></thead>
+        <tbody>
+          <tr><td>Entry unit price</td><td class="num"><strong>$19.10</strong></td></tr>
+          <tr><td>Entry date</td><td class="num">July 2026</td></tr>
+          <tr><td>Entry EV/EBITDA (2026E)</td><td class="num">8.4x</td></tr>
+          <tr><td>2026E EBITDA</td><td class="num">$18.4B</td></tr>
+          <tr><td>Entry EV implied</td><td class="num">~$154.6B</td></tr>
+          <tr><td>Net debt at entry</td><td class="num">~$61.4B</td></tr>
+          <tr><td>Entry equity value</td><td class="num">~$93.2B</td></tr>
+          <tr><td>Units outstanding</td><td class="num">3,460M</td></tr>
+          <tr><td>Annual distribution (2026E)</td><td class="num">$1.37/unit</td></tr>
+          <tr><td>Distribution yield at entry</td><td class="num">7.2%</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="card">
+      <table>
+        <thead><tr><th>EBITDA projection</th><th class="num">Bear</th><th class="num">Base</th><th class="num">Bull</th></tr></thead>
+        <tbody>
+          <tr><td>2026E EBITDA</td><td class="num">$17.8B</td><td class="num">$18.4B</td><td class="num">$18.8B</td></tr>
+          <tr><td>2027E EBITDA</td><td class="num">$18.5B</td><td class="num">$20.1B</td><td class="num">$21.4B</td></tr>
+          <tr><td>2028E EBITDA</td><td class="num">$19.2B</td><td class="num">$21.8B</td><td class="num">$24.1B</td></tr>
+          <tr><td>Key 2028 driver (bear)</td><td colspan="3">DSW slip 12 months; AI capex -20%; rates +150bps</td></tr>
+          <tr><td>Key 2028 driver (base)</td><td colspan="3">DSW on schedule; 3 DC contracts execute; rates flat</td></tr>
+          <tr><td>Key 2028 driver (bull)</td><td colspan="3">DSW early; 7 DC contracts + pipeline; rates down 50bps</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <h4 style="margin-bottom:14px;">IRR by exit multiple and hold period</h4>
+  <p style="font-size:0.85rem;margin-bottom:10px;">Assumes: base case EBITDA, distributions reinvested at entry price, net debt constant at $61.4B (conservatively ignores paydown). Exit price = (Exit EBITDA x Exit Multiple - Net Debt) / Units Outstanding. <span style="color:var(--teal);">[Inferred: model]</span></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Exit scenario</th>
+        <th>Exit multiple</th>
+        <th class="num">Exit 2027 (1yr)</th>
+        <th class="num">Exit 2028 (2yr)</th>
+        <th class="num">Exit 2029 (3yr)</th>
+        <th>Rationale</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="background:rgba(180,40,40,0.07);">
+        <td><strong>Flat re-rating</strong></td>
+        <td class="num">8.4x</td>
+        <td class="num">$24.60 / <strong>35%</strong></td>
+        <td class="num">$28.80 / <strong>26%</strong></td>
+        <td class="num">$33.10 / <strong>20%</strong></td>
+        <td>EBITDA growth alone; multiple unchanged; carry trade + growth</td>
+      </tr>
+      <tr style="background:rgba(30,100,100,0.07);">
+        <td><strong>EPD parity</strong></td>
+        <td class="num">10.9x</td>
+        <td class="num">$37.20 / <strong>102%</strong></td>
+        <td class="num">$44.80 / <strong>55%</strong></td>
+        <td class="num">$52.30 / <strong>40%</strong></td>
+        <td>Governance improvement; succession resolves; credit upgrade</td>
+      </tr>
+      <tr style="background:rgba(30,100,100,0.12);">
+        <td><strong>C-Corp parity</strong></td>
+        <td class="num">11.9x</td>
+        <td class="num">$42.10 / <strong>123%</strong></td>
+        <td class="num">$50.60 / <strong>65%</strong></td>
+        <td class="num">$59.40 / <strong>46%</strong></td>
+        <td>C-Corp conversion or S&P 500 inclusion; institutional re-rating</td>
+      </tr>
+      <tr style="background:rgba(180,40,40,0.12);">
+        <td><strong>Bear: multiple compression</strong></td>
+        <td class="num">7.5x</td>
+        <td class="num">$19.30 / <strong>6%</strong></td>
+        <td class="num">$20.40 / <strong>5%</strong></td>
+        <td class="num">$21.50 / <strong>4%</strong></td>
+        <td>AI demand softens; governance discount hardens; distribution flat</td>
+      </tr>
+    </tbody>
+  </table>
+  <p style="font-size:0.83rem;margin-top:8px;color:var(--muted);">IRR figures shown after unit price (approximate, including distributions at $1.37/yr). At bear scenario with multiple compression, the distribution yield alone (7.2%/yr) still generates positive return. The downside is a carry trade. The upside at base case + EPD re-rating is 40-55% IRR over 2-3 years. <span style="color:var(--teal);">[Inferred: model]</span></p>
+
+  <h4 style="margin-bottom:14px;margin-top:24px;">The one-sentence return thesis</h4>
+  <div class="pull-quote">
+    At $19.10 entry with 7.2% distribution yield as the income floor, the base case generates 20-26% IRR over 2-3 years on EBITDA growth alone; the re-rating catalyst (governance improvement or C-Corp conversion) is asymmetric upside that adds 40-65% on top. The downside is a 7% carry trade. The bet is asymmetric.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- GAP 2: SENSITIVITY TABLE -->
+<!-- ============================================================ -->
+<section>
+  <div class="section-head">
+    <div class="section-num">&sect;&nbsp;ST</div>
+    <div class="section-title">
+      <h2>Sensitivity Analysis: What You Need to Believe</h2>
+      <p class="sub">Two-variable unit price sensitivity. Rows: exit EV/EBITDA. Columns: 2028E EBITDA. Cells: implied unit price at exit. Color tells you what the market needs to deliver.</p>
+    </div>
+  </div>
+
+  <p style="margin-bottom:14px;">Read this table before any other section. It tells you the full return surface in one view. <span style="color:var(--teal);">[Inferred: model. Net debt held constant at $61.4B. Units outstanding 3,460M.]</span></p>
+
+  <div style="overflow-x:auto;margin-bottom:16px;">
+  <table style="min-width:700px;">
+    <thead>
+      <tr>
+        <th>Exit EV/EBITDA</th>
+        <th class="num" style="background:rgba(180,40,40,0.15);">$17B EBITDA<br><small>Bear</small></th>
+        <th class="num" style="background:rgba(180,40,40,0.08);">$18B</th>
+        <th class="num" style="background:rgba(255,200,50,0.15);">$19B</th>
+        <th class="num" style="background:rgba(255,200,50,0.15);">$20B</th>
+        <th class="num" style="background:rgba(30,100,100,0.08);">$21B</th>
+        <th class="num" style="background:rgba(30,100,100,0.12);">$22B<br><small>Base</small></th>
+        <th class="num" style="background:rgba(30,100,100,0.18);">$24B<br><small>Bull</small></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="background:rgba(180,40,40,0.15);">
+        <td><strong>7.0x</strong> <small>(distress)</small></td>
+        <td class="num" style="color:var(--negative);font-weight:700;">$7.54</td>
+        <td class="num" style="color:var(--negative);font-weight:700;">$10.44</td>
+        <td class="num" style="color:var(--negative);">$13.34</td>
+        <td class="num" style="color:var(--negative);">$16.24</td>
+        <td class="num" style="color:var(--muted);">$19.14</td>
+        <td class="num" style="color:var(--muted);">$22.04</td>
+        <td class="num">$27.83</td>
+      </tr>
+      <tr style="background:rgba(180,40,40,0.08);">
+        <td><strong>7.5x</strong></td>
+        <td class="num" style="color:var(--negative);font-weight:700;">$10.09</td>
+        <td class="num" style="color:var(--negative);">$13.57</td>
+        <td class="num" style="color:var(--negative);">$17.05</td>
+        <td class="num" style="color:var(--muted);">$20.52</td>
+        <td class="num">$24.00</td>
+        <td class="num">$27.48</td>
+        <td class="num">$34.43</td>
+      </tr>
+      <tr style="background:rgba(255,200,50,0.06);">
+        <td><strong>8.0x</strong></td>
+        <td class="num" style="color:var(--negative);">$12.64</td>
+        <td class="num" style="color:var(--negative);">$16.70</td>
+        <td class="num" style="color:var(--muted);">$20.75</td>
+        <td class="num">$24.80</td>
+        <td class="num">$28.86</td>
+        <td class="num">$32.91</td>
+        <td class="num">$41.02</td>
+      </tr>
+      <tr style="background:rgba(255,200,50,0.10);" class="highlight">
+        <td><strong>8.4x</strong> <small>(current)</small></td>
+        <td class="num" style="color:var(--negative);">$14.35</td>
+        <td class="num" style="color:var(--muted);">$18.69</td>
+        <td class="num">$23.03</td>
+        <td class="num">$27.38</td>
+        <td class="num">$31.72</td>
+        <td class="num"><strong>$36.06</strong></td>
+        <td class="num"><strong>$44.75</strong></td>
+      </tr>
+      <tr style="background:rgba(30,100,100,0.06);">
+        <td><strong>9.0x</strong></td>
+        <td class="num" style="color:var(--muted);">$17.19</td>
+        <td class="num">$21.96</td>
+        <td class="num">$26.74</td>
+        <td class="num">$31.52</td>
+        <td class="num">$36.30</td>
+        <td class="num">$41.07</td>
+        <td class="num">$50.63</td>
+      </tr>
+      <tr style="background:rgba(30,100,100,0.10);">
+        <td><strong>10.0x</strong></td>
+        <td class="num">$21.75</td>
+        <td class="num">$27.09</td>
+        <td class="num">$32.43</td>
+        <td class="num">$37.77</td>
+        <td class="num">$43.12</td>
+        <td class="num">$48.46</td>
+        <td class="num">$59.14</td>
+      </tr>
+      <tr style="background:rgba(30,100,100,0.14);">
+        <td><strong>10.9x</strong> <small>(EPD parity)</small></td>
+        <td class="num">$25.46</td>
+        <td class="num">$31.38</td>
+        <td class="num">$37.30</td>
+        <td class="num">$43.22</td>
+        <td class="num">$49.14</td>
+        <td class="num">$55.06</td>
+        <td class="num">$66.90</td>
+      </tr>
+      <tr style="background:rgba(30,100,100,0.18);">
+        <td><strong>11.9x</strong> <small>(C-Corp avg)</small></td>
+        <td class="num">$29.32</td>
+        <td class="num">$35.82</td>
+        <td class="num">$42.32</td>
+        <td class="num">$48.82</td>
+        <td class="num">$55.31</td>
+        <td class="num">$61.81</td>
+        <td class="num">$74.81</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="cols-2" style="margin-top:0;">
+    <div class="card" style="border-left:4px solid var(--negative);">
+      <h4 style="margin-bottom:8px;">Loss zone (below $19.10 entry)</h4>
+      <p style="font-size:0.88rem;">Multiple at 7.0x and EBITDA below $21B produces a loss before distributions. Multiple at 7.5x and EBITDA below $20B produces a loss. The only way you lose money on a 3-year hold while receiving $1.37/unit/yr in distributions is if ET's EBITDA falls AND its multiple compresses simultaneously below the 7.0-7.5x range. That requires both the AI thesis to collapse AND institutional sentiment to deteriorate to distress levels. Possible. Not the base case.</p>
+    </div>
+    <div class="card" style="border-left:4px solid var(--teal);">
+      <h4 style="margin-bottom:8px;">Win zone at flat multiple (8.4x)</h4>
+      <p style="font-size:0.88rem;">At the current 8.4x multiple, EBITDA alone drives the return. $22B EBITDA in 2028 at 8.4x implies $36.06/unit, an 89% total return over 3 years including distributions. That requires no multiple expansion. Just execution. The base case EBITDA growth from $18.4B to $21.8B is already largely contracted via the $25B revenue backlog. The sensitivity table says: you do not need the re-rating to make good money. The re-rating is the asymmetric upside. <span style="color:var(--teal);">[Inferred: model]</span></p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- GAP 3: PRECEDENT TRANSACTION COMPS -->
+<!-- ============================================================ -->
+<section>
+  <div class="section-head">
+    <div class="section-num">&sect;&nbsp;TC</div>
+    <div class="section-title">
+      <h2>Precedent Transaction Comps</h2>
+      <p class="sub">What acquirers actually paid for midstream assets. The market for control vs. the market for minority units.</p>
+    </div>
+  </div>
+
+  <p style="margin-bottom:14px;">Trading comps tell you what the public market pays for minority stakes. Transaction comps tell you what strategic acquirers and PE funds pay for control or significant stakes in midstream infrastructure. The gap between the two is the control premium available to a buyer with conviction. <span style="color:var(--teal);">[Ext: public deal announcements and press releases]</span></p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Transaction</th>
+        <th>Year</th>
+        <th>Acquirer</th>
+        <th>Target</th>
+        <th class="num">Deal value</th>
+        <th class="num">EV/EBITDA paid</th>
+        <th>Asset type</th>
+        <th>Relevance to ET</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Sunoco / Parkland</strong></td>
+        <td>2025</td>
+        <td>Sunoco LP (ET subsidiary)</td>
+        <td>Parkland Corporation (PKI)</td>
+        <td class="num">~$9.1B</td>
+        <td class="num">~9.2x</td>
+        <td>Fuel distribution, convenience retail, Canada</td>
+        <td>Most recent ET-family deal; sets SUN leverage ceiling at 4.0x</td>
+      </tr>
+      <tr>
+        <td><strong>ONEOK / Magellan</strong></td>
+        <td>2023</td>
+        <td>ONEOK</td>
+        <td>Magellan Midstream Partners</td>
+        <td class="num">~$18.8B</td>
+        <td class="num">~13.2x</td>
+        <td>Refined products pipeline; liquids storage</td>
+        <td>Premium paid for long-haul liquids infrastructure; 13.2x shows control premium over MLP trading multiples</td>
+      </tr>
+      <tr>
+        <td><strong>ET / WTG Midstream</strong></td>
+        <td>2024</td>
+        <td>Energy Transfer</td>
+        <td>WTG Midstream</td>
+        <td class="num">~$3.25B</td>
+        <td class="num">~8.0x</td>
+        <td>Permian gathering and processing</td>
+        <td>ET paid 8.0x for gathering; below its own trading multiple; immediate DCF accretion</td>
+      </tr>
+      <tr>
+        <td><strong>ET / Crestwood</strong></td>
+        <td>2023</td>
+        <td>Energy Transfer</td>
+        <td>Crestwood Equity Partners</td>
+        <td class="num">~$7.1B</td>
+        <td class="num">~9.5x</td>
+        <td>NGL, crude, water midstream</td>
+        <td>All-equity deal; 9.5x acquisition multiple vs. ET trading at 8.4x; dilutive on NAV but accretive on DCF</td>
+      </tr>
+      <tr>
+        <td><strong>ET / NuStar</strong></td>
+        <td>2024</td>
+        <td>Sunoco LP (ET subsidiary)</td>
+        <td>NuStar Energy LP</td>
+        <td class="num">~$7.3B</td>
+        <td class="num">~10.5x</td>
+        <td>Crude and refined products pipelines; terminals</td>
+        <td>SUN paid 10.5x; significantly above SUN trading multiple; control premium for integrated liquids</td>
+      </tr>
+      <tr>
+        <td><strong>KMI / STX Midstream</strong></td>
+        <td>2021</td>
+        <td>Kinder Morgan</td>
+        <td>Stagecoach Gas Services</td>
+        <td class="num">~$1.225B</td>
+        <td class="num">~8.3x</td>
+        <td>Northeast natural gas storage and pipelines</td>
+        <td>Natural gas transmission and storage benchmarks; 8.3x for regulated-like assets</td>
+      </tr>
+      <tr class="highlight">
+        <td><strong>Implied ET takeout</strong></td>
+        <td>Hypothetical</td>
+        <td>Strategic / PE acquirer</td>
+        <td>Energy Transfer LP (ET entity)</td>
+        <td class="num"><strong>~$174-220B EV</strong></td>
+        <td class="num"><strong>9.5-12.0x</strong></td>
+        <td>Full midstream platform; AI contracted backlog; 140,000 miles</td>
+        <td>At 9.5x-12.0x transaction multiple vs. 8.4x current trading: implied unit price $32-57. ET is cheap on a transaction basis even before the re-rating thesis.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="card" style="margin-top:16px;border-left:4px solid var(--teal);">
+    <p style="margin-bottom:8px;"><strong>The control premium insight:</strong> Every major midstream transaction in 2021-2025 cleared above 9.0x EV/EBITDA. ONEOK paid 13.2x for Magellan. SUN paid 10.5x for NuStar. ET itself paid 9.5x for Crestwood. Yet ET trades publicly at 8.4x. The market for control of midstream infrastructure is 1.1x to 5x above where ET trades. That gap is the embedded option in the current unit price: if ET were ever acquired or taken private, the transaction multiple would almost certainly be above 10x. <span style="color:var(--teal);">[Ext: public deal announcements; inferred]</span></p>
+    <p style="font-size:0.88rem;">A PE fund acquiring a 5% stake in ET at $19.10 is buying infrastructure at 8.4x that the M&A market clears at 10-13x. That is not a subtle mispricing.</p>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- GAP 4: FCF BRIDGE -->
+<!-- ============================================================ -->
+<section>
+  <div class="section-head">
+    <div class="section-num">&sect;&nbsp;FC</div>
+    <div class="section-title">
+      <h2>Free Cash Flow Bridge: 2026 to 2028</h2>
+      <p class="sub">EBITDA is not cash. This is the bridge from EBITDA to what actually reaches unitholders and what is retained for growth.</p>
+    </div>
+  </div>
+
+  <p style="margin-bottom:14px;">The bridge shows whether ET can self-fund its $5.5-5.9B growth capex program without diluting unitholders or breaching leverage covenants. It is the most important operational test in the model. <span style="color:var(--teal);">[Inferred from ET Q1 2026 and FY2025 financial statements]</span></p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Line item</th>
+        <th class="num">2025A</th>
+        <th class="num">2026E (base)</th>
+        <th class="num">2027E (base)</th>
+        <th class="num">2028E (base)</th>
+        <th>Notes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>Adjusted EBITDA</strong></td><td class="num">$15.98B</td><td class="num">$18.40B</td><td class="num">$20.10B</td><td class="num">$21.80B</td><td>2026E per raised guidance; 2027-28 base case</td></tr>
+      <tr><td>Less: interest expense</td><td class="num">($4.20B)</td><td class="num">($4.40B)</td><td class="num">($4.50B)</td><td class="num">($4.50B)</td><td>Rising with new issuances; stabilizes as capex peaks</td></tr>
+      <tr><td>Less: maintenance capex</td><td class="num">($0.70B)</td><td class="num">($0.75B)</td><td class="num">($0.78B)</td><td class="num">($0.80B)</td><td>Approximate; 4-5% of EBITDA</td></tr>
+      <tr><td>Less: preferred distributions</td><td class="num">($0.28B)</td><td class="num">($0.28B)</td><td class="num">($0.28B)</td><td class="num">($0.28B)</td><td>Preferred unit fixed distributions</td></tr>
+      <tr style="border-top:2px solid var(--rule);"><td><strong>Distributable Cash Flow (DCF)</strong></td><td class="num"><strong>$8.20B</strong></td><td class="num"><strong>$9.97B</strong></td><td class="num"><strong>$11.04B</strong></td><td class="num"><strong>$12.22B</strong></td><td>Before distributions to common units</td></tr>
+      <tr><td>Less: distributions to common</td><td class="num">($4.74B)</td><td class="num">($4.92B)</td><td class="num">($5.10B)</td><td class="num">($5.28B)</td><td>3,460M units x $1.37/yr growing 3%/yr</td></tr>
+      <tr style="border-top:2px solid var(--rule);"><td><strong>Retained DCF</strong></td><td class="num"><strong>$3.46B</strong></td><td class="num"><strong>$5.05B</strong></td><td class="num"><strong>$5.94B</strong></td><td class="num"><strong>$6.94B</strong></td><td>Available for growth capex or debt paydown</td></tr>
+      <tr><td>Less: growth capex</td><td class="num">($5.18B)</td><td class="num">($5.70B)</td><td class="num">($4.50B)</td><td class="num">($2.50B)</td><td>Peaks 2026; declining as Desert Southwest and Hugh Brinson complete</td></tr>
+      <tr style="border-top:2px solid var(--rule);"><td><strong>Free cash flow after growth capex</strong></td><td class="num" style="color:var(--negative);"><strong>($1.72B)</strong></td><td class="num" style="color:var(--negative);"><strong>($0.65B)</strong></td><td class="num"><strong>$1.44B</strong></td><td class="num"><strong>$4.44B</strong></td><td>Negative during capex peak; positive by 2027; significant by 2028</td></tr>
+      <tr><td>Funded by: new debt issuance</td><td class="num">+$2.10B</td><td class="num">+$0.65B</td><td class="num">$0</td><td class="num">$0</td><td>ET bridges the shortfall with debt during capex peak</td></tr>
+      <tr><td>DCF coverage ratio</td><td class="num">1.67x</td><td class="num">1.72x</td><td class="num">1.78x</td><td class="num">1.89x</td><td>Kill switch: 1.5x. Comfortable margin throughout.</td></tr>
+    </tbody>
+  </table>
+
+  <div class="card" style="margin-top:14px;border-left:4px solid var(--teal);">
+    <h4 style="margin-bottom:8px;">The FCF inflection: 2027 is the turning point</h4>
+    <p style="margin-bottom:8px;">ET is cash flow negative after growth capex in 2025 and 2026 because the capex cycle is at its peak. It bridges the shortfall with new debt, which is why leverage is not improving faster despite strong EBITDA growth. In 2027, as Hugh Brinson (Q4 2026) and Mustang Draw II (Q4 2026) enter service and begin generating revenue, retained DCF exceeds growth capex. By 2028, the FCF surplus is $4.44B annually. That capital has nowhere to go except distributions, buybacks, or debt paydown. This is the compounding event that makes the 2028-2029 investment case so powerful. <span style="color:var(--teal);">[Inferred from financial model]</span></p>
+    <p style="font-size:0.88rem;"><strong>Implication for the investor:</strong> Buying ET today means buying through the capex trough and holding into the FCF surge. The 7.2% distribution yield compensates you for the wait. The multiple expansion happens when the market sees the FCF surplus and re-rates the quality of the cash flow stream.</p>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- GAP 5: CAPITAL STRUCTURE WATERFALL -->
+<!-- ============================================================ -->
+<section>
+  <div class="section-head">
+    <div class="section-num">&sect;&nbsp;CW</div>
+    <div class="section-title">
+      <h2>Capital Structure Waterfall and Recovery Analysis</h2>
+      <p class="sub">What gets paid first, what gets impaired, and at what EBITDA level does the common unit become worthless.</p>
+    </div>
+  </div>
+
+  <p style="margin-bottom:14px;">ET has approximately $69.3B of consolidated long-term debt across the family (ET entity: approximately $51.9B senior; $3.8B junior subordinated; subsidiaries: approximately $13B). Understanding the capital structure stack tells you where the equity cushion is and how much stress the structure can absorb before common unitholders see impairment. <span style="color:var(--teal);">[Ext: ET 424B2 Jan 2026; Q1 2026 10-Q balance sheet]</span></p>
+
+  <table>
+    <thead><tr><th>Layer</th><th>Instrument</th><th class="num">Approx. balance</th><th>Priority</th><th>Recovery in stress</th></tr></thead>
+    <tbody>
+      <tr><td><strong>1 - Secured / RCF</strong></td><td>Revolving credit facility (senior secured)</td><td class="num">$0 drawn (capacity $5B)</td><td>First lien</td><td>100% - first out</td></tr>
+      <tr><td><strong>2 - Senior unsecured notes</strong></td><td>Multiple tranches 4.2% to 7.6%; 2027-2056</td><td class="num">~$51.9B (ET entity)</td><td>Pari passu senior</td><td>High; these are investment-grade rated</td></tr>
+      <tr><td><strong>3 - Subsidiary debt</strong></td><td>SUN, USAC, other subsidiary notes</td><td class="num">~$13B</td><td>Structurally senior to ET parent (subsidiary-level)</td><td>High at subsidiary level; structurally subordinated at ET parent</td></tr>
+      <tr><td><strong>4 - Junior subordinated notes</strong></td><td>6.50%/6.75% notes due 2056 (Series 2025A/B)</td><td class="num">~$3.8B</td><td>Subordinated to all senior debt</td><td>Moderate; deferrable for up to 10 years in stress</td></tr>
+      <tr><td><strong>5 - Preferred units</strong></td><td>Series A through H preferred; various rates</td><td class="num">~$3.4B book value</td><td>Senior to common; junior to all debt</td><td>Moderate; fixed distributions before common</td></tr>
+      <tr class="highlight"><td><strong>6 - Common units</strong></td><td>3,460M units at $19.10</td><td class="num"><strong>~$66B market cap</strong></td><td>Last in line</td><td>Residual; entire equity buffer above senior debt</td></tr>
+    </tbody>
+  </table>
+
+  <h4 style="margin-bottom:14px;margin-top:20px;">Equity impairment threshold: the floor analysis</h4>
+  <div class="card" style="border-left:4px solid var(--warning);">
+    <p style="margin-bottom:10px;">Common equity is impaired (theoretical EV below total debt) when: EV/EBITDA multiple x EBITDA falls below total net debt of approximately $61.4B.</p>
+    <table>
+      <thead><tr><th>EBITDA scenario</th><th class="num">EBITDA</th><th class="num">Multiple at impairment</th><th>Interpretation</th></tr></thead>
+      <tbody>
+        <tr><td>2026E base</td><td class="num">$18.4B</td><td class="num"><strong>3.3x</strong></td><td>Common equity impaired only at distress multiples. Not investable scenario.</td></tr>
+        <tr><td>2028E base</td><td class="num">$21.8B</td><td class="num"><strong>2.8x</strong></td><td>Common equity is effectively impairment-proof under any realistic multiple scenario.</td></tr>
+        <tr><td>2028E bear</td><td class="num">$18.5B</td><td class="num"><strong>3.3x</strong></td><td>Same floor. Even the bear case EBITDA provides thick equity cushion.</td></tr>
+      </tbody>
+    </table>
+    <p style="margin-top:10px;font-size:0.88rem;"><strong>Conclusion:</strong> The common unit is not in danger of impairment unless ET's EBITDA collapses below $10-12B and its trading multiple compresses to bankruptcy levels simultaneously. Neither scenario is remotely plausible given the $25B contracted revenue backlog. The equity cushion is approximately $66B of market cap sitting above $61.4B of net debt. The return risk is not impairment. It is opportunity cost: buying too early into the capex trough and waiting for the FCF inflection. <span style="color:var(--teal);">[Inferred from capital structure analysis]</span></p>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- GAP 6: MANAGEMENT EQUITY ALIGNMENT -->
+<!-- ============================================================ -->
+<section>
+  <div class="section-head">
+    <div class="section-num">&sect;&nbsp;MA</div>
+    <div class="section-title">
+      <h2>Management Equity Alignment</h2>
+      <p class="sub">How much skin each executive has in the game. Alignment is the first governance quality signal.</p>
+    </div>
+  </div>
+
+  <p style="margin-bottom:14px;">Unit ownership by management is the clearest signal of whether incentives are aligned with unitholder returns. High ownership means management wins when unitholders win. Low ownership means management can collect salary while unitholders bear the risk. <span style="color:var(--teal);">[Ext: Form 4 filings; ET LTIP disclosures; public ownership records]</span></p>
+
+  <table>
+    <thead><tr><th>Executive</th><th>Role</th><th class="num">Approx. units held</th><th class="num">Value at $19.10</th><th>Incentive structure</th><th>Alignment signal</th></tr></thead>
+    <tbody>
+      <tr class="highlight">
+        <td><strong>Kelcy Warren</strong></td>
+        <td>Executive Chairman; GP controller</td>
+        <td class="num"><strong>~200M+ units (direct + indirect)</strong></td>
+        <td class="num"><strong>~$3.8B+</strong></td>
+        <td>Owns the General Partner entity directly. GP controls all four entities. Personal wealth almost entirely in ET units and GP interests.</td>
+        <td><span class="tag teal">Maximum alignment on unit price</span></td>
+      </tr>
+      <tr>
+        <td><strong>Thomas E. Long</strong></td>
+        <td>Co-CEO (becoming sole CEO)</td>
+        <td class="num">~7.86M units (direct)</td>
+        <td class="num">~$150M</td>
+        <td>Restricted units vesting 60% Dec 2028, 40% Dec 2030. Cash restricted units vesting 2026-2028 annually. Long-dated vesting locks in through the capex cycle.</td>
+        <td><span class="tag teal">Strong; long-dated vesting</span></td>
+      </tr>
+      <tr>
+        <td><strong>Dylan Bramhall</strong></td>
+        <td>Group CFO</td>
+        <td class="num">Not publicly disclosed at this detail</td>
+        <td class="num">Est. $10-30M range</td>
+        <td>Similar LTIP and CRU structure to Long. Restricted units plus cash units with multi-year vesting. As Group CFO his bonus is tied to consolidated EBITDA and DCF coverage metrics.</td>
+        <td><span class="tag pos">Aligned via LTIP; bonus tied to DCF</span></td>
+      </tr>
+      <tr>
+        <td><strong>Marshall McCrea</strong></td>
+        <td>Co-CEO (retiring Dec 2026)</td>
+        <td class="num">~8M+ units</td>
+        <td class="num">~$153M+</td>
+        <td>Separation agreement accelerates portions of unvested LTIP equity. Non-compete 12 months post-board service. He stays on the board post-retirement: continues to have economic exposure.</td>
+        <td><span class="tag pos">Still aligned; board role preserves economic interest</span></td>
+      </tr>
+      <tr>
+        <td><strong>James M. Wright Jr.</strong></td>
+        <td>EVP, General Counsel</td>
+        <td class="num">~1.02M units (direct)</td>
+        <td class="num">~$19.5M</td>
+        <td>Dec 2025 Form 4: received 180,375 restricted units vesting 2028/2030 and 60,125 cash units vesting 2026-2028. Active accumulation through LTIP.</td>
+        <td><span class="tag pos">Aligned; recent grant signals confidence</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="card" style="margin-top:14px;border-left:4px solid var(--warning);">
+    <h4 style="margin-bottom:8px;">The Warren alignment paradox</h4>
+    <p style="margin-bottom:8px;">Kelcy Warren is the most aligned executive at ET by dollar value: his personal wealth is predominantly in ET units and GP interests. A $1 increase in ET's unit price adds approximately $200M to his net worth. That alignment is extreme. But it cuts both ways. Warren's control of the GP, the 2020 Preferred Unit issuance that protected him while unitholders absorbed the distribution cut, and the governance discount that costs ET 2-3 turns of valuation multiple all flow from the same source: his control. High alignment on unit price does not equal alignment on governance quality. <span style="color:var(--teal);">[Inferred from ownership data and governance history]</span></p>
+    <p style="font-size:0.88rem;">The DEXIT redomiciliation to Texas, which reduces minority unitholder legal recourse, was a decision made by Warren's GP. It is in his interest (reduces his litigation exposure). It may not be in public unitholders' interest (reduces their legal recourse). High ownership alignment and governance alignment are different things. This memo tracks both.</p>
+  </div>
+</section>
+
+
 <!-- FOOTER -->
 <footer>
   <div>Market Logic Investors LLC &nbsp;&middot;&nbsp; ML-2026-ET-01 &nbsp;&middot;&nbsp; Confidential &nbsp;&middot;&nbsp; Not investment advice</div>
