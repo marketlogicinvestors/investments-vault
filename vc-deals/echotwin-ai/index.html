@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EchoTwin AI · ML-2026-ET-01 · Market Logic Investors LLC</title>
+<style>
+:root{
+  --paper:#FCFBF8; --ink:#16202B; --slate:#5C6672; --rule:#D8D5CC;
+  --ok:#2F6B4F; --warn:#9A6B12; --bad:#A32D2D; --accent:#1E4C7A;
+  --okbg:#EAF2ED; --warnbg:#F7EEDC; --badbg:#F8EAEA; --accbg:#E9EFF6;
+  --serif:Georgia,'Iowan Old Style','Palatino Linotype',serif;
+  --sans:system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  --mono:ui-monospace,'SF Mono',Menlo,Consolas,'Liberation Mono',monospace;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--serif);font-size:16.5px;line-height:1.62}
+.wrap{max-width:940px;margin:0 auto;padding:48px 28px 96px}
+h1{font-size:31px;line-height:1.18;font-weight:normal;letter-spacing:-.01em;margin:0 0 6px}
+h2{font-size:21px;font-weight:normal;margin:0 0 10px;letter-spacing:-.005em}
+h3{font-size:16px;font-family:var(--sans);font-weight:600;margin:22px 0 8px}
+p{margin:0 0 14px}
+a{color:var(--accent)}
+.eyebrow{font-family:var(--sans);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--slate);font-weight:600}
+.sec{border-top:1px solid var(--rule);padding-top:16px;margin-top:44px}
+.sec>.eyebrow{display:block;margin-bottom:9px}
+.mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.small{font-size:13.5px;color:var(--slate)}
+.lede{font-size:18px;line-height:1.55}
+
+.masthead{border:1.5px solid var(--ink);padding:22px 24px;margin-bottom:14px}
+.mrow{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;flex-wrap:wrap}
+.verdict{font-family:var(--mono);font-size:13px;letter-spacing:.1em;text-transform:uppercase;background:var(--badbg);color:var(--bad);padding:5px 12px;border:1px solid var(--bad);white-space:nowrap}
+.bigscore{font-family:var(--mono);font-size:52px;line-height:1;letter-spacing:-.03em}
+.scorelab{font-family:var(--sans);font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:var(--slate)}
+
+.seal{display:flex;align-items:center;gap:10px;font-family:var(--sans);font-size:11.5px;color:var(--slate);border:1px dashed var(--rule);padding:8px 12px;margin:14px 0 0}
+.seal b{font-family:var(--mono);color:var(--ink);font-weight:normal}
+
+.tier{font-family:var(--mono);font-size:10px;letter-spacing:.04em;padding:1px 5px;border:1px solid;vertical-align:1px;white-space:nowrap}
+.t-co{color:var(--slate);border-color:var(--rule);background:#F2F1EC}
+.t-ext{color:var(--accent);border-color:#B9CBE0;background:var(--accbg)}
+.t-mod{color:var(--warn);border-color:#DFC48A;background:var(--warnbg)}
+.t-unv{color:var(--bad);border-color:#DDA9A9;background:var(--badbg)}
+
+table{width:100%;border-collapse:collapse;font-size:14px;margin:12px 0 6px}
+th{font-family:var(--sans);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--slate);text-align:left;font-weight:600;border-bottom:1px solid var(--ink);padding:7px 9px 7px 0;vertical-align:bottom}
+td{border-bottom:1px solid var(--rule);padding:9px 9px 9px 0;vertical-align:top}
+td.n,th.n{text-align:right;font-family:var(--mono);font-variant-numeric:tabular-nums;padding-right:0}
+.sowhat{font-size:13.5px;color:var(--slate);font-style:italic;margin:6px 0 0}
+
+.bar{display:inline-block;height:7px;background:var(--ink);vertical-align:middle}
+.bartrack{display:inline-block;width:76px;height:7px;background:#E8E6DF;vertical-align:middle;margin-right:7px}
+
+.ctrls{border:1px solid var(--rule);background:#F7F6F1;padding:16px 18px;margin:16px 0}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px 22px}
+label.f{display:block;font-family:var(--sans);font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--slate);margin-bottom:3px;font-weight:600}
+.ln{display:flex;align-items:center;gap:9px}
+input[type=range]{flex:1;accent-color:var(--ink);min-width:0}
+.out{font-family:var(--mono);font-size:13.5px;min-width:62px;text-align:right}
+button{font-family:var(--sans);font-size:12px;background:transparent;border:1px solid var(--ink);color:var(--ink);padding:6px 12px;cursor:pointer}
+button:hover{background:var(--ink);color:var(--paper)}
+button.chip{border-color:var(--rule);color:var(--slate);padding:4px 10px;margin:0 6px 6px 0}
+button.chip[aria-pressed=true]{border-color:var(--ink);color:var(--paper);background:var(--ink)}
+.metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(132px,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule);margin:16px 0}
+.met{background:var(--paper);padding:12px 14px}
+.met .k{font-family:var(--sans);font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--slate)}
+.met .v{font-family:var(--mono);font-size:25px;line-height:1.25;letter-spacing:-.02em}
+.flag{padding:7px 12px;font-family:var(--sans);font-size:12.5px;display:inline-block;margin-top:4px}
+.f-bad{background:var(--badbg);color:var(--bad)} .f-ok{background:var(--okbg);color:var(--ok)}
+
+.callout{border-left:3px solid var(--ink);padding:2px 0 2px 18px;margin:18px 0}
+.kill{font-family:var(--sans);font-size:12.5px;color:var(--bad)}
+.q{margin:0 0 4px}
+.dq{border-bottom:1px solid var(--rule);padding:11px 0}
+.dq .top{display:flex;gap:11px;align-items:baseline}
+.dq .d{font-family:var(--mono);font-size:12.5px;color:var(--bad);white-space:nowrap}
+.foot{border-top:1.5px solid var(--ink);margin-top:52px;padding-top:16px;font-size:12.5px;color:var(--slate);font-family:var(--sans);line-height:1.75}
+input[type=checkbox]{accent-color:var(--ink);margin-right:9px;transform:translateY(1px)}
+@media print{
+  .ctrls,button,.noprint{display:none !important}
+  body{font-size:11pt;background:#fff}
+  .wrap{max-width:none;padding:0}
+  .sec{break-inside:avoid;page-break-inside:avoid}
+  a{color:var(--ink);text-decoration:none}
+}
+.site-nav{display:flex;align-items:center;justify-content:space-between;gap:16px;background:var(--ink);color:var(--paper);padding:11px 28px;font-family:var(--sans);font-size:12.5px;letter-spacing:.02em;position:sticky;top:0;z-index:100}
+.site-nav a{color:rgba(252,251,248,.72);text-decoration:none}
+.site-nav a:hover{color:var(--paper)}
+.site-nav .sep{color:rgba(252,251,248,.32);margin:0 6px}
+.site-nav .here{color:rgba(252,251,248,.5)}
+.site-nav .nav-action a{color:var(--paper);border:1px solid rgba(252,251,248,.42);border-radius:3px;padding:3px 11px}
+.site-nav .nav-action a:hover{background:var(--paper);color:var(--ink)}
+.backlink{display:inline-block;margin-top:22px;font-family:var(--sans);font-size:13px;color:var(--accent);text-decoration:none}
+.backlink:hover{text-decoration:underline}
+@media print{.site-nav,.backlink{display:none !important}}
+</style>
+</head>
+<body>
+<nav class="site-nav" aria-label="breadcrumb">
+<span><a href="../../">Market Logic Investors</a><span class="sep">/</span><a href="../../">Deal Vault</a><span class="sep">/</span><a href="../">VC Deals</a><span class="sep">/</span><span class="here">EchoTwin AI · ML-2026-ET-01</span></span>
+<span class="nav-action"><a href="../">← All VC Deals</a></span>
+</nav>
+<div class="wrap">
+
+<div class="eyebrow">Market Logic Investors LLC · Investment Committee Memorandum · Confidential</div>
+<h1>EchoTwin AI, Inc.</h1>
+<p class="small mono">ML-2026-ET-01 · Boca Raton, FL / Oakland, CA / DIFC Dubai · Series A ($15M ask) · Prepared 10 August 2026 · Author: H. Reganti<br>Underwritten from the EchoTwin master data room (20 sections). An external prior memo (Perplexity, 8 Aug 2026) reached PASS on litigation grounds; this independent pass from primary documents corroborates that and finds the candor problem is broader than one lawsuit.</p>
+
+<!-- ===== 00 DEAL CARD ===== -->
+<div class="sec" id="s00">
+<span class="eyebrow">§00 · Deal card</span>
+<div class="masthead">
+  <div class="mrow">
+    <div>
+      <div class="scorelab">Composite score</div>
+      <div class="bigscore">3.6</div>
+      <div class="small mono" style="margin-top:4px">Band: below 6.0</div>
+    </div>
+    <div style="flex:1;min-width:260px">
+      <div class="verdict">Pass — Integrity Gate</div>
+      <p style="margin:12px 0 0;font-size:15px">Pass at any valuation. This is not primarily a market or execution call. The CEO is the defendant in an active fraud, forgery and trade-secret suit brought by his own prior company, and the raise materials describe capital, contracts, an anchor deal, a patent and runway more favorably than the documents in the company's own data room support. The gate is integrity and candor, and it cannot be underwritten around price.</p>
+    </div>
+    <div style="min-width:150px">
+      <div class="scorelab">Conviction</div>
+      <div class="mono" style="font-size:19px">High</div>
+      <div class="small" style="margin-top:8px">Proposed check<br><span class="mono" style="font-size:17px;color:var(--ink)">$0</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="callout">
+<p style="margin:0"><b>Underwriting statement.</b> We would be underwriting EchoTwin on the belief that a founder-led MENA municipal-vision business with one genuinely cash-generating government account can be backed while its founder litigates fraud and data-theft claims from the company he left — and we are wrong the moment those claims produce an injunction on the 41GB of Hayden AI data and contracts alleged to seed this company, or the moment any one of the five headline claims in §07 is confirmed as knowing rather than loose. Both are live, and neither is in an investor's control.</p>
+</div>
+
+<h3>The three numbers that matter</h3>
+<div class="metrics">
+  <div class="met"><div class="k">Capital booked vs claimed</div><div class="v">$10.6M : $14M</div></div>
+  <div class="met"><div class="k">Series A "anchor" (ADM)</div><div class="v">$15K pilot</div></div>
+  <div class="met"><div class="k">"Granted" patent</div><div class="v">Unverified</div></div>
+</div>
+<p class="sowhat">Each is arithmetic or document status from the data room itself: the cap table shows $10.6M of SAFEs against a "$14M raised" claim; the ADM "contract" that gates the close is an unsigned $15K proof-of-value proposal; the "granted patent 12,646,344" appears in no filing and in no public register — the file holds only a Notice of Allowance.</p>
+
+<p><b>Biggest risk, in five words:</b> <span class="mono">Founder accused of fraud, forgery.</span></p>
+</div>
+
+<!-- ===== 01 SCORECARD ===== -->
+<div class="sec" id="s01">
+<span class="eyebrow">§01 · Weighted scorecard</span>
+<h2>The composite is derived, not asserted</h2>
+<p>Twelve dimensions, weighted. Move the weights to test whether the answer depends on the rubric or on the company. It does not: the integrity, legal and financial-credibility dimensions are low enough that no defensible reweighting clears the bar.</p>
+
+<table id="sctab">
+<thead><tr><th>Dimension</th><th class="n">Weight</th><th class="n">Raw</th><th class="n">Weighted</th><th style="width:34%">Basis</th></tr></thead>
+<tbody></tbody>
+</table>
+
+<div class="ctrls noprint">
+  <div class="grid2" id="wgrid"></div>
+  <div style="margin-top:14px;display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+    <button id="wreset">Reset to committed baseline</button>
+    <span class="small">Composite <span class="mono" id="compout" style="font-size:16px;color:var(--ink)">3.6</span> · <span id="bandout" class="mono">Pass band</span></span>
+  </div>
+</div>
+<p class="sowhat">Reweighting within any defensible range keeps the composite between roughly 3.2 and 4.4. The recommendation is not an artifact of the rubric.</p>
+
+<h3>Placement against the VC book</h3>
+<table>
+<thead><tr><th>Deal</th><th class="mono">ID</th><th class="n">Score</th><th>Call on file</th></tr></thead>
+<tbody>
+<tr><td>Intellectible (May 2026)</td><td class="mono">ML-2026-IT-01</td><td class="n">8.1</td><td class="small">Participate</td></tr>
+<tr><td>Mercury</td><td class="mono">ML-2026-MC-01</td><td class="n">7.4</td><td class="small">Proceed &mdash; Deep Diligence</td></tr>
+<tr><td>Innerwell</td><td class="mono">ML-2026-IW-01</td><td class="n">6.5</td><td class="small">Watch &mdash; Diligence</td></tr>
+<tr><td>Planet.Tech</td><td class="mono">ML-2026-PT-01</td><td class="n">6.2</td><td class="small">Angel SAFE</td></tr>
+<tr><td>Maison Monravel</td><td class="mono">ML-2026-MM-01</td><td class="n">5.6</td><td class="small">Pass &mdash; Stay Warm</td></tr>
+<tr><td>Intellectible, re-underwrite</td><td class="mono">ML-2026-IT-02</td><td class="n">5.3</td><td class="small">Pass &mdash; Stay Warm</td></tr>
+<tr><td>Dapper Boi</td><td class="mono">ML-2026-DB-01</td><td class="n">4.8</td><td class="small">Watch &mdash; Pass-Path</td></tr>
+<tr style="background:#F2F1EC"><td><b>EchoTwin AI</b></td><td class="mono">ML-2026-ET-01</td><td class="n"><b>3.6</b></td><td class="small"><b>Pass &mdash; Integrity Gate</b></td></tr>
+</tbody>
+</table>
+<p class="sowhat">The lowest score in the VC book. Dapper Boi and the Intellectible re-underwrite are priced-wrong or too-early calls on honest companies; EchoTwin is a different kind of pass. The business underneath is more real than either — a live government account, a credible operating team, a patent cleanly assigned to the company — which is exactly why the integrity gate has to be argued rather than assumed.</p>
+</div>
+
+<!-- ===== 02 RECALL ===== -->
+<div class="sec" id="s02">
+<span class="eyebrow">§02 · Recall block</span>
+<h2>Five things to carry into the room without notes</h2>
+<ol class="lede">
+<li style="margin-bottom:12px">The founder is the named defendant in <i>Hayden AI v. Carson</i> (SF Superior Court, filed Feb 2026): forged board signatures, an unauthorized ~$1.3M equity sale, 41GB of customer data and contracts taken to start "a competing firm," and a fabricated Waseda PhD. Preliminary injunction requested; no resolution on record.</li>
+<li style="margin-bottom:12px">Three of EchoTwin's people come from Hayden AI — Carson (CEO), Byrne (CPO) and Bo Shen (consultant and a named inventor on every EchoTwin patent filing). The company's compliance-vision patents sit squarely in Hayden's domain and were filed six months after Carson's removal.</li>
+<li style="margin-bottom:12px">The cap table shows <b>$10.6M</b> of SAFEs raised. The deck says "<b>$14M</b>." PitchBook says $19.07M. There is no priced round and no preferred — the "$8M Seed" is SAFEs at a $35M cap.</li>
+<li style="margin-bottom:12px">The Series A "anchor," ADM, is the stated close trigger. In the data room it is an <b>unsigned $15K, one-vehicle proof-of-value proposal</b>, with any real deployment contingent on pilot success and a future ADM decision.</li>
+<li>Only one relationship generates cash: DMT, ~$198K collected across five quarters, a ~$140K–$260K/yr run-rate. Everything else the deck labels "Contracted" is a small paid pilot, an unsigned proposal, or a free non-binding LOI on which EchoTwin is not even the counterparty.</li>
+</ol>
+</div>
+
+<!-- ===== 03 SNAPSHOT ===== -->
+<div class="sec" id="s03">
+<span class="eyebrow">§03 · Deal snapshot</span>
+<table>
+<tbody>
+<tr><td style="width:34%">Raise (headline)</td><td>$15M "Series A" <span class="tier t-co">CO</span></td></tr>
+<tr><td>Instrument actually in market</td><td>SAFEs. Latest tranche at a <b>$60M</b> valuation cap; seed tranche at $35M cap. No priced round has occurred and no preferred is outstanding. <span class="tier t-ext">EXT</span> (company cap table, 6/5/2026)</td></tr>
+<tr><td>Capital raised to date</td><td><b>$10,599,000</b> across 45 SAFEs (cap table). Deck claims ~$14M; PitchBook reports $19.07M. <span class="tier t-ext">EXT</span></td></tr>
+<tr><td>Close trigger</td><td>"ADM triggers close" — Abu Dhabi Municipality 250-unit deployment. Currently an unsigned $15K pilot proposal. <span class="tier t-mod">MOD</span></td></tr>
+<tr><td>Target close</td><td>Q4 2026 <span class="tier t-co">CO</span></td></tr>
+<tr><td>Ownership / control</td><td>Christopher Carson holds 5,100,000 common = <b>66.2%</b> fully-diluted and 100% of common. Co-founders hold options/SAFEs, not common. Option pool 2,162,500 (28.1% FD). <span class="tier t-ext">EXT</span></td></tr>
+<tr><td>Lead investor</td><td>Metis Ventures (~$3.5M across two Turkish entities); EchoTwin is its debut fund's first company. Gryphon Capital $2M (booked under Rule 701, a compensatory exemption — a flag). No tier-1 lead. <span class="tier t-ext">EXT</span></td></tr>
+<tr><td>Use of funds</td><td>ADM execution, GCC/US/EU sales expansion, CityVLM + IP. <span class="tier t-co">CO</span></td></tr>
+<tr><td>Pricing model</td><td>$1,500/vehicle/month, 5-year contracts, hardware bundled. <span class="tier t-co">CO</span></td></tr>
+<tr><td>Legal overhang</td><td><i>Hayden AI v. Carson</i>, San Francisco Superior Court, filed Feb 2026; preliminary injunction requested. <span class="tier t-ext">EXT</span></td></tr>
+</tbody>
+</table>
+<p class="sowhat">The gap between "$15M Series A" and "SAFEs at a $60M cap" is the first tell. A company that had a priced Series A with a lead would say so. This raise is a continuation of an angel-style SAFE stack, marketed as an institutional round.</p>
+</div>
+
+<!-- ===== 04 OVERVIEW ===== -->
+<div class="sec" id="s04">
+<span class="eyebrow">§04 · What the company actually does</span>
+<p class="lede">EchoTwin mounts a camera-and-edge-compute box on municipal fleet vehicles — street sweepers, buses, transit — and runs a vision-language model on-device to detect road defects, waste, and compliance violations, feeding a cloud "urban world model." It sells to governments (B2G) and through channel partners, priced at $1,500 per vehicle per month on multi-year contracts that bundle hardware, software and support.</p>
+<p>Stripped of the "Physical AI Operating System / Citiverse / self-healing city" framing, this is fleet-mounted computer vision for municipal asset and compliance monitoring — a real and active category. The honest current footprint is one paying government account (DMT Abu Dhabi, street-sweeper cleanliness monitoring) plus a spread of pilots and proposals across the UAE, Qatar, KSA and a few US cities. The live product dashboard in the deck is generated from a single vehicle over 36 days.</p>
+</div>
+
+<!-- ===== 05 ANALOGY ===== -->
+<div class="sec" id="s05">
+<span class="eyebrow">§05 · Analogy anchor</span>
+<h2>Hayden AI for asset and cleanliness monitoring, built by Hayden AI's ousted founder</h2>
+<p>The closest known pattern is Hayden AI itself: fleet-mounted computer vision sold to cities, scaled through anchor municipal contracts. Hayden raised ~$90M in a Series C led by TPG's Rise Fund at a reported ~$350M valuation and holds the large public deployments (NYC, DC, LA). EchoTwin is the same shape one stage earlier and in a different geography (MENA-first), founded by Hayden's co-founder and former CEO after his removal.</p>
+<div class="callout">
+<p style="margin:0"><b>Where the analogy breaks, and this is the investment question.</b> The reference company is not a neutral comp — it is the plaintiff suing this founder for taking the data, contracts and know-how the analogy is built on. If the resemblance is close because EchoTwin legitimately re-applied a category playbook, this is an ordinary faster-follower. If it is close because 41GB of Hayden material seeded it, the resemblance is the liability. The litigation exists precisely to decide which, and an outside investor cannot.</p>
+</div>
+<p class="sowhat">Every other section of this memo is downstream of that unresolved question.</p>
+</div>
+
+<!-- ===== 06 MARKET ===== -->
+<div class="sec" id="s06">
+<span class="eyebrow">§06 · Market, rebuilt from the bottom</span>
+<h2>The category is real; the sizing on the page is a different market</h2>
+<p>The one-pager reports a <b>$39B+</b> figure sourced to MarketsandMarkets "Smart City Platforms Market" <span class="tier t-ext">EXT</span> — that number is real (MarketsandMarkets puts smart-city platforms at $39.5B by 2030) but it is the IBM/Siemens/Cisco platform market, not fleet-mounted municipal vision, which is a small slice of it. The "<b>500K+</b> municipal fleets" and "<b>$580B</b> BUILD America 250 Act" figures are a global-fleet count with no analyst basis <span class="tier t-unv">UNV</span> and a not-yet-enacted US bill (committee-passed June 2026, not law, FY27 money) <span class="tier t-ext">EXT</span>.</p>
+<p>Rebuilt from the unit the company actually sells — a vehicle at $18K ACV — the serviceable market is a function of how many municipal vehicles realistically adopt a paid AI monitoring subscription, not the size of the smart-city software market. Move the inputs:</p>
+
+<div class="ctrls noprint">
+<div class="grid2">
+  <div><label class="f">Serviceable fleet (vehicles)</label><div class="ln"><input type="range" id="m_n" min="50000" max="1000000" step="10000" value="250000"><span class="out" id="m_n_o">250,000</span></div></div>
+  <div><label class="f">ACV per vehicle</label><div class="ln"><input type="range" id="m_acv" min="6000" max="24000" step="500" value="18000"><span class="out" id="m_acv_o">$18K</span></div></div>
+  <div><label class="f">Share captured</label><div class="ln"><input type="range" id="m_sh" min="1" max="25" step="1" value="5"><span class="out" id="m_sh_o">5%</span></div></div>
+</div>
+<div style="margin-top:12px"><button id="m_reset">Reset to committed baseline</button></div>
+</div>
+<div class="metrics">
+  <div class="met"><div class="k">Serviceable ARR</div><div class="v" id="m_sam">$4.5B</div></div>
+  <div class="met"><div class="k">ARR at that share</div><div class="v" id="m_som">$225M</div></div>
+  <div class="met"><div class="k">Vehicles for $50M ARR</div><div class="v" id="m_need">2,778</div></div>
+  <div class="met"><div class="k">As share of fleet</div><div class="v" id="m_pct">1.1%</div></div>
+</div>
+<p class="sowhat">The good news for the bull case: the addressable pool is genuinely large, so unlike many seed markets the ceiling is not the constraint. The constraint is entirely conversion and durability — turning pilots into signed multi-year deployments and holding them — which is exactly what the traction section shows the company has not yet demonstrated at scale.</p>
+
+<h3>The honest sizing</h3>
+<table>
+<thead><tr><th>Layer</th><th class="n">Company figure</th><th class="n">Rebuilt</th><th>Why they differ</th></tr></thead>
+<tbody>
+<tr><td>Headline market</td><td class="n">$39B+ / $580B</td><td class="n">Not comparable</td><td class="small">Smart-city platform market and a federal bill, not fleet vision</td></tr>
+<tr><td>Serviceable ARR</td><td class="n">—</td><td class="n">~$4.5B</td><td class="small">250K vehicles × $18K, at 100% adoption <span class="tier t-mod">MOD</span></td></tr>
+<tr><td>Realistic 5% SOM</td><td class="n">$359M (2030 plan)</td><td class="n">~$225M</td><td class="small">Plan implies ~5% of a 250K serviceable fleet by 2030</td></tr>
+<tr><td>Contracted ACV today</td><td class="n">$1.03M "contracted"</td><td class="n">~$0.2M</td><td class="small">Only DMT is cash-generating; rest are pilots/proposals <span class="tier t-ext">EXT</span></td></tr>
+</tbody>
+</table>
+<p class="sowhat">The market is not the problem. The 2030 plan is not impossible in size; it is implausible in cadence — see §08. And the base it grows from is ~$0.2M of real contracted revenue, not the $1.03M the deck labels "Contracted."</p>
+</div>
+
+<!-- ===== 07 FACT CHECK ===== -->
+<div class="sec" id="s07">
+<span class="eyebrow">§07 · Claim-by-claim verification</span>
+<h2>Ten headline claims, checked against the data room</h2>
+<div class="noprint" style="margin:10px 0">
+  <button class="chip" data-f="all" aria-pressed="true">All 10</button>
+  <button class="chip" data-f="Contradicted" aria-pressed="false">Contradicted 6</button>
+  <button class="chip" data-f="Unverified" aria-pressed="false">Unverified 2</button>
+  <button class="chip" data-f="Confirmed" aria-pressed="false">Confirmed 2</button>
+</div>
+<table id="fctab">
+<thead><tr><th style="width:24%">Claim</th><th style="width:44%">What checking found</th><th>Verdict</th></tr></thead>
+<tbody>
+<tr data-v="Contradicted"><td>"$14M raised" (Seed + Pre-Series A)</td><td>The company's own Carta cap table (6/5/2026) records <b>$10,599,000</b> of SAFEs and nothing else — no priced round, no preferred. The "$8M Seed" is SAFEs at a $35M cap. PitchBook separately reports $19.07M. Three different numbers; the primary document is the lowest. <span class="tier t-ext">EXT</span></td><td><b style="color:var(--bad)">Contradicted</b></td></tr>
+<tr data-v="Contradicted"><td>"4 commercial contracts" / "$19M ACV contracted or closing"</td><td>The deck marks DMT, EGIS, Qatar North and Qatar South "Contracted." Documents: DMT is a live cash account (award + acceptance letters, ~$198K collected); Qatar South is a signed <i>6-month paid pilot</i> (~$55K); EGIS is a <i>non-binding free LOI</i> on which EchoTwin is not even a party. The internal CRM (5/22/2026) shows <b>zero</b> deals in a closed-won stage. <span class="tier t-ext">EXT</span></td><td><b style="color:var(--bad)">Contradicted</b></td></tr>
+<tr data-v="Contradicted"><td>"ADM contract triggers close"</td><td>ADM is an <b>unsigned $15,000, one-vehicle proof-of-value proposal</b> (5 May 2026). No signature, no PO, no pilot agreement. Any deployment (40-unit minimum) is contingent on pilot success and a future ADM decision. The stated Series A trigger is not met by anything in the data room. <span class="tier t-ext">EXT</span></td><td><b style="color:var(--bad)">Contradicted</b></td></tr>
+<tr data-v="Contradicted"><td>"Granted patent 12,646,344"</td><td>That number appears in <b>no filing in the data room and in no public register</b> (Google Patents 404). The most advanced document is a USPTO <i>Notice of Allowance</i> (13 Apr 2026) on application 19/313,189, issue fee due 13 Jul 2026 — allowed, not granted, no number assigned. <span class="tier t-ext">EXT</span></td><td><b style="color:var(--bad)">Contradicted</b></td></tr>
+<tr data-v="Contradicted"><td>"124 months of runway post-close"</td><td>The company's own 5-year model shows EBITDA of <b>–$10.1M (2026)</b> and <b>–$11.6M (2027)</b>, with total expenses scaling to $28.8M by 2027. A $15M raise does not fund even two years at that burn, let alone ten. Arithmetically incompatible with the same deck's hiring and growth plan. <span class="tier t-mod">MOD</span></td><td><b style="color:var(--bad)">Contradicted</b></td></tr>
+<tr data-v="Contradicted"><td>Competitive slide names the real market</td><td>The landscape slide lists Blyncsy, Urban Hawk, SeekRight, RoadVision AI and omits <b>Hayden AI</b> — the largest, best-funded, most-analogous competitor, and the adverse party suing the CEO. Hayden appears in the deck only inside a team bio. <span class="tier t-ext">EXT</span></td><td><b style="color:var(--bad)">Contradicted</b></td></tr>
+<tr data-v="Unverified"><td>"$6.3M ACV in 2026" run-rate</td><td>2025 actual revenue was $156K; Q1 2026 was $71K. Reaching $6.3M ACV in 2026 depends almost entirely on ADM signing and pilots converting — neither evidenced. The number is a plan, not a run-rate. <span class="tier t-co">CO</span></td><td><b style="color:var(--warn)">Unverified</b></td></tr>
+<tr data-v="Unverified"><td>Abu Dhabi DMT partnership "confirmed by Reuters"</td><td>The DMT relationship is real and independently evidenced by contract documents and cash receipts. But the "Reuters, 9/2025" citation is a <b>paid newswire (EZ Newswire) release</b>, not Reuters reporting. Real partnership; mis-attributed validation. <span class="tier t-ext">EXT</span></td><td><b style="color:var(--warn)">Unverified</b></td></tr>
+<tr data-v="Confirmed"><td>Patent applications are assigned to the company, not to Carson personally</td><td>Every assignment names <b>EchoTwin AI, Inc.</b> as assignee (recorded Reel 070688/0660 for the provisionals). Inventors are Carson, Sukov and Bo Shen. This refutes the prior memo's worry that IP might sit with the founder — the assignment posture is clean. <span class="tier t-ext">EXT</span></td><td><b style="color:var(--ok)">Confirmed</b></td></tr>
+<tr data-v="Confirmed"><td>DMT is a genuine, paying government account</td><td>Award letter (DMT, 16 May 2025), acceptance (EchoTwin, 17 May 2025), and a July modification schedule showing <b>~AED 726K (~$198K) collected</b> across five quarters, scaling 10→20 vehicles. Small, but real recurring government revenue. <span class="tier t-ext">EXT</span></td><td><b style="color:var(--ok)">Confirmed</b></td></tr>
+</tbody>
+</table>
+<p class="sowhat">Six of ten headline claims are contradicted by the company's own data room, and the pattern is directional: every discrepancy flatters the round. That directionality — not any single number — is what converts a set of overstatements into an integrity finding, and it is why this scores below deals with worse economics.</p>
+</div>
+
+<!-- ===== 08 TRACTION ===== -->
+<div class="sec" id="s08">
+<span class="eyebrow">§08 · Traction and revenue quality</span>
+<p>The honest core is small and real. One paying government account (DMT), ~$198K collected over five quarters, a run-rate scaling from ~$140K to ~$260K/yr as the fleet steps 10→20 vehicles <span class="tier t-ext">EXT</span>. One signed paid pilot (Qatar/TTG, ~$55K). A real internal pipeline of ~35 opportunities that the company's own CRM values at ~$44.7M initial ACV — but classifies entirely as Qualified, Negotiation or RFP, with nothing closed-won <span class="tier t-ext">EXT</span>.</p>
+<h3>What the numbers do not yet support</h3>
+<table>
+<thead><tr><th>Claim</th><th>Constraint</th></tr></thead>
+<tbody>
+<tr><td>"$6.3M ACV in 2026"</td><td class="small">Requires ADM (unsigned $15K pilot) plus multiple pilot conversions inside two quarters, from a 2025 revenue base of $156K.</td></tr>
+<tr><td>"$359M ACV by 2030" (175% CAGR)</td><td class="small">Requires deployed units to go 350 → 10,850, i.e. adding ~2,000+ vehicles a year by 2030. Current live deployment is single-digit vehicles. The plan is a straight line drawn from a point.</td></tr>
+<tr><td>"Contracted" pipeline</td><td class="small">Deck's "contracted" is ~$0.2M of actually-committed revenue. The label is doing work the documents do not support.</td></tr>
+<tr><td>Land-and-expand "10x per account"</td><td class="small">DMT has expanded 10→20 vehicles — genuine, and the best evidence in the file — but it is one account and the expansion sits in an unsigned modification schedule.</td></tr>
+</tbody>
+</table>
+<p class="sowhat">The company is not without traction. It is describing a single expanding government pilot and a large unconverted pipeline as a contracted book. The distance between the two is the whole diligence.</p>
+</div>
+
+<!-- ===== 09 UNIT ECONOMICS ===== -->
+<div class="sec" id="s09">
+<span class="eyebrow">§09 · Unit economics, rebuilt</span>
+<h2>The one honest unit, and everything the file does not disclose</h2>
+<p>One vehicle carries a subscription of $1,500/month, or $18,000 ACV, on a five-year contract — a $90K TCV per vehicle if it runs full term. That much is consistent across the deck, the DMT contract (AED ~4,900/device/month ≈ $16K/yr, close to the $18K list) and the projections. Beyond that single number, the data room discloses <b>no gross margin, no CAC, no payback, no hardware BOM, no installation cost, and no churn</b> — so LTV:CAC cannot be built from primaries. Everything below the ACV line is a diligence gap.</p>
+
+<div class="ctrls noprint">
+<div class="grid2">
+  <div><label class="f">ACV per vehicle</label><div class="ln"><input type="range" id="u_acv" min="12000" max="18000" step="500" value="18000"><span class="out" id="u_acv_o">$18,000</span></div></div>
+  <div><label class="f">Blended gross margin</label><div class="ln"><input type="range" id="u_gm" min="40" max="85" step="1" value="70"><span class="out" id="u_gm_o">70%</span></div></div>
+  <div><label class="f">CAC per vehicle</label><div class="ln"><input type="range" id="u_cac" min="5000" max="40000" step="1000" value="18000"><span class="out" id="u_cac_o">$18,000</span></div></div>
+  <div><label class="f">Annual churn</label><div class="ln"><input type="range" id="u_ch" min="5" max="40" step="1" value="20"><span class="out" id="u_ch_o">20%</span></div></div>
+</div>
+<div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap">
+  <button id="u_reset">Reset to committed baseline</button>
+</div>
+</div>
+<div class="metrics">
+  <div class="met"><div class="k">LTV</div><div class="v" id="u_ltv">$63,000</div></div>
+  <div class="met"><div class="k">LTV : CAC</div><div class="v" id="u_ratio">3.5x</div></div>
+  <div class="met"><div class="k">CAC payback</div><div class="v" id="u_pb">17 mo</div></div>
+  <div class="met"><div class="k">Implied life</div><div class="v" id="u_life">5.0 yr</div></div>
+</div>
+<div id="u_flag" class="flag f-ok">Clears the 3x benchmark — on assumed inputs only</div>
+<p class="sowhat">Every input above is our assumption, not a disclosed figure — that is the point. Because the product bundles hardware, edge compute, installation and support into the subscription, the margin is unlikely to be pure-software; a 70% blended margin is generous until the BOM is shown. The economics <i>could</i> work; the data room does not let anyone confirm they do.</p>
+</div>
+
+<!-- ===== 10 COMPETITION ===== -->
+<div class="sec" id="s10">
+<span class="eyebrow">§10 · Competitive position and the capital gap</span>
+<h2>The strongest competitor is the plaintiff</h2>
+<table>
+<thead><tr><th>Company</th><th class="n">Capital</th><th>Position as of mid-2026</th></tr></thead>
+<tbody>
+<tr><td>Hayden AI</td><td class="n">~$90M Series C</td><td class="small">TPG Rise Fund led; ~$350M reported valuation; large live deployments (NYC, DC, LA). The direct analog — and the party suing EchoTwin's CEO. Omitted from EchoTwin's competitive slide. <span class="tier t-ext">EXT</span></td></tr>
+<tr><td>Blyncsy → Bentley</td><td class="n">Undisclosed</td><td class="small">Acquired by Bentley Systems (iTwin Ventures), Aug 2023. Strategic tuck-in; terms undisclosed. <span class="tier t-ext">EXT</span></td></tr>
+<tr><td>RoadBotics → Michelin</td><td class="n">Undisclosed</td><td class="small">Acquired by Michelin, 2022. Small strategic exit; terms undisclosed. <span class="tier t-ext">EXT</span></td></tr>
+<tr style="background:#F2F1EC"><td><b>EchoTwin AI</b></td><td class="n"><b>~$10.6M SAFEs</b></td><td class="small">One paying account (DMT), single-vehicle live data, MENA-first. Faster-follower a stage behind Hayden. <span class="tier t-ext">EXT</span></td></tr>
+</tbody>
+</table>
+<p class="sowhat">Two signals from the comp set. First, exits in this category are small strategic tuck-ins at undisclosed (i.e. unremarkable) prices, with one growth-equity winner (Hayden). Second, EchoTwin's chosen geography — MENA — is a real way to avoid competing head-to-head with Hayden's US book, and is genuinely where its only revenue sits. The competitive problem is less "outgunned" than "the incumbent it most resembles is litigating its provenance."</p>
+</div>
+
+<!-- ===== 11 MOAT ===== -->
+<div class="sec" id="s11">
+<span class="eyebrow">§11 · Moat under model-capability doubling</span>
+<p>If frontier vision-language models get materially better and cheaper in eighteen months, what of EchoTwin's edge survives?</p>
+<table>
+<thead><tr><th>Claimed moat</th><th>Survives?</th><th>Reasoning</th></tr></thead>
+<tbody>
+<tr><td>CityVLM "urban foundation model"</td><td><b style="color:var(--bad)">Weakens</b></td><td class="small">A domain-tuned VLM is the layer commoditizing fastest. Better base models erode a proprietary-VLM claim more than they help it, unless the training data is genuinely unique.</td></tr>
+<tr><td>Proprietary urban imagery dataset</td><td><b style="color:var(--warn)">Mixed</b></td><td class="small">Real if it accumulates from live fleets — but today it is largely one vehicle's data. Becomes a moat only at deployment scale the company has not reached.</td></tr>
+<tr><td>Edge-to-cloud deployment + government integration</td><td><b style="color:var(--ok)">Survives</b></td><td class="small">Procurement relationships, on-vehicle install, and public-sector integration are slow to build and slow to displace. This is the durable part.</td></tr>
+<tr><td>Compliance/evidentiary workflow (audit-grade outputs)</td><td><b style="color:var(--ok)">Survives</b></td><td class="small">Governance and chain-of-custody value comes from being auditable, not from raw model capability. Better models increase demand for a governed layer.</td></tr>
+<tr><td>Patent portfolio</td><td><b style="color:var(--warn)">Mixed</b></td><td class="small">One allowance + four provisionals, cleanly assigned — but the headline "granted" patent is unverifiable and the subject matter overlaps Hayden's domain with a shared inventor. Asset and liability at once.</td></tr>
+</tbody>
+</table>
+<p class="sowhat">The durable moats — government integration and evidentiary workflow — are real but early and not unique to EchoTwin. The moat the company leads with (a proprietary VLM) is the one most exposed to the capability curve.</p>
+</div>
+
+<!-- ===== 12 TEAM ===== -->
+<div class="sec" id="s12">
+<span class="eyebrow">§12 · Team</span>
+<p>The operating bench is genuinely strong and mostly verifiable. Suzanne El-Moursi (COO) built Uplift Data Partners (drone/AEC SaaS, acquired by PrecisionHawk 2018) and was early at Power2Switch (acquired by Choose Energy) — real exits, Booth MBA. Sergey Sukov (CTO) ran 200+ engineers at PayPal and was SVP Engineering at Guavus (Thales). Frank Harrison (CGO) spent 30 years at Lockheed, ACS, Xerox and Conduent in transportation vision. Michael Byrne (CPO) was early at DriveCam/Lytx and CPO at Hayden AI. This is not a thin team.</p>
+<div class="callout">
+<p style="margin:0"><b>The founder is the entire risk, and it is not a resume-gap risk — it is an active-litigation risk.</b> Chris Carson is the defendant in <i>Hayden AI v. Carson</i>, accused of forging board signatures to sell ~$1.3M of his own equity, taking 41GB of Hayden data and contracts to start EchoTwin, and fabricating a Waseda PhD (allegedly running a Florida paintball business in the claimed study year). Waseda declined to confirm the degree. Carson's own EchoTwin bio omits Hayden AI entirely, while his CPO's bio discloses it. <span class="tier t-ext">EXT</span></p>
+</div>
+<p>Two further facts sharpen it rather than soften it. Carson holds 66.2% fully-diluted and 100% of the common — this is a founder-controlled company, so the founder-integrity question is not diversifiable by governance. And Bo Shen, a third ex-Hayden figure, is a named inventor on every EchoTwin patent filing, which puts a Hayden alumnus at the center of the IP whose provenance is in dispute. A strong bench cannot underwrite around a controlling founder under a fraud and trade-secret cloud.</p>
+</div>
+
+<!-- ===== 13 GTM ===== -->
+<div class="sec" id="s13">
+<span class="eyebrow">§13 · Go-to-market credibility</span>
+<p>The GTM that exists is more credible than the GTM on the projection slide. EchoTwin genuinely reaches MENA municipal buyers through channel partners (Traffic Tech / TTG in Qatar, the DMT relationship in Abu Dhabi), and that is where 100% of its real revenue and its most advanced pilots sit. Selling AI monitoring to Gulf municipalities via local integrators is a real, defensible motion.</p>
+<p>The projection GTM is not. Reaching $25M ACV in 18 months and $359M by 2030 requires converting the pipeline from "Qualified/Negotiation" to signed multi-year deployments at a cadence the company has demonstrated exactly once (DMT), and adding thousands of vehicles a year against single-digit live deployment today. The plan also leans on US federal tailwinds (BUILD America 250) that are not yet law and would not fund until FY27.</p>
+<p class="sowhat">The testable version of this risk is simple and cheap to monitor: how many pipeline opportunities move to signed, countersigned contracts with POs in the next two quarters, ADM first among them.</p>
+</div>
+
+<!-- ===== 14 SCENARIOS ===== -->
+<div class="sec" id="s14">
+<span class="eyebrow">§14 · Scenarios and returns</span>
+<h2>What a hypothetical check would be betting on</h2>
+<p>There is no priced instrument to buy; the live instrument is a SAFE at a $60M cap. A hypothetical $50K angel check converts at roughly 0.083% pre-dilution. The scenarios below are illustrative only — the committed recommendation is $0 — and they exist to show that even a generous bull case does not carry the position, because the entry price already assumes the story the litigation may unwind.</p>
+
+<div class="ctrls noprint">
+<div class="grid2">
+  <div><label class="f">Bull probability</label><div class="ln"><input type="range" id="p_bull" min="0" max="40" step="1" value="15"><span class="out" id="p_bull_o">15%</span></div></div>
+  <div><label class="f">Bear probability</label><div class="ln"><input type="range" id="p_bear" min="0" max="90" step="1" value="55"><span class="out" id="p_bear_o">55%</span></div></div>
+  <div><label class="f">Base exit value</label><div class="ln"><input type="range" id="e_base" min="20" max="500" step="10" value="120"><span class="out" id="e_base_o">$120M</span></div></div>
+  <div><label class="f">Bull exit value</label><div class="ln"><input type="range" id="e_bull" min="100" max="1000" step="25" value="400"><span class="out" id="e_bull_o">$400M</span></div></div>
+  <div><label class="f">Total dilution to exit</label><div class="ln"><input type="range" id="e_dil" min="20" max="80" step="5" value="55"><span class="out" id="e_dil_o">55%</span></div></div>
+  <div><label class="f">Check size</label><div class="ln"><input type="range" id="e_chk" min="10" max="250" step="5" value="50"><span class="out" id="e_chk_o">$50K</span></div></div>
+</div>
+<div style="margin-top:12px"><button id="e_reset">Reset to committed baseline</button></div>
+</div>
+<div class="metrics">
+  <div class="met"><div class="k">Bull MOIC</div><div class="v" id="r_bull">3.0x</div></div>
+  <div class="met"><div class="k">Base MOIC <span id="p_base_o" class="mono">30%</span></div><div class="v" id="r_base">0.9x</div></div>
+  <div class="met"><div class="k">Bear</div><div class="v" style="color:var(--slate)">0.0x</div></div>
+  <div class="met"><div class="k">Weighted MOIC</div><div class="v" id="r_wtd">0.7x</div></div>
+</div>
+<div id="r_flag" class="flag f-bad">Below the 5x seed hurdle — and below 1.0x weighted</div>
+<p class="sowhat">The bear case is not a soft loss — it is a total loss triggered by an injunction on the underlying data, and it carries the majority of the probability weight. Even setting the bull at a Hayden-scale $400M strategic exit, the entry at a $60M cap on ~$0.2M of real ARR means the bull returns only ~3x and the weighted outcome sits below 1.0x. This is a position that loses money at the probability-weighted mean before the integrity question is even scored.</p>
+</div>
+
+<!-- ===== 15 RISK ===== -->
+<div class="sec" id="s15">
+<span class="eyebrow">§15 · Risk register with kill criteria</span>
+<table>
+<thead><tr><th style="width:26%">Risk</th><th class="n">Sev</th><th class="n">Lik</th><th class="n">Score</th><th>Kill criterion</th></tr></thead>
+<tbody>
+<tr><td>Injunction on the 41GB Hayden data/contracts</td><td class="n">5</td><td class="n">4</td><td class="n">20</td><td class="kill">Any court order compelling return/destruction of Hayden material, or joining EchoTwin to the suit. Immediate, permanent pass.</td></tr>
+<tr><td>Founder integrity / credential fabrication</td><td class="n">5</td><td class="n">4</td><td class="n">20</td><td class="kill">Waseda confirms no PhD, or any §07 overstatement is shown to be knowing. Permanent pass.</td></tr>
+<tr><td>IP provenance (Hayden trade secrets in the patents)</td><td class="n">4</td><td class="n">4</td><td class="n">16</td><td class="kill">Counsel cannot opine the filings are free of Hayden confidential information, or Bo Shen's assignments are contested.</td></tr>
+<tr><td>ADM anchor fails to sign</td><td class="n">4</td><td class="n">4</td><td class="n">16</td><td class="kill">ADM not countersigned with a PO by Q4 2026 — the stated close trigger is unmet.</td></tr>
+<tr><td>Revenue reality vs. plan</td><td class="n">4</td><td class="n">4</td><td class="n">16</td><td class="kill">Contracted (signed, PO'd) ARR below $1M by year-end 2026 against a $6.3M plan.</td></tr>
+<tr><td>Financial-credibility pattern</td><td class="n">4</td><td class="n">4</td><td class="n">16</td><td class="kill">"124-month runway," "$14M raised," and "granted patent" not reconciled in writing within 10 business days of being raised.</td></tr>
+<tr><td>Capital structure / no lead</td><td class="n">3</td><td class="n">4</td><td class="n">12</td><td class="kill">No tier-1 lead prices the round; SAFE stack continues at a rising cap with no institutional diligence.</td></tr>
+<tr><td>MENA single-region concentration</td><td class="n">3</td><td class="n">3</td><td class="n">9</td><td class="kill">Any Gulf procurement or geopolitical event that stalls the DMT/ADM pipeline for two quarters.</td></tr>
+</tbody>
+</table>
+<p class="sowhat">The top two risks are each individually deal-killing and largely outside an investor's control. When the two highest-severity, highest-likelihood risks in a file both carry "permanent pass" kill criteria, the composite is a formality — the gate has already closed.</p>
+</div>
+
+<!-- ===== 16 FALSIFIERS ===== -->
+<div class="sec" id="s16">
+<span class="eyebrow">§16 · What would change the score</span>
+<div class="grid2" style="gap:26px">
+<div>
+<h3 style="color:var(--ok)">Would move it up 1.0 or more</h3>
+<ul>
+<li>Litigation fully dismissed on the merits or settled with a release, return of any Hayden material, and counsel-certified IP clearance. <span class="mono">+1.5</span></li>
+<li>Waseda confirms the PhD in writing (or diploma + transcript + advisor verification). <span class="mono">+0.8</span></li>
+<li>ADM signed and countersigned with a PO, revenue recognized on plan. <span class="mono">+0.8</span></li>
+<li>Issued patent certificate produced with the real number and clean, recorded chain of title. <span class="mono">+0.5</span></li>
+</ul>
+</div>
+<div>
+<h3 style="color:var(--bad)">Would move it down / confirm the pass</h3>
+<ul>
+<li>Preliminary injunction granted against Carson. <span class="mono">Permanent pass</span></li>
+<li>Any §07 overstatement shown to be knowing rather than loose. <span class="mono">−1.5</span></li>
+<li>Bo Shen or Byrne joined to the litigation. <span class="mono">−1.0</span></li>
+<li>DMT (the one real account) churns or its "modification" proves unsigned/uncollected. <span class="mono">−1.0</span></li>
+</ul>
+</div>
+</div>
+<p class="sowhat">Note the asymmetry: the upside falsifiers are almost entirely in the founder's control and cost him a week of document production; the fact that they have not been furnished into a diligence-grade data room is itself informative.</p>
+</div>
+
+<!-- ===== 17 THESIS FIT ===== -->
+<div class="sec" id="s17">
+<span class="eyebrow">§17 · Market Logic thesis fit</span>
+<table>
+<thead><tr><th>Thesis clause</th><th class="n">Fit</th><th>Assessment</th></tr></thead>
+<tbody>
+<tr><td>Physical AI / frontier technology in the real world</td><td class="n">8</td><td class="small">Direct hit on category — fleet-mounted edge vision for cities is physical AI in production.</td></tr>
+<tr><td>Deeptech turning operational complexity into software advantage</td><td class="n">6</td><td class="small">The compliance/evidentiary workflow fits; the "software advantage" is unproven at one-vehicle scale.</td></tr>
+<tr><td>Governed, auditable systems for regulated buyers</td><td class="n">7</td><td class="small">Government/compliance posture is a genuine fit and the most durable asset in the file.</td></tr>
+<tr><td>Backable founders with clean operational fluency</td><td class="n">1</td><td class="small">The disqualifying clause. A controlling founder under a fraud, forgery and trade-secret suit is the opposite of the fund's stated founder standard.</td></tr>
+</tbody>
+</table>
+<p class="sowhat">The category fit is real, which is the trap. When three of four thesis clauses fit and the fourth is founder integrity, the fourth is not one vote among four — it is a gate. The fund does not back founders it cannot trust to describe their own company accurately, regardless of category fit.</p>
+</div>
+
+<!-- ===== 18 DILIGENCE ===== -->
+<div class="sec" id="s18">
+<span class="eyebrow">§18 · Diligence queue</span>
+<h2>Ranked by score at risk, not by topic</h2>
+<div class="ctrls noprint" style="display:flex;gap:16px;align-items:center;flex-wrap:wrap">
+  <span class="small">Score still at risk: <span class="mono" id="dq_out" style="font-size:17px;color:var(--bad)">-7.6</span></span>
+  <button id="dq_reset">Clear all</button>
+</div>
+<div id="dqlist"></div>
+<p class="sowhat">The first three are not diligence in the normal sense — they are the conditions on which the pass would ever reopen. Until the litigation resolves and the founder produces credential and IP-clearance documentation, the rest of the list does not matter.</p>
+</div>
+
+<!-- ===== 19 TERMS ===== -->
+<div class="sec" id="s19">
+<span class="eyebrow">§19 · Terms and structure</span>
+<h2>An angel SAFE stack marketed as a Series A</h2>
+<p>The instrument is a SAFE at a $60M valuation cap, the latest in a 45-SAFE stack that has climbed from a $35M cap. There is no priced round, no lead-negotiated term sheet, no preferred, no board seat on offer, and the syndicate is a spread of small checks with a debut-fund lead (Metis). One $2M SAFE (Gryphon) is booked under Rule 701, a compensatory-issuance exemption that does not fit an arm's-length investor — a securities-hygiene item to raise with counsel.</p>
+<h3>What would have to be true to revisit terms (all, not any)</h3>
+<ul>
+<li>Litigation dismissed or settled with release and counsel-certified IP clearance.</li>
+<li>A tier-1 lead prices the round with a real term sheet, board seat and information rights.</li>
+<li>Cap re-based to reality — a company with ~$0.2M contracted ARR does not support a $60M cap absent the litigation clearing and the anchor signing.</li>
+<li>MFN and pro-rata, given the rising-cap SAFE history.</li>
+</ul>
+<p class="sowhat">Even a perfect term sheet does not cure the gate. Terms are the last problem here, not the first.</p>
+</div>
+
+<!-- ===== 20 CONCLUSION ===== -->
+<div class="sec" id="s20">
+<span class="eyebrow">§20 · Recommendation</span>
+<p class="lede">Pass — Integrity Gate. Do not invest at any valuation while the litigation is live. Revisit only if the specific, founder-controlled falsifiers in §16 clear.</p>
+<p>This is not a judgment that the technology is fake or the market is small. EchoTwin has a real product, a real paying government account in DMT, a credible operating bench, a genuine MENA go-to-market, and — to its credit and against the prior memo's worry — patents cleanly assigned to the company. In a different founder's hands this would be a watch-list seed deal.</p>
+<p>It is a judgment about two things an outside investor cannot fix with price. First, the founder controls the company (66% fully-diluted) and is the defendant in an active suit alleging forgery, a $1.3M unauthorized equity sale, theft of 41GB of the exact data and contracts that would seed this business, and a fabricated degree — with a preliminary injunction pending. Second, the raise materials describe capital raised, contracts, the anchor deal, the patent and the runway more favorably than the company's own documents support, and every discrepancy points the same way. The first is uninsurable binary risk; the second is a pattern of candor from a founder already accused of dishonesty. Together they are a gate, not a discount.</p>
+<p><b>Would I put my own money in at these terms?</b> No — and not because the numbers are thin, but because the person who would control the money is litigating whether he can be trusted with a company's assets, while presenting this company's assets in terms its own data room contradicts. If the suit is dismissed or settled cleanly, the credential and IP questions are documented, and ADM actually signs, this reopens as a small, closely-monitored position. All three are in the founder's hands. Until then it is a pass, and the pass is not close.</p>
+</div>
+
+<div class="foot">
+Market Logic Investors LLC · Investment Committee Memorandum · Confidential<br>
+Prepared for internal investment committee use only. Not investment advice, legal advice, or a solicitation. All allegations described are as pleaded in <i>Hayden AI v. Carson</i> and are unproven.<br>
+EchoTwin AI · ML-2026-ET-01 · Author: H. Reganti · Prepared 10 August 2026<br>
+Source documents: EchoTwin master data room (Series A Deck 7.25.26; One-Pager 8.3.26; 5-Yr Financial Model Summary; Carta cap table & convertible ledger 6/5/2026; full sales pipeline 5/22/2026; DMT / Qatar / LA DOT / ADM / EGIS commercial agreements; USPTO filings & assignments; team bios; strategy framework). Prior external memo: Perplexity IC memo, 8 Aug 2026 (PASS).<br>
+External verification: Forbes (Chierchio, 3/6/2026), Ars Technica (3/6/2026), Law360, MarketsandMarkets, Bentley/Michelin press, TPG/Crunchbase, Congress.gov (H.R.8870), Google Patents. Retrieved 10 August 2026.<br>
+Claim tags — <span class="tier t-co">CO</span> company-stated · <span class="tier t-ext">EXT</span> externally verified · <span class="tier t-mod">MOD</span> model-derived · <span class="tier t-unv">UNV</span> unverified. Interactive controls explore sensitivity around a locked baseline and do not alter the committed position above.
+</div>
+
+<a class="backlink" href="../">← Back to all VC Deals</a>
+
+</div>
+
+<script>
+(function(){
+  var $=function(i){return document.getElementById(i)};
+  var fmt=function(n){return n.toLocaleString('en-US')};
+
+  /* ---- 01 scorecard ---- */
+  var DIMS=[
+    ['Founder & team integrity',13,2.0,'Active fraud/forgery/data-theft suit vs controlling CEO; own bio omits Hayden.'],
+    ['Traction & revenue quality',12,3.5,'One paying account (DMT ~$0.2M); "contracted" overstated; nothing closed-won in CRM.'],
+    ['Legal, IP & litigation exposure',12,2.5,'Hayden trade-secret risk; Bo Shen inventor overlap; "granted" patent unverifiable.'],
+    ['Market size & structure',8,5.5,'Real category and MENA demand; small tuck-in exits; single-region concentration.'],
+    ['Unit economics',7,4.5,'No GM/CAC/BOM disclosed; $1.5K/veh/mo plausible; one-vehicle live data.'],
+    ['Competitive position',8,4.0,'Hayden larger, better-funded, adverse; omitted from the deck.'],
+    ['Go-to-market credibility',8,4.5,'Real MENA channel and DMT; projections need thousands of units/yr.'],
+    ['Product & technical depth',8,5.5,'Real VLM/edge product, live pilot; patents cleanly assigned to the company.'],
+    ['Financial credibility',8,2.5,'124-mo runway vs own model; $10.6M raised vs "$14M" claim.'],
+    ['Terms & valuation',6,3.5,'$60M-cap SAFE stack vs ~$0.2M ARR; no lead; Rule 701 flag.'],
+    ['Governance',5,3.5,'Founder 66% FD / 100% of common; no named independent oversight.'],
+    ['Thesis fit & exit path',5,4.0,'Category fits; founder-standard fails; small strategic-exit universe.']
+  ];
+  var tb=$('sctab').getElementsByTagName('tbody')[0], wg=$('wgrid');
+  DIMS.forEach(function(d,i){
+    var tr=document.createElement('tr');
+    tr.innerHTML='<td>'+d[0]+'</td><td class="n" id="w'+i+'">'+d[1]+'%</td><td class="n">'+d[2].toFixed(1)+
+      '</td><td class="n"><span class="bartrack"><span class="bar" style="width:'+(d[2]*7.6)+'%"></span></span><span id="wv'+i+'">'+(d[1]*d[2]/100).toFixed(2)+'</span></td><td class="small">'+d[3]+'</td>';
+    tb.appendChild(tr);
+    var c=document.createElement('div');
+    c.innerHTML='<label class="f">'+d[0]+'</label><div class="ln"><input type="range" id="ws'+i+'" min="0" max="25" step="1" value="'+d[1]+'"><span class="out" id="wo'+i+'">'+d[1]+'%</span></div>';
+    wg.appendChild(c);
+  });
+  function scalc(){
+    var tot=0,acc=0;
+    DIMS.forEach(function(d,i){ tot+=+$('ws'+i).value; });
+    if(tot===0) tot=1;
+    DIMS.forEach(function(d,i){
+      var w=+$('ws'+i).value, nw=w/tot*100;
+      $('wo'+i).textContent=w+'%';
+      $('w'+i).textContent=nw.toFixed(1)+'%';
+      $('wv'+i).textContent=(nw*d[2]/100).toFixed(2);
+      acc+=nw*d[2]/100;
+    });
+    $('compout').textContent=acc.toFixed(1);
+    $('bandout').textContent = acc>=7.5?'Invest band':(acc>=6.0?'Monitor band':'Pass band');
+  }
+  DIMS.forEach(function(d,i){ $('ws'+i).addEventListener('input',scalc); });
+  $('wreset').addEventListener('click',function(){ DIMS.forEach(function(d,i){$('ws'+i).value=d[1];}); scalc(); });
+  scalc();
+
+  /* ---- 06 market ---- */
+  function mcalc(){
+    var n=+$('m_n').value, a=+$('m_acv').value, s=+$('m_sh').value;
+    $('m_n_o').textContent=fmt(n); $('m_acv_o').textContent='$'+Math.round(a/1000)+'K'; $('m_sh_o').textContent=s+'%';
+    var sam=n*a, som=sam*s/100, need=Math.ceil(50000000/a);
+    $('m_sam').textContent='$'+(sam/1e9).toFixed(1)+'B';
+    $('m_som').textContent='$'+(som/1e6).toFixed(0)+'M';
+    $('m_need').textContent=fmt(need);
+    $('m_pct').textContent=(need/n*100).toFixed(1)+'%';
+  }
+  ['m_n','m_acv','m_sh'].forEach(function(i){$(i).addEventListener('input',mcalc)});
+  $('m_reset').addEventListener('click',function(){$('m_n').value=250000;$('m_acv').value=18000;$('m_sh').value=5;mcalc();});
+  mcalc();
+
+  /* ---- 07 filter ---- */
+  var chips=document.querySelectorAll('.chip[data-f]');
+  chips.forEach(function(b){
+    b.addEventListener('click',function(){
+      chips.forEach(function(x){x.setAttribute('aria-pressed','false')});
+      b.setAttribute('aria-pressed','true');
+      var f=b.getAttribute('data-f');
+      Array.prototype.forEach.call($('fctab').querySelectorAll('tbody tr'),function(r){
+        r.style.display=(f==='all'||r.getAttribute('data-v')===f)?'':'none';
+      });
+    });
+  });
+
+  /* ---- 09 unit economics ---- */
+  function ucalc(){
+    var a=+$('u_acv').value, gm=+$('u_gm').value/100, c=+$('u_cac').value, ch=+$('u_ch').value/100;
+    $('u_acv_o').textContent='$'+fmt(a); $('u_cac_o').textContent='$'+fmt(c);
+    $('u_ch_o').textContent=Math.round(ch*100)+'%'; $('u_gm_o').textContent=Math.round(gm*100)+'%';
+    var ltv=a*gm/ch, r=ltv/c, pb=c/(a*gm/12);
+    $('u_ltv').textContent='$'+fmt(Math.round(ltv));
+    $('u_ratio').textContent=r.toFixed(1)+'x';
+    $('u_pb').textContent=Math.round(pb)+' mo';
+    $('u_life').textContent=(1/ch).toFixed(1)+' yr';
+    var f=$('u_flag');
+    if(r>=3){f.className='flag f-ok';f.textContent='Clears the 3x benchmark — on assumed inputs only';}
+    else{f.className='flag f-bad';f.textContent='Below the 3x benchmark';}
+  }
+  ['u_acv','u_gm','u_cac','u_ch'].forEach(function(i){$(i).addEventListener('input',ucalc)});
+  $('u_reset').addEventListener('click',function(){$('u_acv').value=18000;$('u_gm').value=70;$('u_cac').value=18000;$('u_ch').value=20;ucalc();});
+  ucalc();
+
+  /* ---- 14 scenarios ---- */
+  var CAP=60; /* $M valuation cap */
+  function ecalc(){
+    var pb=+$('p_bull').value, pr=+$('p_bear').value;
+    if(pb+pr>100){pr=100-pb;$('p_bear').value=pr;}
+    var pbase=100-pb-pr;
+    var eb=+$('e_base').value, ebu=+$('e_bull').value, d=+$('e_dil').value, chk=+$('e_chk').value;
+    $('p_bull_o').textContent=pb+'%'; $('p_bear_o').textContent=pr+'%'; $('p_base_o').textContent=pbase+'%';
+    $('e_base_o').textContent='$'+fmt(eb)+'M'; $('e_bull_o').textContent='$'+fmt(ebu)+'M';
+    $('e_dil_o').textContent=d+'%'; $('e_chk_o').textContent='$'+chk+'K';
+    var own0=(chk/1000)/CAP;                 /* entry ownership fraction */
+    var ownExit=own0*(1-d/100);
+    var mBase=ownExit*eb*1e6/(chk*1e3);
+    var mBull=ownExit*ebu*1e6/(chk*1e3);
+    var wtd=(pb/100)*mBull+(pbase/100)*mBase;
+    $('r_bull').textContent=mBull.toFixed(1)+'x';
+    $('r_base').textContent=mBase.toFixed(1)+'x';
+    $('r_wtd').textContent=wtd.toFixed(1)+'x';
+    var f=$('r_flag');
+    if(wtd>=5){f.className='flag f-ok';f.textContent='Clears the 5x seed hurdle';}
+    else{f.className='flag f-bad';f.textContent='Below the 5x seed hurdle — and below 1.0x weighted';}
+  }
+  ['p_bull','p_bear','e_base','e_bull','e_dil','e_chk'].forEach(function(i){$(i).addEventListener('input',ecalc)});
+  $('e_reset').addEventListener('click',function(){$('p_bull').value=15;$('p_bear').value=55;$('e_base').value=120;$('e_bull').value=400;$('e_dil').value=55;$('e_chk').value=50;ecalc();});
+  ecalc();
+
+  /* ---- 18 diligence queue ---- */
+  var DQ=[
+   [2.0,'Full, un-redacted Hayden AI v. Carson complaint, Carson’s answer/counterclaim, and every order to date (esp. any injunction ruling).','The single binary that governs the deal. Nothing else matters until this is known.'],
+   [1.2,'Waseda University written confirmation of Carson’s PhD, degree year and thesis — or diploma, transcript and advisor verification.','The credential is the subject of the fraud allegation itself. A week of the founder’s time settles it.'],
+   [1.0,'Counsel opinion that the granted/pending patents contain no Hayden confidential information and that all inventor (incl. Bo Shen) assignments are clean and recorded.','The IP overlaps Hayden’s domain with a shared inventor; this is where trade-secret exposure lives.'],
+   [0.9,'The issued patent certificate for “12,646,344” with its real number, or written correction that it is only a Notice of Allowance.','A “granted patent” that appears in no register is a candor test as much as an IP question.'],
+   [0.8,'Signed, countersigned ADM contract with a purchase order — or written acknowledgment that it is an unsigned $15K pilot proposal.','The stated Series A close trigger. Currently unmet in the data room.'],
+   [0.7,'Reconcile “$14M raised” against the cap table’s $10.6M and PitchBook’s $19.07M; provide the definitive figure.','Three capital numbers, all different; the primary document is the lowest.'],
+   [0.5,'Reconcile “124 months runway post-close” against the company’s own model (–$10M/–$11.6M EBITDA 2026–27).','Arithmetically impossible on the company’s own numbers.'],
+   [0.5,'Countersigned DMT master contract and the July modification — the terms currently sit in unsigned documents.','The one real account’s durability rests on documents that are not fully executed.']
+  ];
+  var list=$('dqlist');
+  DQ.forEach(function(q,i){
+    var d=document.createElement('div');
+    d.className='dq';
+    d.innerHTML='<div class="top"><input type="checkbox" id="dq'+i+'" data-d="'+q[0]+'"><div style="flex:1"><p class="q"><b>'+(i+1)+'.</b> '+q[1]+'</p><p class="small" style="margin:0">'+q[2]+'</p></div><span class="d">-'+q[0].toFixed(1)+'</span></div>';
+    list.appendChild(d);
+  });
+  function dcalc(){
+    var t=0;
+    DQ.forEach(function(q,i){ if(!$('dq'+i).checked) t+=q[0]; });
+    $('dq_out').textContent='-'+t.toFixed(1);
+  }
+  DQ.forEach(function(q,i){ $('dq'+i).addEventListener('change',dcalc); });
+  $('dq_reset').addEventListener('click',function(){DQ.forEach(function(q,i){$('dq'+i).checked=false;});dcalc();});
+  dcalc();
+})();
+</script>
+</body>
+</html>
