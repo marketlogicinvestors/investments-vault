@@ -163,22 +163,30 @@ input[type=checkbox]{accent-color:var(--ink);margin-right:9px;transform:translat
   </div>
 </div>
 <p class="sowhat">Reweighting within any defensible range keeps the composite between roughly 3.2 and 4.4. The recommendation is not an artifact of the rubric.</p>
+</div>
 
-<h3>Placement against the VC book</h3>
-<table>
-<thead><tr><th>Deal</th><th class="mono">ID</th><th class="n">Score</th><th>Call on file</th></tr></thead>
-<tbody>
-<tr><td>Intellectible (May 2026)</td><td class="mono">ML-2026-IT-01</td><td class="n">8.1</td><td class="small">Participate</td></tr>
-<tr><td>Mercury</td><td class="mono">ML-2026-MC-01</td><td class="n">7.4</td><td class="small">Proceed &mdash; Deep Diligence</td></tr>
-<tr><td>Innerwell</td><td class="mono">ML-2026-IW-01</td><td class="n">6.5</td><td class="small">Watch &mdash; Diligence</td></tr>
-<tr><td>Planet.Tech</td><td class="mono">ML-2026-PT-01</td><td class="n">6.2</td><td class="small">Angel SAFE</td></tr>
-<tr><td>Maison Monravel</td><td class="mono">ML-2026-MM-01</td><td class="n">5.6</td><td class="small">Pass &mdash; Stay Warm</td></tr>
-<tr><td>Intellectible, re-underwrite</td><td class="mono">ML-2026-IT-02</td><td class="n">5.3</td><td class="small">Pass &mdash; Stay Warm</td></tr>
-<tr><td>Dapper Boi</td><td class="mono">ML-2026-DB-01</td><td class="n">4.8</td><td class="small">Watch &mdash; Pass-Path</td></tr>
-<tr style="background:#F2F1EC"><td><b>EchoTwin AI</b></td><td class="mono">ML-2026-ET-01</td><td class="n"><b>3.6</b></td><td class="small"><b>Pass &mdash; Integrity Gate</b></td></tr>
-</tbody>
+<!-- ===== 01B INTEGRITY-GATE SCENARIO ===== -->
+<div class="sec" id="s01b">
+<span class="eyebrow">§01·b · Integrity-gate scenario — live model</span>
+<h2>What the score becomes as the gate clears</h2>
+<p>The committed score in §00 is <b>3.6</b> and does not move. This is a live re-underwrite model. Toggle each condition <i>as it is verified on paper</i> — a court filing, a counsel opinion, a signed purchase order, not a founder's verbal assurance — and the composite, band and call recompute in real time. It maps the path from this pass to a v2; it does not alter the committed position above.</p>
+
+<div class="ctrls noprint">
+  <div id="gate_toggles"></div>
+  <div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap"><button id="g_reset">Reset — nothing verified</button><button id="g_all">Assume all verified</button></div>
+</div>
+<div class="metrics">
+  <div class="met"><div class="k">Committed · locked</div><div class="v">3.6</div></div>
+  <div class="met"><div class="k">Scenario composite</div><div class="v" id="g_comp">3.6</div></div>
+  <div class="met"><div class="k">Scenario band</div><div class="v" id="g_band" style="font-size:15px">Pass band</div></div>
+</div>
+<div id="g_call" class="flag f-bad">Call: Pass — Integrity Gate</div>
+
+<table id="gtab" style="margin-top:18px">
+<thead><tr><th>Dimension</th><th class="n">Committed</th><th class="n">Scenario</th><th style="width:40%">What the verification changes</th></tr></thead>
+<tbody></tbody>
 </table>
-<p class="sowhat">The lowest score in the VC book. Dapper Boi and the Intellectible re-underwrite are priced-wrong or too-early calls on honest companies; EchoTwin is a different kind of pass. The business underneath is more real than either — a live government account, a credible operating team, a patent cleanly assigned to the company — which is exactly why the integrity gate has to be argued rather than assumed.</p>
+<p class="sowhat">The model's logic: clearing the three integrity items (litigation, IP clearance, credential) lifts founder-integrity, legal exposure and thesis fit off the floor — that alone moves the composite to roughly 4.8, a watch-list, not an investable. It becomes a diligenceable business only once the anchor (ADM) actually signs and the round is re-priced with real rights; even then the short operating history holds it in the high-5s. Fraud cleared turns the gate into a discount, not a green light.</p>
 </div>
 
 <!-- ===== 02 RECALL ===== -->
@@ -672,6 +680,56 @@ Claim tags — <span class="tier t-co">CO</span> company-stated · <span class="
   DQ.forEach(function(q,i){ $('dq'+i).addEventListener('change',dcalc); });
   $('dq_reset').addEventListener('click',function(){DQ.forEach(function(q,i){$('dq'+i).checked=false;});dcalc();});
   dcalc();
+
+  /* ---- 01b integrity-gate live model ---- */
+  var GATES=[
+    {k:'litig',label:'Litigation dismissed on the merits or settled with a release (the court filing).',d:{0:3.5,2:2.0,5:0.5,11:1.5}},
+    {k:'ip',label:'Counsel IP-clearance opinion — no Hayden confidential information in the filings; all inventor assignments (incl. Bo Shen) clean and recorded.',d:{2:1.5,7:0.5}},
+    {k:'cred',label:'Waseda PhD confirmed in writing (or diploma + transcript + advisor verification).',d:{0:1.0,8:0.5}},
+    {k:'adm',label:'ADM anchor signed and countersigned with a purchase order; revenue recognized on plan.',d:{1:3.0,6:1.5,8:0.5,4:0.5}},
+    {k:'reprice',label:'Round re-priced by a tier-1 lead at a defensible cap, with disclosure, a board seat and information rights; overstated materials corrected.',d:{9:3.0,10:1.5,8:1.0,4:1.0,7:0.5,3:0.5,5:0.5}}
+  ];
+  var CHANGE={0:'Founder cleared; controlling founder no longer under a cloud',1:'Signed anchor converts pipeline into recognized revenue',2:'Suit resolved and IP opined clean of Hayden material',3:'Anchor and disclosure clarify the addressable base',4:'Economics disclosed and validated in diligence',5:'Hayden no longer an adverse party',6:'Anchor proves the MENA motion converts',7:'Patent asset firmer with a clearance opinion',8:'Capital, patent and runway claims corrected on paper',9:'Priced by a lead at a defensible cap, with rights',10:'Independent lead/board oversight in place',11:'Founder-standard thesis clause no longer fails'};
+  var gt=$('gate_toggles');
+  GATES.forEach(function(g){
+    var row=document.createElement('label');
+    row.style.cssText='display:flex;gap:10px;align-items:flex-start;margin-bottom:10px;font-family:var(--sans);font-size:13px;line-height:1.45;cursor:pointer';
+    row.innerHTML='<input type="checkbox" id="g_'+g.k+'" style="margin-top:2px;flex:none"><span>'+g.label+'</span>';
+    gt.appendChild(row);
+  });
+  var gtb=$('gtab').getElementsByTagName('tbody')[0];
+  DIMS.forEach(function(d,i){
+    var tr=document.createElement('tr');
+    tr.innerHTML='<td>'+d[0]+'</td><td class="n">'+d[2].toFixed(1)+'</td><td class="n" id="gr'+i+'">'+d[2].toFixed(1)+'</td><td class="small" id="gw'+i+'">&mdash;</td>';
+    gtb.appendChild(tr);
+  });
+  function gcalc(){
+    var raw=DIMS.map(function(d){return d[2];}), active={};
+    GATES.forEach(function(g){ if($('g_'+g.k).checked){ for(var k in g.d){ raw[k]+=g.d[k]; active[k]=1; } } });
+    var comp=0;
+    DIMS.forEach(function(d,i){
+      if(raw[i]>9)raw[i]=9; if(raw[i]<0)raw[i]=0;
+      comp+=d[1]*raw[i]/100;
+      var cell=$('gr'+i);
+      cell.textContent=raw[i].toFixed(1);
+      cell.style.color=active[i]?'var(--ok)':'var(--slate)';
+      cell.style.fontWeight=active[i]?'700':'normal';
+      $('gw'+i).textContent=active[i]?CHANGE[i]:'—';
+    });
+    $('g_comp').textContent=comp.toFixed(1);
+    var call,band,bg,col;
+    if(comp<4.0){call='Pass — Integrity Gate';band='Pass band';bg='var(--badbg)';col='var(--bad)';}
+    else if(comp<5.0){call='Watch — Pass-Path';band='Pass band';bg='var(--badbg)';col='var(--bad)';}
+    else if(comp<6.0){call='Watch — Diligence';band='Watch band';bg='var(--warnbg)';col='var(--warn)';}
+    else if(comp<7.0){call='Proceed — Deep Diligence';band='Proceed band';bg='var(--okbg)';col='var(--ok)';}
+    else{call='Participate';band='Invest band';bg='var(--okbg)';col='var(--ok)';}
+    $('g_band').textContent=band;
+    var gc=$('g_call'); gc.textContent='Call: '+call; gc.style.background=bg; gc.style.color=col;
+  }
+  GATES.forEach(function(g){ $('g_'+g.k).addEventListener('change',gcalc); });
+  $('g_reset').addEventListener('click',function(){GATES.forEach(function(g){$('g_'+g.k).checked=false;});gcalc();});
+  $('g_all').addEventListener('click',function(){GATES.forEach(function(g){$('g_'+g.k).checked=true;});gcalc();});
+  gcalc();
 })();
 </script>
 </body>
