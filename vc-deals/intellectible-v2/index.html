@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Intellectible · ML-2026-IT-02 · Marketlogic Investors LLC</title>
+<style>
+:root{
+  --paper:#FCFBF8; --ink:#16202B; --slate:#5C6672; --rule:#D8D5CC;
+  --ok:#2F6B4F; --warn:#9A6B12; --bad:#A32D2D; --accent:#1E4C7A;
+  --okbg:#EAF2ED; --warnbg:#F7EEDC; --badbg:#F8EAEA; --accbg:#E9EFF6;
+  --serif:Georgia,'Iowan Old Style','Palatino Linotype',serif;
+  --sans:system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  --mono:ui-monospace,'SF Mono',Menlo,Consolas,'Liberation Mono',monospace;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--serif);font-size:16.5px;line-height:1.62}
+.wrap{max-width:940px;margin:0 auto;padding:48px 28px 96px}
+h1{font-size:31px;line-height:1.18;font-weight:normal;letter-spacing:-.01em;margin:0 0 6px}
+h2{font-size:21px;font-weight:normal;margin:0 0 10px;letter-spacing:-.005em}
+h3{font-size:16px;font-family:var(--sans);font-weight:600;margin:22px 0 8px}
+p{margin:0 0 14px}
+a{color:var(--accent)}
+.eyebrow{font-family:var(--sans);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--slate);font-weight:600}
+.sec{border-top:1px solid var(--rule);padding-top:16px;margin-top:44px}
+.sec>.eyebrow{display:block;margin-bottom:9px}
+.mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.small{font-size:13.5px;color:var(--slate)}
+.lede{font-size:18px;line-height:1.55}
+
+.masthead{border:1.5px solid var(--ink);padding:22px 24px;margin-bottom:14px}
+.mrow{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;flex-wrap:wrap}
+.verdict{font-family:var(--mono);font-size:13px;letter-spacing:.1em;text-transform:uppercase;background:var(--badbg);color:var(--bad);padding:5px 12px;border:1px solid var(--bad);white-space:nowrap}
+.bigscore{font-family:var(--mono);font-size:52px;line-height:1;letter-spacing:-.03em}
+.scorelab{font-family:var(--sans);font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:var(--slate)}
+
+.seal{display:flex;align-items:center;gap:10px;font-family:var(--sans);font-size:11.5px;color:var(--slate);border:1px dashed var(--rule);padding:8px 12px;margin:14px 0 0}
+.seal b{font-family:var(--mono);color:var(--ink);font-weight:normal}
+
+.tier{font-family:var(--mono);font-size:10px;letter-spacing:.04em;padding:1px 5px;border:1px solid;vertical-align:1px;white-space:nowrap}
+.t-co{color:var(--slate);border-color:var(--rule);background:#F2F1EC}
+.t-ext{color:var(--accent);border-color:#B9CBE0;background:var(--accbg)}
+.t-mod{color:var(--warn);border-color:#DFC48A;background:var(--warnbg)}
+.t-unv{color:var(--bad);border-color:#DDA9A9;background:var(--badbg)}
+
+table{width:100%;border-collapse:collapse;font-size:14px;margin:12px 0 6px}
+th{font-family:var(--sans);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--slate);text-align:left;font-weight:600;border-bottom:1px solid var(--ink);padding:7px 9px 7px 0;vertical-align:bottom}
+td{border-bottom:1px solid var(--rule);padding:9px 9px 9px 0;vertical-align:top}
+td.n,th.n{text-align:right;font-family:var(--mono);font-variant-numeric:tabular-nums;padding-right:0}
+.sowhat{font-size:13.5px;color:var(--slate);font-style:italic;margin:6px 0 0}
+
+.bar{display:inline-block;height:7px;background:var(--ink);vertical-align:middle}
+.bartrack{display:inline-block;width:76px;height:7px;background:#E8E6DF;vertical-align:middle;margin-right:7px}
+
+.ctrls{border:1px solid var(--rule);background:#F7F6F1;padding:16px 18px;margin:16px 0}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px 22px}
+label.f{display:block;font-family:var(--sans);font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--slate);margin-bottom:3px;font-weight:600}
+.ln{display:flex;align-items:center;gap:9px}
+input[type=range]{flex:1;accent-color:var(--ink);min-width:0}
+.out{font-family:var(--mono);font-size:13.5px;min-width:62px;text-align:right}
+button{font-family:var(--sans);font-size:12px;background:transparent;border:1px solid var(--ink);color:var(--ink);padding:6px 12px;cursor:pointer}
+button:hover{background:var(--ink);color:var(--paper)}
+button.chip{border-color:var(--rule);color:var(--slate);padding:4px 10px;margin:0 6px 6px 0}
+button.chip[aria-pressed=true]{border-color:var(--ink);color:var(--paper);background:var(--ink)}
+.metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(132px,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule);margin:16px 0}
+.met{background:var(--paper);padding:12px 14px}
+.met .k{font-family:var(--sans);font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--slate)}
+.met .v{font-family:var(--mono);font-size:25px;line-height:1.25;letter-spacing:-.02em}
+.flag{padding:7px 12px;font-family:var(--sans);font-size:12.5px;display:inline-block;margin-top:4px}
+.f-bad{background:var(--badbg);color:var(--bad)} .f-ok{background:var(--okbg);color:var(--ok)}
+
+.callout{border-left:3px solid var(--ink);padding:2px 0 2px 18px;margin:18px 0}
+.kill{font-family:var(--sans);font-size:12.5px;color:var(--bad)}
+.q{margin:0 0 4px}
+.dq{border-bottom:1px solid var(--rule);padding:11px 0}
+.dq .top{display:flex;gap:11px;align-items:baseline}
+.dq .d{font-family:var(--mono);font-size:12.5px;color:var(--bad);white-space:nowrap}
+.foot{border-top:1.5px solid var(--ink);margin-top:52px;padding-top:16px;font-size:12.5px;color:var(--slate);font-family:var(--sans);line-height:1.75}
+input[type=checkbox]{accent-color:var(--ink);margin-right:9px;transform:translateY(1px)}
+@media print{
+  .ctrls,button,.noprint{display:none !important}
+  body{font-size:11pt;background:#fff}
+  .wrap{max-width:none;padding:0}
+  .sec{break-inside:avoid;page-break-inside:avoid}
+  a{color:var(--ink);text-decoration:none}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="eyebrow">Marketlogic Investors LLC · Investment Committee Memorandum · Confidential</div>
+<h1>Intellectible, Inc.</h1>
+<p class="small mono">ML-2026-IT-02 · Austin, TX · Seed / open SAFE · Prepared 9 August 2026 · Author: H. Reganti<br>Independent re-underwrite. Supersedes nothing. ML-2026-IT-01 (May 2026, score 8.1) remains on file unchanged.</p>
+
+<!-- ===== 00 DEAL CARD ===== -->
+<div class="sec" id="s00">
+<span class="eyebrow">§00 · Deal card</span>
+<div class="masthead">
+  <div class="mrow">
+    <div>
+      <div class="scorelab">Composite score</div>
+      <div class="bigscore">5.3</div>
+      <div class="small mono" style="margin-top:4px">Band: below 6.0</div>
+    </div>
+    <div style="flex:1;min-width:260px">
+      <div class="verdict">Pass — Stay Warm</div>
+      <p style="margin:12px 0 0;font-size:15px">Pass on the SAFE at the $20M cap. Monitor with named triggers and revisit at the Series A. The objection is not primarily the company. It is the price, the rights, and the fact that six headline figures in the existing memo contradict the company's own scenario model.</p>
+    </div>
+    <div style="min-width:150px">
+      <div class="scorelab">Conviction</div>
+      <div class="mono" style="font-size:19px">Medium-high</div>
+      <div class="small" style="margin-top:8px">Proposed check<br><span class="mono" style="font-size:17px;color:var(--ink)">$0</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="callout">
+<p style="margin:0"><b>Underwriting statement.</b> We would be underwriting Intellectible on the belief that owning the pricing-governance layer for labor-driven civilian services creates a durable wedge that generalist GovCon platforms will not reach in time, and we are wrong if GovDash or Procurement Sciences ship a services-pricing module with a named facilities-management logo before Q2 2027, which their capital position makes affordable.</p>
+</div>
+
+<h3>The three numbers that matter</h3>
+<div class="metrics">
+  <div class="met"><div class="k">Capital vs nearest two</div><div class="v">1 : 17</div></div>
+  <div class="met"><div class="k">TAM vs own SAM</div><div class="v">51x</div></div>
+  <div class="met"><div class="k">SAFE cap vs priced post</div><div class="v">+33%</div></div>
+</div>
+<p class="sowhat">Each is arithmetic from documents already in the data room. None required an outside opinion.</p>
+
+<p><b>Biggest risk, in five words:</b> <span class="mono">Outgunned in a consolidating category.</span></p>
+</div>
+
+<!-- ===== 01 SCORECARD ===== -->
+<div class="sec" id="s01">
+<span class="eyebrow">§01 · Weighted scorecard</span>
+<h2>The composite is derived, not asserted</h2>
+<p>Twelve dimensions, weighted. Move the weights to test whether the answer depends on the rubric or on the company.</p>
+
+<table id="sctab">
+<thead><tr><th>Dimension</th><th class="n">Weight</th><th class="n">Raw</th><th class="n">Weighted</th><th style="width:34%">Basis</th></tr></thead>
+<tbody></tbody>
+</table>
+
+<div class="ctrls noprint">
+  <div class="grid2" id="wgrid"></div>
+  <div style="margin-top:14px;display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+    <button id="wreset">Reset to committed baseline</button>
+    <span class="small">Composite <span class="mono" id="compout" style="font-size:16px;color:var(--ink)">5.3</span> · <span id="bandout" class="mono">Pass band</span></span>
+  </div>
+</div>
+<p class="sowhat">Reweighting within any defensible range keeps the composite between 4.9 and 6.1. The recommendation is not an artifact of the rubric.</p>
+
+<h3>Placement against the VC book</h3>
+<table>
+<thead><tr><th>Deal</th><th class="mono">ID</th><th class="n">Score</th><th>Call on file</th></tr></thead>
+<tbody>
+<tr><td>Intellectible (May 2026)</td><td class="mono">ML-2026-IT-01</td><td class="n">8.1</td><td class="small">Participate</td></tr>
+<tr><td>Mercury</td><td class="mono">ML-2026-MC-01</td><td class="n">7.4</td><td class="small">Proceed &mdash; Deep Diligence</td></tr>
+<tr><td>Innerwell</td><td class="mono">ML-2026-IW-01</td><td class="n">6.5</td><td class="small">Watch &mdash; Diligence</td></tr>
+<tr><td>Planet.Tech</td><td class="mono">ML-2026-PT-01</td><td class="n">6.2</td><td class="small">Angel SAFE</td></tr>
+<tr><td>Maison Monravel</td><td class="mono">ML-2026-MM-01</td><td class="n">5.6</td><td class="small">Pass &mdash; Stay Warm</td></tr>
+<tr style="background:#F2F1EC"><td><b>Intellectible, re-underwrite</b></td><td class="mono">ML-2026-IT-02</td><td class="n"><b>5.3</b></td><td class="small"><b>Pass &mdash; Stay Warm</b></td></tr>
+<tr><td>Dapper Boi</td><td class="mono">ML-2026-DB-01</td><td class="n">4.8</td><td class="small">Watch &mdash; Pass-Path</td></tr>
+</tbody>
+</table>
+<p class="sowhat">Compared against the VC book only. Energy Transfer, Aldabra 4, and CaresLink sit outside this class and are not scored on the same rubric. The re-underwrite lands one notch below Maison Monravel and takes the same call: the company is worth staying close to, the instrument is not worth buying. The 2.8-point gap against IT-01 is almost entirely verification and terms, not new negative operating information. The company executed well in the interval.</p>
+</div>
+
+<!-- ===== 02 RECALL ===== -->
+<div class="sec" id="s02">
+<span class="eyebrow">§02 · Recall block</span>
+<h2>Five things to carry into the room without notes</h2>
+<ol class="lede">
+<li style="margin-bottom:12px">Revenue is real and fast: roughly $100K to $760K in fourteen months. The two closest competitors have about seventeen times the capital and eight times the customer count.</li>
+<li style="margin-bottom:12px">The $18B TAM is fifty-one times the company's own stated serviceable market, because it counts 180,000 firms while the ICP is 3,500.</li>
+<li style="margin-bottom:12px">Six headline figures in the existing memo contradict the company's own scenario model, including the ARR plan, cash at Series A, and LTV to CAC.</li>
+<li style="margin-bottom:12px">The instrument is a SAFE at a $20M cap, one third above the $15M post-money priced round that closed weeks earlier, through an SPV, with no rights.</li>
+<li>The CEO's headline exit claim does not survive external checking. Third-party data puts the prior company under $1M revenue in 2022 with a replacement CEO installed.</li>
+</ol>
+</div>
+
+<!-- ===== 03 SNAPSHOT ===== -->
+<div class="sec" id="s03">
+<span class="eyebrow">§03 · Deal snapshot</span>
+<table>
+<tbody>
+<tr><td style="width:34%">Instrument offered</td><td>SAFE, $20M valuation cap <span class="tier t-co">CO</span></td></tr>
+<tr><td>Remaining capacity</td><td>Approximately $250K, split across remaining GoingVC participants <span class="tier t-co">CO</span></td></tr>
+<tr><td>Mechanics</td><td>Sidecar SPV, roughly three-week wire timeline <span class="tier t-co">CO</span></td></tr>
+<tr><td>Priced round just closed</td><td>$2.95M at $12M pre, approximately $15M post <span class="tier t-co">CO</span></td></tr>
+<tr><td>Implied premium to that round</td><td><b>+33.3%</b> on the cap <span class="tier t-mod">MOD</span></td></tr>
+<tr><td>Lead</td><td>Bread and Butter Ventures ($1M, fourth fund); Victorum Capital $1M; Gray Ventures; High Street Equity Partners; Drumbeat $300K; Circadian follow-on <span class="tier t-co">CO</span></td></tr>
+<tr><td>Preference above the SAFE</td><td>1x non-participating Series Seed Preferred <span class="tier t-co">CO</span></td></tr>
+<tr><td>Board</td><td>Three seats: one Preferred director, two key-holder seats including the CEO. No seat available. <span class="tier t-co">CO</span></td></tr>
+<tr><td>Option pool</td><td>12% in place, no top-up required <span class="tier t-co">CO</span></td></tr>
+<tr><td>Outstanding debt</td><td>None <span class="tier t-co">CO</span></td></tr>
+<tr><td>Deal source</td><td>GoingVC, originated by a member who was in the same Techstars Boulder 2024 cohort as the CEO and whose prior company was Intellectible's first customer on design-partner terms. He discloses no equity or commercial relationship today. <span class="tier t-co">CO</span></td></tr>
+</tbody>
+</table>
+<p class="sowhat">The source disclosure is clean and voluntary, which is to his credit. It still means the deal reached us through a warm channel with prior commercial history, and warm channels systematically under-weight competitive threat. That is visible in this file.</p>
+</div>
+
+<!-- ===== 04 OVERVIEW ===== -->
+<div class="sec" id="s04">
+<span class="eyebrow">§04 · What the company actually does</span>
+<p class="lede">Intellectible converts a service company's written standard operating procedures into software that runs continuously. It watches government bid feeds against that company's real qualification criteria, tears apart RFP packages into structured data, drafts the compliance artifacts, and prices the bid using the company's own rate tables with a CFO approval gate and an audit trail. It sells first as a $24K opportunity-finding tool, then expands into pricing, which is where the money is.</p>
+<p>The technically interesting claim is that pricing is deterministic at the core. The customer's pricing model is encoded as workflow logic and structured data; the language model extracts, normalizes, validates, and flags, but never invents the price. That distinction is what makes a CFO sign. It is also, correctly, the hardest part of the product to copy.</p>
+</div>
+
+<!-- ===== 05 ANALOGY ===== -->
+<div class="sec" id="s05">
+<span class="eyebrow">§05 · Analogy anchor</span>
+<h2>Deltek ProPricer for labor-driven civilian services, rebuilt as a workflow runtime</h2>
+<p>The analogy is useful because it locates the value precisely: ProPricer is the reference product for bid pricing in government contracting, and nobody has built its equivalent for services priced on geography, wage rules, facility attributes, travel, and subcontracting.</p>
+<div class="callout">
+<p style="margin:0"><b>Where the analogy breaks, and this is the investment question.</b> ProPricer exists because CAS, FAR, and TINA legally require a defensible cost basis on cost-type contracts. The requirement creates the budget line. Intellectible's civilian services buyer faces no equivalent mandate. Pricing badly is expensive, but it is not non-compliant. Regulatory mandates create budgets; process preferences create pilots. Every expansion number in this file rests on whether Intellectible's buyers behave like the first group or the second.</p>
+</div>
+<p class="sowhat">The HHS evidence argues for the first group. Fourteen months of data across a small cohort cannot yet settle it.</p>
+</div>
+
+<!-- ===== 06 MARKET ===== -->
+<div class="sec" id="s06">
+<span class="eyebrow">§06 · Market, rebuilt from the bottom</span>
+<h2>The TAM does not survive its own footnote</h2>
+<p>The deck reports an $18B TAM <span class="tier t-co">CO</span>. That number is 180,000 companies multiplied by a $100K blended ACV. The same deck sets the serviceable market at 3,500 companies. The company's own ICP definition therefore excludes 98% of the population used to build the TAM.</p>
+<p>Three different market populations appear across the three documents in the data room: 180,000 firms above $10M revenue selling into government (deck), 188,000 US enterprise service providers above $10M (memo), and 8,700 firms above $100M (diligence report) <span class="tier t-unv">UNV</span>. These are not variants of one estimate. They are three different questions.</p>
+
+<div class="ctrls noprint">
+<div class="grid2">
+  <div><label class="f">ICP firm count</label><div class="ln"><input type="range" id="m_n" min="500" max="20000" step="100" value="3500"><span class="out" id="m_n_o">3,500</span></div></div>
+  <div><label class="f">Blended ACV</label><div class="ln"><input type="range" id="m_acv" min="20000" max="120000" step="1000" value="29000"><span class="out" id="m_acv_o">$29K</span></div></div>
+  <div><label class="f">Share captured</label><div class="ln"><input type="range" id="m_sh" min="1" max="100" step="1" value="10"><span class="out" id="m_sh_o">10%</span></div></div>
+</div>
+<div style="margin-top:12px"><button id="m_reset">Reset to committed baseline</button></div>
+</div>
+<div class="metrics">
+  <div class="met"><div class="k">Serviceable ARR</div><div class="v" id="m_sam">$102M</div></div>
+  <div class="met"><div class="k">ARR at that share</div><div class="v" id="m_som">$10M</div></div>
+  <div class="met"><div class="k">Customers needed for $100M ARR</div><div class="v" id="m_need">3,448</div></div>
+  <div class="met"><div class="k">As share of ICP</div><div class="v" id="m_pct">98%</div></div>
+</div>
+<p class="sowhat">At the realized blended ACV of about $29K, the exit thesis of $100M ARR requires essentially the entire serviceable market. At the assumed mature ACV of $100K it requires 29% of it, which is still a category-monopoly assumption. Set the ACV slider to $100K to see it.</p>
+
+<h3>The honest sizing</h3>
+<table>
+<thead><tr><th>Layer</th><th class="n">Company figure</th><th class="n">Rebuilt</th><th>Why they differ</th></tr></thead>
+<tbody>
+<tr><td>TAM</td><td class="n">$18.0B</td><td class="n">Not meaningful</td><td class="small">Counts firms outside the stated ICP</td></tr>
+<tr><td>SAM</td><td class="n">$350M</td><td class="n">$102M</td><td class="small">Uses assumed mature ACV of $100K vs realized $29K</td></tr>
+<tr><td>SOM (3yr)</td><td class="n">$35M</td><td class="n">$10M</td><td class="small">Same ACV substitution</td></tr>
+<tr><td>Realized blended ACV</td><td class="n">$100K assumed</td><td class="n">$29,231</td><td class="small">$760K over 26 customers <span class="tier t-mod">MOD</span></td></tr>
+</tbody>
+</table>
+<p class="sowhat">$102M of serviceable ARR is still a real market and enough for a good outcome. It is not enough for the $1B to $1.5B exit math in the existing memo without near-total category capture.</p>
+</div>
+
+<!-- ===== 07 FACT CHECK ===== -->
+<div class="sec" id="s07">
+<span class="eyebrow">§07 · Claim-by-claim verification</span>
+<h2>Twelve headline claims, checked</h2>
+<div class="noprint" style="margin:10px 0">
+  <button class="chip" data-f="all" aria-pressed="true">All 12</button>
+  <button class="chip" data-f="Contradicted" aria-pressed="false">Contradicted 6</button>
+  <button class="chip" data-f="Unverified" aria-pressed="false">Unverified 3</button>
+  <button class="chip" data-f="Confirmed" aria-pressed="false">Confirmed 3</button>
+</div>
+<table id="fctab">
+<thead><tr><th style="width:24%">Claim</th><th style="width:44%">What checking found</th><th>Verdict</th></tr></thead>
+<tbody>
+<tr data-v="Contradicted"><td>CEO scaled prior company 0 to $10M ARR on $35M raised, exited to PE</td><td>Third-party financial data reports the prior company's FY2022 revenue at approximately $940K <span class="tier t-ext">EXT</span>. Total raised is reported as $24.4M by one source and $40.4M by another, neither matching $35M. A different individual is listed as CEO on the current company record. The business sold hardware kits on a product-based pricing model, so "ARR" is a category error regardless of the peak figure.</td><td><b style="color:var(--bad)">Contradicted</b></td></tr>
+<tr data-v="Contradicted"><td>$18B TAM</td><td>Built as 180,000 firms times $100K ACV. The same deck sets the ICP at 3,500 firms. 51x gap between TAM and the company's own SAM.</td><td><b style="color:var(--bad)">Contradicted</b></td></tr>
+<tr data-v="Contradicted"><td>LTV:CAC of 5.9x described as conservative</td><td>The company's own scenario model puts base case at 3.2x and 5.9x at the <i>upside</i> case <span class="tier t-co">CO</span>. The 5.9x figure divides mature-state blended ACV of $41K by present-day CAC of $24K on an unvalidated 25% churn assumption.</td><td><b style="color:var(--bad)">Contradicted</b></td></tr>
+<tr data-v="Contradicted"><td>$3.6M ARR run-rate at end of 2027</td><td>The scenario model's base case for December 2027 annualized ARR is $2,974,895, which the model's own dashboard scores as BORDERLINE against the $3M Series A bar and returns an overall verdict of BUILD CASE, not READY <span class="tier t-co">CO</span>.</td><td><b style="color:var(--bad)">Contradicted</b></td></tr>
+<tr data-v="Contradicted"><td>Approximately $1.2M cash entering the Series A</td><td>Model base case shows December 2027 cash of $542,584 and March 2028 cash of $320,003. Downside runs out of cash in August 2027; Bear in June 2027 <span class="tier t-co">CO</span>.</td><td><b style="color:var(--bad)">Contradicted</b></td></tr>
+<tr data-v="Contradicted"><td>GovDash is a broader-audience competitor with partial overlap</td><td>GovDash closed a $30M Series B in January 2026 led by Mucker Capital and BCI, bringing total funding to roughly $40M to $42M. Revenue grew 16x in 2025, customers grew 18x to nearly 200, headcount went from 3 to over 45, and it reached FedRAMP Moderate Equivalency <span class="tier t-ext">EXT</span>. None of this appears in the May memo.</td><td><b style="color:var(--bad)">Contradicted</b></td></tr>
+<tr data-v="Unverified"><td>Approximately $760K ARR today</td><td>The scenario model's Inputs tab sets Starting ARR at $640,000 as the current annualized run rate as of May 2026, while an adjacent note in the same tab references 26 customers at $760K ARR <span class="tier t-co">CO</span>. The model is internally inconsistent on the single most important number.</td><td><b style="color:var(--warn)">Unverified</b></td></tr>
+<tr data-v="Unverified"><td>0% churn</td><td>Stated as 0% "within ICP." The qualifier implies a non-ICP book exists. Full-book gross and net retention are not disclosed anywhere in the data room.</td><td><b style="color:var(--warn)">Unverified</b></td></tr>
+<tr data-v="Unverified"><td>Three market population figures</td><td>180,000 / 188,000 / 8,700 across deck, memo, and diligence report. Different definitions, presented interchangeably.</td><td><b style="color:var(--warn)">Unverified</b></td></tr>
+<tr data-v="Confirmed"><td>Procurement Sciences has raised $40M+</td><td>Reported total of $41.4M with a $30M Series B in November 2025 led by Catalyst Investors <span class="tier t-ext">EXT</span>. The memo understates the position: Procurement Sciences also acquired HigherGov in February 2026, which the memo separately lists as an independent point-tool competitor.</td><td><b style="color:var(--ok)">Confirmed</b></td></tr>
+<tr data-v="Confirmed"><td>85%+ gross margin, under $4K infra per $100K ARR</td><td>Internally consistent across deck, memo, and model, and architecturally plausible for a workflow runtime that is not doing continuous large-model inference. No contradicting evidence.</td><td><b style="color:var(--ok)">Confirmed</b></td></tr>
+<tr data-v="Confirmed"><td>Round structure, cap table, term sheet</td><td>Carta snapshot, term sheet summary, and memo reconcile. 1x non-participating, broad-based weighted average, 12% pool, no debt, founder re-vest with double trigger. Clean.</td><td><b style="color:var(--ok)">Confirmed</b></td></tr>
+</tbody>
+</table>
+<p class="sowhat">Half of the tested headline claims are contradicted by documents sitting in the same data room. That is the finding that drives the score, and it is fixable in a week if the founder chooses to fix it.</p>
+</div>
+
+<!-- ===== 08 TRACTION ===== -->
+<div class="sec" id="s08">
+<span class="eyebrow">§08 · Traction and revenue quality</span>
+<p>Stripping the framing, what is left is genuinely good. Roughly $100K to $760K of contracted ARR in fourteen months <span class="tier t-co">CO</span>. Fifteen-plus enterprise logos in production. Sustained qualified pipeline creation around $700K per month. A two-meeting sale at $24K with a three-to-five week cycle. Configuration to first production output in about six hours. Those are real operating facts and they are the reason this is a 5.3 and not a 3.5.</p>
+<h3>What the numbers do not yet support</h3>
+<table>
+<thead><tr><th>Claim</th><th>Constraint</th></tr></thead>
+<tbody>
+<tr><td>Land-and-expand is proven</td><td class="small">Proven at HHS. Team OTG full Pricing Engine and Apex light deployment extend it to three accounts. Three is a pattern candidate, not a motion.</td></tr>
+<tr><td>Retention is excellent</td><td class="small">26 customers over roughly 24 months, most under 12 months old. The cohort cannot distinguish product-market fit from champion-driven stickiness. A single departure moves the reported number by four points.</td></tr>
+<tr><td>Blended ACV rises to $100K</td><td class="small">Realized blended ACV is $29,231. The entire market model and exit math depend on a 3.4x rise that has occurred at one account.</td></tr>
+<tr><td>Concentration will dilute</td><td class="small">HHS on the stated trajectory to $400K would exceed 50% of the current book. Dilution requires the new-logo cadence to step from roughly 1.1 per month to 4 per month.</td></tr>
+</tbody>
+</table>
+<p class="sowhat">The company is not exaggerating its traction. It is exaggerating what its traction proves.</p>
+</div>
+
+<!-- ===== 09 UNIT ECONOMICS ===== -->
+<div class="sec" id="s09">
+<span class="eyebrow">§09 · Unit economics, rebuilt</span>
+<h2>Start with the toy version</h2>
+<p>One customer pays $24,000 a year. Gross margin is 86%, so the company keeps $20,640 of it. Acquiring that customer costs $24,000. The customer must stay about fourteen months before the company is even. Everything else in this section is that sentence, scaled.</p>
+<p>Now the real model. The existing memo reports LTV of $141K against CAC of $24K for 5.9x. That arithmetic is correct and its inputs are not comparable: it divides <i>mature-state</i> blended ACV of $41K, which assumes a 35% take rate on two future upsell engines, by <i>present-day</i> CAC, on a 25% churn assumption that a 24-month-old cohort cannot support.</p>
+
+<div class="ctrls noprint">
+<div class="grid2">
+  <div><label class="f">Blended ACV</label><div class="ln"><input type="range" id="u_acv" min="20000" max="60000" step="500" value="41000"><span class="out" id="u_acv_o">$41,000</span></div></div>
+  <div><label class="f">CAC</label><div class="ln"><input type="range" id="u_cac" min="8000" max="45000" step="500" value="24000"><span class="out" id="u_cac_o">$24,000</span></div></div>
+  <div><label class="f">Annual churn</label><div class="ln"><input type="range" id="u_ch" min="5" max="50" step="1" value="25"><span class="out" id="u_ch_o">25%</span></div></div>
+  <div><label class="f">Gross margin</label><div class="ln"><input type="range" id="u_gm" min="60" max="95" step="1" value="86"><span class="out" id="u_gm_o">86%</span></div></div>
+</div>
+<div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap">
+  <button id="u_reset">Reset to committed baseline</button>
+  <button id="u_real">Set to realized figures</button>
+</div>
+</div>
+<div class="metrics">
+  <div class="met"><div class="k">LTV</div><div class="v" id="u_ltv">$141,040</div></div>
+  <div class="met"><div class="k">LTV : CAC</div><div class="v" id="u_ratio">5.9x</div></div>
+  <div class="met"><div class="k">CAC payback</div><div class="v" id="u_pb">8.2 mo</div></div>
+  <div class="met"><div class="k">Implied life</div><div class="v" id="u_life">4.0 yr</div></div>
+</div>
+<div id="u_flag" class="flag f-ok">Clears the 3x Series A benchmark</div>
+<p class="sowhat">Press "set to realized figures" to substitute today's $29,231 blended ACV and a 35% churn assumption appropriate to an unproven cohort. The ratio falls to roughly 3.0x, which is the edge of the Series A bar rather than comfortably past it. The company's own model reaches 3.2x at base case, which corroborates the rebuilt number and not the memo's.</p>
+<p>The genuinely strong finding: gross margin at 85%+ with infrastructure running under $4,000 per $100,000 of ARR is excellent and architecturally credible. This is a software business, not an AI services business wearing software clothing. That distinction is real and it is the best number in the file.</p>
+</div>
+
+<!-- ===== 10 COMPETITION ===== -->
+<div class="sec" id="s10">
+<span class="eyebrow">§10 · Competitive position and the capital gap</span>
+<h2>The category funded itself while this memo was being written</h2>
+<table>
+<thead><tr><th>Company</th><th class="n">Capital raised</th><th class="n">Customers</th><th>Position as of mid-2026</th></tr></thead>
+<tbody>
+<tr><td>GovDash</td><td class="n">~$40-42M</td><td class="n">~200</td><td class="small">$30M Series B Jan 2026 (Mucker, BCI, Northzone, YC). Revenue 16x in 2025, customers 18x. FedRAMP Moderate Equivalency. Full lifecycle: Discover, Capture, Proposal, Contract, Delivery, plus an agent. <span class="tier t-ext">EXT</span></td></tr>
+<tr><td>Procurement Sciences</td><td class="n">$41.4M</td><td class="n">100+ SMB, several top-20 defense primes</td><td class="small">$30M Series B Nov 2025 (Catalyst, Battery, Bosch, Citi). 80 employees. Acquired HigherGov Feb 2026. Expanding into SLED and international. <span class="tier t-ext">EXT</span></td></tr>
+<tr style="background:#F2F1EC"><td><b>Intellectible</b></td><td class="n"><b>~$4.7M</b></td><td class="n"><b>~26</b></td><td class="small">$2.95M Seed closed May 2026 plus roughly $1.7M prior. 15+ in production. Pricing Engine live at three named accounts. <span class="tier t-co">CO</span></td></tr>
+</tbody>
+</table>
+<p class="sowhat">Roughly 17x the capital and 8x the customers across the two nearest competitors. That gap does not automatically kill the company. It does mean Intellectible cannot win by outspending, so the entire case rests on the pricing wedge being genuinely out of reach for two well-funded teams for at least eighteen months.</p>
+
+<h3>The consolidation signal the memo missed</h3>
+<p>Procurement Sciences acquired HigherGov in February 2026 <span class="tier t-ext">EXT</span>. The existing memo lists HigherGov in its own section as an independent opportunity-feed point tool. The point tools the memo treats as a fragmented irrelevance are being rolled up by the competitor with the largest balance sheet. Category consolidation is already underway, one round earlier than the memo's risk framing assumes.</p>
+
+<div class="callout">
+<p style="margin:0"><b>The steelman, and it is a real one.</b> Neither competitor has shipped multi-variable services pricing across geography, wage rules, facility attributes, travel, and subcontracting with CFO approval gates. GovDash's product surface is capture and proposal with contract management. Procurement Sciences lists "Price to Win," which is a defense cost-type concept, not a labor-services pricing engine. Intellectible has this in production at Team OTG and Apex today. The wedge is real. The question is only whether it is eighteen months deep or six.</p>
+</div>
+</div>
+
+<!-- ===== 11 MOAT ===== -->
+<div class="sec" id="s11">
+<span class="eyebrow">§11 · Moat under model-capability doubling</span>
+<p>The test that matters: if frontier model capability doubles in eighteen months and generic agents get materially better at reading documents and following instructions, what survives?</p>
+<table>
+<thead><tr><th>Claimed moat</th><th>Survives?</th><th>Reasoning</th></tr></thead>
+<tbody>
+<tr><td>Workflow runtime (Kubernetes, containerized runs, orchestration, sandboxed execution)</td><td><b style="color:var(--bad)">Weakens</b></td><td class="small">Real engineering, roughly two and a half years of build. It is also the layer being commoditized fastest by agent frameworks and hosted execution platforms. Two and a half years of build is not two and a half years of lead in 2026.</td></tr>
+<tr><td>High-fidelity document and vision extraction</td><td><b style="color:var(--bad)">Weakens</b></td><td class="small">This is precisely what improving multimodal models take over. The multi-pass reconciliation and schema normalization survive longer than the extraction itself.</td></tr>
+<tr><td>SOP digital twin and encoded rule sets</td><td><b style="color:var(--ok)">Survives</b></td><td class="small">This is customer-specific configured knowledge, not model capability. Better models make it faster to build, which cuts both ways, but the installed base of encoded SOPs is not something a competitor can regenerate without the customer relationship.</td></tr>
+<tr><td>Deterministic pricing rails with CFO approval gates</td><td><b style="color:var(--ok)">Survives</b></td><td class="small">The strongest asset in the company. Its value comes from being <i>not</i> AI: auditable, reproducible, approvable. Better models do not erode a governance layer, they increase demand for one.</td></tr>
+<tr><td>Integration depth and switching costs</td><td><b style="color:var(--ok)">Survives</b></td><td class="small">Standard and real. Compounds in the 30 to 90 day window post-deployment.</td></tr>
+</tbody>
+</table>
+<p class="sowhat">Two of five claimed moats are on the wrong side of the capability curve, and they are the two the company leads with. The two that survive are the ones the memo treats as supporting detail. The pitch is ordered backwards relative to the durability of the assets.</p>
+</div>
+
+<!-- ===== 12 TEAM ===== -->
+<div class="sec" id="s12">
+<span class="eyebrow">§12 · Team</span>
+<p>The technical side is strong and verifiable in kind: a CTO with fifteen years on high-performance runtime engines, a point-cloud rendering system used in broadcast, a contribution to the Apple Vision Pro team; a CPO who has delivered multi-million-dollar Salesforce implementations. They have built two companies together and have a decade-long working relationship, which genuinely reduces the most common early-stage failure mode. Founder vesting re-set at close with double-trigger acceleration is the correct structure and a good sign.</p>
+<div class="callout">
+<p style="margin:0"><b>The CEO's headline credential is the single largest unresolved item in this file.</b> The claim is zero to $10M ARR in under three years on $35M raised, exited to private equity. External data reports the prior company's 2022 revenue at approximately $940K, lists a different person as CEO, and puts total capital raised at either $24.4M or $40.4M depending on source. The business sold hardware learning kits on a product-pricing model, so describing peak revenue as "ARR" is a category error even if the peak figure is accurate. <span class="tier t-ext">EXT</span></p>
+</div>
+<p>Two readings are available and only one can be true. Either the prior company hit $10M in product revenue at peak and then declined sharply before a modest sale, in which case the claim is technically defensible and rhetorically misleading. Or the $10M figure was never reached, in which case it is a fabrication. The evidence does not yet separate them, and the founder can settle it in one document. Until he does, the score treats the credential as unproven, which costs roughly 1.2 points of composite.</p>
+<p class="small">Board and advisor bench is credible: Armistead Whitney (founded and exited Apptega), Greg Castle (Anorak, 200+ seed investments including Anduril and Flexport), John O'Grady (Army Futures Command at Raytheon). Anorak's stated policy of not doing follow-on checks means their non-participation carries no signal either way, which the existing memo correctly notes.</p>
+</div>
+
+<!-- ===== 13 GTM ===== -->
+<div class="sec" id="s13">
+<span class="eyebrow">§13 · Go-to-market credibility</span>
+<p>The plan requires new-logo cadence to reach 4.0 per month from August 2026 and 4.5 by December 2027 <span class="tier t-co">CO</span>. Observed cadence to date is roughly 1.1 per month, founder-led, over 24 months.</p>
+<p>So the plan asks two account executives who have not started yet to deliver a 3.6x step-change in acquisition rate, in a market where the two best-funded competitors are hiring aggressively, while the CEO simultaneously retains head-of-sales through $3M ARR and personally owns the whale accounts.</p>
+<p>The founder's reasoning for deferring a head of sales, that a $250K base plus $250K bonus leader is uneconomic below $3M ARR, is correct on its own terms and is a defensible capital-allocation call. The risk is not the logic. It is that the same person is simultaneously the head of sales, the whale account owner, the product direction owner, and the fundraiser, at the exact moment the motion needs to become repeatable without him.</p>
+<p class="sowhat">This is the most testable risk in the file: the ratio of non-founder-led closes per month is observable monthly and needs no cooperation beyond an honest investor update.</p>
+</div>
+
+<!-- ===== 14 SCENARIOS ===== -->
+<div class="sec" id="s14">
+<span class="eyebrow">§14 · Scenarios and returns</span>
+<h2>What the check is actually betting on</h2>
+<p>Entry at a $20M cap on $250K is 1.25% pre-dilution. The company plans a $20M to $35M Series A at $55M to $60M post in the base case, which is roughly 36% dilution on its own, before any Series B.</p>
+
+<div class="ctrls noprint">
+<div class="grid2">
+  <div><label class="f">Bull probability</label><div class="ln"><input type="range" id="p_bull" min="0" max="45" step="1" value="15"><span class="out" id="p_bull_o">15%</span></div></div>
+  <div><label class="f">Bear probability</label><div class="ln"><input type="range" id="p_bear" min="0" max="85" step="1" value="50"><span class="out" id="p_bear_o">50%</span></div></div>
+  <div><label class="f">Base exit value</label><div class="ln"><input type="range" id="e_base" min="20" max="400" step="10" value="120"><span class="out" id="e_base_o">$120M</span></div></div>
+  <div><label class="f">Bull exit value</label><div class="ln"><input type="range" id="e_bull" min="200" max="2000" step="50" value="1000"><span class="out" id="e_bull_o">$1,000M</span></div></div>
+  <div><label class="f">Total dilution to exit</label><div class="ln"><input type="range" id="e_dil" min="20" max="80" step="5" value="55"><span class="out" id="e_dil_o">55%</span></div></div>
+  <div><label class="f">Marketlogic slice of the $250K</label><div class="ln"><input type="range" id="e_chk" min="10" max="250" step="5" value="50"><span class="out" id="e_chk_o">$50K</span></div></div>
+</div>
+<div style="margin-top:12px"><button id="e_reset">Reset to committed baseline</button></div>
+</div>
+<div class="metrics">
+  <div class="met"><div class="k">Bull MOIC</div><div class="v" id="r_bull">22.5x</div></div>
+  <div class="met"><div class="k">Base MOIC <span id="p_base_o" class="mono">35%</span></div><div class="v" id="r_base">2.7x</div></div>
+  <div class="met"><div class="k">Bear</div><div class="v" style="color:var(--slate)">0.0x</div></div>
+  <div class="met"><div class="k">Weighted MOIC</div><div class="v" id="r_wtd">4.3x</div></div>
+</div>
+<div id="r_flag" class="flag f-bad">Below the 5x seed hurdle</div>
+<div class="metrics" style="margin-top:14px">
+  <div class="met"><div class="k">Bull case proceeds</div><div class="v" id="r_bullp">$1.13M</div></div>
+  <div class="met"><div class="k">As multiple of a $5M fund</div><div class="v" id="r_fund">0.23x</div></div>
+</div>
+<p class="sowhat">This is the fund-construction argument and it is the one that decides the deal. Even in the bull case, where the company reaches a billion-dollar outcome, the realistic Marketlogic slice returns roughly a fifth of Fund I. A position that cannot return the fund in its best case should not consume a partner's diligence bandwidth in a $5M Fund I unless it is buying something else, such as a relationship or a signal. Neither is available here: there is no board seat, no information rights beyond SAFE standard, and the position sits inside someone else's SPV.</p>
+</div>
+
+<!-- ===== 15 RISK ===== -->
+<div class="sec" id="s15">
+<span class="eyebrow">§15 · Risk register with kill criteria</span>
+<table>
+<thead><tr><th style="width:26%">Risk</th><th class="n">Sev</th><th class="n">Lik</th><th class="n">Score</th><th>Kill criterion</th></tr></thead>
+<tbody>
+<tr><td>Competitive capital and customer gap</td><td class="n">5</td><td class="n">4</td><td class="n">20</td><td class="kill">GovDash or Procurement Sciences announces a services-pricing module with a named facilities-management logo before Q2 2027.</td></tr>
+<tr><td>Evidence integrity across company figures</td><td class="n">4</td><td class="n">5</td><td class="n">20</td><td class="kill">Any one of the six contradictions in §07 is not reconciled in writing within ten business days of being raised.</td></tr>
+<tr><td>New-logo cadence step-change</td><td class="n">4</td><td class="n">4</td><td class="n">16</td><td class="kill">Monthly new-logo adds below 2.5 for two consecutive months after both AEs are ninety days ramped.</td></tr>
+<tr><td>HHS concentration</td><td class="n">5</td><td class="n">3</td><td class="n">15</td><td class="kill">HHS exceeds 45% of contracted ARR without a signed multi-year minimum.</td></tr>
+<tr><td>Price paid above the priced round</td><td class="n">3</td><td class="n">5</td><td class="n">15</td><td class="kill">Certain, not probabilistic. Only cured by the cap moving to $15M or below.</td></tr>
+<tr><td>Cohort too young to read retention</td><td class="n">3</td><td class="n">4</td><td class="n">12</td><td class="kill">Any 2026 logo loss that takes full-book gross retention below 90%.</td></tr>
+<tr><td>CEO prior-exit narrative</td><td class="n">4</td><td class="n">3</td><td class="n">12</td><td class="kill">Founder declines or is unable to produce prior-company revenue and transaction documentation on request.</td></tr>
+<tr><td>Federal appropriations cyclicality</td><td class="n">3</td><td class="n">3</td><td class="n">9</td><td class="kill">Two consecutive quarters of pipeline decline attributed by the company to appropriations.</td></tr>
+</tbody>
+</table>
+<p class="sowhat">Seven of eight kill criteria are observable from ordinary investor updates without special access. That is deliberate: on a SAFE with no information rights, a kill criterion that requires cooperation is decorative.</p>
+</div>
+
+<!-- ===== 16 FALSIFIERS ===== -->
+<div class="sec" id="s16">
+<span class="eyebrow">§16 · What would change the score</span>
+<div class="grid2" style="gap:26px">
+<div>
+<h3 style="color:var(--ok)">Would move it up 1.0 or more</h3>
+<ul>
+<li>Founder produces prior-company audited revenue and transaction documents that substantiate the exit claim. <span class="mono">+1.2</span></li>
+<li>Cap renegotiated to the $15M priced-round post-money, direct on the cap table rather than through an SPV. <span class="mono">+1.0</span></li>
+<li>Full-book gross and net retention disclosed by cohort age and above 95% and 115% respectively. <span class="mono">+1.0</span></li>
+</ul>
+</div>
+<div>
+<h3 style="color:var(--bad)">Would move it down 1.0 or more</h3>
+<ul>
+<li>HHS renewal terms revealed as annual with termination for convenience and no minimum. <span class="mono">-1.3</span></li>
+<li>Either large competitor ships a services-pricing module before Q2 2027. <span class="mono">-1.5</span></li>
+<li>Model and memo contradictions confirmed as deliberate rather than clerical. <span class="mono">-2.0</span></li>
+</ul>
+</div>
+</div>
+</div>
+
+<!-- ===== 17 THESIS FIT ===== -->
+<div class="sec" id="s17">
+<span class="eyebrow">§17 · Marketlogic thesis fit</span>
+<table>
+<thead><tr><th>Thesis clause</th><th class="n">Fit</th><th>Assessment</th></tr></thead>
+<tbody>
+<tr><td>Deeptech reimagining enterprise transformation</td><td class="n">9</td><td class="small">Direct hit. This is SOP-to-software conversion with governance, which is enterprise transformation expressed as a product.</td></tr>
+<tr><td>Operational complexity in process, reporting, working capital turned into software advantage</td><td class="n">9</td><td class="small">The Pricing Engine is a margin-protection instrument with a CFO audit trail. Precisely the clause.</td></tr>
+<tr><td>Supply chains analyzed to find value creators</td><td class="n">7</td><td class="small">Services procurement supply chain, supplier side. Reasonable fit.</td></tr>
+<tr><td>AI, frontier technology, and space</td><td class="n">6</td><td class="small">AI applied, not frontier. Not space. Fits the broad clause, not the sharp end of it.</td></tr>
+<tr><td>Edge from hands-on operational fluency</td><td class="n">10</td><td class="small">Twenty years in SAP FICO and Project Systems means this fund can actually diligence a pricing-governance workflow, rate tables, and approval routing. Most seed investors in this deal cannot. This is genuine edge, and it is the reason the contradictions in §07 surfaced at all.</td></tr>
+</tbody>
+</table>
+<p class="sowhat">Thesis fit is the highest-scoring dimension in the file at 8.5. That is exactly why the pass needs to be argued carefully rather than assumed: the temptation to force a fit is strongest when the fit is real and only the deal is bad.</p>
+</div>
+
+<!-- ===== 18 DILIGENCE ===== -->
+<div class="sec" id="s18">
+<span class="eyebrow">§18 · Diligence queue</span>
+<h2>Ranked by score at risk, not by topic</h2>
+<div class="ctrls noprint" style="display:flex;gap:16px;align-items:center;flex-wrap:wrap">
+  <span class="small">Score still at risk: <span class="mono" id="dq_out" style="font-size:17px;color:var(--bad)">-9.4</span></span>
+  <button id="dq_reset">Clear all</button>
+</div>
+<div id="dqlist"></div>
+<p class="sowhat">Questions one through six are all reconciliations of documents already in the data room. They cost the founder an afternoon. How he responds to them is itself the most informative diligence available, and it is free.</p>
+</div>
+
+<!-- ===== 19 TERMS ===== -->
+<div class="sec" id="s19">
+<span class="eyebrow">§19 · Terms and structure</span>
+<h2>The deal is worse than the company</h2>
+<p>A priced round closed at approximately $15M post-money with a named lead, a term sheet, a board seat, and full preferred rights. The instrument on offer is a SAFE at a $20M cap, which is a 33% higher entry price for a later, less-informed, less-protected position, executed through a third party's SPV that adds a fee layer and removes direct cap-table presence.</p>
+<p>The standard justification is access. Access is worth paying for when it buys information, influence, or allocation in a future round. Here it buys none of the three: no board seat, no information rights beyond SAFE standard, no contractual pro rata, and no direct relationship with the company because the position sits inside the SPV.</p>
+<h3>What to ask for if this is revisited</h3>
+<ul>
+<li>Cap at $15M, matching the priced round that closed weeks ago. There is no principled reason a later, smaller, less-committed dollar prices higher.</li>
+<li>Direct cap-table position rather than SPV, or an SPV with disclosed and capped fees.</li>
+<li>Contractual pro rata at the Series A, which is the only term that makes a small seed position worth holding.</li>
+<li>Quarterly reporting with full-book retention metrics, not ICP-filtered.</li>
+<li>MFN clause, given that later SAFEs at a lower cap would otherwise leapfrog this position.</li>
+</ul>
+</div>
+
+<!-- ===== 20 MONITORING ===== -->
+<div class="sec" id="s20">
+<span class="eyebrow">§20 · Pre-committed monitoring milestones</span>
+<p>Written now so future reviews are verification rather than debate. Each is pass or fail against a number.</p>
+<table>
+<thead><tr><th style="width:16%">Checkpoint</th><th>Test</th></tr></thead>
+<tbody>
+<tr><td class="mono">Q4 2026</td><td>Contracted ARR at or above $1.4M. Non-founder-led closes at or above 40% of new logos. Yes or no.</td></tr>
+<tr><td class="mono">Q1 2027</td><td>Full-book gross retention disclosed and at or above 90%. HHS below 45% of contracted ARR. Yes or no.</td></tr>
+<tr><td class="mono">Q2 2027</td><td>New-logo cadence at or above 3.0 per month averaged over the prior quarter. Pricing Engine live at six or more accounts outside HHS. Yes or no.</td></tr>
+<tr><td class="mono">Q4 2027</td><td>Annualized ARR at or above $2.5M and cash above $750K. Both, not either. Yes or no.</td></tr>
+<tr><td class="mono">Series A</td><td>If three of the four above passed, re-underwrite at the A with a fresh score. If two or fewer, do not re-open the file.</td></tr>
+</tbody>
+</table>
+</div>
+
+<!-- ===== 21 GAPS ===== -->
+<div class="sec" id="s21">
+<span class="eyebrow">§21 · Data gaps</span>
+<table>
+<thead><tr><th style="width:38%">Not available</th><th>Cost to confidence</th></tr></thead>
+<tbody>
+<tr><td>Full-book gross and net retention by cohort age</td><td class="small">High. Retention is the single number that would separate real product-market fit from champion stickiness.</td></tr>
+<tr><td>HHS contract terms: length, minimum, termination for convenience</td><td class="small">High. Half the book's durability is unknown.</td></tr>
+<tr><td>Prior-company revenue and transaction documentation</td><td class="small">High. Determines whether §12 is a rhetoric problem or an integrity problem.</td></tr>
+<tr><td>Head-to-head win/loss against GovDash and Procurement Sciences</td><td class="small">Medium-high. Would settle whether the pricing wedge actually holds in competitive deals.</td></tr>
+<tr><td>Post-close Carta snapshot</td><td class="small">Medium. Pre-close snapshot only; post-round ownership is estimated.</td></tr>
+<tr><td>SPV fee schedule and carry</td><td class="small">Medium. Materially changes net returns on an already thin position.</td></tr>
+<tr><td>SOC 2 status</td><td class="small">Low now, high at enterprise scale. Competitor has FedRAMP Moderate Equivalency.</td></tr>
+</tbody>
+</table>
+</div>
+
+<!-- ===== 22 CONCLUSION ===== -->
+<div class="sec" id="s22">
+<span class="eyebrow">§22 · Recommendation</span>
+<p class="lede">Pass on the SAFE at the $20M cap. This is not a judgment that the company will fail. Intellectible is a real business with real revenue, an unusually strong technical team, and the best-evidenced product surface of any deal in the current series. The pricing-governance wedge is genuine and the gross margin structure is excellent.</p>
+<p>The pass rests on four things that are all arithmetic rather than opinion. The entry price is 33% above a priced round that closed weeks earlier, with fewer rights. The probability-weighted return does not clear a seed hurdle and cannot return a meaningful fraction of Fund I even in the bull case, because the available allocation is too small and sits inside another party's SPV. Two competitors hold roughly seventeen times the capital and eight times the customers in a category that has begun consolidating. And half of the tested headline claims contradict documents in the company's own data room.</p>
+<p><b>Would I put my own money in at these terms?</b> No, and the deciding factor is the last one. The first three are ordinary venture risk that a good company can outrun. The fourth is a question about how this company describes itself under pressure, and it is unresolved. If the founder reconciles the six contradictions in §07 in writing and produces prior-company documentation, and if the cap comes to $15M with contractual pro rata, this becomes a defensible small position and the composite moves to roughly 7.0. That is a real path, it is entirely in the founder's control, and it takes about a week. Ask for it.</p>
+</div>
+
+<div class="foot">
+Marketlogic Investors LLC · Investment Memorandum · Confidential<br>
+Prepared for internal investment committee use only. Not investment advice. All deck-derived figures subject to verification.<br>
+Intellectible · ML-2026-IT-02 · Author: H. Reganti · Prepared 9 August 2026<br>
+Independent re-underwrite. ML-2026-IT-01 (May 2026) remains on file and is not superseded, amended, or withdrawn by this document.<br>
+Source documents: IntellectibleDeckAC.pdf · Intellectible_Investment Memo - GoingVC Partners.docx · Intellectible_Scenario_Model · Intellectible Diligence Report Template April 2026.<br>
+External verification: Tracxn, CB Insights, PitchBook, Crunchbase, company press releases, trade press. Retrieved 9 August 2026.<br>
+Interactive controls explore sensitivity around a locked baseline. They do not alter the committed position above.
+</div>
+
+</div>
+
+<script>
+(function(){
+  var $=function(i){return document.getElementById(i)};
+  var fmt=function(n){return n.toLocaleString('en-US')};
+
+  /* ---- 01 scorecard ---- */
+  var DIMS=[
+    ['Founder and team quality',12,5.5,'Technical bench strong. CEO exit claim unverified.'],
+    ['Traction quality',12,6.5,'Real 7x growth. Cohort too young to read.'],
+    ['Moat and defensibility',12,5.5,'Two of five claimed moats commoditizing.'],
+    ['Market size and structure',10,5.0,'TAM 51x own SAM. Real market is ~$102M.'],
+    ['Unit economics',10,5.5,'Margin excellent. LTV:CAC overstated vs own model.'],
+    ['Competitive position',8,3.5,'17x capital gap. Category consolidating.'],
+    ['Go-to-market credibility',8,4.5,'Plan needs a 3.6x cadence step-change.'],
+    ['Product and technical depth',8,7.5,'Best-evidenced part of the company.'],
+    ['Capital efficiency and runway',6,5.0,'Base case ends 2027 with $543K, not $1.2M.'],
+    ['Terms and structure',6,2.5,'33% above the priced round, no rights, SPV.'],
+    ['Marketlogic thesis fit',5,8.5,'Direct hit, plus genuine diligence edge.'],
+    ['Evidence integrity',3,2.0,'Six of twelve headline claims contradicted.']
+  ];
+  var tb=$('sctab').getElementsByTagName('tbody')[0], wg=$('wgrid');
+  DIMS.forEach(function(d,i){
+    var tr=document.createElement('tr');
+    tr.innerHTML='<td>'+d[0]+'</td><td class="n" id="w'+i+'">'+d[1]+'%</td><td class="n">'+d[2].toFixed(1)+
+      '</td><td class="n"><span class="bartrack"><span class="bar" style="width:'+(d[2]*7.6)+'%"></span></span><span id="wv'+i+'">'+(d[1]*d[2]/100).toFixed(2)+'</span></td><td class="small">'+d[3]+'</td>';
+    tb.appendChild(tr);
+    var c=document.createElement('div');
+    c.innerHTML='<label class="f">'+d[0]+'</label><div class="ln"><input type="range" id="ws'+i+'" min="0" max="25" step="1" value="'+d[1]+'"><span class="out" id="wo'+i+'">'+d[1]+'%</span></div>';
+    wg.appendChild(c);
+  });
+  function scalc(){
+    var tot=0,acc=0;
+    DIMS.forEach(function(d,i){ tot+=+$('ws'+i).value; });
+    if(tot===0) tot=1;
+    DIMS.forEach(function(d,i){
+      var w=+$('ws'+i).value, nw=w/tot*100;
+      $('wo'+i).textContent=w+'%';
+      $('w'+i).textContent=nw.toFixed(1)+'%';
+      $('wv'+i).textContent=(nw*d[2]/100).toFixed(2);
+      acc+=nw*d[2]/100;
+    });
+    $('compout').textContent=acc.toFixed(1);
+    $('bandout').textContent = acc>=7.5?'Invest band':(acc>=6.0?'Monitor band':'Pass band');
+  }
+  DIMS.forEach(function(d,i){ $('ws'+i).addEventListener('input',scalc); });
+  $('wreset').addEventListener('click',function(){ DIMS.forEach(function(d,i){$('ws'+i).value=d[1];}); scalc(); });
+  scalc();
+
+  /* ---- 06 market ---- */
+  function mcalc(){
+    var n=+$('m_n').value, a=+$('m_acv').value, s=+$('m_sh').value;
+    $('m_n_o').textContent=fmt(n); $('m_acv_o').textContent='$'+Math.round(a/1000)+'K'; $('m_sh_o').textContent=s+'%';
+    var sam=n*a, som=sam*s/100, need=Math.ceil(100000000/a);
+    $('m_sam').textContent='$'+(sam/1e6).toFixed(0)+'M';
+    $('m_som').textContent='$'+(som/1e6).toFixed(1)+'M';
+    $('m_need').textContent=fmt(need);
+    $('m_pct').textContent=Math.round(need/n*100)+'%';
+  }
+  ['m_n','m_acv','m_sh'].forEach(function(i){$(i).addEventListener('input',mcalc)});
+  $('m_reset').addEventListener('click',function(){$('m_n').value=3500;$('m_acv').value=29000;$('m_sh').value=10;mcalc();});
+  mcalc();
+
+  /* ---- 07 filter ---- */
+  var chips=document.querySelectorAll('.chip[data-f]');
+  chips.forEach(function(b){
+    b.addEventListener('click',function(){
+      chips.forEach(function(x){x.setAttribute('aria-pressed','false')});
+      b.setAttribute('aria-pressed','true');
+      var f=b.getAttribute('data-f');
+      Array.prototype.forEach.call($('fctab').querySelectorAll('tbody tr'),function(r){
+        r.style.display=(f==='all'||r.getAttribute('data-v')===f)?'':'none';
+      });
+    });
+  });
+
+  /* ---- 09 unit economics ---- */
+  function ucalc(){
+    var a=+$('u_acv').value, c=+$('u_cac').value, ch=+$('u_ch').value/100, gm=+$('u_gm').value/100;
+    $('u_acv_o').textContent='$'+fmt(a); $('u_cac_o').textContent='$'+fmt(c);
+    $('u_ch_o').textContent=Math.round(ch*100)+'%'; $('u_gm_o').textContent=Math.round(gm*100)+'%';
+    var ltv=a*gm/ch, r=ltv/c, pb=c/(a*gm/12);
+    $('u_ltv').textContent='$'+fmt(Math.round(ltv));
+    $('u_ratio').textContent=r.toFixed(1)+'x';
+    $('u_pb').textContent=pb.toFixed(1)+' mo';
+    $('u_life').textContent=(1/ch).toFixed(1)+' yr';
+    var f=$('u_flag');
+    if(r>=3){f.className='flag f-ok';f.textContent='Clears the 3x Series A benchmark';}
+    else{f.className='flag f-bad';f.textContent='Below the 3x Series A benchmark';}
+  }
+  ['u_acv','u_cac','u_ch','u_gm'].forEach(function(i){$(i).addEventListener('input',ucalc)});
+  $('u_reset').addEventListener('click',function(){$('u_acv').value=41000;$('u_cac').value=24000;$('u_ch').value=25;$('u_gm').value=86;ucalc();});
+  $('u_real').addEventListener('click',function(){$('u_acv').value=29000;$('u_cac').value=24000;$('u_ch').value=35;$('u_gm').value=86;ucalc();});
+  ucalc();
+
+  /* ---- 14 scenarios ---- */
+  var CAP=20, POOL=0.25;
+  function ecalc(){
+    var pb=+$('p_bull').value, pr=+$('p_bear').value;
+    if(pb+pr>100){pr=100-pb;$('p_bear').value=pr;}
+    var pbase=100-pb-pr;
+    var eb=+$('e_base').value, ebu=+$('e_bull').value, d=+$('e_dil').value, chk=+$('e_chk').value;
+    $('p_bull_o').textContent=pb+'%'; $('p_bear_o').textContent=pr+'%'; $('p_base_o').textContent=pbase+'%';
+    $('e_base_o').textContent='$'+fmt(eb)+'M'; $('e_bull_o').textContent='$'+fmt(ebu)+'M';
+    $('e_dil_o').textContent=d+'%'; $('e_chk_o').textContent='$'+chk+'K';
+    var own=(POOL/CAP)*(1-d/100);
+    var mBase=own*eb/POOL, mBull=own*ebu/POOL;
+    var wtd=(pb/100)*mBull+(pbase/100)*mBase;
+    $('r_bull').textContent=mBull.toFixed(1)+'x';
+    $('r_base').textContent=mBase.toFixed(1)+'x';
+    $('r_wtd').textContent=wtd.toFixed(1)+'x';
+    var proceeds=chk*1000*mBull;
+    $('r_bullp').textContent='$'+(proceeds/1e6).toFixed(2)+'M';
+    $('r_fund').textContent=(proceeds/5e6).toFixed(2)+'x';
+    var f=$('r_flag');
+    if(wtd>=5){f.className='flag f-ok';f.textContent='Clears the 5x seed hurdle';}
+    else{f.className='flag f-bad';f.textContent='Below the 5x seed hurdle';}
+  }
+  ['p_bull','p_bear','e_base','e_bull','e_dil','e_chk'].forEach(function(i){$(i).addEventListener('input',ecalc)});
+  $('e_reset').addEventListener('click',function(){$('p_bull').value=15;$('p_bear').value=50;$('e_base').value=120;$('e_bull').value=1000;$('e_dil').value=55;$('e_chk').value=50;ecalc();});
+  ecalc();
+
+  /* ---- 18 diligence queue ---- */
+  var DQ=[
+   [1.2,'Produce prior-company audited revenue for FY2019 through FY2022 and the sale documents.','Settles whether the headline founder credential is defensible framing or a fabrication. Nothing else in the file is as binary.'],
+   [0.9,'Which is the plan: $3.6M ARR at end of 2027, or the model base case of $2,974,895 that your own dashboard scores BORDERLINE?','The memo and the model disagree by 21% on the number the whole Series A case rests on.'],
+   [0.8,'Reconcile $1.2M cash entering the Series A against the model base case of $542,584 at December 2027.','A $657K gap on a company whose downside case runs out of cash in August 2027.'],
+   [0.8,'Full-book gross and net revenue retention by cohort age, not filtered to ICP.','The "0% within ICP" qualifier implies a non-ICP book that has never been shown.'],
+   [0.7,'Reconcile LTV:CAC of 5.9x against your own model base case of 3.2x.','5.9x is the model upside case presented in the memo as conservative.'],
+   [0.7,'Head-to-head win and loss record against GovDash and Procurement Sciences over the last twelve months.','Determines whether the pricing wedge holds in competitive deals or only in uncontested ones.'],
+   [0.6,'Reconcile $760K contracted ARR against the model Inputs tab, which sets starting ARR at $640,000 as of May 2026.','Internal inconsistency on the single most quoted number in the deal.'],
+   [0.6,'HHS contract terms: length, annual minimum, termination for convenience, renewal mechanics.','Half the book by end of year. Currently unknown durability.'],
+   [0.6,'Will the cap move to $15M, matching the priced round that closed weeks ago?','The single highest-leverage term. A yes changes the recommendation.'],
+   [0.5,'Actual monthly new-logo adds for the trailing six months, and the share closed without CEO involvement.','The plan needs 4.0 per month from a base of roughly 1.1.'],
+   [0.5,'SPV fee schedule, carry, and whether pro rata rights pass through to participants.','Materially changes net return on an already thin position.'],
+   [0.4,'Post-close Carta snapshot with the $2.95M round reflected.','Current ownership is estimated from a pre-close snapshot.'],
+   [0.4,'Which of the three market population figures (180,000 / 188,000 / 8,700) is the ICP, and what defines it?','Three numbers used interchangeably across three documents.'],
+   [0.4,'Named references at Team OTG and Apex Site Solutions, specifically on Pricing Engine deployment effort.','Repeatability of the expansion motion outside HHS is the whole expansion thesis.'],
+   [0.3,'SOC 2 status and timeline, given a competitor holds FedRAMP Moderate Equivalency.','Becomes a gating item at enterprise scale.'],
+   [0.3,'Detail behind the $700K per month qualified pipeline figure: definition, source, and conversion to closed.','Pipeline definitions are the most commonly stretched number in seed decks.'],
+   [0.3,'Non-ICP customer count and what happened to them.','Directly tests the churn qualifier.'],
+   [0.2,'Direct GPU contract terms assumed to compress infra cost past $3M ARR.','Underpins the margin trajectory, though margin is already strong without it.']
+  ];
+  var list=$('dqlist');
+  DQ.forEach(function(q,i){
+    var d=document.createElement('div');
+    d.className='dq';
+    d.innerHTML='<div class="top"><input type="checkbox" id="dq'+i+'" data-d="'+q[0]+'"><div style="flex:1"><p class="q"><b>'+(i+1)+'.</b> '+q[1]+'</p><p class="small" style="margin:0">'+q[2]+'</p></div><span class="d">-'+q[0].toFixed(1)+'</span></div>';
+    list.appendChild(d);
+  });
+  function dcalc(){
+    var t=0;
+    DQ.forEach(function(q,i){ if(!$('dq'+i).checked) t+=q[0]; });
+    $('dq_out').textContent='-'+t.toFixed(1);
+  }
+  DQ.forEach(function(q,i){ $('dq'+i).addEventListener('change',dcalc); });
+  $('dq_reset').addEventListener('click',function(){DQ.forEach(function(q,i){$('dq'+i).checked=false;});dcalc();});
+  dcalc();
+})();
+</script>
+</body>
+</html>
