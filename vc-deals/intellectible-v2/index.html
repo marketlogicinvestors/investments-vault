@@ -84,9 +84,23 @@ input[type=checkbox]{accent-color:var(--ink);margin-right:9px;transform:translat
   .sec{break-inside:avoid;page-break-inside:avoid}
   a{color:var(--ink);text-decoration:none}
 }
+.site-nav{display:flex;align-items:center;justify-content:space-between;gap:16px;background:var(--ink);color:var(--paper);padding:11px 28px;font-family:var(--sans);font-size:12.5px;letter-spacing:.02em;position:sticky;top:0;z-index:100}
+.site-nav a{color:rgba(252,251,248,.72);text-decoration:none}
+.site-nav a:hover{color:var(--paper)}
+.site-nav .sep{color:rgba(252,251,248,.32);margin:0 6px}
+.site-nav .here{color:rgba(252,251,248,.5)}
+.site-nav .nav-action a{color:var(--paper);border:1px solid rgba(252,251,248,.42);border-radius:3px;padding:3px 11px}
+.site-nav .nav-action a:hover{background:var(--paper);color:var(--ink)}
+.backlink{display:inline-block;margin-top:22px;font-family:var(--sans);font-size:13px;color:var(--accent);text-decoration:none}
+.backlink:hover{text-decoration:underline}
+@media print{.site-nav,.backlink{display:none !important}}
 </style>
 </head>
 <body>
+<nav class="site-nav" aria-label="breadcrumb">
+<span><a href="../../">Market Logic Investors</a><span class="sep">/</span><a href="../../">Deal Vault</a><span class="sep">/</span><a href="../">VC Deals</a><span class="sep">/</span><span class="here">Intellectible · re-underwrite (v2)</span></span>
+<span class="nav-action"><a href="../">← All VC Deals</a></span>
+</nav>
 <div class="wrap">
 
 <div class="eyebrow">Marketlogic Investors LLC · Investment Committee Memorandum · Confidential</div>
@@ -557,6 +571,8 @@ Source documents: IntellectibleDeckAC.pdf · Intellectible_Investment Memo - Goi
 External verification: Tracxn, CB Insights, PitchBook, Crunchbase, company press releases, trade press. Retrieved 9 August 2026.<br>
 Interactive controls explore sensitivity around a locked baseline. They do not alter the committed position above.
 </div>
+
+<a class="backlink" href="../">← Back to all VC Deals</a>
 
 </div>
 
