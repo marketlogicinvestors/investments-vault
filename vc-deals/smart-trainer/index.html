@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Smart Trainer · ML-2026-ST-01 · Marketlogic Investors LLC</title>
+<style>
+:root{
+  --paper:#FCFBF8; --ink:#16202B; --slate:#5C6672; --rule:#D8D5CC;
+  --ok:#2F6B4F; --warn:#9A6B12; --bad:#A32D2D; --accent:#1E4C7A;
+  --okbg:#EAF2ED; --warnbg:#F7EEDC; --badbg:#F8EAEA; --accbg:#E9EFF6;
+  --serif:Georgia,'Iowan Old Style','Palatino Linotype',serif;
+  --sans:system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  --mono:ui-monospace,'SF Mono',Menlo,Consolas,'Liberation Mono',monospace;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--serif);font-size:16.5px;line-height:1.62}
+.wrap{max-width:940px;margin:0 auto;padding:48px 28px 96px}
+h1{font-size:31px;line-height:1.18;font-weight:normal;letter-spacing:-.01em;margin:0 0 6px}
+h2{font-size:21px;font-weight:normal;margin:0 0 10px;letter-spacing:-.005em}
+h3{font-size:16px;font-family:var(--sans);font-weight:600;margin:22px 0 8px}
+p{margin:0 0 14px}
+a{color:var(--accent)}
+.eyebrow{font-family:var(--sans);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--slate);font-weight:600}
+.sec{border-top:1px solid var(--rule);padding-top:16px;margin-top:44px}
+.sec>.eyebrow{display:block;margin-bottom:9px}
+.mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.small{font-size:13.5px;color:var(--slate)}
+.lede{font-size:18px;line-height:1.55}
+
+.masthead{border:1.5px solid var(--ink);padding:22px 24px;margin-bottom:14px}
+.mrow{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;flex-wrap:wrap}
+.verdict{font-family:var(--mono);font-size:13px;letter-spacing:.1em;text-transform:uppercase;background:var(--badbg);color:var(--bad);padding:5px 12px;border:1px solid var(--bad);white-space:nowrap}
+.bigscore{font-family:var(--mono);font-size:52px;line-height:1;letter-spacing:-.03em}
+.scorelab{font-family:var(--sans);font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:var(--slate)}
+
+.seal{display:flex;align-items:center;gap:10px;font-family:var(--sans);font-size:11.5px;color:var(--slate);border:1px dashed var(--rule);padding:8px 12px;margin:14px 0 0}
+.seal b{font-family:var(--mono);color:var(--ink);font-weight:normal}
+
+.tier{font-family:var(--mono);font-size:10px;letter-spacing:.04em;padding:1px 5px;border:1px solid;vertical-align:1px;white-space:nowrap}
+.t-co{color:var(--slate);border-color:var(--rule);background:#F2F1EC}
+.t-ext{color:var(--accent);border-color:#B9CBE0;background:var(--accbg)}
+.t-mod{color:var(--warn);border-color:#DFC48A;background:var(--warnbg)}
+.t-unv{color:var(--bad);border-color:#DDA9A9;background:var(--badbg)}
+
+table{width:100%;border-collapse:collapse;font-size:14px;margin:12px 0 6px}
+th{font-family:var(--sans);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--slate);text-align:left;font-weight:600;border-bottom:1px solid var(--ink);padding:7px 9px 7px 0;vertical-align:bottom}
+td{border-bottom:1px solid var(--rule);padding:9px 9px 9px 0;vertical-align:top}
+td.n,th.n{text-align:right;font-family:var(--mono);font-variant-numeric:tabular-nums;padding-right:0}
+.sowhat{font-size:13.5px;color:var(--slate);font-style:italic;margin:6px 0 0}
+
+.bar{display:inline-block;height:7px;background:var(--ink);vertical-align:middle}
+.bartrack{display:inline-block;width:76px;height:7px;background:#E8E6DF;vertical-align:middle;margin-right:7px}
+
+.ctrls{border:1px solid var(--rule);background:#F7F6F1;padding:16px 18px;margin:16px 0}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px 22px}
+label.f{display:block;font-family:var(--sans);font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--slate);margin-bottom:3px;font-weight:600}
+.ln{display:flex;align-items:center;gap:9px}
+input[type=range]{flex:1;accent-color:var(--ink);min-width:0}
+.out{font-family:var(--mono);font-size:13.5px;min-width:62px;text-align:right}
+button{font-family:var(--sans);font-size:12px;background:transparent;border:1px solid var(--ink);color:var(--ink);padding:6px 12px;cursor:pointer}
+button:hover{background:var(--ink);color:var(--paper)}
+button.chip{border-color:var(--rule);color:var(--slate);padding:4px 10px;margin:0 6px 6px 0}
+button.chip[aria-pressed=true]{border-color:var(--ink);color:var(--paper);background:var(--ink)}
+.metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(132px,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule);margin:16px 0}
+.met{background:var(--paper);padding:12px 14px}
+.met .k{font-family:var(--sans);font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--slate)}
+.met .v{font-family:var(--mono);font-size:25px;line-height:1.25;letter-spacing:-.02em}
+.flag{padding:7px 12px;font-family:var(--sans);font-size:12.5px;display:inline-block;margin-top:4px}
+.f-bad{background:var(--badbg);color:var(--bad)} .f-ok{background:var(--okbg);color:var(--ok)}
+
+.callout{border-left:3px solid var(--ink);padding:2px 0 2px 18px;margin:18px 0}
+.kill{font-family:var(--sans);font-size:12.5px;color:var(--bad)}
+.q{margin:0 0 4px}
+.dq{border-bottom:1px solid var(--rule);padding:11px 0}
+.dq .top{display:flex;gap:11px;align-items:baseline}
+.dq .d{font-family:var(--mono);font-size:12.5px;color:var(--bad);white-space:nowrap}
+.foot{border-top:1.5px solid var(--ink);margin-top:52px;padding-top:16px;font-size:12.5px;color:var(--slate);font-family:var(--sans);line-height:1.75}
+input[type=checkbox]{accent-color:var(--ink);margin-right:9px;transform:translateY(1px)}
+@media print{
+  .ctrls,button,.noprint{display:none !important}
+  body{font-size:11pt;background:#fff}
+  .wrap{max-width:none;padding:0}
+  .sec{break-inside:avoid;page-break-inside:avoid}
+  a{color:var(--ink);text-decoration:none}
+}
+.site-nav{display:flex;align-items:center;justify-content:space-between;gap:16px;background:var(--ink);color:var(--paper);padding:11px 28px;font-family:var(--sans);font-size:12.5px;letter-spacing:.02em;position:sticky;top:0;z-index:100}
+.site-nav a{color:rgba(252,251,248,.72);text-decoration:none}
+.site-nav a:hover{color:var(--paper)}
+.site-nav .sep{color:rgba(252,251,248,.32);margin:0 6px}
+.site-nav .here{color:rgba(252,251,248,.5)}
+.site-nav .nav-action a{color:var(--paper);border:1px solid rgba(252,251,248,.42);border-radius:3px;padding:3px 11px}
+.site-nav .nav-action a:hover{background:var(--paper);color:var(--ink)}
+.backlink{display:inline-block;margin-top:22px;font-family:var(--sans);font-size:13px;color:var(--accent);text-decoration:none}
+.backlink:hover{text-decoration:underline}
+@media print{.site-nav,.backlink{display:none !important}}
+</style>
+</head>
+<body>
+<nav class="site-nav" aria-label="breadcrumb">
+<span><a href="../../">Market Logic Investors</a><span class="sep">/</span><a href="../../">Deal Vault</a><span class="sep">/</span><a href="../">VC Deals</a><span class="sep">/</span><span class="here">Smart Trainer · ML-2026-ST-01</span></span>
+<span class="nav-action"><a href="../">← All VC Deals</a></span>
+</nav>
+<div class="wrap">
+
+<div class="eyebrow">Marketlogic Investors LLC · Investment Committee Memorandum · Confidential</div>
+<h1>Smart Trainer, Inc.</h1>
+<p class="small mono">ML-2026-ST-01 · Virginia (DC metro) · Seed / uncapped SAFE · Prepared 12 August 2026 · Author: H. Reganti<br>First underwrite. Data room read in full: deck, financial package, cap table, raise history, term-sheet tracker, market research, sales &amp; customer lists, board &amp; team files, IP, GTM.</p>
+
+<!-- ===== 00 DEAL CARD ===== -->
+<div class="sec" id="s00">
+<span class="eyebrow">§00 · Deal card</span>
+<div class="masthead">
+  <div class="mrow">
+    <div>
+      <div class="scorelab">Composite score</div>
+      <div class="bigscore">4.1</div>
+      <div class="small mono" style="margin-top:4px">Band: below 6.0</div>
+    </div>
+    <div style="flex:1;min-width:260px">
+      <div class="verdict">Pass — Stay Warm</div>
+      <p style="margin:12px 0 0;font-size:15px">Pass on the SAFE. The objection is not that the product is fake — it works, and the CEO has real Domino's-ecosystem access. The objection is that the company has roughly <b>$16K of cash</b> against a $25K credit-card balance, the raise is existential rather than growth capital, the SAFE cap is <b>not disclosed anywhere in the data room</b>, the founders are simultaneously holding an acquihire term sheet, and the company's own documents disagree with each other on nearly every headline number.</p>
+    </div>
+    <div style="min-width:150px">
+      <div class="scorelab">Conviction</div>
+      <div class="mono" style="font-size:19px">Medium-high</div>
+      <div class="small" style="margin-top:8px">Proposed check<br><span class="mono" style="font-size:17px;color:var(--ink)">$0</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="callout">
+<p style="margin:0"><b>Underwriting statement.</b> We would be underwriting Smart Trainer on the belief that privileged access to Domino's franchisee data — through the Wizardline pipe and an operator-CEO who ran those stores — lets a tiny team own the real-time execution layer inside one pizza ecosystem before better-funded vision-AI players reach it, and we are wrong if the company cannot fund past the next two months, if the $75/store realized price cannot climb toward the $199–299 it assumes, or if the six-figure ARR it reports cannot be reconciled to the $184K–$446K it claims elsewhere.</p>
+</div>
+
+<h3>The three numbers that matter</h3>
+<div class="metrics">
+  <div class="met"><div class="k">Cash on hand (Jun 30)</div><div class="v">$16.2K</div></div>
+  <div class="met"><div class="k">Realized ARPU vs plan</div><div class="v">$75 : $229</div></div>
+  <div class="met"><div class="k">Capital vs nearest vision rival</div><div class="v">1 : 80</div></div>
+</div>
+<p class="sowhat">Each is arithmetic from documents already in the data room, or a single outside funding record. None required an outside opinion.</p>
+
+<p><b>Biggest risk, in five words:</b> <span class="mono">Out of money before scale.</span></p>
+</div>
+
+<!-- ===== 01 SCORECARD ===== -->
+<div class="sec" id="s01">
+<span class="eyebrow">§01 · Weighted scorecard</span>
+<h2>The composite is derived, not asserted</h2>
+<p>Twelve dimensions, weighted. Move the weights to test whether the answer depends on the rubric or on the company.</p>
+
+<table id="sctab">
+<thead><tr><th>Dimension</th><th class="n">Weight</th><th class="n">Raw</th><th class="n">Weighted</th><th style="width:34%">Basis</th></tr></thead>
+<tbody></tbody>
+</table>
+
+<div class="ctrls noprint">
+  <div class="grid2" id="wgrid"></div>
+  <div style="margin-top:14px;display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+    <button id="wreset">Reset to committed baseline</button>
+    <span class="small">Composite <span class="mono" id="compout" style="font-size:16px;color:var(--ink)">4.1</span> · <span id="bandout" class="mono">Pass band</span></span>
+  </div>
+</div>
+<p class="sowhat">Reweighting within any defensible range keeps the composite between 3.7 and 4.8. The recommendation is not an artifact of the rubric — runway, terms, and evidence integrity pull it down under every sensible weighting.</p>
+
+<h3>Placement against the VC book</h3>
+<table>
+<thead><tr><th>Deal</th><th class="mono">ID</th><th class="n">Score</th><th>Call on file</th></tr></thead>
+<tbody>
+<tr><td>Intellectible (May 2026)</td><td class="mono">ML-2026-IT-01</td><td class="n">8.1</td><td class="small">Participate</td></tr>
+<tr><td>Mercury</td><td class="mono">ML-2026-MC-01</td><td class="n">7.4</td><td class="small">Proceed &mdash; Deep Diligence</td></tr>
+<tr><td>Innerwell</td><td class="mono">ML-2026-IW-01</td><td class="n">6.5</td><td class="small">Watch &mdash; Diligence</td></tr>
+<tr><td>Planet.Tech</td><td class="mono">ML-2026-PT-01</td><td class="n">6.2</td><td class="small">Angel SAFE</td></tr>
+<tr><td>Maison Monravel</td><td class="mono">ML-2026-MM-01</td><td class="n">5.6</td><td class="small">Pass &mdash; Stay Warm</td></tr>
+<tr><td>Intellectible, re-underwrite</td><td class="mono">ML-2026-IT-02</td><td class="n">5.3</td><td class="small">Pass &mdash; Stay Warm</td></tr>
+<tr><td>Dapper Boi</td><td class="mono">ML-2026-DB-01</td><td class="n">4.8</td><td class="small">Watch &mdash; Pass-Path</td></tr>
+<tr style="background:#F2F1EC"><td><b>Smart Trainer</b></td><td class="mono">ML-2026-ST-01</td><td class="n"><b>4.1</b></td><td class="small"><b>Pass &mdash; Stay Warm</b></td></tr>
+<tr><td>EchoTwin AI</td><td class="mono">ML-2026-ET-01</td><td class="n">3.6</td><td class="small">Pass &mdash; Integrity Gate</td></tr>
+</tbody>
+</table>
+<p class="sowhat">Smart Trainer lands between Dapper Boi and EchoTwin. Unlike EchoTwin, there is no fraud or litigation here — the discrepancies read as optimism and sloppiness, not deception, which is why the call is Stay Warm rather than Integrity Gate. But the score is firmly below bar: this is a real, capital-efficient product on a balance sheet that runs out of cash in weeks, offered on the worst-documented terms in the book.</p>
+</div>
+
+<!-- ===== 02 RECALL ===== -->
+<div class="sec" id="s02">
+<span class="eyebrow">§02 · Recall block</span>
+<h2>Five things to carry into the room without notes</h2>
+<ol class="lede">
+<li style="margin-bottom:12px">The company had <b>$16,184 in the bank</b> on June 30 against a $25,300 credit-card balance, and added zero net new stores in July while "focused on fundraise." This raise is survival, not scale.</li>
+<li style="margin-bottom:12px">Reported current ARR is <b>$106K</b> in the financial package, <b>$184K</b> "revenue" on the deck's traction slide, and <b>$446K</b> "on track" two slides later. Three different numbers for the one metric the whole deal turns on.</li>
+<li style="margin-bottom:12px">The deck's <b>$41B TAM</b> is 16&ndash;45&times; the company's <i>own</i> market-research file, which sizes the real targetable market at $0.9&ndash;2.5B.</li>
+<li style="margin-bottom:12px">The instrument is a <b>SAFE whose valuation cap appears nowhere in the data room</b>, and the term-sheet folder also contains an acquihire offer to buy the company and pay the CEO and CTO salaries plus fully-vested stock.</li>
+<li>Realized price is <b>~$75 per store per month</b>. The plan to 1,000 stores and $2.5M ARR assumes ~$229, a 3&times; step that has not yet happened at a single new-pricing account.</li>
+</ol>
+</div>
+
+<!-- ===== 03 SNAPSHOT ===== -->
+<div class="sec" id="s03">
+<span class="eyebrow">§03 · Deal snapshot</span>
+<table>
+<tbody>
+<tr><td style="width:34%">Instrument offered</td><td>SAFE, target $1.0M. <b>Valuation cap not stated in any data-room document.</b> <span class="tier t-co">CO</span> <span class="tier t-unv">UNV</span></td></tr>
+<tr><td>Round status claimed</td><td>Deck: "$470K committed, $250K soft committed." <span class="tier t-co">CO</span></td></tr>
+<tr><td>Round status per the tracker</td><td>Only MLC $150K marked "Committed." Forward Venture $250K and GoingVC $250K "In-Review / DD"; Remedy Studio $250K "Contingent on Lead"; Wizardline $70K "if needed"; Zeal Capital $500K&ndash;2M "needs 400K ARR first." <span class="tier t-mod">MOD</span></td></tr>
+<tr><td>Reference valuation (prior)</td><td>Raise-history workbook references a Pre-Seed "$2M post" and a Seed "$5M post." Best available anchor for the uncapped SAFE. <span class="tier t-co">CO</span></td></tr>
+<tr><td>Competing offer in the file</td><td>Carragon AI / TAN Fund term sheet: WPI Holding Company to <b>purchase Smart Trainer</b>; $200K payout each to CEO &amp; CTO, fully-vested stock at "3x valuation," $250K salary + 1-year agreement, founders become CEO/CTO of the holding company. <span class="tier t-co">CO</span></td></tr>
+<tr><td>Capital raised to date</td><td>~$630K of founder and investor cash contributions (balance-sheet note). <span class="tier t-co">CO</span></td></tr>
+<tr><td>Cap table (pre-financing, Jul 11 2026)</td><td>All <b>common stock</b>: Won Jeong 61.56%, Daniel Um 16.13%, Mary Lynne Carraway 12.00%, Wizardline 6.56%, Derrick William 0.75%, Team pool 3.00%. No preferred, no notes, no SAFEs outstanding. <span class="tier t-co">CO</span></td></tr>
+<tr><td>Board</td><td>Three advisors, <b>no voting rights</b>: MLC (lead investor), Derek Williamson (ex-HigherMe CEO), John Moses (Wizardline). No investor board seat exists to offer. <span class="tier t-co">CO</span></td></tr>
+<tr><td>Outstanding debt</td><td>None, per management. Current liabilities: $25.3K credit-card payable + $3.2K legal payable. <span class="tier t-co">CO</span></td></tr>
+<tr><td>Use of funds</td><td>Deck: Scale 55%, Product 25%, Marketing 10%, OPEX 10%. Model: 55% team, 20% product, 10% marketing, 10% security/G&amp;A, 5% reserve. <span class="tier t-co">CO</span></td></tr>
+</tbody>
+</table>
+<p class="sowhat">A SAFE with no disclosed cap is not a term we can price. It is the first thing to fix before any number below matters, and it sits next to an acquihire offer that, if taken, would resolve the founders' liquidity and the SAFE holders' loss in the same document.</p>
+</div>
+
+<!-- ===== 04 OVERVIEW ===== -->
+<div class="sec" id="s04">
+<span class="eyebrow">§04 · What the company actually does</span>
+<p class="lede">Smart Trainer sells restaurant operators a real-time "operating layer" that sits on top of their existing POS, scheduling and back-office systems and tells a shift-level worker what to do next: prep more dough, cover an overtime gap, reorder before a stockout. It reads three streams — what staff were trained to do, what the SOPs require, and what is happening in the store right now — and turns them into an on-screen action. A second product, Vision AI, points a camera at the make-line and grades product quality (a mis-made pizza) before it leaves the store.</p>
+<p>The go-to-market reality is narrower than the pitch. Essentially all 118 paying stores are pizza QSR, heavily Domino's franchisees, reached through Wizardline — a data company with access to Domino's US store data. Pricing is a subscription ($199 AI/Data, $299 Vision AI per store per month on the plan; ~$75 realized today) plus a small setup fee. The company is capital-efficient: it built a working product and 118 stores on roughly $630K, which is the most encouraging fact in the file.</p>
+</div>
+
+<!-- ===== 05 ANALOGY ===== -->
+<div class="sec" id="s05">
+<span class="eyebrow">§05 · Analogy anchor</span>
+<h2>PreciTaste for the frontline shift, sold through the Domino's franchisee network</h2>
+<p>The useful comparison is PreciTaste: computer-vision kitchen management for QSR and fast casual, the closest funded analog to Smart Trainer's Vision AI. It locates both the value (real-time, in-the-shift guidance and quality checking) and the threat (this exact category already has players with $20&ndash;50M behind them).</p>
+<div class="callout">
+<p style="margin:0"><b>Where the analogy breaks, and this is the investment question.</b> PreciTaste and Agot raised to build the vision model as the product. Smart Trainer's real asset is not the model — better foundation models commoditize make-line vision every quarter — it is the <i>distribution</i>: an operator-CEO who ran Domino's stores, a lead investor who owned 80+ of them, and the Wizardline data pipe into that one franchise system. The bet is that owning a single pizza ecosystem's execution layer, cheaply, beats owning better vision generically. That can be true. It is also a bet on one brand's franchisees, one data partner, and one relationship, none of which the company controls.</p>
+</div>
+<p class="sowhat">The 118 stores are proof the wedge opens. Nothing in the file yet proves it widens beyond pizza, or survives Domino's corporate deciding to build or block it.</p>
+</div>
+
+<!-- ===== 06 MARKET ===== -->
+<div class="sec" id="s06">
+<span class="eyebrow">§06 · Market, rebuilt from the bottom</span>
+<h2>The company already rebuilt its own TAM — and it is not $41B</h2>
+<p>The deck reports a <b>$41B TAM</b> and a $5B SAM across "~60M restaurant, retail and hotel locations globally" <span class="tier t-co">CO</span> — while the same slide's fine print says 40M locations, not 60M. Set that aside, because the company's own market-research file does the honest version: 250K&ndash;350K realistically targetable US multi-unit/franchise locations at a $3.6K&ndash;7.2K ACV, for a <b>$0.9&ndash;2.5B TAM</b>, a $270&ndash;900M SAM, and an $8&ndash;30M near-term SOM <span class="tier t-co">CO</span>. The deck's headline is 16&ndash;45&times; the company's own internal number.</p>
+<p>Anchored to primaries: the NRA projects <b>$1.55T</b> in 2026 US restaurant and foodservice sales across <b>more than 1 million outlets</b> and 15.8M workers <span class="tier t-ext">EXT</span>. That is a real, budget-bearing market for per-location operating software. But the honest near-term wedge is narrower still: Smart Trainer's edge is Domino's franchisees, and there are only about <b>7,090 Domino's stores in the entire US</b> (96% franchised) <span class="tier t-ext">EXT</span>.</p>
+
+<div class="ctrls noprint">
+<div class="grid2">
+  <div><label class="f">Targetable US locations</label><div class="ln"><input type="range" id="m_n" min="20000" max="500000" step="5000" value="300000"><span class="out" id="m_n_o">300,000</span></div></div>
+  <div><label class="f">Blended annual ACV</label><div class="ln"><input type="range" id="m_acv" min="900" max="7200" step="100" value="2748"><span class="out" id="m_acv_o">$2.7K</span></div></div>
+  <div><label class="f">Share captured</label><div class="ln"><input type="range" id="m_sh" min="1" max="100" step="1" value="3"><span class="out" id="m_sh_o">3%</span></div></div>
+</div>
+<div style="margin-top:12px"><button id="m_reset">Reset to committed baseline</button></div>
+</div>
+<div class="metrics">
+  <div class="met"><div class="k">Serviceable ARR</div><div class="v" id="m_sam">$824M</div></div>
+  <div class="met"><div class="k">ARR at that share</div><div class="v" id="m_som">$24.7M</div></div>
+  <div class="met"><div class="k">Locations needed for $100M ARR</div><div class="v" id="m_need">36,391</div></div>
+  <div class="met"><div class="k">As share of targetable</div><div class="v" id="m_pct">12%</div></div>
+</div>
+<p class="sowhat">At the plan's $229/mo blended price, the deck's own $100M-ARR goal needs ~36,000 locations — about five times <i>every</i> Domino's store in the US, or 12% of the entire targetable US multi-unit market. Set the ACV slider to today's realized $900/yr and the same $100M needs 111,000 locations. The market is real and big enough for a good outcome; it is not big enough for the $100M-by-2031 slide without category dominance far beyond pizza.</p>
+
+<h3>The honest sizing</h3>
+<table>
+<thead><tr><th>Layer</th><th class="n">Deck figure</th><th class="n">Company's own research / rebuilt</th><th>Why they differ</th></tr></thead>
+<tbody>
+<tr><td>TAM</td><td class="n">$41B</td><td class="n">$0.9&ndash;2.5B</td><td class="small">Deck counts ~40&ndash;60M global locations incl. retail &amp; hotels; research counts ~250&ndash;350K targetable US locations <span class="tier t-co">CO</span></td></tr>
+<tr><td>SAM</td><td class="n">$5B</td><td class="n">$270&ndash;900M</td><td class="small">Best-wedge multi-unit QSR/franchise on modern stacks</td></tr>
+<tr><td>SOM (near-term)</td><td class="n">&mdash;</td><td class="n">$8&ndash;30M</td><td class="small">2&ndash;5K locations over a multi-year horizon</td></tr>
+<tr><td>Realized blended ARPU</td><td class="n">$99&ndash;299 assumed</td><td class="n">$75.07/mo</td><td class="small">$8,858 MRR &divide; 118 stores <span class="tier t-mod">MOD</span></td></tr>
+</tbody>
+</table>
+<p class="sowhat">$270&ndash;900M of serviceable ARR is a real market and enough for a good venture outcome. It is not the $41B the deck leads with, and the gap is the company's own number, not ours.</p>
+</div>
+
+<!-- ===== 07 FACT CHECK ===== -->
+<div class="sec" id="s07">
+<span class="eyebrow">§07 · Claim-by-claim verification</span>
+<h2>Eleven headline claims, checked</h2>
+<div class="noprint" style="margin:10px 0">
+  <button class="chip" data-f="all" aria-pressed="true">All 11</button>
+  <button class="chip" data-f="Contradicted" aria-pressed="false">Contradicted 6</button>
+  <button class="chip" data-f="Unverified" aria-pressed="false">Unverified 2</button>
+  <button class="chip" data-f="Confirmed" aria-pressed="false">Confirmed 3</button>
+</div>
+<table id="fctab">
+<thead><tr><th style="width:24%">Claim</th><th style="width:44%">What checking found</th><th>Verdict</th></tr></thead>
+<tbody>
+<tr data-v="Contradicted"><td>"$184K revenue" on the traction slide</td><td>The financial package reports cumulative revenue of <b>$115,628</b> from May 2025 to June 2026 ($35.5K subscription + $80.1K hardware/implementation) and current ARR of <b>$106,296</b>. Neither is $184K. A third figure, "$446K ARR on track in 2026," appears two slides later. Three numbers for the headline metric. <span class="tier t-co">CO</span></td><td><b style="color:var(--bad)">Contradicted</b></td></tr>
+<tr data-v="Contradicted"><td>$41B TAM / $5B SAM</td><td>The company's own market-research file sizes TAM at $0.9&ndash;2.5B and SAM at $270&ndash;900M. The deck is 16&ndash;45&times; its own research. The TAM slide also states both 40M and 60M locations. <span class="tier t-co">CO</span></td><td><b style="color:var(--bad)">Contradicted</b></td></tr>
+<tr data-v="Contradicted"><td>"$470K committed, $250K soft"</td><td>The term-sheet tracker shows only MLC's $150K as "Committed." The other named checks are "In-Review / DD," "Contingent on Lead," "if needed," or gated on hitting $400K ARR first. <span class="tier t-co">CO</span></td><td><b style="color:var(--bad)">Contradicted</b></td></tr>
+<tr data-v="Contradicted"><td>Pipeline size</td><td>The same traction slide says both "<b>$300K Qualified Pipeline</b>" and "a <b>$25M pipeline</b>." The GTM slide calls it a "200-store waitlist"; the Path-to-100M file calls it "14,400 locations." Four incompatible descriptions of one pipeline. <span class="tier t-co">CO</span></td><td><b style="color:var(--bad)">Contradicted</b></td></tr>
+<tr data-v="Contradicted"><td>"On track to $2M+ ARR in 12 months"</td><td>Requires 118&rarr;1,000 stores (~74 net adds/month) and ARPU rising from $75 to ~$229. Observed cadence is ~15/month over the ramp and <b>zero in July 2026</b>. The 3&times; ARPU step has not occurred at any single new-pricing account. <span class="tier t-mod">MOD</span></td><td><b style="color:var(--bad)">Contradicted</b></td></tr>
+<tr data-v="Contradicted"><td>"$100M ARR by 2031" path</td><td>The deck's chart tops out at $127M / 39K locations (labeled $100M); the Path-to-100M file uses 30,695 locations. Both imply ~30&ndash;39K paying locations — roughly 5&times; all US Domino's stores — with no evidence of traction outside pizza. <span class="tier t-co">CO</span></td><td><b style="color:var(--bad)">Contradicted</b></td></tr>
+<tr data-v="Unverified"><td>"$26.6K annual improvement per location" case study</td><td>Explicitly labeled "using our average savings data" applied to a hypothetical $1.5M/location baseline — a modeled illustration, not a named customer's audited before/after. No customer is identified and no measured result is shown. <span class="tier t-co">CO</span></td><td><b style="color:var(--warn)">Unverified</b></td></tr>
+<tr data-v="Unverified"><td>CTO "engineering, Big Data and ML deployed across federal agencies"</td><td>The verifiable part is 8+ years as a USPTO patent examiner — a credible technical-adjacent role, but not startup engineering leadership. The "deployed across federal agencies" framing (DoD/DHS/FDIC logos) is not evidenced by anything in the file. <span class="tier t-co">CO</span></td><td><b style="color:var(--warn)">Unverified</b></td></tr>
+<tr data-v="Confirmed"><td>Well-funded vision-AI competitors exist</td><td>PreciTaste has raised ~$53M for computer-vision kitchen management; Agot AI ~$22M for vision order accuracy; Restaurant365 is a $1B ops incumbent; CrunchTime/Zenput spans 150K+ locations. The category Smart Trainer competes in is real and far better capitalized. <span class="tier t-ext">EXT</span></td><td><b style="color:var(--ok)">Confirmed</b></td></tr>
+<tr data-v="Confirmed"><td>US restaurant market scale</td><td>NRA 2026: $1.55T sales, &gt;1M outlets, 15.8M workers. Domino's US: ~7,090 stores, 96% franchised. All consistent with the underwrite. <span class="tier t-ext">EXT</span></td><td><b style="color:var(--ok)">Confirmed</b></td></tr>
+<tr data-v="Confirmed"><td>Capital efficiency and a working product</td><td>118 paying stores, a live dashboard, and a Vision AI beta built on ~$630K total. Cap table, balance sheet and revenue build reconcile internally on the historical (not projected) figures. The base of the business is real. <span class="tier t-co">CO</span></td><td><b style="color:var(--ok)">Confirmed</b></td></tr>
+</tbody>
+</table>
+<p class="sowhat">Six of eleven tested claims are contradicted by other documents in the same data room — and unlike a fraud case, most are self-inflicted optimism a founder can fix in an afternoon. The base business underneath is genuine. That combination is exactly what "Pass — Stay Warm" is for.</p>
+</div>
+
+<!-- ===== 08 TRACTION ===== -->
+<div class="sec" id="s08">
+<span class="eyebrow">§08 · Traction and revenue quality</span>
+<p>Stripped of framing, the base is small but real: <b>$8,858 MRR / $106K ARR</b>, 118 paying stores added since October 2025, a live product, and a Vision AI beta in stores <span class="tier t-co">CO</span>. On ~$630K of lifetime capital that is efficient, and it is why this is a 4.1 and not a 2.5.</p>
+<h3>What the numbers do not yet support</h3>
+<table>
+<thead><tr><th>Claim</th><th>Constraint</th></tr></thead>
+<tbody>
+<tr><td>Recurring revenue is scaling</td><td class="small">Two-thirds of lifetime revenue ($80K of $116K) is one-time hardware/setup, not subscription. Recurring MRR is $8,858. July added zero net stores.</td></tr>
+<tr><td>Retention is strong</td><td class="small">Three Boston Pie locations churned in June; pilot stores fell from 10 to 2. No gross/net retention is disclosed. A single franchise-group departure moves the store count by double digits.</td></tr>
+<tr><td>ARPU rises to $199&ndash;299</td><td class="small">Realized blended ARPU is $75. Legacy stores sit at $37&ndash;99 on early-adopter pricing. The entire ARR plan depends on a 3&times; price step not yet demonstrated at a new-pricing account.</td></tr>
+<tr><td>Concentration is diversified</td><td class="small">Essentially all revenue is pizza QSR, Domino's-franchisee heavy, reached through one data partner (Wizardline). Single-brand, single-channel dependency.</td></tr>
+</tbody>
+</table>
+<p class="sowhat">The company is not inventing its traction. It is over-stating what 118 discounted pizza stores prove about a $100M, multi-vertical future.</p>
+</div>
+
+<!-- ===== 09 UNIT ECONOMICS ===== -->
+<div class="sec" id="s09">
+<span class="eyebrow">§09 · Unit economics, rebuilt</span>
+<h2>Start with the toy version</h2>
+<p>One store pays about $75 a month today, or $900 a year. At the plan's ~76% software gross margin the company keeps ~$684 of it. The deck's ROI story ($26.6K of value per location) is 30&times; the price — which is a great pitch and, if true, means the product is radically underpriced; the missing evidence is a single named customer whose books show that saving.</p>
+<p>The company discloses <b>no CAC and no LTV:CAC</b> anywhere in the data room, so the model below is a rebuild, not a quote. What it shows is that at a $75&ndash;229 monthly price, unit economics live or die on how cheap acquisition stays and how fast ARPU climbs.</p>
+
+<div class="ctrls noprint">
+<div class="grid2">
+  <div><label class="f">Annual ACV</label><div class="ln"><input type="range" id="u_acv" min="900" max="4000" step="100" value="2748"><span class="out" id="u_acv_o">$2,748</span></div></div>
+  <div><label class="f">CAC (modeled)</label><div class="ln"><input type="range" id="u_cac" min="500" max="6000" step="100" value="2000"><span class="out" id="u_cac_o">$2,000</span></div></div>
+  <div><label class="f">Annual churn</label><div class="ln"><input type="range" id="u_ch" min="5" max="50" step="1" value="30"><span class="out" id="u_ch_o">30%</span></div></div>
+  <div><label class="f">Gross margin</label><div class="ln"><input type="range" id="u_gm" min="35" max="90" step="1" value="76"><span class="out" id="u_gm_o">76%</span></div></div>
+</div>
+<div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap">
+  <button id="u_reset">Reset to modeled baseline</button>
+  <button id="u_real">Set to realized figures</button>
+</div>
+</div>
+<div class="metrics">
+  <div class="met"><div class="k">LTV</div><div class="v" id="u_ltv">$6,962</div></div>
+  <div class="met"><div class="k">LTV : CAC</div><div class="v" id="u_ratio">3.5x</div></div>
+  <div class="met"><div class="k">CAC payback</div><div class="v" id="u_pb">11.5 mo</div></div>
+  <div class="met"><div class="k">Implied life</div><div class="v" id="u_life">3.3 yr</div></div>
+</div>
+<div id="u_flag" class="flag f-ok">Clears the 3x benchmark — on modeled inputs</div>
+<p class="sowhat">Press "set to realized figures" to substitute today's $900 ACV, a 45% blended gross margin (hardware drags it down) and 35% churn on a young cohort. The ratio collapses below 1x. The modeled 3.5x is entirely contingent on the ARPU step to ~$229 and a low-touch two-meeting sale staying cheap — neither yet proven, and CAC is not disclosed at all.</p>
+<p>The genuinely good finding: subscription COGS runs ~24% of recurring revenue, so the <i>software</i> gross margin is ~76% and rises toward 70%+ in the model as subscription mix grows. This is a software business with a hardware/implementation drag in the early revenue, not an AI-services business in disguise. That is the best structural number in the file.</p>
+</div>
+
+<!-- ===== 10 COMPETITION ===== -->
+<div class="sec" id="s10">
+<span class="eyebrow">§10 · Competitive position and the capital gap</span>
+<h2>The deck's competitor table shows every real rival except the ones that matter</h2>
+<table>
+<thead><tr><th>Company</th><th class="n">Capital raised</th><th>Position as of mid-2026</th></tr></thead>
+<tbody>
+<tr><td>Restaurant365</td><td class="n">~$175M</td><td class="small">$1B unicorn. Back-office, accounting, ops, workforce, intelligence across the enterprise stack. Named partner/data source in Smart Trainer's own file. <span class="tier t-ext">EXT</span></td></tr>
+<tr><td>PreciTaste</td><td class="n">~$53M</td><td class="small">Computer-vision kitchen management for QSR/fast casual — the direct analog to Smart Trainer's Vision AI, deployed at national chains. <span class="tier t-ext">EXT</span></td></tr>
+<tr><td>CrunchTime / Zenput</td><td class="n">private, large</td><td class="small">Enterprise ops, inventory, labor, task execution and audits across 150K+ locations. The benchmark to beat on execution. <span class="tier t-ext">EXT</span></td></tr>
+<tr><td>Agot AI</td><td class="n">~$22M</td><td class="small">Computer vision for order accuracy and food-service operations. <span class="tier t-ext">EXT</span></td></tr>
+<tr style="background:#F2F1EC"><td><b>Smart Trainer</b></td><td class="n"><b>~$0.63M</b></td><td class="small"><b>118 paying stores, ~$106K ARR.</b> Vision AI in beta. Real Domino's-franchisee access via Wizardline. <span class="tier t-co">CO</span></td></tr>
+</tbody>
+</table>
+<p class="sowhat">The nearest direct vision-AI competitor holds roughly 80&times; the capital; the ops incumbent is a $1B company. Smart Trainer's competitor slide instead shows only R365, 7shifts, PrepWizard, CrunchTime and SynergySuite — and gives itself a full-green row across all ten capabilities including Vision AI, real-time guidance and multilingual support. Every well-funded vision player is omitted.</p>
+
+<div class="callout">
+<p style="margin:0"><b>The steelman, and it is real.</b> None of those competitors owns the specific asset Smart Trainer has: privileged, low-cost distribution into Domino's franchisees through an operator-CEO and the Wizardline data pipe. PreciTaste and Agot sell vision; they do not have a former 80-store Domino's owner as lead investor. A tiny team that owns one pizza ecosystem's execution layer cheaply can build a real business the big players will not chase. The capital gap does not kill that. It does mean Smart Trainer cannot win by outspending, so the whole case rests on the Domino's/Wizardline relationship holding and on surviving long enough to compound it.</p>
+</div>
+</div>
+
+<!-- ===== 11 MOAT ===== -->
+<div class="sec" id="s11">
+<span class="eyebrow">§11 · Moat under model-capability doubling</span>
+<p>The test that matters: if frontier model capability doubles in eighteen months and generic agents get much better at reading screens, documents and camera feeds, what survives?</p>
+<table>
+<thead><tr><th>Claimed moat</th><th>Survives?</th><th>Reasoning</th></tr></thead>
+<tbody>
+<tr><td>Vision AI product-quality grading</td><td><b style="color:var(--bad)">Weakens</b></td><td class="small">This is precisely what improving multimodal models commoditize fastest, and it is what PreciTaste/Agot already do with 30&ndash;80&times; the resources. Smart Trainer leads with its most copyable asset.</td></tr>
+<tr><td>"AI operating layer" / real-time guidance</td><td><b style="color:var(--warn)">Mixed</b></td><td class="small">The orchestration is buildable by many; the value is in the encoded, store-specific SOPs and the integrations, not the model.</td></tr>
+<tr><td>Wizardline / Domino's data pipe</td><td><b style="color:var(--ok)">Survives — if it holds</b></td><td class="small">Privileged access to one franchise system's data is a genuine distribution moat a competitor cannot regenerate without the relationship. It is also not owned by Smart Trainer; it depends on a partner and a single brand.</td></tr>
+<tr><td>Operator credibility &amp; installed SOPs</td><td><b style="color:var(--ok)">Survives</b></td><td class="small">A former multi-unit Domino's director who has encoded real store SOPs can sell and configure where outsiders cannot. Compounds with each deployment.</td></tr>
+<tr><td>Patent</td><td><b style="color:var(--warn)">Weak</b></td><td class="small">One patent <i>application</i> (not granted) assigned to the company; no balance-sheet value. Real but early.</td></tr>
+</tbody>
+</table>
+<p class="sowhat">The two assets that survive — the Domino's/Wizardline distribution and the operator's encoded SOPs — are the ones the deck treats as supporting detail, while it leads with the Vision AI that frontier models erode. As with many AI decks, the pitch is ordered backwards relative to durability.</p>
+</div>
+
+<!-- ===== 12 TEAM ===== -->
+<div class="sec" id="s12">
+<span class="eyebrow">§12 · Team</span>
+<p>The CEO's credential is the strongest and most credible part of the team, and unlike some deals in this book it is <i>operational</i>, not a claimed startup exit. Won Jeong reports 19 years in restaurant operations as a director of training, 155 stores directed and 250+ opened, and financial responsibility for $150M of annual revenue across Domino's, IHOP, Noodles and Paisano's <span class="tier t-co">CO</span>. His lead investor, Mary Lynne Carraway, is his former boss who once owned 80+ Domino's stores. These are verifiable-in-kind operator claims, not the kind of extraordinary exit story that usually collapses under checking. That is genuinely reassuring.</p>
+<div class="callout">
+<p style="margin:0"><b>The technical bench is thinner than the deck implies.</b> The CTO, Daniel Um, is an 8-year USPTO patent examiner — a credible, detail-oriented, technical-adjacent background, but not startup engineering leadership; the "Big Data and ML deployed across federal agencies" line and the DoD/DHS/FDIC logos are not evidenced. The "senior engineers" are junior hires from Virginia Tech and a small content-AI startup (Paradym). Most consequentially, the <b>CFO and co-founder, Andrew Yi, has left</b> — "was cofounder, left and waiting for a later round," per the employee list. <span class="tier t-co">CO</span></p>
+</div>
+<p>So the ambitious roadmap — agentic AI, edge, AR glasses, multi-vertical expansion — sits on a two-person leadership team where the technical lead has never run production engineering at scale and the finance co-founder has departed. The distribution edge is real; the build-and-scale capacity behind it is the open question, and it is the kind a $1M round does not fully close.</p>
+<p class="small">Advisory board is reasonable but non-voting: MLC (lead), Derek Williamson (led restaurant-hiring software HigherMe through a 2021 acquisition), John Moses (Wizardline operations). No investor board seat exists.</p>
+</div>
+
+<!-- ===== 13 GTM ===== -->
+<div class="sec" id="s13">
+<span class="eyebrow">§13 · Go-to-market credibility</span>
+<p>The plan asks new-store cadence to reach roughly <b>74 net adds per month</b> (118&rarr;1,000 in twelve months) funded by one new sales hire, immediately after a month — July 2026 — in which the company added <b>zero</b> and described itself as "focused on fundraise" <span class="tier t-co">CO</span>. Observed cadence over the ramp is ~15/month, founder-led.</p>
+<p>The credible core of the GTM is the franchise-group motion: land a franchisee, expand across their stores. The customer list is a genuine Domino's-franchisee pipeline (DMV, Happy People, Marco's, Pizza Ranch, GBR and others), and land-and-expand has visibly happened at a handful of accounts. But the same list also carries speculative entries — an "Auntie Anne camera pilot, 250 stores, $297K" — that inflate the "path to 1,000" into a number the observed conversion rate does not support.</p>
+<p class="sowhat">This is the most testable risk in the file: monthly net new stores, and the share closed without the CEO, are observable from a single honest investor update and need no special access.</p>
+</div>
+
+<!-- ===== 14 SCENARIOS ===== -->
+<div class="sec" id="s14">
+<span class="eyebrow">§14 · Scenarios and returns</span>
+<h2>What the check is actually betting on — priced against an unknown cap</h2>
+<p>Because the SAFE cap is not disclosed, the calculator below anchors to the prior seed reference of a <b>$5M post-money</b> and lets you move it. The mechanics are unforgiving at this size: a $50K slice on a $5M cap is ~1% pre-dilution, before the multiple rounds this company needs to reach any exit dilute it further. The base and bear cases dominate the weighting because a company with weeks of cash has a real, high probability of a down outcome — including the acquihire in its own data room, which at a ~$15M sale returns roughly the cap (about 1&times;) to an uncapped SAFE and is worth far more to the founders than to us.</p>
+
+<div class="ctrls noprint">
+<div class="grid2">
+  <div><label class="f">Assumed SAFE cap ($M)</label><div class="ln"><input type="range" id="e_cap" min="3" max="15" step="1" value="5"><span class="out" id="e_cap_o">$5M</span></div></div>
+  <div><label class="f">Marketlogic check</label><div class="ln"><input type="range" id="e_chk" min="10" max="250" step="5" value="50"><span class="out" id="e_chk_o">$50K</span></div></div>
+  <div><label class="f">Total dilution to exit</label><div class="ln"><input type="range" id="e_dil" min="30" max="85" step="5" value="65"><span class="out" id="e_dil_o">65%</span></div></div>
+  <div><label class="f">Bull probability</label><div class="ln"><input type="range" id="p_bull" min="0" max="40" step="1" value="10"><span class="out" id="p_bull_o">10%</span></div></div>
+  <div><label class="f">Bear probability</label><div class="ln"><input type="range" id="p_bear" min="0" max="85" step="1" value="60"><span class="out" id="p_bear_o">60%</span></div></div>
+  <div><label class="f">Base exit value ($M)</label><div class="ln"><input type="range" id="e_base" min="10" max="300" step="10" value="40"><span class="out" id="e_base_o">$40M</span></div></div>
+  <div><label class="f">Bull exit value ($M)</label><div class="ln"><input type="range" id="e_bull" min="150" max="1500" step="50" value="400"><span class="out" id="e_bull_o">$400M</span></div></div>
+</div>
+<div style="margin-top:12px"><button id="e_reset">Reset to committed baseline</button></div>
+</div>
+<div class="metrics">
+  <div class="met"><div class="k">Bull MOIC</div><div class="v" id="r_bull">28.0x</div></div>
+  <div class="met"><div class="k">Base MOIC <span id="p_base_o" class="mono">30%</span></div><div class="v" id="r_base">2.8x</div></div>
+  <div class="met"><div class="k">Bear (~acquihire)</div><div class="v" style="color:var(--slate)" id="r_bear">0.3x</div></div>
+  <div class="met"><div class="k">Weighted MOIC</div><div class="v" id="r_wtd">3.8x</div></div>
+</div>
+<div id="r_flag" class="flag f-bad">Below the 5x seed hurdle</div>
+<div class="metrics" style="margin-top:14px">
+  <div class="met"><div class="k">Bull case proceeds</div><div class="v" id="r_bullp">$1.40M</div></div>
+  <div class="met"><div class="k">As multiple of a $5M fund</div><div class="v" id="r_fund">0.28x</div></div>
+</div>
+<p class="sowhat">Even in the bull case — Smart Trainer becomes a category winner worth $400M — a realistic Marketlogic slice returns roughly a quarter of a $5M Fund I, and the probability-weighted outcome sits under the 5x seed hurdle. The most likely single outcome is the acquihire already sitting in the folder, which resolves the founders' economics and returns approximately the cap to a SAFE. A position that cannot return the fund in its best case, on an instrument whose price is not disclosed, does not justify partner bandwidth here.</p>
+</div>
+
+<!-- ===== 15 RISK ===== -->
+<div class="sec" id="s15">
+<span class="eyebrow">§15 · Risk register with kill criteria</span>
+<table>
+<thead><tr><th style="width:26%">Risk</th><th class="n">Sev</th><th class="n">Lik</th><th class="n">Score</th><th>Kill criterion</th></tr></thead>
+<tbody>
+<tr><td>Runway / insolvency</td><td class="n">5</td><td class="n">5</td><td class="n">25</td><td class="kill">Round does not close to at least $500K of hard cash within 60 days, or cash falls below one month of burn without a signed commitment.</td></tr>
+<tr><td>Undisclosed / off-market SAFE terms</td><td class="n">4</td><td class="n">5</td><td class="n">20</td><td class="kill">Company cannot or will not state a valuation cap, or the cap prices above the ~$5M seed reference without new evidence.</td></tr>
+<tr><td>Evidence integrity across figures</td><td class="n">4</td><td class="n">5</td><td class="n">20</td><td class="kill">The ARR ($106K vs $184K vs $446K), pipeline and TAM discrepancies are not reconciled in writing within ten business days of being raised.</td></tr>
+<tr><td>Founder acquihire diverging from investors</td><td class="n">4</td><td class="n">4</td><td class="n">16</td><td class="kill">Carragon/WPI acquihire (or similar) advances while a SAFE round is being raised, without SAFE-holder protection (MFN, acquisition floor).</td></tr>
+<tr><td>ARPU step-change fails</td><td class="n">4</td><td class="n">4</td><td class="n">16</td><td class="kill">New-pricing cohorts land below ~$150/mo blended for two consecutive quarters.</td></tr>
+<tr><td>New-logo cadence step-change</td><td class="n">4</td><td class="n">4</td><td class="n">16</td><td class="kill">Monthly net new stores below 20 for two consecutive months after the sales hire is 90 days ramped.</td></tr>
+<tr><td>Single-brand / single-partner concentration</td><td class="n">5</td><td class="n">3</td><td class="n">15</td><td class="kill">Domino's corporate builds or blocks an equivalent, or the Wizardline data relationship changes terms.</td></tr>
+<tr><td>Vision-AI commoditization by funded rivals</td><td class="n">3</td><td class="n">4</td><td class="n">12</td><td class="kill">PreciTaste, Agot or an incumbent ships franchisee-priced real-time guidance into pizza QSR.</td></tr>
+</tbody>
+</table>
+<p class="sowhat">Seven of eight kill criteria are observable from ordinary investor updates without special access. On an uncapped SAFE with no information rights, a kill criterion that requires cooperation is decorative — so these are written to be checkable from the outside.</p>
+</div>
+
+<!-- ===== 16 FALSIFIERS ===== -->
+<div class="sec" id="s16">
+<span class="eyebrow">§16 · What would change the score</span>
+<div class="grid2" style="gap:26px">
+<div>
+<h3 style="color:var(--ok)">Would move it up 1.0 or more</h3>
+<ul>
+<li>SAFE cap disclosed at or below the $5M seed reference, with an MFN and an acquisition floor that protects against the acquihire. <span class="mono">+1.2</span></li>
+<li>Round closes to real cash (&ge;$500K wired), removing the insolvency risk that dominates the score. <span class="mono">+1.0</span></li>
+<li>A single named customer's audited before/after substantiates the $26.6K/location savings, and new-pricing cohorts land at ~$229. <span class="mono">+1.0</span></li>
+</ul>
+</div>
+<div>
+<h3 style="color:var(--bad)">Would move it down 1.0 or more</h3>
+<ul>
+<li>Company cannot reconcile the $106K / $184K / $446K ARR figures. <span class="mono">-1.5</span></li>
+<li>Cash reaches under one month of runway with no signed commitment. <span class="mono">-1.5</span></li>
+<li>Founders advance the acquihire while raising the SAFE, without disclosing it to incoming investors. <span class="mono">-2.0</span></li>
+</ul>
+</div>
+</div>
+</div>
+
+<!-- ===== 17 THESIS FIT ===== -->
+<div class="sec" id="s17">
+<span class="eyebrow">§17 · Marketlogic thesis fit</span>
+<table>
+<thead><tr><th>Thesis clause</th><th class="n">Fit</th><th>Assessment</th></tr></thead>
+<tbody>
+<tr><td>Operational complexity turned into software advantage</td><td class="n">8</td><td class="small">Direct hit: labor, waste, prep and pricing discipline converted into shift-level actions. This is the clause.</td></tr>
+<tr><td>AI, frontier technology, and physical/edge</td><td class="n">7</td><td class="small">Vision AI on a physical make-line plus edge/AR on the roadmap. Applied AI in the physical store — fits the Physical-AI thread already in the book.</td></tr>
+<tr><td>Deeptech reimagining enterprise transformation</td><td class="n">6</td><td class="small">SOP-to-software for the frontline. Real, but more applied-AI than deeptech.</td></tr>
+<tr><td>Supply chains analyzed to find value creators</td><td class="n">6</td><td class="small">Food ordering / distribution integrations (US Foods, DMA) touch the supply chain, supplier side.</td></tr>
+<tr><td>Edge from hands-on operational fluency</td><td class="n">9</td><td class="small">This fund can diligence restaurant labor, food cost and franchise ops directly. That operator edge is exactly what surfaced the ARR, ARPU and pipeline discrepancies in this file.</td></tr>
+</tbody>
+</table>
+<p class="sowhat">Thesis fit is one of the higher-scoring dimensions, at ~7. As with Intellectible, that is precisely why the pass must be argued carefully rather than assumed: the temptation to force a fit is strongest when the fit is real and only the deal — here the runway and the terms — is bad.</p>
+</div>
+
+<!-- ===== 18 DILIGENCE ===== -->
+<div class="sec" id="s18">
+<span class="eyebrow">§18 · Diligence queue</span>
+<h2>Ranked by score at risk, not by topic</h2>
+<div class="ctrls noprint" style="display:flex;gap:16px;align-items:center;flex-wrap:wrap">
+  <span class="small">Score still at risk: <span class="mono" id="dq_out" style="font-size:17px;color:var(--bad)">-10.7</span></span>
+  <button id="dq_reset">Clear all</button>
+</div>
+<div id="dqlist"></div>
+<p class="sowhat">The first three items are existential and free to ask: what is the cap, how much cash is actually in the bank this week, and which ARR figure is real. How the founder answers them is itself the most informative diligence available.</p>
+</div>
+
+<!-- ===== 19 TERMS ===== -->
+<div class="sec" id="s19">
+<span class="eyebrow">§19 · Terms and structure</span>
+<h2>You cannot price what has no cap</h2>
+<p>The instrument is a $1.0M SAFE. Its valuation cap is not stated on the ask slide, in the term-sheet folder, or anywhere else in the data room. Prior money — MLC and Wizardline — sits on the cap table as <b>common stock</b>, with the raise-history workbook referencing a "$5M post" seed. An uncapped or undisclosed-cap SAFE into a pre-revenue-scale company at a weeks-of-cash balance is not a term a committee can approve.</p>
+<p>Worse, the same folder holds a competing acquihire term sheet. If the founders take it, a SAFE bought now could convert into approximately its cap on an early sale while the founders receive salaries, payouts and re-vested stock. The interests are not aligned, and nothing in the current structure protects the incoming dollar.</p>
+<h3>What to ask for if this is revisited</h3>
+<ul>
+<li>A stated valuation cap at or below the $5M seed reference, in writing.</li>
+<li>An MFN clause and an <b>acquisition floor</b> (e.g. a minimum multiple on a sale below a threshold) given the live acquihire.</li>
+<li>Proof the round has closed to real cash sufficient for 12+ months, before we wire.</li>
+<li>Quarterly reporting including full-book gross/net retention and new-logo cadence, not ICP-filtered.</li>
+<li>Reconciliation, in writing, of the ARR, pipeline and TAM figures across the deck, model and research file.</li>
+</ul>
+</div>
+
+<!-- ===== 20 MONITORING ===== -->
+<div class="sec" id="s20">
+<span class="eyebrow">§20 · Pre-committed monitoring milestones</span>
+<p>Written now so future reviews are verification rather than debate. Each is pass or fail against a number.</p>
+<table>
+<thead><tr><th style="width:16%">Checkpoint</th><th>Test</th></tr></thead>
+<tbody>
+<tr><td class="mono">Now + 60d</td><td>Round closed to &ge;$500K of wired cash and a disclosed SAFE cap. Yes or no.</td></tr>
+<tr><td class="mono">Q4 2026</td><td>Contracted ARR at or above $250K on reconciled figures. Net new stores &ge;20/month. Yes or no.</td></tr>
+<tr><td class="mono">Q1 2027</td><td>New-pricing cohorts at ~$199&ndash;299/mo blended. Full-book gross retention disclosed and &ge;85%. Yes or no.</td></tr>
+<tr><td class="mono">Q3 2027</td><td>Annualized ARR &ge;$1.0M and a named second-vertical or second-brand logo. Yes or no.</td></tr>
+<tr><td class="mono">Priced round</td><td>If three of four above passed, re-underwrite at the priced round with a fresh score. If two or fewer, do not re-open the file.</td></tr>
+</tbody>
+</table>
+</div>
+
+<!-- ===== 21 GAPS ===== -->
+<div class="sec" id="s21">
+<span class="eyebrow">§21 · Data gaps</span>
+<table>
+<thead><tr><th style="width:38%">Not available</th><th>Cost to confidence</th></tr></thead>
+<tbody>
+<tr><td>The SAFE valuation cap</td><td class="small">Critical. Without it the deal cannot be priced at all.</td></tr>
+<tr><td>Current (this-week) cash balance and signed commitments</td><td class="small">Critical. June 30 showed $16K; the question is whether the company is still solvent today.</td></tr>
+<tr><td>CAC, LTV:CAC, and full-book retention</td><td class="small">High. None disclosed; unit economics are entirely modeled.</td></tr>
+<tr><td>A named customer with audited savings</td><td class="small">High. The ROI case study is illustrative, not a real before/after.</td></tr>
+<tr><td>Wizardline / Domino's relationship terms</td><td class="small">High. The core distribution moat is a partner relationship with undisclosed terms.</td></tr>
+<tr><td>The acquihire term sheet itself</td><td class="small">High. Only summarized in the tracker; the actual terms and status are unknown.</td></tr>
+<tr><td>SOC 2 / data-security posture</td><td class="small">Medium, rising with enterprise scale and camera data.</td></tr>
+</tbody>
+</table>
+</div>
+
+<!-- ===== 22 CONCLUSION ===== -->
+<div class="sec" id="s22">
+<span class="eyebrow">§22 · Recommendation</span>
+<p class="lede">Pass on the SAFE. Stay warm on the operator. Smart Trainer is not a fake — it is a real, unusually capital-efficient product with 118 paying stores, a credible operator-CEO, and a genuine distribution edge into the Domino's franchisee network. Those facts are why the score is 4.1 and not lower, and why the call is Stay Warm rather than a hard pass.</p>
+<p>The pass rests on four things, three of which are arithmetic. The company had $16K of cash against a $25K card balance on June 30 and added no stores in July, so the raise is survival capital on a balance sheet that may already be past empty. The instrument is a SAFE whose cap is disclosed nowhere, sitting in a folder that also contains an offer to buy the company and pay the founders — interests that are not aligned with an incoming SAFE holder. The market and traction numbers contradict each other across the company's own documents: $106K, $184K or $446K of ARR; a $300K, $25M, 200-store or 14,400-location pipeline; a $41B TAM the company's own research puts at a fortieth of that. And the one category the product most visibly competes in — restaurant vision AI — is held by players with 30 to 80 times the capital.</p>
+<p><b>Would I put my own money in at these terms?</b> No — and the deciding factor is that there are no terms to evaluate: no cap, no confirmed cash, no protection against the acquihire, and no reconciled numbers. The first three risks are ordinary early-stage risk a good operator can outrun. The last two — the uncapped instrument and the contradictory figures — are things the founder can resolve in about a week. If he closes the round to real cash, states a cap at or below the $5M reference with an MFN and an acquisition floor, and reconciles the ARR, pipeline and TAM figures in writing, this becomes a small, defensible operator bet and the composite moves toward ~6.0. That path is entirely in his control. Ask for it, and keep the relationship warm while he decides.</p>
+</div>
+
+<div class="foot">
+Marketlogic Investors LLC · Investment Memorandum · Confidential<br>
+Prepared for internal investment committee use only. Not investment advice. All deck-derived figures subject to verification.<br>
+Smart Trainer · ML-2026-ST-01 · Author: H. Reganti · Prepared 12 August 2026<br>
+First underwrite. No prior Marketlogic memo on this company exists.<br>
+Source documents: Smart Trainer Master PitchDeck.pdf · 01_Smart_Trainer_Financial_Package_Final.xlsx · Smart_Trainer_Pre_Financing_Cap_Table.pdf · Smart Trainer Inc. Raise History.xlsx · Tracker.xlsx (term sheet) · 2026 market research.docx · Competitors.docx · Path to 100M.pdf · Case Study Smart Trainer.pdf · Current Customer + Target to 2000.xlsx · Founders.pdf · Smart Trainer Board List.docx · Smart Trainer Partners.docx · Patent 1 (application).<br>
+External verification: National Restaurant Association 2026 State of the Industry; Domino's Q3 2025 store data; Tracxn / Crunchbase / PitchBook funding records for PreciTaste, Agot AI, Restaurant365, CrunchTime. Retrieved 12 August 2026.<br>
+Interactive controls explore sensitivity around a locked baseline. They do not alter the committed position above.
+</div>
+
+<a class="backlink" href="../">← Back to all VC Deals</a>
+
+</div>
+
+<script>
+(function(){
+  var $=function(i){return document.getElementById(i)};
+  var fmt=function(n){return n.toLocaleString('en-US')};
+
+  /* ---- 01 scorecard ---- */
+  var DIMS=[
+    ['Founder and team quality',12,5.0,'Credible operator-CEO; thin technical bench; CFO co-founder left.'],
+    ['Traction and revenue quality',12,4.0,'Real $106K ARR on ~$630K, but tiny, low-ARPU, zero July adds.'],
+    ['Moat and defensibility',10,3.5,'Wizardline/SOP edge survives; vision AI commoditizes fastest.'],
+    ['Market size and structure',9,5.5,'Huge industry; own research puts real TAM at $0.9-2.5B.'],
+    ['Unit economics',10,4.5,'Software GM good at scale; CAC undisclosed; ARPU must 3x.'],
+    ['Competitive position',9,3.0,'30-80x capital gap vs vision rivals; single-brand concentration.'],
+    ['Go-to-market credibility',8,4.0,'Franchise motion real; plan needs a ~5x cadence step-change.'],
+    ['Product and technical depth',8,6.0,'Working product + Vision AI beta on very little capital.'],
+    ['Capital efficiency and runway',8,2.0,'$16K cash vs $25K card balance; raise is existential.'],
+    ['Terms and structure',7,2.5,'Undisclosed SAFE cap; overstated commitments; acquihire in file.'],
+    ['Marketlogic thesis fit',4,6.5,'Ops-into-software + Physical AI; genuine operator diligence edge.'],
+    ['Evidence integrity',3,2.0,'Six headline claims contradicted across the same data room.']
+  ];
+  var tb=$('sctab').getElementsByTagName('tbody')[0], wg=$('wgrid');
+  DIMS.forEach(function(d,i){
+    var tr=document.createElement('tr');
+    tr.innerHTML='<td>'+d[0]+'</td><td class="n" id="w'+i+'">'+d[1]+'%</td><td class="n">'+d[2].toFixed(1)+
+      '</td><td class="n"><span class="bartrack"><span class="bar" style="width:'+(d[2]*7.6)+'%"></span></span><span id="wv'+i+'">'+(d[1]*d[2]/100).toFixed(2)+'</span></td><td class="small">'+d[3]+'</td>';
+    tb.appendChild(tr);
+    var c=document.createElement('div');
+    c.innerHTML='<label class="f">'+d[0]+'</label><div class="ln"><input type="range" id="ws'+i+'" min="0" max="25" step="1" value="'+d[1]+'"><span class="out" id="wo'+i+'">'+d[1]+'%</span></div>';
+    wg.appendChild(c);
+  });
+  function scalc(){
+    var tot=0,acc=0;
+    DIMS.forEach(function(d,i){ tot+=+$('ws'+i).value; });
+    if(tot===0) tot=1;
+    DIMS.forEach(function(d,i){
+      var w=+$('ws'+i).value, nw=w/tot*100;
+      $('wo'+i).textContent=w+'%';
+      $('w'+i).textContent=nw.toFixed(1)+'%';
+      $('wv'+i).textContent=(nw*d[2]/100).toFixed(2);
+      acc+=nw*d[2]/100;
+    });
+    $('compout').textContent=acc.toFixed(1);
+    $('bandout').textContent = acc>=7.5?'Invest band':(acc>=6.0?'Monitor band':'Pass band');
+  }
+  DIMS.forEach(function(d,i){ $('ws'+i).addEventListener('input',scalc); });
+  $('wreset').addEventListener('click',function(){ DIMS.forEach(function(d,i){$('ws'+i).value=d[1];}); scalc(); });
+  scalc();
+
+  /* ---- 06 market ---- */
+  function mcalc(){
+    var n=+$('m_n').value, a=+$('m_acv').value, s=+$('m_sh').value;
+    $('m_n_o').textContent=fmt(n); $('m_acv_o').textContent='$'+(a/1000).toFixed(1)+'K'; $('m_sh_o').textContent=s+'%';
+    var sam=n*a, som=sam*s/100, need=Math.ceil(100000000/a);
+    $('m_sam').textContent='$'+(sam/1e6).toFixed(0)+'M';
+    $('m_som').textContent='$'+(som/1e6).toFixed(1)+'M';
+    $('m_need').textContent=fmt(need);
+    $('m_pct').textContent=Math.round(need/n*100)+'%';
+  }
+  ['m_n','m_acv','m_sh'].forEach(function(i){$(i).addEventListener('input',mcalc)});
+  $('m_reset').addEventListener('click',function(){$('m_n').value=300000;$('m_acv').value=2748;$('m_sh').value=3;mcalc();});
+  mcalc();
+
+  /* ---- 07 filter ---- */
+  var chips=document.querySelectorAll('.chip[data-f]');
+  chips.forEach(function(b){
+    b.addEventListener('click',function(){
+      chips.forEach(function(x){x.setAttribute('aria-pressed','false')});
+      b.setAttribute('aria-pressed','true');
+      var f=b.getAttribute('data-f');
+      Array.prototype.forEach.call($('fctab').querySelectorAll('tbody tr'),function(r){
+        r.style.display=(f==='all'||r.getAttribute('data-v')===f)?'':'none';
+      });
+    });
+  });
+
+  /* ---- 09 unit economics ---- */
+  function ucalc(){
+    var a=+$('u_acv').value, c=+$('u_cac').value, ch=+$('u_ch').value/100, gm=+$('u_gm').value/100;
+    $('u_acv_o').textContent='$'+fmt(a); $('u_cac_o').textContent='$'+fmt(c);
+    $('u_ch_o').textContent=Math.round(ch*100)+'%'; $('u_gm_o').textContent=Math.round(gm*100)+'%';
+    var ltv=a*gm/ch, r=ltv/c, pb=c/(a*gm/12);
+    $('u_ltv').textContent='$'+fmt(Math.round(ltv));
+    $('u_ratio').textContent=r.toFixed(1)+'x';
+    $('u_pb').textContent=pb.toFixed(1)+' mo';
+    $('u_life').textContent=(1/ch).toFixed(1)+' yr';
+    var f=$('u_flag');
+    if(r>=3){f.className='flag f-ok';f.textContent='Clears the 3x benchmark — on modeled inputs';}
+    else{f.className='flag f-bad';f.textContent='Below the 3x benchmark';}
+  }
+  ['u_acv','u_cac','u_ch','u_gm'].forEach(function(i){$(i).addEventListener('input',ucalc)});
+  $('u_reset').addEventListener('click',function(){$('u_acv').value=2748;$('u_cac').value=2000;$('u_ch').value=30;$('u_gm').value=76;ucalc();});
+  $('u_real').addEventListener('click',function(){$('u_acv').value=900;$('u_cac').value=2000;$('u_ch').value=35;$('u_gm').value=45;ucalc();});
+  ucalc();
+
+  /* ---- 14 scenarios ---- */
+  var BEARM=0.3;
+  function ecalc(){
+    var pb=+$('p_bull').value, pr=+$('p_bear').value;
+    if(pb+pr>100){pr=100-pb;$('p_bear').value=pr;}
+    var pbase=100-pb-pr;
+    var cap=+$('e_cap').value, chk=+$('e_chk').value, d=+$('e_dil').value, eb=+$('e_base').value, ebu=+$('e_bull').value;
+    $('p_bull_o').textContent=pb+'%'; $('p_bear_o').textContent=pr+'%'; $('p_base_o').textContent=pbase+'%';
+    $('e_cap_o').textContent='$'+cap+'M'; $('e_chk_o').textContent='$'+chk+'K';
+    $('e_dil_o').textContent=d+'%'; $('e_base_o').textContent='$'+fmt(eb)+'M'; $('e_bull_o').textContent='$'+fmt(ebu)+'M';
+    var own=(chk/1000/cap)*(1-d/100);            /* fractional ownership at exit */
+    var mBase=own*eb*1e6/(chk*1000), mBull=own*ebu*1e6/(chk*1000);
+    var wtd=(pb/100)*mBull+(pbase/100)*mBase+(pr/100)*BEARM;
+    $('r_bull').textContent=mBull.toFixed(1)+'x';
+    $('r_base').textContent=mBase.toFixed(1)+'x';
+    $('r_bear').textContent=BEARM.toFixed(1)+'x';
+    $('r_wtd').textContent=wtd.toFixed(1)+'x';
+    var proceeds=chk*1000*mBull;
+    $('r_bullp').textContent='$'+(proceeds/1e6).toFixed(2)+'M';
+    $('r_fund').textContent=(proceeds/5e6).toFixed(2)+'x';
+    var f=$('r_flag');
+    if(wtd>=5){f.className='flag f-ok';f.textContent='Clears the 5x seed hurdle';}
+    else{f.className='flag f-bad';f.textContent='Below the 5x seed hurdle';}
+  }
+  ['p_bull','p_bear','e_cap','e_chk','e_dil','e_base','e_bull'].forEach(function(i){$(i).addEventListener('input',ecalc)});
+  $('e_reset').addEventListener('click',function(){$('p_bull').value=10;$('p_bear').value=60;$('e_cap').value=5;$('e_chk').value=50;$('e_dil').value=65;$('e_base').value=40;$('e_bull').value=400;ecalc();});
+  ecalc();
+
+  /* ---- 18 diligence queue ---- */
+  var DQ=[
+   [1.5,'What is the SAFE valuation cap, in writing?','It appears in no data-room document. Nothing below can be priced without it. The single most important open item.'],
+   [1.3,'What is the cash balance this week, and what is signed?','June 30 showed $16,184 against a $25,300 card balance. Solvency today is the binary question.'],
+   [1.2,'Which ARR is real: $106K, $184K, or $446K?','The financial package, the traction slide and the projection slide give three different numbers for the metric the deal turns on.'],
+   [1.0,'Status and terms of the Carragon/WPI acquihire offer.','A signed acquihire while raising a SAFE, without holder protection, changes the recommendation.'],
+   [0.9,'Reconcile the pipeline: $300K vs $25M vs 200 stores vs 14,400 locations.','Four incompatible descriptions of one pipeline across four documents.'],
+   [0.8,'Full-book gross/net retention and the June churn detail.','Three Boston Pie stores churned; pilots fell 10 to 2; no retention is disclosed.'],
+   [0.7,'Actual blended price on the last 30 new-pricing stores.','The $2.5M ARR plan needs ~$229/mo; realized is $75. Show the step is happening.'],
+   [0.6,'CAC and the cost of the two-meeting sale.','No CAC is disclosed anywhere; unit economics are entirely modeled.'],
+   [0.6,'Wizardline / Domino’s data relationship: terms, exclusivity, term length.','The core distribution moat is a partner relationship with unknown terms.'],
+   [0.5,'A single named customer with audited before/after savings.','The $26.6K/location case study is an illustrative average, not a real result.'],
+   [0.5,'Reconcile the $41B TAM against the company’s own $0.9-2.5B research.','The deck is 16-45x its own market-research file.'],
+   [0.4,'True monthly net new stores for the trailing six months, and share closed without the CEO.','The plan needs ~74/month from an observed ~15 and zero in July.'],
+   [0.4,'Patent application status, claims and assignment.','One application (not granted) is assigned; scope and prosecution status unknown.'],
+   [0.3,'SOC 2 / data-security posture given in-store camera data.','Gating at enterprise scale; Vision AI collects store footage.']
+  ];
+  var list=$('dqlist');
+  DQ.forEach(function(q,i){
+    var d=document.createElement('div');
+    d.className='dq';
+    d.innerHTML='<div class="top"><input type="checkbox" id="dq'+i+'" data-d="'+q[0]+'"><div style="flex:1"><p class="q"><b>'+(i+1)+'.</b> '+q[1]+'</p><p class="small" style="margin:0">'+q[2]+'</p></div><span class="d">-'+q[0].toFixed(1)+'</span></div>';
+    list.appendChild(d);
+  });
+  function dcalc(){
+    var t=0;
+    DQ.forEach(function(q,i){ if(!$('dq'+i).checked) t+=q[0]; });
+    $('dq_out').textContent='-'+t.toFixed(1);
+  }
+  DQ.forEach(function(q,i){ $('dq'+i).addEventListener('change',dcalc); });
+  $('dq_reset').addEventListener('click',function(){DQ.forEach(function(q,i){$('dq'+i).checked=false;});dcalc();});
+  dcalc();
+})();
+</script>
+</body>
+</html>
