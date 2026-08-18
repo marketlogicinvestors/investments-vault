@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Quantum Signals · ML-2026-QS-01 · Marketlogic Investors LLC</title>
+<style>
+:root{
+  --paper:#FCFBF8; --ink:#16202B; --slate:#5C6672; --rule:#D8D5CC;
+  --ok:#2F6B4F; --warn:#9A6B12; --bad:#A32D2D; --accent:#1E4C7A;
+  --okbg:#EAF2ED; --warnbg:#F7EEDC; --badbg:#F8EAEA; --accbg:#E9EFF6;
+  --serif:Georgia,'Iowan Old Style','Palatino Linotype',serif;
+  --sans:system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  --mono:ui-monospace,'SF Mono',Menlo,Consolas,'Liberation Mono',monospace;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--serif);font-size:16.5px;line-height:1.62}
+.wrap{max-width:940px;margin:0 auto;padding:48px 28px 96px}
+h1{font-size:31px;line-height:1.18;font-weight:normal;letter-spacing:-.01em;margin:0 0 6px}
+h2{font-size:21px;font-weight:normal;margin:0 0 10px;letter-spacing:-.005em}
+h3{font-size:16px;font-family:var(--sans);font-weight:600;margin:22px 0 8px}
+p{margin:0 0 14px}
+a{color:var(--accent)}
+.eyebrow{font-family:var(--sans);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--slate);font-weight:600}
+.sec{border-top:1px solid var(--rule);padding-top:16px;margin-top:44px}
+.sec>.eyebrow{display:block;margin-bottom:9px}
+.mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.small{font-size:13.5px;color:var(--slate)}
+.lede{font-size:18px;line-height:1.55}
+
+.masthead{border:1.5px solid var(--ink);padding:22px 24px;margin-bottom:14px}
+.mrow{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;flex-wrap:wrap}
+.verdict{font-family:var(--mono);font-size:13px;letter-spacing:.1em;text-transform:uppercase;background:var(--warnbg);color:var(--warn);padding:5px 12px;border:1px solid var(--warn);white-space:nowrap}
+.bigscore{font-family:var(--mono);font-size:52px;line-height:1;letter-spacing:-.03em}
+.scorelab{font-family:var(--sans);font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:var(--slate)}
+
+.seal{display:flex;align-items:center;gap:10px;font-family:var(--sans);font-size:11.5px;color:var(--slate);border:1px dashed var(--rule);padding:8px 12px;margin:14px 0 0}
+.seal b{font-family:var(--mono);color:var(--ink);font-weight:normal}
+
+.tier{font-family:var(--mono);font-size:10px;letter-spacing:.04em;padding:1px 5px;border:1px solid;vertical-align:1px;white-space:nowrap}
+.t-co{color:var(--slate);border-color:var(--rule);background:#F2F1EC}
+.t-ext{color:var(--accent);border-color:#B9CBE0;background:var(--accbg)}
+.t-mod{color:var(--warn);border-color:#DFC48A;background:var(--warnbg)}
+.t-unv{color:var(--bad);border-color:#DDA9A9;background:var(--badbg)}
+
+table{width:100%;border-collapse:collapse;font-size:14px;margin:12px 0 6px}
+th{font-family:var(--sans);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--slate);text-align:left;font-weight:600;border-bottom:1px solid var(--ink);padding:7px 9px 7px 0;vertical-align:bottom}
+td{border-bottom:1px solid var(--rule);padding:9px 9px 9px 0;vertical-align:top}
+td.n,th.n{text-align:right;font-family:var(--mono);font-variant-numeric:tabular-nums;padding-right:0}
+.sowhat{font-size:13.5px;color:var(--slate);font-style:italic;margin:6px 0 0}
+
+.bar{display:inline-block;height:7px;background:var(--ink);vertical-align:middle}
+.bartrack{display:inline-block;width:76px;height:7px;background:#E8E6DF;vertical-align:middle;margin-right:7px}
+
+.ctrls{border:1px solid var(--rule);background:#F7F6F1;padding:16px 18px;margin:16px 0}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px 22px}
+label.f{display:block;font-family:var(--sans);font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--slate);margin-bottom:3px;font-weight:600}
+.ln{display:flex;align-items:center;gap:9px}
+input[type=range]{flex:1;accent-color:var(--ink);min-width:0}
+.out{font-family:var(--mono);font-size:13.5px;min-width:62px;text-align:right}
+button{font-family:var(--sans);font-size:12px;background:transparent;border:1px solid var(--ink);color:var(--ink);padding:6px 12px;cursor:pointer}
+button:hover{background:var(--ink);color:var(--paper)}
+button.chip{border-color:var(--rule);color:var(--slate);padding:4px 10px;margin:0 6px 6px 0}
+button.chip[aria-pressed=true]{border-color:var(--ink);color:var(--paper);background:var(--ink)}
+.metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(132px,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule);margin:16px 0}
+.met{background:var(--paper);padding:12px 14px}
+.met .k{font-family:var(--sans);font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--slate)}
+.met .v{font-family:var(--mono);font-size:25px;line-height:1.25;letter-spacing:-.02em}
+.flag{padding:7px 12px;font-family:var(--sans);font-size:12.5px;display:inline-block;margin-top:4px}
+.f-bad{background:var(--badbg);color:var(--bad)} .f-ok{background:var(--okbg);color:var(--ok)}
+
+.callout{border-left:3px solid var(--ink);padding:2px 0 2px 18px;margin:18px 0}
+.kill{font-family:var(--sans);font-size:12.5px;color:var(--bad)}
+.q{margin:0 0 4px}
+.dq{border-bottom:1px solid var(--rule);padding:11px 0}
+.dq .top{display:flex;gap:11px;align-items:baseline}
+.dq .d{font-family:var(--mono);font-size:12.5px;color:var(--bad);white-space:nowrap}
+.foot{border-top:1.5px solid var(--ink);margin-top:52px;padding-top:16px;font-size:12.5px;color:var(--slate);font-family:var(--sans);line-height:1.75}
+input[type=checkbox]{accent-color:var(--ink);margin-right:9px;transform:translateY(1px)}
+@media print{
+  .ctrls,button,.noprint{display:none !important}
+  body{font-size:11pt;background:#fff}
+  .wrap{max-width:none;padding:0}
+  .sec{break-inside:avoid;page-break-inside:avoid}
+  a{color:var(--ink);text-decoration:none}
+}
+.site-nav{display:flex;align-items:center;justify-content:space-between;gap:16px;background:var(--ink);color:var(--paper);padding:11px 28px;font-family:var(--sans);font-size:12.5px;letter-spacing:.02em;position:sticky;top:0;z-index:100}
+.site-nav a{color:rgba(252,251,248,.72);text-decoration:none}
+.site-nav a:hover{color:var(--paper)}
+.site-nav .sep{color:rgba(252,251,248,.32);margin:0 6px}
+.site-nav .here{color:rgba(252,251,248,.5)}
+.site-nav .nav-action a{color:var(--paper);border:1px solid rgba(252,251,248,.42);border-radius:3px;padding:3px 11px}
+.site-nav .nav-action a:hover{background:var(--paper);color:var(--ink)}
+.backlink{display:inline-block;margin-top:22px;font-family:var(--sans);font-size:13px;color:var(--accent);text-decoration:none}
+.backlink:hover{text-decoration:underline}
+@media print{.site-nav,.backlink{display:none !important}}
+</style>
+</head>
+<body>
+<nav class="site-nav" aria-label="breadcrumb">
+<span><a href="../../">Market Logic Investors</a><span class="sep">/</span><a href="../../">Deal Vault</a><span class="sep">/</span><a href="../">VC Deals</a><span class="sep">/</span><span class="here">Quantum Signals</span></span>
+<span class="nav-action"><a href="../">← All VC Deals</a></span>
+</nav>
+<div class="wrap">
+
+<div class="eyebrow">Marketlogic Investors LLC · Investment Committee Memorandum · Confidential</div>
+<h1>Quantum Signals</h1>
+<p class="small mono">ML-2026-QS-01 · Paris, France / San Francisco, CA · Seed (priced, terms not yet set) · Prepared 18 August 2026 · Author: H. Reganti<br>First underwrite. Sourced from the company's Notion/Drive data room, the founder's written due-diligence responses, and independent web verification.</p>
+
+<!-- ===== 00 DEAL CARD ===== -->
+<div class="sec" id="s00">
+<span class="eyebrow">§00 · Deal card</span>
+<div class="masthead">
+  <div class="mrow">
+    <div>
+      <div class="scorelab">Composite score</div>
+      <div class="bigscore">5.3</div>
+      <div class="small mono" style="margin-top:4px">Band: below 6.0</div>
+    </div>
+    <div style="flex:1;min-width:260px">
+      <div class="verdict">Watch — Diligence</div>
+      <p style="margin:12px 0 0;font-size:15px">Stay engaged through the raise; do not commit until three independent gaps between what the company discloses and what its own documents show are reconciled in writing. The team and the technology are genuinely strong. The paperwork is not yet trustworthy enough to price.</p>
+    </div>
+    <div style="min-width:150px">
+      <div class="scorelab">Conviction</div>
+      <div class="mono" style="font-size:19px">Medium</div>
+      <div class="small" style="margin-top:8px">Proposed check<br><span class="mono" style="font-size:17px;color:var(--ink)">$0 — terms not set</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="callout">
+<p style="margin:0"><b>Underwriting statement.</b> We would be underwriting Quantum Signals on the belief that a founder pair combining real quantum-ML research depth with real enterprise trading-technology sales experience can package Level II order-book prediction as accessible infrastructure for the thousands of funds and desks that cannot build it themselves, and we are wrong if paid traction does not grow past two logos at $1,000 a month before this round closes, or if the gap between the French entity's audited revenue and the Delaware entity's booked revenue turns out to be a disclosure problem rather than an accounting one.</p>
+</div>
+
+<h3>The three numbers that matter</h3>
+<div class="metrics">
+  <div class="met"><div class="k">Deck Aug ARR vs CRM cumulative</div><div class="v">2.7x</div></div>
+  <div class="met"><div class="k">US entity vs FR entity 2025 revenue</div><div class="v">9.2x</div></div>
+  <div class="met"><div class="k">Deck top Sharpe vs site's stated range</div><div class="v">+58%</div></div>
+</div>
+<p class="sowhat">Each is arithmetic from documents already in the data room the company itself provided or published. None required an outside opinion — only reading two of the company's own files side by side.</p>
+
+<p><b>Biggest risk, in five words:</b> <span class="mono">Two ledgers, two stories, unreconciled.</span></p>
+</div>
+
+<!-- ===== 01 SCORECARD ===== -->
+<div class="sec" id="s01">
+<span class="eyebrow">§01 · Weighted scorecard</span>
+<h2>The composite is derived, not asserted</h2>
+<p>Twelve dimensions, weighted. Move the weights to test whether the answer depends on the rubric or on the company.</p>
+
+<table id="sctab">
+<thead><tr><th>Dimension</th><th class="n">Weight</th><th class="n">Raw</th><th class="n">Weighted</th><th style="width:34%">Basis</th></tr></thead>
+<tbody></tbody>
+</table>
+
+<div class="ctrls noprint">
+  <div class="grid2" id="wgrid"></div>
+  <div style="margin-top:14px;display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+    <button id="wreset">Reset to committed baseline</button>
+    <span class="small">Composite <span class="mono" id="compout" style="font-size:16px;color:var(--ink)">5.3</span> · <span id="bandout" class="mono">Pass band</span></span>
+  </div>
+</div>
+<p class="sowhat">Reweighting within any defensible range keeps the composite between roughly 4.6 and 6.0. The call is not an artifact of the rubric — it is driven by the evidence-integrity dimension, which is low under any reasonable weighting.</p>
+
+<h3>Placement against the VC book</h3>
+<table>
+<thead><tr><th>Deal</th><th class="mono">ID</th><th class="n">Score</th><th>Call on file</th></tr></thead>
+<tbody>
+<tr><td>Intellectible (May 2026)</td><td class="mono">ML-2026-IT-01</td><td class="n">8.1</td><td class="small">Participate</td></tr>
+<tr><td>Mercury</td><td class="mono">ML-2026-MC-01</td><td class="n">7.4</td><td class="small">Proceed &mdash; Deep Diligence</td></tr>
+<tr><td>Innerwell</td><td class="mono">ML-2026-IW-01</td><td class="n">6.5</td><td class="small">Watch &mdash; Diligence</td></tr>
+<tr><td>Planet.Tech</td><td class="mono">ML-2026-PT-01</td><td class="n">6.2</td><td class="small">Angel SAFE</td></tr>
+<tr><td>Maison Monravel</td><td class="mono">ML-2026-MM-01</td><td class="n">5.6</td><td class="small">Pass &mdash; Stay Warm</td></tr>
+<tr><td>Intellectible (re-underwrite)</td><td class="mono">ML-2026-IT-02</td><td class="n">5.3</td><td class="small">Pass &mdash; Stay Warm</td></tr>
+<tr style="background:#F2F1EC"><td><b>Quantum Signals</b></td><td class="mono">ML-2026-QS-01</td><td class="n"><b>5.3</b></td><td class="small"><b>Watch &mdash; Diligence</b></td></tr>
+<tr><td>Smart Trainer</td><td class="mono">ML-2026-ST-01</td><td class="n">4.1</td><td class="small">Pass &mdash; Stay Warm</td></tr>
+<tr><td>Dapper Boi</td><td class="mono">ML-2026-DB-01</td><td class="n">4.8</td><td class="small">Watch &mdash; Pass-Path</td></tr>
+<tr><td>EchoTwin AI</td><td class="mono">ML-2026-ET-01</td><td class="n">3.6</td><td class="small">Pass &mdash; Integrity Gate</td></tr>
+</tbody>
+</table>
+<p class="sowhat">Ties the Intellectible re-underwrite on composite score at 5.3, though for a different reason: that file was a real, revenue-generating company whose memo overstated verified figures; this file is a real, credentialed team whose deck overstates verified figures. Both land at "trustworthy team, untrustworthy paperwork so far."</p>
+</div>
+
+<!-- ===== 03 SNAPSHOT ===== -->
+<div class="sec" id="s03">
+<span class="eyebrow">§03 · Deal snapshot</span>
+<table>
+<tbody>
+<tr><td style="width:34%">Instrument offered</td><td>Priced Seed round; pre-money and post-money "still not set," per the founder's written answer — two prospective leads in discussion <span class="tier t-co">CO</span></td></tr>
+<tr><td>Target raise</td><td>~€4M (per a third-party scouting note in the data room, not stated directly by the company in the materials reviewed) <span class="tier t-unv">UNV</span></td></tr>
+<tr><td>Prior capital raised (disclosed)</td><td>~€2.17M: Quantonation II ~€1.0M + CNRS Innovation €120K (priced, Sept 2024 conversion) <span class="tier t-co">CO</span>; Wavepeak Ventures €750K BSA Air, €20M cap, no discount, not yet exercised (Nov 2025) <span class="tier t-co">CO</span>; BPI France €300K convertible bond, 5-year term, French Tech Seed program (Apr 2025) <span class="tier t-co">CO</span></td></tr>
+<tr><td>Cap table (fully diluted, 12 Jan 2026)</td><td>Gamvros 36.3% · Kerenidis 38.5% · Quantonation II 10.7% · CNRS Innovation 1.3% · BSPCE/BSA pool 13.2% <span class="tier t-co">CO</span> — cross-checked against the shareholders' agreements and BSA Air documents <span class="tier t-ext">EXT</span></td></tr>
+<tr><td>Corporate structure</td><td>Two entities: Quantum Signals SAS (Paris, RCS 928 416 148, incorporated May 2024) and Quantum Intelligent Signals Corp. (Delaware, filed June 2024). The founder's written answer states "we are not considering a Delaware flip for this round" without mentioning that the Delaware entity already exists and carries its own revenue and payroll. <span class="tier t-co">CO</span> / <span class="tier t-unv">UNV — unreconciled</span></td></tr>
+<tr><td>Grants / non-dilutive support</td><td>CNRS Innovation and French public-innovation programs (Innovup, Pack Quantique, BFT Emergence folders present in the data room but not individually reviewed) <span class="tier t-co">CO</span></td></tr>
+<tr><td>Governance rights on file</td><td>Quantonation shareholders' agreement covers pre-emptive rights, tag-along, drag-along, and a liquidation-preference scheme; equivalent terms for the pending Seed are not yet drafted <span class="tier t-co">CO</span></td></tr>
+</tbody>
+</table>
+<p class="sowhat">The instrument is a real priced equity round, not a SAFE — but with no price, no lead, and one open question about which corporate entity investors would actually subscribe into, §14's return math below has to be treated as illustrative rather than committed.</p>
+</div>
+
+<!-- ===== 04 OVERVIEW ===== -->
+<div class="sec" id="s04">
+<span class="eyebrow">§04 · What the company actually does</span>
+<p class="lede">Quantum Signals trains a transformer model — the Microstructure Foundation Model, built on the published Temporal Fusion Transformer architecture — directly on Level II limit-order-book data: bid/ask depth and order-flow imbalance at tick resolution, for a slate of liquid futures and ETFs (equity indices, metals, with energy, rates, FX, and single equities on the roadmap). The model outputs a per-minute UP/STABLE/DOWN prediction to the closing bell, delivered live over a streaming API. Customers use it three ways: as a standalone signal traded on a fixed schedule, as a conviction filter layered on an existing strategy, or as an execution-timing input for VWAP/TWAP algorithms.</p>
+<p>The commercial bet is distributional, not just technical: the company is not claiming to out-predict Citadel or Two Sigma. It is claiming that the roughly 1,000s of hedge funds, banks, CTAs, and execution desks that cannot build Level II microstructure AI in-house will pay a subscription for a packaged version of what the largest players already run privately.</p>
+</div>
+
+<!-- ===== 05 ANALOGY ===== -->
+<div class="sec" id="s05">
+<span class="eyebrow">§05 · Analogy anchor</span>
+<h2>A market-data infrastructure vendor's distribution model, applied to a prediction instead of a data feed</h2>
+<p>The analogy that fits best is a company like Databento — which sells normalized, low-latency tick data to funds that cannot build their own exchange-connectivity stack — except one layer downstream: Quantum Signals sells the prediction built on top of that data, not the data itself.</p>
+<div class="callout">
+<p style="margin:0"><b>Where the analogy breaks, and this is the investment question.</b> A data feed's value does not depend on how many other people buy it — every subscriber gets the same clean tick stream and that is fine. A predictive trading signal's value depends partly on secrecy: the more subscribers act on the same directional call at the same moment, the more the edge that call was capturing gets arbitraged away. The company's own blog post on this concern argues that usage diversity and market depth will blunt crowding, but offers no data — only reasoning. Whether "signals as a service" is a durable business model or a business model that decays as it succeeds is the central open question, and it is not answerable from the documents in this file.</p>
+</div>
+</div>
+
+<!-- ===== 06 MARKET ===== -->
+<div class="sec" id="s06">
+<span class="eyebrow">§06 · Market, rebuilt from the bottom</span>
+<h2>The "everyone else" pool runs ahead of the primary source it partly cites</h2>
+<p>The deck frames the market as two tiers: roughly 20–30 Tier-1 funds with ~$700B combined AUM that build this in-house <span class="tier t-co">CO</span>, versus "1,000s" of other funds, banks, and CTAs with "~$6T+" combined AUM that cannot <span class="tier t-co">CO</span>, sourced in the deck's own footnote to LCH Investments, Form ADV filings, HFR's Q4 2025 report ($5.15T total industry AUM, per the footnote itself), and BarclayHedge's CTA universe (~$340B).</p>
+<p>Independently, HFR's public commentary confirms global hedge fund industry capital "surged past" roughly $5T in 2025 <span class="tier t-ext">EXT</span>. If Tier-1 funds are already inside that $5T figure — which is how HFR's own reporting is structured — then the non-Tier-1 remainder is closer to $4.3T, not the "$6T+" the deck states for that same segment. The gap looks like it comes from blending in bank prop desks and other systematic capital outside HFR's hedge-fund count; that may be defensible, but it is not shown, and the deck's own footnote points to a total that is smaller than the number in the headline.</p>
+
+<div class="ctrls noprint">
+<div class="grid2">
+  <div><label class="f">ICP fund/desk count</label><div class="ln"><input type="range" id="m_n" min="500" max="20000" step="100" value="5000"><span class="out" id="m_n_o">5,000</span></div></div>
+  <div><label class="f">Blended ACV</label><div class="ln"><input type="range" id="m_acv" min="5000" max="100000" step="1000" value="12000"><span class="out" id="m_acv_o">$12K</span></div></div>
+  <div><label class="f">Share captured</label><div class="ln"><input type="range" id="m_sh" min="1" max="100" step="1" value="1"><span class="out" id="m_sh_o">1%</span></div></div>
+</div>
+<div style="margin-top:12px"><button id="m_reset">Reset to realized baseline</button></div>
+</div>
+<div class="metrics">
+  <div class="met"><div class="k">Serviceable ARR</div><div class="v" id="m_sam">$60M</div></div>
+  <div class="met"><div class="k">ARR at that share</div><div class="v" id="m_som">$0.6M</div></div>
+  <div class="met"><div class="k">Customers needed for $100M ARR</div><div class="v" id="m_need">8,334</div></div>
+  <div class="met"><div class="k">As share of ICP</div><div class="v" id="m_pct">167%</div></div>
+</div>
+<p class="sowhat">At the realized blended ACV of $12,000 (the two paying logos in the CRM export), a $100M ARR outcome requires more customers than a reasonable estimate of the entire non-Tier-1 category. Slide ACV up to $34,500 — the company's own model's mature "Major Banks" tier ACV — and the number needed falls to roughly 2,900, or 58% of the same ICP. Either way, the exit case depends on ACV expansion far more than on logo count, which is exactly what the model itself assumes and the deck does not emphasize.</p>
+
+<h3>The honest sizing</h3>
+<table>
+<thead><tr><th>Layer</th><th class="n">Company figure</th><th class="n">Rebuilt</th><th>Why they differ</th></tr></thead>
+<tbody>
+<tr><td>"Everyone else" AUM</td><td class="n">~$6.0T</td><td class="n">~$4.3T</td><td class="small">Deck's own footnoted HFR total is ~$5.15T; subtracting its own $700B Tier-1 estimate leaves less than the headline</td></tr>
+<tr><td>Realized blended ACV</td><td class="n">$12K–$18K "current" (named segments)</td><td class="n">$12,000</td><td class="small">Two paying logos at $1,000/mo in the CRM export; named-segment figures don't tie to it <span class="tier t-mod">MOD</span></td></tr>
+<tr><td>Customers needed for $100M ARR @ realized ACV</td><td class="n">Not stated</td><td class="n">~8,334 (167% of ICP)</td><td class="small">Shows the model must be an ACV story, not a logo-count story</td></tr>
+<tr><td>Customers needed for $100M ARR @ modeled mature ACV ($34.5K)</td><td class="n">Not stated</td><td class="n">~2,899 (58% of ICP)</td><td class="small">Still requires a majority of the category even at the model's own best-case ACV</td></tr>
+</tbody>
+</table>
+</div>
+
+<!-- ===== 07 FACT CHECK ===== -->
+<div class="sec" id="s07">
+<span class="eyebrow">§07 · Claim-by-claim verification</span>
+<h2>Twelve headline claims, checked against the company's own data room</h2>
+<div class="noprint" style="margin:10px 0">
+  <button class="chip" data-f="all" aria-pressed="true">All 12</button>
+  <button class="chip" data-f="Contradicted" aria-pressed="false">Contradicted 5</button>
+  <button class="chip" data-f="Unverified" aria-pressed="false">Unverified 3</button>
+  <button class="chip" data-f="Confirmed" aria-pressed="false">Confirmed 4</button>
+</div>
+<table id="fctab">
+<thead><tr><th style="width:24%">Claim</th><th style="width:44%">What checking found</th><th>Verdict</th></tr></thead>
+<tbody>
+<tr data-v="Contradicted"><td>"5 signed institutional contracts"; named-segment ACVs of $12K (bank) and $18K (fund) "current," rising to ~$240K / ~$60K "expected"; Aug ARR $66K (projected)</td><td>The company's own CRM export ("Customer Metrics MRR & ARR") shows two paying logos — Qubitra and Blackthorne Capital, $1,000/month each — plus two accounts signed-to-trial at $0 (Société Générale, QRT). Cumulative ARR in that export is $24,000, not $66K, and none of the named ACV tiers in the deck appear in the export. <span class="tier t-co">CO</span></td><td><b style="color:var(--bad)">Contradicted</b></td></tr>
+<tr data-v="Contradicted"><td>Per-instrument FY2025 backtested Sharpe ratios, as shown in the pitch deck (up to 2.42 on Nasdaq-100)</td><td>The company's own public benchmarks page states plainly that "signal-only backtests" show Sharpe ratios "ranging from 0.22 to 1.53 across different instruments" — a ceiling roughly 37% below the deck's own headline figure for the same claimed period. <span class="tier t-co">CO</span></td><td><b style="color:var(--bad)">Contradicted</b></td></tr>
+<tr data-v="Contradicted"><td>"We are not considering a Delaware flip for this round" (written answer to a direct diligence question about corporate structure)</td><td>A Delaware entity, Quantum Intelligent Signals Corp., was incorporated in June 2024 and is not dormant: its FY2025 books show $538,599 in "Services" revenue and $398,718 in salaries and wages — roughly 9x the French parent's audited FY2025 revenue of €58,550. The answer did not disclose that this entity exists or explain the revenue split. <span class="tier t-co">CO</span> / <span class="tier t-ext">EXT — Delaware certificate of incorporation, US entity books</span></td><td><b style="color:var(--bad)">Contradicted</b></td></tr>
+<tr data-v="Contradicted"><td>Prior pre-seed round (~€1.1M, Jul 2024) investor list circulating in the data room: "Quantonation, Audacia, Wavepeak Ventures, Tenity," with Audacia described elsewhere as holding a "majority stake"</td><td>The cap table, shareholders' agreements, and BSA Air documents for that period show only two investors: FPCI Quantonation II and CNRS Innovation. Neither Audacia nor Tenity appears in any primary document reviewed, and no shareholder holds a majority stake — the two founders together hold 74.8% fully diluted. <span class="tier t-ext">EXT — primary cap-table and agreement documents</span></td><td><b style="color:var(--bad)">Contradicted</b></td></tr>
+<tr data-v="Contradicted"><td>Enterprise pricing tier published on the company website: $5,000/custom signal + $2/GPU-hour</td><td>The company's own ARR Projection Model's pricing tab lists only "Future Signal $500" and "Equities Signal $150" per seat — the $5,000 enterprise/custom tier used to justify "Major Banks" ACVs up to $34,500 does not appear anywhere in the financial model itself. <span class="tier t-co">CO</span></td><td><b style="color:var(--bad)">Contradicted</b></td></tr>
+<tr data-v="Unverified"><td>"+7.4% out-of-sample outperformance, Q1 2026, live signals, unleveraged, after costs" (on NQ, per the roadmap deck)</td><td>No single disclosed table — the pitch deck's per-instrument benchmarks, the public benchmarks page, or the portfolio-strategy blog post — reproduces this exact figure for this exact instrument and window. It may be a real, narrowly defined backtest, but it cannot be tied to a published source in this file. <span class="tier t-unv">UNV</span></td><td><b style="color:var(--warn)">Unverified</b></td></tr>
+<tr data-v="Unverified"><td>~75% gross margin at 10 customer contracts, rising past 90% with scale</td><td>The company's own model shows compute costs (GPU training/retraining hours) that are genuinely small relative to per-seat pricing, which is directionally consistent with a high-margin claim <span class="tier t-mod">MOD</span>. But the visible cost tab shows GPU compute only — it is not clear whether CME/exchange market-data distribution fees, which the original diligence question specifically asked about, are included.</td><td><b style="color:var(--warn)">Unverified</b></td></tr>
+<tr data-v="Unverified"><td>Target raise of "~€4M" for the current Seed</td><td>This figure appears only in a third-party scouting note in the data room, not in the company's own written materials, which state the round's pre-money, post-money, and lead are all still undetermined. <span class="tier t-unv">UNV</span></td><td><b style="color:var(--warn)">Unverified</b></td></tr>
+<tr data-v="Confirmed"><td>Iordanis Kerenidis's academic and research credentials (Berkeley PhD under Umesh Vazirani, MIT postdoc under Peter Shor, CNRS research director, QC Ware SVP Quantum Algorithms, 90+ papers)</td><td>Independently corroborated: his CV's publication list matches real, findable papers, including "Quantum Vision Transformers" (Quantum 8, 1265, 2024) and "Quantum Agents for Algorithmic Discovery" (arXiv:2510.08159, confirmed live on arXiv). <span class="tier t-ext">EXT</span></td><td><b style="color:var(--ok)">Confirmed</b></td></tr>
+<tr data-v="Confirmed"><td>Yianni Gamvros grew revenue from $0 to over $6M, described in the deck as having "took a QC startup from $0 to $6M ARR"</td><td>Confirmed as Head of Business Development at QC Ware Corp — a real company, independently found in press coverage — where his own résumé states he "grew annual revenue from $0 to over $6M." The deck's phrasing implies he founded or exited a startup; the underlying fact is that he built this as an employee's book of business at an existing company, not a company he started. Directionally true, mildly overstated framing. <span class="tier t-ext">EXT</span></td><td><b style="color:var(--ok)">Confirmed, with caveat</b></td></tr>
+<tr data-v="Confirmed"><td>Quantonation as lead pre-seed investor, described as a credible specialist quantum/deep-tech fund</td><td>Confirmed: Quantonation closed a €220M "Quantonation II" flagship fund in February 2026 with Novo Holdings as a backer — a real, well-regarded, escalating quantum-focused VC. <span class="tier t-ext">EXT</span></td><td><b style="color:var(--ok)">Confirmed</b></td></tr>
+<tr data-v="Confirmed"><td>10 live signals across equity indices, metals, energy (roadmap), and FX (roadmap), matching the product slide</td><td>The company's public benchmarks page independently lists the same 10 instruments (S&P 500, Nasdaq-100, Dow Jones, Russell 2000, crude oil, natural gas, gold, silver, EUR/USD, JPY/USD) as of the same period. <span class="tier t-ext">EXT</span></td><td><b style="color:var(--ok)">Confirmed</b></td></tr>
+</tbody>
+</table>
+<p class="sowhat">Five of twelve tested claims are contradicted by documents sitting in the company's own data room, and three more cannot be tied to a source at all. That pattern — not any single number — is what caps the score. The team and product claims that we could independently verify all held up.</p>
+</div>
+
+<!-- ===== 08 TRACTION ===== -->
+<div class="sec" id="s08">
+<span class="eyebrow">§08 · Traction and revenue quality</span>
+<p>What survives verification is real but small. Two paying logos — Qubitra and Blackthorne Capital — at $1,000/month each, for $24,000 of cumulative ARR as of the most recent CRM export <span class="tier t-co">CO</span>. Two more accounts (Société Générale, QRT) are signed to a $0 trial. An older CRM pipeline export shows one additional closed-won account (~$1,000/month, October 2025) and several "Negotiating" accounts in the $500–$1,000/month range, including Société Générale again and Cubist Systematic Strategies. Top-of-funnel is genuinely strong: 130+ leads sourced heavily from quant-industry conferences (BattleFin Miami and NYC, Battle of the Quants NYC, FutureAlpha 2026, Neudata London), with recognizable names in the pipeline — Two Sigma, Millennium, Citadel, Blackrock, Balyasny, AQR, Brevan Howard, DRW, Fidelity.</p>
+<h3>What the numbers do not yet support</h3>
+<table>
+<thead><tr><th>Claim</th><th>Constraint</th></tr></thead>
+<tbody>
+<tr><td>"5 signed institutional contracts" at meaningful ACV</td><td class="small">Two are paying $1,000/month each; two more are unpaid trials. The named $12K–$240K ACV tiers in the deck do not appear in either CRM export reviewed.</td></tr>
+<tr><td>Elite conference pipeline converts to revenue</td><td class="small">130+ leads sourced from BattleFin/FutureAlpha/Neudata; almost none have moved past "Lead," "Replied," or "Pitching" in the exports provided.</td></tr>
+<tr><td>Aug 2026 ARR run-rate of $66K</td><td class="small">The company's own ARR Projection Model's base case shows Aug 2026 MRR of $23,000 ($276K annualized) — a different number from the deck, and itself far above the $2,000 cumulative MRR shown in the CRM export a few months earlier.</td></tr>
+</tbody>
+</table>
+<p class="sowhat">The company is not short on interest — it is short on conversion, and the file's description of that conversion is inconsistent with itself in three different places.</p>
+</div>
+
+<!-- ===== 09 UNIT ECONOMICS ===== -->
+<div class="sec" id="s09">
+<span class="eyebrow">§09 · Unit economics, rebuilt</span>
+<h2>What can and cannot be rebuilt from primaries</h2>
+<p>Pricing is disclosed and internally consistent between the website and the company's own model for the self-serve tier: $500 per seat per futures signal, $150 per seat per equities signal <span class="tier t-co">CO</span>. Compute cost per model is genuinely small — the model's cost tab shows initial training at 350 GPU-hours and retraining at 100 GPU-hours, at roughly $0.75/GPU-hour, or well under $300 per training cycle <span class="tier t-mod">MOD</span>. Against per-seat pricing in the hundreds to thousands of dollars, that supports a structurally high-margin business once seat counts scale — the same shape of finding as the strongest number in most infrastructure-software underwrites.</p>
+
+<div class="ctrls noprint">
+<div class="grid2">
+  <div><label class="f">Blended ACV</label><div class="ln"><input type="range" id="u_acv" min="6000" max="60000" step="500" value="12000"><span class="out" id="u_acv_o">$12,000</span></div></div>
+  <div><label class="f">Seats per account</label><div class="ln"><input type="range" id="u_cac" min="1000" max="45000" step="500" value="8000"><span class="out" id="u_cac_o">$8,000</span></div></div>
+  <div><label class="f">Annual churn</label><div class="ln"><input type="range" id="u_ch" min="5" max="50" step="1" value="30"><span class="out" id="u_ch_o">30%</span></div></div>
+  <div><label class="f">Gross margin</label><div class="ln"><input type="range" id="u_gm" min="60" max="95" step="1" value="85"><span class="out" id="u_gm_o">85%</span></div></div>
+</div>
+<div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap">
+  <button id="u_reset">Reset to illustrative baseline</button>
+  <button id="u_real">Set CAC to unknown (flag)</button>
+</div>
+</div>
+<div class="metrics">
+  <div class="met"><div class="k">LTV</div><div class="v" id="u_ltv">$34,000</div></div>
+  <div class="met"><div class="k">LTV : CAC</div><div class="v" id="u_ratio">4.3x</div></div>
+  <div class="met"><div class="k">CAC payback</div><div class="v" id="u_pb">9.4 mo</div></div>
+  <div class="met"><div class="k">Implied life</div><div class="v" id="u_life">3.3 yr</div></div>
+</div>
+<div id="u_flag" class="flag f-ok">Clears the 3x Series A benchmark — but CAC is illustrative, not sourced</div>
+<p class="sowhat">The CAC slider above is illustrative only — no sales-and-marketing spend or CAC figure by customer was found anywhere in the data room, despite an explicit diligence question asking for gross margin "by tier after exchange data costs." Per the non-negotiable in this house's methodology, we are not publishing an LTV:CAC as a committed number. Treat everything in this box as a sensitivity toy, not a finding, until the company provides actual S&M spend and a CME/exchange-fee-inclusive cost breakdown.</p>
+</div>
+
+<!-- ===== 10 COMPETITION ===== -->
+<div class="sec" id="s10">
+<span class="eyebrow">§10 · Competitive position and the capital gap</span>
+<h2>A genuinely unclaimed niche — which cuts both ways</h2>
+<p>A targeted search did not surface a direct competitor productizing Level II order-book prediction as a subscription API for non-Tier-1 funds. The closest adjacents are structurally different: Databento sells normalized tick data and connectivity, not predictions — a potential build-vs-buy substitute rather than a rival <span class="tier t-ext">EXT</span>. Kavout sells "Smart Signals" for equities on daily-to-multiday horizons, not intraday microstructure <span class="tier t-ext">EXT</span>. Numerai sources externally submitted models under a crowd-tournament structure, a different business model entirely <span class="tier t-ext">EXT</span>. The Tier-1 funds the company positions against (Citadel, Two Sigma, Renaissance, and similar) build this in-house and do not sell it — they are the reason the market exists, not a competitor for it today.</p>
+<div class="callout">
+<p style="margin:0"><b>The steelman, and it is a real one.</b> If no one else has packaged this, the company's "we are the only one bringing Tier-1-grade microstructure intelligence to everyone else" claim survives our check better than most of the claims in this file. The flip side: an unclaimed niche this specific is unclaimed either because it is hard (a real moat) or because the willingness to pay for it outside the top 20–30 funds has not actually been proven yet (a real risk) — and the traction data in §08 does not yet settle which.</p>
+</div>
+</div>
+
+<!-- ===== 11 MOAT ===== -->
+<div class="sec" id="s11">
+<span class="eyebrow">§11 · Moat under model-capability doubling</span>
+<p>The test that matters: if frontier model capability doubles in the next eighteen months and generic tooling gets materially better at time-series prediction, what survives?</p>
+<table>
+<thead><tr><th>Claimed moat</th><th>Survives?</th><th>Reasoning</th></tr></thead>
+<tbody>
+<tr><td>Nanosecond-resolution order-book data ingestion and feature pipeline</td><td><b style="color:var(--warn)">Partly</b></td><td class="small">Real engineering today; increasingly commoditized as vendors like Databento lower the cost of raw access. The pipeline is a real but shrinking moat, not a permanent one.</td></tr>
+<tr><td>TFT-based "Finance-Native Transformer" architecture</td><td><b style="color:var(--bad)">Weakens</b></td><td class="small">Built on a published, well-known architecture (Lim et al., Google AI, 2021). Architectural adaptations to finance are real work but are exactly the kind of thing frontier labs and better open tooling erode fastest.</td></tr>
+<tr><td>Quantum layers (orthogonal encoders, quantum attention, distributional heads)</td><td><b style="color:var(--ok)">Survives, but not yet relevant</b></td><td class="small">Genuinely differentiated, grounded in real peer-reviewed work by the founding team, and hard to replicate quickly. Also not in production — "Phase 2" is described as "built, testing now," and Phase 3 depends on quantum hardware maturing.</td></tr>
+<tr><td>Customer-specific model retraining, governance, and drift monitoring</td><td><b style="color:var(--ok)">Survives</b></td><td class="small">Operational and workflow-integration moat, not model-capability moat. Compounds with account tenure once a desk builds execution logic around the signal.</td></tr>
+<tr><td>Conference-sourced founder pipeline (BattleFin, FutureAlpha, Neudata)</td><td><b style="color:var(--bad)">Weakens</b></td><td class="small">Real and productive today, but replicable by any competitor willing to buy a booth. Not a durable source of differentiation on its own.</td></tr>
+</tbody>
+</table>
+<p class="sowhat">The most durable asset in the file — the quantum research program — is also the one furthest from commercial relevance today. The nearest-term assets are real but erode fastest.</p>
+</div>
+
+<!-- ===== 12 TEAM ===== -->
+<div class="sec" id="s12">
+<span class="eyebrow">§12 · Team</span>
+<p>The technical credential is as strong as this house has seen in the current book: Iordanis Kerenidis holds a real PhD in computer science from UC Berkeley under Umesh Vazirani, a postdoc at MIT under Peter Shor, twenty years as a CNRS research director, an ERC Starting Grant, and 90+ independently findable publications, several with named industrial co-authors (JPMorgan, Roche) <span class="tier t-ext">EXT</span>. Yianni Gamvros brings a real, verifiable enterprise sales record — ten years at IBM, then Head of Business Development at QC Ware, where his résumé and independent press coverage corroborate growing a book of business from $0 to over $6M <span class="tier t-ext">EXT</span>. Both founders overlapped at QC Ware before co-founding Quantum Signals, which is a credible, well-matched pairing.</p>
+<div class="callout">
+<p style="margin:0"><b>Where the framing runs ahead of the record.</b> The deck's "took a QC startup from $0 to $6M ARR" implies Gamvros built and exited a company. He did not — he built a book of business as an employee of QC Ware, a company he did not found. The underlying fact checks out, so this is not itself a fabrication. It is nonetheless the same instinct — dress up an employee accomplishment as a founder accomplishment — that shows up elsewhere in this file as harder contradictions, and it is worth naming for what it is.</p>
+</div>
+<p class="small">Advisors named in the deck — Chris Murray (Head of Trading, Jiko; ex-Goldman, ex-JPMorgan), Petr Merkuryev, CFA, and Christian Reuss, CFA (former CEO, SIX Swiss Exchange) — were not independently re-verified beyond the deck itself; Murray also appears on the cap table as a BSA/BSPCE holder, which is at least internally consistent. Team size is reported at roughly 5 people by a third-party scouting note <span class="tier t-unv">UNV</span>, thin against a roadmap spanning classical model, agents, and quantum hardware integration through 2029.</p>
+</div>
+
+<!-- ===== 13 GTM ===== -->
+<div class="sec" id="s13">
+<span class="eyebrow">§13 · Go-to-market credibility</span>
+<p>The top of the funnel is real and well-targeted: the conference circuit (BattleFin, Battle of the Quants, FutureAlpha, Neudata) is exactly where non-Tier-1 quant desks and CTAs are found, and the lead list includes credible, recognizable institutions. What the exports do not show is a repeatable path from "Lead" to "Paying" — of well over a hundred logged contacts across two CRM exports, only a handful have advanced past the earliest pipeline stages, and only two are confirmed paying.</p>
+<p>Enterprise sales into banks and large funds typically carries a long, compliance-heavy cycle that is not obviously modeled in the company's own 24-month ramp, which assumes new-logo cadence accelerating well beyond anything shown in the pipeline exports to date.</p>
+<p class="sowhat">This is the most testable near-term risk in the file: the ratio of trial-to-paid conversion is observable every month from an ordinary investor update and needs no special access.</p>
+</div>
+
+<!-- ===== 14 SCENARIOS ===== -->
+<div class="sec" id="s14">
+<span class="eyebrow">§14 · Scenarios and returns</span>
+<h2>Illustrative only — the actual price has not been set</h2>
+<p>Because pre-money, post-money, and lead are all undetermined, the sliders below are a sensitivity toy anchored to a placeholder $15M post-money and a placeholder $100K check — not a locked position. Nothing here should be read as this house's estimate of fair value.</p>
+
+<div class="ctrls noprint">
+<div class="grid2">
+  <div><label class="f">Bull probability</label><div class="ln"><input type="range" id="p_bull" min="0" max="45" step="1" value="15"><span class="out" id="p_bull_o">15%</span></div></div>
+  <div><label class="f">Bear probability</label><div class="ln"><input type="range" id="p_bear" min="0" max="85" step="1" value="55"><span class="out" id="p_bear_o">55%</span></div></div>
+  <div><label class="f">Base exit value</label><div class="ln"><input type="range" id="e_base" min="20" max="400" step="10" value="90"><span class="out" id="e_base_o">$90M</span></div></div>
+  <div><label class="f">Bull exit value</label><div class="ln"><input type="range" id="e_bull" min="200" max="2000" step="50" value="800"><span class="out" id="e_bull_o">$800M</span></div></div>
+  <div><label class="f">Total dilution to exit</label><div class="ln"><input type="range" id="e_dil" min="20" max="80" step="5" value="55"><span class="out" id="e_dil_o">55%</span></div></div>
+  <div><label class="f">Illustrative Marketlogic check</label><div class="ln"><input type="range" id="e_chk" min="10" max="250" step="5" value="100"><span class="out" id="e_chk_o">$100K</span></div></div>
+</div>
+<div style="margin-top:12px"><button id="e_reset">Reset to illustrative baseline</button></div>
+</div>
+<div class="metrics">
+  <div class="met"><div class="k">Bull MOIC</div><div class="v" id="r_bull">24.0x</div></div>
+  <div class="met"><div class="k">Base MOIC <span id="p_base_o" class="mono">30%</span></div><div class="v" id="r_base">2.7x</div></div>
+  <div class="met"><div class="k">Bear</div><div class="v" style="color:var(--slate)">0.0x</div></div>
+  <div class="met"><div class="k">Weighted MOIC</div><div class="v" id="r_wtd">4.4x</div></div>
+</div>
+<div id="r_flag" class="flag f-bad">Below the 5x seed hurdle at these illustrative terms</div>
+<div class="metrics" style="margin-top:14px">
+  <div class="met"><div class="k">Bull case proceeds</div><div class="v" id="r_bullp">$2.4M</div></div>
+  <div class="met"><div class="k">As multiple of a $5M fund</div><div class="v" id="r_fund">0.48x</div></div>
+</div>
+<p class="sowhat">Even before the traction and evidence-integrity questions are resolved, illustrative returns at a plausible entry price sit below this house's seed hurdle. A materially lower entry price, a named lead with real information rights, or resolution of the §07 contradictions would each move this calculus — none has happened yet.</p>
+</div>
+
+<!-- ===== 15 RISK ===== -->
+<div class="sec" id="s15">
+<span class="eyebrow">§15 · Risk register with kill criteria</span>
+<table>
+<thead><tr><th style="width:26%">Risk</th><th class="n">Sev</th><th class="n">Lik</th><th class="n">Score</th><th>Kill criterion</th></tr></thead>
+<tbody>
+<tr><td>Traction overstatement vs. the company's own CRM</td><td class="n">5</td><td class="n">4</td><td class="n">20</td><td class="kill">Paid + trial ARR per CRM has not reached $150K within two quarters of any close.</td></tr>
+<tr><td>Unreconciled two-entity revenue gap</td><td class="n">5</td><td class="n">3</td><td class="n">15</td><td class="kill">Company cannot produce a consolidated FR + US P&L reconciling the $538,599 / €58,550 gap within ten business days of being asked.</td></tr>
+<tr><td>Backtest / Sharpe-ratio inconsistency</td><td class="n">4</td><td class="n">4</td><td class="n">16</td><td class="kill">Company cannot produce live (not backtested) performance data and methodology behind the +7.4% headline before any close.</td></tr>
+<tr><td>Round pricing and lead risk</td><td class="n">3</td><td class="n">4</td><td class="n">12</td><td class="kill">No lead investor or term sheet materializes while cash (~€530K at YE2025) continues to burn at the FY2025 rate (~€75K/quarter net loss run-rate).</td></tr>
+<tr><td>Cap table / data-room hygiene</td><td class="n">3</td><td class="n">3</td><td class="n">9</td><td class="kill">The Audacia/Tenity discrepancy is not resolved in writing before any commitment.</td></tr>
+<tr><td>Key-person risk (CTO)</td><td class="n">4</td><td class="n">2</td><td class="n">8</td><td class="kill">Kerenidis reduces active involvement or departs before the classical MFM roadmap milestones are met.</td></tr>
+<tr><td>Alpha decay / signal crowding at scale</td><td class="n">3</td><td class="n">2</td><td class="n">6</td><td class="kill">Independent evidence that performance degrades measurably once subscriber count exceeds current pilot scale.</td></tr>
+</tbody>
+</table>
+<p class="sowhat">Every kill criterion above is checkable from an ordinary written follow-up or investor update — none requires special access. That is deliberate, given how many of this file's numbers did not survive a same-document cross-check.</p>
+</div>
+
+<!-- ===== 16 FALSIFIERS ===== -->
+<div class="sec" id="s16">
+<span class="eyebrow">§16 · What would change the score</span>
+<div class="grid2" style="gap:26px">
+<div>
+<h3 style="color:var(--ok)">Would move it up 1.0 or more</h3>
+<ul>
+<li>Company produces a consolidated FR + US financial statement that reconciles cleanly, with a credible explanation for the entity split. <span class="mono">+1.0</span></li>
+<li>CRM-verifiable paid ARR reaches the deck's own "Aug ARR $66K" figure or higher, with named, checkable logos. <span class="mono">+1.0</span></li>
+<li>Live (not backtested) performance data corroborates the +7.4% headline within a reasonable band, tied to a specific instrument and window. <span class="mono">+0.8</span></li>
+</ul>
+</div>
+<div>
+<h3 style="color:var(--bad)">Would move it down 1.0 or more</h3>
+<ul>
+<li>The Delaware-entity revenue turns out to have been booked but not disclosed in the French entity's statutory accounts to prior or prospective investors. <span class="mono">-2.0</span></li>
+<li>A priced lead comes in at a valuation implying the founder-heavy cap table captures most of the upside before this fund's ownership target is reached. <span class="mono">-1.0</span></li>
+<li>Paid conversion from the 130+ lead pipeline stays effectively flat for another two quarters. <span class="mono">-1.2</span></li>
+</ul>
+</div>
+</div>
+</div>
+
+<!-- ===== 17 THESIS FIT ===== -->
+<div class="sec" id="s17">
+<span class="eyebrow">§17 · Marketlogic thesis fit</span>
+<table>
+<thead><tr><th>Thesis clause</th><th class="n">Fit</th><th>Assessment</th></tr></thead>
+<tbody>
+<tr><td>AI, frontier technology, and deep tech</td><td class="n">9</td><td class="small">Direct hit. Real peer-reviewed quantum-ML research underpins the roadmap, independently verified.</td></tr>
+<tr><td>Operational complexity turned into software advantage</td><td class="n">4</td><td class="small">Weak fit — this is a prediction/alpha product, not a workflow or back-office automation play.</td></tr>
+<tr><td>Category-defining infrastructure for an underserved long tail</td><td class="n">8</td><td class="small">Strong narrative fit; unproven in practice given the traction data in §08.</td></tr>
+<tr><td>Edge from hands-on operational fluency</td><td class="n">5</td><td class="small">Rewards a fund that can actually read a Sharpe-ratio table and a two-jurisdiction cap table — which is exactly what this file required.</td></tr>
+</tbody>
+</table>
+<p class="sowhat">Thesis fit is real and is not the reason for caution here — the evidence-integrity findings in §07 are.</p>
+</div>
+
+<!-- ===== 18 DILIGENCE ===== -->
+<div class="sec" id="s18">
+<span class="eyebrow">§18 · Diligence queue</span>
+<h2>Ranked by score at risk, not by topic</h2>
+<div class="ctrls noprint" style="display:flex;gap:16px;align-items:center;flex-wrap:wrap">
+  <span class="small">Score still at risk: <span class="mono" id="dq_out" style="font-size:17px;color:var(--bad)">-6.6</span></span>
+  <button id="dq_reset">Clear all</button>
+</div>
+<div id="dqlist"></div>
+<p class="sowhat">The top two items are reconciliations of documents already sitting in the data room the company provided. Both cost an afternoon. How the founders respond to them is itself the most informative diligence available, and it is free.</p>
+</div>
+
+<!-- ===== 19 TERMS ===== -->
+<div class="sec" id="s19">
+<span class="eyebrow">§19 · Terms and structure</span>
+<h2>There is no deal to underwrite yet — only a company</h2>
+<p>The current round has no price, no lead, and an unresolved question about which legal entity a US investor would actually be subscribing into. Prior instruments on the cap table are real and clean on their face — Quantonation's priced pre-seed conversion, Wavepeak's uncoverted BSA Air at a €20M cap, and BPI France's non-equity convertible bond — but none of them tell us what this round will cost.</p>
+<h3>What to ask for before this can be underwritten as a live deal</h3>
+<ul>
+<li>A consolidated financial statement across Quantum Signals SAS and Quantum Intelligent Signals Corp., with the revenue split explained.</li>
+<li>The actual pre-money, post-money, round size, and named lead.</li>
+<li>Full-book CRM export at time of close, matched against whatever ARR figure is used to justify the price.</li>
+<li>Live performance data and methodology behind the "+7.4%" headline claim, reconciled against the public benchmarks page.</li>
+<li>Written confirmation of who held pre-seed equity, resolving the Audacia/Tenity discrepancy.</li>
+<li>Information rights and, given the fund's typical check size, a path to pro rata at the next round.</li>
+</ul>
+</div>
+
+<!-- ===== 20 GAPS ===== -->
+<div class="sec" id="s20">
+<span class="eyebrow">§20 · Data gaps</span>
+<table>
+<thead><tr><th style="width:38%">Not available</th><th>Cost to confidence</th></tr></thead>
+<tbody>
+<tr><td>Consolidated FR + US financial statements</td><td class="small">High. Determines whether §07's largest finding is a reporting quirk or a disclosure problem.</td></tr>
+<tr><td>Sales and marketing spend / CAC by customer</td><td class="small">High. §09's unit economics cannot be rebuilt as a committed number without it.</td></tr>
+<tr><td>Live (post-launch) performance data, as opposed to backtests</td><td class="small">High. The product launched in January 2026; nearly eight months of live data should exist by now.</td></tr>
+<tr><td>Full current-round term sheet</td><td class="small">High. §14's return math is illustrative only until this exists.</td></tr>
+<tr><td>Board composition and information rights for the pending round</td><td class="small">Medium. Not yet drafted per the founder's own answer.</td></tr>
+<tr><td>Whether CME/exchange data distribution fees are included in the ~75–90% margin figures</td><td class="small">Medium. Directly asked in diligence; not visibly answered in the model provided.</td></tr>
+</tbody>
+</table>
+</div>
+
+<!-- ===== 21 CONCLUSION ===== -->
+<div class="sec" id="s21">
+<span class="eyebrow">§21 · Recommendation</span>
+<p class="lede">Watch — Diligence. This is not a judgment that the company will fail, or that the founders are acting in bad faith. Quantum Signals pairs a rare, independently verified research credential with a real enterprise sales operator, sits in a genuinely underserved niche with no direct off-the-shelf competitor found, and has real — if very early — paying customers. That combination is worth staying close to.</p>
+<p>The reason this is not further along the call spectrum is that five separate claims in the company's own materials contradict other documents the company itself provided, and three more cannot be tied to any source at all. The largest of these — a Delaware entity with 9x the French parent's revenue, undisclosed in response to a direct question about corporate structure — is serious enough on its own to require a written answer before any further step. The traction slide's gap against the company's own CRM is nearly as serious. Neither is proof of bad intent; both are proof that the numbers in front of a committee today cannot be relied on without independent reconciliation.</p>
+<p><b>Would I put my own money in at today's information?</b> No, and not because of price — there isn't one yet. The path forward is straightforward and entirely in the company's control: produce a consolidated financial statement, reconcile the traction and performance numbers against the company's own files, and clear up who actually held pre-seed equity. If those come back clean, this becomes a genuinely attractive underwrite on team and niche alone, and the composite likely moves toward 7 or higher. Ask for it before the round prices, not after.</p>
+</div>
+
+<div class="foot">
+Quantum Signals · ML-2026-QS-01 · Author: H. Reganti · Prepared 18 August 2026<br>
+First underwrite.<br>
+Source documents: Quantum Signals Data Room (Notion, sign-in required, not independently accessible this pass) · Quantum_Signals_Data_Room_Due_Diligence_Responses.docx (company-provided) · Google Drive "Quantum Signals Seed Round Data Room" (00–06 folders: Readme, Pitch Decks, Metrics, Financials, Corporate, Product, GTM/Customers, Leadership Team) · Quantum_Signals_Seed_QDeck.pdf · Quantum_Signals_Introduction_Intraday_Signals.pdf · Quantum_Signals_Quantum_Roadmap (pdf/docx/html) · QuantumSignals_TFT_Whitepaper.pdf · ARR Projection Model (Google Sheet) · Customer Metrics MRR & ARR (Google Sheet) · Streak/CRM exports · Cap table (12 Jan 2026) · Shareholders' agreements and BSA Air agreements (Quantonation, Wavepeak) · BPI France convertible bond contract · French FY2025 statutory accounts (Bilan/Compte de résultat) · Quantum Intelligent Signals Corp. Delaware certificate of incorporation and 2025 US entity financials · Founder résumés and CVs.<br>
+External verification: quantumsignals.ai (homepage, /benchmarks, /blog, /about) · HFR market commentary · Quantonation press coverage · arXiv · Quantum journal · Databento, Kavout, Numerai public sites. Retrieved 18 August 2026.<br>
+Interactive controls explore sensitivity around a locked or illustrative baseline as noted in each section. They do not alter the committed position above.
+</div>
+
+<a class="backlink" href="../">← Back to all VC Deals</a>
+
+</div>
+
+<script>
+(function(){
+  var $=function(i){return document.getElementById(i)};
+  var fmt=function(n){return n.toLocaleString('en-US')};
+
+  /* ---- 01 scorecard ---- */
+  var DIMS=[
+    ['Founder and team quality',12,8.0,'Verified Berkeley/MIT/CNRS pedigree and a real QC Ware sales record; ~5-person team is thin.'],
+    ['Traction quality',12,3.5,'CRM shows 2 paying logos at $1K/mo; deck traction figures unsupported by the same file.'],
+    ['Moat and defensibility',10,5.5,'Real TFT-based IP; quantum layers are years from commercial relevance.'],
+    ['Market size and structure',8,5.0,'Real underserved niche; deck’s $6T "everyone else" figure runs ahead of its own HFR footnote.'],
+    ['Unit economics',8,5.0,'Compute cost is genuinely tiny vs. seat pricing; CAC and true S&M spend undisclosed.'],
+    ['Competitive position',8,6.0,'No direct off-the-shelf competitor found; the category itself is unproven.'],
+    ['Go-to-market credibility',8,5.0,'Elite conference-sourced pipeline; very low lead-to-paid conversion so far.'],
+    ['Product and technical depth',8,7.5,'Working API, published architecture, real per-instrument backtests.'],
+    ['Capital efficiency and runway',6,4.5,'Net loss nearly 9x’d YoY; cash covers roughly two quarters without this round.'],
+    ['Terms and structure',6,3.0,'Pre-money, post-money, and lead are all still undetermined.'],
+    ['Evidence integrity',8,2.5,'Deck traction, entity revenue, and Sharpe ratios each conflict with the company’s own files.'],
+    ['Marketlogic thesis fit',6,7.0,'Direct hit on AI/frontier technology; weaker on the operational-complexity clause.']
+  ];
+  var tb=$('sctab').getElementsByTagName('tbody')[0], wg=$('wgrid');
+  DIMS.forEach(function(d,i){
+    var tr=document.createElement('tr');
+    tr.innerHTML='<td>'+d[0]+'</td><td class="n" id="w'+i+'">'+d[1]+'%</td><td class="n">'+d[2].toFixed(1)+
+      '</td><td class="n"><span class="bartrack"><span class="bar" style="width:'+(d[2]*7.6)+'%"></span></span><span id="wv'+i+'">'+(d[1]*d[2]/100).toFixed(2)+'</span></td><td class="small">'+d[3]+'</td>';
+    tb.appendChild(tr);
+    var c=document.createElement('div');
+    c.innerHTML='<label class="f">'+d[0]+'</label><div class="ln"><input type="range" id="ws'+i+'" min="0" max="25" step="1" value="'+d[1]+'"><span class="out" id="wo'+i+'">'+d[1]+'%</span></div>';
+    wg.appendChild(c);
+  });
+  function scalc(){
+    var tot=0,acc=0;
+    DIMS.forEach(function(d,i){ tot+=+$('ws'+i).value; });
+    if(tot===0) tot=1;
+    DIMS.forEach(function(d,i){
+      var w=+$('ws'+i).value, nw=w/tot*100;
+      $('wo'+i).textContent=w+'%';
+      $('w'+i).textContent=nw.toFixed(1)+'%';
+      $('wv'+i).textContent=(nw*d[2]/100).toFixed(2);
+      acc+=nw*d[2]/100;
+    });
+    $('compout').textContent=acc.toFixed(1);
+    $('bandout').textContent = acc>=7.5?'Invest band':(acc>=6.0?'Monitor band':'Pass band');
+  }
+  DIMS.forEach(function(d,i){ $('ws'+i).addEventListener('input',scalc); });
+  $('wreset').addEventListener('click',function(){ DIMS.forEach(function(d,i){$('ws'+i).value=d[1];}); scalc(); });
+  scalc();
+
+  /* ---- 06 market ---- */
+  function mcalc(){
+    var n=+$('m_n').value, a=+$('m_acv').value, s=+$('m_sh').value;
+    $('m_n_o').textContent=fmt(n); $('m_acv_o').textContent='$'+Math.round(a/1000)+'K'; $('m_sh_o').textContent=s+'%';
+    var sam=n*a, som=sam*s/100, need=Math.ceil(100000000/a);
+    $('m_sam').textContent='$'+(sam/1e6).toFixed(0)+'M';
+    $('m_som').textContent='$'+(som/1e6).toFixed(1)+'M';
+    $('m_need').textContent=fmt(need);
+    $('m_pct').textContent=Math.round(need/n*100)+'%';
+  }
+  ['m_n','m_acv','m_sh'].forEach(function(i){$(i).addEventListener('input',mcalc)});
+  $('m_reset').addEventListener('click',function(){$('m_n').value=5000;$('m_acv').value=12000;$('m_sh').value=1;mcalc();});
+  mcalc();
+
+  /* ---- 07 filter ---- */
+  var chips=document.querySelectorAll('.chip[data-f]');
+  chips.forEach(function(b){
+    b.addEventListener('click',function(){
+      chips.forEach(function(x){x.setAttribute('aria-pressed','false')});
+      b.setAttribute('aria-pressed','true');
+      var f=b.getAttribute('data-f');
+      Array.prototype.forEach.call($('fctab').querySelectorAll('tbody tr'),function(r){
+        r.style.display=(f==='all'||r.getAttribute('data-v')===f)?'':'none';
+      });
+    });
+  });
+
+  /* ---- 09 unit economics ---- */
+  function ucalc(){
+    var a=+$('u_acv').value, c=+$('u_cac').value, ch=+$('u_ch').value/100, gm=+$('u_gm').value/100;
+    $('u_acv_o').textContent='$'+fmt(a); $('u_cac_o').textContent='$'+fmt(c);
+    $('u_ch_o').textContent=Math.round(ch*100)+'%'; $('u_gm_o').textContent=Math.round(gm*100)+'%';
+    var ltv=a*gm/ch, r=ltv/c, pb=c/(a*gm/12);
+    $('u_ltv').textContent='$'+fmt(Math.round(ltv));
+    $('u_ratio').textContent=r.toFixed(1)+'x';
+    $('u_pb').textContent=pb.toFixed(1)+' mo';
+    $('u_life').textContent=(1/ch).toFixed(1)+' yr';
+    var f=$('u_flag');
+    if(r>=3){f.className='flag f-ok';f.textContent='Clears the 3x Series A benchmark — but CAC is illustrative, not sourced';}
+    else{f.className='flag f-bad';f.textContent='Below the 3x Series A benchmark — and CAC is illustrative, not sourced';}
+  }
+  ['u_acv','u_cac','u_ch','u_gm'].forEach(function(i){$(i).addEventListener('input',ucalc)});
+  $('u_reset').addEventListener('click',function(){$('u_acv').value=12000;$('u_cac').value=8000;$('u_ch').value=30;$('u_gm').value=85;ucalc();});
+  $('u_real').addEventListener('click',function(){$('u_acv').value=12000;$('u_cac').value=1;$('u_ch').value=30;$('u_gm').value=85;ucalc();});
+  ucalc();
+
+  /* ---- 14 scenarios ---- */
+  var CAP=15, POOL=0.10;
+  function ecalc(){
+    var pb=+$('p_bull').value, pr=+$('p_bear').value;
+    if(pb+pr>100){pr=100-pb;$('p_bear').value=pr;}
+    var pbase=100-pb-pr;
+    var eb=+$('e_base').value, ebu=+$('e_bull').value, d=+$('e_dil').value, chk=+$('e_chk').value;
+    $('p_bull_o').textContent=pb+'%'; $('p_bear_o').textContent=pr+'%'; $('p_base_o').textContent=pbase+'%';
+    $('e_base_o').textContent='$'+fmt(eb)+'M'; $('e_bull_o').textContent='$'+fmt(ebu)+'M';
+    $('e_dil_o').textContent=d+'%'; $('e_chk_o').textContent='$'+chk+'K';
+    var own=(POOL/CAP)*(1-d/100);
+    var mBase=own*eb/POOL, mBull=own*ebu/POOL;
+    var wtd=(pb/100)*mBull+(pbase/100)*mBase;
+    $('r_bull').textContent=mBull.toFixed(1)+'x';
+    $('r_base').textContent=mBase.toFixed(1)+'x';
+    $('r_wtd').textContent=wtd.toFixed(1)+'x';
+    var proceeds=chk*1000*mBull;
+    $('r_bullp').textContent='$'+(proceeds/1e6).toFixed(2)+'M';
+    $('r_fund').textContent=(proceeds/5e6).toFixed(2)+'x';
+    var f=$('r_flag');
+    if(wtd>=5){f.className='flag f-ok';f.textContent='Clears the 5x seed hurdle at these illustrative terms';}
+    else{f.className='flag f-bad';f.textContent='Below the 5x seed hurdle at these illustrative terms';}
+  }
+  ['p_bull','p_bear','e_base','e_bull','e_dil','e_chk'].forEach(function(i){$(i).addEventListener('input',ecalc)});
+  $('e_reset').addEventListener('click',function(){$('p_bull').value=15;$('p_bear').value=55;$('e_base').value=90;$('e_bull').value=800;$('e_dil').value=55;$('e_chk').value=100;ecalc();});
+  ecalc();
+
+  /* ---- 18 diligence queue ---- */
+  var DQ=[
+   [1.3,'Produce a consolidated P&L reconciling Quantum Intelligent Signals Corp.’s 2025 "Services" revenue of $538,599 against the French parent’s audited revenue of €58,550, and explain why the Delaware entity was not surfaced in response to the corporate-structure question.','A 9x gap between two entities under common control is either a consolidation quirk or an incomplete disclosure. Either way it is the single largest open question in the file.'],
+   [1.1,'Reconcile the deck’s "5 signed contracts" and named-segment ACVs ($12K bank, $18K fund, up to $240K/$60K "expected") against the CRM export, which shows two paying logos at $1,000/month and two trials at $0.','The traction slide is the second page of the deck. If it does not tie to the company’s own CRM, nothing downstream of it can be taken at face value without a redo.'],
+   [0.9,'Get the methodology, cost assumptions, and live (not backtested) evidence behind the "+7.4% out-of-sample, Q1 2026, NQ" headline, and reconcile it against the company’s own benchmarks page, which states backtested Sharpe ratios of 0.22 to 1.53 versus the deck’s per-instrument Sharpes as high as 2.42.','The single number most likely to appear in an investor update is also the one we could not independently tie to a published table.'],
+   [0.7,'Confirm who actually held pre-seed equity. The cap table and BSA Air/shareholders’ agreements show only Quantonation II and CNRS Innovation; a document in the data room lists Audacia and Tenity as investors and describes Audacia as holding a "majority stake."','If that document is simply wrong, say so in writing. If it is right, the cap table provided is incomplete.'],
+   [0.6,'Get the actual pre-money, post-money, round size, and named lead for the current Seed.','Nothing in §14 can be underwritten precisely until this exists.'],
+   [0.5,'Confirm whether the ~75–90% gross margin figures in the company’s own model include CME/exchange market-data distribution fees, which the original diligence question specifically asked about.','The visible cost tab shows GPU compute only; data licensing is a real cost line for an order-book business and was not visibly modeled.'],
+   [0.5,'Full-book pipeline conversion: of the 130+ leads sourced from BattleFin, FutureAlpha, and Neudata, how many have moved past "Lead" or "Replied," and on what timeline?','Elite top-of-funnel is not the same as a repeatable motion; the exports show very little movement past the earliest stages.'],
+   [0.4,'Clarify the BPI France convertible loan’s conversion terms and the Wavepeak BSA Air’s €20M cap relative to whatever price the new Seed round sets.','Two different conversion instruments will compete for the same triggering event; sequencing matters for dilution.'],
+   [0.3,'Advisor bios (Chris Murray, Petr Merkuryev, Christian Reuss) were not independently verified beyond the deck. Confirm current roles and the substance of their involvement.','Advisor names carry real signal to LPs; worth five minutes of verification before they are repeated.'],
+   [0.3,'Ask for the actual headcount and org chart behind the "~5-person team" figure and the 18–24 month hiring plan in the financial model.','The roadmap spans classical MFM, agents, and quantum hardware integration through 2029. The team executing it should be sized against that ambition.']
+  ];
+  var list=$('dqlist');
+  DQ.forEach(function(q,i){
+    var d=document.createElement('div');
+    d.className='dq';
+    d.innerHTML='<div class="top"><input type="checkbox" id="dq'+i+'" data-d="'+q[0]+'"><div style="flex:1"><p class="q"><b>'+(i+1)+'.</b> '+q[1]+'</p><p class="small" style="margin:0">'+q[2]+'</p></div><span class="d">-'+q[0].toFixed(1)+'</span></div>';
+    list.appendChild(d);
+  });
+  function dcalc(){
+    var t=0;
+    DQ.forEach(function(q,i){ if(!$('dq'+i).checked) t+=q[0]; });
+    $('dq_out').textContent='-'+t.toFixed(1);
+  }
+  DQ.forEach(function(q,i){ $('dq'+i).addEventListener('change',dcalc); });
+  $('dq_reset').addEventListener('click',function(){DQ.forEach(function(q,i){$('dq'+i).checked=false;});dcalc();});
+  dcalc();
+})();
+</script>
+</body>
+</html>
