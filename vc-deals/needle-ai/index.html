@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Needle AI · ML-2026-NE-01 · Marketlogic Investors LLC</title>
+<style>
+:root{
+  --paper:#FCFBF8; --ink:#16202B; --slate:#5C6672; --rule:#D8D5CC;
+  --ok:#2F6B4F; --warn:#9A6B12; --bad:#A32D2D; --accent:#1E4C7A;
+  --okbg:#EAF2ED; --warnbg:#F7EEDC; --badbg:#F8EAEA; --accbg:#E9EFF6;
+  --serif:Georgia,'Iowan Old Style','Palatino Linotype',serif;
+  --sans:system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  --mono:ui-monospace,'SF Mono',Menlo,Consolas,'Liberation Mono',monospace;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--serif);font-size:16.5px;line-height:1.62}
+.wrap{max-width:940px;margin:0 auto;padding:48px 28px 96px}
+h1{font-size:31px;line-height:1.18;font-weight:normal;letter-spacing:-.01em;margin:0 0 6px}
+h2{font-size:21px;font-weight:normal;margin:0 0 10px;letter-spacing:-.005em}
+h3{font-size:16px;font-family:var(--sans);font-weight:600;margin:22px 0 8px}
+p{margin:0 0 14px}
+a{color:var(--accent)}
+.eyebrow{font-family:var(--sans);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--slate);font-weight:600}
+.sec{border-top:1px solid var(--rule);padding-top:16px;margin-top:44px}
+.sec>.eyebrow{display:block;margin-bottom:9px}
+.mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.small{font-size:13.5px;color:var(--slate)}
+.lede{font-size:18px;line-height:1.55}
+
+.masthead{border:1.5px solid var(--ink);padding:22px 24px;margin-bottom:14px}
+.mrow{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;flex-wrap:wrap}
+.verdict{font-family:var(--mono);font-size:13px;letter-spacing:.1em;text-transform:uppercase;background:var(--warnbg);color:var(--warn);padding:5px 12px;border:1px solid var(--warn);white-space:nowrap}
+.bigscore{font-family:var(--mono);font-size:52px;line-height:1;letter-spacing:-.03em}
+.scorelab{font-family:var(--sans);font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:var(--slate)}
+
+.seal{display:flex;align-items:center;gap:10px;font-family:var(--sans);font-size:11.5px;color:var(--slate);border:1px dashed var(--rule);padding:8px 12px;margin:14px 0 0}
+.seal b{font-family:var(--mono);color:var(--ink);font-weight:normal}
+
+.tier{font-family:var(--mono);font-size:10px;letter-spacing:.04em;padding:1px 5px;border:1px solid;vertical-align:1px;white-space:nowrap}
+.t-co{color:var(--slate);border-color:var(--rule);background:#F2F1EC}
+.t-ext{color:var(--accent);border-color:#B9CBE0;background:var(--accbg)}
+.t-mod{color:var(--warn);border-color:#DFC48A;background:var(--warnbg)}
+.t-unv{color:var(--bad);border-color:#DDA9A9;background:var(--badbg)}
+
+table{width:100%;border-collapse:collapse;font-size:14px;margin:12px 0 6px}
+th{font-family:var(--sans);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--slate);text-align:left;font-weight:600;border-bottom:1px solid var(--ink);padding:7px 9px 7px 0;vertical-align:bottom}
+td{border-bottom:1px solid var(--rule);padding:9px 9px 9px 0;vertical-align:top}
+td.n,th.n{text-align:right;font-family:var(--mono);font-variant-numeric:tabular-nums;padding-right:0}
+.sowhat{font-size:13.5px;color:var(--slate);font-style:italic;margin:6px 0 0}
+
+.bar{display:inline-block;height:7px;background:var(--ink);vertical-align:middle}
+.bartrack{display:inline-block;width:76px;height:7px;background:#E8E6DF;vertical-align:middle;margin-right:7px}
+
+.ctrls{border:1px solid var(--rule);background:#F7F6F1;padding:16px 18px;margin:16px 0}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px 22px}
+label.f{display:block;font-family:var(--sans);font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--slate);margin-bottom:3px;font-weight:600}
+.ln{display:flex;align-items:center;gap:9px}
+input[type=range]{flex:1;accent-color:var(--ink);min-width:0}
+.out{font-family:var(--mono);font-size:13.5px;min-width:62px;text-align:right}
+button{font-family:var(--sans);font-size:12px;background:transparent;border:1px solid var(--ink);color:var(--ink);padding:6px 12px;cursor:pointer}
+button:hover{background:var(--ink);color:var(--paper)}
+button.chip{border-color:var(--rule);color:var(--slate);padding:4px 10px;margin:0 6px 6px 0}
+button.chip[aria-pressed=true]{border-color:var(--ink);color:var(--paper);background:var(--ink)}
+.metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(132px,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule);margin:16px 0}
+.met{background:var(--paper);padding:12px 14px}
+.met .k{font-family:var(--sans);font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--slate)}
+.met .v{font-family:var(--mono);font-size:25px;line-height:1.25;letter-spacing:-.02em}
+.flag{padding:7px 12px;font-family:var(--sans);font-size:12.5px;display:inline-block;margin-top:4px}
+.f-bad{background:var(--badbg);color:var(--bad)} .f-ok{background:var(--okbg);color:var(--ok)}
+
+.callout{border-left:3px solid var(--ink);padding:2px 0 2px 18px;margin:18px 0}
+.kill{font-family:var(--sans);font-size:12.5px;color:var(--bad)}
+.q{margin:0 0 4px}
+.dq{border-bottom:1px solid var(--rule);padding:11px 0}
+.dq .top{display:flex;gap:11px;align-items:baseline}
+.dq .d{font-family:var(--mono);font-size:12.5px;color:var(--bad);white-space:nowrap}
+.foot{border-top:1.5px solid var(--ink);margin-top:52px;padding-top:16px;font-size:12.5px;color:var(--slate);font-family:var(--sans);line-height:1.75}
+input[type=checkbox]{accent-color:var(--ink);margin-right:9px;transform:translateY(1px)}
+@media print{
+  .ctrls,button,.noprint{display:none !important}
+  body{font-size:11pt;background:#fff}
+  .wrap{max-width:none;padding:0}
+  .sec{break-inside:avoid;page-break-inside:avoid}
+  a{color:var(--ink);text-decoration:none}
+}
+.site-nav{display:flex;align-items:center;justify-content:space-between;gap:16px;background:var(--ink);color:var(--paper);padding:11px 28px;font-family:var(--sans);font-size:12.5px;letter-spacing:.02em;position:sticky;top:0;z-index:100}
+.site-nav a{color:rgba(252,251,248,.72);text-decoration:none}
+.site-nav a:hover{color:var(--paper)}
+.site-nav .sep{color:rgba(252,251,248,.32);margin:0 6px}
+.site-nav .here{color:rgba(252,251,248,.5)}
+.site-nav .nav-action a{color:var(--paper);border:1px solid rgba(252,251,248,.42);border-radius:3px;padding:3px 11px}
+.site-nav .nav-action a:hover{background:var(--paper);color:var(--ink)}
+.backlink{display:inline-block;margin-top:22px;font-family:var(--sans);font-size:13px;color:var(--accent);text-decoration:none}
+.backlink:hover{text-decoration:underline}
+@media print{.site-nav,.backlink{display:none !important}}
+</style>
+</head>
+<body>
+<nav class="site-nav" aria-label="breadcrumb">
+<span><a href="../../">Market Logic Investors</a><span class="sep">/</span><a href="../../">Deal Vault</a><span class="sep">/</span><a href="../">VC Deals</a><span class="sep">/</span><span class="here">Needle AI</span></span>
+<span class="nav-action"><a href="../">&larr; All VC Deals</a></span>
+</nav>
+<div class="wrap">
+
+<div class="eyebrow">Marketlogic Investors LLC &middot; Investment Committee Memorandum &middot; Confidential</div>
+<h1>Needle AI, Inc.</h1>
+<p class="small mono">ML-2026-NE-01 &middot; Delaware C-corp, operations Singapore / Kuala Lumpur / Los Angeles &middot; Seed / open post-money SAFE &middot; Prepared 3 September 2026 &middot; Author: H. Reganti<br>Underwritten from the full data room: pitch deck, GoingVC diligence report, traction and cohort file, use-of-funds model, five-year market and projection model, executed SAFE form.</p>
+
+<!-- ===== 00 DEAL CARD ===== -->
+<div class="sec" id="s00">
+<span class="eyebrow">&sect;00 &middot; Deal card</span>
+<div class="masthead">
+  <div class="mrow">
+    <div>
+      <div class="scorelab">Composite score</div>
+      <div class="bigscore">6.0</div>
+      <div class="small mono" style="margin-top:4px">Band: monitor, at the floor</div>
+    </div>
+    <div style="flex:1;min-width:260px">
+      <div class="verdict">Watch &mdash; Diligence</div>
+      <p style="margin:12px 0 0;font-size:15px">The rare seed file where the financials are better than the pitch. Real $1.09M ARR, 4.2x in twelve months, 0.8% monthly revenue churn, and a $15M post-money cap with MFN, pro rata and information rights. Four headline marketing claims do not survive contact with the company's own spreadsheets, and the moat is service quality, not technology. Reconcile four items in writing and this converts to a check.</p>
+    </div>
+    <div style="min-width:150px">
+      <div class="scorelab">Conviction</div>
+      <div class="mono" style="font-size:19px">Medium</div>
+      <div class="small" style="margin-top:8px">Proposed check<br><span class="mono" style="font-size:17px;color:var(--ink)">$0 now</span><br>$250K conditional</div>
+    </div>
+  </div>
+</div>
+
+<div class="callout">
+<p style="margin:0"><b>Underwriting statement.</b> We would be underwriting Needle on the belief that lean DTC brands will keep paying a fixed monthly fee for marketing <i>outcomes</i> delivered by an AI-plus-offshore-human system that is structurally cheaper than an agency, and that the human layer shrinks as models improve. We are wrong if the human-in-the-loop cost line fails to fall per campaign as volume doubles, because then this is a 67%-margin services business being priced as software, and Meta's fully automated ad creation lands before the learning loop has compounded into anything a competitor cannot rebuild.</p>
+</div>
+
+<h3>The four numbers that matter</h3>
+<div class="metrics">
+  <div class="met"><div class="k">ARR growth, 12 months</div><div class="v">4.2x</div></div>
+  <div class="met"><div class="k">Accounts with zero expansion</div><div class="v">42/55</div></div>
+  <div class="met"><div class="k">Payback, headline vs trailing-3</div><div class="v">3.8 &rarr; 6.4</div></div>
+  <div class="met"><div class="k">Deck segment vs own SOM</div><div class="v">15.8x</div></div>
+</div>
+<p class="sowhat">All four are arithmetic on files the company sent us. None required an outside opinion. The first is why this is a 6.0 and not a 4.5.</p>
+
+<p><b>Biggest risk, in five words:</b> <span class="mono">Services margin wearing software clothing.</span></p>
+</div>
+
+<!-- ===== 01 SCORECARD ===== -->
+<div class="sec" id="s01">
+<span class="eyebrow">&sect;01 &middot; Weighted scorecard</span>
+<h2>The composite is derived, not asserted</h2>
+<p>Twelve dimensions, weighted. Move the weights to test whether the answer depends on the rubric or on the company.</p>
+
+<table id="sctab">
+<thead><tr><th>Dimension</th><th class="n">Weight</th><th class="n">Raw</th><th class="n">Weighted</th><th style="width:34%">Basis</th></tr></thead>
+<tbody></tbody>
+</table>
+
+<div class="ctrls noprint">
+  <div class="grid2" id="wgrid"></div>
+  <div style="margin-top:14px;display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+    <button id="wreset">Reset to committed baseline</button>
+    <span class="small">Composite <span class="mono" id="compout" style="font-size:16px;color:var(--ink)">6.0</span> &middot; <span id="bandout" class="mono">Monitor band</span></span>
+  </div>
+</div>
+<p class="sowhat">Reweighting within any defensible range keeps the composite between 5.5 and 6.6. Doubling the weight on traction and unit economics, the two dimensions where this company is strongest, still does not reach the 7.5 invest band, because moat and go-to-market are scored below 5 and cannot be reweighted away.</p>
+
+<h3>Placement against the VC book</h3>
+<table>
+<thead><tr><th>Deal</th><th class="mono">ID</th><th class="n">Score</th><th>Call on file</th></tr></thead>
+<tbody>
+<tr><td>Mercury</td><td class="mono">ML-2026-MC-01</td><td class="n">7.4</td><td class="small">Proceed &mdash; Deep Diligence</td></tr>
+<tr><td>Innerwell</td><td class="mono">ML-2026-IW-01</td><td class="n">6.5</td><td class="small">Watch &mdash; Diligence</td></tr>
+<tr><td>Planet.Tech</td><td class="mono">ML-2026-PT-01</td><td class="n">6.2</td><td class="small">Angel SAFE</td></tr>
+<tr style="background:#F2F1EC"><td><b>Needle AI</b></td><td class="mono">ML-2026-NE-01</td><td class="n"><b>6.0</b></td><td class="small"><b>Watch &mdash; Diligence</b></td></tr>
+<tr><td>Maison Monravel</td><td class="mono">ML-2026-MM-01</td><td class="n">5.6</td><td class="small">Pass &mdash; Stay Warm</td></tr>
+<tr><td>Intellectible, re-underwrite</td><td class="mono">ML-2026-IT-02</td><td class="n">5.3</td><td class="small">Pass &mdash; Stay Warm</td></tr>
+<tr><td>Quantum Signals, re-underwrite</td><td class="mono">ML-2026-QS-01</td><td class="n">5.3</td><td class="small">Watch &mdash; Diligence</td></tr>
+<tr><td>Dapper Boi</td><td class="mono">ML-2026-DB-01</td><td class="n">4.8</td><td class="small">Watch &mdash; Pass-Path</td></tr>
+<tr><td>Smart Trainer</td><td class="mono">ML-2026-ST-01</td><td class="n">4.1</td><td class="small">Pass &mdash; Stay Warm</td></tr>
+<tr><td>EchoTwin AI</td><td class="mono">ML-2026-ET-01</td><td class="n">3.6</td><td class="small">Pass &mdash; Integrity Gate</td></tr>
+</tbody>
+</table>
+<p class="sowhat">Needle enters the book with the best-documented operating file of any VC deal we have underwritten. It also enters with the weakest technical moat of the top four. That tension is the whole memo: the difference between Needle and Smart Trainer, the nearest structural analogue, is that Needle's contradictions live in the marketing and its financial file is clean, whereas Smart Trainer's contradictions ran the other way.</p>
+</div>
+
+<!-- ===== 02 RECALL ===== -->
+<div class="sec" id="s02">
+<span class="eyebrow">&sect;02 &middot; Recall block</span>
+<h2>Six things to carry into the room without notes</h2>
+<ol class="lede">
+<li style="margin-bottom:12px">The revenue is real and independently checkable inside their own files: $260K to $1.09M ARR in twelve months, 55 paying subscriptions, 0.81% monthly gross revenue churn, month-by-month cohorts with named categories and geographies.</li>
+<li style="margin-bottom:12px">The company and its website say "200+ DTC brands." Its own cohort file shows 55 paying today and roughly 74 that have ever paid since June 2024.</li>
+<li style="margin-bottom:12px">126% NRR is true and misleading. Forty-two of the fifty-five accounts sit at exactly 1.00x. Strip the single largest expansion, a $499 account now paying $8,042, and NRR falls to 112%.</li>
+<li style="margin-bottom:12px">The 3.8-month CAC payback is a fifteen-month blended average. On the trailing three months, CAC is $7,070 and payback is 6.4 months. Both are still good; only one is the number in the deck.</li>
+<li style="margin-bottom:12px">Gross margin is 67%. This is an AI-services business, not a software business, and the entire margin-expansion story rests on holding the Kuala Lumpur human-in-the-loop cost flat while revenue grows 73% in six months.</li>
+<li>The terms are the best part of the deal: $15M post-money cap on $1.09M ARR, MFN, pro rata, information rights, and Major Investor status at exactly $250,000 &mdash; which is the entire remaining allocation.</li>
+</ol>
+</div>
+
+<!-- ===== 03 SNAPSHOT ===== -->
+<div class="sec" id="s03">
+<span class="eyebrow">&sect;03 &middot; Deal snapshot</span>
+<table>
+<tbody>
+<tr><td style="width:34%">Instrument offered</td><td>Y Combinator post-money SAFE, valuation cap <b>US$15,000,000</b>, no discount rate, no interest <span class="tier t-co">CO</span></td></tr>
+<tr><td>Issuer</td><td>Needle AI, Inc., Delaware corporation. Operating team in Singapore, Kuala Lumpur and Los Angeles; management accounts kept in SGD <span class="tier t-co">CO</span></td></tr>
+<tr><td>Round size</td><td>US$2.0M <span class="tier t-co">CO</span></td></tr>
+<tr><td>Committed</td><td><b>Three different figures across three documents.</b> Deck: $1.9M committed, $100K remaining. Diligence report: $1.75M committed, $250K remaining. Use-of-funds model books SGD 1,200,000 (~US$942K) of new cash in a single month of H2 2026 <span class="tier t-mod">MOD</span></td></tr>
+<tr><td>Named investors</td><td>BEDr Capital (lead); Young Sohn family office (ex-President and Chief Strategy Officer, Samsung Electronics); 1337 Ventures, existing investor, described as having "tripled down" <span class="tier t-co">CO</span></td></tr>
+<tr><td>Prior capital</td><td>US$2.0M, described as friends and family <span class="tier t-co">CO</span></td></tr>
+<tr><td>Timeline</td><td>Stated deadline September 2026, preference for mid-August. That date has passed as of this memo <span class="tier t-co">CO</span></td></tr>
+<tr><td>Investor rights</td><td>MFN amendment; contractual pro rata until IPO or liquidity; information rights via an "Investor Dashboard" with financials, plans and board materials <span class="tier t-co">CO</span></td></tr>
+<tr><td>Major Investor threshold</td><td><b>US$250,000</b>, which is exactly the remaining allocation in the diligence report. Major Investors are also the only holders exempt from the Company's right to sweep converted shares into an SPV <span class="tier t-co">CO</span></td></tr>
+<tr><td>Liquidation</td><td>Standard post-money SAFE: junior to debt, on par with other SAFEs and Preferred, senior to Common. Non-participating in economic effect <span class="tier t-co">CO</span></td></tr>
+<tr><td>Board</td><td>No board seat offered and none contemplated by the instrument <span class="tier t-co">CO</span></td></tr>
+<tr><td>Cap table</td><td>Not provided. No Carta snapshot, no pre-round fully diluted table, no disclosure of how much prior SAFE or note paper sits ahead of this one <span class="tier t-unv">UNV</span></td></tr>
+<tr><td>Deal source</td><td>Referral by internal team. No prior relationship with founders or company disclosed <span class="tier t-co">CO</span></td></tr>
+</tbody>
+</table>
+<p class="sowhat">Read the terms and the disclosure quality together and they point in opposite directions. The rights package is better than any SAFE we have underwritten this year. The cap table is entirely absent, and on a post-money SAFE the amount of pari passu paper stacked ahead of you is the single number that determines what 1.67% actually converts into.</p>
+</div>
+
+<!-- ===== 04 OVERVIEW ===== -->
+<div class="sec" id="s04">
+<span class="eyebrow">&sect;04 &middot; What the company actually does</span>
+<p class="lede">Needle is a marketing agency delivered as software. A direct-to-consumer brand connects Shopify, Meta, Google, TikTok and Klaviyo; Needle's system reads the store's performance, brand voice and offers, and proposes a weekly slate of campaigns; the founder picks the ones to run; AI drafts the creative and a human designer in Kuala Lumpur polishes it inside a 48-hour window; Needle launches directly on the ad and email platforms and returns a weekly performance report that feeds the next cycle. Average account pays $1,646 a month.</p>
+<p>The economic claim is not that the AI is better. It is that the bundle costs a brand roughly $20K a year against $60K to $120K for the agency it replaces, and that the human polish line inside that $20K shrinks over time as model output quality rises. The company is explicit that the human layer is "temporary scaffolding." That single sentence is the investment.</p>
+<p>Fifteen people. Four co-founders (CEO, revenue, creatives, learnings), an AI lead and a tech lead in Los Angeles, an ops lead, and the Kuala Lumpur creative bench. The company generated 2,198 campaigns in July 2026 across 55 accounts, roughly 40 campaigns per account per month <span class="tier t-mod">MOD</span>.</p>
+</div>
+
+<!-- ===== 05 ANALOGY ===== -->
+<div class="sec" id="s05">
+<span class="eyebrow">&sect;05 &middot; Analogy anchor</span>
+<h2>Scale AI's economics applied to DTC ad creative, sold on an agency-replacement wedge</h2>
+<p>The analogy that actually fits is not Omneky or Jasper. It is the labor-plus-model businesses: a priced software surface in front, a managed human workforce in a low-cost geography behind, and a thesis that the human share of delivery falls as models improve. Needle even runs the same playbook geography, with the human-in-the-loop hub in Malaysia and the pricing set in USD.</p>
+<div class="callout">
+<p style="margin:0"><b>Where the analogy breaks, and this is the investment question.</b> In the data-labeling version, the buyer is an AI lab with a rising budget and the human work is measurably fungible, so automation directly converts to margin. Here the buyer is a $1M-to-$10M revenue DTC brand with a shrinking budget, and the human work is the part the customer says it is paying for. Needle's own market research is blunt about this: "They'll wait and pay more for on-brand creatives. They won't pay for slop." If the human polish is what the customer values, automating it away does not expand margin. It removes the differentiator. The company is betting that model quality crosses the threshold where the customer stops being able to tell. That is a real bet with a real date on it, and it is not in their control.</p>
+</div>
+<p class="sowhat">Gross margin has in fact risen from 22% (January 2025) to 67% (June 2026), so the direction of travel is established. What is not established is whether that came from automation or simply from spreading a fixed Kuala Lumpur bench across three times as many accounts. &sect;09 separates the two.</p>
+</div>
+
+<!-- ===== 06 MARKET ===== -->
+<div class="sec" id="s06">
+<span class="eyebrow">&sect;06 &middot; Market, rebuilt from the bottom</span>
+<h2>The company built the honest number and then put a different one in the deck</h2>
+<p>The deck leads with 22 million ecommerce brands worldwide excluding China, 3 million in the served segment, $360B spent annually on agencies and $418B on disconnected SaaS tools <span class="tier t-co">CO</span>. It then says 0.2% market share equals $100M+ of revenue at current ACV.</p>
+<p>The company's own top-down market model, sitting in the same data room, ends at a <b>total obtainable market of 189,369 merchants worldwide excluding China</b> after adjusting for industry, ability to pay and internet penetration <span class="tier t-mod">MOD</span>. That is not a rounding difference from the 3 million figure in the deck. It is 15.8 times smaller, and it is the company's own work.</p>
+<p>Run the arithmetic on the honest number. 189,369 merchants at the realized ACV of $19,752 is a serviceable market of <b>$3.74B</b>. $100M of ARR at that ACV requires 5,063 customers, which is 2.7% of the obtainable market, not the 0.2% the deck implies. The deck's 0.2% only works against a denominator of roughly 2.5 million brands, a population the company's own model already excluded.</p>
+
+<div class="ctrls noprint">
+<div class="grid2">
+  <div><label class="f">Obtainable merchants</label><div class="ln"><input type="range" id="m_n" min="50000" max="3000000" step="10000" value="189369"><span class="out" id="m_n_o">189,369</span></div></div>
+  <div><label class="f">Blended ACV</label><div class="ln"><input type="range" id="m_acv" min="10000" max="60000" step="500" value="19752"><span class="out" id="m_acv_o">$19.8K</span></div></div>
+  <div><label class="f">Share captured</label><div class="ln"><input type="range" id="m_sh" min="1" max="30" step="1" value="3"><span class="out" id="m_sh_o">3%</span></div></div>
+</div>
+<div style="margin-top:12px"><button id="m_reset">Reset to committed baseline</button></div>
+</div>
+<div class="metrics">
+  <div class="met"><div class="k">Serviceable ARR</div><div class="v" id="m_sam">$3.74B</div></div>
+  <div class="met"><div class="k">ARR at that share</div><div class="v" id="m_som">$112M</div></div>
+  <div class="met"><div class="k">Customers for $100M ARR</div><div class="v" id="m_need">5,063</div></div>
+  <div class="met"><div class="k">As share of obtainable</div><div class="v" id="m_pct">2.7%</div></div>
+</div>
+<p class="sowhat">This is the unusual case where rebuilding the market <i>helps</i> the company. $3.74B serviceable at the realized price point is a genuinely large market, and 2.7% of it for a $100M outcome is an ordinary venture assumption rather than a category-monopoly one. Drag the merchant slider to 3,000,000 to see the deck's version, where the same $100M becomes 0.17% and the claim stops meaning anything.</p>
+
+<h3>The honest sizing</h3>
+<table>
+<thead><tr><th>Layer</th><th class="n">Deck figure</th><th class="n">Rebuilt</th><th>Why they differ</th></tr></thead>
+<tbody>
+<tr><td>Total brands</td><td class="n">22.0M</td><td class="n">22.0M</td><td class="small">Agreed. Both trace to the same third-party ecommerce merchant counts <span class="tier t-co">CO</span></td></tr>
+<tr><td>Served segment</td><td class="n">3.0M</td><td class="n">189,369</td><td class="small">The company's own model filters for industry, ability to pay and internet penetration. The deck skips those filters <span class="tier t-mod">MOD</span></td></tr>
+<tr><td>Serviceable ARR</td><td class="n">$778B implied</td><td class="n">$3.74B</td><td class="small">Deck cites total agency plus SaaS spend ($360B + $418B), not spend addressable at a $20K price point <span class="tier t-unv">UNV</span></td></tr>
+<tr><td>Share needed for $100M ARR</td><td class="n">0.2%</td><td class="n">2.7%</td><td class="small">Same numerator, denominator 15.8x apart <span class="tier t-mod">MOD</span></td></tr>
+<tr><td>Where revenue actually is</td><td class="n">US-led</td><td class="n">45% Singapore</td><td class="small">Deck and market model are built on US, UK, EU and Indonesia. The book is Southeast Asia weighted <span class="tier t-mod">MOD</span></td></tr>
+</tbody>
+</table>
+<p class="sowhat">The geography mismatch is the sizing finding that matters most operationally. The company sizes and pitches a US market and sells, today, mostly into Singapore, Australia and the Gulf. US MRR has grown faster than the rest (from $4,058 in July 2025 to $36,356 in July 2026) which is the right direction, but the US book is 21 accounts and has never been tested against a US agency's pricing and account-management standard at scale.</p>
+</div>
+
+<!-- ===== 07 FACT CHECK ===== -->
+<div class="sec" id="s07">
+<span class="eyebrow">&sect;07 &middot; Claim-by-claim verification</span>
+<h2>Thirteen headline claims, checked</h2>
+<div class="noprint" style="margin:10px 0">
+  <button class="chip" data-f="all" aria-pressed="true">All 13</button>
+  <button class="chip" data-f="Contradicted" aria-pressed="false">Contradicted 4</button>
+  <button class="chip" data-f="Overstated" aria-pressed="false">Overstated 3</button>
+  <button class="chip" data-f="Unverified" aria-pressed="false">Unverified 2</button>
+  <button class="chip" data-f="Confirmed" aria-pressed="false">Confirmed 4</button>
+</div>
+<table id="fctab">
+<thead><tr><th style="width:24%">Claim</th><th style="width:44%">What checking found</th><th>Verdict</th></tr></thead>
+<tbody>
+<tr data-v="Contradicted"><td>"200+ DTC brands," on the deck, in the diligence report and on the public homepage</td><td>The company's own cohort file shows <b>55 paying subscriptions</b> at 1 August 2026 <span class="tier t-mod">MOD</span>. Summing every monthly cohort start since June 2024 gives roughly <b>74 brands that have ever paid</b>. The public site states "We replaced marketing agencies, freelancers, and tools for 200+ DTC brands globally" <span class="tier t-ext">EXT</span>. The gap is 2.7x against ever-paid and 3.6x against currently paying. If the 200 figure counts free signups or unconverted trials, it should say so.</td><td><b style="color:var(--bad)">Contradicted</b></td></tr>
+<tr data-v="Contradicted"><td>"50%+ demo-to-close rate," stated twice in the deck and repeated in the diligence report</td><td>The company's own payback sheet records <b>130 demos and 55 closes since May 2025: 42.3%</b> <span class="tier t-mod">MOD</span>. 50% or better was achieved in five of fifteen months. The trailing three months are 28.6%, 30.0% and 42.9%. The company's own H2 2026 forecast assumes 30% to 35%, not 50%.</td><td><b style="color:var(--bad)">Contradicted</b></td></tr>
+<tr data-v="Contradicted"><td>"3.8 months of payback on CAC," presented as the current unit economic</td><td>Correct as a fifteen-month blended average: $4,137 blended CAC against $1,103 of monthly gross profit per account gives 3.75 months <span class="tier t-mod">MOD</span>. On the trailing six months CAC is <b>$6,323</b> and payback is <b>5.7 months</b>; on the trailing three months CAC is <b>$7,070</b> and payback is <b>6.4 months</b>. CAC has roughly doubled as the cheap referral cohorts aged out. The deck quotes the average, not the current.</td><td><b style="color:var(--bad)">Contradicted</b></td></tr>
+<tr data-v="Contradicted"><td>Round status: "$100K left. $1.9MM committed" (deck)</td><td>The diligence report prepared five weeks earlier states $1.75M committed and $250K remaining. The use-of-funds model books SGD 1,200,000 (~US$942K) of new cash. Three documents, three round sizes, and the stated close date has now passed <span class="tier t-co">CO</span>.</td><td><b style="color:var(--bad)">Contradicted</b></td></tr>
+<tr data-v="Overstated"><td>"126% Net Revenue Retention"</td><td>The cohort tab computes 125.7%. Rebuilding it across the 55 active accounts gives <b>122.0%</b>. The distribution is the finding: <b>42 of 55 accounts sit at exactly 1.00x</b>, thirteen have expanded, and one account &mdash; a US sports brand that started at $499 and now pays $8,042 &mdash; carries 16.1x. Remove that one account and NRR is <b>111.9%</b> <span class="tier t-mod">MOD</span>. The headline is arithmetically true and describes one customer, not a motion.</td><td><b style="color:var(--warn)">Overstated</b></td></tr>
+<tr data-v="Overstated"><td>"$1MM+ ARR in less than 3 quarters"</td><td>The traction file shows first subscription revenue in June 2024, $260,436 ARR in July 2025, and $1,006,006 in June 2026 <span class="tier t-mod">MOD</span>. Measured from the August 2025 post-beta relaunch the company went from $323,976 to $1.09M in eleven months. Measured from zero it took twenty-four. Neither is "less than three quarters." The defensible claim, 4.2x ARR growth in twelve months, is a better claim and they own it.</td><td><b style="color:var(--warn)">Overstated</b></td></tr>
+<tr data-v="Overstated"><td>Product-led GTM "will enable us to scale to $100MM+ in ARR"</td><td>Rebuilt by acquisition channel: network and customer referral is <b>19 accounts and $40,083 of MRR, 44.3% of the book</b>, at $2,110 average. Automated outreach is 25 accounts and $33,842 at $1,354 average. Website signup is 11 accounts and $16,606 <span class="tier t-mod">MOD</span>. The highest-value channel is the least scalable one, and the self-serve channel the deck describes as the engine produces 18% of revenue.</td><td><b style="color:var(--warn)">Overstated</b></td></tr>
+<tr data-v="Unverified"><td>"An accumulating Learning Loop" that makes recommendations sharper across the customer base</td><td>No evidence of cross-customer learning transfer appears anywhere in the data room: no cohort-over-cohort improvement in campaign performance, no reduction in human review hours per campaign, no model evaluation. The claim is the company's stated primary long-run moat and is supported by nothing we can test <span class="tier t-unv">UNV</span>.</td><td><b style="color:var(--warn)">Unverified</b></td></tr>
+<tr data-v="Unverified"><td>Customer outcomes: +177% revenue, +91% efficiency, &minus;62% cost, 6-40x Meta ROAS</td><td>Self-reported by customers with 3+ months tenure, no methodology, no control, no sample size, and a 6-40x ROAS range wide enough to be uninformative. Two named case studies (a $6M sports brand, a workleisure fashion brand) are internally consistent and specific, which is better than most, but the aggregate figures are not testable <span class="tier t-unv">UNV</span>.</td><td><b style="color:var(--warn)">Unverified</b></td></tr>
+<tr data-v="Confirmed"><td>ARR of approximately $1.09M with 0.8% monthly churn</td><td>July 2026 MRR of $90,530.83 across 55 subscriptions, giving $1,086,370 ARR. Gross monthly MRR churn computes to 0.81% and twelve-month logo churn to 9.84% from the cohort detail <span class="tier t-mod">MOD</span>. Every monthly figure reconciles across three separate sheets and against the P&L. This is the cleanest revenue file we have seen at seed.</td><td><b style="color:var(--ok)">Confirmed</b></td></tr>
+<tr data-v="Confirmed"><td>CEO built and sold a DTC marketplace</td><td>Kiyan Foroughi founded Boticca, the London-based independent jewellery and accessories marketplace, which was acquired by / merged into Wolf &amp; Badger in July 2015, reported at the time in Drapers and Retail Gazette <span class="tier t-ext">EXT</span>. He is separately listed as founder and director of Electric8, the Singapore growth agency <span class="tier t-ext">EXT</span>. Founder-market fit is the most externally verifiable claim in the file.</td><td><b style="color:var(--ok)">Confirmed</b></td></tr>
+<tr data-v="Confirmed"><td>Omneky is the closest well-funded competitor, "~$2.1M ARR, SoftBank DeepCore and Village Global backed"</td><td>Confirmed and, if anything, understated in Needle's favour. Omneky raised $10M in seed announced November 2022 and $11.4M in total; FY2023 revenue of $2,072,055 against FY2022 of $1,425,232, 45% growth; monthly burn approximately $313,000 and a FY2023 net loss of $3.76M; the company went to StartEngine retail crowdfunding in 2025 at an $80M cap <span class="tier t-ext">EXT</span>.</td><td><b style="color:var(--ok)">Confirmed</b></td></tr>
+<tr data-v="Confirmed"><td>Terms: $15M post-money cap with investor protections</td><td>The executed SAFE form confirms a US$15,000,000 post-money valuation cap, an MFN amendment clause, contractual pro rata rights until IPO or liquidity, information rights via an investor dashboard including board materials, and Major Investor status at a $250,000 investment <span class="tier t-co">CO</span>. Clean YC post-money paper with genuinely above-market rights for the round size.</td><td><b style="color:var(--ok)">Confirmed</b></td></tr>
+</tbody>
+</table>
+<p class="sowhat">Four contradictions and three overstatements, and every single one is contradicted by a document the company voluntarily handed over. That is a materially different posture from concealment: the traction file flags its own tariff churn, its own Christmas demo slump, and its own paused UAE accounts without being asked. The pattern here is a founder who markets aggressively and accounts honestly. That is fixable in one conversation. It is not an integrity gate.</p>
+</div>
+
+<!-- ===== 08 TRACTION ===== -->
+<div class="sec" id="s08">
+<span class="eyebrow">&sect;08 &middot; Traction and revenue quality</span>
+<p>Strip the framing and what remains is the strongest operating file in the VC book. MRR from $21,703 (July 2025) to $90,531 (July 2026). Subscriptions from 17 to 55. ACV from $15,320 to $19,752, so the growth is roughly two-thirds new logos and one-third price. Gross monthly revenue churn of 0.81% is genuinely low for SMB DTC, a segment where 3% to 5% is normal. Six logos lost in twelve months on a base of 55.</p>
+
+<h3>Revenue quality, decomposed</h3>
+<table>
+<thead><tr><th>Cut</th><th class="n">Figure</th><th>Reading</th></tr></thead>
+<tbody>
+<tr><td>Largest account</td><td class="n">8.9%</td><td class="small">$8,042 of $90,531. Low concentration for a 55-account book, and healthier than most seed files <span class="tier t-mod">MOD</span></td></tr>
+<tr><td>Accounts at exactly 1.00x</td><td class="n">42 of 55</td><td class="small">76% of the book has never expanded. Expansion is thirteen accounts and one outlier <span class="tier t-mod">MOD</span></td></tr>
+<tr><td>Referral share of MRR</td><td class="n">44.3%</td><td class="small">19 accounts at $2,110 average, the highest-value and least scalable channel <span class="tier t-mod">MOD</span></td></tr>
+<tr><td>Singapore share of MRR</td><td class="n">45.2%</td><td class="small">25 of 55 accounts. US is 21 accounts and 40.2% of MRR <span class="tier t-mod">MOD</span></td></tr>
+<tr><td>Paused, not churned</td><td class="n">$3,298</td><td class="small">Two UAE accounts suspended until September on conflict impact, carried outside the churn calculation. 3.6% of MRR sitting in a category of its own <span class="tier t-mod">MOD</span></td></tr>
+<tr><td>Recent net expansion</td><td class="n">~0%</td><td class="small">Trailing expansion, net of downgrades, is &minus;1.9% (March), &minus;3.9% (April), +0.5% (June), &minus;0.9% (July). The NRR is historic, not current <span class="tier t-mod">MOD</span></td></tr>
+</tbody>
+</table>
+
+<h3>What the numbers do not yet support</h3>
+<table>
+<thead><tr><th>Claim</th><th>Constraint</th></tr></thead>
+<tbody>
+<tr><td>Land-and-expand is the model</td><td class="small">Thirteen of fifty-five accounts have ever expanded and net expansion has been approximately zero for six months. One 16x account is an anecdote, not a motion.</td></tr>
+<tr><td>Retention is proven</td><td class="small">Median account tenure is under twelve months. The 2024 cohorts, the only ones old enough to read, retained 1 of 4, 1 of 2, 1 of 3, 1 of 3, 0 of 2 and 0 of 2 across the first six monthly cohorts. Those were beta-era customers on a different product, and the company says so, but they are also the only long-tenure data that exists.</td></tr>
+<tr><td>Churn is 0.8%</td><td class="small">True on gross MRR. Logo churn is 9.84% annualised, and two paused accounts worth 3.6% of MRR sit outside both figures.</td></tr>
+<tr><td>The US is the market</td><td class="small">45% of revenue is Singapore. US growth is real and fast but 21 accounts deep.</td></tr>
+</tbody>
+</table>
+<p class="sowhat">Same conclusion as the fact check, in reverse: the company is not exaggerating its traction, it is exaggerating what its traction proves. The 2024 beta cohorts are the one genuinely uncomfortable table in the file, and the company left it in.</p>
+</div>
+
+<!-- ===== 09 UNIT ECONOMICS ===== -->
+<div class="sec" id="s09">
+<span class="eyebrow">&sect;09 &middot; Unit economics, rebuilt</span>
+<h2>Start with the toy version</h2>
+<p>One account pays $1,646 a month, $19,752 a year. Gross margin is 67%, so the company keeps $13,234 of it. On the trailing three months it costs $7,070 to acquire that account. The account pays the company back in 6.4 months and then contributes about $1,100 a month for as long as it stays. At the observed churn, that is a long time. These are good unit economics by any seed standard, and they are better than the category's best-funded player.</p>
+<p>The number that decides the company is not any of those. It is the 67%.</p>
+
+<div class="ctrls noprint">
+<div class="grid2">
+  <div><label class="f">Blended ACV</label><div class="ln"><input type="range" id="u_acv" min="12000" max="40000" step="250" value="19752"><span class="out" id="u_acv_o">$19,752</span></div></div>
+  <div><label class="f">CAC</label><div class="ln"><input type="range" id="u_cac" min="2000" max="14000" step="100" value="7070"><span class="out" id="u_cac_o">$7,070</span></div></div>
+  <div><label class="f">Annual revenue churn</label><div class="ln"><input type="range" id="u_ch" min="5" max="50" step="1" value="25"><span class="out" id="u_ch_o">25%</span></div></div>
+  <div><label class="f">Gross margin</label><div class="ln"><input type="range" id="u_gm" min="40" max="90" step="1" value="67"><span class="out" id="u_gm_o">67%</span></div></div>
+</div>
+<div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap">
+  <button id="u_reset">Reset to committed baseline</button>
+  <button id="u_deck">Set to the deck's figures</button>
+</div>
+</div>
+<div class="metrics">
+  <div class="met"><div class="k">LTV</div><div class="v" id="u_ltv">$52,935</div></div>
+  <div class="met"><div class="k">LTV : CAC</div><div class="v" id="u_ratio">7.5x</div></div>
+  <div class="met"><div class="k">CAC payback</div><div class="v" id="u_pb">6.4 mo</div></div>
+  <div class="met"><div class="k">Implied life</div><div class="v" id="u_life">4.0 yr</div></div>
+</div>
+<div id="u_flag" class="flag f-ok">Clears the 3x Series A benchmark</div>
+<p class="sowhat">The baseline above is deliberately conservative: current-period CAC rather than the fifteen-month blend, and a 25% annual revenue churn assumption against an observed 9.8% that a twelve-month cohort cannot support. Even so it clears the bar with room. Press "set to the deck's figures" to see the company's version at 3.8-month payback and 13x. The honest number and the marketed number lead to the same conclusion here, which is unusual and is worth saying plainly.</p>
+
+<h3>The 67% is the whole company</h3>
+<p>Gross margin runs at 66.1% (June 2026) and 68.1% (July) after LLM inference and the Kuala Lumpur human-in-the-loop bench <span class="tier t-mod">MOD</span>. LLM cost is trivial &mdash; SGD 809 in June against SGD 35,368 of human cost. This is not an inference-cost business. It is a payroll business with an AI accelerant.</p>
+<p>The margin has genuinely improved, from 22.0% in January 2025 to 66.1% in June 2026. But decompose it. Human-in-the-loop cost <b>rose</b> over the same period, from SGD 22,099 to SGD 35,368 per month, a 60% increase. Revenue rose 236%. The margin expansion is a fixed bench spread over three times the accounts, not a falling cost per campaign. Cost per campaign fell from roughly SGD 46 to SGD 18, which is real operating leverage, but it is the leverage of utilisation, not of automation.</p>
+<p>The projection then holds the human-in-the-loop line flat at SGD 39,550 for every month of H2 2026 while MRR grows 73%, which is what produces the 79.4% gross margin in December 2026 <span class="tier t-mod">MOD</span>. Seven of the eight roles the round funds are people, two of them explicitly in the human-in-the-loop function. The model funds headcount growth in the operating expense lines and assumes zero headcount growth in cost of goods sold.</p>
+<div class="callout">
+<p style="margin:0"><b>The falsifiable version of the entire thesis.</b> Human-in-the-loop cost per campaign was SGD 18 in June 2026. If it is below SGD 12 by June 2027 at roughly double the campaign volume, the scaffolding thesis is true and this is a software business with a services onramp, worth well more than a $15M cap. If it is flat or rising, this is a 67%-margin agency with good software and the terminal multiple is a fraction of what the deck implies. One number, twelve months, observable from an ordinary investor update.</p>
+</div>
+</div>
+
+<!-- ===== 10 COMPETITION ===== -->
+<div class="sec" id="s10">
+<span class="eyebrow">&sect;10 &middot; Competitive position and the capital gap</span>
+<h2>For once, the capital gap runs the right way</h2>
+<table>
+<thead><tr><th>Company</th><th class="n">Capital raised</th><th class="n">Revenue</th><th>Position as of mid-2026</th></tr></thead>
+<tbody>
+<tr><td>Omneky</td><td class="n">$11.4M</td><td class="n">$2.07M FY23</td><td class="small">AI ad creative generation with a proprietary brand model, multi-platform launch. Growth of 45% year over year. Burn approximately $313K per month, FY23 net loss $3.76M. Raised on StartEngine in 2025 at an $80M cap, which is where companies go when the institutional round is not available <span class="tier t-ext">EXT</span></td></tr>
+<tr><td>Motion</td><td class="n">Not disclosed</td><td class="n">Not disclosed</td><td class="small">Creative performance analytics and workflow. Third-party comparisons describe it as handing a creative team a data-backed brief and stopping there, which is the gap Needle claims <span class="tier t-co">CO</span></td></tr>
+<tr><td>Pencil</td><td class="n">Not disclosed</td><td class="n">Not disclosed</td><td class="small">Video ad generation with pre-launch performance prediction. Generation tool, not agency replacement <span class="tier t-co">CO</span></td></tr>
+<tr style="background:#F2F1EC"><td><b>Needle AI</b></td><td class="n"><b>$2.0M</b></td><td class="n"><b>$1.09M ARR</b></td><td class="small">55 paying accounts, 4.2x growth, 67% gross margin, approximately $90K per month net burn <span class="tier t-mod">MOD</span></td></tr>
+</tbody>
+</table>
+<p class="sowhat">Needle has produced 53% of Omneky's revenue on 18% of the capital, growing 4.2x against Omneky's 1.45x. Capital efficiency is the single most favourable comparison in this file and the one the deck does not make. It also cuts the other way as a category signal: the best-funded direct competitor, with SoftBank and Village Global behind it, reached $2M of revenue and then went to retail crowdfunding. That is evidence about the category's ceiling, not just about Omneky.</p>
+
+<div class="callout">
+<p style="margin:0"><b>The competitor that matters is not on the list.</b> Meta has publicly stated its intention to let advertisers create and target ads end to end with AI by the end of 2026, widely reported since mid-2025 <span class="tier t-ext">EXT</span>. Needle's stated moat number two is "Platforms build walls. We build bridges" &mdash; cross-channel orchestration that no single platform is incentivised to build. That argument survives Meta's automation and is, in fact, strengthened by it: the more each platform automates inside its own walls, the more valuable a neutral cross-channel layer becomes. What does not survive is the creative-generation layer, and roughly half of Needle's delivered value today is creative production.</p>
+</div>
+</div>
+
+<!-- ===== 11 MOAT ===== -->
+<div class="sec" id="s11">
+<span class="eyebrow">&sect;11 &middot; Moat under model-capability doubling</span>
+<p>The test that matters: if frontier model capability doubles in eighteen months and generic agents get materially better at generating on-brand creative and reading performance data, what survives?</p>
+<table>
+<thead><tr><th>Claimed moat</th><th>Survives?</th><th>Reasoning</th></tr></thead>
+<tbody>
+<tr><td>Human-in-the-loop creative polish</td><td><b style="color:var(--bad)">Dissolves</b></td><td class="small">By the company's own design. This is scaffolding they intend to remove. The problem is that it is also the differentiator the customer says it is paying for. When models close the quality gap, Needle loses the reason a brand chose it over a cheaper pure-AI tool at the same moment it gains the margin.</td></tr>
+<tr><td>AI creative generation</td><td><b style="color:var(--bad)">Weakens</b></td><td class="small">Directly in the path of both frontier models and Meta's own end-to-end ad automation. No proprietary model, no proprietary training data at scale, no evaluation harness disclosed.</td></tr>
+<tr><td>The accumulating Learning Loop</td><td><b style="color:var(--warn)">Unproven</b></td><td class="small">The strongest claim on paper and the one with zero supporting evidence in the data room. Cross-customer transfer at 55 accounts is thin; every competitor with more accounts has more of it. If it works it compounds; nothing shows that it works.</td></tr>
+<tr><td>Cross-channel orchestration</td><td><b style="color:var(--ok)">Survives</b></td><td class="small">The genuinely durable asset. Meta will not orchestrate Google. Klaviyo will not run TikTok. Structural incentives, not technology, keep this layer open, and better models make an independent orchestrator more useful, not less.</td></tr>
+<tr><td>Workflow embedding and switching cost</td><td><b style="color:var(--ok)">Survives</b></td><td class="small">Five integrations plus accumulated brand voice, offers and campaign history. Real, ordinary, and consistent with 0.81% monthly churn. Compounds with tenure.</td></tr>
+<tr><td>Counter-positioning against agencies</td><td><b style="color:var(--ok)">Survives</b></td><td class="small">An incumbent charging $5-10K per month structurally cannot price at $1,650 without destroying its own business. This is the most durable competitive fact in the file and it is a business-model moat, not a technical one.</td></tr>
+</tbody>
+</table>
+<p class="sowhat">Three of six survive, and they are the three the deck ranks last. The two the company leads with are on the wrong side of the capability curve, and one of them the company has publicly committed to removing. The pitch is ordered by what sounds impressive rather than by what lasts, which is the same pattern &sect;07 found.</p>
+</div>
+
+<!-- ===== 12 TEAM ===== -->
+<div class="sec" id="s12">
+<span class="eyebrow">&sect;12 &middot; Team</span>
+<p>Founder-market fit is the best-evidenced thing about this company. Kiyan Foroughi founded Boticca, a London-based curated marketplace for independent jewellery and accessory designers, and sold it to Wolf &amp; Badger in 2015 <span class="tier t-ext">EXT</span>. He then built Electric8, a profitable Singapore growth agency, and the team says it grew more than 100 DTC brands by hand before writing the software. The four co-founders split cleanly across the functions the product actually performs: revenue, creatives, and learnings. They are selling the thing they used to do manually, to the buyer they used to be. That is the configuration that most reliably produces a good seed outcome, and it is verifiable rather than asserted.</p>
+<p>Compensation is disciplined and visible in the P&L: the CEO takes SGD 12,511 a month, the other three co-founders SGD 8,201 to SGD 11,371. The two most expensive individuals in the company are the AI Lead (SGD 25,000) and the Tech Lead (SGD 21,000), both US-based. Founders paying themselves less than their senior engineers at $1M ARR is a good sign.</p>
+<div class="callout">
+<p style="margin:0"><b>The one thing to check.</b> The diligence report notes that both the AI Lead and the Tech Lead, the two highest-paid people in the company and the two who own everything technical, have <b>no LinkedIn profile</b> and are identified only as Los Angeles based <span class="tier t-co">CO</span>. That is unusual for senior US-based AI and platform engineers in 2026 and it is the only part of the team that cannot be checked from outside. It is probably nothing. It is also SGD 46,000 a month and the entire technical capability of the business, and it costs one email to resolve.</p>
+</div>
+<p class="small">Fifteen people total: eight in core leadership, seven across engineering, creative and ops, with the human-in-the-loop hub in Kuala Lumpur. The round funds eight hires: two engineers, one designer, one sales rep, one media/PR lead, one account strategist, one creative designer, one finance and ops lead. The company has never had a finance lead, which is consistent with the pattern of clean accounting and loose marketing arithmetic seen throughout this file.</p>
+</div>
+
+<!-- ===== 13 GTM ===== -->
+<div class="sec" id="s13">
+<span class="eyebrow">&sect;13 &middot; Go-to-market credibility</span>
+<p>The plan requires demos booked to rise from 7 to 10 per month to 24 in October and 20 in November, on marketing spend rising from $4,651 to $10,000 per month at a cost per lead held flat at $75, with lead-to-demo conversion held flat at 60% and demo-to-close raised to 33-35% against a trailing three-month actual of 33.8% <span class="tier t-mod">MOD</span>.</p>
+<p>Each individual assumption is defensible. Compounded, they ask for 2.1x the leads, 2.4x the demos and 2.7x the new customers within four months of the wire, delivered by one sales rep who has not been hired. Cost per lead held flat while spend doubles is the least defensible link: lead sources saturate, and the company's own data shows cost per lead already drifting up from $51 to $75 over fifteen months.</p>
+<p>The deeper issue is channel mix. The book was built on referral, which is 44% of MRR at a $2,110 average, and referral does not respond to marketing spend. The plan doubles spend on the channel that produces $1,354 accounts. If it works exactly as modelled, ACV falls even as customer count rises.</p>
+<p class="sowhat">This is the most testable risk in the file. New logos per month and the referral share of new MRR are both visible in any honest monthly update and need no special access.</p>
+</div>
+
+<!-- ===== 14 SCENARIOS ===== -->
+<div class="sec" id="s14">
+<span class="eyebrow">&sect;14 &middot; Scenarios and returns</span>
+<h2>What the check is actually betting on</h2>
+<p>Entry at a $15M post-money cap. A $250K check is 1.67% post-money before subsequent dilution and, critically, clears the Major Investor threshold in Section 7 of the SAFE. A $100K check is 0.67% and clears nothing.</p>
+
+<div class="ctrls noprint">
+<div class="grid2">
+  <div><label class="f">Bull probability</label><div class="ln"><input type="range" id="p_bull" min="0" max="45" step="1" value="12"><span class="out" id="p_bull_o">12%</span></div></div>
+  <div><label class="f">Bear probability</label><div class="ln"><input type="range" id="p_bear" min="0" max="85" step="1" value="45"><span class="out" id="p_bear_o">45%</span></div></div>
+  <div><label class="f">Base exit value</label><div class="ln"><input type="range" id="e_base" min="20" max="400" step="10" value="80"><span class="out" id="e_base_o">$80M</span></div></div>
+  <div><label class="f">Bull exit value</label><div class="ln"><input type="range" id="e_bull" min="200" max="2000" step="50" value="600"><span class="out" id="e_bull_o">$600M</span></div></div>
+  <div><label class="f">Total dilution to exit</label><div class="ln"><input type="range" id="e_dil" min="20" max="80" step="5" value="55"><span class="out" id="e_dil_o">55%</span></div></div>
+  <div><label class="f">Marketlogic check</label><div class="ln"><input type="range" id="e_chk" min="25" max="250" step="25" value="250"><span class="out" id="e_chk_o">$250K</span></div></div>
+</div>
+<div style="margin-top:12px"><button id="e_reset">Reset to committed baseline</button></div>
+</div>
+<div class="metrics">
+  <div class="met"><div class="k">Bull MOIC</div><div class="v" id="r_bull">18.0x</div></div>
+  <div class="met"><div class="k">Base MOIC <span id="p_base_o" class="mono">43%</span></div><div class="v" id="r_base">2.4x</div></div>
+  <div class="met"><div class="k">Bear</div><div class="v" style="color:var(--slate)">0.0x</div></div>
+  <div class="met"><div class="k">Weighted MOIC</div><div class="v" id="r_wtd">3.2x</div></div>
+</div>
+<div id="r_flag" class="flag f-bad">Below the 5x seed hurdle</div>
+<div class="metrics" style="margin-top:14px">
+  <div class="met"><div class="k">Bull case proceeds</div><div class="v" id="r_bullp">$4.50M</div></div>
+  <div class="met"><div class="k">As multiple of a $5M fund</div><div class="v" id="r_fund">0.90x</div></div>
+</div>
+
+<h3>The three cases, stated</h3>
+<table>
+<thead><tr><th style="width:12%">Case</th><th class="n">Prob</th><th>What has to be true</th></tr></thead>
+<tbody>
+<tr><td><b>Bull</b></td><td class="n">12%</td><td class="small">Human-in-the-loop cost per campaign falls below SGD 12, gross margin reaches the high 70s, the US book passes 100 accounts, and the orchestration layer becomes the default control plane for mid-market DTC. Strategic acquisition by a commerce or martech platform at 8-12x forward revenue. $600M outcome.</td></tr>
+<tr><td><b>Base</b></td><td class="n">43%</td><td class="small">Growth decelerates to 60-90% annually, margin settles in the low 70s, the company reaches $8-15M of ARR and is acquired by an agency holding company, a commerce platform, or a larger martech roll-up at 5-7x revenue. $80M outcome. This is by some distance the most likely single path.</td></tr>
+<tr><td><b>Bear</b></td><td class="n">45%</td><td class="small">Platform-native automation compresses the creative wedge, expansion stays at zero, the human bench does not scale sublinearly, and the Series A does not clear in 2027. The company is profitable-adjacent and can survive as a small agency-software business, but the SAFE does not convert into anything. Zero to the fund.</td></tr>
+</tbody>
+</table>
+<p class="sowhat">The fund-construction point, and this is the one that separates Needle from every other pass in this book: at the full $250K allocation the bull case returns 0.90x of Fund I. Every other seed position we have looked at this year returns a fifth of the fund at best in its own bull case. Here, taking the entire remaining allocation is the only version of the position that is coherent for a $5M fund. A $100K check in this deal is strictly worse than either $250K or nothing, because it forgoes Major Investor rights, exposes the position to the SPV sweep clause, and still cannot move the fund. Drag the check slider to $100K to see it.</p>
+</div>
+
+<!-- ===== 15 RISK ===== -->
+<div class="sec" id="s15">
+<span class="eyebrow">&sect;15 &middot; Risk register with kill criteria</span>
+<table>
+<thead><tr><th style="width:26%">Risk</th><th class="n">Sev</th><th class="n">Lik</th><th class="n">Score</th><th>Kill criterion</th></tr></thead>
+<tbody>
+<tr><td>Human-in-the-loop cost does not fall per unit</td><td class="n">5</td><td class="n">4</td><td class="n">20</td><td class="kill">Human-in-the-loop cost per campaign at or above SGD 18 in the June 2027 management accounts, at any campaign volume.</td></tr>
+<tr><td>Expansion is one account, not a motion</td><td class="n">4</td><td class="n">5</td><td class="n">20</td><td class="kill">Net expansion excluding the single largest account below 105% on a trailing six-month basis at Q2 2027.</td></tr>
+<tr><td>Platform-native automation absorbs the creative wedge</td><td class="n">5</td><td class="n">3</td><td class="n">15</td><td class="kill">Meta or Google ships end-to-end automated creative plus targeting to self-serve SMB advertisers and Needle's monthly logo churn exceeds 2% for two consecutive months.</td></tr>
+<tr><td>Growth plan requires an unachieved step-change</td><td class="n">4</td><td class="n">4</td><td class="n">16</td><td class="kill">New logos per month below 4.0 averaged across Q1 2027 after the sales hire is ninety days ramped.</td></tr>
+<tr><td>Round size and cap table opacity</td><td class="n">4</td><td class="n">3</td><td class="n">12</td><td class="kill">Company declines or is unable to produce a fully diluted cap table showing all outstanding SAFEs and notes before the wire.</td></tr>
+<tr><td>Marketing claims outrun the accounts</td><td class="n">3</td><td class="n">4</td><td class="n">12</td><td class="kill">Any one of the four contradictions in &sect;07 is not reconciled in writing within ten business days of being raised.</td></tr>
+<tr><td>Key-person concentration on unverifiable technical leads</td><td class="n">4</td><td class="n">2</td><td class="n">8</td><td class="kill">Company cannot provide verifiable professional background for the AI Lead and Tech Lead on request.</td></tr>
+<tr><td>Geographic and FX mismatch</td><td class="n">2</td><td class="n">4</td><td class="n">8</td><td class="kill">USD revenue against SGD cost base with no hedging. Kill only if SGD strength compresses gross margin below 60% for two consecutive quarters.</td></tr>
+</tbody>
+</table>
+<p class="sowhat">Seven of eight kill criteria are observable from an ordinary monthly or quarterly investor update. That matters more here than usual, because unlike most SAFEs this one actually carries information rights, so the criteria are enforceable rather than decorative.</p>
+</div>
+
+<!-- ===== 16 FALSIFIERS ===== -->
+<div class="sec" id="s16">
+<span class="eyebrow">&sect;16 &middot; What would change the score</span>
+<div class="grid2" style="gap:26px">
+<div>
+<h3 style="color:var(--ok)">Would move it up 0.5 or more</h3>
+<ul>
+<li>Human-in-the-loop hours or cost per campaign shown declining across the last four quarters. <span class="mono">+1.0</span></li>
+<li>Net expansion excluding the largest account shown above 110% on the trailing six months. <span class="mono">+0.7</span></li>
+<li>Fully diluted cap table produced showing total SAFE and note paper outstanding. <span class="mono">+0.6</span></li>
+<li>The four &sect;07 contradictions reconciled in writing, and the deck corrected. <span class="mono">+0.5</span></li>
+<li>Any evidence at all that the cross-customer learning loop improves campaign performance. <span class="mono">+0.5</span></li>
+</ul>
+</div>
+<div>
+<h3 style="color:var(--bad)">Would move it down 0.5 or more</h3>
+<ul>
+<li>Human-in-the-loop cost per campaign flat or rising through 2027. <span class="mono">&minus;1.5</span></li>
+<li>Cap table reveals materially more SAFE paper ahead than the $2M disclosed. <span class="mono">&minus;1.2</span></li>
+<li>The "200+ brands" figure is defended rather than corrected. <span class="mono">&minus;0.8</span></li>
+<li>Two or more of the twelve largest accounts churn or pause in any quarter. <span class="mono">&minus;0.7</span></li>
+<li>Q4 2026 ARR below $1.3M against a plan of $1.86M. <span class="mono">&minus;0.5</span></li>
+</ul>
+</div>
+</div>
+</div>
+
+<!-- ===== 17 THESIS FIT ===== -->
+<div class="sec" id="s17">
+<span class="eyebrow">&sect;17 &middot; Marketlogic thesis fit</span>
+<table>
+<thead><tr><th>Thesis clause</th><th class="n">Fit</th><th>Assessment</th></tr></thead>
+<tbody>
+<tr><td>Deeptech reimagining enterprise transformation</td><td class="n">4</td><td class="small">Applied AI on top of commodity models with a human services layer. This is workflow replacement for small businesses, not enterprise transformation and not deeptech.</td></tr>
+<tr><td>Operational complexity turned into software advantage</td><td class="n">7</td><td class="small">Genuine fit. Ten disconnected tools and three approval loops collapsed into one system with an approval gate is exactly the clause, just at SMB scale rather than enterprise.</td></tr>
+<tr><td>Supply chains analysed to find value creators</td><td class="n">5</td><td class="small">The marketing services supply chain, supplier side. Needle is disintermediating the agency layer, which is a legitimate reading of the clause.</td></tr>
+<tr><td>AI, frontier technology, and space</td><td class="n">5</td><td class="small">AI applied, not frontier. Broad clause only.</td></tr>
+<tr><td>Edge from hands-on operational fluency</td><td class="n">5</td><td class="small">Honest self-assessment: this fund's edge is enterprise process, pricing governance and systems integration. It can diligence a P&L and a cohort file better than most seed investors, which is why &sect;07 and &sect;09 exist. It cannot judge whether Needle's creative output is good, and creative quality is the product.</td></tr>
+</tbody>
+</table>
+<p class="sowhat">Thesis fit is the weakest dimension in the file at 6.0, and the honest reason is stated above. On Intellectible this fund had a genuine diligence edge and used it. Here the analytical edge produced everything in &sect;07 through &sect;09, but the judgment that actually decides the outcome, whether AI-plus-human creative stays good enough to keep a brand paying, sits outside this fund's competence. That is an argument for the reference calls in &sect;18 rather than for more spreadsheet work.</p>
+</div>
+
+<!-- ===== 18 DILIGENCE ===== -->
+<div class="sec" id="s18">
+<span class="eyebrow">&sect;18 &middot; Diligence queue</span>
+<h2>Ranked by score at risk, not by topic</h2>
+<div class="ctrls noprint" style="display:flex;gap:16px;align-items:center;flex-wrap:wrap">
+  <span class="small">Score still at risk: <span class="mono" id="dq_out" style="font-size:17px;color:var(--bad)">-9.7</span></span>
+  <button id="dq_reset">Clear all</button>
+</div>
+<div id="dqlist"></div>
+<p class="sowhat">Items one through four are the deal. Everything else is confirmation. Items five through eight are reconciliations of documents already in the data room and cost the founder an afternoon; how he answers the "200+ brands" question in particular is the most informative free diligence available, because the correct answer is one sentence and the wrong answer is a defence.</p>
+</div>
+
+<!-- ===== 19 TERMS ===== -->
+<div class="sec" id="s19">
+<span class="eyebrow">&sect;19 &middot; Terms and structure</span>
+<h2>The deal is better than the pitch</h2>
+<p>A $15M post-money cap on $1.09M of ARR growing 4.2x is 13.8x current ARR and roughly 7.5x the plan's December 2026 exit run rate. For comparison, Omneky carries an $80M cap on $2.07M of revenue growing 45%. Needle is priced at roughly one third of Omneky's multiple with three times the growth rate. Whatever else is wrong with this deal, the price is not it.</p>
+<p>The rights package is unusual for a $2M seed round and is the strongest structural feature of the investment:</p>
+<table>
+<tbody>
+<tr><td style="width:34%">MFN amendment</td><td>Any subsequently issued SAFE on better terms must be offered as an amend-and-restate. Protects against a lower cap in a follow-on tranche, which matters when the round has slipped past its own deadline.</td></tr>
+<tr><td>Contractual pro rata</td><td>Runs until IPO or liquidity, not just to the next round. This is the term that makes a small seed position worth holding.</td></tr>
+<tr><td>Information rights</td><td>Investor dashboard with financials, plans, and materials provided to the board. Given the quality of the accounting seen in this data room, that is a real asset rather than a formality.</td></tr>
+<tr><td>Major Investor at $250,000</td><td>Confers pro rata and information rights formally, and exempts the holder from the Company's right to sweep converted shares into an SPV. The remaining allocation and the Major Investor threshold are the same number.</td></tr>
+</tbody>
+</table>
+<h3>What to ask for before wiring</h3>
+<ul>
+<li>Fully diluted cap table with every outstanding SAFE and note, their caps and amounts. This is the single largest unknown in the deal and post-money SAFE mechanics make it decisive.</li>
+<li>Written confirmation of the actual round size and amount wired to date, given three documents give three answers and the stated deadline has passed.</li>
+<li>Confirmation that the Delaware entity owns the Singapore and Malaysian operating entities, the IP, and the employment contracts of the Kuala Lumpur bench.</li>
+<li>Side letter confirming Major Investor status at $250K in writing, since Section 7 commits only to "best efforts."</li>
+<li>Quarterly reporting that includes human-in-the-loop cost per campaign and net expansion excluding the largest account. Both are &sect;15 kill criteria and neither is standard.</li>
+</ul>
+<p class="sowhat">The "best efforts" qualifier on Major Investor rights is the one drafting weakness worth a redline. Everything else in the instrument is clean YC post-money paper.</p>
+</div>
+
+<!-- ===== 20 MONITORING ===== -->
+<div class="sec" id="s20">
+<span class="eyebrow">&sect;20 &middot; Pre-committed monitoring milestones</span>
+<p>Written now so future reviews are verification rather than debate. Each is pass or fail against a number.</p>
+<table>
+<thead><tr><th style="width:16%">Checkpoint</th><th>Test</th></tr></thead>
+<tbody>
+<tr><td class="mono">Q4 2026</td><td>ARR at or above $1.3M. New logos at or above 4.0 per month averaged over the quarter. Both, not either. Yes or no.</td></tr>
+<tr><td class="mono">Q1 2027</td><td>Gross margin at or above 72%. Human-in-the-loop cost per campaign below SGD 16. Yes or no.</td></tr>
+<tr><td class="mono">Q2 2027</td><td>Net expansion excluding the largest account at or above 108% trailing six months. US accounts at or above 35. Yes or no.</td></tr>
+<tr><td class="mono">Q4 2027</td><td>ARR at or above $2.5M with gross margin at or above 75% and cash above six months of net burn. Yes or no.</td></tr>
+<tr><td class="mono">Series A</td><td>If three of the four above passed, re-underwrite at the A with a fresh score and expect to participate. If two or fewer, close the file.</td></tr>
+</tbody>
+</table>
+</div>
+
+<!-- ===== 21 GAPS ===== -->
+<div class="sec" id="s21">
+<span class="eyebrow">&sect;21 &middot; Data gaps</span>
+<table>
+<thead><tr><th style="width:38%">Not available</th><th>Cost to confidence</th></tr></thead>
+<tbody>
+<tr><td>Fully diluted cap table and outstanding SAFE or note stack</td><td class="small">High. On a post-money SAFE, the pari passu paper ahead of you determines what the cap actually buys. Nothing in the data room addresses it.</td></tr>
+<tr><td>Human-in-the-loop hours or cost per campaign, by month</td><td class="small">High. The single number the entire margin thesis rests on. Derivable in aggregate from the P&L but never presented per unit.</td></tr>
+<tr><td>Corporate structure: Delaware parent, Singapore and Malaysia entities, IP assignment</td><td class="small">High. The SAFE is issued by a Delaware corporation; every operating cost, employee and management account is in SGD. The relationship is nowhere documented.</td></tr>
+<tr><td>Any evidence for the cross-customer learning loop</td><td class="small">Medium-high. It is the stated long-run moat and there is no measurement of it anywhere.</td></tr>
+<tr><td>Customer references, particularly US accounts</td><td class="small">Medium-high. The one judgment this fund cannot make from documents is whether the creative output is actually good.</td></tr>
+<tr><td>The five-year projection model, reconciled to actuals</td><td class="small">Medium. As delivered it starts at $151,559 of Year 1 subscription revenue, a base the company passed in early 2024, and models 498 employees in the baseline case against a headcount of 15. It cannot be used as an underwriting artifact in its current state.</td></tr>
+<tr><td>The use-of-funds model's own base case</td><td class="small">Medium. The "Optimistic vs. Base Case" sheet returns #REF! on every base-case cell and its milestone dates run October 2022 to December 2023. A stale template shipped inside a Q2 2026 file.</td></tr>
+<tr><td>Post-close runway, agreed</td><td class="small">Medium. The diligence report says Q2 2027 with no hires; the cash model implies well into 2028 but only if the H2 revenue acceleration lands. At the observed growth trend and current burn, Q3 2027 is the honest answer.</td></tr>
+</tbody>
+</table>
+</div>
+
+<!-- ===== 22 CONCLUSION ===== -->
+<div class="sec" id="s22">
+<span class="eyebrow">&sect;22 &middot; Recommendation</span>
+<p class="lede">Watch, with a defined conversion path to a $250K check. This is not a company we are worried about. It is a company whose single most important number, the cost of the human layer per unit of output, has never been shown to us, and whose marketing consistently overstates a set of operating results that are already good enough to stand unaided.</p>
+<p>Four things make this the most interesting file in the current VC series. The revenue is real, granular, and internally consistent across three independent sheets, which is rarer at seed than it should be. The capital efficiency beats the best-funded competitor in the category by a wide margin: 53% of Omneky's revenue on 18% of the capital, growing 4.2x against 1.45x. The founder-market fit is externally verifiable rather than asserted. And the terms, at 13.8x ARR with MFN, pro rata, information rights and Major Investor status at exactly the remaining allocation, are the best we have seen on a SAFE this year.</p>
+<p>Three things hold it at 6.0. The moat is service quality and business-model counter-positioning, not technology, and the company leads its pitch with the two assets least likely to survive better models. Expansion is one account wearing a portfolio's clothing: 42 of 55 accounts have never expanded and net expansion has been approximately zero for six months. And the margin story is a utilisation effect that the company presents as an automation effect, with a plan that funds seven new people in operating expense and assumes the cost of goods sold line stays frozen.</p>
+<p><b>Would I put my own money in at these terms?</b> Yes, at $250K, after four answers. Show me human-in-the-loop cost per campaign by month for the last twelve months. Show me the fully diluted cap table. Reconcile "200+ brands" against 55 paying subscriptions. And let me speak to three US customers unprompted. If the first comes back declining and the rest are clean, the composite moves to roughly 7.0 and this becomes the best risk-adjusted position in the book, because at the full allocation it is the only seed check in this fund that returns 0.9x of Fund I in its bull case. If the human cost line is flat, the answer is no at any price, because then we are buying a Singapore marketing agency at 13.8x revenue.</p>
+<p class="small">Consistent with the referring diligence report, which independently landed on Monitor. This memo reaches the same call from a different evidence base and, unlike that report, from the company's own spreadsheets rather than its narrative.</p>
+</div>
+
+<!-- ===== 23 REFERENCES ===== -->
+<div class="sec" id="s23">
+<span class="eyebrow">&sect;23 &middot; References</span>
+<table>
+<thead><tr><th style="width:6%" class="n">#</th><th style="width:34%">Source</th><th>Used for</th></tr></thead>
+<tbody>
+<tr><td class="n">1</td><td>Needle Traction &amp; Metrics &mdash; 2026, tabs: Traction, Recent Cohorts, Historical Cohorts, Payback (as of 1 Aug 2026)</td><td class="small">All MRR, ARR, subscription, ACV, cohort, NRR, churn, CAC, payback and channel figures. Primary source for &sect;08 and &sect;09.</td></tr>
+<tr><td class="n">2</td><td>Needle &mdash; Use of Funds Model &mdash; Q2 2026 (SGD), tabs: Growth Model, High Level P&amp;L, Cash Summary, Costs</td><td class="small">Gross margin, human-in-the-loop and LLM cost lines, salary detail, cash balances, capital infusions, H2 2026 plan.</td></tr>
+<tr><td class="n">3</td><td>Needle &mdash; Top Down, Bottoms Up Market Sizing &amp; 5 Year Projection Model</td><td class="small">Obtainable market of 189,369 merchants; baseline, aggressive and worst-case five-year cases.</td></tr>
+<tr><td class="n">4</td><td>Needle &mdash; Full Pitch Deck &mdash; 2026 (31 slides)</td><td class="small">All CO-tagged headline claims, competitive framing, case studies, round status.</td></tr>
+<tr><td class="n">5</td><td>Needle Diligence Report, 28 July 2026 (referring party)</td><td class="small">Round terms, committed capital, burn, runway, headcount, team detail, competitive set, Monitor recommendation.</td></tr>
+<tr><td class="n">6</td><td>Needle AI, Inc. post-money SAFE agreement, 2026 form</td><td class="small">$15M post-money cap, MFN, pro rata, information rights, Major Investor threshold, SPV transfer clause, Delaware incorporation.</td></tr>
+<tr><td class="n">7</td><td>askneedle.com homepage, retrieved 3 September 2026</td><td class="small">"200+ DTC brands globally" public claim; integrations; customer outcome figures.</td></tr>
+<tr><td class="n">8</td><td>Drapers and Retail Gazette, July 2015: Wolf &amp; Badger acquires Boticca</td><td class="small">External confirmation of the CEO's prior exit.</td></tr>
+<tr><td class="n">9</td><td>PR Newswire, November 2022; KingsCrowd StartEngine analysis, 2025</td><td class="small">Omneky $10M seed, $11.4M total raised, FY2022 and FY2023 revenue, burn, net loss, $80M cap.</td></tr>
+<tr><td class="n">10</td><td>Reuters and trade press reporting, 2025-2026, on Meta's stated intent to fully automate ad creation by end of 2026</td><td class="small">Platform-risk assessment in &sect;10 and &sect;11.</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="foot">
+Marketlogic Investors LLC &middot; Investment Memorandum &middot; Confidential<br>
+Prepared for internal investment committee use only. Not investment advice. All deck-derived figures subject to verification.<br>
+Needle AI &middot; ML-2026-NE-01 &middot; Author: H. Reganti &middot; Prepared 3 September 2026<br>
+Source documents: Needle - Full Pitch Deck - 2026.pptx &middot; Needle Diligence Report.docx &middot; Needle Traction &amp; Metrics - 2026.xlsx &middot; Needle - Use of Funds Model - Q2 2026 (SGD).xlsx &middot; Needle - Top Down, Bottoms Up Market Sizing &amp; 5 Year Projection Model.xlsx &middot; Needle AI, Inc. Postmoney SAFE Agreement - 2026.docx<br>
+External verification: askneedle.com, Drapers, Retail Gazette, PR Newswire, KingsCrowd, Crunchbase, trade press. Retrieved 3 September 2026.<br>
+Currency: company management accounts are kept in SGD at 1.2736 SGD per USD. Revenue figures are stated in USD as the company reports them; cost and cash figures are stated in SGD where the source is the use-of-funds model.<br>
+Interactive controls explore sensitivity around a locked baseline. They do not alter the committed position above.
+</div>
+
+<a class="backlink" href="../">&larr; Back to all VC Deals</a>
+
+</div>
+
+<script>
+(function(){
+  var $=function(i){return document.getElementById(i)};
+  var fmt=function(n){return n.toLocaleString('en-US')};
+
+  /* ---- 01 scorecard ---- */
+  var DIMS=[
+    ['Founder and team quality',12,7.0,'Boticca exit externally confirmed. Two technical leads unverifiable.'],
+    ['Traction quality',12,7.5,'$1.09M ARR, 4.2x, 0.81% churn. Best-documented file in the book.'],
+    ['Moat and defensibility',12,4.0,'Service quality, not technology. Learning loop has no evidence.'],
+    ['Market size and structure',10,6.0,'$3.74B serviceable on own SOM. Deck segment 15.8x larger.'],
+    ['Unit economics',10,6.5,'Payback clears easily. 67% gross margin is a services margin.'],
+    ['Competitive position',8,5.5,'Beats Omneky on efficiency. Meta automating the creative layer.'],
+    ['Go-to-market credibility',8,4.5,'Referral-built book presented as product-led. 2.4x demo step-change.'],
+    ['Product and technical depth',8,5.5,'Live, five integrations, 2,198 campaigns/mo. Depth unverifiable.'],
+    ['Capital efficiency and runway',6,7.0,'$1.09M ARR on $2M raised. Three different runway figures.'],
+    ['Terms and structure',6,7.5,'13.8x ARR, MFN, pro rata, info rights, Major Investor at $250K.'],
+    ['Marketlogic thesis fit',5,6.0,'Applied AI at SMB scale. Fund cannot judge creative quality.'],
+    ['Evidence integrity',3,4.5,'Four claims contradicted, all by documents they sent us.']
+  ];
+  var tb=$('sctab').getElementsByTagName('tbody')[0], wg=$('wgrid');
+  DIMS.forEach(function(d,i){
+    var tr=document.createElement('tr');
+    tr.innerHTML='<td>'+d[0]+'</td><td class="n" id="w'+i+'">'+d[1]+'%</td><td class="n">'+d[2].toFixed(1)+
+      '</td><td class="n"><span class="bartrack"><span class="bar" style="width:'+(d[2]*7.6)+'%"></span></span><span id="wv'+i+'">'+(d[1]*d[2]/100).toFixed(2)+'</span></td><td class="small">'+d[3]+'</td>';
+    tb.appendChild(tr);
+    var c=document.createElement('div');
+    c.innerHTML='<label class="f">'+d[0]+'</label><div class="ln"><input type="range" id="ws'+i+'" min="0" max="25" step="1" value="'+d[1]+'"><span class="out" id="wo'+i+'">'+d[1]+'%</span></div>';
+    wg.appendChild(c);
+  });
+  function scalc(){
+    var tot=0,acc=0;
+    DIMS.forEach(function(d,i){ tot+=+$('ws'+i).value; });
+    if(tot===0) tot=1;
+    DIMS.forEach(function(d,i){
+      var w=+$('ws'+i).value, nw=w/tot*100;
+      $('wo'+i).textContent=w+'%';
+      $('w'+i).textContent=nw.toFixed(1)+'%';
+      $('wv'+i).textContent=(nw*d[2]/100).toFixed(2);
+      acc+=nw*d[2]/100;
+    });
+    $('compout').textContent=acc.toFixed(1);
+    $('bandout').textContent = acc>=7.5?'Invest band':(acc>=6.0?'Monitor band':'Pass band');
+  }
+  DIMS.forEach(function(d,i){ $('ws'+i).addEventListener('input',scalc); });
+  $('wreset').addEventListener('click',function(){ DIMS.forEach(function(d,i){$('ws'+i).value=d[1];}); scalc(); });
+  scalc();
+
+  /* ---- 06 market ---- */
+  function mcalc(){
+    var n=+$('m_n').value, a=+$('m_acv').value, s=+$('m_sh').value;
+    $('m_n_o').textContent=fmt(n); $('m_acv_o').textContent='$'+(a/1000).toFixed(1)+'K'; $('m_sh_o').textContent=s+'%';
+    var sam=n*a, som=sam*s/100, need=Math.ceil(100000000/a);
+    $('m_sam').textContent='$'+(sam/1e9).toFixed(2)+'B';
+    $('m_som').textContent='$'+(som/1e6).toFixed(0)+'M';
+    $('m_need').textContent=fmt(need);
+    $('m_pct').textContent=(need/n*100).toFixed(1)+'%';
+  }
+  ['m_n','m_acv','m_sh'].forEach(function(i){$(i).addEventListener('input',mcalc)});
+  $('m_reset').addEventListener('click',function(){$('m_n').value=189369;$('m_acv').value=19752;$('m_sh').value=3;mcalc();});
+  mcalc();
+
+  /* ---- 07 filter ---- */
+  var chips=document.querySelectorAll('.chip[data-f]');
+  chips.forEach(function(b){
+    b.addEventListener('click',function(){
+      chips.forEach(function(x){x.setAttribute('aria-pressed','false')});
+      b.setAttribute('aria-pressed','true');
+      var f=b.getAttribute('data-f');
+      Array.prototype.forEach.call($('fctab').querySelectorAll('tbody tr'),function(r){
+        r.style.display=(f==='all'||r.getAttribute('data-v')===f)?'':'none';
+      });
+    });
+  });
+
+  /* ---- 09 unit economics ---- */
+  function ucalc(){
+    var a=+$('u_acv').value, c=+$('u_cac').value, ch=+$('u_ch').value/100, gm=+$('u_gm').value/100;
+    $('u_acv_o').textContent='$'+fmt(a); $('u_cac_o').textContent='$'+fmt(c);
+    $('u_ch_o').textContent=Math.round(ch*100)+'%'; $('u_gm_o').textContent=Math.round(gm*100)+'%';
+    var ltv=a*gm/ch, r=ltv/c, pb=c/(a*gm/12);
+    $('u_ltv').textContent='$'+fmt(Math.round(ltv));
+    $('u_ratio').textContent=r.toFixed(1)+'x';
+    $('u_pb').textContent=pb.toFixed(1)+' mo';
+    $('u_life').textContent=(1/ch).toFixed(1)+' yr';
+    var f=$('u_flag');
+    if(r>=3){f.className='flag f-ok';f.textContent='Clears the 3x Series A benchmark';}
+    else{f.className='flag f-bad';f.textContent='Below the 3x Series A benchmark';}
+  }
+  ['u_acv','u_cac','u_ch','u_gm'].forEach(function(i){$(i).addEventListener('input',ucalc)});
+  $('u_reset').addEventListener('click',function(){$('u_acv').value=19752;$('u_cac').value=7070;$('u_ch').value=25;$('u_gm').value=67;ucalc();});
+  $('u_deck').addEventListener('click',function(){$('u_acv').value=20000;$('u_cac').value=4137;$('u_ch').value=10;$('u_gm').value=67;ucalc();});
+  ucalc();
+
+  /* ---- 14 scenarios ---- */
+  var CAP=15;
+  function ecalc(){
+    var pb=+$('p_bull').value, pr=+$('p_bear').value;
+    if(pb+pr>100){pr=100-pb;$('p_bear').value=pr;}
+    var pbase=100-pb-pr;
+    var eb=+$('e_base').value, ebu=+$('e_bull').value, d=+$('e_dil').value, chk=+$('e_chk').value;
+    $('p_bull_o').textContent=pb+'%'; $('p_bear_o').textContent=pr+'%'; $('p_base_o').textContent=pbase+'%';
+    $('e_base_o').textContent='$'+fmt(eb)+'M'; $('e_bull_o').textContent='$'+fmt(ebu)+'M';
+    $('e_dil_o').textContent=d+'%'; $('e_chk_o').textContent='$'+chk+'K';
+    var mBase=(eb/CAP)*(1-d/100), mBull=(ebu/CAP)*(1-d/100);
+    var wtd=(pb/100)*mBull+(pbase/100)*mBase;
+    $('r_bull').textContent=mBull.toFixed(1)+'x';
+    $('r_base').textContent=mBase.toFixed(1)+'x';
+    $('r_wtd').textContent=wtd.toFixed(1)+'x';
+    var proceeds=chk*1000*mBull;
+    $('r_bullp').textContent='$'+(proceeds/1e6).toFixed(2)+'M';
+    $('r_fund').textContent=(proceeds/5e6).toFixed(2)+'x';
+    var f=$('r_flag');
+    if(wtd>=5){f.className='flag f-ok';f.textContent='Clears the 5x seed hurdle';}
+    else{f.className='flag f-bad';f.textContent='Below the 5x seed hurdle';}
+  }
+  ['p_bull','p_bear','e_base','e_bull','e_dil','e_chk'].forEach(function(i){$(i).addEventListener('input',ecalc)});
+  $('e_reset').addEventListener('click',function(){$('p_bull').value=12;$('p_bear').value=45;$('e_base').value=80;$('e_bull').value=600;$('e_dil').value=55;$('e_chk').value=250;ecalc();});
+  ecalc();
+
+  /* ---- 18 diligence queue ---- */
+  var DQ=[
+   [1.5,'Human-in-the-loop cost and review hours per campaign, monthly, for the last twelve months.','The single number the margin thesis rests on. The P&L shows the bench cost rising 60% while revenue rose 236%; only the per-unit series distinguishes automation from utilisation.'],
+   [1.2,'Fully diluted cap table showing every outstanding SAFE and convertible note, with caps and amounts.','On a post-money SAFE the pari passu paper ahead of you decides what the $15M cap actually buys. Nothing in the data room addresses it.'],
+   [1.0,'Three US customer references, chosen by us from the cohort file, on creative quality and whether they would rehire an agency.','The one judgment this fund cannot make from documents, and the product is creative quality.'],
+   [0.8,'Reconcile "200+ DTC brands" against 55 paying subscriptions and roughly 74 brands that have ever paid.','How this is answered matters more than the answer. One sentence resolves it; a defence is itself the finding.'],
+   [0.7,'Net expansion excluding the largest account, trailing six months, and the reason 42 of 55 accounts have never expanded.','NRR of 126% is one customer at 16.1x. Ex that account it is 111.9% and recent net expansion is approximately zero.'],
+   [0.6,'Corporate structure: does the Delaware entity own the Singapore and Malaysia operating entities, the IP, and the Kuala Lumpur employment contracts?','The SAFE is Delaware paper; every cost, employee and management account is SGD. The link is undocumented.'],
+   [0.6,'Actual round size and amount wired to date, in writing.','Deck says $1.9M committed with $100K left; the diligence report says $1.75M with $250K left; the cash model books SGD 1.2M. The stated deadline has passed.'],
+   [0.5,'Reconcile the 50%+ demo-to-close claim against 55 closes on 130 demos and a forecast that assumes 30-35%.','The deck states a rate the company’s own plan does not use.'],
+   [0.5,'Any measurement showing that cross-customer learning improves campaign performance.','The stated long-run moat, with no supporting artefact of any kind.'],
+   [0.4,'Restate the five-year projection model from the current $1.09M ARR base, with a headcount plan that is not 498 people.','As delivered it starts at $151,559 of Year 1 revenue, a base passed in early 2024. It cannot be underwritten.'],
+   [0.4,'Verifiable professional background for the AI Lead and the Tech Lead.','SGD 46,000 per month and the entire technical capability, with no public professional footprint.'],
+   [0.4,'Status of the two paused UAE accounts and the policy for distinguishing pause from churn.','$3,298 of MRR, 3.6% of the book, sitting outside both the logo and revenue churn calculations.'],
+   [0.3,'Post-close runway, agreed to one number, with the growth assumption that produces it stated.','Three documents imply Q2 2027, Q3 2027 and 2028.'],
+   [0.3,'Methodology behind +177% revenue, +91% efficiency, -62% cost and 6-40x ROAS: sample, period, control.','Self-reported aggregates with a ROAS range wide enough to be uninformative.'],
+   [0.3,'Fix or withdraw the "Optimistic vs. Base Case" sheet in the Q2 2026 use-of-funds model.','Every base-case cell returns #REF! and the milestone dates run October 2022 to December 2023.'],
+   [0.2,'Hedging policy for USD revenue against an SGD and MYR cost base.','A 10% SGD move is roughly seven points of gross margin at the current structure.']
+  ];
+  var list=$('dqlist');
+  DQ.forEach(function(q,i){
+    var d=document.createElement('div');
+    d.className='dq';
+    d.innerHTML='<div class="top"><input type="checkbox" id="dq'+i+'" data-d="'+q[0]+'"><div style="flex:1"><p class="q"><b>'+(i+1)+'.</b> '+q[1]+'</p><p class="small" style="margin:0">'+q[2]+'</p></div><span class="d">-'+q[0].toFixed(1)+'</span></div>';
+    list.appendChild(d);
+  });
+  function dcalc(){
+    var t=0;
+    DQ.forEach(function(q,i){ if(!$('dq'+i).checked) t+=q[0]; });
+    $('dq_out').textContent='-'+t.toFixed(1);
+  }
+  DQ.forEach(function(q,i){ $('dq'+i).addEventListener('change',dcalc); });
+  $('dq_reset').addEventListener('click',function(){DQ.forEach(function(q,i){$('dq'+i).checked=false;});dcalc();});
+  dcalc();
+})();
+</script>
+</body>
+</html>
