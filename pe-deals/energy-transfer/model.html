@@ -413,7 +413,7 @@ function calcDCF(){
   const pvTV=tv/Math.pow(1+wacc,3);
   const ev=Math.round(pv+pvTV);
   const equity=ev-nd;
-  const unitPrice=equity/units*1000;
+  const unitPrice=equity/units;
   const prem=((unitPrice/19.10)-1)*100;
   const impl=ev/ebitda28;
   document.getElementById('dcf-price').textContent='$'+unitPrice.toFixed(2);
@@ -451,7 +451,7 @@ function calcLBO(){
   const UNITS=3460;const ND=61400;
   const exitEV=ebitda28*exitMult;
   const exitEq=exitEV-ND;
-  const exitPU=exitEq/UNITS*1000;
+  const exitPU=exitEq/UNITS;
   const stakeUnits=UNITS*stake;
   const invested=entry*stakeUnits;
   const exitProc=exitPU*stakeUnits;
@@ -466,8 +466,8 @@ function calcLBO(){
   document.getElementById('lbo-inv').textContent='$'+Math.round(invested/1000)+'B';
   document.getElementById('lbo-proc').textContent='$'+Math.round(exitProc/1000)+'B';
   document.getElementById('lbo-dist').textContent='$'+Math.round(distRec)+'mm';
-  const tot=entry+ND/UNITS*1000+1;
-  const dp=ND/UNITS*1000/tot*100;const pp=1/tot*100;const ep=entry/tot*100;
+  const tot=entry+ND/UNITS+1;
+  const dp=ND/UNITS/tot*100;const pp=1/tot*100;const ep=entry/tot*100;
   document.getElementById('lbo-wf').innerHTML=
     '<div class="wf-seg" style="width:'+dp.toFixed(0)+'%;background:#1c3a6b;">Sr Debt</div>'+
     '<div class="wf-seg" style="width:'+pp.toFixed(0)+'%;background:#92600a;">Pref</div>'+
