@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Varsity Brands: LBO Returns Models — Transaction Experience — Market Logic Investors</title>
+<style>
+
+:root{--ink:#0a1929;--ink-soft:#1c2e44;--paper:#faf9f4;--paper-warm:#f3efe3;--rule:#d4cfbf;--rule-soft:#e8e3d4;--muted:#5b6b7a;--teal:#1f6b6b;--teal-lt:#e8f4f4;--accent:#b8391c;--positive:#1d6f42;--pos-lt:#e8f5ee;--warning:#92600a;--warn-lt:#fef3cd;--negative:#8b1a1a;--neg-lt:#fdeaea;--mono:"SF Mono","Fira Mono","Consolas",monospace;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:system-ui,sans-serif;background:var(--paper);color:var(--ink);font-size:13px;line-height:1.5;}
+.page-header{background:var(--ink);color:var(--paper);padding:24px 32px 20px;}
+.page-header h1{font-size:1.4rem;font-weight:800;}
+.page-header .sub{font-family:var(--mono);font-size:0.68rem;color:rgba(250,249,244,0.55);margin-top:5px;text-transform:uppercase;letter-spacing:0.08em;}
+.nav-bar{background:var(--ink-soft);display:flex;overflow-x:auto;border-bottom:2px solid var(--teal);}
+.nav-btn{font-family:var(--mono);font-size:0.67rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:rgba(250,249,244,0.55);padding:10px 16px;cursor:pointer;border:none;background:transparent;white-space:nowrap;transition:all 0.15s;}
+.nav-btn:hover{color:var(--paper);background:rgba(255,255,255,0.07);}
+.nav-btn.active{color:var(--paper);background:var(--teal);}
+.tab{display:none;padding:20px 28px 40px;max-width:1200px;margin:0 auto;}
+.tab.active{display:block;}
+.sec-title h2{font-size:1.1rem;font-weight:800;margin-bottom:4px;}
+.sec-title p{font-size:0.8rem;color:var(--muted);margin-bottom:18px;}
+.model-table{width:100%;border-collapse:collapse;font-family:var(--mono);font-size:0.73rem;margin-bottom:20px;}
+.model-table th{background:var(--ink);color:var(--paper);padding:7px 10px;text-align:right;font-weight:700;font-size:0.67rem;letter-spacing:0.04em;}
+.model-table th.row-h{text-align:left;min-width:190px;}
+.model-table th.hist{background:#1c3a6b;}
+.model-table th.proj{background:#6b4a1c;}
+.model-table td{padding:5px 10px;text-align:right;border-bottom:1px solid var(--rule-soft);}
+.model-table td.label{text-align:left;color:var(--ink);font-weight:600;}
+.model-table td.label.sub{font-weight:400;color:var(--muted);padding-left:18px;font-style:italic;}
+.model-table td.label.section{font-weight:800;color:var(--teal);background:var(--teal-lt);font-size:0.67rem;text-transform:uppercase;letter-spacing:0.08em;border-bottom:none;}
+.model-table td.label.total{font-weight:800;}
+.model-table td.hist{background:rgba(219,234,254,0.2);}
+.model-table td.proj{background:rgba(254,243,205,0.25);}
+.model-table td.total{font-weight:800;border-top:2px solid var(--ink);}
+.model-table td.neg{color:var(--negative);}
+.model-table td.pos{color:var(--positive);}
+.model-table tr:hover td{filter:brightness(0.96);}
+.entity-tabs{display:flex;gap:8px;margin-bottom:14px;}
+.ent-btn{font-family:var(--mono);font-size:0.68rem;font-weight:700;text-transform:uppercase;padding:5px 13px;border:2px solid var(--rule);border-radius:2px;cursor:pointer;background:var(--paper);color:var(--muted);transition:all 0.15s;}
+.ent-btn.active{border-color:var(--teal);color:var(--teal);background:var(--teal-lt);}
+.chart-wrap{background:var(--paper-warm);border:1px solid var(--rule-soft);padding:16px;margin-bottom:18px;}
+.bar-chart-row{display:flex;align-items:flex-end;gap:5px;height:150px;}
+.bar-grp{display:flex;flex-direction:column;align-items:center;flex:1;}
+.bar{border-radius:2px 2px 0 0;width:100%;min-height:2px;transition:height 0.3s;}
+.bar-lbl{font-family:var(--mono);font-size:0.58rem;color:var(--muted);margin-top:3px;}
+.bar-val{font-family:var(--mono);font-size:0.6rem;font-weight:700;}
+.leg{display:flex;gap:14px;margin-top:8px;flex-wrap:wrap;font-family:var(--mono);font-size:0.67rem;color:var(--muted);}
+.leg-box{width:11px;height:11px;border-radius:2px;display:inline-block;margin-right:4px;}
+.grid2{display:grid;grid-template-columns:300px 1fr;gap:18px;}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:12px;}
+.grid2c{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px;}
+@media(max-width:680px){.grid2,.grid2c,.grid3{grid-template-columns:1fr;}}
+.ctrl-panel{background:var(--paper-warm);border:1px solid var(--rule-soft);padding:16px;height:fit-content;}
+.ctrl-row{margin-bottom:13px;}
+.ctrl-label{font-family:var(--mono);font-size:0.67rem;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;color:var(--muted);display:flex;justify-content:space-between;margin-bottom:4px;}
+.ctrl-val{color:var(--ink);font-weight:800;}
+input[type=range]{width:100%;accent-color:var(--teal);}
+.rbox{padding:14px 16px;text-align:center;border:1px solid var(--rule-soft);background:var(--paper);}
+.rbig{font-family:var(--mono);font-size:1.7rem;font-weight:900;}
+.rlbl{font-family:var(--mono);font-size:0.6rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);margin-top:3px;}
+.insight{background:var(--teal-lt);border-left:4px solid var(--teal);padding:12px 14px;margin-bottom:14px;font-size:0.83rem;}
+.warn{background:var(--warn-lt);border-left:4px solid var(--warning);padding:12px 14px;margin-bottom:14px;font-size:0.83rem;}
+.peer-row{display:flex;align-items:center;gap:8px;padding:7px 12px;background:var(--paper-warm);border:1px solid var(--rule-soft);margin-bottom:6px;}
+.peer-name{font-family:var(--mono);font-size:0.73rem;font-weight:700;min-width:55px;}
+.peer-track{flex:1;background:var(--rule-soft);height:18px;border-radius:2px;overflow:hidden;}
+.peer-fill{height:100%;border-radius:2px;}
+.peer-val{font-family:var(--mono);font-size:0.73rem;font-weight:700;min-width:45px;text-align:right;}
+.wf-bar{display:flex;height:30px;border-radius:2px;overflow:hidden;margin:6px 0;}
+.wf-seg{display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:0.62rem;font-weight:700;color:#fff;overflow:hidden;white-space:nowrap;padding:0 4px;transition:width 0.3s;}
+footer{background:var(--ink);color:rgba(250,249,244,0.35);font-family:var(--mono);font-size:0.62rem;padding:14px 28px;text-align:center;margin-top:32px;}
+
+.wf-seg{white-space:nowrap;overflow:hidden}
+</style>
+</head>
+<body>
+<div style="background:var(--ink,#0a1929);padding:10px 24px;display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid #b8391c;flex-wrap:wrap;gap:8px">
+  <a href="index.html" style="color:#faf9f4;font-family:monospace;font-size:0.78rem;font-weight:700;text-decoration:none;letter-spacing:0.08em;display:flex;align-items:center;gap:8px;">
+    <span style="font-size:1.1rem;">&#8592;</span> BACK TO TRANSACTION FILE
+  </a>
+  <span style="color:rgba(250,249,244,0.5);font-family:monospace;font-size:0.7rem;">Transaction Experience &nbsp;|&nbsp; Market Logic Investors &nbsp;|&nbsp; <a href="../models/Transaction_Experience_LBO_Models.xlsx" style="color:#d65a3a;text-decoration:none">&#9660; DOWNLOAD WORKBOOK (.xlsx)</a></span>
+</div>
+<div class="page-header">
+  <h1>Varsity Brands: LBO Returns Models</h1>
+  <div class="sub">Market Logic Investors &nbsp;|&nbsp; Five sponsor entries into the same platform, 2003 to 2024 &nbsp;|&nbsp; Paper LBO mechanics from the Leland template &nbsp;|&nbsp; September 2026</div>
+</div>
+<div class="nav-bar"><button class="nav-btn active" onclick="showTab('kkr_varsity_2024',this)">KKR / Varsity Brands</button><button class="nav-btn" onclick="showTab('bain_varsity_2018',this)">Bain Capital / Varsity Brands</button><button class="nav-btn" onclick="showTab('charlesbank_varsity_2014',this)">Charlesbank + Partners Group / Varsity Brands</button><button class="nav-btn" onclick="showTab('lgp_varsity_2003',this)">Leonard Green / Varsity Brands</button><button class="nav-btn" onclick="showTab('oncap_ssg_2010',this)">ONCAP / Sport Supply Group</button></div>
+<div class="tab active" id="tab-kkr_varsity_2024">
+<div class="sec-title" style="margin-top:8px;"><h2>KKR / Varsity Brands (2024)</h2><p>Sponsor buyout &middot; Pending (hold) &middot; workbook tab <strong>P01 KKR-Varsity 2024</strong><span style="font-family:var(--mono);font-size:0.68rem;color:var(--muted)"> &middot; full model tab <strong>F01 KKR-Varsity 2024</strong></span></p></div>
+
+<div class="grid2">
+  <div class="ctrl-panel">
+    <div style="font-family:var(--mono);font-size:0.67rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--teal);margin-bottom:14px;display:flex;justify-content:space-between;align-items:center">Parameters <button onclick="resetDeal('kkr_varsity_2024')" style="font-family:var(--mono);font-size:0.62rem;border:1px solid var(--rule);background:var(--paper);padding:2px 8px;cursor:pointer">reset to workbook</button></div>
+    <div class="ctrl-row"><div class="ctrl-label">Entry EV / EBITDA <span class="ctrl-val" id="kkr_varsity_2024-lbl-mult"></span></div><input type="range" id="kkr_varsity_2024-sl-mult" min="7.1" max="16.6" step="any" value="11.875" oninput="render('kkr_varsity_2024')"></div><div class="ctrl-row"><div class="ctrl-label">Debt / EBITDA <span class="ctrl-val" id="kkr_varsity_2024-lbl-lev"></span></div><input type="range" id="kkr_varsity_2024-sl-lev" min="0" max="9.3" step="any" value="6.1875" oninput="render('kkr_varsity_2024')"></div><div class="ctrl-row"><div class="ctrl-label">Blended interest rate (%) <span class="ctrl-val" id="kkr_varsity_2024-lbl-rate"></span></div><input type="range" id="kkr_varsity_2024-sl-rate" min="1" max="15" step="any" value="9.049999999999999" oninput="render('kkr_varsity_2024')"></div><div class="ctrl-row"><div class="ctrl-label">Incremental revenue p.a. ($m) <span class="ctrl-val" id="kkr_varsity_2024-lbl-inc"></span></div><input type="range" id="kkr_varsity_2024-sl-inc" min="-130" max="390" step="any" value="130" oninput="render('kkr_varsity_2024')"></div><div class="ctrl-row"><div class="ctrl-label">Exit EV / EBITDA <span class="ctrl-val" id="kkr_varsity_2024-lbl-exit"></span></div><input type="range" id="kkr_varsity_2024-sl-exit" min="5.5" max="16.5" step="any" value="11.0" oninput="render('kkr_varsity_2024')"></div>
+    <div style="font-family:var(--mono);font-size:0.65rem;color:var(--muted);margin-top:10px;line-height:1.5">Fixed from the workbook: revenue $2,600m, EBITDA $400m (LTM), D&amp;A $78m, capex $62m, NWC $0.0m p.a., tax 25%, entry 2024-08-26, underwritten exit 2029-08-26.</div>
+  </div>
+  <div>
+    <div class="grid2c">
+      <div class="rbox" style="border-left:4px solid var(--teal)"><div class="rbig" id="kkr_varsity_2024-irr" style="color:var(--teal)">--</div><div class="rlbl">IRR, underwritten (5-yr)</div></div>
+      <div class="rbox"><div class="rbig" id="kkr_varsity_2024-mom">--</div><div class="rlbl">MoM, underwritten</div></div>
+    </div>
+    <div class="grid3">
+      <div class="rbox"><div class="rbig" id="kkr_varsity_2024-price" style="font-size:1rem">--</div><div class="rlbl">Purchase price</div></div>
+      <div class="rbox"><div class="rbig" id="kkr_varsity_2024-debt" style="font-size:1rem">--</div><div class="rlbl">Debt</div></div>
+      <div class="rbox"><div class="rbig" id="kkr_varsity_2024-eq" style="font-size:1rem">--</div><div class="rlbl">Equity (plug)</div></div>
+    </div>
+    <div class="grid3">
+      <div class="rbox"><div class="rbig" id="kkr_varsity_2024-exitev" style="font-size:1rem">--</div><div class="rlbl">Exit EV (yr 5)</div></div>
+      <div class="rbox"><div class="rbig" id="kkr_varsity_2024-cum" style="font-size:1rem">--</div><div class="rlbl">Cumulative LFCF</div></div>
+      <div class="rbox"><div class="rbig" id="kkr_varsity_2024-exiteq" style="font-size:1rem">--</div><div class="rlbl">Equity at exit</div></div>
+    </div>
+    <div style="background:var(--paper-warm);border:1px solid var(--rule-soft);padding:12px;margin-bottom:12px;">
+      <div style="font-family:var(--mono);font-size:0.67rem;font-weight:700;text-transform:uppercase;color:var(--muted);margin-bottom:6px;">Entry capital structure</div>
+      <div class="wf-bar" id="kkr_varsity_2024-wf"></div>
+    </div>
+    <div style="background:var(--paper-warm);border:1px solid var(--rule-soft);padding:12px;margin-bottom:12px;">
+      <div style="font-family:var(--mono);font-size:0.67rem;font-weight:700;text-transform:uppercase;color:var(--muted);margin-bottom:6px;">Actual outcome</div>
+      <p style="font-size:0.8rem;color:var(--ink-soft);line-height:1.5">No realised exit; current holding.</p></div>
+    <div class="insight" id="kkr_varsity_2024-verdict" style="margin:0;"></div>
+  </div>
+</div>
+<div class="chart-wrap" style="margin-top:16px">
+  <div style="font-family:var(--mono);font-size:0.67rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);margin-bottom:8px;">Five-year build ($m) &middot; paper LBO mechanics</div>
+  <table class="model-table"><thead><tr><th class="row-h">Line</th><th class="proj">Yr 1</th><th class="proj">Yr 2</th><th class="proj">Yr 3</th><th class="proj">Yr 4</th><th class="proj">Yr 5</th></tr></thead><tbody id="kkr_varsity_2024-tbody"></tbody></table>
+</div>
+<div class="chart-wrap" style="margin-top:16px">
+  <div style="font-family:var(--mono);font-size:0.67rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);margin-bottom:8px;">Inputs and sources &middot; F filed / rating agency &middot; P press &middot; A assumption</div>
+  <table class="model-table"><thead><tr><th class="row-h">Input</th><th style="text-align:right">Value</th><th style="text-align:center">Tag</th><th>Source</th></tr></thead><tbody><tr><td class="label">Entry EV ($m)</td><td style="text-align:right;font-family:var(--mono);font-size:0.7rem">4,750</td><td style="text-align:center;font-family:var(--mono);font-size:0.68rem;color:var(--teal)">P</td><td style="font-size:0.72rem;color:var(--muted)">PitchBook LCD / Sportico</td></tr><tr><td class="label">Entry EBITDA, LTM ($m)</td><td style="text-align:right;font-family:var(--mono);font-size:0.7rem">400</td><td style="text-align:center;font-family:var(--mono);font-size:0.68rem;color:var(--teal)">P</td><td style="font-size:0.72rem;color:var(--muted)">Trade press &#x27;&gt;$400m&#x27;; Moody&#x27;s 6.2x on ~$2.48bn debt implies ~$400m</td></tr><tr><td class="label">Debt raised ($m)</td><td style="text-align:right;font-family:var(--mono);font-size:0.7rem">2,475</td><td style="text-align:center;font-family:var(--mono);font-size:0.68rem;color:var(--teal)">F</td><td style="font-size:0.72rem;color:var(--muted)">$2,375m TLB + $100m ABL drawn at close (LCD, Sportico)</td></tr><tr><td class="label">Blended interest rate</td><td style="text-align:right;font-family:var(--mono);font-size:0.7rem">9.05%</td><td style="text-align:center;font-family:var(--mono);font-size:0.68rem;color:var(--teal)">F</td><td style="font-size:0.72rem;color:var(--muted)">TLB S+375 (fund holdings show TSFR3M+3.75%); 3M SOFR ~5.30% Aug-2024</td></tr><tr><td class="label">Tax rate</td><td style="text-align:right;font-family:var(--mono);font-size:0.7rem">25.00%</td><td style="text-align:center;font-family:var(--mono);font-size:0.68rem;color:var(--warning)">A</td><td style="font-size:0.72rem;color:var(--muted)">Blended US federal+state assumption</td></tr><tr><td class="label">Base-year revenue ($m)</td><td style="text-align:right;font-family:var(--mono);font-size:0.7rem">2,600</td><td style="text-align:center;font-family:var(--mono);font-size:0.68rem;color:var(--teal)">F</td><td style="font-size:0.72rem;color:var(--muted)">Moody&#x27;s: ~$2.6bn LTM Mar-2025 (SGB Media, Jul 2025)</td></tr><tr><td class="label">Incremental revenue p.a. ($m)</td><td style="text-align:right;font-family:var(--mono);font-size:0.7rem">130</td><td style="text-align:center;font-family:var(--mono);font-size:0.68rem;color:var(--warning)">A</td><td style="font-size:0.72rem;color:var(--muted)">5% p.a.; Moody&#x27;s projected mid-single-digit growth</td></tr><tr><td class="label">D&amp;A p.a. ($m)</td><td style="text-align:right;font-family:var(--mono);font-size:0.7rem">78.00</td><td style="text-align:center;font-family:var(--mono);font-size:0.68rem;color:var(--warning)">A</td><td style="font-size:0.72rem;color:var(--muted)">3.0% of revenue, assumption</td></tr><tr><td class="label">Capex p.a. ($m)</td><td style="text-align:right;font-family:var(--mono);font-size:0.7rem">62.00</td><td style="text-align:center;font-family:var(--mono);font-size:0.68rem;color:var(--warning)">A</td><td style="font-size:0.72rem;color:var(--muted)">80% of D&amp;A, assumption</td></tr><tr><td class="label">Change in NWC p.a. ($m)</td><td style="text-align:right;font-family:var(--mono);font-size:0.7rem">0.00</td><td style="text-align:center;font-family:var(--mono);font-size:0.68rem;color:var(--warning)">A</td><td style="font-size:0.72rem;color:var(--muted)">Assumed flat</td></tr><tr><td class="label">Exit multiple (x)</td><td style="text-align:right;font-family:var(--mono);font-size:0.7rem">11.00</td><td style="text-align:center;font-family:var(--mono);font-size:0.68rem;color:var(--warning)">A</td><td style="font-size:0.72rem;color:var(--muted)">Entry 11.9x; modest compression assumed</td></tr></tbody></table>
+  <p style="font-size:0.8rem;color:var(--ink-soft);margin-top:12px;line-height:1.55"><strong>Note.</strong> Prospective. KKR contributed ~$2.5bn of equity against ~$2.48bn of debt, an unusually thick cheque for a B3/B- credit. S&amp;P and Moody&#x27;s both upgraded in mid-2025 on deleveraging.</p>
+</div>
+</div><div class="tab" id="tab-bain_varsity_2018">
+<div class="sec-title" style="margin-top:8px;"><h2>Bain Capital / Varsity Brands (2018-24)</h2><p>Secondary buyout &middot; Realised Aug-2024 &middot; workbook tab <strong>P02 Bain-Varsity 2018</strong><span style="font-family:var(--mono);font-size:0.68rem;color:var(--muted)"> &middot; full model tab <strong>F02 Bain-Varsity 2018</strong></span></p></div>
+
+<div class="grid2">
+  <div class="ctrl-panel">
+    <div style="font-family:var(--mono);font-size:0.67rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--teal);margin-bottom:14px;display:flex;justify-content:space-between;align-items:center">Parameters <button onclick="resetDeal('bain_varsity_2018')" style="font-family:var(--mono);font-size:0.62rem;border:1px solid var(--rule);background:var(--paper);padding:2px 8px;cursor:pointer">reset to workbook</button></div>
+    <div class="ctrl-row"><div class="ctrl-label">Entry EV / EBITDA <span class="ctrl-val" id="bain_varsity_2018-lbl-mult"></span></div><input type="range" id="bain_varsity_2018-sl-mult" min="6.0" max="14.0" step="any" value="10.0" oninput="render('bain_varsity_2018')"></div><div class="ctrl-row"><div class="ctrl-label">Debt / EBITDA <span class="ctrl-val" id="bain_varsity_2018-lbl-lev"></span></div><input type="range" id="bain_varsity_2018-sl-lev" min="0" max="10.3" step="any" value="6.862068965517241" oninput="render('bain_varsity_2018')"></div><div class="ctrl-row"><div class="ctrl-label">Blended interest rate (%) <span class="ctrl-val" id="bain_varsity_2018-lbl-rate"></span></div><input type="range" id="bain_varsity_2018-sl-rate" min="1" max="15" step="any" value="7.1499999999999995" oninput="render('bain_varsity_2018')"></div><div class="ctrl-row"><div class="ctrl-label">Incremental revenue p.a. ($m) <span class="ctrl-val" id="bain_varsity_2018-lbl-inc"></span></div><input type="range" id="bain_varsity_2018-sl-inc" min="-100" max="300" step="any" value="120" oninput="render('bain_varsity_2018')"></div><div class="ctrl-row"><div class="ctrl-label">Exit EV / EBITDA <span class="ctrl-val" id="bain_varsity_2018-lbl-exit"></span></div><input type="range" id="bain_varsity_2018-sl-exit" min="5.9" max="17.8" step="any" value="11.875" oninput="render('bain_varsity_2018')"></div>
+    <div style="font-family:var(--mono);font-size:0.65rem;color:var(--muted);margin-top:10px;line-height:1.5">Fixed from the workbook: revenue $2,000m, EBITDA $290m (LTM), D&amp;A $60m, capex $50m, NWC $0.0m p.a., tax 25%, entry 2018-07-31, underwritten exit 2023-07-28.</div>
+  </div>
+  <div>
+    <div class="grid2c">
+      <div class="rbox" style="border-left:4px solid var(--teal)"><div class="rbig" id="bain_varsity_2018-irr" style="color:var(--teal)">--</div><div class="rlbl">IRR, underwritten (5-yr)</div></div>
+      <div class="rbox"><div class="rbig" id="bain_varsity_2018-mom">--</div><div class="rlbl">MoM, underwritten</div></div>
+    </div>
+    <div class="grid3">
+      <div class="rbox"><div class="rbig" id="bain_varsity_2018-price" style="font-size:1rem">--</div><div class="rlbl">Purchase price</div></div>
+      <div class="rbox"><div class="rbig" id="bain_varsity_2018-debt" style="font-size:1rem">--</div><div class="rlbl">Debt</div></div>
+      <div class="rbox"><div class="rbig" id="bain_varsity_2018-eq" style="font-size:1rem">--</div><div class="rlbl">Equity (plug)</div></div>
+    </div>
+    <div class="grid3">
+      <div class="rbox"><div class="rbig" id="bain_varsity_2018-exitev" style="font-size:1rem">--</div><div class="rlbl">Exit EV (yr 5)</div></div>
+      <div class="rbox"><div class="rbig" id="bain_varsity_2018-cum" style="font-size:1rem">--</div><div class="rlbl">Cumulative LFCF</div></div>
+      <div class="rbox"><div class="rbig" id="bain_varsity_2018-exiteq" style="font-size:1rem">--</div><div class="rlbl">Equity at exit</div></div>
+    </div>
+    <div style="background:var(--paper-warm);border:1px solid var(--rule-soft);padding:12px;margin-bottom:12px;">
+      <div style="font-family:var(--mono);font-size:0.67rem;font-weight:700;text-transform:uppercase;color:var(--muted);margin-bottom:6px;">Entry capital structure</div>
+      <div class="wf-bar" id="bain_varsity_2018-wf"></div>
+    </div>
+    <div style="background:var(--paper-warm);border:1px solid var(--rule-soft);padding:12px;margin-bottom:12px;">
+      <div style="font-family:var(--mono);font-size:0.67rem;font-weight:700;text-transform:uppercase;color:var(--muted);margin-bottom:8px;">Actual outcome &middot; exit EV $4,750m &middot; debt at exit $2,447m &middot; 2024-08-26</div>
+      <div class="grid3">
+        <div class="rbox"><div class="rbig" id="bain_varsity_2018-a-mom" style="font-size:1.2rem">--</div><div class="rlbl">MoM, actual</div></div>
+        <div class="rbox"><div class="rbig" id="bain_varsity_2018-a-irr" style="font-size:1.2rem">--</div><div class="rlbl">IRR, actual</div></div>
+        <div class="rbox"><div class="rbig" id="bain_varsity_2018-a-eq" style="font-size:1rem">--</div><div class="rlbl">Equity at exit</div></div>
+      </div>
+      <div style="font-family:var(--mono);font-size:0.7rem;color:var(--muted);margin-top:2px" id="bain_varsity_2018-a-var"></div>
+      <p style="font-size:0.8rem;color:var(--ink-soft);margin-top:8px;line-height:1.5">Exit debt = $1,132m 1L TL + $450m 1L notes + $620m 2L + ~$245m ABL drawn (LCD; Moody&#x27;s Nov-2023). Equity in = EV $2,900m + fees less $1,990m debt. Charlesbank rolled a minority; Herff Jones graduation sold Oct-2023 for an undisclosed sum, not credited here.</p></div>
+    <div class="insight" id="bain_varsity_2018-verdict" style="margin:0;"></div>
+  </div>
+</div>
+<div class="chart-wrap" style="margin-top:16px">
+  <div style="font-family:var(--mono);font-size:0.67rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);margin-bottom:8px;">Five-year build ($m) &middot; paper LBO mechanics</div>
+  <table class="model-table"><thead><tr><th class="row-h">Line</th><th class="proj">Yr 1</th><th class="proj">Yr 2</th><th class="proj">Yr 3</th><th class="proj">Yr 4</th><th class="proj">Yr 5</th></tr></thead><tbody id="bain_varsity_2018-tbody"></tbody></table>
+</div>
+<div class="chart-wrap" style="margin-top:16px">
+  <div style="font-family:var(--mono);font-size:0.67rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);margin-bottom:8px;">Inputs and sources &middot; F filed / rating agency &middot; P press &middot; A assumption</div>
+  <table class="model-table"><thead><tr><th class="row-h">Input</th><th style="text-align:right">Value</th><th style="text-align:center">Tag</th><th>Source</th></tr></thead><tbody><tr><td class="label">Entry EV ($m)</td><td style="text-align:right;font-family:var(--mono);font-size:0.7rem">2,900</td><td style="text-align:center;font-family:var(--mono);font-size:0.68rem;color:var(--teal)">F</td><td style="font-size:0.72rem;color:var(--muted)">Moody&#x27;s: &#x27;total implied enterprise value of approximately $2.9 billion&#x27; (press said ~$2.5bn)</td></tr><tr><td class="label">Entry EBITDA, LTM ($m)</td><td style="text-align:right;font-family:var(--mono);font-size:0.7rem">290</td><td style="text-align:center;font-family:var(--mono);font-size:0.68rem;color:var(--warning)">A</td><td style="font-size:0.72rem;color:var(--muted)">Assumption: $2.9bn EV at 10.0x; Moody&#x27;s showed 7.7x on ~$2.0bn debt at Dec-2019 (~$260m)</td></tr><tr><td class="label">Debt raised ($m)</td><td style="text-align:right;font-family:var(--mono);font-size:0.7rem">1,990</td><td style="text-align:center;font-family:var(--mono);font-size:0.68rem;color:var(--teal)">F</td><td style="font-size:0.72rem;color:var(--muted)">$1,370m 1L TL + $620m 2L TL (Moody&#x27;s); $180m revolver undrawn</td></tr><tr><td class="label">Blended interest rate</td><td style="text-align:right;font-family:var(--mono);font-size:0.7rem">7.15%</td><td style="text-align:center;font-family:var(--mono);font-size:0.68rem;color:var(--warning)">A</td><td style="font-size:0.72rem;color:var(--muted)">1L L+350 (~5.75%) and 2L assumed L+800 (~10.25%), blended</td></tr><tr><td class="label">Tax rate</td><td style="text-align:right;font-family:var(--mono);font-size:0.7rem">25.00%</td><td style="text-align:center;font-family:var(--mono);font-size:0.68rem;color:var(--warning)">A</td><td style="font-size:0.72rem;color:var(--muted)">Assumption</td></tr><tr><td class="label">Base-year revenue ($m)</td><td style="text-align:right;font-family:var(--mono);font-size:0.7rem">2,000</td><td style="text-align:center;font-family:var(--mono);font-size:0.68rem;color:var(--teal)">F</td><td style="font-size:0.72rem;color:var(--muted)">Moody&#x27;s: ~$2.0bn LTM Dec-2019</td></tr><tr><td class="label">Incremental revenue p.a. ($m)</td><td style="text-align:right;font-family:var(--mono);font-size:0.7rem">120</td><td style="text-align:center;font-family:var(--mono);font-size:0.68rem;color:var(--warning)">A</td><td style="font-size:0.72rem;color:var(--muted)">Path to ~$400m EBITDA by 2023 at constant margin (6% p.a.)</td></tr><tr><td class="label">D&amp;A p.a. ($m)</td><td style="text-align:right;font-family:var(--mono);font-size:0.7rem">60.00</td><td style="text-align:center;font-family:var(--mono);font-size:0.68rem;color:var(--warning)">A</td><td style="font-size:0.72rem;color:var(--muted)">3.0% of revenue, assumption</td></tr><tr><td class="label">Capex p.a. ($m)</td><td style="text-align:right;font-family:var(--mono);font-size:0.7rem">50.00</td><td style="text-align:center;font-family:var(--mono);font-size:0.68rem;color:var(--warning)">A</td><td style="font-size:0.72rem;color:var(--muted)">Assumption</td></tr><tr><td class="label">Change in NWC p.a. ($m)</td><td style="text-align:right;font-family:var(--mono);font-size:0.7rem">0.00</td><td style="text-align:center;font-family:var(--mono);font-size:0.68rem;color:var(--warning)">A</td><td style="font-size:0.72rem;color:var(--muted)">Assumed flat</td></tr><tr><td class="label">Exit multiple (x)</td><td style="text-align:right;font-family:var(--mono);font-size:0.7rem">11.88</td><td style="text-align:center;font-family:var(--mono);font-size:0.68rem;color:var(--teal)">P</td><td style="font-size:0.72rem;color:var(--muted)">$4,750m KKR price on ~$400m EBITDA</td></tr></tbody></table>
+  <p style="font-size:0.8rem;color:var(--ink-soft);margin-top:12px;line-height:1.55"><strong>Note.</strong> Leverage never came down: Moody&#x27;s had it at 7.7x (2019), 8.6x (2022), 6.9x (mid-2023). The return came almost entirely from EBITDA growth and the exit multiple, not deleveraging.</p>
+</div>
+</div><div class="tab" id="tab-charlesbank_varsity_2014">
+<div class="sec-title" style="margin-top:8px;"><h2>Charlesbank + Partners Group / Varsity Brands (2014-18)</h2><p>ESOP buyout &middot; Realised Jul-2018 &middot; workbook tab <strong>P03 Charlesbank-Varsity 2014</strong></p></div>
+
+<div class="grid2">
+  <div class="ctrl-panel">
+    <div style="font-family:var(--mono);font-size:0.67rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--teal);margin-bottom:14px;display:flex;justify-content:space-between;align-items:center">Parameters <button onclick="resetDeal('charlesbank_varsity_2014')" style="font-family:var(--mono);font-size:0.62rem;border:1px solid var(--rule);background:var(--paper);padding:2px 8px;cursor:pointer">reset to workbook</button></div>
+    <div class="ctrl-row"><div class="ctrl-label">Entry EV / EBITDA <span class="ctrl-val" id="charlesbank_varsity_2014-lbl-mult"></span></div><input type="range" id="charlesbank_varsity_2014-sl-mult" min="5.8" max="13.5" step="any" value="9.67741935483871" oninput="render('charlesbank_varsity_2014')"></div><div class="ctrl-row"><div class="ctrl-label">Debt / EBITDA <span class="ctrl-val" id="charlesbank_varsity_2014-lbl-lev"></span></div><input type="range" id="charlesbank_varsity_2014-sl-lev" min="0" max="9.7" step="any" value="6.451612903225806" oninput="render('charlesbank_varsity_2014')"></div><div class="ctrl-row"><div class="ctrl-label">Blended interest rate (%) <span class="ctrl-val" id="charlesbank_varsity_2014-lbl-rate"></span></div><input type="range" id="charlesbank_varsity_2014-sl-rate" min="1" max="15" step="any" value="7.13" oninput="render('charlesbank_varsity_2014')"></div><div class="ctrl-row"><div class="ctrl-label">Incremental revenue p.a. ($m) <span class="ctrl-val" id="charlesbank_varsity_2014-lbl-inc"></span></div><input type="range" id="charlesbank_varsity_2014-sl-inc" min="-60" max="180" step="any" value="80" oninput="render('charlesbank_varsity_2014')"></div><div class="ctrl-row"><div class="ctrl-label">Exit EV / EBITDA <span class="ctrl-val" id="charlesbank_varsity_2014-lbl-exit"></span></div><input type="range" id="charlesbank_varsity_2014-sl-exit" min="5.0" max="15.0" step="any" value="10.0" oninput="render('charlesbank_varsity_2014')"></div>
+    <div style="font-family:var(--mono);font-size:0.65rem;color:var(--muted);margin-top:10px;line-height:1.5">Fixed from the workbook: revenue $1,200m, EBITDA $155m (LTM), D&amp;A $36m, capex $30m, NWC $0.0m p.a., tax 30%, entry 2014-12-15, underwritten exit 2019-12-15.</div>
+  </div>
+  <div>
+    <div class="grid2c">
+      <div class="rbox" style="border-left:4px solid var(--teal)"><div class="rbig" id="charlesbank_varsity_2014-irr" style="color:var(--teal)">--</div><div class="rlbl">IRR, underwritten (5-yr)</div></div>
+      <div class="rbox"><div class="rbig" id="charlesbank_varsity_2014-mom">--</div><div class="rlbl">MoM, underwritten</div></div>
+    </div>
+    <div class="grid3">
+      <div class="rbox"><div class="rbig" id="charlesbank_varsity_2014-price" style="font-size:1rem">--</div><div class="rlbl">Purchase price</div></div>
+      <div class="rbox"><div class="rbig" id="charlesbank_varsity_2014-debt" style="font-size:1rem">--</div><div class="rlbl">Debt</div></div>
+      <div class="rbox"><div class="rbig" id="charlesbank_varsity_2014-eq" style="font-size:1rem">--</div><div class="rlbl">Equity (plug)</div></div>
+    </div>
+    <div class="grid3">
+      <div class="rbox"><div class="rbig" id="charlesbank_varsity_2014-exitev" style="font-size:1rem">--</div><div class="rlbl">Exit EV (yr 5)</div></div>
+      <div class="rbox"><div class="rbig" id="charlesbank_varsity_2014-cum" style="font-size:1rem">--</div><div class="rlbl">Cumulative LFCF</div></div>
+      <div class="rbox"><div class="rbig" id="charlesbank_varsity_2014-exiteq" style="font-size:1rem">--</div><div class="rlbl">Equity at exit</div></div>
+    </div>
+    <div style="background:var(--paper-warm);border:1px solid var(--rule-soft);padding:12px;margin-bottom:12px;">
+      <div style="font-family:var(--mono);font-size:0.67rem;font-weight:700;text-transform:uppercase;color:var(--muted);margin-bottom:6px;">Entry capital structure</div>
+      <div class="wf-bar" id="charlesbank_varsity_2014-wf"></div>
+    </div>
+    <div style="background:var(--paper-warm);border:1px solid var(--rule-soft);padding:12px;margin-bottom:12px;">
+      <div style="font-family:var(--mono);font-size:0.67rem;font-weight:700;text-transform:uppercase;color:var(--muted);margin-bottom:8px;">Actual outcome &middot; exit EV $2,900m &middot; debt at exit $1,000m &middot; 2018-07-31</div>
+      <div class="grid3">
+        <div class="rbox"><div class="rbig" id="charlesbank_varsity_2014-a-mom" style="font-size:1.2rem">--</div><div class="rlbl">MoM, actual</div></div>
+        <div class="rbox"><div class="rbig" id="charlesbank_varsity_2014-a-irr" style="font-size:1.2rem">--</div><div class="rlbl">IRR, actual</div></div>
+        <div class="rbox"><div class="rbig" id="charlesbank_varsity_2014-a-eq" style="font-size:1rem">--</div><div class="rlbl">Equity at exit</div></div>
+      </div>
+      <div style="font-family:var(--mono);font-size:0.7rem;color:var(--muted);margin-top:2px" id="charlesbank_varsity_2014-a-var"></div>
+      <p style="font-size:0.8rem;color:var(--ink-soft);margin-top:8px;line-height:1.5">Exit EV per Moody&#x27;s; press said $2.5bn. Exit debt assumed equal to entry (no paydown, consistent with later leverage history). Charlesbank retained a minority stake in the Bain deal, not credited here.</p></div>
+    <div class="insight" id="charlesbank_varsity_2014-verdict" style="margin:0;"></div>
+  </div>
+</div>
+<div class="chart-wrap" style="margin-top:16px">
+  <div style="font-family:var(--mono);font-size:0.67rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);margin-bottom:8px;">Five-year build ($m) &middot; paper LBO mechanics</div>
+  <table class="model-table"><thead><tr><th class="row-h">Line</th><th class="proj">Yr 1</th><th class="proj">Yr 2</th><th class="proj">Yr 3</th><th class="proj">Yr 4</th><th class="proj">Yr 5</th></tr></thead><tbody id="charlesbank_varsity_2014-tbody"></tbody></table>
+</div>
+<div class="chart-wrap" style="margin-top:16px">
+  <div style="font-family:var(--mono);font-size:0.67rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);margin-bottom:8px;">Inputs and sources &middot; F filed / rating agency &middot; P press &middot; A assumption</div>
+  <table class="model-table"><thead><tr><th class="row-h">Input</th><th style="text-align:right">Value</th><th style="text-align:center">Tag</th><th>Source</th></tr></thead><tbody><tr><td class="label">Entry EV ($m)</td><td style="text-align:right;font-family:var(--mono);font-size:0.7rem">1,500</td><td style="text-align:center;font-family:var(--mono);font-size:0.68rem;color:var(--teal)">P</td><td style="font-size:0.72rem;color:var(--muted)">Charlesbank site / CNBC &#x27;~$1.5bn&#x27;</td></tr><tr><td class="label">Entry EBITDA, LTM ($m)</td><td style="text-align:right;font-family:var(--mono);font-size:0.7rem">155</td><td style="text-align:center;font-family:var(--mono);font-size:0.68rem;color:var(--warning)">A</td><td style="font-size:0.72rem;color:var(--muted)">Assumption: ~9.7x entry on $1.5bn; B2 CFR at 6.5x leverage</td></tr><tr><td class="label">Debt raised ($m)</td><td style="text-align:right;font-family:var(--mono);font-size:0.7rem">1,000</td><td style="text-align:center;font-family:var(--mono);font-size:0.68rem;color:var(--warning)">A</td><td style="font-size:0.72rem;color:var(--muted)">Assumption: 1L (L+500, 1% floor) ~$700m + 2L (L+875) ~$300m; Ares held $175m of 2L par</td></tr><tr><td class="label">Blended interest rate</td><td style="text-align:right;font-family:var(--mono);font-size:0.7rem">7.13%</td><td style="text-align:center;font-family:var(--mono);font-size:0.68rem;color:var(--teal)">F</td><td style="font-size:0.72rem;color:var(--muted)">1L 6.00% and 2L 9.75% (BDC filings), blended 70/30</td></tr><tr><td class="label">Tax rate</td><td style="text-align:right;font-family:var(--mono);font-size:0.7rem">30.00%</td><td style="text-align:center;font-family:var(--mono);font-size:0.68rem;color:var(--warning)">A</td><td style="font-size:0.72rem;color:var(--muted)">Assumption</td></tr><tr><td class="label">Base-year revenue ($m)</td><td style="text-align:right;font-family:var(--mono);font-size:0.7rem">1,200</td><td style="text-align:center;font-family:var(--mono);font-size:0.68rem;color:var(--teal)">F</td><td style="font-size:0.72rem;color:var(--muted)">Company release: &#x27;combined sales in excess of $1.2 billion&#x27;</td></tr><tr><td class="label">Incremental revenue p.a. ($m)</td><td style="text-align:right;font-family:var(--mono);font-size:0.7rem">80.00</td><td style="text-align:center;font-family:var(--mono);font-size:0.68rem;color:var(--warning)">A</td><td style="font-size:0.72rem;color:var(--muted)">~6.5% p.a., assumption</td></tr><tr><td class="label">D&amp;A p.a. ($m)</td><td style="text-align:right;font-family:var(--mono);font-size:0.7rem">36.00</td><td style="text-align:center;font-family:var(--mono);font-size:0.68rem;color:var(--warning)">A</td><td style="font-size:0.72rem;color:var(--muted)">3.0% of revenue, assumption</td></tr><tr><td class="label">Capex p.a. ($m)</td><td style="text-align:right;font-family:var(--mono);font-size:0.7rem">30.00</td><td style="text-align:center;font-family:var(--mono);font-size:0.68rem;color:var(--warning)">A</td><td style="font-size:0.72rem;color:var(--muted)">Assumption</td></tr><tr><td class="label">Change in NWC p.a. ($m)</td><td style="text-align:right;font-family:var(--mono);font-size:0.7rem">0.00</td><td style="text-align:center;font-family:var(--mono);font-size:0.68rem;color:var(--warning)">A</td><td style="font-size:0.72rem;color:var(--muted)">Assumed flat</td></tr><tr><td class="label">Exit multiple (x)</td><td style="text-align:right;font-family:var(--mono);font-size:0.7rem">10.00</td><td style="text-align:center;font-family:var(--mono);font-size:0.68rem;color:var(--warning)">A</td><td style="font-size:0.72rem;color:var(--muted)">$2.9bn Bain EV on ~$290m EBITDA (assumption)</td></tr></tbody></table>
+  <p style="font-size:0.8rem;color:var(--ink-soft);margin-top:12px;line-height:1.55"><strong>Note.</strong> Best-returning link in the chain on any assumption set: ~3.5 years, EV roughly doubled, equity roughly tripled.</p>
+</div>
+</div><div class="tab" id="tab-lgp_varsity_2003">
+<div class="sec-title" style="margin-top:8px;"><h2>Leonard Green / Varsity Brands (2003-11)</h2><p>Take-private (13E-3) &middot; Realised Aug-2011 (price undisclosed) &middot; workbook tab <strong>P04 LGP-Varsity 2003</strong></p></div>
+
+<div class="grid2">
+  <div class="ctrl-panel">
+    <div style="font-family:var(--mono);font-size:0.67rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--teal);margin-bottom:14px;display:flex;justify-content:space-between;align-items:center">Parameters <button onclick="resetDeal('lgp_varsity_2003')" style="font-family:var(--mono);font-size:0.62rem;border:1px solid var(--rule);background:var(--paper);padding:2px 8px;cursor:pointer">reset to workbook</button></div>
+    <div class="ctrl-row"><div class="ctrl-label">Entry EV / EBITDA <span class="ctrl-val" id="lgp_varsity_2003-lbl-mult"></span></div><input type="range" id="lgp_varsity_2003-sl-mult" min="4.2" max="9.8" step="any" value="6.9855072463768115" oninput="render('lgp_varsity_2003')"></div><div class="ctrl-row"><div class="ctrl-label">Debt / EBITDA <span class="ctrl-val" id="lgp_varsity_2003-lbl-lev"></span></div><input type="range" id="lgp_varsity_2003-sl-lev" min="0" max="6.2" step="any" value="4.1062801932367154" oninput="render('lgp_varsity_2003')"></div><div class="ctrl-row"><div class="ctrl-label">Blended interest rate (%) <span class="ctrl-val" id="lgp_varsity_2003-lbl-rate"></span></div><input type="range" id="lgp_varsity_2003-sl-rate" min="1" max="15" step="any" value="8.1" oninput="render('lgp_varsity_2003')"></div><div class="ctrl-row"><div class="ctrl-label">Incremental revenue p.a. ($m) <span class="ctrl-val" id="lgp_varsity_2003-lbl-inc"></span></div><input type="range" id="lgp_varsity_2003-sl-inc" min="-8" max="23" step="any" value="14.0" oninput="render('lgp_varsity_2003')"></div><div class="ctrl-row"><div class="ctrl-label">Exit EV / EBITDA <span class="ctrl-val" id="lgp_varsity_2003-lbl-exit"></span></div><input type="range" id="lgp_varsity_2003-sl-exit" min="3.5" max="10.5" step="any" value="7.0" oninput="render('lgp_varsity_2003')"></div>
+    <div style="font-family:var(--mono);font-size:0.65rem;color:var(--muted);margin-top:10px;line-height:1.5">Fixed from the workbook: revenue $156m, EBITDA $21m (LTM), D&amp;A $4.5m, capex $4.0m, NWC $-1.0m p.a., tax 38%, entry 2003-09-24, underwritten exit 2008-09-24.</div>
+  </div>
+  <div>
+    <div class="grid2c">
+      <div class="rbox" style="border-left:4px solid var(--teal)"><div class="rbig" id="lgp_varsity_2003-irr" style="color:var(--teal)">--</div><div class="rlbl">IRR, underwritten (5-yr)</div></div>
+      <div class="rbox"><div class="rbig" id="lgp_varsity_2003-mom">--</div><div class="rlbl">MoM, underwritten</div></div>
+    </div>
+    <div class="grid3">
+      <div class="rbox"><div class="rbig" id="lgp_varsity_2003-price" style="font-size:1rem">--</div><div class="rlbl">Purchase price</div></div>
+      <div class="rbox"><div class="rbig" id="lgp_varsity_2003-debt" style="font-size:1rem">--</div><div class="rlbl">Debt</div></div>
+      <div class="rbox"><div class="rbig" id="lgp_varsity_2003-eq" style="font-size:1rem">--</div><div class="rlbl">Equity (plug)</div></div>
+    </div>
+    <div class="grid3">
+      <div class="rbox"><div class="rbig" id="lgp_varsity_2003-exitev" style="font-size:1rem">--</div><div class="rlbl">Exit EV (yr 5)</div></div>
+      <div class="rbox"><div class="rbig" id="lgp_varsity_2003-cum" style="font-size:1rem">--</div><div class="rlbl">Cumulative LFCF</div></div>
+      <div class="rbox"><div class="rbig" id="lgp_varsity_2003-exiteq" style="font-size:1rem">--</div><div class="rlbl">Equity at exit</div></div>
+    </div>
+    <div style="background:var(--paper-warm);border:1px solid var(--rule-soft);padding:12px;margin-bottom:12px;">
+      <div style="font-family:var(--mono);font-size:0.67rem;font-weight:700;text-transform:uppercase;color:var(--muted);margin-bottom:6px;">Entry capital structure</div>
+      <div class="wf-bar" id="lgp_varsity_2003-wf"></div>
+    </div>
+    <div style="background:var(--paper-warm);border:1px solid var(--rule-soft);padding:12px;margin-bottom:12px;">
+      <div style="font-family:var(--mono);font-size:0.67rem;font-weight:700;text-transform:uppercase;color:var(--muted);margin-bottom:6px;">Actual outcome</div>
+      <p style="font-size:0.8rem;color:var(--ink-soft);line-height:1.5">Exit price not disclosed by the parties, so the realised return cannot be stated.</p></div>
+    <div class="insight" id="lgp_varsity_2003-verdict" style="margin:0;"></div>
+  </div>
+</div>
+<div class="chart-wrap" style="margin-top:16px">
+  <div style="font-family:var(--mono);font-size:0.67rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);margin-bottom:8px;">Five-year build ($m) &middot; paper LBO mechanics</div>
+  <table class="model-table"><thead><tr><th class="row-h">Line</th><th class="proj">Yr 1</th><th class="proj">Yr 2</th><th class="proj">Yr 3</th><th class="proj">Yr 4</th><th class="proj">Yr 5</th></tr></thead><tbody id="lgp_varsity_2003-tbody"></tbody></table>
+</div>
+<div class="chart-wrap" style="margin-top:16px">
+  <div style="font-family:var(--mono);font-size:0.67rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);margin-bottom:8px;">Inputs and sources &middot; F filed / rating agency &middot; P press &middot; A assumption</div>
+  <table class="model-table"><thead><tr><th class="row-h">Input</th><th style="text-align:right">Value</th><th style="text-align:center">Tag</th><th>Source</th></tr></thead><tbody><tr><td class="label">Entry EV ($m)</td><td style="text-align:right;font-family:var(--mono);font-size:0.7rem">145</td><td style="text-align:center;font-family:var(--mono);font-size:0.68rem;color:var(--teal)">F</td><td style="font-size:0.72rem;color:var(--muted)">Rothschild adjusted EV incl. $10.4m deal costs; $164.2m &#x27;aggregate transaction value&#x27; incl. fees</td></tr><tr><td class="label">Entry EBITDA, LTM ($m)</td><td style="text-align:right;font-family:var(--mono);font-size:0.7rem">20.70</td><td style="text-align:center;font-family:var(--mono);font-size:0.68rem;color:var(--teal)">F</td><td style="font-size:0.72rem;color:var(--muted)">2002A adjusted EBITDA $19.0m + $1.7m add-backs (SC 13E-3 Ex-99(c)(3))</td></tr><tr><td class="label">Debt raised ($m)</td><td style="text-align:right;font-family:var(--mono);font-size:0.7rem">85.00</td><td style="text-align:center;font-family:var(--mono);font-size:0.68rem;color:var(--warning)">A</td><td style="font-size:0.72rem;color:var(--muted)">Assumption: Wells Fargo/Merrill senior ~$55m + NML/BancAmerica sub-debt ~$30m (sizes not in the DEFM14A extract)</td></tr><tr><td class="label">Blended interest rate</td><td style="text-align:right;font-family:var(--mono);font-size:0.7rem">8.10%</td><td style="text-align:center;font-family:var(--mono);font-size:0.68rem;color:var(--warning)">A</td><td style="font-size:0.72rem;color:var(--muted)">Senior ~6% / sub-debt ~12%, blended</td></tr><tr><td class="label">Tax rate</td><td style="text-align:right;font-family:var(--mono);font-size:0.7rem">38.00%</td><td style="text-align:center;font-family:var(--mono);font-size:0.68rem;color:var(--warning)">A</td><td style="font-size:0.72rem;color:var(--muted)">Assumption</td></tr><tr><td class="label">Base-year revenue ($m)</td><td style="text-align:right;font-family:var(--mono);font-size:0.7rem">156</td><td style="text-align:center;font-family:var(--mono);font-size:0.68rem;color:var(--teal)">F</td><td style="font-size:0.72rem;color:var(--muted)">Rothschild fairness materials: 2002A revenue (SC 13E-3 Ex-99(c)(2))</td></tr><tr><td class="label">Incremental revenue p.a. ($m)</td><td style="text-align:right;font-family:var(--mono);font-size:0.7rem">14.00</td><td style="text-align:center;font-family:var(--mono);font-size:0.68rem;color:var(--teal)">F</td><td style="font-size:0.72rem;color:var(--muted)">2003E revenue $170.5m per Rothschild; ~9% p.a.</td></tr><tr><td class="label">D&amp;A p.a. ($m)</td><td style="text-align:right;font-family:var(--mono);font-size:0.7rem">4.50</td><td style="text-align:center;font-family:var(--mono);font-size:0.68rem;color:var(--warning)">A</td><td style="font-size:0.72rem;color:var(--muted)">Assumption ~2.9% of revenue</td></tr><tr><td class="label">Capex p.a. ($m)</td><td style="text-align:right;font-family:var(--mono);font-size:0.7rem">4.00</td><td style="text-align:center;font-family:var(--mono);font-size:0.68rem;color:var(--warning)">A</td><td style="font-size:0.72rem;color:var(--muted)">Assumption</td></tr><tr><td class="label">Change in NWC p.a. ($m)</td><td style="text-align:right;font-family:var(--mono);font-size:0.7rem">-1.00</td><td style="text-align:center;font-family:var(--mono);font-size:0.68rem;color:var(--warning)">A</td><td style="font-size:0.72rem;color:var(--muted)">Growth working capital, assumption</td></tr><tr><td class="label">Exit multiple (x)</td><td style="text-align:right;font-family:var(--mono);font-size:0.7rem">7.00</td><td style="text-align:center;font-family:var(--mono);font-size:0.68rem;color:var(--warning)">A</td><td style="font-size:0.72rem;color:var(--muted)">Assumed equal to entry (exit price to Herff Jones undisclosed)</td></tr></tbody></table>
+  <p style="font-size:0.8rem;color:var(--ink-soft);margin-top:12px;line-height:1.55"><strong>Note.</strong> Rothschild&#x27;s own multiples: 7.6x 2002A / 6.7x 2003E adjusted EBITDA. Exit to Herff Jones in 2011 was undisclosed, so the realised return cannot be stated.</p>
+</div>
+</div><div class="tab" id="tab-oncap_ssg_2010">
+<div class="sec-title" style="margin-top:8px;"><h2>ONCAP / Sport Supply Group (2010-13)</h2><p>Take-private with rollover &middot; Realised Jun-2013 (price undisclosed) &middot; workbook tab <strong>P05 ONCAP-SportSupply 2010</strong></p></div>
+
+<div class="grid2">
+  <div class="ctrl-panel">
+    <div style="font-family:var(--mono);font-size:0.67rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--teal);margin-bottom:14px;display:flex;justify-content:space-between;align-items:center">Parameters <button onclick="resetDeal('oncap_ssg_2010')" style="font-family:var(--mono);font-size:0.62rem;border:1px solid var(--rule);background:var(--paper);padding:2px 8px;cursor:pointer">reset to workbook</button></div>
+    <div class="ctrl-row"><div class="ctrl-label">Entry EV / EBITDA <span class="ctrl-val" id="oncap_ssg_2010-lbl-mult"></span></div><input type="range" id="oncap_ssg_2010-sl-mult" min="4.2" max="9.8" step="any" value="6.984496124031007" oninput="render('oncap_ssg_2010')"></div><div class="ctrl-row"><div class="ctrl-label">Debt / EBITDA <span class="ctrl-val" id="oncap_ssg_2010-lbl-lev"></span></div><input type="range" id="oncap_ssg_2010-sl-lev" min="0" max="5.9" step="any" value="3.9186046511627906" oninput="render('oncap_ssg_2010')"></div><div class="ctrl-row"><div class="ctrl-label">Blended interest rate (%) <span class="ctrl-val" id="oncap_ssg_2010-lbl-rate"></span></div><input type="range" id="oncap_ssg_2010-sl-rate" min="1" max="15" step="any" value="7.6" oninput="render('oncap_ssg_2010')"></div><div class="ctrl-row"><div class="ctrl-label">Incremental revenue p.a. ($m) <span class="ctrl-val" id="oncap_ssg_2010-lbl-inc"></span></div><input type="range" id="oncap_ssg_2010-sl-inc" min="-13" max="39" step="any" value="15.0" oninput="render('oncap_ssg_2010')"></div><div class="ctrl-row"><div class="ctrl-label">Exit EV / EBITDA <span class="ctrl-val" id="oncap_ssg_2010-lbl-exit"></span></div><input type="range" id="oncap_ssg_2010-sl-exit" min="3.5" max="10.5" step="any" value="7.0" oninput="render('oncap_ssg_2010')"></div>
+    <div style="font-family:var(--mono);font-size:0.65rem;color:var(--muted);margin-top:10px;line-height:1.5">Fixed from the workbook: revenue $262m, EBITDA $26m (LTM), D&amp;A $5.0m, capex $4.0m, NWC $-1.0m p.a., tax 38%, entry 2010-08-05, underwritten exit 2015-08-05.</div>
+  </div>
+  <div>
+    <div class="grid2c">
+      <div class="rbox" style="border-left:4px solid var(--teal)"><div class="rbig" id="oncap_ssg_2010-irr" style="color:var(--teal)">--</div><div class="rlbl">IRR, underwritten (5-yr)</div></div>
+      <div class="rbox"><div class="rbig" id="oncap_ssg_2010-mom">--</div><div class="rlbl">MoM, underwritten</div></div>
+    </div>
+    <div class="grid3">
+      <div class="rbox"><div class="rbig" id="oncap_ssg_2010-price" style="font-size:1rem">--</div><div class="rlbl">Purchase price</div></div>
+      <div class="rbox"><div class="rbig" id="oncap_ssg_2010-debt" style="font-size:1rem">--</div><div class="rlbl">Debt</div></div>
+      <div class="rbox"><div class="rbig" id="oncap_ssg_2010-eq" style="font-size:1rem">--</div><div class="rlbl">Equity (plug)</div></div>
+    </div>
+    <div class="grid3">
+      <div class="rbox"><div class="rbig" id="oncap_ssg_2010-exitev" style="font-size:1rem">--</div><div class="rlbl">Exit EV (yr 5)</div></div>
+      <div class="rbox"><div class="rbig" id="oncap_ssg_2010-cum" style="font-size:1rem">--</div><div class="rlbl">Cumulative LFCF</div></div>
+      <div class="rbox"><div class="rbig" id="oncap_ssg_2010-exiteq" style="font-size:1rem">--</div><div class="rlbl">Equity at exit</div></div>
+    </div>
+    <div style="background:var(--paper-warm);border:1px solid var(--rule-soft);padding:12px;margin-bottom:12px;">
+      <div style="font-family:var(--mono);font-size:0.67rem;font-weight:700;text-transform:uppercase;color:var(--muted);margin-bottom:6px;">Entry capital structure</div>
+      <div class="wf-bar" id="oncap_ssg_2010-wf"></div>
+    </div>
+    <div style="background:var(--paper-warm);border:1px solid var(--rule-soft);padding:12px;margin-bottom:12px;">
+      <div style="font-family:var(--mono);font-size:0.67rem;font-weight:700;text-transform:uppercase;color:var(--muted);margin-bottom:6px;">Actual outcome</div>
+      <p style="font-size:0.8rem;color:var(--ink-soft);line-height:1.5">Exit price not disclosed by the parties, so the realised return cannot be stated.</p></div>
+    <div class="insight" id="oncap_ssg_2010-verdict" style="margin:0;"></div>
+  </div>
+</div>
+<div class="chart-wrap" style="margin-top:16px">
+  <div style="font-family:var(--mono);font-size:0.67rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);margin-bottom:8px;">Five-year build ($m) &middot; paper LBO mechanics</div>
+  <table class="model-table"><thead><tr><th class="row-h">Line</th><th class="proj">Yr 1</th><th class="proj">Yr 2</th><th class="proj">Yr 3</th><th class="proj">Yr 4</th><th class="proj">Yr 5</th></tr></thead><tbody id="oncap_ssg_2010-tbody"></tbody></table>
+</div>
+<div class="chart-wrap" style="margin-top:16px">
+  <div style="font-family:var(--mono);font-size:0.67rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);margin-bottom:8px;">Inputs and sources &middot; F filed / rating agency &middot; P press &middot; A assumption</div>
+  <table class="model-table"><thead><tr><th class="row-h">Input</th><th style="text-align:right">Value</th><th style="text-align:center">Tag</th><th>Source</th></tr></thead><tbody><tr><td class="label">Entry EV ($m)</td><td style="text-align:right;font-family:var(--mono);font-size:0.7rem">180</td><td style="text-align:center;font-family:var(--mono);font-size:0.68rem;color:var(--teal)">F</td><td style="font-size:0.72rem;color:var(--muted)">$179.4m equity consideration (SC 13E-3) + $0.8m net debt</td></tr><tr><td class="label">Entry EBITDA, LTM ($m)</td><td style="text-align:right;font-family:var(--mono);font-size:0.7rem">25.80</td><td style="text-align:center;font-family:var(--mono);font-size:0.68rem;color:var(--teal)">F</td><td style="font-size:0.72rem;color:var(--muted)">LTM adjusted EBITDA to 31 Mar 2010 (8-K Ex-99.1)</td></tr><tr><td class="label">Debt raised ($m)</td><td style="text-align:right;font-family:var(--mono);font-size:0.7rem">101</td><td style="text-align:center;font-family:var(--mono);font-size:0.68rem;color:var(--teal)">F</td><td style="font-size:0.72rem;color:var(--muted)">DEFM14A: term loan $74.6m + Manulife mezz $26.5m; $25m revolver undrawn</td></tr><tr><td class="label">Blended interest rate</td><td style="text-align:right;font-family:var(--mono);font-size:0.7rem">7.60%</td><td style="text-align:center;font-family:var(--mono);font-size:0.68rem;color:var(--warning)">A</td><td style="font-size:0.72rem;color:var(--muted)">Term loan ~6% / mezz ~12%, blended (rates not disclosed)</td></tr><tr><td class="label">Tax rate</td><td style="text-align:right;font-family:var(--mono);font-size:0.7rem">38.00%</td><td style="text-align:center;font-family:var(--mono);font-size:0.68rem;color:var(--warning)">A</td><td style="font-size:0.72rem;color:var(--muted)">Assumption</td></tr><tr><td class="label">Base-year revenue ($m)</td><td style="text-align:right;font-family:var(--mono);font-size:0.7rem">262</td><td style="text-align:center;font-family:var(--mono);font-size:0.68rem;color:var(--teal)">F</td><td style="font-size:0.72rem;color:var(--muted)">LTM to Mar-2010: FY09 $250.2m, 9-mo FY10 $198.5m (8-K Ex-99.1)</td></tr><tr><td class="label">Incremental revenue p.a. ($m)</td><td style="text-align:right;font-family:var(--mono);font-size:0.7rem">15.00</td><td style="text-align:center;font-family:var(--mono);font-size:0.68rem;color:var(--warning)">A</td><td style="font-size:0.72rem;color:var(--muted)">~6% p.a. plus nine bolt-ons under ONCAP, assumption</td></tr><tr><td class="label">D&amp;A p.a. ($m)</td><td style="text-align:right;font-family:var(--mono);font-size:0.7rem">5.00</td><td style="text-align:center;font-family:var(--mono);font-size:0.68rem;color:var(--warning)">A</td><td style="font-size:0.72rem;color:var(--muted)">Assumption</td></tr><tr><td class="label">Capex p.a. ($m)</td><td style="text-align:right;font-family:var(--mono);font-size:0.7rem">4.00</td><td style="text-align:center;font-family:var(--mono);font-size:0.68rem;color:var(--warning)">A</td><td style="font-size:0.72rem;color:var(--muted)">Assumption</td></tr><tr><td class="label">Change in NWC p.a. ($m)</td><td style="text-align:right;font-family:var(--mono);font-size:0.7rem">-1.00</td><td style="text-align:center;font-family:var(--mono);font-size:0.68rem;color:var(--warning)">A</td><td style="font-size:0.72rem;color:var(--muted)">Assumption</td></tr><tr><td class="label">Exit multiple (x)</td><td style="text-align:right;font-family:var(--mono);font-size:0.7rem">7.00</td><td style="text-align:center;font-family:var(--mono);font-size:0.68rem;color:var(--warning)">A</td><td style="font-size:0.72rem;color:var(--muted)">Assumed equal to entry (Herff Jones price undisclosed)</td></tr></tbody></table>
+  <p style="font-size:0.8rem;color:var(--ink-soft);margin-top:12px;line-height:1.55"><strong>Note.</strong> Filed sources and uses: ONCAP $89.6m + management $3.5m equity, $74.6m term loan, $26.5m mezz. Entry 7.0x LTM / 7.2x FY2009 adjusted EBITDA.</p>
+</div>
+</div>
+<div style="max-width:1100px;margin:40px auto 60px;padding:0 24px;font-family:var(--sans);font-size:0.78rem;color:var(--muted);line-height:1.6">
+Underwritten case = the template run on the entry structure and stated assumptions over a five-year hold; interest is charged on opening debt and all levered free cash flow accumulates as cash, so returns are slightly flattered versus a model with a debt sweep. Actual = the realised exit where one is disclosed. Every input above carries a tag; assumptions (A) are the sliders to distrust first. The workbook linked in the header carries the same eleven paper models plus four full three-statement LBO builds. Not investment advice.
+</div>
+<script>
+const DEALS={"kkr_varsity_2024": {"key": "kkr_varsity_2024", "name": "KKR / Varsity Brands (2024)", "kind": "Sponsor buyout", "status": "Pending (hold)", "strategic": false, "rev0": 2600, "ebitda0": 400, "ev": 4750, "debt": 2475, "rate": 0.0905, "tax": 0.25, "da": 78, "capex": 62, "nwc": 0, "inc": 130, "margins": [0.15384615384615385, 0.15384615384615385, 0.15384615384615385, 0.15384615384615385, 0.15384615384615385, 0.15384615384615385], "exitMult": 11.0, "entry": "2024-08-26", "exitUW": "2029-08-26", "actual": null, "note": "Prospective. KKR contributed ~$2.5bn of equity against ~$2.48bn of debt, an unusually thick cheque for a B3/B- credit. S&P and Moody's both upgraded in mid-2025 on deleveraging.", "full": "F01 KKR-Varsity 2024", "inputs": [["Entry EV ($m)", 4750, "P", "PitchBook LCD / Sportico"], ["Entry EBITDA, LTM ($m)", 400, "P", "Trade press '>$400m'; Moody's 6.2x on ~$2.48bn debt implies ~$400m"], ["Debt raised ($m)", 2475, "F", "$2,375m TLB + $100m ABL drawn at close (LCD, Sportico)"], ["Blended interest rate", 0.0905, "F", "TLB S+375 (fund holdings show TSFR3M+3.75%); 3M SOFR ~5.30% Aug-2024"], ["Tax rate", 0.25, "A", "Blended US federal+state assumption"], ["Base-year revenue ($m)", 2600, "F", "Moody's: ~$2.6bn LTM Mar-2025 (SGB Media, Jul 2025)"], ["Incremental revenue p.a. ($m)", 130, "A", "5% p.a.; Moody's projected mid-single-digit growth"], ["D&A p.a. ($m)", 78, "A", "3.0% of revenue, assumption"], ["Capex p.a. ($m)", 62, "A", "80% of D&A, assumption"], ["Change in NWC p.a. ($m)", 0, "A", "Assumed flat"], ["Exit multiple (x)", 11.0, "A", "Entry 11.9x; modest compression assumed"]]}, "bain_varsity_2018": {"key": "bain_varsity_2018", "name": "Bain Capital / Varsity Brands (2018-24)", "kind": "Secondary buyout", "status": "Realised Aug-2024", "strategic": false, "rev0": 2000, "ebitda0": 290, "ev": 2900, "debt": 1990, "rate": 0.0715, "tax": 0.25, "da": 60, "capex": 50, "nwc": 0, "inc": 120, "margins": [0.145, 0.145, 0.145, 0.145, 0.145, 0.145], "exitMult": 11.875, "entry": "2018-07-31", "exitUW": "2023-07-28", "actual": {"ev": 4750, "debt": 2447, "date": "2024-08-26", "note": "Exit debt = $1,132m 1L TL + $450m 1L notes + $620m 2L + ~$245m ABL drawn (LCD; Moody's Nov-2023). Equity in = EV $2,900m + fees less $1,990m debt. Charlesbank rolled a minority; Herff Jones graduation sold Oct-2023 for an undisclosed sum, not credited here."}, "note": "Leverage never came down: Moody's had it at 7.7x (2019), 8.6x (2022), 6.9x (mid-2023). The return came almost entirely from EBITDA growth and the exit multiple, not deleveraging.", "full": "F02 Bain-Varsity 2018", "inputs": [["Entry EV ($m)", 2900, "F", "Moody's: 'total implied enterprise value of approximately $2.9 billion' (press said ~$2.5bn)"], ["Entry EBITDA, LTM ($m)", 290, "A", "Assumption: $2.9bn EV at 10.0x; Moody's showed 7.7x on ~$2.0bn debt at Dec-2019 (~$260m)"], ["Debt raised ($m)", 1990, "F", "$1,370m 1L TL + $620m 2L TL (Moody's); $180m revolver undrawn"], ["Blended interest rate", 0.0715, "A", "1L L+350 (~5.75%) and 2L assumed L+800 (~10.25%), blended"], ["Tax rate", 0.25, "A", "Assumption"], ["Base-year revenue ($m)", 2000, "F", "Moody's: ~$2.0bn LTM Dec-2019"], ["Incremental revenue p.a. ($m)", 120, "A", "Path to ~$400m EBITDA by 2023 at constant margin (6% p.a.)"], ["D&A p.a. ($m)", 60, "A", "3.0% of revenue, assumption"], ["Capex p.a. ($m)", 50, "A", "Assumption"], ["Change in NWC p.a. ($m)", 0, "A", "Assumed flat"], ["Exit multiple (x)", 11.875, "P", "$4,750m KKR price on ~$400m EBITDA"]]}, "charlesbank_varsity_2014": {"key": "charlesbank_varsity_2014", "name": "Charlesbank + Partners Group / Varsity Brands (2014-18)", "kind": "ESOP buyout", "status": "Realised Jul-2018", "strategic": false, "rev0": 1200, "ebitda0": 155, "ev": 1500, "debt": 1000, "rate": 0.0713, "tax": 0.3, "da": 36, "capex": 30, "nwc": 0, "inc": 80, "margins": [0.12916666666666668, 0.12916666666666668, 0.12916666666666668, 0.12916666666666668, 0.12916666666666668, 0.12916666666666668], "exitMult": 10.0, "entry": "2014-12-15", "exitUW": "2019-12-15", "actual": {"ev": 2900, "debt": 1000, "date": "2018-07-31", "note": "Exit EV per Moody's; press said $2.5bn. Exit debt assumed equal to entry (no paydown, consistent with later leverage history). Charlesbank retained a minority stake in the Bain deal, not credited here."}, "note": "Best-returning link in the chain on any assumption set: ~3.5 years, EV roughly doubled, equity roughly tripled.", "full": null, "inputs": [["Entry EV ($m)", 1500, "P", "Charlesbank site / CNBC '~$1.5bn'"], ["Entry EBITDA, LTM ($m)", 155, "A", "Assumption: ~9.7x entry on $1.5bn; B2 CFR at 6.5x leverage"], ["Debt raised ($m)", 1000, "A", "Assumption: 1L (L+500, 1% floor) ~$700m + 2L (L+875) ~$300m; Ares held $175m of 2L par"], ["Blended interest rate", 0.0713, "F", "1L 6.00% and 2L 9.75% (BDC filings), blended 70/30"], ["Tax rate", 0.3, "A", "Assumption"], ["Base-year revenue ($m)", 1200, "F", "Company release: 'combined sales in excess of $1.2 billion'"], ["Incremental revenue p.a. ($m)", 80, "A", "~6.5% p.a., assumption"], ["D&A p.a. ($m)", 36, "A", "3.0% of revenue, assumption"], ["Capex p.a. ($m)", 30, "A", "Assumption"], ["Change in NWC p.a. ($m)", 0, "A", "Assumed flat"], ["Exit multiple (x)", 10.0, "A", "$2.9bn Bain EV on ~$290m EBITDA (assumption)"]]}, "lgp_varsity_2003": {"key": "lgp_varsity_2003", "name": "Leonard Green / Varsity Brands (2003-11)", "kind": "Take-private (13E-3)", "status": "Realised Aug-2011 (price undisclosed)", "strategic": false, "rev0": 156.4, "ebitda0": 20.7, "ev": 144.6, "debt": 85, "rate": 0.081, "tax": 0.38, "da": 4.5, "capex": 4.0, "nwc": -1.0, "inc": 14.0, "margins": [0.1323529411764706, 0.1323529411764706, 0.1323529411764706, 0.1323529411764706, 0.1323529411764706, 0.1323529411764706], "exitMult": 7.0, "entry": "2003-09-24", "exitUW": "2008-09-24", "actual": null, "note": "Rothschild's own multiples: 7.6x 2002A / 6.7x 2003E adjusted EBITDA. Exit to Herff Jones in 2011 was undisclosed, so the realised return cannot be stated.", "full": null, "inputs": [["Entry EV ($m)", 144.6, "F", "Rothschild adjusted EV incl. $10.4m deal costs; $164.2m 'aggregate transaction value' incl. fees"], ["Entry EBITDA, LTM ($m)", 20.7, "F", "2002A adjusted EBITDA $19.0m + $1.7m add-backs (SC 13E-3 Ex-99(c)(3))"], ["Debt raised ($m)", 85, "A", "Assumption: Wells Fargo/Merrill senior ~$55m + NML/BancAmerica sub-debt ~$30m (sizes not in the DEFM14A extract)"], ["Blended interest rate", 0.081, "A", "Senior ~6% / sub-debt ~12%, blended"], ["Tax rate", 0.38, "A", "Assumption"], ["Base-year revenue ($m)", 156.4, "F", "Rothschild fairness materials: 2002A revenue (SC 13E-3 Ex-99(c)(2))"], ["Incremental revenue p.a. ($m)", 14.0, "F", "2003E revenue $170.5m per Rothschild; ~9% p.a."], ["D&A p.a. ($m)", 4.5, "A", "Assumption ~2.9% of revenue"], ["Capex p.a. ($m)", 4.0, "A", "Assumption"], ["Change in NWC p.a. ($m)", -1.0, "A", "Growth working capital, assumption"], ["Exit multiple (x)", 7.0, "A", "Assumed equal to entry (exit price to Herff Jones undisclosed)"]]}, "oncap_ssg_2010": {"key": "oncap_ssg_2010", "name": "ONCAP / Sport Supply Group (2010-13)", "kind": "Take-private with rollover", "status": "Realised Jun-2013 (price undisclosed)", "strategic": false, "rev0": 262, "ebitda0": 25.8, "ev": 180.2, "debt": 101.1, "rate": 0.076, "tax": 0.38, "da": 5.0, "capex": 4.0, "nwc": -1.0, "inc": 15.0, "margins": [0.0984732824427481, 0.0984732824427481, 0.0984732824427481, 0.0984732824427481, 0.0984732824427481, 0.0984732824427481], "exitMult": 7.0, "entry": "2010-08-05", "exitUW": "2015-08-05", "actual": null, "note": "Filed sources and uses: ONCAP $89.6m + management $3.5m equity, $74.6m term loan, $26.5m mezz. Entry 7.0x LTM / 7.2x FY2009 adjusted EBITDA.", "full": null, "inputs": [["Entry EV ($m)", 180.2, "F", "$179.4m equity consideration (SC 13E-3) + $0.8m net debt"], ["Entry EBITDA, LTM ($m)", 25.8, "F", "LTM adjusted EBITDA to 31 Mar 2010 (8-K Ex-99.1)"], ["Debt raised ($m)", 101.1, "F", "DEFM14A: term loan $74.6m + Manulife mezz $26.5m; $25m revolver undrawn"], ["Blended interest rate", 0.076, "A", "Term loan ~6% / mezz ~12%, blended (rates not disclosed)"], ["Tax rate", 0.38, "A", "Assumption"], ["Base-year revenue ($m)", 262, "F", "LTM to Mar-2010: FY09 $250.2m, 9-mo FY10 $198.5m (8-K Ex-99.1)"], ["Incremental revenue p.a. ($m)", 15.0, "A", "~6% p.a. plus nine bolt-ons under ONCAP, assumption"], ["D&A p.a. ($m)", 5.0, "A", "Assumption"], ["Capex p.a. ($m)", 4.0, "A", "Assumption"], ["Change in NWC p.a. ($m)", -1.0, "A", "Assumption"], ["Exit multiple (x)", 7.0, "A", "Assumed equal to entry (Herff Jones price undisclosed)"]]}};
+
+function paperLBO(p, o){
+  const rev=[p.rev0]; for(let i=1;i<=5;i++) rev.push(rev[i-1]+o.inc);
+  const m0=p.ebitda0/p.rev0, hasPath=(p.margins[0]!==p.margins[5]);
+  const margins=p.margins.map((m,i)=> i===0 ? m0 : (hasPath ? m : m0));
+  if(hasPath && o.marginY5!==undefined){ const b5=p.margins[5]; for(let i=1;i<=5;i++) margins[i]=p.margins[i]*(o.marginY5/b5); }
+  const ebitda=rev.map((r,i)=>r*margins[i]);
+  const debt=ebitda[0]*o.lev, price=ebitda[0]*o.mult, equity=price-debt;
+  let cum=0; const rows=[];
+  for(let i=1;i<=5;i++){
+    const ebit=ebitda[i]-p.da, intr=debt*o.rate, ebt=ebit-intr, tax=ebt*p.tax, ni=ebt-tax, lfcf=ni+p.da-p.capex+p.nwc;
+    cum+=lfcf; rows.push({yr:i,rev:rev[i],ebitda:ebitda[i],ebit:ebit,intr:intr,ni:ni,lfcf:lfcf,cum:cum});
+  }
+  const exitEV=ebitda[5]*o.exitMult, exitEq=exitEV-debt+cum;
+  const days=(new Date(p.exitUW)-new Date(p.entry))/86400000;
+  const mom=exitEq/equity, irr=(equity>0&&exitEq>0)?Math.pow(mom,365/days)-1:null;
+  return {rev,ebitda,debt,price,equity,cum,exitEV,exitEq,mom,irr,rows,days};
+}
+function actualReturns(p, equity){
+  if(!p.actual||p.actual.ev===null) return null;
+  const exitEq=p.actual.ev-p.actual.debt, mom=exitEq/equity;
+  const days=(new Date(p.actual.date)-new Date(p.entry))/86400000;
+  const irr=(equity>0&&exitEq>0)?Math.pow(mom,365/days)-1:null;
+  return {exitEq,mom,irr,days};
+}
+const fmtM=v=>'$'+Math.round(v).toLocaleString()+'m';
+const fmtX=v=>(v===null||isNaN(v))?'n/m':v.toFixed(2)+'x';
+const fmtP=v=>(v===null||isNaN(v))?'n/m':((v>=0?'+':'')+(v*100).toFixed(1)+'%');
+function render(k){
+  const p=DEALS[k]; const g=id=>document.getElementById(k+'-'+id);
+  const o={mult:+g('sl-mult').value, lev:+g('sl-lev').value, rate:+g('sl-rate').value/100, inc:+g('sl-inc').value, exitMult:+g('sl-exit').value};
+  const sM=g('sl-m5'); if(sM) o.marginY5=+sM.value/100;
+  g('lbl-mult').textContent=o.mult.toFixed(2)+'x'; g('lbl-lev').textContent=o.lev.toFixed(2)+'x'; g('lbl-rate').textContent=(o.rate*100).toFixed(2)+'%';
+  g('lbl-inc').textContent=fmtM(o.inc); g('lbl-exit').textContent=o.exitMult.toFixed(2)+'x'; if(sM) g('lbl-m5').textContent=(o.marginY5*100).toFixed(1)+'%';
+  const r=paperLBO(p,o);
+  g('irr').textContent=fmtP(r.irr); g('irr').style.color=r.irr===null?'var(--negative)':r.irr>0.20?'var(--positive)':r.irr>0.10?'var(--warning)':'var(--negative)';
+  g('mom').textContent=fmtX(r.mom); g('mom').style.color=r.mom>2?'var(--positive)':r.mom>1?'var(--warning)':'var(--negative)';
+  g('price').textContent=fmtM(r.price); g('eq').textContent=fmtM(r.equity); g('debt').textContent=fmtM(r.debt);
+  g('exitev').textContent=fmtM(r.exitEV); g('cum').textContent=fmtM(r.cum); g('exiteq').textContent=fmtM(r.exitEq);
+  const dp=Math.max(0,Math.min(100,r.debt/r.price*100)), ep=100-dp;
+  g('wf').innerHTML='<div class="wf-seg" style="width:'+dp.toFixed(0)+'%;background:#1c3a6b;">Debt '+dp.toFixed(0)+'%</div><div class="wf-seg" style="width:'+ep.toFixed(0)+'%;background:#1d6f42;">Equity '+ep.toFixed(0)+'%</div>';
+  const tb=g('tbody'); tb.innerHTML='';
+  const hdr=['Revenue','EBITDA','EBIT','Interest','Net income','Levered FCF','Cumulative cash'];
+  const keys=['rev','ebitda','ebit','intr','ni','lfcf','cum'];
+  keys.forEach((kk,i)=>{const tr=tb.insertRow(); const td0=tr.insertCell(); td0.className='label'; td0.textContent=hdr[i];
+    r.rows.forEach(row=>{const td=tr.insertCell(); td.style.cssText='text-align:right;font-family:var(--mono);font-size:0.7rem;'; td.textContent=Math.round(row[kk]).toLocaleString();});});
+  const a=actualReturns(p,r.equity);
+  if(a){ g('a-mom').textContent=fmtX(a.mom); g('a-irr').textContent=fmtP(a.irr); g('a-eq').textContent=fmtM(a.exitEq);
+         g('a-mom').style.color=a.mom>1?'var(--positive)':'var(--negative)'; g('a-irr').style.color=(a.irr!==null&&a.irr>0)?'var(--positive)':'var(--negative)';
+         g('a-var').textContent=(a.mom-r.mom>=0?'+':'')+(a.mom-r.mom).toFixed(2)+'x vs underwritten'; }
+  const years=(r.days/365).toFixed(1);
+  g('verdict').innerHTML='<strong>Underwritten case ('+years+'-yr hold):</strong> '+fmtM(r.equity)+' of equity buys '+fmtM(r.price)+' of enterprise value at '+o.mult.toFixed(1)+'x with '+o.lev.toFixed(1)+'x of debt. Year-5 EBITDA '+fmtM(r.ebitda[5])+' at '+o.exitMult.toFixed(1)+'x gives '+fmtM(r.exitEV)+' of exit EV; after '+fmtM(r.debt)+' of debt and '+fmtM(r.cum)+' of accumulated cash, equity is worth '+fmtM(r.exitEq)+': <strong>'+fmtX(r.mom)+' / '+fmtP(r.irr)+'</strong>.'+(a?' <strong>Actual:</strong> '+fmtX(a.mom)+' / '+fmtP(a.irr)+' over '+(a.days/365).toFixed(1)+' years.':'');
+}
+function showTab(k,btn){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));document.getElementById('tab-'+k).classList.add('active');btn.classList.add('active');}
+function resetDeal(k){const p=DEALS[k];const g=id=>document.getElementById(k+'-'+id);
+  g('sl-mult').value=p.ev/p.ebitda0; g('sl-lev').value=p.debt/p.ebitda0; g('sl-rate').value=p.rate*100; g('sl-inc').value=p.inc; g('sl-exit').value=p.exitMult;
+  const sM=g('sl-m5'); if(sM) sM.value=p.margins[5]*100; render(k);}
+document.addEventListener('DOMContentLoaded',()=>{Object.keys(DEALS).forEach(k=>resetDeal(k));});
+
+</script>
+</body>
+</html>

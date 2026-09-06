@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pacific Cycle, Cannondale, Dorel: Returns Models — Transaction Experience — Market Logic Investors</title>
+<style>
+
+:root{--ink:#0a1929;--ink-soft:#1c2e44;--paper:#faf9f4;--paper-warm:#f3efe3;--rule:#d4cfbf;--rule-soft:#e8e3d4;--muted:#5b6b7a;--teal:#1f6b6b;--teal-lt:#e8f4f4;--accent:#b8391c;--positive:#1d6f42;--pos-lt:#e8f5ee;--warning:#92600a;--warn-lt:#fef3cd;--negative:#8b1a1a;--neg-lt:#fdeaea;--mono:"SF Mono","Fira Mono","Consolas",monospace;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:system-ui,sans-serif;background:var(--paper);color:var(--ink);font-size:13px;line-height:1.5;}
+.page-header{background:var(--ink);color:var(--paper);padding:24px 32px 20px;}
+.page-header h1{font-size:1.4rem;font-weight:800;}
+.page-header .sub{font-family:var(--mono);font-size:0.68rem;color:rgba(250,249,244,0.55);margin-top:5px;text-transform:uppercase;letter-spacing:0.08em;}
+.nav-bar{background:var(--ink-soft);display:flex;overflow-x:auto;border-bottom:2px solid var(--teal);}
+.nav-btn{font-family:var(--mono);font-size:0.67rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:rgba(250,249,244,0.55);padding:10px 16px;cursor:pointer;border:none;background:transparent;white-space:nowrap;transition:all 0.15s;}
+.nav-btn:hover{color:var(--paper);background:rgba(255,255,255,0.07);}
+.nav-btn.active{color:var(--paper);background:var(--teal);}
+.tab{display:none;padding:20px 28px 40px;max-width:1200px;margin:0 auto;}
+.tab.active{display:block;}
+.sec-title h2{font-size:1.1rem;font-weight:800;margin-bottom:4px;}
+.sec-title p{font-size:0.8rem;color:var(--muted);margin-bottom:18px;}
+.model-table{width:100%;border-collapse:collapse;font-family:var(--mono);font-size:0.73rem;margin-bottom:20px;}
+.model-table th{background:var(--ink);color:var(--paper);padding:7px 10px;text-align:right;font-weight:700;font-size:0.67rem;letter-spacing:0.04em;}
+.model-table th.row-h{text-align:left;min-width:190px;}
+.model-table th.hist{background:#1c3a6b;}
+.model-table th.proj{background:#6b4a1c;}
+.model-table td{padding:5px 10px;text-align:right;border-bottom:1px solid var(--rule-soft);}
+.model-table td.label{text-align:left;color:var(--ink);font-weight:600;}
+.model-table td.label.sub{font-weight:400;color:var(--muted);padding-left:18px;font-style:italic;}
+.model-table td.label.section{font-weight:800;color:var(--teal);background:var(--teal-lt);font-size:0.67rem;text-transform:uppercase;letter-spacing:0.08em;border-bottom:none;}
+.model-table td.label.total{font-weight:800;}
+.model-table td.hist{background:rgba(219,234,254,0.2);}
+.model-table td.proj{background:rgba(254,243,205,0.25);}
+.model-table td.total{font-weight:800;border-top:2px solid var(--ink);}
+.model-table td.neg{color:var(--negative);}
+.model-table td.pos{color:var(--positive);}
+.model-table tr:hover td{filter:brightness(0.96);}
+.entity-tabs{display:flex;gap:8px;margin-bottom:14px;}
+.ent-btn{font-family:var(--mono);font-size:0.68rem;font-weight:700;text-transform:uppercase;padding:5px 13px;border:2px solid var(--rule);border-radius:2px;cursor:pointer;background:var(--paper);color:var(--muted);transition:all 0.15s;}
+.ent-btn.active{border-color:var(--teal);color:var(--teal);background:var(--teal-lt);}
+.chart-wrap{background:var(--paper-warm);border:1px solid var(--rule-soft);padding:16px;margin-bottom:18px;}
+.bar-chart-row{display:flex;align-items:flex-end;gap:5px;height:150px;}
+.bar-grp{display:flex;flex-direction:column;align-items:center;flex:1;}
+.bar{border-radius:2px 2px 0 0;width:100%;min-height:2px;transition:height 0.3s;}
+.bar-lbl{font-family:var(--mono);font-size:0.58rem;color:var(--muted);margin-top:3px;}
+.bar-val{font-family:var(--mono);font-size:0.6rem;font-weight:700;}
+.leg{display:flex;gap:14px;margin-top:8px;flex-wrap:wrap;font-family:var(--mono);font-size:0.67rem;color:var(--muted);}
+.leg-box{width:11px;height:11px;border-radius:2px;display:inline-block;margin-right:4px;}
+.grid2{display:grid;grid-template-columns:300px 1fr;gap:18px;}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:12px;}
+.grid2c{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px;}
+@media(max-width:680px){.grid2,.grid2c,.grid3{grid-template-columns:1fr;}}
+.ctrl-panel{background:var(--paper-warm);border:1px solid var(--rule-soft);padding:16px;height:fit-content;}
+.ctrl-row{margin-bottom:13px;}
+.ctrl-label{font-family:var(--mono);font-size:0.67rem;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;color:var(--muted);display:flex;justify-content:space-between;margin-bottom:4px;}
+.ctrl-val{color:var(--ink);font-weight:800;}
+input[type=range]{width:100%;accent-color:var(--teal);}
+.rbox{padding:14px 16px;text-align:center;border:1px solid var(--rule-soft);background:var(--paper);}
+.rbig{font-family:var(--mono);font-size:1.7rem;font-weight:900;}
+.rlbl{font-family:var(--mono);font-size:0.6rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);margin-top:3px;}
+.insight{background:var(--teal-lt);border-left:4px solid var(--teal);padding:12px 14px;margin-bottom:14px;font-size:0.83rem;}
+.warn{background:var(--warn-lt);border-left:4px solid var(--warning);padding:12px 14px;margin-bottom:14px;font-size:0.83rem;}
+.peer-row{display:flex;align-items:center;gap:8px;padding:7px 12px;background:var(--paper-warm);border:1px solid var(--rule-soft);margin-bottom:6px;}
+.peer-name{font-family:var(--mono);font-size:0.73rem;font-weight:700;min-width:55px;}
+.peer-track{flex:1;background:var(--rule-soft);height:18px;border-radius:2px;overflow:hidden;}
+.peer-fill{height:100%;border-radius:2px;}
+.peer-val{font-family:var(--mono);font-size:0.73rem;font-weight:700;min-width:45px;text-align:right;}
+.wf-bar{display:flex;height:30px;border-radius:2px;overflow:hidden;margin:6px 0;}
+.wf-seg{display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:0.62rem;font-weight:700;color:#fff;overflow:hidden;white-space:nowrap;padding:0 4px;transition:width 0.3s;}
+footer{background:var(--ink);color:rgba(250,249,244,0.35);font-family:var(--mono);font-size:0.62rem;padding:14px 28px;text-align:center;margin-top:32px;}
+
+.wf-seg{white-space:nowrap;overflow:hidden}
+</style>
+</head>
+<body>
+<div style="background:var(--ink,#0a1929);padding:10px 24px;display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid #b8391c;flex-wrap:wrap;gap:8px">
+  <a href="index.html" style="color:#faf9f4;font-family:monospace;font-size:0.78rem;font-weight:700;text-decoration:none;letter-spacing:0.08em;display:flex;align-items:center;gap:8px;">
+    <span style="font-size:1.1rem;">&#8592;</span> BACK TO TRANSACTION FILE
+  </a>
+  <span style="color:rgba(250,249,244,0.5);font-family:monospace;font-size:0.7rem;">Transaction Experience &nbsp;|&nbsp; Market Logic Investors &nbsp;|&nbsp; <a href="../models/Transaction_Experience_LBO_Models.xlsx" style="color:#d65a3a;text-decoration:none">&#9660; DOWNLOAD WORKBOOK (.xlsx)</a></span>
+</div>
+<div class="page-header">
+  <h1>Pacific Cycle, Cannondale, Dorel: Returns Models</h1>
+  <div class="sub">Market Logic Investors &nbsp;|&nbsp; Two sponsor exits and one take-private that never closed &nbsp;|&nbsp; Paper LBO mechanics from the Leland template &nbsp;|&nbsp; September 2026</div>
+</div>
+<div class="nav-bar"><button class="nav-btn active" onclick="showTab('windpoint_pacific_2001',this)">Wind Point / Pacific Cycle</button><button class="nav-btn" onclick="showTab('pegasus_cannondale_2003',this)">Pegasus Capital / Cannondale</button><button class="nav-btn" onclick="showTab('cerberus_dorel_2021',this)">Cerberus + Koch / Dorel</button></div>
+<div class="tab active" id="tab-windpoint_pacific_2001">
+<div class="sec-title" style="margin-top:8px;"><h2>Wind Point / Pacific Cycle (2000-04)</h2><p>Sponsor platform build and exit &middot; Realised Feb-2004 &middot; workbook tab <strong>P09 WindPoint-Pacific 2001</strong></p></div>
+
+<div class="grid2">
+  <div class="ctrl-panel">
+    <div style="font-family:var(--mono);font-size:0.67rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--teal);margin-bottom:14px;display:flex;justify-content:space-between;align-items:center">Parameters <button onclick="resetDeal('windpoint_pacific_2001')" style="font-family:var(--mono);font-size:0.62rem;border:1px solid var(--rule);background:var(--paper);padding:2px 8px;cursor:pointer">reset to workbook</button></div>
+    <div class="ctrl-row"><div class="ctrl-label">Entry EV / EBITDA <span class="ctrl-val" id="windpoint_pacific_2001-lbl-mult"></span></div><input type="range" id="windpoint_pacific_2001-sl-mult" min="4.0" max="9.3" step="any" value="6.636363636363637" oninput="render('windpoint_pacific_2001')"></div><div class="ctrl-row"><div class="ctrl-label">Debt / EBITDA <span class="ctrl-val" id="windpoint_pacific_2001-lbl-lev"></span></div><input type="range" id="windpoint_pacific_2001-sl-lev" min="0" max="8.2" step="any" value="5.454545454545454" oninput="render('windpoint_pacific_2001')"></div><div class="ctrl-row"><div class="ctrl-label">Blended interest rate (%) <span class="ctrl-val" id="windpoint_pacific_2001-lbl-rate"></span></div><input type="range" id="windpoint_pacific_2001-sl-rate" min="1" max="15" step="any" value="8.0" oninput="render('windpoint_pacific_2001')"></div><div class="ctrl-row"><div class="ctrl-label">Incremental revenue p.a. ($m) <span class="ctrl-val" id="windpoint_pacific_2001-lbl-inc"></span></div><input type="range" id="windpoint_pacific_2001-sl-inc" min="-14" max="42" step="any" value="22" oninput="render('windpoint_pacific_2001')"></div><div class="ctrl-row"><div class="ctrl-label">Exit EV / EBITDA <span class="ctrl-val" id="windpoint_pacific_2001-lbl-exit"></span></div><input type="range" id="windpoint_pacific_2001-sl-exit" min="2.9" max="8.7" step="any" value="5.8" oninput="render('windpoint_pacific_2001')"></div>
+    <div style="font-family:var(--mono);font-size:0.65rem;color:var(--muted);margin-top:10px;line-height:1.5">Fixed from the workbook: revenue $280m, EBITDA $22m (LTM), D&amp;A $1.0m, capex $1.5m, NWC $-3.0m p.a., tax 38%, entry 2001-09-30, underwritten exit 2006-09-28.</div>
+  </div>
+  <div>
+    <div class="grid2c">
+      <div class="rbox" style="border-left:4px solid var(--teal)"><div class="rbig" id="windpoint_pacific_2001-irr" style="color:var(--teal)">--</div><div class="rlbl">IRR, underwritten (5-yr)</div></div>
+      <div class="rbox"><div class="rbig" id="windpoint_pacific_2001-mom">--</div><div class="rlbl">MoM, underwritten</div></div>
+    </div>
+    <div class="grid3">
+      <div class="rbox"><div class="rbig" id="windpoint_pacific_2001-price" style="font-size:1rem">--</div><div class="rlbl">Purchase price</div></div>
+      <div class="rbox"><div class="rbig" id="windpoint_pacific_2001-debt" style="font-size:1rem">--</div><div class="rlbl">Debt</div></div>
+      <div class="rbox"><div class="rbig" id="windpoint_pacific_2001-eq" style="font-size:1rem">--</div><div class="rlbl">Equity (plug)</div></div>
+    </div>
+    <div class="grid3">
+      <div class="rbox"><div class="rbig" id="windpoint_pacific_2001-exitev" style="font-size:1rem">--</div><div class="rlbl">Exit EV (yr 5)</div></div>
+      <div class="rbox"><div class="rbig" id="windpoint_pacific_2001-cum" style="font-size:1rem">--</div><div class="rlbl">Cumulative LFCF</div></div>
+      <div class="rbox"><div class="rbig" id="windpoint_pacific_2001-exiteq" style="font-size:1rem">--</div><div class="rlbl">Equity at exit</div></div>
+    </div>
+    <div style="background:var(--paper-warm);border:1px solid var(--rule-soft);padding:12px;margin-bottom:12px;">
+      <div style="font-family:var(--mono);font-size:0.67rem;font-weight:700;text-transform:uppercase;color:var(--muted);margin-bottom:6px;">Entry capital structure</div>
+      <div class="wf-bar" id="windpoint_pacific_2001-wf"></div>
+    </div>
+    <div style="background:var(--paper-warm);border:1px solid var(--rule-soft);padding:12px;margin-bottom:12px;">
+      <div style="font-family:var(--mono);font-size:0.67rem;font-weight:700;text-transform:uppercase;color:var(--muted);margin-bottom:8px;">Actual outcome &middot; exit EV $310m &middot; debt at exit $90m &middot; 2004-02-03</div>
+      <div class="grid3">
+        <div class="rbox"><div class="rbig" id="windpoint_pacific_2001-a-mom" style="font-size:1.2rem">--</div><div class="rlbl">MoM, actual</div></div>
+        <div class="rbox"><div class="rbig" id="windpoint_pacific_2001-a-irr" style="font-size:1.2rem">--</div><div class="rlbl">IRR, actual</div></div>
+        <div class="rbox"><div class="rbig" id="windpoint_pacific_2001-a-eq" style="font-size:1rem">--</div><div class="rlbl">Equity at exit</div></div>
+      </div>
+      <div style="font-family:var(--mono);font-size:0.7rem;color:var(--muted);margin-top:2px" id="windpoint_pacific_2001-a-var"></div>
+      <p style="font-size:0.8rem;color:var(--ink-soft);margin-top:8px;line-height:1.5">Exit EV $310m (Dorel 6-K; $320.5m &#x27;total value&#x27; incl. balance of sale). Exit debt assumed $90m after three years of paydown. Wind Point held 43% (CIBC advisory notice); its total cost basis ($12.5m original + $3m Brunswick + Schwinn equity undisclosed) cannot be fully stated.</p></div>
+    <div class="insight" id="windpoint_pacific_2001-verdict" style="margin:0;"></div>
+  </div>
+</div>
+<div class="chart-wrap" style="margin-top:16px">
+  <div style="font-family:var(--mono);font-size:0.67rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);margin-bottom:8px;">Five-year build ($m) &middot; paper LBO mechanics</div>
+  <table class="model-table"><thead><tr><th class="row-h">Line</th><th class="proj">Yr 1</th><th class="proj">Yr 2</th><th class="proj">Yr 3</th><th class="proj">Yr 4</th><th class="proj">Yr 5</th></tr></thead><tbody id="windpoint_pacific_2001-tbody"></tbody></table>
+</div>
+<div class="chart-wrap" style="margin-top:16px">
+  <div style="font-family:var(--mono);font-size:0.67rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);margin-bottom:8px;">Inputs and sources &middot; F filed / rating agency &middot; P press &middot; A assumption</div>
+  <table class="model-table"><thead><tr><th class="row-h">Input</th><th style="text-align:right">Value</th><th style="text-align:center">Tag</th><th>Source</th></tr></thead><tbody><tr><td class="label">Entry EV ($m)</td><td style="text-align:right;font-family:var(--mono);font-size:0.7rem">146</td><td style="text-align:center;font-family:var(--mono);font-size:0.68rem;color:var(--teal)">P</td><td style="font-size:0.72rem;color:var(--muted)">$60m Brunswick bicycle business + $86m Schwinn/GT auction (Forbes, Lincoln International, Crain&#x27;s)</td></tr><tr><td class="label">Entry EBITDA, LTM ($m)</td><td style="text-align:right;font-family:var(--mono);font-size:0.7rem">22.00</td><td style="text-align:center;font-family:var(--mono);font-size:0.68rem;color:var(--warning)">A</td><td style="font-size:0.72rem;color:var(--muted)">Assumption: ~8% margin on 2001 revenue (no EBITDA ever disclosed)</td></tr><tr><td class="label">Debt raised ($m)</td><td style="text-align:right;font-family:var(--mono);font-size:0.7rem">120</td><td style="text-align:center;font-family:var(--mono);font-size:0.68rem;color:var(--warning)">A</td><td style="font-size:0.72rem;color:var(--muted)">Assumption: Wind Point put $3m of equity into the $60m Brunswick deal (Forbes); structure otherwise undisclosed</td></tr><tr><td class="label">Blended interest rate</td><td style="text-align:right;font-family:var(--mono);font-size:0.7rem">8.00%</td><td style="text-align:center;font-family:var(--mono);font-size:0.68rem;color:var(--warning)">A</td><td style="font-size:0.72rem;color:var(--muted)">Assumption</td></tr><tr><td class="label">Tax rate</td><td style="text-align:right;font-family:var(--mono);font-size:0.7rem">38.00%</td><td style="text-align:center;font-family:var(--mono);font-size:0.68rem;color:var(--warning)">A</td><td style="font-size:0.72rem;color:var(--muted)">Assumption</td></tr><tr><td class="label">Base-year revenue ($m)</td><td style="text-align:right;font-family:var(--mono);font-size:0.7rem">280</td><td style="text-align:center;font-family:var(--mono);font-size:0.68rem;color:var(--teal)">P</td><td style="font-size:0.72rem;color:var(--muted)">Forbes (Oct-2002): 2001 revenue ~$280m after Brunswick and Schwinn/GT</td></tr><tr><td class="label">Incremental revenue p.a. ($m)</td><td style="text-align:right;font-family:var(--mono);font-size:0.7rem">22.00</td><td style="text-align:center;font-family:var(--mono);font-size:0.68rem;color:var(--teal)">F</td><td style="font-size:0.72rem;color:var(--muted)">2003 sales &#x27;in excess of US$325m&#x27; (Dorel 6-K)</td></tr><tr><td class="label">D&amp;A p.a. ($m)</td><td style="text-align:right;font-family:var(--mono);font-size:0.7rem">1.00</td><td style="text-align:center;font-family:var(--mono);font-size:0.68rem;color:var(--teal)">F</td><td style="font-size:0.72rem;color:var(--muted)">Dorel recorded only $0.5m of segment D&amp;A in 2004; asset-light importer</td></tr><tr><td class="label">Capex p.a. ($m)</td><td style="text-align:right;font-family:var(--mono);font-size:0.7rem">1.50</td><td style="text-align:center;font-family:var(--mono);font-size:0.68rem;color:var(--warning)">A</td><td style="font-size:0.72rem;color:var(--muted)">Assumption</td></tr><tr><td class="label">Change in NWC p.a. ($m)</td><td style="text-align:right;font-family:var(--mono);font-size:0.7rem">-3.00</td><td style="text-align:center;font-family:var(--mono);font-size:0.68rem;color:var(--warning)">A</td><td style="font-size:0.72rem;color:var(--muted)">Growth working capital, assumption</td></tr><tr><td class="label">Exit multiple (x)</td><td style="text-align:right;font-family:var(--mono);font-size:0.7rem">5.80</td><td style="text-align:center;font-family:var(--mono);font-size:0.68rem;color:var(--teal)">F</td><td style="font-size:0.72rem;color:var(--muted)">$310m / annualised 2004 segment EBIT $53.9m (Dorel FY2004 MD&amp;A); D&amp;A negligible</td></tr></tbody></table>
+  <p style="font-size:0.8rem;color:var(--ink-soft);margin-top:12px;line-height:1.55"><strong>Note.</strong> EV went from $146m to $310m in about 30 months. Everything about the equity return depends on undisclosed leverage.</p>
+</div>
+</div><div class="tab" id="tab-pegasus_cannondale_2003">
+<div class="sec-title" style="margin-top:8px;"><h2>Pegasus Capital / Cannondale (2003-08)</h2><p>Distressed 363 purchase and exit &middot; Realised Q1-2008 &middot; workbook tab <strong>P10 Pegasus-Cannondale 2003</strong></p></div>
+
+<div class="grid2">
+  <div class="ctrl-panel">
+    <div style="font-family:var(--mono);font-size:0.67rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--teal);margin-bottom:14px;display:flex;justify-content:space-between;align-items:center">Parameters <button onclick="resetDeal('pegasus_cannondale_2003')" style="font-family:var(--mono);font-size:0.62rem;border:1px solid var(--rule);background:var(--paper);padding:2px 8px;cursor:pointer">reset to workbook</button></div>
+    <div class="ctrl-row"><div class="ctrl-label">Entry EV / EBITDA <span class="ctrl-val" id="pegasus_cannondale_2003-lbl-mult"></span></div><input type="range" id="pegasus_cannondale_2003-sl-mult" min="4.3" max="10.1" step="any" value="7.25" oninput="render('pegasus_cannondale_2003')"></div><div class="ctrl-row"><div class="ctrl-label">Debt / EBITDA <span class="ctrl-val" id="pegasus_cannondale_2003-lbl-lev"></span></div><input type="range" id="pegasus_cannondale_2003-sl-lev" min="0" max="5.6" step="any" value="3.75" oninput="render('pegasus_cannondale_2003')"></div><div class="ctrl-row"><div class="ctrl-label">Blended interest rate (%) <span class="ctrl-val" id="pegasus_cannondale_2003-lbl-rate"></span></div><input type="range" id="pegasus_cannondale_2003-sl-rate" min="1" max="15" step="any" value="9.0" oninput="render('pegasus_cannondale_2003')"></div><div class="ctrl-row"><div class="ctrl-label">Incremental revenue p.a. ($m) <span class="ctrl-val" id="pegasus_cannondale_2003-lbl-inc"></span></div><input type="range" id="pegasus_cannondale_2003-sl-inc" min="-7" max="21" step="any" value="12" oninput="render('pegasus_cannondale_2003')"></div><div class="ctrl-row"><div class="ctrl-label">Year-5 EBITDA margin (%) <span class="ctrl-val" id="pegasus_cannondale_2003-lbl-m5"></span></div><input type="range" id="pegasus_cannondale_2003-sl-m5" min="4.0" max="16.0" step="any" value="10.0" oninput="render('pegasus_cannondale_2003')"></div><div class="ctrl-row"><div class="ctrl-label">Exit EV / EBITDA <span class="ctrl-val" id="pegasus_cannondale_2003-lbl-exit"></span></div><input type="range" id="pegasus_cannondale_2003-sl-exit" min="4.9" max="14.6" step="any" value="9.75" oninput="render('pegasus_cannondale_2003')"></div>
+    <div style="font-family:var(--mono);font-size:0.65rem;color:var(--muted);margin-top:10px;line-height:1.5">Fixed from the workbook: revenue $140m, EBITDA $8.0m (LTM), D&amp;A $4.0m, capex $4.0m, NWC $-2.0m p.a., tax 38%, entry 2003-03-20, underwritten exit 2008-03-20.</div>
+  </div>
+  <div>
+    <div class="grid2c">
+      <div class="rbox" style="border-left:4px solid var(--teal)"><div class="rbig" id="pegasus_cannondale_2003-irr" style="color:var(--teal)">--</div><div class="rlbl">IRR, underwritten (5-yr)</div></div>
+      <div class="rbox"><div class="rbig" id="pegasus_cannondale_2003-mom">--</div><div class="rlbl">MoM, underwritten</div></div>
+    </div>
+    <div class="grid3">
+      <div class="rbox"><div class="rbig" id="pegasus_cannondale_2003-price" style="font-size:1rem">--</div><div class="rlbl">Purchase price</div></div>
+      <div class="rbox"><div class="rbig" id="pegasus_cannondale_2003-debt" style="font-size:1rem">--</div><div class="rlbl">Debt</div></div>
+      <div class="rbox"><div class="rbig" id="pegasus_cannondale_2003-eq" style="font-size:1rem">--</div><div class="rlbl">Equity (plug)</div></div>
+    </div>
+    <div class="grid3">
+      <div class="rbox"><div class="rbig" id="pegasus_cannondale_2003-exitev" style="font-size:1rem">--</div><div class="rlbl">Exit EV (yr 5)</div></div>
+      <div class="rbox"><div class="rbig" id="pegasus_cannondale_2003-cum" style="font-size:1rem">--</div><div class="rlbl">Cumulative LFCF</div></div>
+      <div class="rbox"><div class="rbig" id="pegasus_cannondale_2003-exiteq" style="font-size:1rem">--</div><div class="rlbl">Equity at exit</div></div>
+    </div>
+    <div style="background:var(--paper-warm);border:1px solid var(--rule-soft);padding:12px;margin-bottom:12px;">
+      <div style="font-family:var(--mono);font-size:0.67rem;font-weight:700;text-transform:uppercase;color:var(--muted);margin-bottom:6px;">Entry capital structure</div>
+      <div class="wf-bar" id="pegasus_cannondale_2003-wf"></div>
+    </div>
+    <div style="background:var(--paper-warm);border:1px solid var(--rule-soft);padding:12px;margin-bottom:12px;">
+      <div style="font-family:var(--mono);font-size:0.67rem;font-weight:700;text-transform:uppercase;color:var(--muted);margin-bottom:8px;">Actual outcome &middot; exit EV $195m &middot; debt at exit $30m &middot; 2008-02-04</div>
+      <div class="grid3">
+        <div class="rbox"><div class="rbig" id="pegasus_cannondale_2003-a-mom" style="font-size:1.2rem">--</div><div class="rlbl">MoM, actual</div></div>
+        <div class="rbox"><div class="rbig" id="pegasus_cannondale_2003-a-irr" style="font-size:1.2rem">--</div><div class="rlbl">IRR, actual</div></div>
+        <div class="rbox"><div class="rbig" id="pegasus_cannondale_2003-a-eq" style="font-size:1rem">--</div><div class="rlbl">Equity at exit</div></div>
+      </div>
+      <div style="font-family:var(--mono);font-size:0.7rem;color:var(--muted);margin-top:2px" id="pegasus_cannondale_2003-a-var"></div>
+      <p style="font-size:0.8rem;color:var(--ink-soft);margin-top:8px;line-height:1.5">Exit EV $190-200m, earnings-contingent to 30 Jun 2008 (Dorel 6-K); final price after the earnout is in Dorel&#x27;s FY2008 SEDAR statements, not retrieved. Exit debt assumed equal to entry.</p></div>
+    <div class="insight" id="pegasus_cannondale_2003-verdict" style="margin:0;"></div>
+  </div>
+</div>
+<div class="chart-wrap" style="margin-top:16px">
+  <div style="font-family:var(--mono);font-size:0.67rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);margin-bottom:8px;">Five-year build ($m) &middot; paper LBO mechanics</div>
+  <table class="model-table"><thead><tr><th class="row-h">Line</th><th class="proj">Yr 1</th><th class="proj">Yr 2</th><th class="proj">Yr 3</th><th class="proj">Yr 4</th><th class="proj">Yr 5</th></tr></thead><tbody id="pegasus_cannondale_2003-tbody"></tbody></table>
+</div>
+<div class="chart-wrap" style="margin-top:16px">
+  <div style="font-family:var(--mono);font-size:0.67rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);margin-bottom:8px;">Inputs and sources &middot; F filed / rating agency &middot; P press &middot; A assumption</div>
+  <table class="model-table"><thead><tr><th class="row-h">Input</th><th style="text-align:right">Value</th><th style="text-align:center">Tag</th><th>Source</th></tr></thead><tbody><tr><td class="label">Entry EV ($m)</td><td style="text-align:right;font-family:var(--mono);font-size:0.7rem">58.00</td><td style="text-align:center;font-family:var(--mono);font-size:0.68rem;color:var(--teal)">P</td><td style="font-size:0.72rem;color:var(--muted)">Bicycle assets bought for ~$55m at the 20 Mar 2003 auction; &#x27;~$58m&#x27; per Bicycle Retailer</td></tr><tr><td class="label">Entry EBITDA, LTM ($m)</td><td style="text-align:right;font-family:var(--mono);font-size:0.7rem">8.00</td><td style="text-align:center;font-family:var(--mono);font-size:0.68rem;color:var(--warning)">A</td><td style="font-size:0.72rem;color:var(--muted)">Assumption: post-emergence ~5.7% margin (FY2002 operating loss $(12.2)m)</td></tr><tr><td class="label">Debt raised ($m)</td><td style="text-align:right;font-family:var(--mono);font-size:0.7rem">30.00</td><td style="text-align:center;font-family:var(--mono);font-size:0.68rem;color:var(--warning)">A</td><td style="font-size:0.72rem;color:var(--muted)">Assumption: CIT provided DIP and exit financing; quantum undisclosed</td></tr><tr><td class="label">Blended interest rate</td><td style="text-align:right;font-family:var(--mono);font-size:0.7rem">9.00%</td><td style="text-align:center;font-family:var(--mono);font-size:0.68rem;color:var(--warning)">A</td><td style="font-size:0.72rem;color:var(--muted)">Assumption</td></tr><tr><td class="label">Tax rate</td><td style="text-align:right;font-family:var(--mono);font-size:0.7rem">38.00%</td><td style="text-align:center;font-family:var(--mono);font-size:0.68rem;color:var(--warning)">A</td><td style="font-size:0.72rem;color:var(--muted)">Assumption</td></tr><tr><td class="label">Base-year revenue ($m)</td><td style="text-align:right;font-family:var(--mono);font-size:0.7rem">140</td><td style="text-align:center;font-family:var(--mono);font-size:0.68rem;color:var(--warning)">A</td><td style="font-size:0.72rem;color:var(--muted)">Assumption: FY2002 sales $156.7m (last 10-K) less the retained motorsports line and the bankruptcy year</td></tr><tr><td class="label">Incremental revenue p.a. ($m)</td><td style="text-align:right;font-family:var(--mono);font-size:0.7rem">12.00</td><td style="text-align:center;font-family:var(--mono);font-size:0.68rem;color:var(--teal)">F</td><td style="font-size:0.72rem;color:var(--muted)">Cannondale + Sugoi ~$200m sales in 2007 (Dorel 6-K)</td></tr><tr><td class="label">D&amp;A p.a. ($m)</td><td style="text-align:right;font-family:var(--mono);font-size:0.7rem">4.00</td><td style="text-align:center;font-family:var(--mono);font-size:0.68rem;color:var(--warning)">A</td><td style="font-size:0.72rem;color:var(--muted)">Assumption</td></tr><tr><td class="label">Capex p.a. ($m)</td><td style="text-align:right;font-family:var(--mono);font-size:0.7rem">4.00</td><td style="text-align:center;font-family:var(--mono);font-size:0.68rem;color:var(--warning)">A</td><td style="font-size:0.72rem;color:var(--muted)">Assumption</td></tr><tr><td class="label">Change in NWC p.a. ($m)</td><td style="text-align:right;font-family:var(--mono);font-size:0.7rem">-2.00</td><td style="text-align:center;font-family:var(--mono);font-size:0.68rem;color:var(--warning)">A</td><td style="font-size:0.72rem;color:var(--muted)">Assumption</td></tr><tr><td class="label">Exit multiple (x)</td><td style="text-align:right;font-family:var(--mono);font-size:0.7rem">9.75</td><td style="text-align:center;font-family:var(--mono);font-size:0.68rem;color:var(--warning)">A</td><td style="font-size:0.72rem;color:var(--muted)">$195m midpoint / ~$20m 2007 EBITDA (assumption; Dorel disclosed sales only)</td></tr></tbody></table>
+  <p style="font-size:0.8rem;color:var(--ink-soft);margin-top:12px;line-height:1.55"><strong>Note.</strong> Roughly 3.4x on enterprise value in five years, on a business bought out of Chapter 11 at 0.37x sales.</p>
+</div>
+</div><div class="tab" id="tab-cerberus_dorel_2021">
+<div class="sec-title" style="margin-top:8px;"><h2>Cerberus + Koch / Dorel (2021)</h2><p>Take-private with family rollover (terminated 15 Feb 2021) &middot; Terminated; counterfactual shown &middot; workbook tab <strong>P11 Cerberus-Dorel 2021 TERM</strong></p></div>
+<div class="insight" style="border-left-color:var(--warning);background:#fdf8ec;margin:0 0 14px"><strong>Terminated.</strong> This transaction did not close. The model shows the deal as structured in the 1 February 2021 release; the actual-outcome panel shows the counterfactual.</div>
+<div class="grid2">
+  <div class="ctrl-panel">
+    <div style="font-family:var(--mono);font-size:0.67rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--teal);margin-bottom:14px;display:flex;justify-content:space-between;align-items:center">Parameters <button onclick="resetDeal('cerberus_dorel_2021')" style="font-family:var(--mono);font-size:0.62rem;border:1px solid var(--rule);background:var(--paper);padding:2px 8px;cursor:pointer">reset to workbook</button></div>
+    <div class="ctrl-row"><div class="ctrl-label">Entry EV / EBITDA <span class="ctrl-val" id="cerberus_dorel_2021-lbl-mult"></span></div><input type="range" id="cerberus_dorel_2021-sl-mult" min="5.1" max="11.8" step="any" value="8.461538461538462" oninput="render('cerberus_dorel_2021')"></div><div class="ctrl-row"><div class="ctrl-label">Debt / EBITDA <span class="ctrl-val" id="cerberus_dorel_2021-lbl-lev"></span></div><input type="range" id="cerberus_dorel_2021-sl-lev" min="0" max="6.3" step="any" value="4.1806020066889635" oninput="render('cerberus_dorel_2021')"></div><div class="ctrl-row"><div class="ctrl-label">Blended interest rate (%) <span class="ctrl-val" id="cerberus_dorel_2021-lbl-rate"></span></div><input type="range" id="cerberus_dorel_2021-sl-rate" min="1" max="15" step="any" value="7.000000000000001" oninput="render('cerberus_dorel_2021')"></div><div class="ctrl-row"><div class="ctrl-label">Incremental revenue p.a. ($m) <span class="ctrl-val" id="cerberus_dorel_2021-lbl-inc"></span></div><input type="range" id="cerberus_dorel_2021-sl-inc" min="-138" max="414" step="any" value="80" oninput="render('cerberus_dorel_2021')"></div><div class="ctrl-row"><div class="ctrl-label">Exit EV / EBITDA <span class="ctrl-val" id="cerberus_dorel_2021-lbl-exit"></span></div><input type="range" id="cerberus_dorel_2021-sl-exit" min="4.2" max="12.8" step="any" value="8.5" oninput="render('cerberus_dorel_2021')"></div>
+    <div style="font-family:var(--mono);font-size:0.65rem;color:var(--muted);margin-top:10px;line-height:1.5">Fixed from the workbook: revenue $2,762m, EBITDA $120m (LTM), D&amp;A $98m, capex $40m, NWC $0.0m p.a., tax 26%, entry 2021-02-16, underwritten exit 2026-02-16.</div>
+  </div>
+  <div>
+    <div class="grid2c">
+      <div class="rbox" style="border-left:4px solid var(--teal)"><div class="rbig" id="cerberus_dorel_2021-irr" style="color:var(--teal)">--</div><div class="rlbl">IRR, underwritten (5-yr)</div></div>
+      <div class="rbox"><div class="rbig" id="cerberus_dorel_2021-mom">--</div><div class="rlbl">MoM, underwritten</div></div>
+    </div>
+    <div class="grid3">
+      <div class="rbox"><div class="rbig" id="cerberus_dorel_2021-price" style="font-size:1rem">--</div><div class="rlbl">Purchase price</div></div>
+      <div class="rbox"><div class="rbig" id="cerberus_dorel_2021-debt" style="font-size:1rem">--</div><div class="rlbl">Debt</div></div>
+      <div class="rbox"><div class="rbig" id="cerberus_dorel_2021-eq" style="font-size:1rem">--</div><div class="rlbl">Equity (plug)</div></div>
+    </div>
+    <div class="grid3">
+      <div class="rbox"><div class="rbig" id="cerberus_dorel_2021-exitev" style="font-size:1rem">--</div><div class="rlbl">Exit EV (yr 5)</div></div>
+      <div class="rbox"><div class="rbig" id="cerberus_dorel_2021-cum" style="font-size:1rem">--</div><div class="rlbl">Cumulative LFCF</div></div>
+      <div class="rbox"><div class="rbig" id="cerberus_dorel_2021-exiteq" style="font-size:1rem">--</div><div class="rlbl">Equity at exit</div></div>
+    </div>
+    <div style="background:var(--paper-warm);border:1px solid var(--rule-soft);padding:12px;margin-bottom:12px;">
+      <div style="font-family:var(--mono);font-size:0.67rem;font-weight:700;text-transform:uppercase;color:var(--muted);margin-bottom:6px;">Entry capital structure</div>
+      <div class="wf-bar" id="cerberus_dorel_2021-wf"></div>
+    </div>
+    <div style="background:var(--paper-warm);border:1px solid var(--rule-soft);padding:12px;margin-bottom:12px;">
+      <div style="font-family:var(--mono);font-size:0.67rem;font-weight:700;text-transform:uppercase;color:var(--muted);margin-bottom:8px;">Actual outcome &middot; exit EV $1,440m &middot; debt at exit $500m &middot; 2026-02-16</div>
+      <div class="grid3">
+        <div class="rbox"><div class="rbig" id="cerberus_dorel_2021-a-mom" style="font-size:1.2rem">--</div><div class="rlbl">MoM, actual</div></div>
+        <div class="rbox"><div class="rbig" id="cerberus_dorel_2021-a-irr" style="font-size:1.2rem">--</div><div class="rlbl">IRR, actual</div></div>
+        <div class="rbox"><div class="rbig" id="cerberus_dorel_2021-a-eq" style="font-size:1rem">--</div><div class="rlbl">Equity at exit</div></div>
+      </div>
+      <div style="font-family:var(--mono);font-size:0.7rem;color:var(--muted);margin-top:2px" id="cerberus_dorel_2021-a-var"></div>
+      <p style="font-size:0.8rem;color:var(--ink-soft);margin-top:8px;line-height:1.5">COUNTERFACTUAL, not a realised exit: within eleven months of termination Dorel sold Sports alone to Pon for $810m (~11x per the circular&#x27;s Sports EBITDA), leaving Home + Juvenile with ~$90m of EBITDA that at 7x is ~$630m. $810m + $630m = ~$1,440m of value against a $947m ex-fee take-private EV. Sponsor equity would have been $314m + $83m family rollover.</p></div>
+    <div class="insight" id="cerberus_dorel_2021-verdict" style="margin:0;"></div>
+  </div>
+</div>
+<div class="chart-wrap" style="margin-top:16px">
+  <div style="font-family:var(--mono);font-size:0.67rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);margin-bottom:8px;">Five-year build ($m) &middot; paper LBO mechanics</div>
+  <table class="model-table"><thead><tr><th class="row-h">Line</th><th class="proj">Yr 1</th><th class="proj">Yr 2</th><th class="proj">Yr 3</th><th class="proj">Yr 4</th><th class="proj">Yr 5</th></tr></thead><tbody id="cerberus_dorel_2021-tbody"></tbody></table>
+</div>
+<div class="chart-wrap" style="margin-top:16px">
+  <div style="font-family:var(--mono);font-size:0.67rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);margin-bottom:8px;">Inputs and sources &middot; F filed / rating agency &middot; P press &middot; A assumption</div>
+  <table class="model-table"><thead><tr><th class="row-h">Input</th><th style="text-align:right">Value</th><th style="text-align:center">Tag</th><th>Source</th></tr></thead><tbody><tr><td class="label">Entry EV ($m)</td><td style="text-align:right;font-family:var(--mono);font-size:0.7rem">1,012</td><td style="text-align:center;font-family:var(--mono);font-size:0.68rem;color:var(--teal)">F</td><td style="font-size:0.72rem;color:var(--muted)">Aggregate purchase price incl. assumed debt and ~$65m fees (Dorel release, 1 Feb 2021); ~8.5x</td></tr><tr><td class="label">Entry EBITDA, LTM ($m)</td><td style="text-align:right;font-family:var(--mono);font-size:0.7rem">120</td><td style="text-align:center;font-family:var(--mono);font-size:0.68rem;color:var(--teal)">F</td><td style="font-size:0.72rem;color:var(--muted)">Buyer&#x27;s adjusted LTM EBITDA to 30 Sep 2020 (Dorel release, 1 Feb 2021); Letko says it embeds $44.5m of downward adjustments</td></tr><tr><td class="label">Debt raised ($m)</td><td style="text-align:right;font-family:var(--mono);font-size:0.7rem">500</td><td style="text-align:center;font-family:var(--mono);font-size:0.68rem;color:var(--teal)">F</td><td style="font-size:0.72rem;color:var(--muted)">Funded debt from third-party lenders (Dorel release, 1 Feb 2021)</td></tr><tr><td class="label">Blended interest rate</td><td style="text-align:right;font-family:var(--mono);font-size:0.7rem">7.00%</td><td style="text-align:center;font-family:var(--mono);font-size:0.68rem;color:var(--warning)">A</td><td style="font-size:0.72rem;color:var(--muted)">Assumption</td></tr><tr><td class="label">Tax rate</td><td style="text-align:right;font-family:var(--mono);font-size:0.7rem">26.00%</td><td style="text-align:center;font-family:var(--mono);font-size:0.68rem;color:var(--warning)">A</td><td style="font-size:0.72rem;color:var(--muted)">Canadian blended, assumption</td></tr><tr><td class="label">Base-year revenue ($m)</td><td style="text-align:right;font-family:var(--mono);font-size:0.7rem">2,762</td><td style="text-align:center;font-family:var(--mono);font-size:0.68rem;color:var(--teal)">F</td><td style="font-size:0.72rem;color:var(--muted)">Dorel FY2020 revenue (Q4-2020 results)</td></tr><tr><td class="label">Incremental revenue p.a. ($m)</td><td style="text-align:right;font-family:var(--mono);font-size:0.7rem">80.00</td><td style="text-align:center;font-family:var(--mono);font-size:0.68rem;color:var(--warning)">A</td><td style="font-size:0.72rem;color:var(--muted)">~3% p.a., assumption</td></tr><tr><td class="label">D&amp;A p.a. ($m)</td><td style="text-align:right;font-family:var(--mono);font-size:0.7rem">98.10</td><td style="text-align:center;font-family:var(--mono);font-size:0.68rem;color:var(--teal)">F</td><td style="font-size:0.72rem;color:var(--muted)">FY2020 consolidated D&amp;A (cash-flow statement)</td></tr><tr><td class="label">Capex p.a. ($m)</td><td style="text-align:right;font-family:var(--mono);font-size:0.7rem">40.00</td><td style="text-align:center;font-family:var(--mono);font-size:0.68rem;color:var(--warning)">A</td><td style="font-size:0.72rem;color:var(--muted)">Assumption</td></tr><tr><td class="label">Change in NWC p.a. ($m)</td><td style="text-align:right;font-family:var(--mono);font-size:0.7rem">0.00</td><td style="text-align:center;font-family:var(--mono);font-size:0.68rem;color:var(--warning)">A</td><td style="font-size:0.72rem;color:var(--muted)">Assumed flat</td></tr><tr><td class="label">Exit multiple (x)</td><td style="text-align:right;font-family:var(--mono);font-size:0.7rem">8.50</td><td style="text-align:center;font-family:var(--mono);font-size:0.68rem;color:var(--warning)">A</td><td style="font-size:0.72rem;color:var(--muted)">Assumed equal to entry</td></tr></tbody></table>
+  <p style="font-size:0.8rem;color:var(--ink-soft);margin-top:12px;line-height:1.55"><strong>Note.</strong> TD Securities&#x27; formal valuation range was C$14.00-C$17.00; the deal died at C$16.00 with ~19% of the minority publicly opposed. The board&#x27;s post-mortem argument, that the sum of the parts exceeded the offer, is what the Pon sale proved.</p>
+</div>
+</div>
+<div style="max-width:1100px;margin:40px auto 60px;padding:0 24px;font-family:var(--sans);font-size:0.78rem;color:var(--muted);line-height:1.6">
+Underwritten case = the template run on the entry structure and stated assumptions over a five-year hold; interest is charged on opening debt and all levered free cash flow accumulates as cash, so returns are slightly flattered versus a model with a debt sweep. Actual = the realised exit where one is disclosed. Every input above carries a tag; assumptions (A) are the sliders to distrust first. The workbook linked in the header carries the same eleven paper models plus four full three-statement LBO builds. Not investment advice.
+</div>
+<script>
+const DEALS={"windpoint_pacific_2001": {"key": "windpoint_pacific_2001", "name": "Wind Point / Pacific Cycle (2000-04)", "kind": "Sponsor platform build and exit", "status": "Realised Feb-2004", "strategic": false, "rev0": 280, "ebitda0": 22, "ev": 146, "debt": 120, "rate": 0.08, "tax": 0.38, "da": 1.0, "capex": 1.5, "nwc": -3.0, "inc": 22, "margins": [0.07857142857142857, 0.07857142857142857, 0.07857142857142857, 0.07857142857142857, 0.07857142857142857, 0.07857142857142857], "exitMult": 5.8, "entry": "2001-09-30", "exitUW": "2006-09-28", "actual": {"ev": 310, "debt": 90, "date": "2004-02-03", "note": "Exit EV $310m (Dorel 6-K; $320.5m 'total value' incl. balance of sale). Exit debt assumed $90m after three years of paydown. Wind Point held 43% (CIBC advisory notice); its total cost basis ($12.5m original + $3m Brunswick + Schwinn equity undisclosed) cannot be fully stated."}, "note": "EV went from $146m to $310m in about 30 months. Everything about the equity return depends on undisclosed leverage.", "full": null, "inputs": [["Entry EV ($m)", 146, "P", "$60m Brunswick bicycle business + $86m Schwinn/GT auction (Forbes, Lincoln International, Crain's)"], ["Entry EBITDA, LTM ($m)", 22, "A", "Assumption: ~8% margin on 2001 revenue (no EBITDA ever disclosed)"], ["Debt raised ($m)", 120, "A", "Assumption: Wind Point put $3m of equity into the $60m Brunswick deal (Forbes); structure otherwise undisclosed"], ["Blended interest rate", 0.08, "A", "Assumption"], ["Tax rate", 0.38, "A", "Assumption"], ["Base-year revenue ($m)", 280, "P", "Forbes (Oct-2002): 2001 revenue ~$280m after Brunswick and Schwinn/GT"], ["Incremental revenue p.a. ($m)", 22, "F", "2003 sales 'in excess of US$325m' (Dorel 6-K)"], ["D&A p.a. ($m)", 1.0, "F", "Dorel recorded only $0.5m of segment D&A in 2004; asset-light importer"], ["Capex p.a. ($m)", 1.5, "A", "Assumption"], ["Change in NWC p.a. ($m)", -3.0, "A", "Growth working capital, assumption"], ["Exit multiple (x)", 5.8, "F", "$310m / annualised 2004 segment EBIT $53.9m (Dorel FY2004 MD&A); D&A negligible"]]}, "pegasus_cannondale_2003": {"key": "pegasus_cannondale_2003", "name": "Pegasus Capital / Cannondale (2003-08)", "kind": "Distressed 363 purchase and exit", "status": "Realised Q1-2008", "strategic": false, "rev0": 140, "ebitda0": 8, "ev": 58, "debt": 30, "rate": 0.09, "tax": 0.38, "da": 4.0, "capex": 4.0, "nwc": -2.0, "inc": 12, "margins": [0.057, 0.07, 0.08, 0.09, 0.1, 0.1], "exitMult": 9.75, "entry": "2003-03-20", "exitUW": "2008-03-20", "actual": {"ev": 195, "debt": 30, "date": "2008-02-04", "note": "Exit EV $190-200m, earnings-contingent to 30 Jun 2008 (Dorel 6-K); final price after the earnout is in Dorel's FY2008 SEDAR statements, not retrieved. Exit debt assumed equal to entry."}, "note": "Roughly 3.4x on enterprise value in five years, on a business bought out of Chapter 11 at 0.37x sales.", "full": null, "inputs": [["Entry EV ($m)", 58, "P", "Bicycle assets bought for ~$55m at the 20 Mar 2003 auction; '~$58m' per Bicycle Retailer"], ["Entry EBITDA, LTM ($m)", 8, "A", "Assumption: post-emergence ~5.7% margin (FY2002 operating loss $(12.2)m)"], ["Debt raised ($m)", 30, "A", "Assumption: CIT provided DIP and exit financing; quantum undisclosed"], ["Blended interest rate", 0.09, "A", "Assumption"], ["Tax rate", 0.38, "A", "Assumption"], ["Base-year revenue ($m)", 140, "A", "Assumption: FY2002 sales $156.7m (last 10-K) less the retained motorsports line and the bankruptcy year"], ["Incremental revenue p.a. ($m)", 12, "F", "Cannondale + Sugoi ~$200m sales in 2007 (Dorel 6-K)"], ["D&A p.a. ($m)", 4.0, "A", "Assumption"], ["Capex p.a. ($m)", 4.0, "A", "Assumption"], ["Change in NWC p.a. ($m)", -2.0, "A", "Assumption"], ["Exit multiple (x)", 9.75, "A", "$195m midpoint / ~$20m 2007 EBITDA (assumption; Dorel disclosed sales only)"]]}, "cerberus_dorel_2021": {"key": "cerberus_dorel_2021", "name": "Cerberus + Koch / Dorel (2021) [TERMINATED]", "kind": "Take-private with family rollover (terminated 15 Feb 2021)", "status": "Terminated; counterfactual shown", "strategic": false, "rev0": 2762.5, "ebitda0": 119.6, "ev": 1012, "debt": 500, "rate": 0.07, "tax": 0.26, "da": 98.1, "capex": 40, "nwc": 0, "inc": 80, "margins": [0.04329411764705882, 0.04329411764705882, 0.04329411764705882, 0.04329411764705882, 0.04329411764705882, 0.04329411764705882], "exitMult": 8.5, "entry": "2021-02-16", "exitUW": "2026-02-16", "actual": {"ev": 1440, "debt": 500, "date": "2026-02-16", "note": "COUNTERFACTUAL, not a realised exit: within eleven months of termination Dorel sold Sports alone to Pon for $810m (~11x per the circular's Sports EBITDA), leaving Home + Juvenile with ~$90m of EBITDA that at 7x is ~$630m. $810m + $630m = ~$1,440m of value against a $947m ex-fee take-private EV. Sponsor equity would have been $314m + $83m family rollover."}, "note": "TD Securities' formal valuation range was C$14.00-C$17.00; the deal died at C$16.00 with ~19% of the minority publicly opposed. The board's post-mortem argument, that the sum of the parts exceeded the offer, is what the Pon sale proved.", "full": null, "inputs": [["Entry EV ($m)", 1012, "F", "Aggregate purchase price incl. assumed debt and ~$65m fees (Dorel release, 1 Feb 2021); ~8.5x"], ["Entry EBITDA, LTM ($m)", 119.6, "F", "Buyer's adjusted LTM EBITDA to 30 Sep 2020 (Dorel release, 1 Feb 2021); Letko says it embeds $44.5m of downward adjustments"], ["Debt raised ($m)", 500, "F", "Funded debt from third-party lenders (Dorel release, 1 Feb 2021)"], ["Blended interest rate", 0.07, "A", "Assumption"], ["Tax rate", 0.26, "A", "Canadian blended, assumption"], ["Base-year revenue ($m)", 2762.5, "F", "Dorel FY2020 revenue (Q4-2020 results)"], ["Incremental revenue p.a. ($m)", 80, "A", "~3% p.a., assumption"], ["D&A p.a. ($m)", 98.1, "F", "FY2020 consolidated D&A (cash-flow statement)"], ["Capex p.a. ($m)", 40, "A", "Assumption"], ["Change in NWC p.a. ($m)", 0, "A", "Assumed flat"], ["Exit multiple (x)", 8.5, "A", "Assumed equal to entry"]]}};
+
+function paperLBO(p, o){
+  const rev=[p.rev0]; for(let i=1;i<=5;i++) rev.push(rev[i-1]+o.inc);
+  const m0=p.ebitda0/p.rev0, hasPath=(p.margins[0]!==p.margins[5]);
+  const margins=p.margins.map((m,i)=> i===0 ? m0 : (hasPath ? m : m0));
+  if(hasPath && o.marginY5!==undefined){ const b5=p.margins[5]; for(let i=1;i<=5;i++) margins[i]=p.margins[i]*(o.marginY5/b5); }
+  const ebitda=rev.map((r,i)=>r*margins[i]);
+  const debt=ebitda[0]*o.lev, price=ebitda[0]*o.mult, equity=price-debt;
+  let cum=0; const rows=[];
+  for(let i=1;i<=5;i++){
+    const ebit=ebitda[i]-p.da, intr=debt*o.rate, ebt=ebit-intr, tax=ebt*p.tax, ni=ebt-tax, lfcf=ni+p.da-p.capex+p.nwc;
+    cum+=lfcf; rows.push({yr:i,rev:rev[i],ebitda:ebitda[i],ebit:ebit,intr:intr,ni:ni,lfcf:lfcf,cum:cum});
+  }
+  const exitEV=ebitda[5]*o.exitMult, exitEq=exitEV-debt+cum;
+  const days=(new Date(p.exitUW)-new Date(p.entry))/86400000;
+  const mom=exitEq/equity, irr=(equity>0&&exitEq>0)?Math.pow(mom,365/days)-1:null;
+  return {rev,ebitda,debt,price,equity,cum,exitEV,exitEq,mom,irr,rows,days};
+}
+function actualReturns(p, equity){
+  if(!p.actual||p.actual.ev===null) return null;
+  const exitEq=p.actual.ev-p.actual.debt, mom=exitEq/equity;
+  const days=(new Date(p.actual.date)-new Date(p.entry))/86400000;
+  const irr=(equity>0&&exitEq>0)?Math.pow(mom,365/days)-1:null;
+  return {exitEq,mom,irr,days};
+}
+const fmtM=v=>'$'+Math.round(v).toLocaleString()+'m';
+const fmtX=v=>(v===null||isNaN(v))?'n/m':v.toFixed(2)+'x';
+const fmtP=v=>(v===null||isNaN(v))?'n/m':((v>=0?'+':'')+(v*100).toFixed(1)+'%');
+function render(k){
+  const p=DEALS[k]; const g=id=>document.getElementById(k+'-'+id);
+  const o={mult:+g('sl-mult').value, lev:+g('sl-lev').value, rate:+g('sl-rate').value/100, inc:+g('sl-inc').value, exitMult:+g('sl-exit').value};
+  const sM=g('sl-m5'); if(sM) o.marginY5=+sM.value/100;
+  g('lbl-mult').textContent=o.mult.toFixed(2)+'x'; g('lbl-lev').textContent=o.lev.toFixed(2)+'x'; g('lbl-rate').textContent=(o.rate*100).toFixed(2)+'%';
+  g('lbl-inc').textContent=fmtM(o.inc); g('lbl-exit').textContent=o.exitMult.toFixed(2)+'x'; if(sM) g('lbl-m5').textContent=(o.marginY5*100).toFixed(1)+'%';
+  const r=paperLBO(p,o);
+  g('irr').textContent=fmtP(r.irr); g('irr').style.color=r.irr===null?'var(--negative)':r.irr>0.20?'var(--positive)':r.irr>0.10?'var(--warning)':'var(--negative)';
+  g('mom').textContent=fmtX(r.mom); g('mom').style.color=r.mom>2?'var(--positive)':r.mom>1?'var(--warning)':'var(--negative)';
+  g('price').textContent=fmtM(r.price); g('eq').textContent=fmtM(r.equity); g('debt').textContent=fmtM(r.debt);
+  g('exitev').textContent=fmtM(r.exitEV); g('cum').textContent=fmtM(r.cum); g('exiteq').textContent=fmtM(r.exitEq);
+  const dp=Math.max(0,Math.min(100,r.debt/r.price*100)), ep=100-dp;
+  g('wf').innerHTML='<div class="wf-seg" style="width:'+dp.toFixed(0)+'%;background:#1c3a6b;">Debt '+dp.toFixed(0)+'%</div><div class="wf-seg" style="width:'+ep.toFixed(0)+'%;background:#1d6f42;">Equity '+ep.toFixed(0)+'%</div>';
+  const tb=g('tbody'); tb.innerHTML='';
+  const hdr=['Revenue','EBITDA','EBIT','Interest','Net income','Levered FCF','Cumulative cash'];
+  const keys=['rev','ebitda','ebit','intr','ni','lfcf','cum'];
+  keys.forEach((kk,i)=>{const tr=tb.insertRow(); const td0=tr.insertCell(); td0.className='label'; td0.textContent=hdr[i];
+    r.rows.forEach(row=>{const td=tr.insertCell(); td.style.cssText='text-align:right;font-family:var(--mono);font-size:0.7rem;'; td.textContent=Math.round(row[kk]).toLocaleString();});});
+  const a=actualReturns(p,r.equity);
+  if(a){ g('a-mom').textContent=fmtX(a.mom); g('a-irr').textContent=fmtP(a.irr); g('a-eq').textContent=fmtM(a.exitEq);
+         g('a-mom').style.color=a.mom>1?'var(--positive)':'var(--negative)'; g('a-irr').style.color=(a.irr!==null&&a.irr>0)?'var(--positive)':'var(--negative)';
+         g('a-var').textContent=(a.mom-r.mom>=0?'+':'')+(a.mom-r.mom).toFixed(2)+'x vs underwritten'; }
+  const years=(r.days/365).toFixed(1);
+  g('verdict').innerHTML='<strong>Underwritten case ('+years+'-yr hold):</strong> '+fmtM(r.equity)+' of equity buys '+fmtM(r.price)+' of enterprise value at '+o.mult.toFixed(1)+'x with '+o.lev.toFixed(1)+'x of debt. Year-5 EBITDA '+fmtM(r.ebitda[5])+' at '+o.exitMult.toFixed(1)+'x gives '+fmtM(r.exitEV)+' of exit EV; after '+fmtM(r.debt)+' of debt and '+fmtM(r.cum)+' of accumulated cash, equity is worth '+fmtM(r.exitEq)+': <strong>'+fmtX(r.mom)+' / '+fmtP(r.irr)+'</strong>.'+(a?' <strong>Actual:</strong> '+fmtX(a.mom)+' / '+fmtP(a.irr)+' over '+(a.days/365).toFixed(1)+' years.':'');
+}
+function showTab(k,btn){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));document.getElementById('tab-'+k).classList.add('active');btn.classList.add('active');}
+function resetDeal(k){const p=DEALS[k];const g=id=>document.getElementById(k+'-'+id);
+  g('sl-mult').value=p.ev/p.ebitda0; g('sl-lev').value=p.debt/p.ebitda0; g('sl-rate').value=p.rate*100; g('sl-inc').value=p.inc; g('sl-exit').value=p.exitMult;
+  const sM=g('sl-m5'); if(sM) sM.value=p.margins[5]*100; render(k);}
+document.addEventListener('DOMContentLoaded',()=>{Object.keys(DEALS).forEach(k=>resetDeal(k));});
+
+</script>
+</body>
+</html>
