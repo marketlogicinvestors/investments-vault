@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Transaction Experience — Market Logic Investors</title>
+<meta name="description" content="Twelve files covering 76 transactions, 1981-2026, reconstructed from primary filings.">
+<style>
+
+:root{--ink:#0a1929;--ink-soft:#1c2e44;--paper:#faf9f4;--paper-warm:#f3efe3;--rule:#d4cfbf;--muted:#5b6b7a;--muted-light:#8a98a5;--accent:#b8391c;--accent-soft:#d65a3a;--teal:#1f6b6b;--positive:#2d6a4f;--negative:#9b2226;--serif:'Iowan Old Style','Palatino Linotype',Palatino,'Book Antiqua',Georgia,serif;--sans:'Helvetica Neue',Helvetica,-apple-system,BlinkMacSystemFont,system-ui,sans-serif;--mono:'SF Mono',SFMono-Regular,Menlo,Monaco,Consolas,'Liberation Mono',monospace}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--sans);background:var(--paper);color:var(--ink);line-height:1.55;-webkit-font-smoothing:antialiased}
+.page{max-width:1000px;margin:0 auto;padding:56px 56px 80px}
+h1,h2,h3{font-family:var(--serif);font-weight:400}
+h1{font-size:2.8rem;line-height:1.06;letter-spacing:-0.02em}
+h2{font-size:1.4rem}
+p{font-size:0.95rem;line-height:1.7;color:var(--ink-soft)}
+nav{position:sticky;top:0;z-index:999;background:#0a1929;border-bottom:1px solid #1c2e44;padding:10px 24px;display:flex;gap:12px;align-items:center;font-family:var(--sans);font-size:0.85rem;flex-wrap:wrap}
+nav .brand{color:#d65a3a;font-weight:700;text-decoration:none}
+nav a{color:#8a98a5;text-decoration:none;transition:color .15s}
+nav a:hover,nav a.active{color:#d65a3a}
+nav .sep{color:#2a3f54}
+nav .spacer{flex:1}
+.cover{border-top:3px solid var(--ink);padding-top:28px;margin-bottom:44px}
+.breadcrumb{font-family:var(--sans);font-size:0.78rem;color:var(--muted);margin-bottom:18px}
+.breadcrumb a{color:var(--teal);text-decoration:none}
+.eyebrow{font-family:var(--sans);font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.2em;color:var(--accent);display:block;margin-bottom:12px}
+.deal-row{display:grid;grid-template-columns:56px 1fr auto;border:1px solid var(--ink);margin-bottom:2px;text-decoration:none;color:inherit;transition:background .12s}
+.deal-row:hover{background:var(--paper-warm)}
+.deal-num{background:var(--ink);color:#f3efe3;font-family:var(--mono);font-size:0.68rem;display:flex;align-items:center;justify-content:center;padding:22px 0;writing-mode:vertical-rl;text-transform:uppercase;letter-spacing:0.12em;font-weight:600}
+.deal-body{padding:22px 26px;border-left:1px solid var(--rule)}
+.deal-body .tag{font-family:var(--mono);font-size:0.63rem;font-weight:600;text-transform:uppercase;letter-spacing:0.12em;color:var(--muted);display:block;margin-bottom:7px}
+.deal-body h3{font-family:var(--serif);font-size:1.35rem;font-weight:400;margin-bottom:4px;color:var(--ink)}
+.deal-body .sub{font-size:0.8rem;color:var(--muted);margin-bottom:9px}
+.deal-body p{font-size:0.87rem;color:var(--ink-soft);line-height:1.55}
+.deal-meta{padding:22px 26px;display:flex;flex-direction:column;align-items:flex-end;justify-content:center;gap:8px;min-width:150px;border-left:1px solid var(--rule)}
+.deal-meta .score{font-family:var(--serif);font-size:2.2rem;line-height:1;color:var(--accent)}
+.deal-meta .score em{font-family:var(--sans);font-size:0.68rem;color:var(--muted);font-style:normal}
+.deal-meta .rec{font-family:var(--mono);font-size:0.6rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--accent);border:1px solid var(--accent);padding:3px 8px;text-align:center}
+.deal-meta .status{font-family:var(--mono);font-size:0.6rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--positive)}
+.deal-meta .arrow{font-size:1.2rem;color:var(--muted);margin-top:auto}
+.summary{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--rule);margin-top:32px}
+.summary-item{padding:14px 18px;border-right:1px solid var(--rule)}
+.summary-item:last-child{border-right:none}
+.summary-item .label{font-family:var(--sans);font-size:0.65rem;font-weight:600;text-transform:uppercase;letter-spacing:0.12em;color:var(--muted);display:block;margin-bottom:4px}
+.summary-item strong{font-size:0.88rem}
+footer{margin-top:80px;padding-top:24px;border-top:1px solid var(--ink);font-family:var(--sans);font-size:0.74rem;color:var(--muted);display:flex;justify-content:space-between}
+@media(max-width:720px){.page{padding:28px 18px}h1{font-size:2rem}.deal-row{grid-template-columns:40px 1fr}.deal-meta{display:none}.summary{grid-template-columns:1fr}}
+
+
+.deal-meta .score{font-size:1.9rem}
+.deal-meta .score em{display:block;margin-top:2px}
+.lede-note{font-family:var(--sans);font-size:0.82rem;color:var(--muted);line-height:1.65;border-left:3px solid var(--rule);padding:4px 0 4px 16px;margin:22px 0 0}
+.taxo{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--rule);margin-top:26px}
+.taxo div{padding:14px 18px;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.taxo div:nth-child(3n){border-right:none}
+.taxo .k{font-family:var(--sans);font-size:0.63rem;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:var(--accent);display:block;margin-bottom:4px}
+.taxo .v{font-size:0.82rem;color:var(--ink-soft);line-height:1.5}
+.corr-row{display:block;border:1px solid var(--accent);background:#fdf3f0;padding:20px 26px;margin:2px 0 0;text-decoration:none;color:inherit}
+.corr-row:hover{background:#fbe9e4}
+.corr-row .k{font-family:var(--mono);font-size:0.63rem;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:var(--accent);display:block;margin-bottom:6px}
+.corr-row h3{font-family:var(--serif);font-size:1.25rem;font-weight:400;margin-bottom:5px}
+.corr-row p{font-size:0.86rem;color:var(--ink-soft);line-height:1.55}
+@media(max-width:720px){.taxo{grid-template-columns:1fr}}
+
+</style>
+</head>
+<body>
+<nav>
+  <a href="../" class="brand">Market Logic Investors</a>
+  <span class="sep">/</span>
+  <a href="../">Deal Vault</a>
+  <span class="sep">/</span>
+  <a href="." class="active">Transaction Experience</a>
+  <span class="spacer"></span>
+  <a href="record-corrections/" style="font-size:0.8rem;color:#5b6b7a">Record corrections &rarr;</a>
+</nav>
+<div class="page">
+<header class="cover">
+  <div class="breadcrumb"><a href="../">Deal Vault</a> &rsaquo; Transaction Experience</div>
+  <span class="eyebrow">Client transaction record &middot; Twenty years &middot; Twelve relationships</span>
+  <h1>Transaction Experience</h1>
+  <p style="margin-top:14px;max-width:620px">Twelve client relationships across twenty years of enterprise transformation and M&amp;A integration work, covering 76 transactions. Each file reconstructs the client's deal history in full from the primary record &mdash; SEC filings, court opinions, takeover-code documents, trademark files and government reports &mdash; with consideration, financing, purchase accounting, advisers, principals and outcomes, and a linked source for every figure. Where a file reaches back before the engagement, it is to give the transactions worked their full context.</p>
+  <p class="lede-note">This is a record of client transactions worked, not a portfolio of investments underwritten. Nothing here carries a score or a recommendation; the deal books under VC, SPAC and PE do that. What these files carry instead is what the filings actually said, including where the commonly repeated version of a deal is wrong.</p>
+</header>
+
+<a class="deal-row" href="daimlerchrysler/">
+  <div class="deal-num">01</div>
+  <div class="deal-body">
+    <span class="tag">Automotive &middot; 1998 &ndash; 2009 &middot; ML-TXN-DCX</span>
+    <h3>DaimlerChrysler</h3>
+    <div class="sub">Daimler-Benz AG &middot; Chrysler Corporation &middot; DaimlerChrysler AG &middot; Cerberus Capital Management</div>
+    <p>Daimler-Benz and Chrysler combined in 1998 in a three-step exchange offer and Delaware merger into a new German stock corporation, accounted for as a pooling of interests so no goodwill was ever recorded. The "merger of equals" representation produced a $300m securities class action settlement and the Tracinda trial. Chrysler was carved out to Cerberus in 2007 at a net cash outflow to Daimler, and the retained 19.9% was relinquished for no consideration in 2009.</p>
+  </div>
+  <div class="deal-meta">
+    <div class="score">3<em>transactions</em></div>
+    <div class="rec">Merger &amp; carve-out</div>
+    <div class="status">&#9679; 1998 &ndash; 2009</div>
+    <div class="arrow">&rarr;</div>
+  </div>
+</a><a class="deal-row" href="general-motors/">
+  <div class="deal-num">02</div>
+  <div class="deal-body">
+    <span class="tag">Automotive &middot; 2009 &ndash; 2014 &middot; ML-TXN-GM</span>
+    <h3>General Motors</h3>
+    <div class="sub">General Motors Corporation &middot; Motors Liquidation Company &middot; General Motors Company &middot; NYSE: GM</div>
+    <p>Chapter 11 on 1 June 2009, a Section 363 free-and-clear sale approved 5 July and closed 10 July, and a capital structure rebuilt around Treasury, Canada, the UAW VEBA and the unsecured bondholders. The November 2010 IPO raised ~$23.1bn. Treasury exited on 9 December 2013 having recovered ~$39bn of $49.5bn.</p>
+  </div>
+  <div class="deal-meta">
+    <div class="score">2<em>transactions</em></div>
+    <div class="rec">Restructuring</div>
+    <div class="status">&#9679; 2009 &ndash; 2014</div>
+    <div class="arrow">&rarr;</div>
+  </div>
+</a><a class="deal-row" href="verizon-vodafone/">
+  <div class="deal-num">03</div>
+  <div class="deal-body">
+    <span class="tag">Telecommunications &middot; 1999 &ndash; 2014 &middot; ML-TXN-VZ</span>
+    <h3>Verizon / Vodafone</h3>
+    <div class="sub">Verizon Communications Inc. &middot; NYSE: VZ &middot; Vodafone Group Plc &middot; Cellco Partnership</div>
+    <p>Verizon bought Vodafone's indirect 45% of Verizon Wireless for ~$130bn in cash, stock, notes and the Omnitel interest, terminating the 1999 and 2000 agreements that had governed the joint venture. Because Verizon already consolidated the subsidiary, ASC 810 required the whole thing to be booked within equity.</p>
+  </div>
+  <div class="deal-meta">
+    <div class="score">2<em>transactions</em></div>
+    <div class="rec">Minority buy-in</div>
+    <div class="status">&#9679; 1999 &ndash; 2014</div>
+    <div class="arrow">&rarr;</div>
+  </div>
+</a><a class="deal-row" href="navarre-speed-commerce/">
+  <div class="deal-num">04</div>
+  <div class="deal-body">
+    <span class="tag">Distribution &amp; e-commerce &middot; 2002 &ndash; 2016 &middot; ML-TXN-NAV</span>
+    <h3>Navarre / Speed Commerce</h3>
+    <div class="sub">Navarre Corporation &middot; NASDAQ: NAVR &rarr; SPDC &middot; Minneapolis / Richardson, TX</div>
+    <p>Navarre bought Encore out of bankruptcy for ~$10m in 2002 and FUNimation for $117.8m in 2005 on a $165m GE Capital facility. It impaired $73.4m of goodwill in one quarter of FY2009, sold FUNimation for $24.0m in 2011, reverse-merged with SpeedFC in 2012, sold the legacy distribution business for a stated $15m that realised ~$5m, levered $100m for Fifth Gear, and was foreclosed on in June 2016.</p>
+  </div>
+  <div class="deal-meta">
+    <div class="score">8<em>transactions</em></div>
+    <div class="rec">Full deal cycle</div>
+    <div class="status">&#9679; 2002 &ndash; 2016</div>
+    <div class="arrow">&rarr;</div>
+  </div>
+</a><a class="deal-row" href="dorel-pacific-cycle/">
+  <div class="deal-num">05</div>
+  <div class="deal-body">
+    <span class="tag">Consumer &middot; Recreation &middot; 2000 &ndash; 2022 &middot; ML-TXN-DII</span>
+    <h3>Pacific Cycle, Cannondale &amp; Dorel</h3>
+    <div class="sub">Dorel Industries Inc. &middot; TSX: DII.A / DII.B &middot; Pacific Cycle LLC &middot; Cycling Sports Group</div>
+    <p>Wind Point's Pacific Cycle bought Brunswick's bicycle business for $60m and Schwinn/GT out of bankruptcy for $86m, then sold to Dorel for $310.98m in 2004. Dorel added Cannondale in 2008 and Caloi in 2013. The Cerberus and Koch take-private was terminated the day before the vote in February 2021, and the strategic review it triggered produced the $810m sale of Dorel Sports to Pon Holdings.</p>
+  </div>
+  <div class="deal-meta">
+    <div class="score">8<em>transactions</em></div>
+    <div class="rec">Roll-up &amp; exit</div>
+    <div class="status">&#9679; 2000 &ndash; 2022</div>
+    <div class="arrow">&rarr;</div>
+  </div>
+</a><a class="deal-row" href="sub-zero-wolf/">
+  <div class="deal-num">06</div>
+  <div class="deal-body">
+    <span class="tag">Consumer durables &middot; 2000 &ndash; present &middot; ML-TXN-SZW</span>
+    <h3>Sub-Zero &amp; Wolf</h3>
+    <div class="sub">Sub-Zero Group, Inc. &middot; Wolf Appliance, Inc. &middot; Privately held &middot; Madison, WI</div>
+    <p>Sub-Zero acquired the residential Wolf Gourmet business in 2000, leaving the commercial range business with Vulcan. No price was ever disclosed and none ever will be. What the record does contain is the red-knob trademark file and Wolf Appliance v. Viking Range, which put the acquired line's post-deal revenue, unit volume and advertising spend on the public docket.</p>
+  </div>
+  <div class="deal-meta">
+    <div class="score">1<em>transactions</em></div>
+    <div class="rec">Private bolt-on</div>
+    <div class="status">&#9679; 2000 &ndash; present</div>
+    <div class="arrow">&rarr;</div>
+  </div>
+</a><a class="deal-row" href="mosaic/">
+  <div class="deal-num">07</div>
+  <div class="deal-body">
+    <span class="tag">Agriculture &amp; chemicals &middot; 1993 &ndash; 2018 &middot; ML-TXN-MOS</span>
+    <h3>Mosaic</h3>
+    <div class="sub">The Mosaic Company &middot; NYSE: MOS &middot; Cargill, Incorporated &middot; IMC Global Inc.</div>
+    <p>Cargill contributed its crop nutrition business into Global Nutrition Solutions, which simultaneously merged with IMC Global in October 2004; Cargill took 66.5% and 256,041,277 shares. The 2011 split-off unwound that stake tax-free under Section 355 by exchanging shares for Cargill stock and Cargill debt. Vale Fertilizantes followed in 2018, renegotiated downward days before closing.</p>
+  </div>
+  <div class="deal-meta">
+    <div class="score">5<em>transactions</em></div>
+    <div class="rec">Formation &amp; split-off</div>
+    <div class="status">&#9679; 1993 &ndash; 2018</div>
+    <div class="arrow">&rarr;</div>
+  </div>
+</a><a class="deal-row" href="caterpillar/">
+  <div class="deal-num">08</div>
+  <div class="deal-body">
+    <span class="tag">Industrials &middot; 1981 &ndash; 2026 &middot; ML-TXN-CAT</span>
+    <h3>Caterpillar</h3>
+    <div class="sub">Caterpillar Inc. &middot; NYSE: CAT &middot; CIK 0000018230 &middot; Irving / Peoria</div>
+    <p>Bucyrus at $92.00 a share and $8.8bn was the largest acquisition in Caterpillar's history and closed at the top of the mining cycle; $595m of its goodwill was written off in 2016. ERA Mining / Siwei was acquired in June 2012 and ~93% of its goodwill written off seven months later after deliberate multi-year accounting misconduct was found. Progress Rail and EMD built a locomotive franchise written down by $925m in 2022.</p>
+  </div>
+  <div class="deal-meta">
+    <div class="score">15<em>transactions</em></div>
+    <div class="rec">Acquisition programme</div>
+    <div class="status">&#9679; 1981 &ndash; 2026</div>
+    <div class="arrow">&rarr;</div>
+  </div>
+</a><a class="deal-row" href="varsity-brands/">
+  <div class="deal-num">09</div>
+  <div class="deal-body">
+    <span class="tag">Consumer &middot; Education &middot; 1974 &ndash; 2024 &middot; ML-TXN-VBR</span>
+    <h3>Varsity Brands, BSN Sports &amp; Herff Jones</h3>
+    <div class="sub">Varsity Brands, Inc. &middot; BSN SPORTS &middot; Herff Jones, Inc. &middot; Varsity Spirit Corporation</div>
+    <p>Jeff Webb founded Universal Cheerleaders Association in 1974 on $85,000. Riddell Sports took Varsity Spirit private in 1997 on $115m of 10.5% notes; Leonard Green took the group private in 2003 at $6.57 a share; Herff Jones' ESOP bought it in 2011 after the FTC blocked its bid for its direct rival; Charlesbank bought the ESOP out in 2014; Bain in 2018; KKR in 2024 at $4.75bn on a $2.375bn term loan.</p>
+  </div>
+  <div class="deal-meta">
+    <div class="score">11<em>transactions</em></div>
+    <div class="rec">Ownership chain</div>
+    <div class="status">&#9679; 1974 &ndash; 2024</div>
+    <div class="arrow">&rarr;</div>
+  </div>
+</a><a class="deal-row" href="centrica-direct-energy-nrg/">
+  <div class="deal-num">10</div>
+  <div class="deal-body">
+    <span class="tag">Energy &middot; Retail power &middot; 2000 &ndash; 2026 &middot; ML-TXN-NRG</span>
+    <h3>Centrica, Direct Energy &amp; NRG</h3>
+    <div class="sub">Centrica plc &middot; LSE: CNA &middot; NRG Energy, Inc. &middot; NYSE: NRG &middot; Direct Energy</div>
+    <p>Centrica bought Direct Energy Marketing in 2000 for C$912m and spent twenty years bolting on customer books, then sold the whole platform to NRG for $3.625bn in cash, closing 5 January 2021. Six weeks later Winter Storm Uri cost NRG $967m. The non-Texas earnings the deal brought are what absorbed it.</p>
+  </div>
+  <div class="deal-meta">
+    <div class="score">9<em>transactions</em></div>
+    <div class="rec">Build &amp; exit</div>
+    <div class="status">&#9679; 2000 &ndash; 2026</div>
+    <div class="arrow">&rarr;</div>
+  </div>
+</a><a class="deal-row" href="stanley-black-decker-securitas/">
+  <div class="deal-num">11</div>
+  <div class="deal-body">
+    <span class="tag">Industrials &middot; Security &middot; 2010 &ndash; 2022 &middot; ML-TXN-SWK</span>
+    <h3>Stanley Black &amp; Decker &amp; Securitas</h3>
+    <div class="sub">Stanley Black &amp; Decker, Inc. &middot; NYSE: SWK &middot; Securitas AB &middot; Niscayah Group AB</div>
+    <p>The 2010 Stanley Works / Black &amp; Decker merger of equals created the platform. In 2011 Stanley beat Securitas' all-share offer for Niscayah with SEK 18.00 in cash and ran open-market purchases alongside the tender to reach 94.9%. In 2022 it sold Convergent Security to Securitas for $3.2bn, Access Technologies to Allegion for $900m, and exited the category entirely.</p>
+  </div>
+  <div class="deal-meta">
+    <div class="score">5<em>transactions</em></div>
+    <div class="rec">Buy then sell</div>
+    <div class="status">&#9679; 2010 &ndash; 2022</div>
+    <div class="arrow">&rarr;</div>
+  </div>
+</a><a class="deal-row" href="energy-transfer-sunoco/">
+  <div class="deal-num">12</div>
+  <div class="deal-body">
+    <span class="tag">Midstream &amp; fuel distribution &middot; 2016 &ndash; 2026 &middot; ML-TXN-ET</span>
+    <h3>Energy Transfer &amp; Sunoco LP</h3>
+    <div class="sub">Energy Transfer LP &middot; NYSE: ET &middot; Sunoco LP &middot; NYSE: SUN &middot; Parkland Corporation</div>
+    <p>Energy Transfer rolled up Enable, Crestwood and WTG while Sunoco LP took NuStar and then Parkland, a US$9.1bn cross-border plan of arrangement that closed 31 October 2025 and created the largest independent fuel distributor in the Americas. Offen Petroleum was announced in August 2026 and is still pending. The Williams merger that never closed still cost $601.5m.</p>
+  </div>
+  <div class="deal-meta">
+    <div class="score">7<em>transactions</em></div>
+    <div class="rec">MLP roll-up</div>
+    <div class="status">&#9679; 2016 &ndash; 2026</div>
+    <div class="arrow">&rarr;</div>
+  </div>
+</a>
+
+<a class="corr-row" href="record-corrections/">
+  <span class="k">Cross-file appendix</span>
+  <h3>Record corrections and source-coverage notes</h3>
+  <p>Roughly two dozen points across these twelve files where the widely repeated account of a transaction is contradicted
+  by the filed record &mdash; wrong sponsor, wrong price, wrong closing date, wrong adviser, and in several cases events that
+  never happened. Each correction is set against the controlling document. &rarr;</p>
+</a>
+
+<div class="summary">
+  <div class="summary-item"><span class="label">Files</span><strong>12 files &middot; 76 transactions &middot; 50 documented sections</strong></div>
+  <div class="summary-item"><span class="label">Span</span><strong>Twenty years of client work &middot; deal record 1981 &ndash; 2026</strong></div>
+  <div class="summary-item"><span class="label">Sourcing</span><strong>SEC EDGAR &middot; court dockets &middot; SEDAR+ &middot; USPTO &middot; US Treasury &middot; takeover-code filings</strong></div>
+</div>
+
+<h2 style="margin-top:56px;font-size:1.2rem">How these files are organised</h2>
+<p style="margin-top:8px;max-width:640px">Every transaction is tagged against one classification. The taxonomy below is the
+one used throughout the files and is the fastest way in if you are looking for a structure rather than a company.</p>
+<div class="taxo"><div><span class="k">Public M&amp;A</span><span class="v">Stock-for-stock mergers of equals and cash mergers or tender offers for listed targets. DaimlerChrysler, Stanley/Black &amp; Decker, Bucyrus, Varsity Spirit.</span></div><div><span class="k">Private equity</span><span class="v">Sponsor entries and exits: carve-outs to sponsors, sponsor-to-strategic sales, secondary buyouts and take-privates. Chrysler/Cerberus, Pacific Cycle, EMD, the Varsity chain.</span></div><div><span class="k">Corporate carve-out</span><span class="v">Divisions and segments sold out of a listed parent. Direct Energy, Stanley Security, Weir Oil &amp; Gas, Dorel Sports, Vale Fertilizantes.</span></div><div><span class="k">Distressed &amp; insolvency</span><span class="v">Section 363 sales, bankruptcy auctions and lender enforcement. General Motors, Encore, Schwinn/GT, Iron Horse, the Speed Commerce foreclosure.</span></div><div><span class="k">Structured &amp; tax-driven</span><span class="v">Split-offs, contributed combinations, minority buy-ins and Up-C vehicles. Cargill/Mosaic, Verizon/Vodafone, SunocoCorp.</span></div><div><span class="k">MLP &amp; partnership</span><span class="v">Roll-ups inside a sponsored master limited partnership complex. Enable, Crestwood, NuStar, WTG, Parkland.</span></div><div><span class="k">Cross-border</span><span class="v">Transactions run under a non-US takeover code or a Canadian plan of arrangement. Niscayah, ERA Mining, Parkland, Caloi.</span></div><div><span class="k">Terminated &amp; contested</span><span class="v">Signed deals that did not complete, and the litigation that followed. Dorel/Cerberus, Energy Transfer/Williams, Tracinda, Siwei.</span></div><div><span class="k">Post-deal accounting</span><span class="v">Where deal quality eventually shows up: purchase price allocation, goodwill and impairment. $2.1bn at Caterpillar, $73m at Navarre, $237m at Dorel.</span></div></div>
+</div>
+<footer style="max-width:1000px;margin:0 auto;padding:24px 56px 40px">
+<div><strong style="color:var(--ink)">Market Logic Investors LLC</strong> &middot; Transaction Experience<br>Compiled from primary filings. Not investment advice.</div>
+<div style="text-align:right"><a href="../" style="color:var(--teal);text-decoration:none">&larr; Back to Deal Vault</a></div>
+</footer>
+</body>
+</html>

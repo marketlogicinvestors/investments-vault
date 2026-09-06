@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Record corrections — Transaction Experience — Market Logic Investors</title>
+<meta name="description" content="Where the commonly repeated account of a transaction is contradicted by the filed record.">
+<style>
+
+:root {
+  --ink: #0a1929; --ink-soft: #1c2e44;
+  --paper: #faf9f4; --paper-warm: #f3efe3;
+  --rule: #d4cfbf; --rule-soft: #e8e3d4;
+  --muted: #5b6b7a; --muted-light: #8a98a5;
+  --accent: #b8391c; --accent-soft: #d65a3a;
+  --teal: #1f6b6b; --teal-soft: #4a8b8b; --teal-light: #b8d4d4;
+  --positive: #2d6a4f; --warning: #b08800; --negative: #9b2226;
+  --negative-light: #e8c5c5;
+  --serif: 'Iowan Old Style','Palatino Linotype',Palatino,'Book Antiqua',Georgia,serif;
+  --sans: 'Helvetica Neue',Helvetica,-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
+  --mono: 'SF Mono',SFMono-Regular,Menlo,Monaco,Consolas,'Liberation Mono',monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{font-size:16px;-webkit-text-size-adjust:100%;}
+body{font-family:var(--sans);background:var(--paper);color:var(--ink);line-height:1.55;-webkit-font-smoothing:antialiased;}
+.page{max-width:1000px;margin:0 auto;padding:56px 56px 80px;}
+h1,h2,h3,h4,h5{font-family:var(--serif);font-weight:400;color:var(--ink);}
+h1{font-size:3.6rem;line-height:1.02;letter-spacing:-0.025em;}
+h2{font-size:2.05rem;line-height:1.12;letter-spacing:-0.015em;}
+h3{font-size:1.3rem;line-height:1.25;}
+h4{font-family:var(--sans);font-weight:600;font-size:0.7rem;text-transform:uppercase;letter-spacing:0.16em;color:var(--muted);}
+p{font-size:0.95rem;line-height:1.7;color:var(--ink-soft);}
+strong{color:var(--ink);font-weight:600;}
+.eyebrow{font-family:var(--sans);font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.2em;color:var(--accent);display:block;margin-bottom:18px;}
+.lede{font-family:var(--serif);font-size:1.25rem;line-height:1.5;color:var(--ink);}
+.kicker{font-family:var(--sans);font-size:0.75rem;font-weight:600;text-transform:uppercase;letter-spacing:0.12em;color:var(--teal);}
+.label{font-family:var(--sans);font-size:0.7rem;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);}
+.mono{font-family:var(--mono);font-size:0.85rem;}
+.cover{border-top:1px solid var(--ink);padding-top:32px;position:relative;}
+.cover-meta{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:84px;}
+.cover-meta .left,.cover-meta .right{font-family:var(--sans);font-size:0.78rem;color:var(--muted);}
+.cover-meta .right{text-align:right;}
+.cover-meta .right .stamp{display:inline-block;padding:4px 10px;border:1px solid var(--accent);color:var(--accent);font-weight:600;letter-spacing:0.12em;font-size:0.65rem;text-transform:uppercase;margin-bottom:8px;}
+.cover-title{margin-bottom:28px;}
+.cover-title .legal{display:block;font-family:var(--sans);font-size:0.78rem;color:var(--muted);margin-top:8px;letter-spacing:0.04em;}
+.cover-tag{font-family:var(--serif);font-style:italic;font-size:1.4rem;line-height:1.45;color:var(--ink-soft);max-width:720px;margin-bottom:56px;}
+.cover-tag::before{content:"\201C";font-size:2.2rem;line-height:0;vertical-align:-0.3em;color:var(--accent);margin-right:4px;}
+.cover-tag::after{content:"\201D";font-size:2.2rem;line-height:0;vertical-align:-0.3em;color:var(--accent);margin-left:2px;}
+.metric-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:0;border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);margin:32px 0;}
+.metric{padding:22px 16px 20px;border-right:1px solid var(--rule);text-align:left;}
+.metric:last-child{border-right:none;}
+.metric .v{font-family:var(--serif);font-size:2.1rem;line-height:1;letter-spacing:-0.02em;color:var(--ink);display:block;margin-bottom:6px;}
+.metric .v small{font-size:0.95rem;color:var(--muted);font-family:var(--serif);margin-left:1px;}
+.metric .l{font-family:var(--sans);font-size:0.68rem;font-weight:600;text-transform:uppercase;letter-spacing:0.12em;color:var(--muted);line-height:1.3;}
+.metric.accent .v{color:var(--accent);}
+.metric.teal .v{color:var(--teal);}
+section{margin-top:64px;padding-top:32px;border-top:1px solid var(--rule);}
+section.no-rule{border-top:none;}
+.section-head{display:grid;grid-template-columns:120px 1fr;gap:32px;margin-bottom:28px;align-items:baseline;}
+.section-num{font-family:var(--mono);font-size:0.78rem;color:var(--muted);letter-spacing:0.05em;border-top:2px solid var(--ink);padding-top:8px;text-transform:uppercase;font-weight:600;}
+.section-title h2{margin-bottom:8px;}
+.section-title .sub{font-family:var(--serif);font-style:italic;color:var(--muted);font-size:1.05rem;}
+.cols-2{display:grid;grid-template-columns:1fr 1fr;gap:36px;margin-top:16px;}
+.cols-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px;margin-top:16px;}
+.card{background:var(--paper-warm);padding:22px 24px;border:1px solid var(--rule);}
+.card.dark{background:var(--ink);color:var(--paper);}
+.card.dark h3,.card.dark h4{color:var(--paper);}
+.card.dark p{color:rgba(250,249,244,0.85);}
+.callout{border-left:3px solid var(--accent);padding:4px 0 4px 20px;margin:18px 0;font-family:var(--serif);font-style:italic;font-size:1.05rem;color:var(--ink);}
+.pull-quote{font-family:var(--serif);font-size:1.4rem;line-height:1.4;color:var(--ink);border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);padding:28px 0;margin:32px 0;text-align:center;letter-spacing:-0.005em;}
+table{width:100%;border-collapse:collapse;font-family:var(--sans);font-size:0.88rem;margin-top:14px;}
+thead th{text-align:left;font-weight:600;font-size:0.7rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);padding:10px 14px 10px 0;border-bottom:1.5px solid var(--ink);}
+thead th.num{text-align:right;}
+tbody td{padding:14px 14px 14px 0;border-bottom:1px solid var(--rule);color:var(--ink-soft);vertical-align:top;}
+tbody td.num{text-align:right;font-variant-numeric:tabular-nums;font-family:var(--mono);font-size:0.82rem;}
+tbody td strong{color:var(--ink);}
+tbody tr.highlight td{color:var(--ink);}
+tbody tr.highlight td:first-child{padding-left:12px;border-left:3px solid var(--accent);}
+ul.clean{list-style:none;}
+ul.clean li{padding:12px 0 12px 24px;border-bottom:1px solid var(--rule-soft);position:relative;font-size:0.93rem;color:var(--ink-soft);line-height:1.6;}
+ul.clean li::before{content:"→";position:absolute;left:0;top:12px;color:var(--accent);font-weight:600;}
+ol.clean{list-style:none;counter-reset:ck;}
+ol.clean li{counter-increment:ck;padding:12px 0 12px 36px;border-bottom:1px solid var(--rule-soft);position:relative;font-size:0.93rem;color:var(--ink-soft);line-height:1.6;}
+ol.clean li::before{content:counter(ck,decimal-leading-zero);position:absolute;left:0;top:12px;font-family:var(--mono);font-size:0.78rem;color:var(--accent);font-weight:600;}
+.tag{display:inline-block;font-family:var(--sans);font-size:0.68rem;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;padding:3px 9px;margin-right:6px;margin-bottom:4px;border:1px solid var(--rule);color:var(--ink-soft);background:var(--paper);}
+.tag.accent{border-color:var(--accent);color:var(--accent);}
+.tag.teal{border-color:var(--teal);color:var(--teal);}
+.tag.warn{border-color:var(--warning);color:var(--warning);}
+.tag.neg{border-color:var(--negative);color:var(--negative);}
+.tag.pos{border-color:var(--positive);color:var(--positive);}
+.thesis-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:24px;border:1px solid var(--ink);}
+.thesis-col{padding:28px 28px 24px;}
+.thesis-col.bull{border-right:1px solid var(--ink);}
+.thesis-col ul{list-style:none;margin-top:14px;}
+.thesis-col ul li{padding:10px 0 10px 22px;position:relative;font-size:0.9rem;color:var(--ink-soft);line-height:1.55;border-bottom:1px dashed var(--rule-soft);}
+.thesis-col.bull ul li::before{content:"+";position:absolute;left:0;top:9px;color:var(--positive);font-weight:700;}
+.thesis-col.bear ul li::before{content:"−";position:absolute;left:0;top:9px;color:var(--negative);font-weight:700;}
+.recommendation{background:var(--ink);color:var(--paper);padding:40px 44px;margin-top:40px;border-left:6px solid var(--accent);}
+.recommendation .head{font-family:var(--mono);font-size:0.74rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--accent-soft);margin-bottom:12px;font-weight:600;}
+.recommendation h2{color:var(--paper);margin-bottom:14px;}
+.recommendation p{color:rgba(250,249,244,0.86);font-size:1rem;}
+.recommendation .actions{margin-top:24px;padding-top:20px;border-top:1px solid rgba(250,249,244,0.18);display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+.recommendation .actions .h{font-family:var(--mono);font-size:0.7rem;text-transform:uppercase;letter-spacing:0.14em;color:var(--accent-soft);margin-bottom:10px;}
+.recommendation .actions ul{list-style:none;}
+.recommendation .actions ul li{padding:6px 0 6px 22px;position:relative;font-size:0.9rem;color:rgba(250,249,244,0.92);line-height:1.5;}
+.recommendation .actions ul li::before{content:"▸";position:absolute;left:0;top:5px;color:var(--accent-soft);}
+footer{margin-top:80px;padding-top:28px;border-top:1px solid var(--ink);font-family:var(--sans);font-size:0.74rem;color:var(--muted);display:flex;justify-content:space-between;}
+.chart{width:100%;margin:18px 0 6px;background:var(--paper);}
+.chart-caption{font-family:var(--sans);font-size:0.72rem;color:var(--muted);margin-top:4px;font-style:italic;line-height:1.5;}
+/* Dashboard */
+.dash-panel{background:var(--paper-warm);border:1px solid var(--rule);padding:24px;margin-top:24px;}
+.dash-controls{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:20px;}
+.ctrl-item{display:flex;flex-direction:column;gap:5px;}
+.ctrl-item label{font-family:var(--sans);font-size:0.7rem;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);}
+.ctrl-row{display:flex;align-items:center;gap:8px;}
+.ctrl-row input[type=range]{flex:1;accent-color:var(--teal);cursor:pointer;}
+.ctrl-val{font-family:var(--mono);font-size:0.82rem;font-weight:600;color:var(--ink);min-width:48px;text-align:right;}
+.scen-row{display:flex;gap:8px;margin-bottom:18px;flex-wrap:wrap;}
+.scen-btn{font-family:var(--sans);font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;padding:5px 14px;border:1px solid var(--rule);background:var(--paper);color:var(--muted);cursor:pointer;}
+.scen-btn:hover{border-color:var(--teal);color:var(--teal);}
+.scen-btn.active{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+.output-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--rule);margin-bottom:16px;}
+.output-cell{padding:16px 14px;border-right:1px solid var(--rule);}
+.output-cell:last-child{border-right:none;}
+.output-cell .ov{font-family:var(--serif);font-size:1.8rem;letter-spacing:-0.02em;color:var(--ink);display:block;line-height:1;margin-bottom:4px;}
+.output-cell .ol{font-family:var(--sans);font-size:0.65rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--muted);}
+.output-cell.ok .ov{color:var(--positive);}
+.output-cell.warn .ov{color:var(--warning);}
+.output-cell.bad .ov{color:var(--negative);}
+.verdict-box{padding:16px 20px;font-family:var(--sans);font-size:0.88rem;line-height:1.6;border-left:4px solid var(--rule);margin-bottom:16px;}
+.verdict-box.ok{border-left-color:var(--positive);background:#f0f7f4;}
+.verdict-box.warn{border-left-color:var(--warning);background:#fdf8ec;}
+.verdict-box.bad{border-left-color:var(--negative);background:#fdf0f0;}
+.verdict-box .vl{font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.14em;margin-bottom:5px;color:var(--muted);}
+.assump-list{list-style:none;margin-top:0;}
+.assump-list li{padding:14px 0 14px 24px;border-bottom:1px solid var(--rule-soft);position:relative;font-size:0.88rem;line-height:1.6;color:var(--ink-soft);}
+.assump-list li::before{content:"→";position:absolute;left:0;top:14px;color:var(--accent);font-weight:700;}
+.assump-list li strong{color:var(--ink);}
+.assump-flag{display:inline-block;font-family:var(--mono);font-size:0.65rem;font-weight:700;letter-spacing:0.08em;padding:2px 7px;border:1px solid;margin-left:8px;vertical-align:middle;}
+.assump-flag.ok{border-color:var(--positive);color:var(--positive);}
+.assump-flag.warn{border-color:var(--warning);color:var(--warning);}
+.assump-flag.bad{border-color:var(--negative);color:var(--negative);}
+.signal{font-family:var(--mono);font-size:0.72rem;color:var(--teal);margin-top:6px;display:block;line-height:1.5;}
+.entity-row{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--ink);margin-top:20px;}
+.entity-col{padding:20px 18px;border-right:1px solid var(--rule);}
+.entity-col:last-child{border-right:none;}
+.entity-col h4{margin-bottom:12px;}
+.entity-col.et h4{color:var(--teal);}
+.entity-col.sun h4{color:var(--positive);}
+.entity-col.usac h4{color:var(--warning);}
+.emet{display:flex;justify-content:space-between;font-size:0.8rem;padding:6px 0;border-bottom:1px solid var(--rule-soft);}
+.emet:last-child{border:none;}
+.emet .ek{color:var(--muted);}
+.emet .ev{font-weight:600;color:var(--ink);font-family:var(--mono);font-size:0.78rem;}
+.emet .ev.g{color:var(--positive);}
+.emet .ev.r{color:var(--negative);}
+.emet .ev.w{color:var(--warning);}
+.dc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--rule);margin-top:16px;}
+.dc-cell{padding:18px 16px;border-right:1px solid var(--rule);}
+.dc-cell:last-child{border-right:none;}
+.dc-name{font-family:var(--sans);font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--ink);margin-bottom:4px;}
+.dc-pipe{font-family:var(--sans);font-size:0.7rem;color:var(--muted);margin-bottom:10px;}
+.dc-vol{font-family:var(--serif);font-size:1.8rem;color:var(--teal);letter-spacing:-0.02em;line-height:1;margin-bottom:4px;}
+.dc-ebitda{font-family:var(--mono);font-size:0.8rem;color:var(--positive);font-weight:600;}
+.dc-note{font-size:0.72rem;color:var(--muted);margin-top:6px;line-height:1.45;}
+.site-nav{display:flex;align-items:center;justify-content:space-between;background:var(--ink);color:var(--paper);padding:10px 40px;font-family:var(--sans);font-size:0.78rem;letter-spacing:0.04em;position:sticky;top:0;z-index:100;gap:16px;}
+.site-nav a{color:rgba(250,249,244,0.7);text-decoration:none;}
+.site-nav a:hover{color:var(--paper);}
+.site-nav span[aria-hidden]{color:rgba(250,249,244,0.3);margin:0 4px;}
+.site-nav .nav-meta{color:rgba(250,249,244,0.45);font-size:0.75rem;}
+.site-nav .nav-action a{color:var(--accent);border:1px solid rgba(184,57,28,0.5);border-radius:3px;padding:3px 10px;}
+@media(max-width:760px){
+  .page{padding:32px 22px;}
+  h1{font-size:2.4rem;}
+  .metric-grid{grid-template-columns:repeat(2,1fr);}
+  .cols-2,.cols-3,.thesis-grid,.dash-controls,.output-grid,.entity-row,.dc-grid{grid-template-columns:1fr;}
+  .thesis-col.bull{border-right:none;border-bottom:1px solid var(--ink);}
+  .section-head{grid-template-columns:1fr;gap:8px;}
+  .recommendation .actions{grid-template-columns:1fr;}
+}
+
+/* ===== Glossary ===== */
+.glossary-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:0;border:1px solid var(--ink);margin-top:16px;}
+.glossary-col{padding:0;}
+.gterm{display:grid;grid-template-columns:160px 1fr;gap:0;border-bottom:1px solid var(--rule-soft);}
+.gterm:last-child{border-bottom:none;}
+.gt{font-family:var(--mono);font-size:0.78rem;font-weight:700;color:var(--teal);padding:12px 14px;border-right:1px solid var(--rule-soft);background:var(--paper-warm);display:flex;align-items:flex-start;}
+.gd{font-size:0.82rem;color:var(--ink-soft);padding:12px 14px;line-height:1.55;}
+.gd strong{color:var(--ink);}
+@media(max-width:760px){.glossary-grid{grid-template-columns:1fr;}.gterm{grid-template-columns:120px 1fr;}}
+
+
+
+section[id]{scroll-margin-top:64px}
+.tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin-top:14px}
+.tbl-wrap table{margin-top:0}
+em.unv{font-style:normal;font-family:var(--mono);font-size:0.68rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--warning);border:1px solid var(--warning);padding:1px 5px;margin:0 2px;white-space:nowrap}
+em.corr{font-style:normal;font-family:var(--mono);font-size:0.68rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--accent);border:1px solid var(--accent);padding:1px 5px;margin:0 2px}
+h3{font-family:var(--sans);font-size:0.78rem;font-weight:700;text-transform:uppercase;letter-spacing:0.13em;color:var(--accent);margin:26px 0 8px}
+h4{font-family:var(--serif);font-size:1.05rem;font-weight:400;margin:20px 0 6px}
+section ul{margin:6px 0 6px 20px}
+section ul li{font-size:0.9rem;line-height:1.6;color:var(--ink-soft);padding:3px 0}
+section ol{margin:6px 0 6px 22px}
+section ol li{font-size:0.9rem;line-height:1.6;color:var(--ink-soft);padding:3px 0}
+.factstrip{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--ink);margin:18px 0 4px}
+.factstrip .f{padding:16px 20px;border-right:1px solid var(--rule)}
+.factstrip .f:last-child{border-right:none}
+.factstrip .f .label{display:block;margin-bottom:5px}
+.factstrip .f .t{font-size:0.88rem;line-height:1.55;color:var(--ink)}
+.txn-map td:first-child{font-weight:600;color:var(--ink)}
+.srcnote{font-family:var(--sans);font-size:0.78rem;color:var(--muted);line-height:1.6;border-left:3px solid var(--rule);padding:2px 0 2px 16px;margin:14px 0}
+.toc{display:grid;grid-template-columns:repeat(2,1fr);gap:0;border:1px solid var(--ink);margin-top:20px}
+.toc a{display:block;padding:12px 18px;border-bottom:1px solid var(--rule-soft);border-right:1px solid var(--rule-soft);text-decoration:none;color:var(--ink);font-size:0.86rem}
+.toc a:hover{background:var(--paper-warm);color:var(--accent)}
+.toc a .n{font-family:var(--mono);font-size:0.68rem;color:var(--muted);margin-right:10px}
+@media(max-width:720px){.factstrip,.toc{grid-template-columns:1fr}}
+
+</style>
+</head>
+<body>
+<nav class="site-nav" aria-label="breadcrumb">
+  <div style="display:flex;align-items:center;gap:0;flex-wrap:wrap">
+    <a href="../../">Market Logic Investors</a><span aria-hidden="true">/</span>
+    <a href="../../">Deal Vault</a><span aria-hidden="true">/</span>
+    <a href="../">Transaction Experience</a><span aria-hidden="true">/</span>
+    <span>Record corrections</span>
+  </div>
+  <div style="display:flex;align-items:center;gap:16px;">
+    <span class="nav-meta">ML-TXN-APX &nbsp;|&nbsp; Cross-file appendix</span>
+  </div>
+</nav>
+<div class="page">
+<header class="cover">
+<div class="cover-meta">
+<div class="left">
+<strong style="color:var(--ink);display:block;margin-bottom:4px;">Market Logic Investors LLC</strong>Transaction Experience · Cross-file appendix<br>Primary-source reconciliation
+</div>
+<div class="right">
+<span class="stamp">Appendix</span><br><strong style="color:var(--ink);">Ref: ML-TXN-APX</strong><br>Compiled: September 6, 2026
+</div>
+</div>
+<span class="eyebrow">Cross-file appendix · Where the record differs</span>
+<div class="cover-title">
+<h1>
+Record corrections
+</h1>
+<span class="legal">Twelve files · roughly two dozen contested points · controlling document cited for each</span>
+</div>
+<p class="cover-tag">
+Several of these transactions are persistently misreported — wrong sponsor, wrong price, wrong closing date, wrong adviser, and in a few cases events that never happened at all. Each table below sets the commonly repeated version against what the filed record actually says. Also collected here are the notes on where source coverage runs out, and the EDGAR reference index for the entities involved.
+</p>
+</header>
+<section id="apx-01">
+<div class="section-head">
+<div class="section-num">
+§ 01
+</div>
+<div class="section-title">
+<h2>
+Files 01–03 — DaimlerChrysler, General Motors, Verizon/Vodafone
+</h2>
+<p class="sub">
+Corrections, coverage notes and filing index
+</p>
+</div>
+</div>
+<h4 id="note-on-source-coverage">Note on source coverage</h4>
+<ul>
+<li>All SEC <code>Archives/edgar/data/...</code> URLs above were retrieved and read in this session. EDGAR <code>cgi-bin/browse-edgar</code> company-index pages are blocked to automated fetch by SEC robots rules, so where a company index is given it is provided as a navigation pointer only and was not itself retrieved; the direct Archives document URLs were.</li>
+<li>SIGTARP’s own quarterly-report PDFs could not be retrieved in this session; the $11.2bn GM figure is attributed to the April 30, 2014 SIGTARP quarterly report via secondary reporting, while Treasury’s own $39bn-recovered and ~$12bn-net-loss figures come directly from Treasury press releases and the AIFP overview page.</li>
+<li>The DaimlerChrysler 1998 F-4 is a ~1.15MB single document; the figures quoted above are verbatim extracts from it, but the “Legal Matters” side-by-side attribution and the break-up fee provisions were not locatable in the retrievable portion and are marked accordingly.</li>
+</ul>
+</section>
+<section id="apx-02">
+<div class="section-head">
+<div class="section-num">
+§ 02
+</div>
+<div class="section-title">
+<h2>
+File 04 — Navarre / Speed Commerce
+</h2>
+<p class="sub">
+Corrections, coverage notes and filing index
+</p>
+</div>
+</div>
+<h4 id="record-corrections">Record corrections</h4>
+<div class="tbl-wrap"><table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Commonly cited version</th>
+<th>Primary-source finding</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Encore acquired for ~$2.5m cash + stock earnout</td>
+<td>§363 bankruptcy asset sale: $7.0m cash + $650k contingent note + $500k unsecured note + ~$1.6m Comerica debt assumed; ~$10m stated total; <strong>no shares issued, no earnout</strong> — <a href="https://www.sec.gov/Archives/edgar/data/911650/000095013402009908/c71272e8vk.txt">8-K 8/14/2002</a></td>
+</tr>
+<tr class="even">
+<td>Cary Deacon / Ron Chaimowitz involved in Encore</td>
+<td>Encore was run by founder-CEO <strong>Mike Bell</strong>; Deacon became Navarre CEO years later; Chaimowitz not named in any filing</td>
+</tr>
+<tr class="odd">
+<td>FUNimation financed by Bank of America / LaSalle + subordinated notes</td>
+<td><strong>$165m GE Capital facility</strong>: $140m Term Loan B + $25m revolver — <a href="https://www.sec.gov/Archives/edgar/data/911650/000095013405010344/c95315e8vk.htm">8-K 5/17/2005</a></td>
+</tr>
+<tr class="even">
+<td>Charles Cheney CFO on FUNimation</td>
+<td>Navarre’s CFO was <strong>Jim Gilbertson</strong> — <a href="https://www.sec.gov/Archives/edgar/data/911650/000095013405010344/c95315exv99w1.htm">EX-99.1 5/11/2005</a></td>
+</tr>
+<tr class="odd">
+<td>Failed 2006 sale of FUNimation; Nov 2007 announced sale that fell through</td>
+<td>No such filings exist. The sale process began <strong>May 27, 2010</strong> with Houlihan Lokey; nearly abandoned in Q3 FY2011 for lack of an adequate offer — <a href="https://www.sec.gov/Archives/edgar/data/911650/000095012310053667/c58456exv99w2.htm">8-K 5/27/2010</a>, <a href="https://www.sec.gov/Archives/edgar/data/911650/000095012311007694/c62743exv99w1.htm">8-K 2/1/2011</a></td>
+</tr>
+<tr class="even">
+<td>FUNimation sold to Group 1200 Media</td>
+<td>Buyers were <strong>FUNimation GP, LLC / Anime LP Holdings, LLC / FUNimation LP, LLC</strong>, a Fukunaga-led group. “Group 1200 Media” was a <strong>May 2013</strong> holding-brand rename, two years after the sale</td>
+</tr>
+<tr class="odd">
+<td>Navarre sold Encore to Speed Commerce</td>
+<td>Speed Commerce <em>is</em> Navarre renamed. Encore Software, Inc. was sold <strong>out</strong> of Speed Commerce to <strong>WD Encore Software, LLC</strong> in the July 2014 WYNIT transaction</td>
+</tr>
+<tr class="even">
+<td>SpeedFC: ~19.5m shares + preferred, ~$50m</td>
+<td><strong>17,095,186 shares + $25m cash = $50m</strong>; <strong>no preferred</strong>; earnout later settled at $3,994,756 cash + 2,360,129 shares; total recorded consideration <strong>$54.172m</strong></td>
+</tr>
+<tr class="odd">
+<td>Wynit sale for ~$26m</td>
+<td>Stated <strong>$15m</strong> ($5m cash + $10m note); note written to $1.5m then <strong>reduced to zero</strong> — realized ≈ $5m cash</td>
+</tr>
+<tr class="even">
+<td>Reverse stock split at the 2013/2014 rebrand</td>
+<td>Name/ticker change 9/9–9/12/2013 with <strong>no split</strong>; the only split was <strong>1-for-16 on 3/30/2016</strong> as a going-dark step</td>
+</tr>
+<tr class="odd">
+<td>Missing from the commonly cited account</td>
+<td><strong>Fifth Gear acquisition, $55m cash + up to 8.4m earnout shares, Nov 21 2014</strong>, funded by the $100m Garrison facility — the proximate cause of the collapse</td>
+</tr>
+</tbody>
+</table></div>
+</section>
+<section id="apx-03">
+<div class="section-head">
+<div class="section-num">
+§ 03
+</div>
+<div class="section-title">
+<h2>
+Files 05–07 — Dorel, Sub-Zero, Mosaic
+</h2>
+<p class="sub">
+Corrections, coverage notes and filing index
+</p>
+</div>
+</div>
+<h4 id="edgar-reference-index">EDGAR reference index</h4>
+<div class="tbl-wrap"><table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Entity</th>
+<th>CIK</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Dorel Industries Inc.</td>
+<td>0000843405</td>
+<td>40-F / 6-K filer 2000–2008; Form 15F-12G filed 2008-04-01 terminating registration; post-2008 disclosure on SEDAR+ only</td>
+</tr>
+<tr class="even">
+<td>Brunswick Corporation</td>
+<td>0000014930</td>
+<td>FY2000 10-K covers the bicycle divestiture</td>
+</tr>
+<tr class="odd">
+<td>The Mosaic Company (originally Global Nutrition Solutions, Inc.)</td>
+<td>0001285785</td>
+<td>2004 S-4 through current 10-Ks</td>
+</tr>
+<tr class="even">
+<td>GNS II (U.S.) Corp. → The Mosaic Company (2011 holdco registrant)</td>
+<td>0001511357</td>
+<td>2011 split-off proxy statement/prospectus, Reg. No. 333-172076</td>
+</tr>
+<tr class="odd">
+<td>IMC Global Inc. → Mosaic Global Holdings Inc.</td>
+<td>0000820626</td>
+<td>2004 425 filings and pre-merger 10-Ks</td>
+</tr>
+<tr class="even">
+<td>Phosphate Resource Partners LP (formerly Freeport-McMoRan Resource Partners LP)</td>
+<td>0000793421</td>
+<td>IMC-Agrico / IMC Phosphates JV disclosure</td>
+</tr>
+<tr class="odd">
+<td>Mosaic Phosphates Company</td>
+<td>0001160701</td>
+<td>subsidiary debt filer</td>
+</tr>
+<tr class="even">
+<td>Sub-Zero Group, Inc. / Wolf Appliance, Inc.</td>
+<td><strong>none</strong></td>
+<td>privately held; no SEC registrant exists</td>
+</tr>
+</tbody>
+</table></div>
+<h4 id="record-corrections-1">Record corrections</h4>
+<ol type="1">
+<li><strong>Cerberus/Dorel was terminated February 15, 2021, not rejected by shareholders in June 2021.</strong> The vote was cancelled before it happened; price had been raised to C$16.00 on February 1, 2021; aggregate value ~US$1.012 billion including debt and fees.</li>
+<li><strong>Mosaic’s Cargill share issuance was 250,582,322 common + 5,458,955 Class B = 256,041,277 shares</strong>, per the closing 8-K — not ~175.3 million.</li>
+<li><strong>Cove launched in 2018, not 2013.</strong> The 2013 event was Sub-Zero/Wolf’s largest product rollout.</li>
+<li><strong>Wolf Range was founded in Los Angeles (1934, Al and Hyman Wolf), not Kansas City</strong>, and Sub-Zero bought only the <strong>residential</strong> (“Wolf Gourmet”) business; the commercial range business remained separate (Vulcan / ITW FEG).</li>
+<li><strong>No Sub-Zero v. Whirlpool trade dress case was located.</strong> The genuine, well-documented trade dress litigation is <em>Wolf Appliance, Inc. v. Viking Range Corp.</em>, W.D. Wis. 2010 (red knobs).</li>
+<li><strong>Cannondale was US$190–200 million, earnings-contingent through June 30, 2008</strong>, not a flat US$200 million.</li>
+<li><strong>Brunswick’s bicycle sale to Pacific Cycle was US$60 million</strong>; Brunswick’s FY2000 10-K says the sale completed during 2000, while trade press dates the ownership change to early 2001 — date conflict flagged.</li>
+<li><strong>Caloi’s price was never disclosed in dollars</strong> — Dorel said only “a high single-digit multiple of EBITDA.” The ~US$85 million figure is unverified.</li>
+<li><strong>The FY2020 US$43.125 million goodwill impairment was Dorel Juvenile, not Sports.</strong> The Sports impairment was US$237.2 million in Q4 2018.</li>
+</ol>
+</section>
+<section id="apx-04">
+<div class="section-head">
+<div class="section-num">
+§ 04
+</div>
+<div class="section-title">
+<h2>
+Files 08–09 — Caterpillar, Varsity Brands
+</h2>
+<p class="sub">
+Corrections, coverage notes and filing index
+</p>
+</div>
+</div>
+<h1 id="part-ii-varsity-brands-bsn-sports-herff-jones">PART II — VARSITY BRANDS / BSN SPORTS / HERFF JONES</h1>
+<blockquote>
+<p><strong>Correction to the working thesis before the chain begins.</strong> The commonly repeated version of this history is wrong in three places, and the primary sources establish the following: 1. The <strong>2003 take-private of Varsity Brands, Inc. was led by Leonard Green &amp; Partners</strong> (Green Equity Investors IV, L.P.) at <strong>$6.57/share / $75.8m</strong> — not Chartwell/Lincolnshire, and not $131m. Lincolnshire Management owned the separate <strong>Riddell</strong> football business, which it sold to <strong>Fenway Partners in July 2003</strong>. 2. <strong>Charlesbank did not buy Varsity Brands in 2011.</strong> In 2011 the buyer was <strong>Herff Jones, Inc.</strong>, a 100% employee-owned (ESOP) company, which bought VBR Holding Corporation from Leonard Green. Charlesbank (with Partners Group) bought the combined group in <strong>2014</strong>. 3. <strong>Sport Supply Group was taken private by ONCAP at $13.55/share</strong>, not $8.50.</p>
+</blockquote>
+</section>
+<section id="apx-05">
+<div class="section-head">
+<div class="section-num">
+§ 05
+</div>
+<div class="section-title">
+<h2>
+Files 08–09 — Caterpillar, Varsity Brands
+</h2>
+<p class="sub">
+Corrections, coverage notes and filing index
+</p>
+</div>
+</div>
+<h4 id="record-corrections-2">Record corrections</h4>
+<div class="tbl-wrap"><table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Commonly cited version</th>
+<th>Verified fact</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Bucyrus advisors: Goldman Sachs and Citi</td>
+<td><strong>Deutsche Bank + UBS</strong> for Bucyrus; <strong>J.P. Morgan</strong> exclusive for Caterpillar (with committed financing). Citi was only a bond bookrunner</td>
+<td>Bucyrus 8-K Ex-99.1</td>
+</tr>
+<tr class="even">
+<td>EMD sold by Berkshire Hathaway</td>
+<td><strong>Berkshire Partners LLC</strong> (Boston PE firm) + Greenbriar Equity</td>
+<td>PR Newswire</td>
+</tr>
+<tr class="odd">
+<td>Bucyrus goodwill ~$4.6bn</td>
+<td>Confirmed <strong>$4,616m</strong> final; <strong>$5,263m</strong> initial, reduced $647m in measurement period</td>
+<td>CAT 2011/2012 10-K</td>
+</tr>
+<tr class="even">
+<td>Resource Industries impairment 2015–2016</td>
+<td><strong>$595m in Q4 2016</strong> (Surface Mining &amp; Technology unit); $132m intangible impairment</td>
+<td>CAT 2016 10-K</td>
+</tr>
+<tr class="odd">
+<td>Siwei writedown $580m</td>
+<td>Confirmed <strong>$580m / $0.87 per share</strong>, Q4 2012</td>
+<td>CAT 8-K 1/18/2013</td>
+</tr>
+<tr class="even">
+<td>ERA/Siwei ~HK$5.06bn / $677m</td>
+<td>Range <strong>HK$5,064m–5,693m</strong> (performance-contingent)</td>
+<td>Caterpillar release</td>
+</tr>
+<tr class="odd">
+<td>Weir O&amp;G $405m</td>
+<td>Confirmed</td>
+<td>Caterpillar release</td>
+</tr>
+<tr class="even">
+<td>2003 take-private by Chartwell/Lincolnshire, ~$131m</td>
+<td><strong>Leonard Green &amp; Partners</strong>, $6.57/sh, <strong>$75.8m</strong> equity</td>
+<td>SEC SC 13E-3</td>
+</tr>
+<tr class="odd">
+<td>2004 sale to Fenway Partners ~$131m</td>
+<td>Fenway bought <strong>Riddell</strong> (not Varsity) from <strong>Lincolnshire</strong>, July 2003, &gt;$100m</td>
+<td>SGB Media</td>
+</tr>
+<tr class="even">
+<td>2011 Charlesbank acquires Varsity Brands</td>
+<td><strong>Herff Jones (ESOP)</strong> acquired Varsity Brands from <strong>Leonard Green</strong> in 2011; Charlesbank arrived <strong>2014</strong></td>
+<td>Blackstone / PR Newswire</td>
+</tr>
+<tr class="odd">
+<td>2014 Varsity/Herff Jones merger with Charlesbank + Crestview</td>
+<td>Charlesbank + <strong>Partners Group</strong> (not Crestview); the HJ/Varsity merger was 2011, the HJ/BSN merger 2013</td>
+<td>PR Newswire</td>
+</tr>
+<tr class="even">
+<td>Sport Supply take-private $8.50/sh, $147m</td>
+<td><strong>$13.55/sh</strong>, ~7.2x EBITDA, ONCAP + Andell rollover</td>
+<td>SEC 8-K Ex-99.1</td>
+</tr>
+<tr class="odd">
+<td>Antitrust settlement $43.5m</td>
+<td><strong>$43.5m</strong> (<em>Fusion Elite</em>, gyms/spectators) <strong>plus $82.5m</strong> (<em>Jones</em>, athletes/parents, naming Bain and Charlesbank)</td>
+<td>Court/settlement filings</td>
+</tr>
+<tr class="even">
+<td>KKR closed Sept 2024</td>
+<td><strong>Closed August 26, 2024</strong></td>
+<td>Business Wire</td>
+</tr>
+<tr class="odd">
+<td>“Bill Seemann”</td>
+<td><strong>Bill Seely</strong>, President of Varsity Spirit</td>
+<td>Varsity Brands leadership page</td>
+</tr>
+<tr class="even">
+<td>“Marc Bassewitz”</td>
+<td>No verifiable Varsity Brands role found; current GC is <strong>Jim Baldwin</strong>. <strong>[unverified / likely erroneous]</strong></td>
+<td>Varsity Brands leadership page</td>
+</tr>
+</tbody>
+</table></div>
+</section>
+<section id="apx-06">
+<div class="section-head">
+<div class="section-num">
+§ 06
+</div>
+<div class="section-title">
+<h2>
+Files 10–12 — NRG, Stanley Black &amp; Decker, Energy Transfer
+</h2>
+<p class="sub">
+Corrections, coverage notes and filing index
+</p>
+</div>
+</div>
+<h4 id="record-corrections-3">Record corrections</h4>
+<div class="tbl-wrap"><table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Commonly cited version</th>
+<th>Verified position</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>NRG advisors: Citi and Goldman Sachs</td>
+<td><strong>Citi and Credit Suisse</strong>; legal Latham &amp; Watkins + Baker Botts</td>
+</tr>
+<tr class="even">
+<td>Centrica advisor: Goldman Sachs</td>
+<td><strong>Goldman Sachs International (sponsor) + Robey Warshaw</strong>; brokers UBS + GS; legal Cravath + Slaughter and May</td>
+</tr>
+<tr class="odd">
+<td>NRG financing: $900m secured + $1.1bn unsecured + TLB + bridge</td>
+<td><strong>$1.40bn secured first lien + $1.53bn unsecured + $900m P-Caps</strong>; no TLB, no drawn bridge; revolver upsized $1.037bn</td>
+</tr>
+<tr class="even">
+<td>Direct Energy ~7x EBITDA</td>
+<td><strong>7.9x</strong> 2019 underlying adj. EBITDA (Centrica); <strong>4.9x</strong> post-synergy (NRG)</td>
+</tr>
+<tr class="odd">
+<td>Uri impact ~$1bn</td>
+<td><strong>$967m</strong> Q1 2021 actual; <strong>$975m</strong> FY2021 pre-tax estimate (initial estimate $750m)</td>
+</tr>
+<tr class="even">
+<td>First Choice Power 2011 ~$650m from Energy Future Holdings</td>
+<td><strong>$270m</strong> from <strong>PNM Resources</strong></td>
+</tr>
+<tr class="odd">
+<td>Clockwork 2010 ~$310m</td>
+<td><strong>$183m / £126m</strong> including assumed debt</td>
+</tr>
+<tr class="even">
+<td>“Texas Genco retail” bolt-on</td>
+<td>No such Direct Energy deal; the Texas entry was <strong>CPL/WTU from AEP (2002), ~$133–153m, 800,000 customers</strong></td>
+</tr>
+<tr class="odd">
+<td>Securitas bid SEK 18, Stanley bid SEK 20 for Niscayah</td>
+<td>Securitas bid <strong>all-share, 1:4.19, ~SEK 5.8bn</strong>; Stanley bid <strong>SEK 18.00 cash</strong> and won at that price</td>
+</tr>
+<tr class="even">
+<td>SBD retained the automatic doors business</td>
+<td><strong>No</strong> — excluded from the Securitas deal, then sold to <strong>Allegion for $900m</strong> (closed 5 Jul 2022); net proceeds $922.2m</td>
+</tr>
+<tr class="odd">
+<td>Securitas advisors Goldman/Citi</td>
+<td><strong>Morgan Stanley (M&amp;A), SEB (financial/bridge)</strong>; legal K&amp;L Gates + Mannheimer Swartling</td>
+</tr>
+<tr class="even">
+<td>SBD gain/loss on sale</td>
+<td><strong>$1,197.4m pre-tax gain</strong> on discontinued ops (CSS ~$588.0m + MAS ~$609.0m)</td>
+</tr>
+<tr class="odd">
+<td>Parkland closed Q1 2026 or late 2025</td>
+<td><strong>Closed 31 October 2025</strong></td>
+</tr>
+<tr class="even">
+<td>Parkland advisors RBC and Goldman for Parkland</td>
+<td><strong>RBC and Barclays advised Sunoco</strong>; <strong>Goldman Sachs Canada and BofA advised Parkland</strong> (BMO for Special Committee)</td>
+</tr>
+<tr class="odd">
+<td>Offen Petroleum ~$1.0bn, 2025</td>
+<td><strong>~$600m</strong>, announced <strong>6 August 2026</strong>, expected close Q4 2026</td>
+</tr>
+<tr class="even">
+<td>NRG LS Power ~$12bn announced May 2025</td>
+<td>Confirmed — announced 12 May 2025, <strong>closed 30 January 2026</strong></td>
+</tr>
+<tr class="odd">
+<td>Vivint $2.8bn closed March 2023</td>
+<td>Confirmed — <strong>$2.8bn equity / $5.2bn EV</strong>, announced 6 Dec 2022</td>
+</tr>
+<tr class="even">
+<td>GenOn bankruptcy 2016</td>
+<td>Filed <strong>14 June 2017</strong>, emerged <strong>December 2018</strong></td>
+</tr>
+</tbody>
+</table></div>
+</section>
+<footer>
+<div>
+<strong style="color:var(--ink)">Market Logic Investors LLC</strong> · Transaction Experience · Appendix<br> Compiled from primary filings. Internal reference. Not investment advice.
+</div>
+<div style="text-align:right">
+<a href="../" style="color:var(--teal);text-decoration:none">← Back to Transaction Experience</a>
+</div>
+</footer>
+
+</div>
+</body>
+</html>

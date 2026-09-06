@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DaimlerChrysler — Transaction Experience — Market Logic Investors</title>
+<meta name="description" content="The transaction that defined a generation of cross-border merger scepticism. A $36bn stock-for-stock &quot;merger of equals&quot; accounted for as a pooling of interests, litigated for a dec">
+<style>
+
+:root {
+  --ink: #0a1929; --ink-soft: #1c2e44;
+  --paper: #faf9f4; --paper-warm: #f3efe3;
+  --rule: #d4cfbf; --rule-soft: #e8e3d4;
+  --muted: #5b6b7a; --muted-light: #8a98a5;
+  --accent: #b8391c; --accent-soft: #d65a3a;
+  --teal: #1f6b6b; --teal-soft: #4a8b8b; --teal-light: #b8d4d4;
+  --positive: #2d6a4f; --warning: #b08800; --negative: #9b2226;
+  --negative-light: #e8c5c5;
+  --serif: 'Iowan Old Style','Palatino Linotype',Palatino,'Book Antiqua',Georgia,serif;
+  --sans: 'Helvetica Neue',Helvetica,-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
+  --mono: 'SF Mono',SFMono-Regular,Menlo,Monaco,Consolas,'Liberation Mono',monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{font-size:16px;-webkit-text-size-adjust:100%;}
+body{font-family:var(--sans);background:var(--paper);color:var(--ink);line-height:1.55;-webkit-font-smoothing:antialiased;}
+.page{max-width:1000px;margin:0 auto;padding:56px 56px 80px;}
+h1,h2,h3,h4,h5{font-family:var(--serif);font-weight:400;color:var(--ink);}
+h1{font-size:3.6rem;line-height:1.02;letter-spacing:-0.025em;}
+h2{font-size:2.05rem;line-height:1.12;letter-spacing:-0.015em;}
+h3{font-size:1.3rem;line-height:1.25;}
+h4{font-family:var(--sans);font-weight:600;font-size:0.7rem;text-transform:uppercase;letter-spacing:0.16em;color:var(--muted);}
+p{font-size:0.95rem;line-height:1.7;color:var(--ink-soft);}
+strong{color:var(--ink);font-weight:600;}
+.eyebrow{font-family:var(--sans);font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.2em;color:var(--accent);display:block;margin-bottom:18px;}
+.lede{font-family:var(--serif);font-size:1.25rem;line-height:1.5;color:var(--ink);}
+.kicker{font-family:var(--sans);font-size:0.75rem;font-weight:600;text-transform:uppercase;letter-spacing:0.12em;color:var(--teal);}
+.label{font-family:var(--sans);font-size:0.7rem;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);}
+.mono{font-family:var(--mono);font-size:0.85rem;}
+.cover{border-top:1px solid var(--ink);padding-top:32px;position:relative;}
+.cover-meta{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:84px;}
+.cover-meta .left,.cover-meta .right{font-family:var(--sans);font-size:0.78rem;color:var(--muted);}
+.cover-meta .right{text-align:right;}
+.cover-meta .right .stamp{display:inline-block;padding:4px 10px;border:1px solid var(--accent);color:var(--accent);font-weight:600;letter-spacing:0.12em;font-size:0.65rem;text-transform:uppercase;margin-bottom:8px;}
+.cover-title{margin-bottom:28px;}
+.cover-title .legal{display:block;font-family:var(--sans);font-size:0.78rem;color:var(--muted);margin-top:8px;letter-spacing:0.04em;}
+.cover-tag{font-family:var(--serif);font-style:italic;font-size:1.4rem;line-height:1.45;color:var(--ink-soft);max-width:720px;margin-bottom:56px;}
+.cover-tag::before{content:"\201C";font-size:2.2rem;line-height:0;vertical-align:-0.3em;color:var(--accent);margin-right:4px;}
+.cover-tag::after{content:"\201D";font-size:2.2rem;line-height:0;vertical-align:-0.3em;color:var(--accent);margin-left:2px;}
+.metric-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:0;border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);margin:32px 0;}
+.metric{padding:22px 16px 20px;border-right:1px solid var(--rule);text-align:left;}
+.metric:last-child{border-right:none;}
+.metric .v{font-family:var(--serif);font-size:2.1rem;line-height:1;letter-spacing:-0.02em;color:var(--ink);display:block;margin-bottom:6px;}
+.metric .v small{font-size:0.95rem;color:var(--muted);font-family:var(--serif);margin-left:1px;}
+.metric .l{font-family:var(--sans);font-size:0.68rem;font-weight:600;text-transform:uppercase;letter-spacing:0.12em;color:var(--muted);line-height:1.3;}
+.metric.accent .v{color:var(--accent);}
+.metric.teal .v{color:var(--teal);}
+section{margin-top:64px;padding-top:32px;border-top:1px solid var(--rule);}
+section.no-rule{border-top:none;}
+.section-head{display:grid;grid-template-columns:120px 1fr;gap:32px;margin-bottom:28px;align-items:baseline;}
+.section-num{font-family:var(--mono);font-size:0.78rem;color:var(--muted);letter-spacing:0.05em;border-top:2px solid var(--ink);padding-top:8px;text-transform:uppercase;font-weight:600;}
+.section-title h2{margin-bottom:8px;}
+.section-title .sub{font-family:var(--serif);font-style:italic;color:var(--muted);font-size:1.05rem;}
+.cols-2{display:grid;grid-template-columns:1fr 1fr;gap:36px;margin-top:16px;}
+.cols-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px;margin-top:16px;}
+.card{background:var(--paper-warm);padding:22px 24px;border:1px solid var(--rule);}
+.card.dark{background:var(--ink);color:var(--paper);}
+.card.dark h3,.card.dark h4{color:var(--paper);}
+.card.dark p{color:rgba(250,249,244,0.85);}
+.callout{border-left:3px solid var(--accent);padding:4px 0 4px 20px;margin:18px 0;font-family:var(--serif);font-style:italic;font-size:1.05rem;color:var(--ink);}
+.pull-quote{font-family:var(--serif);font-size:1.4rem;line-height:1.4;color:var(--ink);border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);padding:28px 0;margin:32px 0;text-align:center;letter-spacing:-0.005em;}
+table{width:100%;border-collapse:collapse;font-family:var(--sans);font-size:0.88rem;margin-top:14px;}
+thead th{text-align:left;font-weight:600;font-size:0.7rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);padding:10px 14px 10px 0;border-bottom:1.5px solid var(--ink);}
+thead th.num{text-align:right;}
+tbody td{padding:14px 14px 14px 0;border-bottom:1px solid var(--rule);color:var(--ink-soft);vertical-align:top;}
+tbody td.num{text-align:right;font-variant-numeric:tabular-nums;font-family:var(--mono);font-size:0.82rem;}
+tbody td strong{color:var(--ink);}
+tbody tr.highlight td{color:var(--ink);}
+tbody tr.highlight td:first-child{padding-left:12px;border-left:3px solid var(--accent);}
+ul.clean{list-style:none;}
+ul.clean li{padding:12px 0 12px 24px;border-bottom:1px solid var(--rule-soft);position:relative;font-size:0.93rem;color:var(--ink-soft);line-height:1.6;}
+ul.clean li::before{content:"→";position:absolute;left:0;top:12px;color:var(--accent);font-weight:600;}
+ol.clean{list-style:none;counter-reset:ck;}
+ol.clean li{counter-increment:ck;padding:12px 0 12px 36px;border-bottom:1px solid var(--rule-soft);position:relative;font-size:0.93rem;color:var(--ink-soft);line-height:1.6;}
+ol.clean li::before{content:counter(ck,decimal-leading-zero);position:absolute;left:0;top:12px;font-family:var(--mono);font-size:0.78rem;color:var(--accent);font-weight:600;}
+.tag{display:inline-block;font-family:var(--sans);font-size:0.68rem;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;padding:3px 9px;margin-right:6px;margin-bottom:4px;border:1px solid var(--rule);color:var(--ink-soft);background:var(--paper);}
+.tag.accent{border-color:var(--accent);color:var(--accent);}
+.tag.teal{border-color:var(--teal);color:var(--teal);}
+.tag.warn{border-color:var(--warning);color:var(--warning);}
+.tag.neg{border-color:var(--negative);color:var(--negative);}
+.tag.pos{border-color:var(--positive);color:var(--positive);}
+.thesis-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:24px;border:1px solid var(--ink);}
+.thesis-col{padding:28px 28px 24px;}
+.thesis-col.bull{border-right:1px solid var(--ink);}
+.thesis-col ul{list-style:none;margin-top:14px;}
+.thesis-col ul li{padding:10px 0 10px 22px;position:relative;font-size:0.9rem;color:var(--ink-soft);line-height:1.55;border-bottom:1px dashed var(--rule-soft);}
+.thesis-col.bull ul li::before{content:"+";position:absolute;left:0;top:9px;color:var(--positive);font-weight:700;}
+.thesis-col.bear ul li::before{content:"−";position:absolute;left:0;top:9px;color:var(--negative);font-weight:700;}
+.recommendation{background:var(--ink);color:var(--paper);padding:40px 44px;margin-top:40px;border-left:6px solid var(--accent);}
+.recommendation .head{font-family:var(--mono);font-size:0.74rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--accent-soft);margin-bottom:12px;font-weight:600;}
+.recommendation h2{color:var(--paper);margin-bottom:14px;}
+.recommendation p{color:rgba(250,249,244,0.86);font-size:1rem;}
+.recommendation .actions{margin-top:24px;padding-top:20px;border-top:1px solid rgba(250,249,244,0.18);display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+.recommendation .actions .h{font-family:var(--mono);font-size:0.7rem;text-transform:uppercase;letter-spacing:0.14em;color:var(--accent-soft);margin-bottom:10px;}
+.recommendation .actions ul{list-style:none;}
+.recommendation .actions ul li{padding:6px 0 6px 22px;position:relative;font-size:0.9rem;color:rgba(250,249,244,0.92);line-height:1.5;}
+.recommendation .actions ul li::before{content:"▸";position:absolute;left:0;top:5px;color:var(--accent-soft);}
+footer{margin-top:80px;padding-top:28px;border-top:1px solid var(--ink);font-family:var(--sans);font-size:0.74rem;color:var(--muted);display:flex;justify-content:space-between;}
+.chart{width:100%;margin:18px 0 6px;background:var(--paper);}
+.chart-caption{font-family:var(--sans);font-size:0.72rem;color:var(--muted);margin-top:4px;font-style:italic;line-height:1.5;}
+/* Dashboard */
+.dash-panel{background:var(--paper-warm);border:1px solid var(--rule);padding:24px;margin-top:24px;}
+.dash-controls{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:20px;}
+.ctrl-item{display:flex;flex-direction:column;gap:5px;}
+.ctrl-item label{font-family:var(--sans);font-size:0.7rem;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);}
+.ctrl-row{display:flex;align-items:center;gap:8px;}
+.ctrl-row input[type=range]{flex:1;accent-color:var(--teal);cursor:pointer;}
+.ctrl-val{font-family:var(--mono);font-size:0.82rem;font-weight:600;color:var(--ink);min-width:48px;text-align:right;}
+.scen-row{display:flex;gap:8px;margin-bottom:18px;flex-wrap:wrap;}
+.scen-btn{font-family:var(--sans);font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;padding:5px 14px;border:1px solid var(--rule);background:var(--paper);color:var(--muted);cursor:pointer;}
+.scen-btn:hover{border-color:var(--teal);color:var(--teal);}
+.scen-btn.active{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+.output-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--rule);margin-bottom:16px;}
+.output-cell{padding:16px 14px;border-right:1px solid var(--rule);}
+.output-cell:last-child{border-right:none;}
+.output-cell .ov{font-family:var(--serif);font-size:1.8rem;letter-spacing:-0.02em;color:var(--ink);display:block;line-height:1;margin-bottom:4px;}
+.output-cell .ol{font-family:var(--sans);font-size:0.65rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--muted);}
+.output-cell.ok .ov{color:var(--positive);}
+.output-cell.warn .ov{color:var(--warning);}
+.output-cell.bad .ov{color:var(--negative);}
+.verdict-box{padding:16px 20px;font-family:var(--sans);font-size:0.88rem;line-height:1.6;border-left:4px solid var(--rule);margin-bottom:16px;}
+.verdict-box.ok{border-left-color:var(--positive);background:#f0f7f4;}
+.verdict-box.warn{border-left-color:var(--warning);background:#fdf8ec;}
+.verdict-box.bad{border-left-color:var(--negative);background:#fdf0f0;}
+.verdict-box .vl{font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.14em;margin-bottom:5px;color:var(--muted);}
+.assump-list{list-style:none;margin-top:0;}
+.assump-list li{padding:14px 0 14px 24px;border-bottom:1px solid var(--rule-soft);position:relative;font-size:0.88rem;line-height:1.6;color:var(--ink-soft);}
+.assump-list li::before{content:"→";position:absolute;left:0;top:14px;color:var(--accent);font-weight:700;}
+.assump-list li strong{color:var(--ink);}
+.assump-flag{display:inline-block;font-family:var(--mono);font-size:0.65rem;font-weight:700;letter-spacing:0.08em;padding:2px 7px;border:1px solid;margin-left:8px;vertical-align:middle;}
+.assump-flag.ok{border-color:var(--positive);color:var(--positive);}
+.assump-flag.warn{border-color:var(--warning);color:var(--warning);}
+.assump-flag.bad{border-color:var(--negative);color:var(--negative);}
+.signal{font-family:var(--mono);font-size:0.72rem;color:var(--teal);margin-top:6px;display:block;line-height:1.5;}
+.entity-row{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--ink);margin-top:20px;}
+.entity-col{padding:20px 18px;border-right:1px solid var(--rule);}
+.entity-col:last-child{border-right:none;}
+.entity-col h4{margin-bottom:12px;}
+.entity-col.et h4{color:var(--teal);}
+.entity-col.sun h4{color:var(--positive);}
+.entity-col.usac h4{color:var(--warning);}
+.emet{display:flex;justify-content:space-between;font-size:0.8rem;padding:6px 0;border-bottom:1px solid var(--rule-soft);}
+.emet:last-child{border:none;}
+.emet .ek{color:var(--muted);}
+.emet .ev{font-weight:600;color:var(--ink);font-family:var(--mono);font-size:0.78rem;}
+.emet .ev.g{color:var(--positive);}
+.emet .ev.r{color:var(--negative);}
+.emet .ev.w{color:var(--warning);}
+.dc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--rule);margin-top:16px;}
+.dc-cell{padding:18px 16px;border-right:1px solid var(--rule);}
+.dc-cell:last-child{border-right:none;}
+.dc-name{font-family:var(--sans);font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--ink);margin-bottom:4px;}
+.dc-pipe{font-family:var(--sans);font-size:0.7rem;color:var(--muted);margin-bottom:10px;}
+.dc-vol{font-family:var(--serif);font-size:1.8rem;color:var(--teal);letter-spacing:-0.02em;line-height:1;margin-bottom:4px;}
+.dc-ebitda{font-family:var(--mono);font-size:0.8rem;color:var(--positive);font-weight:600;}
+.dc-note{font-size:0.72rem;color:var(--muted);margin-top:6px;line-height:1.45;}
+.site-nav{display:flex;align-items:center;justify-content:space-between;background:var(--ink);color:var(--paper);padding:10px 40px;font-family:var(--sans);font-size:0.78rem;letter-spacing:0.04em;position:sticky;top:0;z-index:100;gap:16px;}
+.site-nav a{color:rgba(250,249,244,0.7);text-decoration:none;}
+.site-nav a:hover{color:var(--paper);}
+.site-nav span[aria-hidden]{color:rgba(250,249,244,0.3);margin:0 4px;}
+.site-nav .nav-meta{color:rgba(250,249,244,0.45);font-size:0.75rem;}
+.site-nav .nav-action a{color:var(--accent);border:1px solid rgba(184,57,28,0.5);border-radius:3px;padding:3px 10px;}
+@media(max-width:760px){
+  .page{padding:32px 22px;}
+  h1{font-size:2.4rem;}
+  .metric-grid{grid-template-columns:repeat(2,1fr);}
+  .cols-2,.cols-3,.thesis-grid,.dash-controls,.output-grid,.entity-row,.dc-grid{grid-template-columns:1fr;}
+  .thesis-col.bull{border-right:none;border-bottom:1px solid var(--ink);}
+  .section-head{grid-template-columns:1fr;gap:8px;}
+  .recommendation .actions{grid-template-columns:1fr;}
+}
+
+/* ===== Glossary ===== */
+.glossary-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:0;border:1px solid var(--ink);margin-top:16px;}
+.glossary-col{padding:0;}
+.gterm{display:grid;grid-template-columns:160px 1fr;gap:0;border-bottom:1px solid var(--rule-soft);}
+.gterm:last-child{border-bottom:none;}
+.gt{font-family:var(--mono);font-size:0.78rem;font-weight:700;color:var(--teal);padding:12px 14px;border-right:1px solid var(--rule-soft);background:var(--paper-warm);display:flex;align-items:flex-start;}
+.gd{font-size:0.82rem;color:var(--ink-soft);padding:12px 14px;line-height:1.55;}
+.gd strong{color:var(--ink);}
+@media(max-width:760px){.glossary-grid{grid-template-columns:1fr;}.gterm{grid-template-columns:120px 1fr;}}
+
+
+
+section[id]{scroll-margin-top:64px}
+.tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin-top:14px}
+.tbl-wrap table{margin-top:0}
+em.unv{font-style:normal;font-family:var(--mono);font-size:0.68rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--warning);border:1px solid var(--warning);padding:1px 5px;margin:0 2px;white-space:nowrap}
+em.corr{font-style:normal;font-family:var(--mono);font-size:0.68rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--accent);border:1px solid var(--accent);padding:1px 5px;margin:0 2px}
+h3{font-family:var(--sans);font-size:0.78rem;font-weight:700;text-transform:uppercase;letter-spacing:0.13em;color:var(--accent);margin:26px 0 8px}
+h4{font-family:var(--serif);font-size:1.05rem;font-weight:400;margin:20px 0 6px}
+section ul{margin:6px 0 6px 20px}
+section ul li{font-size:0.9rem;line-height:1.6;color:var(--ink-soft);padding:3px 0}
+section ol{margin:6px 0 6px 22px}
+section ol li{font-size:0.9rem;line-height:1.6;color:var(--ink-soft);padding:3px 0}
+.factstrip{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--ink);margin:18px 0 4px}
+.factstrip .f{padding:16px 20px;border-right:1px solid var(--rule)}
+.factstrip .f:last-child{border-right:none}
+.factstrip .f .label{display:block;margin-bottom:5px}
+.factstrip .f .t{font-size:0.88rem;line-height:1.55;color:var(--ink)}
+.txn-map td:first-child{font-weight:600;color:var(--ink)}
+.srcnote{font-family:var(--sans);font-size:0.78rem;color:var(--muted);line-height:1.6;border-left:3px solid var(--rule);padding:2px 0 2px 16px;margin:14px 0}
+.toc{display:grid;grid-template-columns:repeat(2,1fr);gap:0;border:1px solid var(--ink);margin-top:20px}
+.toc a{display:block;padding:12px 18px;border-bottom:1px solid var(--rule-soft);border-right:1px solid var(--rule-soft);text-decoration:none;color:var(--ink);font-size:0.86rem}
+.toc a:hover{background:var(--paper-warm);color:var(--accent)}
+.toc a .n{font-family:var(--mono);font-size:0.68rem;color:var(--muted);margin-right:10px}
+@media(max-width:720px){.factstrip,.toc{grid-template-columns:1fr}}
+
+</style>
+</head>
+<body>
+<nav class="site-nav" aria-label="breadcrumb">
+  <div style="display:flex;align-items:center;gap:0;flex-wrap:wrap">
+    <a href="../../">Market Logic Investors</a><span aria-hidden="true">/</span>
+    <a href="../../">Deal Vault</a><span aria-hidden="true">/</span>
+    <a href="../">Transaction Experience</a><span aria-hidden="true">/</span>
+    <span>DaimlerChrysler</span>
+  </div>
+  <div style="display:flex;align-items:center;gap:16px;">
+    <span class="nav-meta">ML-TXN-DCX &nbsp;|&nbsp; Automotive</span>
+  </div>
+</nav>
+<div class="page">
+<header class="cover">
+<div class="cover-meta">
+<div class="left">
+<p><strong style="color:var(--ink);display:block;margin-bottom:4px;">Market Logic Investors LLC</strong> Automotive · Transaction Record<br> Client engagement record · Primary-source reconstruction</p>
+</div>
+<div class="right">
+<p><span class="stamp">3 transactions</span><br> <strong style="color:var(--ink);">Ref: ML-TXN-DCX</strong><br> Period: 1998 – 2009<br> Compiled: September 6, 2026</p>
+</div>
+</div>
+<span class="eyebrow">Automotive · Cross-border merger and unwind</span>
+<div class="cover-title">
+<h1>
+DaimlerChrysler
+</h1>
+<p><span class="legal">Daimler-Benz AG · Chrysler Corporation · DaimlerChrysler AG · Cerberus Capital Management</span></p>
+</div>
+<p class="cover-tag">
+The transaction that defined a generation of cross-border merger scepticism. A $36bn stock-for-stock “merger of equals” accounted for as a pooling of interests, litigated for a decade on the premise that it was never a merger at all, and unwound nine years later at a net cash cost to the seller.
+</p>
+<div class="metric-grid">
+<div class="metric">
+<span class="v">3</span><span class="l">Transactions</span>
+</div>
+<div class="metric teal">
+<span class="v">$36<small>bn</small></span><span class="l">1998 combination value</span>
+</div>
+<div class="metric">
+<span class="v">58/42</span><span class="l">Ownership split</span>
+</div>
+<div class="metric accent">
+<span class="v">$300<small>m</small></span><span class="l">Class action settlement</span>
+</div>
+<div class="metric">
+<span class="v">€0.5<small>bn</small></span><span class="l">Net cash cost of exit</span>
+</div>
+<div class="metric">
+<span class="v">11</span><span class="l">Years to unwind</span>
+</div>
+</div>
+</header>
+<section class="no-rule" style="margin-top:48px">
+<div class="section-head">
+<div class="section-num">
+§ 01
+</div>
+<div class="section-title">
+<h2>
+Transaction map
+</h2>
+<p class="sub">
+Every transaction on this file, in order
+</p>
+</div>
+</div>
+<p style="margin-bottom:8px">
+Daimler-Benz and Chrysler combined in 1998 in a three-step exchange offer and Delaware merger into a new German stock corporation, accounted for as a pooling of interests so no goodwill was ever recorded. The “merger of equals” representation produced a $300m securities class action settlement and the Tracinda trial. Chrysler was carved out to Cerberus in 2007 at a net cash outflow to Daimler, and the retained 19.9% was relinquished for no consideration in 2009.
+</p>
+<div class="tbl-wrap">
+<table class="txn-map">
+<thead>
+<tr>
+<th>
+Transaction
+</th>
+<th>
+Type
+</th>
+<th>
+Announced / closed
+</th>
+<th>
+Headline value
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="#txn-02" style="color:var(--ink);text-decoration:none;border-bottom:1px solid var(--rule)">formation of DaimlerChrysler AG (1998)</a>
+</td>
+<td>
+Public M&amp;A / cross-border stock-for-stock "merger of equals"; German exchange offer + Delaware reverse-triangular merger into a newly formed German…
+</td>
+<td>
+Business Combination Agreement signed May 6, 1998; announced May 7, 1998 (Chrysler 8-K dated May 7, filed May 8, 1998). Exchange…
+</td>
+<td>
+~$36bn (contemporaneous characterization of the Chrysler side; Chicago Fed retrospective: "a $36 billion transaction"). F-4…
+</td>
+</tr>
+<tr>
+<td>
+<a href="#txn-03" style="color:var(--ink);text-decoration:none;border-bottom:1px solid var(--rule)">sale of 80.1% of Chrysler Group to Cerberus Capital Management (2007)</a>
+</td>
+<td>
+Private equity carve-out / recapitalization of a divisional carve-out into a new JV holding company; seller retained a minority stake (subsequently…
+</td>
+<td>
+Announced May 14, 2007 (6-K filed same day); closed August 3, 2007. DaimlerChrysler AG renamed Daimler AG October 4, 2007.…
+</td>
+<td>
+€5.5bn / US$7.4bn total capital contribution by Cerberus for 80.1% of Chrysler Holding LLC (enterprise-level capitalization, not…
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="toc">
+<a href="#txn-02"><span class="n">§ 02</span>formation of DaimlerChrysler AG (1998)</a><a href="#txn-03"><span class="n">§ 03</span>sale of 80.1% of Chrysler Group to Cerberus Capital Management (2007)</a>
+</div>
+</section>
+<section id="txn-02">
+<div class="section-head">
+<div class="section-num">
+§ 02
+</div>
+<div class="section-title">
+<h2>
+Daimler-Benz AG / Chrysler Corporation — formation of DaimlerChrysler AG (1998)
+</h2>
+<p class="sub">
+Public M&amp;A / cross-border stock-for-stock "merger of equals"; German exchange offer + Delaware reverse-triangular merger into a newly formed German stock corporation (Aktiengesellschaft)
+</p>
+</div>
+</div>
+<div class="factstrip">
+<div class="f">
+<span class="label">Announced / closed</span>
+<div class="t">
+<p>Business Combination Agreement signed May 6, 1998; announced May 7, 1998 (Chrysler 8-K dated May 7, filed May 8, 1998). Exchange offer completed / combination effective November 12–17, 1998; shares began trading as DaimlerChrysler AG November 17, 1998. Chrysler shareholder vote 97.5% in favor; Daimler-Benz shareholder vote 99.9% in favor; 98% of Daimler-Benz shares tendered into the exchange offer.</p>
+</div>
+</div>
+<div class="f">
+<span class="label">Headline value</span>
+<div class="t">
+<p>~$36bn (contemporaneous characterization of the Chrysler side; Chicago Fed retrospective: “a $36 billion transaction”). F-4 registration fee table: <strong>proposed maximum aggregate offering price $44,720,749,644</strong> for the DaimlerChrysler ordinary shares registered. Combined 1998 revenues €131.8bn; 441,502 employees.</p>
+</div>
+</div>
+</div>
+<h3 id="parties">Parties</h3>
+<p>Daimler-Benz AG (Stuttgart) / Chrysler Corporation (Auburn Hills, MI; Delaware corporation) / DaimlerChrysler AG (“Newco AG”, initially incorporated as Oppenheim Vermögenstreuhand, renamed “Daimler Chrysler Aktiengesellschaft”)</p>
+<h3 id="structure">Structure</h3>
+<ul>
+<li>Three linked steps per the Business Combination Agreement: (1) <strong>Daimler-Benz exchange offer</strong> — one Newco ordinary share for each Daimler-Benz ordinary share; (2) <strong>Chrysler merger</strong> — a Newco subsidiary merged into Chrysler, each Chrysler share converted into DaimlerChrysler ordinary shares/ADSs; (3) <strong>Daimler-Benz merger</strong> — Daimler-Benz AG merged into Newco AG, with Newco surviving.</li>
+<li><strong>Chrysler exchange ratio: 0.6235 DaimlerChrysler ordinary shares per Chrysler common share</strong> (final; the May 7, 1998 8-K disclosed a preliminary 0.547 ratio subject to an adjustment formula: <code>Exchange Ratio = 103.4929 x (DP x DAP) + SOP / ((DAP x DP) x (DAP + SOP))</code>, adjusting for dividends and the June 1998 Daimler-Benz rights offering proceeds).</li>
+<li><strong>Daimler-Benz exchange ratio: 1.000</strong> DaimlerChrysler ordinary share per Daimler-Benz ordinary share in the exchange offer; <strong>1.005</strong> in the subsequent statutory merger (the step-up applied where pooling-of-interests accounting was achieved).</li>
+<li><strong>Ownership split:</strong> former Daimler-Benz shareholders ~<strong>58%</strong>; former Chrysler stockholders ~<strong>42%</strong> of DaimlerChrysler ordinary shares.</li>
+<li>Shares outstanding used in the F-4: <strong>647,304,195 Chrysler common shares</strong> and <strong>569,340,329 Daimler-Benz voting shares</strong> (as of June 30, 1998).</li>
+<li>Accounting condition: <strong>90% minimum tender = pooling of interests</strong>; an 80% floor would instead have forced <strong>purchase accounting</strong>. Pooling was achieved (98% tendered).</li>
+<li>Registration: <strong>Form F-4</strong> (DaimlerChrysler AG, CIK 0001067318), filed August 6, 1998, accession 0001047469-98-029563; Chrysler side documented via 8-K/proxy (Chrysler Corporation CIK 0000791269).</li>
+<li>Governance: German AG with a <strong>Supervisory Board of 20</strong> (10 shareholder representatives + 10 employee representatives under German co-determination), of which the <strong>12 shareholder-side seats were split 6 Daimler-Benz / 6 Chrysler</strong> per the agreement; <strong>Management Board of 18, split 50/50</strong>. <strong>Co-CEOs and Co-Chairmen: Jürgen E. Schrempp and Robert J. Eaton</strong> (Eaton contractually limited to a three-year term). Dual operational headquarters: Stuttgart and Auburn Hills.</li>
+<li><strong>Tracinda Corporation (Kirk Kerkorian), holder of ~14% (13.75%) of Chrysler common stock</strong>, signed a stockholder support agreement.</li>
+</ul>
+<h3 id="financing">Financing</h3>
+<p>None — all-share transaction. Daimler-Benz executed a separate rights offering effective on or about June 8, 1998, the proceeds of which fed into the Chrysler exchange-ratio formula.</p>
+<h3 id="purchase-price-allocation-goodwill-and-accounting">Purchase price allocation, goodwill and accounting</h3>
+<ul>
+<li>Accounted for as a <strong>pooling of interests under US GAAP</strong> — <strong>no goodwill and no step-up of Chrysler assets was recorded</strong>. Prior-period financial statements were restated on a combined basis.</li>
+<li>1998 combined results (as reported): revenues <strong>€131.8bn</strong>, operating profit <strong>€8.6bn</strong>, net income <strong>€5.2bn</strong> (adjusted for merger-related one-time costs).</li>
+<li>Share capital of the combined company post-closing: <strong>€2.56bn</strong>; &gt;1.4m shareholders; largest holders Deutsche Bank <strong>12%</strong> and the State of Kuwait <strong>7%</strong>; ~25% of capital held by US investors.</li>
+<li><strong>Synergy target:</strong> €1.3bn (US$1.4bn) of bottom-line profit improvement committed for 1999, rising to <strong>“more than €3bn per year”</strong> in the medium term. Actual delivery is not separately reconciled in Daimler filings <em class="unv">unverified</em>.</li>
+</ul>
+<h3 id="advisers">Advisers</h3>
+<ul>
+<li>Daimler-Benz AG — financial: <strong>Goldman, Sachs &amp; Co.</strong> (fairness opinion on the Daimler-Benz exchange ratio; consent filed as F-4 exhibit). Auditors: KPMG Deutsche Treuhand.</li>
+<li>Chrysler Corporation — financial: <strong>Credit Suisse First Boston Corporation</strong> (fairness opinion on the U.S. exchange ratio; consent filed as F-4 exhibit). Auditors: Deloitte &amp; Touche.</li>
+<li>Legal (opinions filed as F-4 exhibits): <strong>Daimler-Benz AG in-house legal department</strong>, <strong>Skadden, Arps, Slate, Meagher &amp; Flom LLP</strong>, and <strong>Debevoise &amp; Plimpton</strong>. Side attribution — Skadden for Daimler-Benz, Debevoise for Chrysler — is the customary reporting but is not split explicitly in the exhibit index <em class="unv">unverified</em>.</li>
+</ul>
+<h3 id="key-people">Key people</h3>
+<div class="tbl-wrap"><table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>Title</th>
+<th>Role</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Jürgen E. Schrempp</td>
+<td>Chairman of the Board of Management, Daimler-Benz</td>
+<td>Co-CEO/Co-Chairman DaimlerChrysler; sole CEO from 2000; named defendant in Tracinda</td>
+</tr>
+<tr class="even">
+<td>Robert J. Eaton</td>
+<td>Chairman &amp; CEO, Chrysler</td>
+<td>Co-CEO/Co-Chairman; departed March 2000</td>
+</tr>
+<tr class="odd">
+<td>Manfred Gentz</td>
+<td>CFO, Daimler-Benz → DaimlerChrysler</td>
+<td>Deal structuring/finance; named defendant in Tracinda</td>
+</tr>
+<tr class="even">
+<td>Hilmar Kopper</td>
+<td>Deutsche Bank; Chairman, DaimlerChrysler Supervisory Board</td>
+<td>Named defendant in Tracinda</td>
+</tr>
+<tr class="odd">
+<td>Thomas T. Stallkamp</td>
+<td>President, Chrysler; Vice Chairman &amp; President, Chrysler Group</td>
+<td>Integration lead; removed September 1999</td>
+</tr>
+<tr class="even">
+<td>Robert A. Lutz</td>
+<td>Vice Chairman, Chrysler</td>
+<td>Retired July 1998; later public critic of the deal</td>
+</tr>
+<tr class="odd">
+<td>Gary Valade</td>
+<td>CFO, Chrysler</td>
+<td>Later DaimlerChrysler global procurement</td>
+</tr>
+<tr class="even">
+<td>James P. Holden</td>
+<td>President, Chrysler Group (1999–2000)</td>
+<td>Removed November 2000</td>
+</tr>
+<tr class="odd">
+<td>Dieter Zetsche</td>
+<td>CEO, Chrysler Group from November 2000</td>
+<td>Turnaround; later Daimler CEO and architect of the 2007 exit</td>
+</tr>
+<tr class="even">
+<td>Wolfgang Bernhard</td>
+<td>COO, Chrysler Group</td>
+<td>Restructuring</td>
+</tr>
+<tr class="odd">
+<td>Kirk Kerkorian / Tracinda Corp.</td>
+<td>~13.75% Chrysler holder</td>
+<td>Signed support agreement; later lead plaintiff against DaimlerChrysler</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="regulatory-and-litigation">Regulatory and litigation</h3>
+<ul>
+<li>Cleared by the European Commission and the U.S. FTC/DOJ in 1998 without divestitures (minimal product overlap).</li>
+<li><strong>In re DaimlerChrysler AG Securities Litigation</strong> (D. Del.): class action by former Chrysler shareholders alleging the “merger of equals” representation was false and that Daimler always intended an acquisition. <strong>Settled for $300 million in cash in 2003</strong> — among the largest post-PSLRA securities recoveries at the time.</li>
+<li><strong>Tracinda Corporation v. DaimlerChrysler AG, Daimler-Benz AG, Schrempp, Gentz and Kopper</strong> (D. Del., Judge Joseph J. Farnan, Jr.). Kerkorian opted out of the class, sought ~$1.2bn (reported) <em class="unv">unverified</em>, claiming that had he known it was an acquisition he would have demanded a control premium. Claims under <strong>§§10(b), 14(a) and 20(a)</strong> of the Exchange Act plus common-law fraud (Securities Act §§11, 12(a)(2), 15 claims voluntarily dropped). <strong>13-day bench trial; judgment for DaimlerChrysler on all counts, April 2005</strong> (Tracinda Corp. v. DaimlerChrysler AG, 364 F. Supp. 2d 362 (D. Del. 2005)). Sanctions of <strong>$556,061</strong> against DaimlerChrysler for late document production were upheld.</li>
+<li><strong>Third Circuit affirmed in full, September 18, 2007</strong> (Nos. 05-2363, 05-2482), upholding the jury-trial waiver and rejecting the §14(a) misrepresentation theory.</li>
+<li>DaimlerChrysler settled with its D&amp;O carriers over the class-action payment in <strong>January 2007</strong>.</li>
+</ul>
+<h3 id="outcome-and-post-deal-performance">Outcome and post-deal performance</h3>
+<ul>
+<li>Chrysler Group swung to heavy losses from 2000; DaimlerChrysler’s market capitalization fell from roughly $90bn+ at combination to well below the pre-merger value of Daimler-Benz alone by 2003 <em class="unv">unverified</em>.</li>
+<li>Schrempp publicly stated in a 2000 <em>Financial Times</em> interview that “merger of equals” was a presentational device — the statement that catalyzed both the class action and the Tracinda suit.</li>
+<li>The combination was unwound in 2007 (below); DaimlerChrysler AG was renamed <strong>Daimler AG</strong> on October 4, 2007.</li>
+</ul>
+<h3 id="key-numbers">Key numbers</h3>
+<div class="tbl-wrap"><table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Metric</th>
+<th>Value</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Chrysler exchange ratio (final)</td>
+<td>0.6235 DCX shares per Chrysler share</td>
+<td>F-4 (0001047469-98-029563)</td>
+</tr>
+<tr class="even">
+<td>Chrysler exchange ratio (announcement)</td>
+<td>0.547 Newco ADSs per Chrysler share</td>
+<td>Chrysler 8-K 5/7/98</td>
+</tr>
+<tr class="odd">
+<td>Daimler-Benz exchange ratio</td>
+<td>1.000 (offer) / 1.005 (merger, pooling)</td>
+<td>F-4</td>
+</tr>
+<tr class="even">
+<td>Ownership split</td>
+<td>58% Daimler-Benz / 42% Chrysler</td>
+<td>F-4</td>
+</tr>
+<tr class="odd">
+<td>Chrysler shares outstanding</td>
+<td>647,304,195</td>
+<td>F-4</td>
+</tr>
+<tr class="even">
+<td>Daimler-Benz voting shares outstanding</td>
+<td>569,340,329 (6/30/98)</td>
+<td>F-4</td>
+</tr>
+<tr class="odd">
+<td>F-4 max aggregate offering price</td>
+<td>$44,720,749,644</td>
+<td>F-4 fee table</td>
+</tr>
+<tr class="even">
+<td>Headline transaction value</td>
+<td>~$36bn</td>
+<td>Chicago Fed</td>
+</tr>
+<tr class="odd">
+<td>Accounting</td>
+<td>Pooling of interests; no goodwill</td>
+<td>F-4</td>
+</tr>
+<tr class="even">
+<td>Tracinda stake in Chrysler</td>
+<td>~14%</td>
+<td>Chrysler 8-K 5/7/98</td>
+</tr>
+<tr class="odd">
+<td>Supervisory Board shareholder seats</td>
+<td>12 (6/6)</td>
+<td>Chrysler 8-K 5/7/98</td>
+</tr>
+<tr class="even">
+<td>Management Board</td>
+<td>18 (50/50)</td>
+<td>Chrysler 8-K 5/7/98</td>
+</tr>
+<tr class="odd">
+<td>1998 combined revenue</td>
+<td>€131.8bn</td>
+<td>DaimlerChrysler 1998 Annual Report</td>
+</tr>
+<tr class="even">
+<td>1998 operating profit</td>
+<td>€8.6bn</td>
+<td>1998 Annual Report</td>
+</tr>
+<tr class="odd">
+<td>1998 net income</td>
+<td>€5.2bn</td>
+<td>1998 Annual Report</td>
+</tr>
+<tr class="even">
+<td>1998 employees</td>
+<td>441,502</td>
+<td>1998 Annual Report</td>
+</tr>
+<tr class="odd">
+<td>Synergy target 1999</td>
+<td>€1.3bn / US$1.4bn</td>
+<td>1998 Annual Report</td>
+</tr>
+<tr class="even">
+<td>Medium-term synergy target</td>
+<td>&gt;€3bn p.a.</td>
+<td>1998 Annual Report</td>
+</tr>
+<tr class="odd">
+<td>Post-closing share capital</td>
+<td>€2.56bn</td>
+<td>1998 Annual Report</td>
+</tr>
+<tr class="even">
+<td>Class action settlement</td>
+<td>$300m (2003)</td>
+<td>Grant &amp; Eisenhofer case page</td>
+</tr>
+<tr class="odd">
+<td>Tracinda outcome</td>
+<td>Judgment for defendants, Apr 2005; affirmed 9/18/2007</td>
+<td>3d Cir. Nos. 05-2363/05-2482</td>
+</tr>
+<tr class="even">
+<td>Discovery sanction</td>
+<td>$556,061</td>
+<td>3d Cir. opinion</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="primary-sources">Primary sources</h3>
+<ul>
+<li><a href="https://www.sec.gov/Archives/edgar/data/791269/0000950123-98-004713.txt">Chrysler Corporation Form 8-K, May 7/8 1998 (Business Combination Agreement)</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/1067318/0001047469-98-029563-index.html">DaimlerChrysler AG Form F-4, filed Aug 6 1998 — filing index</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/1067318/0001047469-98-029563.txt">DaimlerChrysler AG Form F-4 — full submission text</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/791269/">Chrysler Corporation EDGAR filing archive (CIK 791269)</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/1067318/">DaimlerChrysler AG / Daimler AG EDGAR filing archive (CIK 1067318)</a></li>
+<li><a href="https://group.mercedes-benz.com/documents/investors/berichte/geschaeftsberichte/daimlerchrysler/daimler-ir-annualreport-1998.pdf?r=dai">DaimlerChrysler 1998 Annual Report (“Merger of Growth”)</a></li>
+<li><a href="https://caselaw.findlaw.com/court/us-3rd-circuit/1246618.html">Tracinda Corporation v. DaimlerChrysler AG, 3d Cir. (2007), Nos. 05-2363, 05-2482</a></li>
+<li><a href="https://www.gelaw.com/cases/daimlerchrysler/">Grant &amp; Eisenhofer — DaimlerChrysler class action ($300m settlement)</a></li>
+<li><a href="https://www.chicagofed.org/publications/blogs/midwest-economy/2007/the_mouse_that_roared_putting_the_sale_of_chrysler_in_context">Chicago Fed — “The mouse that roared: Putting the sale of Chrysler in context” (2007)</a></li>
+</ul>
+<hr />
+</section>
+<section id="txn-03">
+<div class="section-head">
+<div class="section-num">
+§ 03
+</div>
+<div class="section-title">
+<h2>
+DaimlerChrysler AG — sale of 80.1% of Chrysler Group to Cerberus Capital Management (2007)
+</h2>
+<p class="sub">
+Private equity carve-out / recapitalization of a divisional carve-out into a new JV holding company; seller retained a minority stake (subsequently relinquished)
+</p>
+</div>
+</div>
+<div class="factstrip">
+<div class="f">
+<span class="label">Announced / closed</span>
+<div class="t">
+<p>Announced May 14, 2007 (6-K filed same day); <strong>closed August 3, 2007</strong>. DaimlerChrysler AG renamed Daimler AG October 4, 2007. Retained 19.9% relinquished under a binding term sheet signed April 2009; <strong>redemption agreement executed and completed June 3, 2009</strong>.</p>
+</div>
+</div>
+<div class="f">
+<span class="label">Headline value</span>
+<div class="t">
+<p><strong>€5.5bn / US$7.4bn</strong> total capital contribution by Cerberus for 80.1% of Chrysler Holding LLC (enterprise-level capitalization, not cash to the seller). Daimler’s net position was a <strong>cash OUTFLOW of ~€0.5bn</strong>.</p>
+</div>
+</div>
+</div>
+<h3 id="parties-1">Parties</h3>
+<p>DaimlerChrysler AG (seller) / Cerberus Capital Management, L.P. (through an affiliate) / <strong>Chrysler Holding LLC</strong> (new JV holdco) / <strong>Chrysler Corporation LLC</strong> (later Chrysler LLC — industrial) / <strong>Chrysler Financial Services LLC</strong> (financial services)</p>
+<h3 id="structure-1">Structure</h3>
+<ul>
+<li>New holding vehicle <strong>Chrysler Holding LLC</strong> owned <strong>80.1% Cerberus affiliate / 19.9% DaimlerChrysler</strong>. Beneath it: the industrial business (Chrysler Corporation LLC) and the NAFTA financial services business (Chrysler Financial Services LLC).</li>
+<li>Cerberus’s <strong>€5.5bn (US$7.4bn)</strong> was applied as follows:
+<ul>
+<li><strong>€3.7bn</strong> contributed as equity into <strong>Chrysler Corporation LLC</strong> (industrial);</li>
+<li><strong>€0.8bn</strong> contributed into <strong>Chrysler Financial Services LLC</strong>;</li>
+<li><strong>€1.0bn</strong> paid to <strong>DaimlerChrysler</strong> (the only cash the seller received).</li>
+</ul></li>
+<li>DaimlerChrysler simultaneously <strong>granted a €0.3bn loan to Chrysler Corporation LLC</strong> and agreed to compensate for the prepayment of long-term liabilities in the amount of <strong>approximately €650m</strong>.</li>
+<li>Anticipated restructuring-related cash outflow at DaimlerChrysler of <strong>€1.2bn</strong>; <strong>net overall cash outflow of €0.5bn</strong> — i.e., Daimler paid ~$650m net to exit.</li>
+<li><strong>Pension and OPEB obligations retained by the Chrysler companies</strong> (transferred with the business, not retained by Daimler); the Chrysler pension plans were described as <strong>significantly over-funded</strong> at closing. Daimler retained certain guarantees.</li>
+<li>Post-closing exposure: <strong>US$0.4bn subordinated loan</strong> to an intermediate subsidiary of Chrysler Holding LLC and a commitment to provide <strong>second-lien loans of up to US$1.5bn</strong> to Chrysler LLC.</li>
+<li>Tax/accounting: deconsolidation on August 3, 2007; Daimler accounted for the retained <strong>19.9% under the equity method</strong> from August 4, 2007, reported in the “Vans, Buses, Other” segment <strong>with a three-month reporting lag</strong>.</li>
+</ul>
+<h3 id="financing-1">Financing</h3>
+<p>Cerberus equity of €5.5bn/$7.4bn (fund equity); the LBO debt package (~$20bn of first- and second-lien term loans for Chrysler LLC and Chrysler Financial) was arranged by JPMorgan, Goldman Sachs, Bear Stearns, Morgan Stanley and Citigroup and largely retained on the banks’ balance sheets when the syndication failed in mid-2007 [unverified — not in the 6-K].</p>
+<h3 id="purchase-price-allocation-goodwill-and-accounting-1">Purchase price allocation, goodwill and accounting</h3>
+<ul>
+<li>2007 expected impact: reduction in net profit under IFRS of <strong>€3–4bn</strong>.</li>
+<li>Actual FY2007 as reported by Daimler AG: <strong>net loss from discontinued operations of €(870)m</strong> (Chrysler activities Jan 1 – Aug 3, 2007); Group revenue <strong>€99,399m</strong>; Group net profit <strong>€3,985m</strong>.</li>
+<li>Carrying value of the 19.9% interest not separately disclosed in the 20-F <em class="unv">unverified</em>; written to nil in connection with the 2009 redemption.</li>
+</ul>
+<h3 id="advisers-1">Advisers</h3>
+<ul>
+<li>DaimlerChrysler AG — financial: <strong>JPMorgan</strong> (widely reported lead adviser; not named in the 6-K) <em class="unv">unverified</em>. Legal: <strong>Debevoise &amp; Plimpton</strong> (reported) <em class="unv">unverified</em>.</li>
+<li>Cerberus — legal: <strong>Schulte Roth &amp; Zabel</strong> (reported) <em class="unv">unverified</em>. Cerberus Chairman <strong>John Snow</strong> and adviser <strong>Wolfgang Bernhard</strong> fronted the bid.</li>
+<li>UAW — the 2007 deal was conditioned on UAW support, delivered by President Ron Gettelfinger.</li>
+</ul>
+<h3 id="key-people-1">Key people</h3>
+<div class="tbl-wrap"><table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>Title</th>
+<th>Role</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Dieter Zetsche</td>
+<td>Chairman of the Board of Management, DaimlerChrysler/Daimler AG</td>
+<td>Decided and executed the exit</td>
+</tr>
+<tr class="even">
+<td>Bodo Uebber</td>
+<td>CFO, DaimlerChrysler/Daimler AG</td>
+<td>Deal finance and structuring</td>
+</tr>
+<tr class="odd">
+<td>Stephen A. Feinberg</td>
+<td>Founder &amp; CEO, Cerberus Capital Management</td>
+<td>Principal buyer</td>
+</tr>
+<tr class="even">
+<td>John W. Snow</td>
+<td>Chairman, Cerberus (former US Treasury Secretary)</td>
+<td>Public face of the bid; quoted in the announcement</td>
+</tr>
+<tr class="odd">
+<td>Tom LaSorda</td>
+<td>President &amp; CEO, Chrysler Group</td>
+<td>Ran Chrysler through the sale; became Vice Chairman/President of Chrysler LLC</td>
+</tr>
+<tr class="even">
+<td>Robert L. Nardelli</td>
+<td>Chairman &amp; CEO, Chrysler LLC (from Aug 6 2007)</td>
+<td>Post-closing CEO; led into 2009 Chapter 11</td>
+</tr>
+<tr class="odd">
+<td>Ron Gettelfinger</td>
+<td>President, UAW</td>
+<td>Labor consent; quoted in the announcement</td>
+</tr>
+<tr class="even">
+<td>Wolfgang Bernhard</td>
+<td>Cerberus senior adviser</td>
+<td>Deal diligence/operating plan</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="regulatory-and-litigation-1">Regulatory and litigation</h3>
+<ul>
+<li>Antitrust and regulatory clearances obtained between May 14 and August 3, 2007 (no divestitures).</li>
+<li><strong>Chrysler LLC filed Chapter 11 on April 30, 2009</strong> (Bankr. S.D.N.Y., Judge Arthur Gonzalez); the 363 sale to Fiat-led New Chrysler closed June 10, 2009. Treasury’s Chrysler exposure: <strong>$12.5bn committed</strong>, of which &gt;$11.2bn recovered, <strong>net loss &lt;$1.3bn</strong>.</li>
+<li><strong>Old Carco (Chrysler) creditors’ committee sued Daimler in 2009</strong> alleging the 2007 carve-out was a fraudulent conveyance that stripped value from Chrysler; litigation resolved/settled without a disclosed material payment <em class="unv">unverified</em>.</li>
+</ul>
+<h3 id="outcome-and-post-deal-performance-1">Outcome and post-deal performance</h3>
+<ul>
+<li>Daimler wrote the 19.9% down and, under an April 2009 binding term sheet, <strong>redeemed/relinquished the entire 19.9% stake for no consideration</strong>, completed <strong>June 3, 2009</strong>. Terms reported: Daimler waived <strong>US$1.5bn of second-lien loans</strong> extended in 2008 and made a final <strong>US$600m</strong> contribution to Chrysler’s pension plans (payable over 2009–2011), in exchange for a release of claims.</li>
+<li>Net economic result for Daimler across 1998–2009: entry via pooling (no cash), exit with ~€0.5bn net cash outflow in 2007, plus ~$2.1bn of subsequent loan write-offs and pension payments in 2009.</li>
+</ul>
+<h3 id="key-numbers-1">Key numbers</h3>
+<div class="tbl-wrap"><table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Metric</th>
+<th>Value</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Total Cerberus contribution</td>
+<td>€5.5bn / US$7.4bn for 80.1%</td>
+<td>DaimlerChrysler 6-K, 5/14/2007</td>
+</tr>
+<tr class="even">
+<td>Into Chrysler Corporation LLC (industrial)</td>
+<td>€3.7bn</td>
+<td>6-K</td>
+</tr>
+<tr class="odd">
+<td>Into Chrysler Financial Services LLC</td>
+<td>€0.8bn</td>
+<td>6-K</td>
+</tr>
+<tr class="even">
+<td>Cash to DaimlerChrysler</td>
+<td>€1.0bn</td>
+<td>6-K</td>
+</tr>
+<tr class="odd">
+<td>Loan granted by DaimlerChrysler to Chrysler</td>
+<td>€0.3bn</td>
+<td>6-K</td>
+</tr>
+<tr class="even">
+<td>Compensation for prepayment of long-term liabilities</td>
+<td>~€650m</td>
+<td>6-K</td>
+</tr>
+<tr class="odd">
+<td>Expected restructuring cash outflow at DCX</td>
+<td>€1.2bn</td>
+<td>6-K</td>
+</tr>
+<tr class="even">
+<td><strong>Net cash outflow to DaimlerChrysler</strong></td>
+<td><strong>€0.5bn</strong></td>
+<td>6-K</td>
+</tr>
+<tr class="odd">
+<td>Expected 2007 IFRS net profit impact</td>
+<td>−€3bn to −€4bn</td>
+<td>6-K</td>
+</tr>
+<tr class="even">
+<td>Actual 2007 loss from discontinued operations</td>
+<td>€(870)m</td>
+<td>Daimler FY2007 20-F</td>
+</tr>
+<tr class="odd">
+<td>Daimler FY2007 revenue / net profit</td>
+<td>€99,399m / €3,985m</td>
+<td>Daimler FY2007 20-F</td>
+</tr>
+<tr class="even">
+<td>Retained stake</td>
+<td>19.9% of Chrysler Holding LLC (equity method, 3-month lag)</td>
+<td>Daimler FY2007 20-F</td>
+</tr>
+<tr class="odd">
+<td>Post-closing subordinated loan</td>
+<td>US$0.4bn</td>
+<td>Daimler FY2007 20-F</td>
+</tr>
+<tr class="even">
+<td>Second-lien commitment</td>
+<td>up to US$1.5bn</td>
+<td>Daimler FY2007 20-F</td>
+</tr>
+<tr class="odd">
+<td>Stake relinquishment completed</td>
+<td>June 3, 2009 (term sheet April 2009)</td>
+<td>Daimler FY2009 20-F</td>
+</tr>
+<tr class="even">
+<td>2009 loan waiver / pension payment</td>
+<td>US$1.5bn waived; US$600m pension</td>
+<td>Forbes, 4/28/2009 [secondary]</td>
+</tr>
+<tr class="odd">
+<td>Closing date</td>
+<td>August 3, 2007</td>
+<td>Daimler FY2007 20-F</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="primary-sources-1">Primary sources</h3>
+<ul>
+<li><a href="https://www.sec.gov/Archives/edgar/data/1067318/000110465907039131/a07-13892_26k.htm">DaimlerChrysler AG Form 6-K, May 14 2007 — Cerberus announcement press release</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/1067318/000104746908001782/a2182013z20-f.htm">Daimler AG Form 20-F for FY2007 (filed 2008)</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/1067318/000104746910001729/a2196520z20-f.htm">Daimler AG Form 20-F for FY2009 (filed 2010) — 19.9% redemption</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/1067318/">Daimler AG EDGAR filing archive (CIK 1067318)</a></li>
+<li><a href="https://home.treasury.gov/data/troubled-assets-relief-program/automotive-programs/overview">US Treasury — TARP Automotive Industry Financing Program overview (Chrysler figures)</a></li>
+<li><a href="https://www.forbes.com/2009/04/28/daimler-chrysler-mercedes-markets-equity-autos.html">Forbes, “Daimler Cuts Last Thread To Chrysler,” April 28 2009 (secondary — 2009 terms)</a></li>
+</ul>
+<hr />
+</section>
+<footer>
+<div>
+<strong style="color:var(--ink)">Market Logic Investors LLC</strong> · Transaction Experience<br> Compiled from primary filings. Internal reference. Not investment advice.
+</div>
+<div style="text-align:right">
+<a href="../" style="color:var(--teal);text-decoration:none">← Back to Transaction Experience</a>
+</div>
+</footer>
+
+</div>
+</body>
+</html>

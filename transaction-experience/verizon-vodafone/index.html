@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Verizon / Vodafone — Transaction Experience — Market Logic Investors</title>
+<meta name="description" content="The third-largest corporate transaction ever announced, and one that produced no goodwill at all. Buying in a 45% stake in a subsidiary you already control is an equity transaction">
+<style>
+
+:root {
+  --ink: #0a1929; --ink-soft: #1c2e44;
+  --paper: #faf9f4; --paper-warm: #f3efe3;
+  --rule: #d4cfbf; --rule-soft: #e8e3d4;
+  --muted: #5b6b7a; --muted-light: #8a98a5;
+  --accent: #b8391c; --accent-soft: #d65a3a;
+  --teal: #1f6b6b; --teal-soft: #4a8b8b; --teal-light: #b8d4d4;
+  --positive: #2d6a4f; --warning: #b08800; --negative: #9b2226;
+  --negative-light: #e8c5c5;
+  --serif: 'Iowan Old Style','Palatino Linotype',Palatino,'Book Antiqua',Georgia,serif;
+  --sans: 'Helvetica Neue',Helvetica,-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
+  --mono: 'SF Mono',SFMono-Regular,Menlo,Monaco,Consolas,'Liberation Mono',monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{font-size:16px;-webkit-text-size-adjust:100%;}
+body{font-family:var(--sans);background:var(--paper);color:var(--ink);line-height:1.55;-webkit-font-smoothing:antialiased;}
+.page{max-width:1000px;margin:0 auto;padding:56px 56px 80px;}
+h1,h2,h3,h4,h5{font-family:var(--serif);font-weight:400;color:var(--ink);}
+h1{font-size:3.6rem;line-height:1.02;letter-spacing:-0.025em;}
+h2{font-size:2.05rem;line-height:1.12;letter-spacing:-0.015em;}
+h3{font-size:1.3rem;line-height:1.25;}
+h4{font-family:var(--sans);font-weight:600;font-size:0.7rem;text-transform:uppercase;letter-spacing:0.16em;color:var(--muted);}
+p{font-size:0.95rem;line-height:1.7;color:var(--ink-soft);}
+strong{color:var(--ink);font-weight:600;}
+.eyebrow{font-family:var(--sans);font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.2em;color:var(--accent);display:block;margin-bottom:18px;}
+.lede{font-family:var(--serif);font-size:1.25rem;line-height:1.5;color:var(--ink);}
+.kicker{font-family:var(--sans);font-size:0.75rem;font-weight:600;text-transform:uppercase;letter-spacing:0.12em;color:var(--teal);}
+.label{font-family:var(--sans);font-size:0.7rem;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);}
+.mono{font-family:var(--mono);font-size:0.85rem;}
+.cover{border-top:1px solid var(--ink);padding-top:32px;position:relative;}
+.cover-meta{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:84px;}
+.cover-meta .left,.cover-meta .right{font-family:var(--sans);font-size:0.78rem;color:var(--muted);}
+.cover-meta .right{text-align:right;}
+.cover-meta .right .stamp{display:inline-block;padding:4px 10px;border:1px solid var(--accent);color:var(--accent);font-weight:600;letter-spacing:0.12em;font-size:0.65rem;text-transform:uppercase;margin-bottom:8px;}
+.cover-title{margin-bottom:28px;}
+.cover-title .legal{display:block;font-family:var(--sans);font-size:0.78rem;color:var(--muted);margin-top:8px;letter-spacing:0.04em;}
+.cover-tag{font-family:var(--serif);font-style:italic;font-size:1.4rem;line-height:1.45;color:var(--ink-soft);max-width:720px;margin-bottom:56px;}
+.cover-tag::before{content:"\201C";font-size:2.2rem;line-height:0;vertical-align:-0.3em;color:var(--accent);margin-right:4px;}
+.cover-tag::after{content:"\201D";font-size:2.2rem;line-height:0;vertical-align:-0.3em;color:var(--accent);margin-left:2px;}
+.metric-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:0;border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);margin:32px 0;}
+.metric{padding:22px 16px 20px;border-right:1px solid var(--rule);text-align:left;}
+.metric:last-child{border-right:none;}
+.metric .v{font-family:var(--serif);font-size:2.1rem;line-height:1;letter-spacing:-0.02em;color:var(--ink);display:block;margin-bottom:6px;}
+.metric .v small{font-size:0.95rem;color:var(--muted);font-family:var(--serif);margin-left:1px;}
+.metric .l{font-family:var(--sans);font-size:0.68rem;font-weight:600;text-transform:uppercase;letter-spacing:0.12em;color:var(--muted);line-height:1.3;}
+.metric.accent .v{color:var(--accent);}
+.metric.teal .v{color:var(--teal);}
+section{margin-top:64px;padding-top:32px;border-top:1px solid var(--rule);}
+section.no-rule{border-top:none;}
+.section-head{display:grid;grid-template-columns:120px 1fr;gap:32px;margin-bottom:28px;align-items:baseline;}
+.section-num{font-family:var(--mono);font-size:0.78rem;color:var(--muted);letter-spacing:0.05em;border-top:2px solid var(--ink);padding-top:8px;text-transform:uppercase;font-weight:600;}
+.section-title h2{margin-bottom:8px;}
+.section-title .sub{font-family:var(--serif);font-style:italic;color:var(--muted);font-size:1.05rem;}
+.cols-2{display:grid;grid-template-columns:1fr 1fr;gap:36px;margin-top:16px;}
+.cols-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px;margin-top:16px;}
+.card{background:var(--paper-warm);padding:22px 24px;border:1px solid var(--rule);}
+.card.dark{background:var(--ink);color:var(--paper);}
+.card.dark h3,.card.dark h4{color:var(--paper);}
+.card.dark p{color:rgba(250,249,244,0.85);}
+.callout{border-left:3px solid var(--accent);padding:4px 0 4px 20px;margin:18px 0;font-family:var(--serif);font-style:italic;font-size:1.05rem;color:var(--ink);}
+.pull-quote{font-family:var(--serif);font-size:1.4rem;line-height:1.4;color:var(--ink);border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);padding:28px 0;margin:32px 0;text-align:center;letter-spacing:-0.005em;}
+table{width:100%;border-collapse:collapse;font-family:var(--sans);font-size:0.88rem;margin-top:14px;}
+thead th{text-align:left;font-weight:600;font-size:0.7rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);padding:10px 14px 10px 0;border-bottom:1.5px solid var(--ink);}
+thead th.num{text-align:right;}
+tbody td{padding:14px 14px 14px 0;border-bottom:1px solid var(--rule);color:var(--ink-soft);vertical-align:top;}
+tbody td.num{text-align:right;font-variant-numeric:tabular-nums;font-family:var(--mono);font-size:0.82rem;}
+tbody td strong{color:var(--ink);}
+tbody tr.highlight td{color:var(--ink);}
+tbody tr.highlight td:first-child{padding-left:12px;border-left:3px solid var(--accent);}
+ul.clean{list-style:none;}
+ul.clean li{padding:12px 0 12px 24px;border-bottom:1px solid var(--rule-soft);position:relative;font-size:0.93rem;color:var(--ink-soft);line-height:1.6;}
+ul.clean li::before{content:"→";position:absolute;left:0;top:12px;color:var(--accent);font-weight:600;}
+ol.clean{list-style:none;counter-reset:ck;}
+ol.clean li{counter-increment:ck;padding:12px 0 12px 36px;border-bottom:1px solid var(--rule-soft);position:relative;font-size:0.93rem;color:var(--ink-soft);line-height:1.6;}
+ol.clean li::before{content:counter(ck,decimal-leading-zero);position:absolute;left:0;top:12px;font-family:var(--mono);font-size:0.78rem;color:var(--accent);font-weight:600;}
+.tag{display:inline-block;font-family:var(--sans);font-size:0.68rem;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;padding:3px 9px;margin-right:6px;margin-bottom:4px;border:1px solid var(--rule);color:var(--ink-soft);background:var(--paper);}
+.tag.accent{border-color:var(--accent);color:var(--accent);}
+.tag.teal{border-color:var(--teal);color:var(--teal);}
+.tag.warn{border-color:var(--warning);color:var(--warning);}
+.tag.neg{border-color:var(--negative);color:var(--negative);}
+.tag.pos{border-color:var(--positive);color:var(--positive);}
+.thesis-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:24px;border:1px solid var(--ink);}
+.thesis-col{padding:28px 28px 24px;}
+.thesis-col.bull{border-right:1px solid var(--ink);}
+.thesis-col ul{list-style:none;margin-top:14px;}
+.thesis-col ul li{padding:10px 0 10px 22px;position:relative;font-size:0.9rem;color:var(--ink-soft);line-height:1.55;border-bottom:1px dashed var(--rule-soft);}
+.thesis-col.bull ul li::before{content:"+";position:absolute;left:0;top:9px;color:var(--positive);font-weight:700;}
+.thesis-col.bear ul li::before{content:"−";position:absolute;left:0;top:9px;color:var(--negative);font-weight:700;}
+.recommendation{background:var(--ink);color:var(--paper);padding:40px 44px;margin-top:40px;border-left:6px solid var(--accent);}
+.recommendation .head{font-family:var(--mono);font-size:0.74rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--accent-soft);margin-bottom:12px;font-weight:600;}
+.recommendation h2{color:var(--paper);margin-bottom:14px;}
+.recommendation p{color:rgba(250,249,244,0.86);font-size:1rem;}
+.recommendation .actions{margin-top:24px;padding-top:20px;border-top:1px solid rgba(250,249,244,0.18);display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+.recommendation .actions .h{font-family:var(--mono);font-size:0.7rem;text-transform:uppercase;letter-spacing:0.14em;color:var(--accent-soft);margin-bottom:10px;}
+.recommendation .actions ul{list-style:none;}
+.recommendation .actions ul li{padding:6px 0 6px 22px;position:relative;font-size:0.9rem;color:rgba(250,249,244,0.92);line-height:1.5;}
+.recommendation .actions ul li::before{content:"▸";position:absolute;left:0;top:5px;color:var(--accent-soft);}
+footer{margin-top:80px;padding-top:28px;border-top:1px solid var(--ink);font-family:var(--sans);font-size:0.74rem;color:var(--muted);display:flex;justify-content:space-between;}
+.chart{width:100%;margin:18px 0 6px;background:var(--paper);}
+.chart-caption{font-family:var(--sans);font-size:0.72rem;color:var(--muted);margin-top:4px;font-style:italic;line-height:1.5;}
+/* Dashboard */
+.dash-panel{background:var(--paper-warm);border:1px solid var(--rule);padding:24px;margin-top:24px;}
+.dash-controls{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:20px;}
+.ctrl-item{display:flex;flex-direction:column;gap:5px;}
+.ctrl-item label{font-family:var(--sans);font-size:0.7rem;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);}
+.ctrl-row{display:flex;align-items:center;gap:8px;}
+.ctrl-row input[type=range]{flex:1;accent-color:var(--teal);cursor:pointer;}
+.ctrl-val{font-family:var(--mono);font-size:0.82rem;font-weight:600;color:var(--ink);min-width:48px;text-align:right;}
+.scen-row{display:flex;gap:8px;margin-bottom:18px;flex-wrap:wrap;}
+.scen-btn{font-family:var(--sans);font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;padding:5px 14px;border:1px solid var(--rule);background:var(--paper);color:var(--muted);cursor:pointer;}
+.scen-btn:hover{border-color:var(--teal);color:var(--teal);}
+.scen-btn.active{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+.output-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--rule);margin-bottom:16px;}
+.output-cell{padding:16px 14px;border-right:1px solid var(--rule);}
+.output-cell:last-child{border-right:none;}
+.output-cell .ov{font-family:var(--serif);font-size:1.8rem;letter-spacing:-0.02em;color:var(--ink);display:block;line-height:1;margin-bottom:4px;}
+.output-cell .ol{font-family:var(--sans);font-size:0.65rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--muted);}
+.output-cell.ok .ov{color:var(--positive);}
+.output-cell.warn .ov{color:var(--warning);}
+.output-cell.bad .ov{color:var(--negative);}
+.verdict-box{padding:16px 20px;font-family:var(--sans);font-size:0.88rem;line-height:1.6;border-left:4px solid var(--rule);margin-bottom:16px;}
+.verdict-box.ok{border-left-color:var(--positive);background:#f0f7f4;}
+.verdict-box.warn{border-left-color:var(--warning);background:#fdf8ec;}
+.verdict-box.bad{border-left-color:var(--negative);background:#fdf0f0;}
+.verdict-box .vl{font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.14em;margin-bottom:5px;color:var(--muted);}
+.assump-list{list-style:none;margin-top:0;}
+.assump-list li{padding:14px 0 14px 24px;border-bottom:1px solid var(--rule-soft);position:relative;font-size:0.88rem;line-height:1.6;color:var(--ink-soft);}
+.assump-list li::before{content:"→";position:absolute;left:0;top:14px;color:var(--accent);font-weight:700;}
+.assump-list li strong{color:var(--ink);}
+.assump-flag{display:inline-block;font-family:var(--mono);font-size:0.65rem;font-weight:700;letter-spacing:0.08em;padding:2px 7px;border:1px solid;margin-left:8px;vertical-align:middle;}
+.assump-flag.ok{border-color:var(--positive);color:var(--positive);}
+.assump-flag.warn{border-color:var(--warning);color:var(--warning);}
+.assump-flag.bad{border-color:var(--negative);color:var(--negative);}
+.signal{font-family:var(--mono);font-size:0.72rem;color:var(--teal);margin-top:6px;display:block;line-height:1.5;}
+.entity-row{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--ink);margin-top:20px;}
+.entity-col{padding:20px 18px;border-right:1px solid var(--rule);}
+.entity-col:last-child{border-right:none;}
+.entity-col h4{margin-bottom:12px;}
+.entity-col.et h4{color:var(--teal);}
+.entity-col.sun h4{color:var(--positive);}
+.entity-col.usac h4{color:var(--warning);}
+.emet{display:flex;justify-content:space-between;font-size:0.8rem;padding:6px 0;border-bottom:1px solid var(--rule-soft);}
+.emet:last-child{border:none;}
+.emet .ek{color:var(--muted);}
+.emet .ev{font-weight:600;color:var(--ink);font-family:var(--mono);font-size:0.78rem;}
+.emet .ev.g{color:var(--positive);}
+.emet .ev.r{color:var(--negative);}
+.emet .ev.w{color:var(--warning);}
+.dc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--rule);margin-top:16px;}
+.dc-cell{padding:18px 16px;border-right:1px solid var(--rule);}
+.dc-cell:last-child{border-right:none;}
+.dc-name{font-family:var(--sans);font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--ink);margin-bottom:4px;}
+.dc-pipe{font-family:var(--sans);font-size:0.7rem;color:var(--muted);margin-bottom:10px;}
+.dc-vol{font-family:var(--serif);font-size:1.8rem;color:var(--teal);letter-spacing:-0.02em;line-height:1;margin-bottom:4px;}
+.dc-ebitda{font-family:var(--mono);font-size:0.8rem;color:var(--positive);font-weight:600;}
+.dc-note{font-size:0.72rem;color:var(--muted);margin-top:6px;line-height:1.45;}
+.site-nav{display:flex;align-items:center;justify-content:space-between;background:var(--ink);color:var(--paper);padding:10px 40px;font-family:var(--sans);font-size:0.78rem;letter-spacing:0.04em;position:sticky;top:0;z-index:100;gap:16px;}
+.site-nav a{color:rgba(250,249,244,0.7);text-decoration:none;}
+.site-nav a:hover{color:var(--paper);}
+.site-nav span[aria-hidden]{color:rgba(250,249,244,0.3);margin:0 4px;}
+.site-nav .nav-meta{color:rgba(250,249,244,0.45);font-size:0.75rem;}
+.site-nav .nav-action a{color:var(--accent);border:1px solid rgba(184,57,28,0.5);border-radius:3px;padding:3px 10px;}
+@media(max-width:760px){
+  .page{padding:32px 22px;}
+  h1{font-size:2.4rem;}
+  .metric-grid{grid-template-columns:repeat(2,1fr);}
+  .cols-2,.cols-3,.thesis-grid,.dash-controls,.output-grid,.entity-row,.dc-grid{grid-template-columns:1fr;}
+  .thesis-col.bull{border-right:none;border-bottom:1px solid var(--ink);}
+  .section-head{grid-template-columns:1fr;gap:8px;}
+  .recommendation .actions{grid-template-columns:1fr;}
+}
+
+/* ===== Glossary ===== */
+.glossary-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:0;border:1px solid var(--ink);margin-top:16px;}
+.glossary-col{padding:0;}
+.gterm{display:grid;grid-template-columns:160px 1fr;gap:0;border-bottom:1px solid var(--rule-soft);}
+.gterm:last-child{border-bottom:none;}
+.gt{font-family:var(--mono);font-size:0.78rem;font-weight:700;color:var(--teal);padding:12px 14px;border-right:1px solid var(--rule-soft);background:var(--paper-warm);display:flex;align-items:flex-start;}
+.gd{font-size:0.82rem;color:var(--ink-soft);padding:12px 14px;line-height:1.55;}
+.gd strong{color:var(--ink);}
+@media(max-width:760px){.glossary-grid{grid-template-columns:1fr;}.gterm{grid-template-columns:120px 1fr;}}
+
+
+
+section[id]{scroll-margin-top:64px}
+.tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin-top:14px}
+.tbl-wrap table{margin-top:0}
+em.unv{font-style:normal;font-family:var(--mono);font-size:0.68rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--warning);border:1px solid var(--warning);padding:1px 5px;margin:0 2px;white-space:nowrap}
+em.corr{font-style:normal;font-family:var(--mono);font-size:0.68rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--accent);border:1px solid var(--accent);padding:1px 5px;margin:0 2px}
+h3{font-family:var(--sans);font-size:0.78rem;font-weight:700;text-transform:uppercase;letter-spacing:0.13em;color:var(--accent);margin:26px 0 8px}
+h4{font-family:var(--serif);font-size:1.05rem;font-weight:400;margin:20px 0 6px}
+section ul{margin:6px 0 6px 20px}
+section ul li{font-size:0.9rem;line-height:1.6;color:var(--ink-soft);padding:3px 0}
+section ol{margin:6px 0 6px 22px}
+section ol li{font-size:0.9rem;line-height:1.6;color:var(--ink-soft);padding:3px 0}
+.factstrip{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--ink);margin:18px 0 4px}
+.factstrip .f{padding:16px 20px;border-right:1px solid var(--rule)}
+.factstrip .f:last-child{border-right:none}
+.factstrip .f .label{display:block;margin-bottom:5px}
+.factstrip .f .t{font-size:0.88rem;line-height:1.55;color:var(--ink)}
+.txn-map td:first-child{font-weight:600;color:var(--ink)}
+.srcnote{font-family:var(--sans);font-size:0.78rem;color:var(--muted);line-height:1.6;border-left:3px solid var(--rule);padding:2px 0 2px 16px;margin:14px 0}
+.toc{display:grid;grid-template-columns:repeat(2,1fr);gap:0;border:1px solid var(--ink);margin-top:20px}
+.toc a{display:block;padding:12px 18px;border-bottom:1px solid var(--rule-soft);border-right:1px solid var(--rule-soft);text-decoration:none;color:var(--ink);font-size:0.86rem}
+.toc a:hover{background:var(--paper-warm);color:var(--accent)}
+.toc a .n{font-family:var(--mono);font-size:0.68rem;color:var(--muted);margin-right:10px}
+@media(max-width:720px){.factstrip,.toc{grid-template-columns:1fr}}
+
+</style>
+</head>
+<body>
+<nav class="site-nav" aria-label="breadcrumb">
+  <div style="display:flex;align-items:center;gap:0;flex-wrap:wrap">
+    <a href="../../">Market Logic Investors</a><span aria-hidden="true">/</span>
+    <a href="../../">Deal Vault</a><span aria-hidden="true">/</span>
+    <a href="../">Transaction Experience</a><span aria-hidden="true">/</span>
+    <span>Verizon / Vodafone</span>
+  </div>
+  <div style="display:flex;align-items:center;gap:16px;">
+    <span class="nav-meta">ML-TXN-VZ &nbsp;|&nbsp; Telecommunications</span>
+  </div>
+</nav>
+<div class="page">
+<header class="cover">
+<div class="cover-meta">
+<div class="left">
+<p><strong style="color:var(--ink);display:block;margin-bottom:4px;">Market Logic Investors LLC</strong> Telecommunications · Transaction Record<br> Client engagement record · Primary-source reconstruction</p>
+</div>
+<div class="right">
+<p><span class="stamp">2 transactions</span><br> <strong style="color:var(--ink);">Ref: ML-TXN-VZ</strong><br> Period: 1999 – 2014<br> Compiled: September 6, 2026</p>
+</div>
+</div>
+<span class="eyebrow">Telecommunications · Minority stake buy-in</span>
+<div class="cover-title">
+<h1>
+Verizon / Vodafone
+</h1>
+<p><span class="legal">Verizon Communications Inc. · NYSE: VZ · Vodafone Group Plc · Cellco Partnership</span></p>
+</div>
+<p class="cover-tag">
+The third-largest corporate transaction ever announced, and one that produced no goodwill at all. Buying in a 45% stake in a subsidiary you already control is an equity transaction under ASC 810, not a business combination. The financing was the record: $49bn of bonds in eight tranches in a single day.
+</p>
+<div class="metric-grid">
+<div class="metric accent">
+<span class="v">$130<small>bn</small></span><span class="l">Total consideration</span>
+</div>
+<div class="metric teal">
+<span class="v">$49.0<small>bn</small></span><span class="l">Bond offering</span>
+</div>
+<div class="metric">
+<span class="v">1.27<small>bn</small></span><span class="l">Shares issued</span>
+</div>
+<div class="metric">
+<span class="v">$0</span><span class="l">Goodwill recorded</span>
+</div>
+<div class="metric">
+<span class="v">$61<small>bn</small></span><span class="l">Bridge facility</span>
+</div>
+<div class="metric">
+<span class="v">$84<small>bn</small></span><span class="l">Vodafone return of value</span>
+</div>
+</div>
+</header>
+<section class="no-rule" style="margin-top:48px">
+<div class="section-head">
+<div class="section-num">
+§ 01
+</div>
+<div class="section-title">
+<h2>
+Transaction map
+</h2>
+<p class="sub">
+Every transaction on this file, in order
+</p>
+</div>
+</div>
+<p style="margin-bottom:8px">
+Verizon bought Vodafone’s indirect 45% of Verizon Wireless for ~$130bn in cash, stock, notes and the Omnitel interest, terminating the 1999 and 2000 agreements that had governed the joint venture. Because Verizon already consolidated the subsidiary, ASC 810 required the whole thing to be booked within equity.
+</p>
+<div class="tbl-wrap">
+<table class="txn-map">
+<thead>
+<tr>
+<th>
+Transaction
+</th>
+<th>
+Type
+</th>
+<th>
+Announced / closed
+</th>
+<th>
+Headline value
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="#txn-02" style="color:var(--ink);text-decoration:none;border-bottom:1px solid var(--rule)">acquisition of the 45% minority interest in Verizon Wireless</a>
+</td>
+<td>
+Minority stake buy-in (acquisition of a noncontrolling interest in an already-consolidated subsidiary); cash-and-stock share purchase of a holding…
+</td>
+<td>
+Stock Purchase Agreement entered September 2, 2013; announced September 2, 2013 (Verizon 8-K). Verizon and Vodafone shareholder…
+</td>
+<td>
+~$130bn (per the pro forma: $131,274m of total consideration) — at the time the third-largest corporate transaction ever…
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="toc">
+<a href="#txn-02"><span class="n">§ 02</span>acquisition of the 45% minority interest in Verizon Wireless</a>
+</div>
+</section>
+<section id="txn-02">
+<div class="section-head">
+<div class="section-num">
+§ 02
+</div>
+<div class="section-title">
+<h2>
+Verizon Communications Inc. / Vodafone Group Plc — acquisition of the 45% minority interest in Verizon Wireless
+</h2>
+<p class="sub">
+Minority stake buy-in (acquisition of a noncontrolling interest in an already-consolidated subsidiary); cash-and-stock share purchase of a holding company, accounted for as an equity transaction under ASC 810
+</p>
+</div>
+</div>
+<div class="factstrip">
+<div class="f">
+<span class="label">Announced / closed</span>
+<div class="t">
+<p>Stock Purchase Agreement entered <strong>September 2, 2013</strong>; announced September 2, 2013 (Verizon 8-K). Verizon and Vodafone shareholder meetings <strong>January 28, 2014</strong>. <strong>Completed February 21, 2014.</strong> Vodafone share consolidation and Return of Value took effect <strong>February 24, 2014</strong>; cash distributed <strong>March 4, 2014</strong>.</p>
+</div>
+</div>
+<div class="f">
+<span class="label">Headline value</span>
+<div class="t">
+<p><strong>~$130bn</strong> (per the pro forma: <strong>$131,274m</strong> of total consideration) — at the time the third-largest corporate transaction ever announced.</p>
+</div>
+</div>
+</div>
+<h3 id="parties">Parties</h3>
+<p>Verizon Communications Inc. (buyer; CIK 0000732712) / Vodafone Group Plc (seller; CIK 0000839923) / <strong>Vodafone Americas Finance 1 Inc. (“Holdco”)</strong>, the acquired entity, which indirectly held Vodafone’s 45% interest in <strong>Cellco Partnership d/b/a Verizon Wireless</strong></p>
+<h3 id="structure">Structure</h3>
+<ul>
+<li>Verizon acquired <strong>all of the issued and outstanding capital stock of Holdco</strong> (Vodafone Americas Finance 1 Inc.), which indirectly held, through other US subsidiaries, Vodafone’s <strong>indirect 45% interest in Verizon Wireless</strong>. A stock purchase rather than an asset purchase — this is the key to the tax outcome.</li>
+<li><strong>Consideration (as agreed, 8-K of Sept 2013):</strong>
+<ul>
+<li><strong>~$58.89bn cash</strong></li>
+<li><strong>~$60.15bn of Verizon common stock</strong></li>
+<li><strong>$5.0bn</strong> of Verizon senior unsecured notes issued directly to Vodafone (8- and 11-year maturities)</li>
+<li><strong>$3.5bn</strong> — transfer of Verizon’s indirectly owned <strong>23.1% interest in Vodafone Omnitel N.V.</strong> to Vodafone</li>
+<li><strong>~$2.5bn</strong> other consideration</li>
+</ul></li>
+<li><strong>Collar on the stock consideration:</strong> the number of shares was set on the <strong>20-trading-day VWAP ending on the third business day before closing</strong>, with the reference price <strong>floored at $47.00 and capped at $51.00</strong>. Expected issuance range disclosed in the prospectus: <strong>~1.18bn to ~1.28bn shares</strong>.</li>
+<li><strong>Actual settlement:</strong> 20-day VWAP through <strong>February 18, 2014 = US$47.1852</strong> (i.e., the floor bound); <strong>1,274,764,121 Verizon common shares issued</strong>, valued at <strong>$61,342m</strong> in the pro forma. Diluted weighted-average shares rose from 2,874m to 4,149m pro forma.</li>
+<li>Pro forma consideration build: common stock <strong>$61,342m</strong> + external debt <strong>$59,761m</strong> + Verizon notes to Vodafone <strong>$5,000m</strong> + assumption of <strong>VAI preferred stock $1,671m</strong> + Omnitel credit <strong>$3,500m</strong> = <strong>$131,274m</strong>.</li>
+<li><strong>On completion, Verizon and Vodafone terminated the 1999 U.S. Wireless Alliance Agreement and the 2000 Investment Agreement</strong> — the two instruments that had governed the joint venture since its formation.</li>
+<li><strong>Termination fees payable by Verizon:</strong> <strong>$1.55bn</strong> if Verizon shareholders failed to approve; <strong>$4.65bn</strong> on a Verizon board recommendation change; <strong>$10.0bn</strong> for financing failure.</li>
+<li><strong>Tax:</strong> structured as a sale of UK/Dutch-held US holding company shares. Vodafone’s gain fell largely outside UK corporation tax under the <strong>UK substantial shareholdings exemption</strong>, and the US-side gain was subject to limited US tax because the disposed entity was not a US real property holding corporation; Vodafone reported a <strong>US$5.0bn total tax charge</strong> on the disposal (versus a ~$130bn transaction) [the SSE mechanism itself is <em class="unv">unverified</em> from primary filings; the tax charge is reported in Vodafone’s FY2014 20-F]. Vodafone recognised a <strong>pre-tax gain of £45.0bn</strong> and total profit for the year of <strong>£59.4bn</strong>, and recognised <strong>deferred tax assets of £19.3bn</strong>.</li>
+<li><strong>Vodafone shareholder Return of Value:</strong> <strong>~US$84.0bn (£51.4bn)</strong> — comprising <strong>US$59.3bn in Verizon shares</strong> (all of the Verizon consideration shares were passed through) and <strong>US$23.9bn in cash</strong>, delivered through a <strong>B share (capital option) / C share (income option)</strong> structure, followed by a <strong>share consolidation of 6 new ordinary shares for every 11 existing</strong> (post-consolidation count 28,811,864,298 shares). Per Vodafone ordinary share: <strong>~0.026 Verizon shares</strong> plus cash. Vodafone shareholders approved on <strong>January 28, 2014</strong> — 68.55% of shares in issue voted, 99.8% in favour.</li>
+<li>Verizon shareholders approved (i) the share issuance and (ii) a charter amendment increasing authorised common stock, at the special meeting on <strong>January 28, 2014</strong>.</li>
+</ul>
+<h3 id="financing">Financing</h3>
+<ul>
+<li><strong>$61.0bn Bridge Credit Agreement</strong> signed September 2, 2013, with <strong>JPMorgan Chase Bank, N.A. as administrative agent</strong> (JPMorgan, Morgan Stanley, BofA Merrill Lynch and Barclays as the initial committing banks). Terminated in Q4 2013 on effectiveness of a term loan agreement; Verizon expensed <strong>$0.2bn</strong> of bridge fees.</li>
+<li><strong>September 11/18, 2013 — $49.0bn eight-tranche note offering, the largest corporate bond sale in history</strong>, settled on or about September 18, 2013 (T+5):</li>
+</ul>
+<div class="tbl-wrap"><table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Tranche</th>
+<th>Principal</th>
+<th>Coupon</th>
+<th>Maturity</th>
+<th>Price to public</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Floating Rate Notes</td>
+<td>$2,250,000,000</td>
+<td>3mL + 1.53%</td>
+<td>Sept 15, 2016</td>
+<td>100.000%</td>
+</tr>
+<tr class="even">
+<td>Floating Rate Notes</td>
+<td>$1,750,000,000</td>
+<td>3mL + 1.75%</td>
+<td>Sept 14, 2018</td>
+<td>100.000%</td>
+</tr>
+<tr class="odd">
+<td>Fixed</td>
+<td>$4,250,000,000</td>
+<td>2.50%</td>
+<td>Sept 15, 2016</td>
+<td>99.923%</td>
+</tr>
+<tr class="even">
+<td>Fixed</td>
+<td>$4,750,000,000</td>
+<td>3.65%</td>
+<td>Sept 14, 2018</td>
+<td>99.996%</td>
+</tr>
+<tr class="odd">
+<td>Fixed</td>
+<td>$4,000,000,000</td>
+<td>4.50%</td>
+<td>Sept 15, 2020</td>
+<td>99.870%</td>
+</tr>
+<tr class="even">
+<td>Fixed</td>
+<td>$11,000,000,000</td>
+<td>5.15%</td>
+<td>Sept 15, 2023</td>
+<td>99.676%</td>
+</tr>
+<tr class="odd">
+<td>Fixed</td>
+<td>$6,000,000,000</td>
+<td>6.40%</td>
+<td>Sept 15, 2033</td>
+<td>99.900%</td>
+</tr>
+<tr class="even">
+<td>Fixed</td>
+<td>$15,000,000,000</td>
+<td>6.55%</td>
+<td>Sept 15, 2043</td>
+<td>99.883%</td>
+</tr>
+<tr class="odd">
+<td><strong>Total</strong></td>
+<td><strong>$49,000,000,000</strong></td>
+<td></td>
+<td></td>
+<td>net proceeds ~<strong>$48,517,748,000</strong></td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>Joint book-running managers on the $49bn: <strong>Barclays, BofA Merrill Lynch, J.P. Morgan, Morgan Stanley</strong> (the four active books), with <strong>Citigroup, Credit Suisse, Mitsubishi UFJ Securities, Mizuho Securities, RBC Capital Markets, RBS and Wells Fargo Securities</strong>.</li>
+<li><strong>Term loan credit agreement: $6.6bn drawn</strong> at closing (3-year and 5-year floating tranches; the facility was sized at $12bn in Verizon’s February 2014 investor materials).</li>
+<li><strong>February 2014 international offering:</strong> <strong>€3.0bn and £850m</strong> benchmark notes (8-, 12- and 20-year maturities).</li>
+<li>Total external debt raised for the transaction: <strong>~$66.4bn</strong> (including the $5bn of notes issued to Vodafone).</li>
+</ul>
+<h3 id="purchase-price-allocation-goodwill-and-accounting">Purchase price allocation, goodwill and accounting</h3>
+<ul>
+<li><strong>No purchase accounting and no goodwill.</strong> Verizon already held a controlling 55% interest and consolidated Verizon Wireless, so under <strong>ASC Topic 810</strong>, “changes in a parent’s ownership interest where the parent retains a controlling financial interest in its subsidiary will be accounted for as <strong>equity transactions</strong>.” <strong>No remeasurement of assets or liabilities occurred</strong>; the difference between the consideration and the carrying amount of the noncontrolling interest was recorded within equity.</li>
+<li>The pro forma <strong>eliminated the $55,465m carrying value of Vodafone’s 45% noncontrolling interest</strong>, reducing consolidated <strong>noncontrolling interests from $56,580m to $1,115m</strong>.</li>
+<li><strong>Verizon total debt:</strong> $51.99bn at Dec 31, 2012 ($4,369m current + $47,618m long-term) → <strong>$93.59bn at Dec 31, 2013</strong> ($3,933m current + $89,658m long-term), i.e. pre-funded before the February 2014 close; peaked at ~$113.6bn during 2014 <em class="unv">unverified</em> before a multi-year deleveraging.</li>
+<li>2013 Verizon standalone metrics cited in the February 2014 investor deck: revenue <strong>$120.6bn</strong>, operating cash flow <strong>$38.8bn</strong>, free cash flow <strong>$22.2bn</strong>, adjusted EBITDA <strong>$42.1bn</strong>. Verizon described the deal as <strong>accretive to EPS at close with “no integration risk.”</strong></li>
+</ul>
+<h3 id="advisers">Advisers</h3>
+<ul>
+<li><strong>Verizon — financial:</strong> <strong>Guggenheim Securities, LLC</strong> (lead), <strong>J.P. Morgan Securities LLC</strong>, <strong>Morgan Stanley &amp; Co. LLC</strong> (all three named in the prospectus), plus <strong>BofA Merrill Lynch</strong> and <strong>Barclays</strong> on financing. <strong>Legal:</strong> <strong>Wachtell, Lipton, Rosen &amp; Katz</strong> (US) and <strong>Macfarlanes LLP</strong> (UK) — widely reported, not named in the fetched prospectus sections <em class="unv">unverified</em>.</li>
+<li><strong>Vodafone — financial:</strong> <strong>UBS</strong> and <strong>Goldman Sachs</strong> (lead), with Deutsche Bank on the Return of Value <em class="unv">unverified</em>. <strong>Legal:</strong> <strong>Slaughter and May</strong> (UK) and <strong>Linklaters</strong> <em class="unv">unverified</em>.</li>
+</ul>
+<h3 id="key-people">Key people</h3>
+<div class="tbl-wrap"><table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>Title</th>
+<th>Role</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Lowell C. McAdam</td>
+<td>Chairman &amp; CEO, Verizon</td>
+<td>Principal negotiator; drove the buy-in he had pushed for since 2011</td>
+</tr>
+<tr class="even">
+<td>Francis J. “Fran” Shammo</td>
+<td>EVP &amp; CFO, Verizon</td>
+<td>Financing architecture — the $61bn bridge and $49bn bond</td>
+</tr>
+<tr class="odd">
+<td>Randal S. Milch</td>
+<td>EVP &amp; General Counsel, Verizon</td>
+<td>Deal documentation</td>
+</tr>
+<tr class="even">
+<td>Marni Walden</td>
+<td>President, Product &amp; New Business Innovation, Verizon</td>
+<td>Wireless integration</td>
+</tr>
+<tr class="odd">
+<td>Vittorio Colao</td>
+<td>CEO, Vodafone Group</td>
+<td>Seller-side principal; ran the Return of Value</td>
+</tr>
+<tr class="even">
+<td>Andy Halford</td>
+<td>CFO, Vodafone Group</td>
+<td>Consideration mix, tax structuring, Return of Value</td>
+</tr>
+<tr class="odd">
+<td>Gerard Kleisterlee</td>
+<td>Chairman, Vodafone Group</td>
+<td>Board approval and shareholder circular</td>
+</tr>
+<tr class="even">
+<td>Rosemary Martin</td>
+<td>Group General Counsel, Vodafone</td>
+<td>Scheme/court process</td>
+</tr>
+<tr class="odd">
+<td>Alan Schwartz</td>
+<td>Executive Chairman, Guggenheim Partners</td>
+<td>Lead banker to Verizon <em class="unv">unverified</em></td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="regulatory-and-litigation">Regulatory and litigation</h3>
+<ul>
+<li><strong>FCC</strong> approval under the Communications Act (transfer of control of licences) — granted without conditions.</li>
+<li><strong>European Commission</strong> approval for the transfer of Verizon’s 23.1% Omnitel interest to Vodafone.</li>
+<li><strong>UK High Court</strong> sanction of the Vodafone scheme of arrangement implementing the B/C share Return of Value and share consolidation.</li>
+<li>Verizon shareholder approval of the share issuance and the charter amendment (both passed January 28, 2014). No material deal litigation.</li>
+</ul>
+<h3 id="outcome-and-post-deal-performance">Outcome and post-deal performance</h3>
+<ul>
+<li>Verizon obtained 100% of the cash flows of the largest US wireless carrier, eliminating the distributions that had previously leaked to Vodafone (<strong>$8.3bn to Vodafone in 2012; $3.15bn in 2013</strong>).</li>
+<li>Vodafone’s own market value roughly halved on completion as the Verizon stake left the group; the residual “Vodafone” was reduced to ~$100bn of value, and the company launched <strong>Project Spring</strong>, a £19bn network investment programme, with the retained proceeds.</li>
+<li>Verizon’s leverage peaked at ~3.5x net debt/EBITDA in 2014 and was brought back toward ~2.5x by 2017–2018 through free cash flow, asset sales (the $10.54bn tower sale to American Tower in 2015, the $9.1bn wireline sale to Frontier in 2016) and debt tenders.</li>
+<li>The $49bn bond remained the largest corporate bond sale on record until 2016 (Anheuser-Busch InBev, $46bn — still smaller) and was surpassed only conceptually; it retained the record through at least 2025 <em class="unv">unverified</em>.</li>
+</ul>
+<h3 id="earlier-history-formation-of-verizon-wireless-and-the-19992006-arrangements">Earlier history — formation of Verizon Wireless and the 1999–2006 arrangements</h3>
+<ul>
+<li><strong>September 21, 1999:</strong> Bell Atlantic and Vodafone AirTouch Plc agreed to combine their US wireless assets into a new national wireless business — documented in the <strong>U.S. Wireless Alliance Agreement (1999)</strong>, terminated at the 2014 closing.</li>
+<li><strong>April 3, 2000:</strong> the <strong>Verizon</strong> brand was launched; the joint venture began operating April 4, 2000. Governed also by an <strong>Investment Agreement (2000)</strong>, likewise terminated at the 2014 closing.</li>
+<li><strong>June 30, 2000:</strong> the Bell Atlantic–GTE merger closed, forming Verizon Communications Inc.; <strong>GTE Wireless</strong> was folded into Verizon Wireless, making it the largest US wireless carrier. Final ownership: <strong>Verizon 55% with management control / Vodafone 45% indirect</strong>.</li>
+<li><strong>Put option:</strong> Vodafone held a put right to require Verizon to purchase portions of its interest (up to a capped amount, commonly cited at ~$20bn over exercise windows in 2003–2004 and 2006–2007). Vodafone did not exercise; the put lapsed in <strong>August 2006</strong>. Vodafone sought SEC no-action relief in June 2006 in connection with the arrangements (Linklaters incoming letter, June 8, 2006).</li>
+<li><strong>2004–2006 dividend dispute:</strong> Verizon Wireless made <strong>no distributions to its owners between 2005 and 2011</strong>, retaining cash to fund network build-out and to repay intercompany debt — a persistent grievance for Vodafone shareholders, who pressed for either a dividend or an exit and, from 2006, publicly agitated for a sale of the stake.</li>
+<li>Distributions resumed only in the final years: a <strong>$10bn</strong> distribution declared in 2011 and paid <strong>January 31, 2012</strong> (Vodafone’s share <strong>$4.5bn</strong>); <strong>$8.5bn</strong> distributed by year-end 2012 (Vodafone received <strong>$8.3bn</strong> in 2012 in total per Verizon’s figures, reflecting timing); <strong>$7bn</strong> distributed in 2013 (Vodafone’s share <strong>$3.15bn</strong>).</li>
+</ul>
+<h3 id="key-numbers">Key numbers</h3>
+<div class="tbl-wrap"><table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Metric</th>
+<th>Value</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>SPA date / closing</td>
+<td>Sept 2, 2013 / Feb 21, 2014</td>
+<td>Verizon 8-K 9/2013; 8-K 2/21/2014</td>
+</tr>
+<tr class="even">
+<td>Headline value</td>
+<td>~$130bn ($131,274m pro forma)</td>
+<td>Verizon 8-K; pro forma Ex-99</td>
+</tr>
+<tr class="odd">
+<td>Cash</td>
+<td>~$58.89bn</td>
+<td>Verizon 8-K; closing 8-K</td>
+</tr>
+<tr class="even">
+<td>Verizon common stock</td>
+<td>~$60.15bn agreed; $61,342m at settlement</td>
+<td>8-K; pro forma</td>
+</tr>
+<tr class="odd">
+<td>Shares issued</td>
+<td>1,274,764,121</td>
+<td>Verizon closing 8-K; Vodafone announcement</td>
+</tr>
+<tr class="even">
+<td>VWAP used</td>
+<td>US$47.1852 (20 days to Feb 18, 2014)</td>
+<td>Vodafone announcement</td>
+</tr>
+<tr class="odd">
+<td>Collar</td>
+<td>$47.00 floor / $51.00 cap</td>
+<td>Verizon 8-K</td>
+</tr>
+<tr class="even">
+<td>Expected issuance range</td>
+<td>~1.18bn – ~1.28bn shares</td>
+<td>Verizon 424B3</td>
+</tr>
+<tr class="odd">
+<td>Verizon notes to Vodafone</td>
+<td>$5.0bn (8- and 11-year)</td>
+<td>Verizon 8-K</td>
+</tr>
+<tr class="even">
+<td>Omnitel (23.1%) transferred</td>
+<td>$3.5bn</td>
+<td>Verizon 8-K</td>
+</tr>
+<tr class="odd">
+<td>Other consideration</td>
+<td>~$2.5bn (incl. $1,671m VAI preferred assumed)</td>
+<td>8-K; pro forma</td>
+</tr>
+<tr class="even">
+<td>Bridge facility</td>
+<td>$61.0bn (JPMorgan agent); $0.2bn fees expensed</td>
+<td>Verizon 8-K; 2013 Ex-13</td>
+</tr>
+<tr class="odd">
+<td>Bond offering</td>
+<td>$49.0bn, 8 tranches, settled ~Sept 18, 2013</td>
+<td>Verizon 424B5</td>
+</tr>
+<tr class="even">
+<td>Bond net proceeds</td>
+<td>~$48,517,748,000</td>
+<td>Verizon 424B5</td>
+</tr>
+<tr class="odd">
+<td>Term loan drawn</td>
+<td>$6.6bn (3-yr and 5-yr floating)</td>
+<td>Verizon closing 8-K; pro forma</td>
+</tr>
+<tr class="even">
+<td>Feb 2014 international notes</td>
+<td>€3.0bn + £850m</td>
+<td>pro forma Ex-99</td>
+</tr>
+<tr class="odd">
+<td>Total external debt raised</td>
+<td>~$66.4bn</td>
+<td>pro forma Ex-99</td>
+</tr>
+<tr class="even">
+<td>Termination fees</td>
+<td>$1.55bn / $4.65bn / $10.0bn</td>
+<td>Verizon 424B3</td>
+</tr>
+<tr class="odd">
+<td>Accounting</td>
+<td>ASC 810 equity transaction; no goodwill, no remeasurement</td>
+<td>pro forma Ex-99</td>
+</tr>
+<tr class="even">
+<td>NCI eliminated</td>
+<td>$55,465m; NCI $56,580m → $1,115m</td>
+<td>pro forma Ex-99</td>
+</tr>
+<tr class="odd">
+<td>Verizon total debt 12/31/2012</td>
+<td>$51,987m ($4,369m + $47,618m)</td>
+<td>Verizon 2013 Ex-13</td>
+</tr>
+<tr class="even">
+<td>Verizon total debt 12/31/2013</td>
+<td>$93,591m ($3,933m + $89,658m)</td>
+<td>Verizon 2013 Ex-13</td>
+</tr>
+<tr class="odd">
+<td>Vodafone pre-tax gain</td>
+<td>£45.0bn; FY profit £59.4bn</td>
+<td>Vodafone FY2014 20-F</td>
+</tr>
+<tr class="even">
+<td>Vodafone deferred tax assets recognised</td>
+<td>£19.3bn</td>
+<td>Vodafone FY2014 20-F</td>
+</tr>
+<tr class="odd">
+<td>Vodafone Return of Value</td>
+<td>US$84.0bn / £51.4bn ($59.3bn shares + $23.9bn cash)</td>
+<td>Vodafone shareholder guide</td>
+</tr>
+<tr class="even">
+<td>Vodafone consolidation ratio</td>
+<td>6 new for every 11 existing; 28,811,864,298 new shares</td>
+<td>Vodafone announcement</td>
+</tr>
+<tr class="odd">
+<td>Vodafone per-share ratio</td>
+<td>~0.026 Verizon shares per Vodafone ordinary share</td>
+<td>Vodafone announcement</td>
+</tr>
+<tr class="even">
+<td>Vodafone vote</td>
+<td>68.55% of shares voted; 99.8% in favour, Jan 28, 2014</td>
+<td>Mobile World Live [secondary]</td>
+</tr>
+<tr class="odd">
+<td>VZW distributions to Vodafone</td>
+<td>$8.3bn (2012); $3.15bn (2013); none 2005–2011</td>
+<td>Verizon 425 (Feb 5, 2014)</td>
+</tr>
+<tr class="even">
+<td>JV formation</td>
+<td>Sept 21, 1999 agreement; launched Apr 3–4, 2000; GTE Wireless added June 30, 2000</td>
+<td>Verizon corporate history</td>
+</tr>
+<tr class="odd">
+<td>Ownership pre-deal</td>
+<td>Verizon 55% / Vodafone 45%</td>
+<td>Verizon 2013 Ex-13</td>
+</tr>
+<tr class="even">
+<td>Agreements terminated at close</td>
+<td>U.S. Wireless Alliance Agreement (1999); Investment Agreement (2000)</td>
+<td>Verizon closing 8-K</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="primary-sources">Primary sources</h3>
+<ul>
+<li><a href="https://www.sec.gov/Archives/edgar/data/732712/000119312513354730/d591083d8k.htm">Verizon Form 8-K, September 2013 — Stock Purchase Agreement and $61bn Bridge Credit Agreement</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/732712/000119312514062161/d680424d8k.htm">Verizon Form 8-K, February 21 2014 — completion of the Wireless Transaction</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/732712/000119312513394211/d607759ds4.htm">Verizon Form S-4 registration statement (Sept 2013)</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/732712/000119312513468304/d607759d424b3.htm">Verizon Form 424B3 final proxy statement/prospectus (Dec 2013)</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/732712/000119312513364460/d595118d424b5.htm">Verizon Form 424B5 — the $49bn eight-tranche note offering, September 2013</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/732712/000119312514073266/d622994d10k.htm">Verizon 2013 Form 10-K</a> and <a href="https://www.sec.gov/Archives/edgar/data/732712/000119312514073266/d622994dex13.htm">2013 Annual Report Exhibit 13 (MD&amp;A and financials)</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/732712/000119312514090333/d689681dex99.htm">Verizon unaudited pro forma condensed consolidated financial information (Exhibit 99, March 2014)</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/732712/000119312514035847/0001193125-14-035847.txt">Verizon Form 425, February 5 2014 — investor presentation on financing and distributions</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/732712/000119312516473367/d35513d10k.htm">Verizon 2015 Form 10-K (post-close narrative)</a></li>
+<li><a href="https://www.verizon.com/about/sites/default/files/2014_Form_10-K_-_As_Filed.pdf">Verizon 2014 Form 10-K (as filed, verizon.com)</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/839923/000119312514231067/d729015d20f.htm">Vodafone Group Plc Form 20-F for FY ended 31 March 2014</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/839923/000119312514010926/d648792d425.htm">Vodafone Form 425 — letter to shareholders (Jan 2014)</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/839923/000119312513469710/d640197d425.htm">Vodafone Form 425 (Dec 2013)</a></li>
+<li><a href="https://www.vodafone.com/news/newsroom/corporate-and-financial/vz-shares-and-ratio-announcement">Vodafone announcement — number of Verizon consideration shares and consolidation ratio (Feb 19, 2014)</a></li>
+<li><a href="https://investors.vodafone.com/~/media/files/v/vodafone-ir/documents/verizon-wireless-transaction/circular-101212.pdf">Vodafone circular to shareholders on the Verizon Wireless transaction (Dec 2013)</a></li>
+<li><a href="https://investors.vodafone.com/~/media/files/v/vodafone-ir/documents/verizon-wireless-transaction/vodafone-shareholderguide-101213-web.pdf">Vodafone “Return of Value to Shareholders — A Guide for Shareholders” (Dec 2013)</a></li>
+<li><a href="https://investors.vodafone.com/~/media/files/v/vodafone-ir/documents/verizon-wireless-transaction/information-for-uk-resident-shareholders.pdf">Vodafone — information for UK-resident shareholders on B/C share tax treatment</a></li>
+<li><a href="https://www.sec.gov/divisions/corpfin/cf-noaction/vodafone060806-incoming-linklaters.pdf">SEC no-action incoming letter, Vodafone Group Plc (Linklaters, June 8 2006)</a></li>
+<li><a href="https://www.verizon.com/about/sites/default/files/Verizon_History_0916.pdf">Verizon corporate history (formation of Verizon Wireless, 1999–2000)</a></li>
+<li><a href="https://www.verizon.com/about/system/files/investor-event-transcript/vz_transcript_02242014.pdf">Verizon investor event transcript, February 24 2014 — completion of the acquisition</a></li>
+<li><a href="https://www.verizon.com/about/news/press-releases/verizon-wireless-announces-85-billion-distributions-verizon-and-vodafone-yearend-2012">Verizon Wireless press release — $8.5bn distributions to Verizon and Vodafone by year-end 2012</a></li>
+<li>EDGAR company filing indexes (robots-restricted to automated fetch this session, but valid for browser use): Verizon Communications Inc. CIK 0000732712 — https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&amp;CIK=0000732712&amp;type=&amp;dateb=&amp;owner=include&amp;count=40 ; Vodafone Group Plc CIK 0000839923 — https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&amp;CIK=0000839923&amp;type=&amp;dateb=&amp;owner=include&amp;count=40</li>
+</ul>
+</section>
+<footer>
+<div>
+<strong style="color:var(--ink)">Market Logic Investors LLC</strong> · Transaction Experience<br> Compiled from primary filings. Internal reference. Not investment advice.
+</div>
+<div style="text-align:right">
+<a href="../" style="color:var(--teal);text-decoration:none">← Back to Transaction Experience</a>
+</div>
+</footer>
+
+</div>
+</body>
+</html>

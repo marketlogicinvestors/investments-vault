@@ -1,0 +1,1279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mosaic — Transaction Experience — Market Logic Investors</title>
+<meta name="description" content="A company created by contributing one private giant&#x27;s division into a shell that simultaneously acquired a listed competitor, then separated from its 64% parent seven years later t">
+<style>
+
+:root {
+  --ink: #0a1929; --ink-soft: #1c2e44;
+  --paper: #faf9f4; --paper-warm: #f3efe3;
+  --rule: #d4cfbf; --rule-soft: #e8e3d4;
+  --muted: #5b6b7a; --muted-light: #8a98a5;
+  --accent: #b8391c; --accent-soft: #d65a3a;
+  --teal: #1f6b6b; --teal-soft: #4a8b8b; --teal-light: #b8d4d4;
+  --positive: #2d6a4f; --warning: #b08800; --negative: #9b2226;
+  --negative-light: #e8c5c5;
+  --serif: 'Iowan Old Style','Palatino Linotype',Palatino,'Book Antiqua',Georgia,serif;
+  --sans: 'Helvetica Neue',Helvetica,-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
+  --mono: 'SF Mono',SFMono-Regular,Menlo,Monaco,Consolas,'Liberation Mono',monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{font-size:16px;-webkit-text-size-adjust:100%;}
+body{font-family:var(--sans);background:var(--paper);color:var(--ink);line-height:1.55;-webkit-font-smoothing:antialiased;}
+.page{max-width:1000px;margin:0 auto;padding:56px 56px 80px;}
+h1,h2,h3,h4,h5{font-family:var(--serif);font-weight:400;color:var(--ink);}
+h1{font-size:3.6rem;line-height:1.02;letter-spacing:-0.025em;}
+h2{font-size:2.05rem;line-height:1.12;letter-spacing:-0.015em;}
+h3{font-size:1.3rem;line-height:1.25;}
+h4{font-family:var(--sans);font-weight:600;font-size:0.7rem;text-transform:uppercase;letter-spacing:0.16em;color:var(--muted);}
+p{font-size:0.95rem;line-height:1.7;color:var(--ink-soft);}
+strong{color:var(--ink);font-weight:600;}
+.eyebrow{font-family:var(--sans);font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.2em;color:var(--accent);display:block;margin-bottom:18px;}
+.lede{font-family:var(--serif);font-size:1.25rem;line-height:1.5;color:var(--ink);}
+.kicker{font-family:var(--sans);font-size:0.75rem;font-weight:600;text-transform:uppercase;letter-spacing:0.12em;color:var(--teal);}
+.label{font-family:var(--sans);font-size:0.7rem;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);}
+.mono{font-family:var(--mono);font-size:0.85rem;}
+.cover{border-top:1px solid var(--ink);padding-top:32px;position:relative;}
+.cover-meta{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:84px;}
+.cover-meta .left,.cover-meta .right{font-family:var(--sans);font-size:0.78rem;color:var(--muted);}
+.cover-meta .right{text-align:right;}
+.cover-meta .right .stamp{display:inline-block;padding:4px 10px;border:1px solid var(--accent);color:var(--accent);font-weight:600;letter-spacing:0.12em;font-size:0.65rem;text-transform:uppercase;margin-bottom:8px;}
+.cover-title{margin-bottom:28px;}
+.cover-title .legal{display:block;font-family:var(--sans);font-size:0.78rem;color:var(--muted);margin-top:8px;letter-spacing:0.04em;}
+.cover-tag{font-family:var(--serif);font-style:italic;font-size:1.4rem;line-height:1.45;color:var(--ink-soft);max-width:720px;margin-bottom:56px;}
+.cover-tag::before{content:"\201C";font-size:2.2rem;line-height:0;vertical-align:-0.3em;color:var(--accent);margin-right:4px;}
+.cover-tag::after{content:"\201D";font-size:2.2rem;line-height:0;vertical-align:-0.3em;color:var(--accent);margin-left:2px;}
+.metric-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:0;border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);margin:32px 0;}
+.metric{padding:22px 16px 20px;border-right:1px solid var(--rule);text-align:left;}
+.metric:last-child{border-right:none;}
+.metric .v{font-family:var(--serif);font-size:2.1rem;line-height:1;letter-spacing:-0.02em;color:var(--ink);display:block;margin-bottom:6px;}
+.metric .v small{font-size:0.95rem;color:var(--muted);font-family:var(--serif);margin-left:1px;}
+.metric .l{font-family:var(--sans);font-size:0.68rem;font-weight:600;text-transform:uppercase;letter-spacing:0.12em;color:var(--muted);line-height:1.3;}
+.metric.accent .v{color:var(--accent);}
+.metric.teal .v{color:var(--teal);}
+section{margin-top:64px;padding-top:32px;border-top:1px solid var(--rule);}
+section.no-rule{border-top:none;}
+.section-head{display:grid;grid-template-columns:120px 1fr;gap:32px;margin-bottom:28px;align-items:baseline;}
+.section-num{font-family:var(--mono);font-size:0.78rem;color:var(--muted);letter-spacing:0.05em;border-top:2px solid var(--ink);padding-top:8px;text-transform:uppercase;font-weight:600;}
+.section-title h2{margin-bottom:8px;}
+.section-title .sub{font-family:var(--serif);font-style:italic;color:var(--muted);font-size:1.05rem;}
+.cols-2{display:grid;grid-template-columns:1fr 1fr;gap:36px;margin-top:16px;}
+.cols-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px;margin-top:16px;}
+.card{background:var(--paper-warm);padding:22px 24px;border:1px solid var(--rule);}
+.card.dark{background:var(--ink);color:var(--paper);}
+.card.dark h3,.card.dark h4{color:var(--paper);}
+.card.dark p{color:rgba(250,249,244,0.85);}
+.callout{border-left:3px solid var(--accent);padding:4px 0 4px 20px;margin:18px 0;font-family:var(--serif);font-style:italic;font-size:1.05rem;color:var(--ink);}
+.pull-quote{font-family:var(--serif);font-size:1.4rem;line-height:1.4;color:var(--ink);border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);padding:28px 0;margin:32px 0;text-align:center;letter-spacing:-0.005em;}
+table{width:100%;border-collapse:collapse;font-family:var(--sans);font-size:0.88rem;margin-top:14px;}
+thead th{text-align:left;font-weight:600;font-size:0.7rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);padding:10px 14px 10px 0;border-bottom:1.5px solid var(--ink);}
+thead th.num{text-align:right;}
+tbody td{padding:14px 14px 14px 0;border-bottom:1px solid var(--rule);color:var(--ink-soft);vertical-align:top;}
+tbody td.num{text-align:right;font-variant-numeric:tabular-nums;font-family:var(--mono);font-size:0.82rem;}
+tbody td strong{color:var(--ink);}
+tbody tr.highlight td{color:var(--ink);}
+tbody tr.highlight td:first-child{padding-left:12px;border-left:3px solid var(--accent);}
+ul.clean{list-style:none;}
+ul.clean li{padding:12px 0 12px 24px;border-bottom:1px solid var(--rule-soft);position:relative;font-size:0.93rem;color:var(--ink-soft);line-height:1.6;}
+ul.clean li::before{content:"→";position:absolute;left:0;top:12px;color:var(--accent);font-weight:600;}
+ol.clean{list-style:none;counter-reset:ck;}
+ol.clean li{counter-increment:ck;padding:12px 0 12px 36px;border-bottom:1px solid var(--rule-soft);position:relative;font-size:0.93rem;color:var(--ink-soft);line-height:1.6;}
+ol.clean li::before{content:counter(ck,decimal-leading-zero);position:absolute;left:0;top:12px;font-family:var(--mono);font-size:0.78rem;color:var(--accent);font-weight:600;}
+.tag{display:inline-block;font-family:var(--sans);font-size:0.68rem;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;padding:3px 9px;margin-right:6px;margin-bottom:4px;border:1px solid var(--rule);color:var(--ink-soft);background:var(--paper);}
+.tag.accent{border-color:var(--accent);color:var(--accent);}
+.tag.teal{border-color:var(--teal);color:var(--teal);}
+.tag.warn{border-color:var(--warning);color:var(--warning);}
+.tag.neg{border-color:var(--negative);color:var(--negative);}
+.tag.pos{border-color:var(--positive);color:var(--positive);}
+.thesis-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:24px;border:1px solid var(--ink);}
+.thesis-col{padding:28px 28px 24px;}
+.thesis-col.bull{border-right:1px solid var(--ink);}
+.thesis-col ul{list-style:none;margin-top:14px;}
+.thesis-col ul li{padding:10px 0 10px 22px;position:relative;font-size:0.9rem;color:var(--ink-soft);line-height:1.55;border-bottom:1px dashed var(--rule-soft);}
+.thesis-col.bull ul li::before{content:"+";position:absolute;left:0;top:9px;color:var(--positive);font-weight:700;}
+.thesis-col.bear ul li::before{content:"−";position:absolute;left:0;top:9px;color:var(--negative);font-weight:700;}
+.recommendation{background:var(--ink);color:var(--paper);padding:40px 44px;margin-top:40px;border-left:6px solid var(--accent);}
+.recommendation .head{font-family:var(--mono);font-size:0.74rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--accent-soft);margin-bottom:12px;font-weight:600;}
+.recommendation h2{color:var(--paper);margin-bottom:14px;}
+.recommendation p{color:rgba(250,249,244,0.86);font-size:1rem;}
+.recommendation .actions{margin-top:24px;padding-top:20px;border-top:1px solid rgba(250,249,244,0.18);display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+.recommendation .actions .h{font-family:var(--mono);font-size:0.7rem;text-transform:uppercase;letter-spacing:0.14em;color:var(--accent-soft);margin-bottom:10px;}
+.recommendation .actions ul{list-style:none;}
+.recommendation .actions ul li{padding:6px 0 6px 22px;position:relative;font-size:0.9rem;color:rgba(250,249,244,0.92);line-height:1.5;}
+.recommendation .actions ul li::before{content:"▸";position:absolute;left:0;top:5px;color:var(--accent-soft);}
+footer{margin-top:80px;padding-top:28px;border-top:1px solid var(--ink);font-family:var(--sans);font-size:0.74rem;color:var(--muted);display:flex;justify-content:space-between;}
+.chart{width:100%;margin:18px 0 6px;background:var(--paper);}
+.chart-caption{font-family:var(--sans);font-size:0.72rem;color:var(--muted);margin-top:4px;font-style:italic;line-height:1.5;}
+/* Dashboard */
+.dash-panel{background:var(--paper-warm);border:1px solid var(--rule);padding:24px;margin-top:24px;}
+.dash-controls{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:20px;}
+.ctrl-item{display:flex;flex-direction:column;gap:5px;}
+.ctrl-item label{font-family:var(--sans);font-size:0.7rem;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);}
+.ctrl-row{display:flex;align-items:center;gap:8px;}
+.ctrl-row input[type=range]{flex:1;accent-color:var(--teal);cursor:pointer;}
+.ctrl-val{font-family:var(--mono);font-size:0.82rem;font-weight:600;color:var(--ink);min-width:48px;text-align:right;}
+.scen-row{display:flex;gap:8px;margin-bottom:18px;flex-wrap:wrap;}
+.scen-btn{font-family:var(--sans);font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;padding:5px 14px;border:1px solid var(--rule);background:var(--paper);color:var(--muted);cursor:pointer;}
+.scen-btn:hover{border-color:var(--teal);color:var(--teal);}
+.scen-btn.active{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+.output-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--rule);margin-bottom:16px;}
+.output-cell{padding:16px 14px;border-right:1px solid var(--rule);}
+.output-cell:last-child{border-right:none;}
+.output-cell .ov{font-family:var(--serif);font-size:1.8rem;letter-spacing:-0.02em;color:var(--ink);display:block;line-height:1;margin-bottom:4px;}
+.output-cell .ol{font-family:var(--sans);font-size:0.65rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--muted);}
+.output-cell.ok .ov{color:var(--positive);}
+.output-cell.warn .ov{color:var(--warning);}
+.output-cell.bad .ov{color:var(--negative);}
+.verdict-box{padding:16px 20px;font-family:var(--sans);font-size:0.88rem;line-height:1.6;border-left:4px solid var(--rule);margin-bottom:16px;}
+.verdict-box.ok{border-left-color:var(--positive);background:#f0f7f4;}
+.verdict-box.warn{border-left-color:var(--warning);background:#fdf8ec;}
+.verdict-box.bad{border-left-color:var(--negative);background:#fdf0f0;}
+.verdict-box .vl{font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.14em;margin-bottom:5px;color:var(--muted);}
+.assump-list{list-style:none;margin-top:0;}
+.assump-list li{padding:14px 0 14px 24px;border-bottom:1px solid var(--rule-soft);position:relative;font-size:0.88rem;line-height:1.6;color:var(--ink-soft);}
+.assump-list li::before{content:"→";position:absolute;left:0;top:14px;color:var(--accent);font-weight:700;}
+.assump-list li strong{color:var(--ink);}
+.assump-flag{display:inline-block;font-family:var(--mono);font-size:0.65rem;font-weight:700;letter-spacing:0.08em;padding:2px 7px;border:1px solid;margin-left:8px;vertical-align:middle;}
+.assump-flag.ok{border-color:var(--positive);color:var(--positive);}
+.assump-flag.warn{border-color:var(--warning);color:var(--warning);}
+.assump-flag.bad{border-color:var(--negative);color:var(--negative);}
+.signal{font-family:var(--mono);font-size:0.72rem;color:var(--teal);margin-top:6px;display:block;line-height:1.5;}
+.entity-row{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--ink);margin-top:20px;}
+.entity-col{padding:20px 18px;border-right:1px solid var(--rule);}
+.entity-col:last-child{border-right:none;}
+.entity-col h4{margin-bottom:12px;}
+.entity-col.et h4{color:var(--teal);}
+.entity-col.sun h4{color:var(--positive);}
+.entity-col.usac h4{color:var(--warning);}
+.emet{display:flex;justify-content:space-between;font-size:0.8rem;padding:6px 0;border-bottom:1px solid var(--rule-soft);}
+.emet:last-child{border:none;}
+.emet .ek{color:var(--muted);}
+.emet .ev{font-weight:600;color:var(--ink);font-family:var(--mono);font-size:0.78rem;}
+.emet .ev.g{color:var(--positive);}
+.emet .ev.r{color:var(--negative);}
+.emet .ev.w{color:var(--warning);}
+.dc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--rule);margin-top:16px;}
+.dc-cell{padding:18px 16px;border-right:1px solid var(--rule);}
+.dc-cell:last-child{border-right:none;}
+.dc-name{font-family:var(--sans);font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--ink);margin-bottom:4px;}
+.dc-pipe{font-family:var(--sans);font-size:0.7rem;color:var(--muted);margin-bottom:10px;}
+.dc-vol{font-family:var(--serif);font-size:1.8rem;color:var(--teal);letter-spacing:-0.02em;line-height:1;margin-bottom:4px;}
+.dc-ebitda{font-family:var(--mono);font-size:0.8rem;color:var(--positive);font-weight:600;}
+.dc-note{font-size:0.72rem;color:var(--muted);margin-top:6px;line-height:1.45;}
+.site-nav{display:flex;align-items:center;justify-content:space-between;background:var(--ink);color:var(--paper);padding:10px 40px;font-family:var(--sans);font-size:0.78rem;letter-spacing:0.04em;position:sticky;top:0;z-index:100;gap:16px;}
+.site-nav a{color:rgba(250,249,244,0.7);text-decoration:none;}
+.site-nav a:hover{color:var(--paper);}
+.site-nav span[aria-hidden]{color:rgba(250,249,244,0.3);margin:0 4px;}
+.site-nav .nav-meta{color:rgba(250,249,244,0.45);font-size:0.75rem;}
+.site-nav .nav-action a{color:var(--accent);border:1px solid rgba(184,57,28,0.5);border-radius:3px;padding:3px 10px;}
+@media(max-width:760px){
+  .page{padding:32px 22px;}
+  h1{font-size:2.4rem;}
+  .metric-grid{grid-template-columns:repeat(2,1fr);}
+  .cols-2,.cols-3,.thesis-grid,.dash-controls,.output-grid,.entity-row,.dc-grid{grid-template-columns:1fr;}
+  .thesis-col.bull{border-right:none;border-bottom:1px solid var(--ink);}
+  .section-head{grid-template-columns:1fr;gap:8px;}
+  .recommendation .actions{grid-template-columns:1fr;}
+}
+
+/* ===== Glossary ===== */
+.glossary-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:0;border:1px solid var(--ink);margin-top:16px;}
+.glossary-col{padding:0;}
+.gterm{display:grid;grid-template-columns:160px 1fr;gap:0;border-bottom:1px solid var(--rule-soft);}
+.gterm:last-child{border-bottom:none;}
+.gt{font-family:var(--mono);font-size:0.78rem;font-weight:700;color:var(--teal);padding:12px 14px;border-right:1px solid var(--rule-soft);background:var(--paper-warm);display:flex;align-items:flex-start;}
+.gd{font-size:0.82rem;color:var(--ink-soft);padding:12px 14px;line-height:1.55;}
+.gd strong{color:var(--ink);}
+@media(max-width:760px){.glossary-grid{grid-template-columns:1fr;}.gterm{grid-template-columns:120px 1fr;}}
+
+
+
+section[id]{scroll-margin-top:64px}
+.tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin-top:14px}
+.tbl-wrap table{margin-top:0}
+em.unv{font-style:normal;font-family:var(--mono);font-size:0.68rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--warning);border:1px solid var(--warning);padding:1px 5px;margin:0 2px;white-space:nowrap}
+em.corr{font-style:normal;font-family:var(--mono);font-size:0.68rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--accent);border:1px solid var(--accent);padding:1px 5px;margin:0 2px}
+h3{font-family:var(--sans);font-size:0.78rem;font-weight:700;text-transform:uppercase;letter-spacing:0.13em;color:var(--accent);margin:26px 0 8px}
+h4{font-family:var(--serif);font-size:1.05rem;font-weight:400;margin:20px 0 6px}
+section ul{margin:6px 0 6px 20px}
+section ul li{font-size:0.9rem;line-height:1.6;color:var(--ink-soft);padding:3px 0}
+section ol{margin:6px 0 6px 22px}
+section ol li{font-size:0.9rem;line-height:1.6;color:var(--ink-soft);padding:3px 0}
+.factstrip{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--ink);margin:18px 0 4px}
+.factstrip .f{padding:16px 20px;border-right:1px solid var(--rule)}
+.factstrip .f:last-child{border-right:none}
+.factstrip .f .label{display:block;margin-bottom:5px}
+.factstrip .f .t{font-size:0.88rem;line-height:1.55;color:var(--ink)}
+.txn-map td:first-child{font-weight:600;color:var(--ink)}
+.srcnote{font-family:var(--sans);font-size:0.78rem;color:var(--muted);line-height:1.6;border-left:3px solid var(--rule);padding:2px 0 2px 16px;margin:14px 0}
+.toc{display:grid;grid-template-columns:repeat(2,1fr);gap:0;border:1px solid var(--ink);margin-top:20px}
+.toc a{display:block;padding:12px 18px;border-bottom:1px solid var(--rule-soft);border-right:1px solid var(--rule-soft);text-decoration:none;color:var(--ink);font-size:0.86rem}
+.toc a:hover{background:var(--paper-warm);color:var(--accent)}
+.toc a .n{font-family:var(--mono);font-size:0.68rem;color:var(--muted);margin-right:10px}
+@media(max-width:720px){.factstrip,.toc{grid-template-columns:1fr}}
+
+</style>
+</head>
+<body>
+<nav class="site-nav" aria-label="breadcrumb">
+  <div style="display:flex;align-items:center;gap:0;flex-wrap:wrap">
+    <a href="../../">Market Logic Investors</a><span aria-hidden="true">/</span>
+    <a href="../../">Deal Vault</a><span aria-hidden="true">/</span>
+    <a href="../">Transaction Experience</a><span aria-hidden="true">/</span>
+    <span>Mosaic</span>
+  </div>
+  <div style="display:flex;align-items:center;gap:16px;">
+    <span class="nav-meta">ML-TXN-MOS &nbsp;|&nbsp; Agriculture &amp; chemicals</span>
+  </div>
+</nav>
+<div class="page">
+<header class="cover">
+<div class="cover-meta">
+<div class="left">
+<p><strong style="color:var(--ink);display:block;margin-bottom:4px;">Market Logic Investors LLC</strong> Agriculture &amp; chemicals · Transaction Record<br> Client engagement record · Primary-source reconstruction</p>
+</div>
+<div class="right">
+<p><span class="stamp">5 transactions</span><br> <strong style="color:var(--ink);">Ref: ML-TXN-MOS</strong><br> Period: 1993 – 2018<br> Compiled: September 6, 2026</p>
+</div>
+</div>
+<span class="eyebrow">Agriculture &amp; chemicals · Formation, split-off and carve-out</span>
+<div class="cover-title">
+<h1>
+Mosaic
+</h1>
+<p><span class="legal">The Mosaic Company · NYSE: MOS · Cargill, Incorporated · IMC Global Inc.</span></p>
+</div>
+<p class="cover-tag">
+A company created by contributing one private giant’s division into a shell that simultaneously acquired a listed competitor, then separated from its 64% parent seven years later through a Section 355 split-off and debt exchange rather than a sale. Three different structural answers to three different problems.
+</p>
+<div class="metric-grid">
+<div class="metric">
+<span class="v">5</span><span class="l">Transactions</span>
+</div>
+<div class="metric accent">
+<span class="v">$1,679<small>m</small></span><span class="l">IMC purchase price</span>
+</div>
+<div class="metric">
+<span class="v">$2,166<small>m</small></span><span class="l">Goodwill recognised</span>
+</div>
+<div class="metric">
+<span class="v">66.5<small>%</small></span><span class="l">Cargill ownership at formation</span>
+</div>
+<div class="metric teal">
+<span class="v">$24.3<small>bn</small></span><span class="l">Stake split off</span>
+</div>
+<div class="metric">
+<span class="v">$2.0<small>bn</small></span><span class="l">Vale Fertilizantes</span>
+</div>
+</div>
+</header>
+<section class="no-rule" style="margin-top:48px">
+<div class="section-head">
+<div class="section-num">
+§ 01
+</div>
+<div class="section-title">
+<h2>
+Transaction map
+</h2>
+<p class="sub">
+Every transaction on this file, in order
+</p>
+</div>
+</div>
+<p style="margin-bottom:8px">
+Cargill contributed its crop nutrition business into Global Nutrition Solutions, which simultaneously merged with IMC Global in October 2004; Cargill took 66.5% and 256,041,277 shares. The 2011 split-off unwound that stake tax-free under Section 355 by exchanging shares for Cargill stock and Cargill debt. Vale Fertilizantes followed in 2018, renegotiated downward days before closing.
+</p>
+<div class="tbl-wrap">
+<table class="txn-map">
+<thead>
+<tr>
+<th>
+Transaction
+</th>
+<th>
+Type
+</th>
+<th>
+Announced / closed
+</th>
+<th>
+Headline value
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="#txn-02" style="color:var(--ink);text-decoration:none;border-bottom:1px solid var(--rule)">Predecessor History: IMC-Agrico / IMC Phosphates JV and Phosphate Resource Partners</a>
+</td>
+<td>
+50/50-governed operating joint venture formed by contribution of competing phosphate businesses; later roll-up of the public MLP
+</td>
+<td>
+JV formed July 1993; Freeport-McMoRan Inc. merged into IMC December 1997; PLP roll-up completed as part of the 2004 Mosaic…
+</td>
+<td>
+Not a cash transaction — contribution of businesses. IMC's 1997 acquisition of Freeport-McMoRan (FTX) was an ~US$800 million…
+</td>
+</tr>
+<tr>
+<td>
+<a href="#txn-03" style="color:var(--ink);text-decoration:none;border-bottom:1px solid var(--rule)">Formation: Combination of Cargill Crop Nutrition and IMC Global Inc. (2004)</a>
+</td>
+<td>
+Reverse merger / corporate carve-out into a public shell — Cargill contributed its fertilizer businesses to a newly formed holding company that…
+</td>
+<td>
+Merger and Contribution Agreement dated January 26, 2004, announced January 27, 2004; Amendment No. 1 June 15, 2004; Amendment…
+</td>
+<td>
+Purchase price of IMC Global for accounting purposes US$1,679.0 million; combined entity with pro forma trailing revenues ~US$4.1…
+</td>
+</tr>
+<tr>
+<td>
+<a href="#txn-04" style="color:var(--ink);text-decoration:none;border-bottom:1px solid var(--rule)">Cargill's Split-Off of The Mosaic Company (2011)</a>
+</td>
+<td>
+Tax-free split-off and debt-for-equity exchange under IRC § 355 (with § 368 recapitalization/merger), plus registered secondary "formation offerings"…
+</td>
+<td>
+Announced January 18, 2011; Mosaic stockholder approval May 11, 2011; completed May 25, 2011
+</td>
+<td>
+Cargill's ~64% stake, approximately 285.8–286 million Mosaic shares, reported at approximately US$24.3 billion
+</td>
+</tr>
+<tr>
+<td>
+<a href="#txn-05" style="color:var(--ink);text-decoration:none;border-bottom:1px solid var(--rule)">Acquisition by The Mosaic Company from Vale S.A. (2016–18)</a>
+</td>
+<td>
+Corporate carve-out from a strategic seller, cash-plus-stock, with the seller taking a minority equity stake and board representation; cross-border…
+</td>
+<td>
+Definitive stock purchase agreement announced December 19–20, 2016; terms modified January 2, 2018; closed January 8, 2018
+</td>
+<td>
+<ul>
+<li>Announced: US$2.5 billion base consideration (US$1.25 billion cash funded from debt proceeds + ~42.3 million Mosaic shares ≈…
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="toc">
+<a href="#txn-02"><span class="n">§ 02</span>Predecessor History: IMC-Agrico / IMC Phosphates JV and Phosphate Resource Partners</a><a href="#txn-03"><span class="n">§ 03</span>Formation: Combination of Cargill Crop Nutrition and IMC Global Inc. (2004)</a><a href="#txn-04"><span class="n">§ 04</span>Cargill's Split-Off of The Mosaic Company (2011)</a><a href="#txn-05"><span class="n">§ 05</span>Acquisition by The Mosaic Company from Vale S.A. (2016–18)</a>
+</div>
+</section></li>
+</ul>
+<section id="txn-02">
+<div class="section-head">
+<div class="section-num">
+§ 02
+</div>
+<div class="section-title">
+<h2>
+IMC Global — Predecessor History: IMC-Agrico / IMC Phosphates JV and Phosphate Resource Partners
+</h2>
+<p class="sub">
+50/50-governed operating joint venture formed by contribution of competing phosphate businesses; later roll-up of the public MLP
+</p>
+</div>
+</div>
+<div class="factstrip">
+<div class="f">
+<span class="label">Announced / closed</span>
+<div class="t">
+<p>JV formed <strong>July 1993</strong>; Freeport-McMoRan Inc. merged into IMC December 1997; PLP roll-up completed as part of the 2004 Mosaic combination</p>
+</div>
+</div>
+<div class="f">
+<span class="label">Headline value</span>
+<div class="t">
+<p>Not a cash transaction — contribution of businesses. IMC’s 1997 acquisition of Freeport-McMoRan (FTX) was an ~US$800 million stock exchange.</p>
+</div>
+</div>
+</div>
+<h3 id="parties">Parties</h3>
+<ul>
+<li><strong>IMC Global Inc.</strong> (successor to IMC Fertilizer Group, spun out of International Minerals &amp; Chemical Corporation in 1988; parent renamed Imcera Group, later Mallinckrodt)</li>
+<li><strong>Freeport-McMoRan Resource Partners, Limited Partnership (FRP)</strong>, a Delaware MLP, later renamed <strong>Phosphate Resource Partners Limited Partnership (PLP)</strong>, CIK 0000793421</li>
+<li><strong>Freeport-McMoRan Inc. (FTX)</strong> — FRP’s parent and administrative managing general partner until 1997</li>
+</ul>
+<h3 id="structure">Structure</h3>
+<ul>
+<li><strong>“IMC Phosphates was formed as a joint venture partnership in July 1993 when PLP and IMC contributed their respective phosphate crop nutrients businesses to IMC Phosphates.”</strong> Marketed as IMC-Agrico.</li>
+<li><strong>Fixed ownership: IMC 58.5% / PLP 41.5%</strong> of IMC Phosphates Company.</li>
+<li><strong>Managing general partner:</strong> IMC Phosphates MP Inc. (“MP Co.”), owned <strong>50/50</strong> by IMC and PLP; but “IMC has, through MP Co., the sole authority to make certain decisions affecting IMC Phosphates” — i.e., economic split 58.5/41.5, governance vehicle 50/50 with IMC control.</li>
+<li><strong>December 1997:</strong> Freeport-McMoRan Inc. merged into IMC, making IMC the <strong>administrative managing general partner</strong> of PLP and owner of FTX’s <strong>51.6%</strong> interest in PLP.</li>
+<li><strong>October 2003:</strong> IMC transferred its direct PLP partnership interests to a new wholly owned subsidiary, <strong>PRP-GP LLC (“PRP”)</strong>, which became administrative managing general partner holding <strong>51.58%</strong> of PLP units.</li>
+<li><strong>PLP units at December 31, 2003:</strong> public unitholders <strong>50,080,645 (48.4%)</strong>; IMC-controlled entities <strong>53,385,133 (51.6%)</strong>; total <strong>103,465,778</strong>.</li>
+<li><strong>2004:</strong> each PLP unit converted into <strong>0.2</strong> IMC/Mosaic shares, eliminating the MLP.</li>
+</ul>
+<h3 id="financing">Financing</h3>
+<p>N/A (contribution/stock).</p>
+<h3 id="purchase-price-allocation-goodwill-and-impairments">Purchase price allocation, goodwill and impairments</h3>
+<p>IMC’s own acquisition history — Vigoro Corp. (~US$1.16 billion, 1996, prompting the “IMC Global” name), Western Ag-Minerals Co. (~US$53 million, 1997), Harris Chemical Group (~US$1.4 billion combined consideration, 1998), Freeport-McMoRan Inc. (~US$800 million stock, 1997). Detailed PPAs are in the corresponding IMC filings under CIK 0000820626. [not individually retrieved]</p>
+<h3 id="advisers">Advisers</h3>
+<p>Not retrieved for the 1993 JV formation. <em class="unv">unverified</em></p>
+<h3 id="key-people">Key people</h3>
+<p>Wendell Bueche and <strong>Douglas A. Pertz</strong> — successive IMC Global CEOs; Pertz was Chairman &amp; CEO at the time of the Mosaic combination.</p>
+<h3 id="regulatory-and-litigation">Regulatory and litigation</h3>
+<p>The 1993 JV required antitrust clearance; the combined entity controlled “nearly half of all United States phosphate production.”</p>
+<h3 id="outcome-and-post-deal-performance">Outcome and post-deal performance</h3>
+<p>IMC Phosphates/IMC-Agrico became the phosphate core of what is now Mosaic’s Phosphates segment. IMC Global’s 2003 revenues were US$2.2 billion at the time of the Cargill announcement.</p>
+<h3 id="key-numbers">Key numbers</h3>
+<div class="tbl-wrap"><table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Metric</th>
+<th>Value</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>IMC Phosphates (IMC-Agrico) formed</td>
+<td>July 1993</td>
+<td>PLP FY2003 10-K</td>
+</tr>
+<tr class="even">
+<td>Economic ownership</td>
+<td>IMC 58.5% / PLP 41.5%</td>
+<td>PLP FY2003 10-K</td>
+</tr>
+<tr class="odd">
+<td>Managing GP (MP Co.) ownership</td>
+<td>50/50, IMC controls key decisions</td>
+<td>PLP FY2003 10-K</td>
+</tr>
+<tr class="even">
+<td>FTX merged into IMC</td>
+<td>December 1997; IMC acquires FTX’s 51.6% of PLP</td>
+<td>PLP FY2003 10-K</td>
+</tr>
+<tr class="odd">
+<td>PRP-GP LLC created</td>
+<td>October 2003; holds 51.58% of PLP</td>
+<td>PLP FY2003 10-K</td>
+</tr>
+<tr class="even">
+<td>PLP units outstanding 31-Dec-2003</td>
+<td>103,465,778 (public 50,080,645 / IMC 53,385,133)</td>
+<td>PLP FY2003 10-K</td>
+</tr>
+<tr class="odd">
+<td>PLP conversion ratio (2004)</td>
+<td>0.2 shares per unit</td>
+<td>IMC 425, Mar 1 2004</td>
+</tr>
+<tr class="even">
+<td>IMC Global 2003 revenue</td>
+<td>US$2.2 billion</td>
+<td>IMC 425, Mar 1 2004</td>
+</tr>
+<tr class="odd">
+<td>IMC incorporated</td>
+<td>June 14, 1909 as International Agricultural Corporation</td>
+<td>secondary</td>
+</tr>
+<tr class="even">
+<td>Vigoro acquisition</td>
+<td>~US$1.16 billion (1996)</td>
+<td>secondary</td>
+</tr>
+<tr class="odd">
+<td>Harris Chemical Group</td>
+<td>~US$1.4 billion combined consideration (1998)</td>
+<td>secondary</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="primary-sources">Primary sources</h3>
+<ul>
+<li><a href="https://www.sec.gov/Archives/edgar/data/793421/000082062604000050/plpform10k2003.htm">Phosphate Resource Partners LP Form 10-K for FY2003 — JV formation, 58.5/41.5 split, MP Co., PRP-GP, unit counts</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/793421/000082062603000040/plpform10k2002.htm">Phosphate Resource Partners LP Form 10-K for FY2002</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/793421/000082062602000011/aform10k.htm">Freeport-McMoRan Resource Partners LP Form 10-K405 (CIK 793421)</a> — located via EDGAR index; not individually fetched</li>
+<li><a href="https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&amp;CIK=0000820626&amp;type=10-K&amp;dateb=&amp;owner=include&amp;count=40">IMC Global Inc. EDGAR filings, CIK 0000820626</a> — company filing index (browse-edgar blocks automated fetch; use interactively)</li>
+</ul>
+<hr />
+</section>
+<section id="txn-03">
+<div class="section-head">
+<div class="section-num">
+§ 03
+</div>
+<div class="section-title">
+<h2>
+The Mosaic Company — Formation: Combination of Cargill Crop Nutrition and IMC Global Inc. (2004)
+</h2>
+<p class="sub">
+Reverse merger / corporate carve-out into a public shell — Cargill contributed its fertilizer businesses to a newly formed holding company that simultaneously acquired IMC Global by merger; Cargill Crop Nutrition was the <strong>accounting acquirer</strong>, IMC Global the acquired entity
+</p>
+</div>
+</div>
+<div class="factstrip">
+<div class="f">
+<span class="label">Announced / closed</span>
+<div class="t">
+<p>Merger and Contribution Agreement dated <strong>January 26, 2004</strong>, announced <strong>January 27, 2004</strong>; Amendment No. 1 June 15, 2004; Amendment No. 2 October 18, 2004; <strong>completed October 22, 2004</strong>; Mosaic common stock began trading on the NYSE (MOS) October 25, 2004</p>
+</div>
+</div>
+<div class="f">
+<span class="label">Headline value</span>
+<div class="t">
+<p>Purchase price of IMC Global for accounting purposes <strong>US$1,679.0 million</strong>; combined entity with pro forma trailing revenues ~<strong>US$4.1 billion</strong>, combined assets ~<strong>US$5.4 billion</strong>, total debt ~<strong>US$2.2 billion</strong>, trailing EBITDA before synergies ~<strong>US$440 million</strong></p>
+</div>
+</div>
+</div>
+<h3 id="parties-1">Parties</h3>
+<ul>
+<li><strong>Global Nutrition Solutions, Inc. (“Newco”)</strong> — the new Delaware holding company, later renamed <strong>The Mosaic Company</strong>; SEC registrant CIK <strong>0001285785</strong> (filed the S-4 under the Global Nutrition Solutions name)</li>
+<li><strong>GNS Acquisition Corp.</strong> — Newco’s wholly owned merger subsidiary</li>
+<li><strong>IMC Global Inc.</strong> (NYSE: IGL), CIK <strong>0000820626</strong> — surviving the merger and renamed <strong>Mosaic Global Holdings Inc.</strong></li>
+<li><strong>Cargill Contributing Corporations:</strong> Cargill, Incorporated; Cargill Fertilizer, Inc.; and GNS I (U.S.) Corp.</li>
+<li><strong>Phosphate Resource Partners Limited Partnership (PLP)</strong>, CIK <strong>0000793421</strong> — separate concurrent roll-up merger</li>
+</ul>
+<h3 id="structure-1">Structure</h3>
+<ul>
+<li><strong>Contribution step:</strong> immediately before the merger, the Cargill Contributing Corporations contributed the equity interests in the entities owning Cargill’s fertilizer businesses (phosphate, feed phosphates, nitrogen production, worldwide distribution) to Newco in exchange for Newco stock.</li>
+<li><strong>Merger step:</strong> GNS Acquisition Corp. merged with and into IMC Global; IMC survived as a Newco subsidiary and was renamed Mosaic Global Holdings Inc.</li>
+<li><strong>Exchange ratio:</strong> IMC common stockholders received <strong>one share of Mosaic common stock for each IMC common share</strong>; IMC preferred holders received <strong>one share of Mosaic 7.50% mandatory convertible preferred stock</strong> per share held (<strong>2,750,000 preferred shares</strong>, all publicly held post-close).</li>
+<li><strong>Shares issued to Cargill entities at closing</strong> (Form 8-K, Oct 28, 2004):
+<ul>
+<li>Cargill, Incorporated — <strong>10,810,333</strong> common</li>
+<li>Cargill Fertilizer, Inc. — <strong>210,569,242</strong> common <strong>and 5,458,955 Class B</strong> common</li>
+<li>GNS I (U.S.) Corp. — <strong>29,202,747</strong> common</li>
+<li><strong>Total: 250,582,322 common + 5,458,955 Class B = 256,041,277 shares</strong></li>
+<li><strong>Note: the commonly cited “175.3 million shares to Cargill” is not supported by the closing 8-K and appears incorrect.</strong></li>
+</ul></li>
+<li><strong>Resulting ownership:</strong> Cargill <strong>66.5%</strong> of common stock plus 100% of Class B; former IMC common holders <strong>33.5%</strong>.</li>
+<li><strong>Concurrent PLP merger:</strong> each PLP unit converted into <strong>0.2 shares</strong> of IMC common stock (and, once the Cargill combination closed, into 0.2 shares of Mosaic). PLP was approximately 51.58% owned by IMC through PRP-GP LLC; the special committee obtained a fairness opinion from <strong>Houlihan Lokey Howard &amp; Zukin</strong>. Board approval of the PLP merger was announced March 1, 2004, and it was expressly <strong>not conditioned</strong> on the Cargill combination closing.</li>
+<li><strong>Governance:</strong> 11-member board, majority independent — <strong>seven directors appointed by Cargill including the chair, four by IMC</strong>. Cargill signed an <strong>Investor Rights Agreement</strong> (amended and restated October 22, 2004) and a <strong>Master Transition Services Agreement</strong> with Mosaic.</li>
+<li><strong>Debt consent solicitation:</strong> a November 16, 2004 prospectus solicited consents from holders of ~US$1.8 billion of debt securities of Mosaic Global Holdings Inc. (formerly IMC Global) and Phosphate Acquisition Partners L.P.</li>
+</ul>
+<h3 id="financing-1">Financing</h3>
+<ul>
+<li>No cash consideration: this was a stock-for-stock combination plus contribution. Cargill received stock; IMC holders received stock.</li>
+<li>IMC was highly leveraged and Mosaic assumed <strong>US$2,383.7 million of long-term debt</strong> through the merger; combined total debt ~US$2.2 billion at announcement. Interest expense rose to <strong>US$120.6 million in fiscal 2005</strong> from US$29.2 million in fiscal 2004 as a result.</li>
+</ul>
+<p><strong>Purchase price allocation / goodwill / impairments</strong> (Mosaic Form 10-Q filed October 7, 2005; US$ millions):</p>
+<ul>
+<li><strong>Total purchase price US$1,679.0</strong>, composed of: fair market value of IMC common shares <strong>US$1,393.6</strong>; fair market value of IMC preferred shares <strong>US$216.8</strong>; fair value of IMC stock options <strong>US$47.6</strong>; direct costs of Cargill Crop Nutrition related to the combination <strong>US$21.0</strong></li>
+<li>Valuation basis: “an average of the closing prices of IMC common stock and IMC Preferred Stock for the two days before and the two days after Cargill and IMC announced the signing of the definitive Merger and Contribution Agreement on <strong>January 27, 2004</strong>”</li>
+<li>Allocation:</li>
+</ul>
+<div class="tbl-wrap"><table>
+<thead>
+<tr class="header">
+<th>Line</th>
+<th>US$m</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Current assets</td>
+<td>703.8</td>
+</tr>
+<tr class="even">
+<td>Property, plant and equipment</td>
+<td>3,090.1</td>
+</tr>
+<tr class="odd">
+<td><strong>Goodwill</strong></td>
+<td><strong>2,166.4</strong></td>
+</tr>
+<tr class="even">
+<td>Other assets</td>
+<td>109.6</td>
+</tr>
+<tr class="odd">
+<td><strong>Total assets acquired</strong></td>
+<td><strong>6,069.9</strong></td>
+</tr>
+<tr class="even">
+<td>Current liabilities</td>
+<td>(565.7)</td>
+</tr>
+<tr class="odd">
+<td>Long-term debt</td>
+<td>(2,383.7)</td>
+</tr>
+<tr class="even">
+<td>Other liabilities</td>
+<td>(1,441.5)</td>
+</tr>
+<tr class="odd">
+<td><strong>Total liabilities assumed</strong></td>
+<td><strong>(4,390.9)</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Net assets acquired</strong></td>
+<td><strong>1,679.0</strong></td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li><strong>Goodwill allocation: Phosphates US$579.0m; Potash US$1,587.4m.</strong> “Goodwill is not deductible for tax purposes.”</li>
+<li><strong>Fiscal 2005 (year ended May 31, 2005) segment net sales:</strong> Phosphates external US$2,138.1m / total US$2,312.5m; Potash US$859.4m / US$869.4m; Nitrogen US$112.5m / US$119.8m; Offshore US$1,218.7m / US$1,228.9m; <strong>total external US$4,328.7m</strong>.</li>
+</ul>
+<h3 id="advisers-1">Advisers</h3>
+<ul>
+<li>Cargill: <strong>Merrill Lynch</strong> (financial)</li>
+<li>IMC Global: <strong>Goldman, Sachs &amp; Co.</strong> (fairness opinion to the IMC board dated <strong>January 26, 2004</strong>) and <strong>J.P. Morgan Chase</strong> (financial)</li>
+<li>PLP special committee: <strong>Houlihan Lokey Howard &amp; Zukin Financial Advisors</strong></li>
+<li>Legal: <strong>Dorsey &amp; Whitney LLP</strong> and <strong>Sidley Austin Brown &amp; Wood LLP</strong> (both firms appear in the S-4 counsel/tax-opinion sections)</li>
+</ul>
+<h3 id="key-people-1">Key people</h3>
+<ul>
+<li><strong>Fritz (Fredric) Corrigan</strong> — Cargill Executive Vice President → <strong>President &amp; CEO, The Mosaic Company</strong></li>
+<li><strong>Warren Staley</strong> — Chairman &amp; CEO, Cargill, Incorporated — “This transaction underscores our confidence in the industry and commitment to growing the fertilizer business”</li>
+<li><strong>Douglas A. Pertz</strong> — Chairman &amp; CEO, IMC Global — joined the Mosaic board</li>
+<li><strong>Douglas Speers</strong> — IMC Global director [unverified role in the transaction; not named in the announcement press release reviewed]</li>
+<li><strong>Steven Seibert</strong> — [unverified; no primary source located tying this name to the 2004 combination]</li>
+<li><strong>Jim Prokopanko</strong> — later President &amp; CEO (successor; central to the 2011 split-off)</li>
+</ul>
+<h3 id="regulatory-and-litigation-1">Regulatory and litigation</h3>
+<p>Conditioned on US, Canadian and other antitrust/competition approvals plus IMC Global shareholder approval. US federal clearance was granted in 2004. No transaction litigation identified.</p>
+<h3 id="outcome-and-post-deal-performance-1">Outcome and post-deal performance</h3>
+<p>Mosaic became the largest US producer of potash and phosphate; ~8,200 employees at formation across 17 countries (Cargill Crop Nutrition ~3,200, IMC ~5,000). Targeted <strong>~US$145 million of annualized pre-tax operating synergies by year three</strong>. Fiscal 2005 net sales US$4,328.7 million. Cargill’s 66.5% stake was unwound in the 2011 split-off.</p>
+<h3 id="key-numbers-1">Key numbers</h3>
+<div class="tbl-wrap"><table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Metric</th>
+<th>Value</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Agreement date / announcement</td>
+<td>January 26 / 27, 2004</td>
+<td>8-K; 425 press release</td>
+</tr>
+<tr class="even">
+<td>Completion</td>
+<td>October 22, 2004</td>
+<td>Form 8-K (Oct 28, 2004)</td>
+</tr>
+<tr class="odd">
+<td>NYSE listing</td>
+<td>October 25, 2004, ticker MOS</td>
+<td>secondary</td>
+</tr>
+<tr class="even">
+<td>IMC exchange ratio</td>
+<td>1.0 Mosaic share per IMC share</td>
+<td>S-4/A</td>
+</tr>
+<tr class="odd">
+<td>IMC preferred</td>
+<td>1.0 Mosaic 7.50% mandatory convertible per share; 2,750,000 shares</td>
+<td>S-4/A; 424B3</td>
+</tr>
+<tr class="even">
+<td>PLP exchange ratio</td>
+<td>0.2 IMC/Mosaic shares per PLP unit</td>
+<td>425 press release; 424B3</td>
+</tr>
+<tr class="odd">
+<td>Shares to Cargill, Incorporated</td>
+<td>10,810,333 common</td>
+<td>Form 8-K</td>
+</tr>
+<tr class="even">
+<td>Shares to Cargill Fertilizer, Inc.</td>
+<td>210,569,242 common + 5,458,955 Class B</td>
+<td>Form 8-K</td>
+</tr>
+<tr class="odd">
+<td>Shares to GNS I (U.S.) Corp.</td>
+<td>29,202,747 common</td>
+<td>Form 8-K</td>
+</tr>
+<tr class="even">
+<td>Total to Cargill entities</td>
+<td>256,041,277 shares</td>
+<td>Form 8-K (computed)</td>
+</tr>
+<tr class="odd">
+<td>Ownership split</td>
+<td>Cargill 66.5% / IMC holders 33.5%</td>
+<td>S-4/A; 425</td>
+</tr>
+<tr class="even">
+<td>Purchase price (accounting)</td>
+<td>US$1,679.0 million</td>
+<td>10-Q filed Oct 7, 2005</td>
+</tr>
+<tr class="odd">
+<td>— IMC common FMV</td>
+<td>US$1,393.6m</td>
+<td>10-Q</td>
+</tr>
+<tr class="even">
+<td>— IMC preferred FMV</td>
+<td>US$216.8m</td>
+<td>10-Q</td>
+</tr>
+<tr class="odd">
+<td>— IMC options FMV</td>
+<td>US$47.6m</td>
+<td>10-Q</td>
+</tr>
+<tr class="even">
+<td>— CCN direct costs</td>
+<td>US$21.0m</td>
+<td>10-Q</td>
+</tr>
+<tr class="odd">
+<td>Goodwill</td>
+<td>US$2,166.4m (Phosphates 579.0 / Potash 1,587.4)</td>
+<td>10-Q</td>
+</tr>
+<tr class="even">
+<td>PP&amp;E acquired</td>
+<td>US$3,090.1m</td>
+<td>10-Q</td>
+</tr>
+<tr class="odd">
+<td>LT debt assumed</td>
+<td>US$2,383.7m</td>
+<td>10-Q</td>
+</tr>
+<tr class="even">
+<td>Pro forma trailing revenue</td>
+<td>~US$4.1 billion</td>
+<td>425 press release</td>
+</tr>
+<tr class="odd">
+<td>Combined assets</td>
+<td>~US$5.4 billion</td>
+<td>425 press release</td>
+</tr>
+<tr class="even">
+<td>Trailing EBITDA pre-synergy</td>
+<td>~US$440 million</td>
+<td>425 press release</td>
+</tr>
+<tr class="odd">
+<td>Target synergies</td>
+<td>~US$145m pre-tax annualized by yr 3</td>
+<td>425 press release</td>
+</tr>
+<tr class="even">
+<td>Employees</td>
+<td>~8,200 (CCN ~3,200 + IMC ~5,000)</td>
+<td>425 press releases</td>
+</tr>
+<tr class="odd">
+<td>Board</td>
+<td>11 members: 7 Cargill (incl. chair), 4 IMC</td>
+<td>425 press release</td>
+</tr>
+<tr class="even">
+<td>FY2005 net sales</td>
+<td>US$4,328.7 million</td>
+<td>FY2005 annual report (Ex-13)</td>
+</tr>
+<tr class="odd">
+<td>FY2005 interest expense</td>
+<td>US$120.6m (vs US$29.2m FY2004)</td>
+<td>FY2005 annual report (Ex-13)</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="primary-sources-1">Primary sources</h3>
+<ul>
+<li><a href="https://www.sec.gov/Archives/edgar/data/820626/000119312504009323/d425.htm">IMC Global Form 425 — combination announcement press release, January 27, 2004</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/1285785/000119312504104085/ds4a.htm">Global Nutrition Solutions / Mosaic Form S-4/A, June 17, 2004 — full proxy statement/prospectus</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/1285785/000119312504104085/">S-4/A filing index (exhibits incl. tax opinion Ex-8, consents, Ex-99 forms of proxy)</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/1285785/000119312504180752/d8k.htm">The Mosaic Company Form 8-K, October 28, 2004 — completion of merger and contribution, share issuances, exhibits</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/1285785/000119312504198404/d424b3.htm">Form 424B3, November 16, 2004 — Mosaic Global Holdings / Phosphate Acquisition Partners debt consent solicitation prospectus (restates deal structure)</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/1285785/000119312504104619/d425.htm">Mosaic Form 425, June 17, 2004 press release (operations, employees, PLP ratio, Corrigan appointment)</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/1285785/000119312505198535/d10q.htm">Mosaic Form 10-Q filed October 7, 2005 — IMC Global purchase price and full purchase price allocation</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/1285785/000119312505159170/dex13.htm">Mosaic FY2005 annual report to stockholders (Form 10-K Exhibit 13) — MD&amp;A and segment data</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/1285785/000119312505159170/">Mosaic FY2005 Form 10-K filing index</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/793421/000104746904006677/a2130389zex-99_1.htm">IMC Global Form 425, March 1, 2004 — PLP merger, 0.2 exchange ratio, Houlihan Lokey fairness opinion</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/1160701/000110465904032347/a04-12294_18k.htm">Mosaic Phosphates Company Form 8-K (CIK 1160701)</a></li>
+</ul>
+<hr />
+</section>
+<section id="txn-04">
+<div class="section-head">
+<div class="section-num">
+§ 04
+</div>
+<div class="section-title">
+<h2>
+Cargill's Split-Off of The Mosaic Company (2011)
+</h2>
+<p class="sub">
+Tax-free split-off and debt-for-equity exchange under IRC <strong>§ 355</strong> (with § 368 recapitalization/merger), plus registered secondary "formation offerings" — a controlled-orderly-distribution structure, not a Reverse Morris Trust
+</p>
+</div>
+</div>
+<div class="factstrip">
+<div class="f">
+<span class="label">Announced / closed</span>
+<div class="t">
+<p>Announced <strong>January 18, 2011</strong>; Mosaic stockholder approval <strong>May 11, 2011</strong>; <strong>completed May 25, 2011</strong></p>
+</div>
+</div>
+<div class="f">
+<span class="label">Headline value</span>
+<div class="t">
+<p>Cargill’s ~<strong>64% stake, approximately 285.8–286 million Mosaic shares</strong>, reported at approximately <strong>US$24.3 billion</strong></p>
+</div>
+</div>
+</div>
+<h3 id="parties-2">Parties</h3>
+<ul>
+<li><strong>Cargill, Incorporated</strong> (private, Minnetonka MN) — distributing shareholder</li>
+<li><strong>The Mosaic Company</strong> (NYSE: MOS)</li>
+<li><strong>GNS II (U.S.) Corp.</strong> — the new holding company that became “The Mosaic Company”; SEC registrant <strong>CIK 0001511357</strong> for the proxy statement/prospectus (Reg. No. 333-172076); the pre-transaction Mosaic became <strong>MOS Holdings Inc.</strong></li>
+<li><strong>The MAC Trusts (Margaret A. Cargill Philanthropies / charitable trusts)</strong> — Cargill stockholders that agreed by exchange agreement to participate fully in the split-off and to sell their Mosaic shares through registered offerings</li>
+<li>Participating <strong>Cargill debt holders</strong> in the debt exchanges</li>
+</ul>
+<h3 id="structure-2">Structure</h3>
+<ol type="1">
+<li><p><strong>Recapitalization merger:</strong> GNS II (U.S.) Corp., a Mosaic subsidiary, merged with Mosaic and became the parent, renamed “The Mosaic Company”; old Mosaic became MOS Holdings Inc. Mosaic’s stock was recapitalized into <strong>three classes</strong>:</p>
+<ul>
+<li><strong>Common Stock</strong> — one vote per share, publicly traded</li>
+<li><strong>Class A Common Stock</strong> — one vote per share, transfer-restricted, convertible</li>
+<li><strong>Class B Common Stock</strong> — <strong>ten votes per share for director elections</strong>, one vote otherwise, transfer-restricted</li>
+</ul></li>
+<li><p><strong>Conversion of Cargill’s 286 million shares</strong> into approximately <strong>115 million Common</strong>, <strong>60 million Class A</strong>, and <strong>111 million Class B</strong>.</p></li>
+<li><p><strong>Split-off:</strong> Cargill exchanged approximately <strong>178.3 million</strong> Mosaic shares (announced as ~179 million) with participating Cargill stockholders in return for their <strong>Cargill</strong> common stock.</p></li>
+<li><p><strong>Debt exchanges:</strong> Cargill exchanged approximately <strong>107 million</strong> Mosaic shares with holders of <strong>Cargill debt</strong>.</p></li>
+<li><p><strong>Formation offerings:</strong> an aggregate of <strong>115.0 million</strong> shares of Common Stock were sold by selling stockholders in the initial registered offering, with Mosaic committed to register and sell an additional <strong>42.0 million</strong> shares within <strong>15 months</strong> — at least <strong>157 million</strong> shares registered for resale in total.</p></li>
+<li><p><strong>Lock-up / orderly disposition:</strong> approximately <strong>129.0 million</strong> shares carried transfer restrictions, released in <strong>three equal annual installments beginning on the two-and-a-half-year anniversary</strong> of the split-off, with additional annual registered secondary offerings available thereafter.</p></li>
+<li><p><strong>Governance:</strong> significant stockholders (5%+ voting power) required to sign governance agreements with standstill and voting restrictions. No immediate board changes contemplated.</p></li>
+<li><p><strong>Share repurchase:</strong> Mosaic concurrently agreed to repurchase shares from Cargill (announced separately).</p></li>
+</ol>
+<h3 id="financing-2">Financing</h3>
+<p>No cash consideration from Mosaic; the transaction was effected in Cargill/Mosaic stock and Cargill debt. Mosaic funded its concurrent repurchase from the balance sheet.</p>
+<h3 id="purchase-price-allocation-goodwill-and-impairments-1">Purchase price allocation, goodwill and impairments</h3>
+<p>None — this was a shareholder-level distribution, not a business combination; no purchase accounting at Mosaic.</p>
+<h3 id="advisers-2">Advisers</h3>
+<ul>
+<li><strong>Cravath, Swaine &amp; Moore LLP</strong> publicly records a role on “Mosaic’s Public Offering of Common Stock and Spin-Off from Cargill”</li>
+<li><strong>Innisfree M&amp;A Incorporated</strong> — proxy solicitor</li>
+<li>Investment bank roles are not named inside the proxy statement/prospectus excerpts reviewed. <strong><em class="unv">unverified</em></strong></li>
+</ul>
+<h3 id="key-people-2">Key people</h3>
+<ul>
+<li><strong>Jim Prokopanko</strong> — President &amp; CEO, The Mosaic Company — “This vote of confidence supports our belief that becoming a fully independent company will be good for our stockholders, customers and employees”</li>
+<li><strong>Greg Page</strong> — Chairman &amp; CEO, Cargill (period) [unverified — not named in sources reviewed]</li>
+</ul>
+<h3 id="regulatory-and-litigation-2">Regulatory and litigation</h3>
+<ul>
+<li><strong>IRS private letter ruling obtained</strong>: the merger, split-off and debt exchange were expected to be <strong>tax-free to Cargill, Mosaic and their respective shareholders</strong>. The § 355 control requirement was satisfied because Cargill transferred shares representing approximately <strong>81% of the voting power</strong> for board elections.</li>
+<li><strong>Minority shareholder approval:</strong> approved May 11, 2011 — approximately <strong>58% of non-Cargill shares voted</strong>, and <strong>over 98% of those voting supported</strong> the transaction.</li>
+<li>Antitrust/other regulatory clearances required. No litigation identified.</li>
+</ul>
+<h3 id="outcome-and-post-deal-performance-2">Outcome and post-deal performance</h3>
+<p>Mosaic became a fully independent, widely held public company with no controlling shareholder. Share counts at <strong>July 15, 2011</strong>: Common <strong>275,825,158</strong>; Class A <strong>57,768,374</strong>; Class B <strong>112,991,398</strong> (all US$0.01 par).</p>
+<h3 id="key-numbers-2">Key numbers</h3>
+<div class="tbl-wrap"><table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Metric</th>
+<th>Value</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Announcement</td>
+<td>January 18, 2011</td>
+<td>Mosaic 8-K Ex-99.1</td>
+</tr>
+<tr class="even">
+<td>Stockholder approval</td>
+<td>May 11, 2011 (58% of non-Cargill shares voted; &gt;98% in favour)</td>
+<td>PR Newswire</td>
+</tr>
+<tr class="odd">
+<td>Completion</td>
+<td>May 25, 2011</td>
+<td>Mosaic FY2011 10-K</td>
+</tr>
+<tr class="even">
+<td>Cargill stake</td>
+<td>~64%, ~286 million shares (~285.8m)</td>
+<td>Jan 18, 2011 press release</td>
+</tr>
+<tr class="odd">
+<td>Reported stake value</td>
+<td>~US$24.3 billion</td>
+<td>trade press</td>
+</tr>
+<tr class="even">
+<td>Conversion of Cargill shares</td>
+<td>~115m Common / ~60m Class A / ~111m Class B</td>
+<td>Jan 18, 2011 press release</td>
+</tr>
+<tr class="odd">
+<td>Split-off exchange</td>
+<td>~178.3 million shares for Cargill stock</td>
+<td>FY2011 10-K</td>
+</tr>
+<tr class="even">
+<td>Debt exchange</td>
+<td>~107 million shares for Cargill debt</td>
+<td>Jan 18, 2011 press release</td>
+</tr>
+<tr class="odd">
+<td>Formation offering (initial)</td>
+<td>115.0 million Common shares</td>
+<td>FY2011 10-K</td>
+</tr>
+<tr class="even">
+<td>Additional registered within 15 months</td>
+<td>42.0 million shares (≥157m total)</td>
+<td>FY2011 10-K</td>
+</tr>
+<tr class="odd">
+<td>Locked-up shares</td>
+<td>~129.0 million, released in 3 equal annual tranches from yr 2.5</td>
+<td>FY2011 10-K</td>
+</tr>
+<tr class="even">
+<td>Voting power transferred (§ 355)</td>
+<td>~81% for board elections</td>
+<td>424B3</td>
+</tr>
+<tr class="odd">
+<td>Shares outstanding 15-Jul-2011</td>
+<td>Common 275,825,158 / Class A 57,768,374 / Class B 112,991,398</td>
+<td>FY2011 10-K</td>
+</tr>
+<tr class="even">
+<td>Proxy statement/prospectus</td>
+<td>Reg. No. 333-172076, dated April 11, 2011; meeting May 11, 2011</td>
+<td>424B3</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="primary-sources-2">Primary sources</h3>
+<ul>
+<li><a href="https://www.sec.gov/Archives/edgar/data/1285785/000119312511009595/dex991.htm">The Mosaic Company Form 8-K Exhibit 99.1 — January 18, 2011 announcement press release (share class conversion, split-off and debt exchange share counts, lock-ups, MAC/charitable trusts)</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/1511357/000119312511093225/d424b3.htm">Definitive proxy statement/prospectus, Form 424B3, April 11, 2011 (CIK 0001511357, GNS II (U.S.) Corp. → The Mosaic Company; Reg. No. 333-172076)</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/1285785/000119312511191456/d10k.htm">The Mosaic Company Form 10-K for fiscal 2011, filed July 19, 2011 — “the Cargill Transaction,” completion date, share counts, formation offerings, lock-up schedule, tax treatment</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/1285785/000119312511191456/0001193125-11-191456-index.htm">FY2011 Form 10-K filing index (exhibits)</a></li>
+<li><a href="https://www.prnewswire.com/news-releases/mosaic-stockholders-approve-split-off-from-cargill-121632838.html">PR Newswire — “Mosaic Stockholders Approve Split-Off From Cargill,” May 11, 2011</a></li>
+<li><a href="https://www.prnewswire.com/news-releases/the-mosaic-company-to-repurchase-shares-134028743.html">PR Newswire — “The Mosaic Company to Repurchase Shares”</a></li>
+<li><a href="https://investors.mosaicco.com/press-releases/news-details/2011/Mosaic-and-Cargill-Agree-to-Split-off-and-Orderly-Distribution-of-Cargill-Stake-in-Mosaic/default.aspx">Mosaic investor relations — “Mosaic and Cargill Agree to Split-off and Orderly Distribution of Cargill Stake in Mosaic”</a></li>
+<li><a href="https://www.cravath.com/news-insights/mosaic-s-public-offering-of-common-stock-and-spin-off-from-cargill.html">Cravath — Mosaic’s Public Offering of Common Stock and Spin-Off from Cargill (advisor record)</a></li>
+</ul>
+<hr />
+</section>
+<section id="txn-05">
+<div class="section-head">
+<div class="section-num">
+§ 05
+</div>
+<div class="section-title">
+<h2>
+Vale Fertilizantes S.A. — Acquisition by The Mosaic Company from Vale S.A. (2016–18)
+</h2>
+<p class="sub">
+Corporate carve-out from a strategic seller, cash-plus-stock, with the seller taking a minority equity stake and board representation; cross-border (Brazil/Peru/Canada assets)
+</p>
+</div>
+</div>
+<div class="factstrip">
+<div class="f">
+<span class="label">Announced / closed</span>
+<div class="t">
+<p>Definitive stock purchase agreement announced <strong>December 19–20, 2016</strong>; terms <strong>modified January 2, 2018</strong>; <strong>closed January 8, 2018</strong></p>
+</div>
+</div>
+<div class="f">
+<span class="label">Headline value</span>
+<div class="t">
+<ul>
+<li>
+Announced: <strong>US$2.5 billion base consideration</strong> (US$1.25 billion cash funded from debt proceeds + ~<strong>42.3 million</strong> Mosaic shares ≈ 11% of Mosaic), plus an <strong>earnout of up to US$260 million</strong> over two years tied to financial performance
+</li>
+<li>
+Modified/final: <strong>US$1.15 billion cash + 34.2 million Mosaic shares</strong>; actual closing consideration <strong>US$1.08 billion cash</strong> (after working capital and other adjustments) and <strong>34,176,574 shares valued at US$26.92 per share ≈ US$920 million</strong> → <strong>~US$2.0 billion aggregate</strong>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<h3 id="parties-3">Parties</h3>
+<ul>
+<li>Buyer: <strong>The Mosaic Company</strong> (NYSE: MOS), CIK 0001285785</li>
+<li>Sellers: <strong>Vale S.A.</strong>, <strong>Vale Fertilizer Netherlands B.V.</strong> and certain affiliates</li>
+<li>Target: <strong>Vale Fertilizantes S.A.</strong>, renamed <strong>Mosaic Fertilizantes</strong> (segment) / <strong>Mosaic Fertilizantes P&amp;K S.A.</strong> (entity)</li>
+</ul>
+<h3 id="structure-3">Structure</h3>
+<ul>
+<li>Stock purchase agreement for the equity of Vale Fertilizantes S.A. and related entities.</li>
+<li><strong>Assets acquired:</strong> five Brazilian phosphate rock mines; four chemical plants; one Brazilian potash mine; an <strong>additional 40% economic interest in the Miski Mayo Mine (Peru), raising Mosaic’s aggregate interest to 75%</strong>; and the <strong>Kronau potash project, Saskatchewan</strong>. Capacity: ~4.8 million tonnes of phosphate nutrients and ~500,000 tonnes of potash annually; ~8,000 employees added (Mosaic global headcount to ~17,000).</li>
+<li><strong>Modification (January 2, 2018):</strong> consideration reduced; <strong>Vale retained equity ownership in the TIPLAM port facility</strong>, with Mosaic keeping usage rights under commercial agreements between the parties. The <strong>US$260 million contingent consideration liability</strong> recorded at December 31, 2017 was eliminated in the restructured terms.</li>
+<li><strong>Vale’s stake:</strong> minority shareholder with the right to appoint <strong>up to two directors</strong>; transfer restrictions on the shares for <strong>two years</strong> post-closing, with customary registration rights thereafter. <strong>Luciano Siani Pires</strong> (Vale CFO since 2012) was elected to Mosaic’s board at closing.</li>
+<li>New reporting segment <strong>“Mosaic Fertilizantes”</strong> created; Miski Mayo results consolidated into the <strong>Phosphates</strong> segment.</li>
+<li><strong>Brazil Landco:</strong> 49% Mosaic ownership with 51% non-controlling interest.</li>
+</ul>
+<h3 id="financing-3">Financing</h3>
+<p>Cash portion funded from <strong>debt proceeds</strong> (US$1.25 billion contemplated at announcement).</p>
+<p><strong>Purchase price allocation / goodwill / impairments</strong> (Mosaic Form 10-Q for Q1 2018, preliminary allocation; US$ millions):</p>
+<div class="tbl-wrap"><table>
+<thead>
+<tr class="header">
+<th>Line</th>
+<th>US$m</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Total current assets</td>
+<td>602.8</td>
+</tr>
+<tr class="even">
+<td>Property, plant and equipment, net</td>
+<td>2,364.9</td>
+</tr>
+<tr class="odd">
+<td>Investments in nonconsolidated companies</td>
+<td>6.6</td>
+</tr>
+<tr class="even">
+<td><strong>Goodwill</strong></td>
+<td><strong>92.0</strong></td>
+</tr>
+<tr class="odd">
+<td>Deferred income taxes</td>
+<td>270.6</td>
+</tr>
+<tr class="even">
+<td>Other assets</td>
+<td>427.1</td>
+</tr>
+<tr class="odd">
+<td><strong>Total assets acquired</strong></td>
+<td><strong>3,764.0</strong></td>
+</tr>
+<tr class="even">
+<td>Total current liabilities</td>
+<td>(476.4)</td>
+</tr>
+<tr class="odd">
+<td>Other noncurrent liabilities</td>
+<td>(834.7)</td>
+</tr>
+<tr class="even">
+<td><strong>Total liabilities assumed</strong></td>
+<td><strong>(1,311.1)</strong></td>
+</tr>
+<tr class="odd">
+<td><strong>Net identifiable assets acquired</strong></td>
+<td><strong>2,452.9</strong></td>
+</tr>
+<tr class="even">
+<td>Non-controlling interest</td>
+<td>(462.9)</td>
+</tr>
+<tr class="odd">
+<td>Working capital adjustments</td>
+<td>10.0</td>
+</tr>
+<tr class="even">
+<td>Cash and cash equivalents acquired</td>
+<td>(86.1)</td>
+</tr>
+<tr class="odd">
+<td><strong>Total consideration transferred, net of cash</strong></td>
+<td><strong>1,913.9</strong></td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>Cash paid for the acquisition per the cash-flow presentation: <strong>US$994.6 million</strong>. Non-controlling interest recognized at fair value: <strong>US$6.6 million</strong> (fair value of investments line). Deferred tax liabilities <strong>US$270.6 million</strong>. <strong>Integration and acquisition costs US$30.3 million.</strong></li>
+<li>Goodwill of <strong>US$92.0 million</strong> is small relative to deal size because the consideration was allocated overwhelmingly to PP&amp;E (US$2,364.9 million).</li>
+</ul>
+<h3 id="advisers-3">Advisers</h3>
+<ul>
+<li>Mosaic: <strong>J.P. Morgan</strong> and <strong>UBS</strong> (financial); <strong>Simpson Thacher &amp; Bartlett LLP</strong> and <strong>Lobo &amp; de Rizzo Advogados</strong> (legal)</li>
+<li>Vale: not disclosed in the Mosaic release. <strong><em class="unv">unverified</em></strong></li>
+</ul>
+<h3 id="key-people-3">Key people</h3>
+<ul>
+<li><strong>Joc O’Rourke</strong> — President &amp; CEO, The Mosaic Company — “We see this as an ideal strategic fit for Mosaic”; on the restructured terms, “Our conviction in the long-term outlook for the business and the promise of Brazil has not changed”</li>
+<li><strong>Luciano Siani Pires</strong> — CFO, Vale S.A. — elected to Mosaic’s board at closing</li>
+</ul>
+<h3 id="regulatory-and-litigation-3">Regulatory and litigation</h3>
+<p>Brazilian (CADE) and other competition/regulatory approvals; the ~13-month gap between signing and closing reflects that process and the renegotiation. No transaction litigation identified.</p>
+<h3 id="outcome-and-post-deal-performance-3">Outcome and post-deal performance</h3>
+<p>Mosaic became Brazil’s leading fertilizer producer with a dedicated Mosaic Fertilizantes segment. Announced target: <strong>&gt;US$80 million of after-tax synergies</strong> and earnings accretion by 2018. Vale became a ~11% (pre-reduction; ~9% post-reduction, <em class="unv">unverified</em>) shareholder of Mosaic.</p>
+<h3 id="key-numbers-3">Key numbers</h3>
+<div class="tbl-wrap"><table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Metric</th>
+<th>Value</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Announced</td>
+<td>December 19/20, 2016</td>
+<td>Mosaic IR press release</td>
+</tr>
+<tr class="even">
+<td>Terms modified</td>
+<td>January 2, 2018</td>
+<td>Mosaic IR press release</td>
+</tr>
+<tr class="odd">
+<td>Closed</td>
+<td>January 8, 2018</td>
+<td>Mosaic IR press release</td>
+</tr>
+<tr class="even">
+<td>Original headline</td>
+<td>US$2.5bn base + up to US$260m earnout</td>
+<td>Mosaic 2016 release</td>
+</tr>
+<tr class="odd">
+<td>Original mix</td>
+<td>US$1.25bn cash (debt-funded) + ~42.3m shares (~11%)</td>
+<td>Mosaic 2016 release</td>
+</tr>
+<tr class="even">
+<td>Modified headline</td>
+<td>US$1.15bn cash + 34.2m shares</td>
+<td>Mosaic Jan 2, 2018 release</td>
+</tr>
+<tr class="odd">
+<td>Actual cash at closing</td>
+<td>US$1.08 billion (after adjustments)</td>
+<td>FY2018 10-K</td>
+</tr>
+<tr class="even">
+<td>Shares issued</td>
+<td>34,176,574 at US$26.92 = ~US$920m</td>
+<td>FY2018 10-K</td>
+</tr>
+<tr class="odd">
+<td>Cash paid per cash-flow statement</td>
+<td>US$994.6 million</td>
+<td>Q1 2018 10-Q (R61)</td>
+</tr>
+<tr class="even">
+<td>Contingent consideration liability at 31-Dec-2017</td>
+<td>US$260.0 million</td>
+<td>Q1 2018 10-Q (R61)</td>
+</tr>
+<tr class="odd">
+<td>Total consideration transferred (net of cash)</td>
+<td>US$1,913.9 million</td>
+<td>Q1 2018 10-Q (R24)</td>
+</tr>
+<tr class="even">
+<td>PP&amp;E acquired</td>
+<td>US$2,364.9 million</td>
+<td>Q1 2018 10-Q (R24)</td>
+</tr>
+<tr class="odd">
+<td>Goodwill</td>
+<td>US$92.0 million</td>
+<td>Q1 2018 10-Q (R24)</td>
+</tr>
+<tr class="even">
+<td>Deferred income taxes</td>
+<td>US$270.6 million</td>
+<td>Q1 2018 10-Q (R24)</td>
+</tr>
+<tr class="odd">
+<td>Net identifiable assets</td>
+<td>US$2,452.9 million</td>
+<td>Q1 2018 10-Q (R24)</td>
+</tr>
+<tr class="even">
+<td>Non-controlling interest</td>
+<td>US$(462.9) million</td>
+<td>Q1 2018 10-Q (R24)</td>
+</tr>
+<tr class="odd">
+<td>Integration and acquisition costs</td>
+<td>US$30.3 million</td>
+<td>Q1 2018 10-Q (R61)</td>
+</tr>
+<tr class="even">
+<td>Miski Mayo interest</td>
+<td>+40% economic → 75% aggregate</td>
+<td>FY2018 10-K</td>
+</tr>
+<tr class="odd">
+<td>Capacity added</td>
+<td>~4.8 Mt phosphate nutrients; ~0.5 Mt potash</td>
+<td>Mosaic 2016 release</td>
+</tr>
+<tr class="even">
+<td>Employees added</td>
+<td>~8,000 (to ~17,000 total)</td>
+<td>Mosaic 2016 release</td>
+</tr>
+<tr class="odd">
+<td>Target synergies</td>
+<td>&gt;US$80 million after-tax</td>
+<td>Mosaic 2016 release</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="primary-sources-3">Primary sources</h3>
+<ul>
+<li><a href="https://investors.mosaicco.com/press-releases/news-details/2016/The-Mosaic-Company-To-Acquire-Vale-Fertilizantes-For-25-Billion/default.aspx">Mosaic IR — “The Mosaic Company To Acquire Vale Fertilizantes For $2.5 Billion,” December 2016 (original terms, advisors, synergies, board rights)</a></li>
+<li><a href="https://investors.mosaicco.com/press-releases/news-details/2018/The-Mosaic-Company-Announces-Modifications-to-Pending-Vale-Fertilizantes-Transaction/default.aspx">Mosaic IR — “The Mosaic Company Announces Modifications to Pending Vale Fertilizantes Transaction,” January 2, 2018 (US$1.15bn + 34.2m shares; TIPLAM retained by Vale)</a></li>
+<li><a href="https://investors.mosaicco.com/press-releases/news-details/2018/Mosaic-Completes-Acquisition-of-Vale-Fertilizantes-and-Announces-Timing-of-2017-Full-Year-and-Fourth-Quarter-Earnings-Release-and-Conference-Call/default.aspx">Mosaic IR — “Mosaic Completes Acquisition of Vale Fertilizantes,” January 8, 2018 (closing; Luciano Siani Pires board election)</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/1285785/000161803418000006/R24.htm">Mosaic Form 10-Q, Q1 2018 — Note: Acquisition of Mosaic Fertilizantes P&amp;K S.A., preliminary purchase price allocation (R24)</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/1285785/000161803418000006/R61.htm">Mosaic Form 10-Q, Q1 2018 — Acquisition details (R61): cash paid, contingent consideration, NCI, integration costs</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/1285785/000161803418000006/">Mosaic Form 10-Q Q1 2018 filing index</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/1285785/000161803419000004/mos-20181231x10k.htm">Mosaic Form 10-K for FY2018 — consideration at closing (US$1.08bn cash; 34,176,574 shares at US$26.92), assets acquired, segment creation</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/1285785/000161803418000003/mos-20171231x10k.htm">Mosaic Form 10-K for FY2017</a></li>
+</ul>
+</section>
+<footer>
+<div>
+<strong style="color:var(--ink)">Market Logic Investors LLC</strong> · Transaction Experience<br> Compiled from primary filings. Internal reference. Not investment advice.
+</div>
+<div style="text-align:right">
+<a href="../" style="color:var(--teal);text-decoration:none">← Back to Transaction Experience</a>
+</div>
+</footer>
+
+</div>
+</body>
+</html>

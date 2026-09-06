@@ -1,0 +1,1792 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Navarre / Speed Commerce — Transaction Experience — Market Logic Investors</title>
+<meta name="description" content="A complete corporate life cycle in eight transactions: a distressed bargain, a leveraged transformational acquisition written off within four years, a reverse-merger pivot, the sal">
+<style>
+
+:root {
+  --ink: #0a1929; --ink-soft: #1c2e44;
+  --paper: #faf9f4; --paper-warm: #f3efe3;
+  --rule: #d4cfbf; --rule-soft: #e8e3d4;
+  --muted: #5b6b7a; --muted-light: #8a98a5;
+  --accent: #b8391c; --accent-soft: #d65a3a;
+  --teal: #1f6b6b; --teal-soft: #4a8b8b; --teal-light: #b8d4d4;
+  --positive: #2d6a4f; --warning: #b08800; --negative: #9b2226;
+  --negative-light: #e8c5c5;
+  --serif: 'Iowan Old Style','Palatino Linotype',Palatino,'Book Antiqua',Georgia,serif;
+  --sans: 'Helvetica Neue',Helvetica,-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
+  --mono: 'SF Mono',SFMono-Regular,Menlo,Monaco,Consolas,'Liberation Mono',monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{font-size:16px;-webkit-text-size-adjust:100%;}
+body{font-family:var(--sans);background:var(--paper);color:var(--ink);line-height:1.55;-webkit-font-smoothing:antialiased;}
+.page{max-width:1000px;margin:0 auto;padding:56px 56px 80px;}
+h1,h2,h3,h4,h5{font-family:var(--serif);font-weight:400;color:var(--ink);}
+h1{font-size:3.6rem;line-height:1.02;letter-spacing:-0.025em;}
+h2{font-size:2.05rem;line-height:1.12;letter-spacing:-0.015em;}
+h3{font-size:1.3rem;line-height:1.25;}
+h4{font-family:var(--sans);font-weight:600;font-size:0.7rem;text-transform:uppercase;letter-spacing:0.16em;color:var(--muted);}
+p{font-size:0.95rem;line-height:1.7;color:var(--ink-soft);}
+strong{color:var(--ink);font-weight:600;}
+.eyebrow{font-family:var(--sans);font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.2em;color:var(--accent);display:block;margin-bottom:18px;}
+.lede{font-family:var(--serif);font-size:1.25rem;line-height:1.5;color:var(--ink);}
+.kicker{font-family:var(--sans);font-size:0.75rem;font-weight:600;text-transform:uppercase;letter-spacing:0.12em;color:var(--teal);}
+.label{font-family:var(--sans);font-size:0.7rem;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);}
+.mono{font-family:var(--mono);font-size:0.85rem;}
+.cover{border-top:1px solid var(--ink);padding-top:32px;position:relative;}
+.cover-meta{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:84px;}
+.cover-meta .left,.cover-meta .right{font-family:var(--sans);font-size:0.78rem;color:var(--muted);}
+.cover-meta .right{text-align:right;}
+.cover-meta .right .stamp{display:inline-block;padding:4px 10px;border:1px solid var(--accent);color:var(--accent);font-weight:600;letter-spacing:0.12em;font-size:0.65rem;text-transform:uppercase;margin-bottom:8px;}
+.cover-title{margin-bottom:28px;}
+.cover-title .legal{display:block;font-family:var(--sans);font-size:0.78rem;color:var(--muted);margin-top:8px;letter-spacing:0.04em;}
+.cover-tag{font-family:var(--serif);font-style:italic;font-size:1.4rem;line-height:1.45;color:var(--ink-soft);max-width:720px;margin-bottom:56px;}
+.cover-tag::before{content:"\201C";font-size:2.2rem;line-height:0;vertical-align:-0.3em;color:var(--accent);margin-right:4px;}
+.cover-tag::after{content:"\201D";font-size:2.2rem;line-height:0;vertical-align:-0.3em;color:var(--accent);margin-left:2px;}
+.metric-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:0;border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);margin:32px 0;}
+.metric{padding:22px 16px 20px;border-right:1px solid var(--rule);text-align:left;}
+.metric:last-child{border-right:none;}
+.metric .v{font-family:var(--serif);font-size:2.1rem;line-height:1;letter-spacing:-0.02em;color:var(--ink);display:block;margin-bottom:6px;}
+.metric .v small{font-size:0.95rem;color:var(--muted);font-family:var(--serif);margin-left:1px;}
+.metric .l{font-family:var(--sans);font-size:0.68rem;font-weight:600;text-transform:uppercase;letter-spacing:0.12em;color:var(--muted);line-height:1.3;}
+.metric.accent .v{color:var(--accent);}
+.metric.teal .v{color:var(--teal);}
+section{margin-top:64px;padding-top:32px;border-top:1px solid var(--rule);}
+section.no-rule{border-top:none;}
+.section-head{display:grid;grid-template-columns:120px 1fr;gap:32px;margin-bottom:28px;align-items:baseline;}
+.section-num{font-family:var(--mono);font-size:0.78rem;color:var(--muted);letter-spacing:0.05em;border-top:2px solid var(--ink);padding-top:8px;text-transform:uppercase;font-weight:600;}
+.section-title h2{margin-bottom:8px;}
+.section-title .sub{font-family:var(--serif);font-style:italic;color:var(--muted);font-size:1.05rem;}
+.cols-2{display:grid;grid-template-columns:1fr 1fr;gap:36px;margin-top:16px;}
+.cols-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px;margin-top:16px;}
+.card{background:var(--paper-warm);padding:22px 24px;border:1px solid var(--rule);}
+.card.dark{background:var(--ink);color:var(--paper);}
+.card.dark h3,.card.dark h4{color:var(--paper);}
+.card.dark p{color:rgba(250,249,244,0.85);}
+.callout{border-left:3px solid var(--accent);padding:4px 0 4px 20px;margin:18px 0;font-family:var(--serif);font-style:italic;font-size:1.05rem;color:var(--ink);}
+.pull-quote{font-family:var(--serif);font-size:1.4rem;line-height:1.4;color:var(--ink);border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);padding:28px 0;margin:32px 0;text-align:center;letter-spacing:-0.005em;}
+table{width:100%;border-collapse:collapse;font-family:var(--sans);font-size:0.88rem;margin-top:14px;}
+thead th{text-align:left;font-weight:600;font-size:0.7rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);padding:10px 14px 10px 0;border-bottom:1.5px solid var(--ink);}
+thead th.num{text-align:right;}
+tbody td{padding:14px 14px 14px 0;border-bottom:1px solid var(--rule);color:var(--ink-soft);vertical-align:top;}
+tbody td.num{text-align:right;font-variant-numeric:tabular-nums;font-family:var(--mono);font-size:0.82rem;}
+tbody td strong{color:var(--ink);}
+tbody tr.highlight td{color:var(--ink);}
+tbody tr.highlight td:first-child{padding-left:12px;border-left:3px solid var(--accent);}
+ul.clean{list-style:none;}
+ul.clean li{padding:12px 0 12px 24px;border-bottom:1px solid var(--rule-soft);position:relative;font-size:0.93rem;color:var(--ink-soft);line-height:1.6;}
+ul.clean li::before{content:"→";position:absolute;left:0;top:12px;color:var(--accent);font-weight:600;}
+ol.clean{list-style:none;counter-reset:ck;}
+ol.clean li{counter-increment:ck;padding:12px 0 12px 36px;border-bottom:1px solid var(--rule-soft);position:relative;font-size:0.93rem;color:var(--ink-soft);line-height:1.6;}
+ol.clean li::before{content:counter(ck,decimal-leading-zero);position:absolute;left:0;top:12px;font-family:var(--mono);font-size:0.78rem;color:var(--accent);font-weight:600;}
+.tag{display:inline-block;font-family:var(--sans);font-size:0.68rem;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;padding:3px 9px;margin-right:6px;margin-bottom:4px;border:1px solid var(--rule);color:var(--ink-soft);background:var(--paper);}
+.tag.accent{border-color:var(--accent);color:var(--accent);}
+.tag.teal{border-color:var(--teal);color:var(--teal);}
+.tag.warn{border-color:var(--warning);color:var(--warning);}
+.tag.neg{border-color:var(--negative);color:var(--negative);}
+.tag.pos{border-color:var(--positive);color:var(--positive);}
+.thesis-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:24px;border:1px solid var(--ink);}
+.thesis-col{padding:28px 28px 24px;}
+.thesis-col.bull{border-right:1px solid var(--ink);}
+.thesis-col ul{list-style:none;margin-top:14px;}
+.thesis-col ul li{padding:10px 0 10px 22px;position:relative;font-size:0.9rem;color:var(--ink-soft);line-height:1.55;border-bottom:1px dashed var(--rule-soft);}
+.thesis-col.bull ul li::before{content:"+";position:absolute;left:0;top:9px;color:var(--positive);font-weight:700;}
+.thesis-col.bear ul li::before{content:"−";position:absolute;left:0;top:9px;color:var(--negative);font-weight:700;}
+.recommendation{background:var(--ink);color:var(--paper);padding:40px 44px;margin-top:40px;border-left:6px solid var(--accent);}
+.recommendation .head{font-family:var(--mono);font-size:0.74rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--accent-soft);margin-bottom:12px;font-weight:600;}
+.recommendation h2{color:var(--paper);margin-bottom:14px;}
+.recommendation p{color:rgba(250,249,244,0.86);font-size:1rem;}
+.recommendation .actions{margin-top:24px;padding-top:20px;border-top:1px solid rgba(250,249,244,0.18);display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+.recommendation .actions .h{font-family:var(--mono);font-size:0.7rem;text-transform:uppercase;letter-spacing:0.14em;color:var(--accent-soft);margin-bottom:10px;}
+.recommendation .actions ul{list-style:none;}
+.recommendation .actions ul li{padding:6px 0 6px 22px;position:relative;font-size:0.9rem;color:rgba(250,249,244,0.92);line-height:1.5;}
+.recommendation .actions ul li::before{content:"▸";position:absolute;left:0;top:5px;color:var(--accent-soft);}
+footer{margin-top:80px;padding-top:28px;border-top:1px solid var(--ink);font-family:var(--sans);font-size:0.74rem;color:var(--muted);display:flex;justify-content:space-between;}
+.chart{width:100%;margin:18px 0 6px;background:var(--paper);}
+.chart-caption{font-family:var(--sans);font-size:0.72rem;color:var(--muted);margin-top:4px;font-style:italic;line-height:1.5;}
+/* Dashboard */
+.dash-panel{background:var(--paper-warm);border:1px solid var(--rule);padding:24px;margin-top:24px;}
+.dash-controls{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:20px;}
+.ctrl-item{display:flex;flex-direction:column;gap:5px;}
+.ctrl-item label{font-family:var(--sans);font-size:0.7rem;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);}
+.ctrl-row{display:flex;align-items:center;gap:8px;}
+.ctrl-row input[type=range]{flex:1;accent-color:var(--teal);cursor:pointer;}
+.ctrl-val{font-family:var(--mono);font-size:0.82rem;font-weight:600;color:var(--ink);min-width:48px;text-align:right;}
+.scen-row{display:flex;gap:8px;margin-bottom:18px;flex-wrap:wrap;}
+.scen-btn{font-family:var(--sans);font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;padding:5px 14px;border:1px solid var(--rule);background:var(--paper);color:var(--muted);cursor:pointer;}
+.scen-btn:hover{border-color:var(--teal);color:var(--teal);}
+.scen-btn.active{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+.output-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--rule);margin-bottom:16px;}
+.output-cell{padding:16px 14px;border-right:1px solid var(--rule);}
+.output-cell:last-child{border-right:none;}
+.output-cell .ov{font-family:var(--serif);font-size:1.8rem;letter-spacing:-0.02em;color:var(--ink);display:block;line-height:1;margin-bottom:4px;}
+.output-cell .ol{font-family:var(--sans);font-size:0.65rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--muted);}
+.output-cell.ok .ov{color:var(--positive);}
+.output-cell.warn .ov{color:var(--warning);}
+.output-cell.bad .ov{color:var(--negative);}
+.verdict-box{padding:16px 20px;font-family:var(--sans);font-size:0.88rem;line-height:1.6;border-left:4px solid var(--rule);margin-bottom:16px;}
+.verdict-box.ok{border-left-color:var(--positive);background:#f0f7f4;}
+.verdict-box.warn{border-left-color:var(--warning);background:#fdf8ec;}
+.verdict-box.bad{border-left-color:var(--negative);background:#fdf0f0;}
+.verdict-box .vl{font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.14em;margin-bottom:5px;color:var(--muted);}
+.assump-list{list-style:none;margin-top:0;}
+.assump-list li{padding:14px 0 14px 24px;border-bottom:1px solid var(--rule-soft);position:relative;font-size:0.88rem;line-height:1.6;color:var(--ink-soft);}
+.assump-list li::before{content:"→";position:absolute;left:0;top:14px;color:var(--accent);font-weight:700;}
+.assump-list li strong{color:var(--ink);}
+.assump-flag{display:inline-block;font-family:var(--mono);font-size:0.65rem;font-weight:700;letter-spacing:0.08em;padding:2px 7px;border:1px solid;margin-left:8px;vertical-align:middle;}
+.assump-flag.ok{border-color:var(--positive);color:var(--positive);}
+.assump-flag.warn{border-color:var(--warning);color:var(--warning);}
+.assump-flag.bad{border-color:var(--negative);color:var(--negative);}
+.signal{font-family:var(--mono);font-size:0.72rem;color:var(--teal);margin-top:6px;display:block;line-height:1.5;}
+.entity-row{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--ink);margin-top:20px;}
+.entity-col{padding:20px 18px;border-right:1px solid var(--rule);}
+.entity-col:last-child{border-right:none;}
+.entity-col h4{margin-bottom:12px;}
+.entity-col.et h4{color:var(--teal);}
+.entity-col.sun h4{color:var(--positive);}
+.entity-col.usac h4{color:var(--warning);}
+.emet{display:flex;justify-content:space-between;font-size:0.8rem;padding:6px 0;border-bottom:1px solid var(--rule-soft);}
+.emet:last-child{border:none;}
+.emet .ek{color:var(--muted);}
+.emet .ev{font-weight:600;color:var(--ink);font-family:var(--mono);font-size:0.78rem;}
+.emet .ev.g{color:var(--positive);}
+.emet .ev.r{color:var(--negative);}
+.emet .ev.w{color:var(--warning);}
+.dc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--rule);margin-top:16px;}
+.dc-cell{padding:18px 16px;border-right:1px solid var(--rule);}
+.dc-cell:last-child{border-right:none;}
+.dc-name{font-family:var(--sans);font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--ink);margin-bottom:4px;}
+.dc-pipe{font-family:var(--sans);font-size:0.7rem;color:var(--muted);margin-bottom:10px;}
+.dc-vol{font-family:var(--serif);font-size:1.8rem;color:var(--teal);letter-spacing:-0.02em;line-height:1;margin-bottom:4px;}
+.dc-ebitda{font-family:var(--mono);font-size:0.8rem;color:var(--positive);font-weight:600;}
+.dc-note{font-size:0.72rem;color:var(--muted);margin-top:6px;line-height:1.45;}
+.site-nav{display:flex;align-items:center;justify-content:space-between;background:var(--ink);color:var(--paper);padding:10px 40px;font-family:var(--sans);font-size:0.78rem;letter-spacing:0.04em;position:sticky;top:0;z-index:100;gap:16px;}
+.site-nav a{color:rgba(250,249,244,0.7);text-decoration:none;}
+.site-nav a:hover{color:var(--paper);}
+.site-nav span[aria-hidden]{color:rgba(250,249,244,0.3);margin:0 4px;}
+.site-nav .nav-meta{color:rgba(250,249,244,0.45);font-size:0.75rem;}
+.site-nav .nav-action a{color:var(--accent);border:1px solid rgba(184,57,28,0.5);border-radius:3px;padding:3px 10px;}
+@media(max-width:760px){
+  .page{padding:32px 22px;}
+  h1{font-size:2.4rem;}
+  .metric-grid{grid-template-columns:repeat(2,1fr);}
+  .cols-2,.cols-3,.thesis-grid,.dash-controls,.output-grid,.entity-row,.dc-grid{grid-template-columns:1fr;}
+  .thesis-col.bull{border-right:none;border-bottom:1px solid var(--ink);}
+  .section-head{grid-template-columns:1fr;gap:8px;}
+  .recommendation .actions{grid-template-columns:1fr;}
+}
+
+/* ===== Glossary ===== */
+.glossary-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:0;border:1px solid var(--ink);margin-top:16px;}
+.glossary-col{padding:0;}
+.gterm{display:grid;grid-template-columns:160px 1fr;gap:0;border-bottom:1px solid var(--rule-soft);}
+.gterm:last-child{border-bottom:none;}
+.gt{font-family:var(--mono);font-size:0.78rem;font-weight:700;color:var(--teal);padding:12px 14px;border-right:1px solid var(--rule-soft);background:var(--paper-warm);display:flex;align-items:flex-start;}
+.gd{font-size:0.82rem;color:var(--ink-soft);padding:12px 14px;line-height:1.55;}
+.gd strong{color:var(--ink);}
+@media(max-width:760px){.glossary-grid{grid-template-columns:1fr;}.gterm{grid-template-columns:120px 1fr;}}
+
+
+
+section[id]{scroll-margin-top:64px}
+.tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin-top:14px}
+.tbl-wrap table{margin-top:0}
+em.unv{font-style:normal;font-family:var(--mono);font-size:0.68rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--warning);border:1px solid var(--warning);padding:1px 5px;margin:0 2px;white-space:nowrap}
+em.corr{font-style:normal;font-family:var(--mono);font-size:0.68rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--accent);border:1px solid var(--accent);padding:1px 5px;margin:0 2px}
+h3{font-family:var(--sans);font-size:0.78rem;font-weight:700;text-transform:uppercase;letter-spacing:0.13em;color:var(--accent);margin:26px 0 8px}
+h4{font-family:var(--serif);font-size:1.05rem;font-weight:400;margin:20px 0 6px}
+section ul{margin:6px 0 6px 20px}
+section ul li{font-size:0.9rem;line-height:1.6;color:var(--ink-soft);padding:3px 0}
+section ol{margin:6px 0 6px 22px}
+section ol li{font-size:0.9rem;line-height:1.6;color:var(--ink-soft);padding:3px 0}
+.factstrip{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--ink);margin:18px 0 4px}
+.factstrip .f{padding:16px 20px;border-right:1px solid var(--rule)}
+.factstrip .f:last-child{border-right:none}
+.factstrip .f .label{display:block;margin-bottom:5px}
+.factstrip .f .t{font-size:0.88rem;line-height:1.55;color:var(--ink)}
+.txn-map td:first-child{font-weight:600;color:var(--ink)}
+.srcnote{font-family:var(--sans);font-size:0.78rem;color:var(--muted);line-height:1.6;border-left:3px solid var(--rule);padding:2px 0 2px 16px;margin:14px 0}
+.toc{display:grid;grid-template-columns:repeat(2,1fr);gap:0;border:1px solid var(--ink);margin-top:20px}
+.toc a{display:block;padding:12px 18px;border-bottom:1px solid var(--rule-soft);border-right:1px solid var(--rule-soft);text-decoration:none;color:var(--ink);font-size:0.86rem}
+.toc a:hover{background:var(--paper-warm);color:var(--accent)}
+.toc a .n{font-family:var(--mono);font-size:0.68rem;color:var(--muted);margin-right:10px}
+@media(max-width:720px){.factstrip,.toc{grid-template-columns:1fr}}
+
+</style>
+</head>
+<body>
+<nav class="site-nav" aria-label="breadcrumb">
+  <div style="display:flex;align-items:center;gap:0;flex-wrap:wrap">
+    <a href="../../">Market Logic Investors</a><span aria-hidden="true">/</span>
+    <a href="../../">Deal Vault</a><span aria-hidden="true">/</span>
+    <a href="../">Transaction Experience</a><span aria-hidden="true">/</span>
+    <span>Navarre / Speed Commerce</span>
+  </div>
+  <div style="display:flex;align-items:center;gap:16px;">
+    <span class="nav-meta">ML-TXN-NAV &nbsp;|&nbsp; Distribution &amp; e-commerce</span>
+  </div>
+</nav>
+<div class="page">
+<header class="cover">
+<div class="cover-meta">
+<div class="left">
+<p><strong style="color:var(--ink);display:block;margin-bottom:4px;">Market Logic Investors LLC</strong> Distribution &amp; e-commerce · Transaction Record<br> Client engagement record · Primary-source reconstruction</p>
+</div>
+<div class="right">
+<p><span class="stamp">8 transactions</span><br> <strong style="color:var(--ink);">Ref: ML-TXN-NAV</strong><br> Period: 2002 – 2016<br> Compiled: September 6, 2026</p>
+</div>
+</div>
+<span class="eyebrow">Distribution &amp; e-commerce · Full acquisition-to-foreclosure arc</span>
+<div class="cover-title">
+<h1>
+Navarre / Speed Commerce
+</h1>
+<p><span class="legal">Navarre Corporation · NASDAQ: NAVR → SPDC · Minneapolis / Richardson, TX</span></p>
+</div>
+<p class="cover-tag">
+A complete corporate life cycle in eight transactions: a distressed bargain, a leveraged transformational acquisition written off within four years, a reverse-merger pivot, the sale of the original business for a third of its stated price, and a $100m facility that foreclosed. The clearest teaching file in this book.
+</p>
+<div class="metric-grid">
+<div class="metric">
+<span class="v">8</span><span class="l">Transactions</span>
+</div>
+<div class="metric accent">
+<span class="v">$117.8<small>m</small></span><span class="l">Paid for FUNimation</span>
+</div>
+<div class="metric">
+<span class="v">$24.0<small>m</small></span><span class="l">Recovered for FUNimation</span>
+</div>
+<div class="metric">
+<span class="v">$73.4<small>m</small></span><span class="l">Single-quarter goodwill impairment</span>
+</div>
+<div class="metric teal">
+<span class="v">$100.4<small>m</small></span><span class="l">Debt at foreclosure</span>
+</div>
+<div class="metric">
+<span class="v">$0</span><span class="l">Recovery to equity</span>
+</div>
+</div>
+</header>
+<section class="no-rule" style="margin-top:48px">
+<div class="section-head">
+<div class="section-num">
+§ 01
+</div>
+<div class="section-title">
+<h2>
+Transaction map
+</h2>
+<p class="sub">
+Every transaction on this file, in order
+</p>
+</div>
+</div>
+<p style="margin-bottom:8px">
+Navarre bought Encore out of bankruptcy for ~$10m in 2002 and FUNimation for $117.8m in 2005 on a $165m GE Capital facility. It impaired $73.4m of goodwill in one quarter of FY2009, sold FUNimation for $24.0m in 2011, reverse-merged with SpeedFC in 2012, sold the legacy distribution business for a stated $15m that realised ~$5m, levered $100m for Fifth Gear, and was foreclosed on in June 2016.
+</p>
+<div class="tbl-wrap">
+<table class="txn-map">
+<thead>
+<tr>
+<th>
+Transaction
+</th>
+<th>
+Type
+</th>
+<th>
+Announced / closed
+</th>
+<th>
+Headline value
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="#txn-02" style="color:var(--ink);text-decoration:none;border-bottom:1px solid var(--rule)">Acquisition of Encore Software, Inc. (Section 363 bankruptcy asset sale)</a>
+</td>
+<td>
+Distressed asset sale / §363 bankruptcy purchase (public-company bolt-on, all-cash + assumed debt)
+</td>
+<td>
+Bankruptcy court approval and closing July 31, 2002 (8-K event date); press release August 5, 2002; 8-K filed August 14, 2002;…
+</td>
+<td>
+~$9.75m–$10m all-in ($7.0m cash + up to $2.75m of notes/assumed debt); pro forma exhibit describes "the approximately $10 million…
+</td>
+</tr>
+<tr>
+<td>
+<a href="#txn-03" style="color:var(--ink);text-decoration:none;border-bottom:1px solid var(--rule)">Acquisition of FUNimation Productions, Ltd. and The FUNimation Store, Ltd.</a>
+</td>
+<td>
+Public-company transformational acquisition; purchase of 100% of general and limited partnership interests; cash + stock + earnout, leveraged with a…
+</td>
+<td>
+Purchase agreement signed January 10, 2005 (8-K filed January 11, 2005); closed May 11, 2005 (8-K filed May 17, 2005); 8-K/A with…
+</td>
+<td>
+~$117.8m recorded purchase price — $100.4m cash + ~$14.1m stock + $3.3m transaction costs, plus up to $17.0m contingent cash over…
+</td>
+</tr>
+<tr>
+<td>
+<a href="#txn-04" style="color:var(--ink);text-decoration:none;border-bottom:1px solid var(--rule)">Divestiture of FUNimation Entertainment</a>
+</td>
+<td>
+Divestiture / carve-out sale of partnership interests to a management-led investment group (all-cash)
+</td>
+<td>
+Strategic-alternatives review announced May 27, 2010; closed March 31, 2011 with funding April 1, 2011; 8-K filed April 5, 2011;…
+</td>
+<td>
+$24,000,000 cash (net proceeds ~$22.5m) — against a $117.8m recorded 2005 purchase price
+</td>
+</tr>
+<tr>
+<td>
+<a href="#txn-05" style="color:var(--ink);text-decoration:none;border-bottom:1px solid var(--rule)">Acquisition of SpeedFC, Inc.</a>
+</td>
+<td>
+Reverse-merger-like transformational acquisition (target holders took ~31.4% of the buyer, rising to ~38.5% on full earnout); cash + stock +…
+</td>
+<td>
+Merger agreement September 27, 2012 (8-K filed September 28, 2012); Amendment No. 1 October 29, 2012; shareholder vote and…
+</td>
+<td>
+$50,000,000 initial consideration ($25m cash + $25m stock); total recorded consideration including contingent consideration…
+</td>
+</tr>
+<tr>
+<td>
+<a href="#txn-06" style="color:var(--ink);text-decoration:none;border-bottom:1px solid var(--rule)">Rebrand, ticker change, and later reverse stock split</a>
+</td>
+<td>
+Corporate reorganization / identity change (not an M&amp;A transaction)
+</td>
+<td>
+Board approved July 31, 2013; articles amendment filed with the Minnesota Secretary of State September 3, 2013; name change…
+</td>
+<td>
+n/a
+</td>
+</tr>
+<tr>
+<td>
+<a href="#txn-07" style="color:var(--ink);text-decoration:none;border-bottom:1px solid var(--rule)">Sale of the Navarre distribution and software publishing business to WYNIT Distribution, LLC</a>
+</td>
+<td>
+Divestiture / carve-out asset sale (cash + seller note), funded exit from physical distribution
+</td>
+<td>
+Asset Purchase Agreement effective July 9, 2014; the agreement recites a closing date of July 8, 2014; 8-K filed July 9, 2014.…
+</td>
+<td>
+$15,000,000 stated ($5m cash + $10m note) — not ~$26m. Net of post-closing adjustments the note was later written to $1.5m and…
+</td>
+</tr>
+<tr>
+<td>
+<a href="#txn-08" style="color:var(--ink);text-decoration:none;border-bottom:1px solid var(--rule)">Acquisition of the Fifth Gear businesses (Sigma Holdings / Sigma Micro / Lexton Group)</a>
+</td>
+<td>
+Debt-funded bolt-on acquisition of e-commerce fulfillment, 3PL and call-center assets; the leverage event that caused the collapse
+</td>
+<td>
+Asset Purchase Agreement effective November 21, 2014; 8-K filed November 26, 2014
+</td>
+<td>
+$55,000,000 base cash, plus an earnout of up to 7,000,000 shares (later increased to 8,400,000)
+</td>
+</tr>
+<tr>
+<td>
+<a href="#txn-09" style="color:var(--ink);text-decoration:none;border-bottom:1px solid var(--rule)">Garrison default, UCC Article 9 foreclosure and dissolution</a>
+</td>
+<td>
+Distressed workout → lender strict foreclosure under UCC §9-620 → voluntary dissolution of an insolvent issuer
+</td>
+<td>
+Covenant amendments June 30 / July 2, 2015 through the Seventh Amendment October 6, 2015; forbearance December 17, 2015; NASDAQ…
+</td>
+<td>
+~$100.4m of secured debt outstanding at March 31, 2015; zero recovery to shareholders
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="toc">
+<a href="#txn-02"><span class="n">§ 02</span>Acquisition of Encore Software, Inc. (Section 363 bankruptcy asset sale)</a><a href="#txn-03"><span class="n">§ 03</span>Acquisition of FUNimation Productions, Ltd. and The FUNimation Store, Ltd.</a><a href="#txn-04"><span class="n">§ 04</span>Divestiture of FUNimation Entertainment</a><a href="#txn-05"><span class="n">§ 05</span>Acquisition of SpeedFC, Inc.</a><a href="#txn-06"><span class="n">§ 06</span>Rebrand, ticker change, and later reverse stock split</a><a href="#txn-07"><span class="n">§ 07</span>Sale of the Navarre distribution and software publishing business to WYNIT Distribution, LLC</a><a href="#txn-08"><span class="n">§ 08</span>Acquisition of the Fifth Gear businesses (Sigma Holdings / Sigma Micro / Lexton Group)</a><a href="#txn-09"><span class="n">§ 09</span>Garrison default, UCC Article 9 foreclosure and dissolution</a>
+</div>
+</section>
+<section id="txn-02">
+<div class="section-head">
+<div class="section-num">
+§ 02
+</div>
+<div class="section-title">
+<h2>
+Navarre Corporation — Acquisition of Encore Software, Inc. (Section 363 bankruptcy asset sale)
+</h2>
+<p class="sub">
+Distressed asset sale / §363 bankruptcy purchase (public-company bolt-on, all-cash + assumed debt)
+</p>
+</div>
+</div>
+<div class="factstrip">
+<div class="f">
+<span class="label">Announced / closed</span>
+<div class="t">
+<p>Bankruptcy court approval and closing July 31, 2002 (8-K event date); press release August 5, 2002; 8-K filed August 14, 2002; 8-K/A with audited target financials and pro formas filed December 4, 2002</p>
+</div>
+</div>
+<div class="f">
+<span class="label">Headline value</span>
+<div class="t">
+<p>~$9.75m–$10m all-in ($7.0m cash + up to $2.75m of notes/assumed debt); pro forma exhibit describes “the approximately $10 million purchase price for Encore”</p>
+</div>
+</div>
+</div>
+<h3 id="parties">Parties</h3>
+<ul>
+<li>Buyer: Encore Acquisition Corporation, a wholly-owned subsidiary of Navarre Corporation (NASDAQ: NAVR)</li>
+<li>Seller: Encore Software, Inc. (debtor-in-possession), via the U.S. Bankruptcy Court for the Central District of California (Chapter 11 filed March 22, 2002)</li>
+</ul>
+<h3 id="structure">Structure</h3>
+<ul>
+<li>$7.0m cash at closing</li>
+<li>$650,000 contingent promissory note, payable subject to an approval condition by October 17, 2002</li>
+<li>$500,000 unsecured promissory note due January 1, 2003</li>
+<li>Assumption of ~$1.6m of Encore bank debt owed to Comerica Bank</li>
+<li>Assets acquired: fixed assets, intellectual property, inventory, receivables, contract rights; Encore’s California operations retained</li>
+<li><strong>No Navarre shares issued</strong> — press release states the transaction caused “no share dilution for Navarre” and no assumption of Encore’s general liabilities. There was <strong>no stock-plus-earnout structure</strong> [corrects the “$2.5m cash + stock earnout” premise — not supported by any Navarre filing]</li>
+<li>Exhibits 10.1–10.4 to the 8-K are the purchase agreements and the two promissory notes; Exhibit 99.1 is the August 5, 2002 press release</li>
+</ul>
+<h3 id="financing">Financing</h3>
+<p>Funded from Navarre’s existing cash and revolving credit facility; no acquisition-specific facility disclosed in the 8-K.</p>
+<h3 id="purchase-price-allocation-goodwill-and-impairments">Purchase price allocation, goodwill and impairments</h3>
+<ul>
+<li>8-K/A (Dec 4, 2002) pro formas state the ~$10m purchase price “has been allocated on a preliminary basis using information currently available”; allocation “expected to be finalized by the end of fiscal 2003.” No line-item split of tangible assets / intangibles / goodwill was published in the pro forma exhibit.</li>
+<li>Encore historical (per 8-K/A pro forma): FY2001 net sales $32.047m, net loss $(11.960)m; four months ended April 30, 2002 net sales $7.627m, net loss $(4.736)m</li>
+<li>Encore goodwill was later folded into Navarre’s <strong>publishing segment</strong>, whose entire goodwill balance was written down in FY2009 (see FUNimation impairment section — publishing goodwill fell from $81.697m to $8.285m in the quarter ended Sept 30, 2008)</li>
+</ul>
+<h3 id="advisers">Advisers</h3>
+<p>None disclosed in the 8-K or press release.</p>
+<h3 id="key-people">Key people</h3>
+<ul>
+<li>Eric H. Paulson — Navarre Chairman, President &amp; CEO — principal, quoted on strategy of augmenting “core distribution operations in key entertainment segments with both acquired and owned content”</li>
+<li>Jim Gilbertson — Navarre VP &amp; CFO — deal contact</li>
+<li>Joyce Fleck — Navarre VP Marketing</li>
+<li>Mike Bell — Encore Software CEO and founder — retained to run the acquired business</li>
+<li><em class="corr">Correction</em> <strong>Cary Deacon</strong> was not involved at Encore; he became Navarre’s CEO later (in office by 2007–2011). <strong>Ron Chaimowitz</strong> (Genius Products) has no role disclosed in any Navarre filing regarding Encore. [unverified / not found in primary sources]</li>
+</ul>
+<h3 id="regulatory-and-litigation">Regulatory and litigation</h3>
+<p>U.S. Bankruptcy Court, C.D. Cal. approval of the §363 sale; no antitrust filing disclosed.</p>
+<h3 id="outcome-and-post-deal-performance">Outcome and post-deal performance</h3>
+<p>Encore Software, Inc. remained a Navarre subsidiary for twelve years and became the core of Navarre’s software publishing business. It was <strong>divested July 9, 2014</strong> as part of the WYNIT transaction — WD Encore Software, LLC was one of the six WYNIT purchaser entities and Encore Software, Inc. was one of the eight selling entities (see WYNIT deal below). Encore was never sold to a separate buyer.</p>
+<h3 id="key-numbers">Key numbers</h3>
+<div class="tbl-wrap"><table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Metric</th>
+<th>Value</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Cash at closing</td>
+<td>$7,000,000</td>
+<td>8-K 8/14/2002</td>
+</tr>
+<tr class="even">
+<td>Contingent note</td>
+<td>$650,000</td>
+<td>8-K 8/14/2002</td>
+</tr>
+<tr class="odd">
+<td>Unsecured note (due 1/1/2003)</td>
+<td>$500,000</td>
+<td>8-K 8/14/2002</td>
+</tr>
+<tr class="even">
+<td>Comerica debt assumed</td>
+<td>~$1,600,000</td>
+<td>8-K 8/14/2002</td>
+</tr>
+<tr class="odd">
+<td>Total stated purchase price</td>
+<td>~$10,000,000</td>
+<td>8-K/A pro forma 12/4/2002</td>
+</tr>
+<tr class="even">
+<td>Encore FY2001 net sales</td>
+<td>$32.047m</td>
+<td>8-K/A pro forma</td>
+</tr>
+<tr class="odd">
+<td>Encore FY2001 net loss</td>
+<td>$(11.960)m</td>
+<td>8-K/A pro forma</td>
+</tr>
+<tr class="even">
+<td>Encore 4 mo. to 4/30/2002 net sales</td>
+<td>$7.627m</td>
+<td>8-K/A pro forma</td>
+</tr>
+<tr class="odd">
+<td>Encore 4 mo. to 4/30/2002 net loss</td>
+<td>$(4.736)m</td>
+<td>8-K/A pro forma</td>
+</tr>
+<tr class="even">
+<td>Shares issued</td>
+<td>0</td>
+<td>Press release 8/5/2002</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="primary-sources">Primary sources</h3>
+<ul>
+<li><a href="https://www.sec.gov/Archives/edgar/data/911650/000095013402009908/c71272e8vk.txt">8-K, Encore acquisition, filed 2002-08-14</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/911650/000095013402009908/c71272exv99w1.txt">EX-99.1 press release, 2002-08-05</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/911650/000095013402009908/c71272exv10w1.txt">EX-10.1 purchase agreement</a> · <a href="https://www.sec.gov/Archives/edgar/data/911650/000095013402009908/c71272exv10w2.txt">EX-10.2</a> · <a href="https://www.sec.gov/Archives/edgar/data/911650/000095013402009908/c71272exv10w3.txt">EX-10.3</a> · <a href="https://www.sec.gov/Archives/edgar/data/911650/000095013402009908/c71272exv10w4.txt">EX-10.4</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/911650/000095013402015246/c73438a1e8vkza.txt">8-K/A with target financials and pro formas, 2002-12-04</a> · <a href="https://www.sec.gov/Archives/edgar/data/911650/000095013402015246/c73438a1exv99w1.txt">EX-99.1 audited Encore financials</a> · <a href="https://www.sec.gov/Archives/edgar/data/911650/000095013402015246/c73438a1exv99w2.txt">EX-99.2 pro formas</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/911650/000095013403009676/c77667e10vk.txt">FY2003 10-K, filed 2003-06-30</a></li>
+<li><a href="https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&amp;CIK=0000911650&amp;type=8-K">EDGAR company filing index, CIK 0000911650</a></li>
+</ul>
+<hr />
+</section>
+<section id="txn-03">
+<div class="section-head">
+<div class="section-num">
+§ 03
+</div>
+<div class="section-title">
+<h2>
+Navarre Corporation — Acquisition of FUNimation Productions, Ltd. and The FUNimation Store, Ltd.
+</h2>
+<p class="sub">
+Public-company transformational acquisition; purchase of 100% of general and limited partnership interests; cash + stock + earnout, leveraged with a new $165m credit facility
+</p>
+</div>
+</div>
+<div class="factstrip">
+<div class="f">
+<span class="label">Announced / closed</span>
+<div class="t">
+<p>Purchase agreement signed January 10, 2005 (8-K filed January 11, 2005); <strong>closed May 11, 2005</strong> (8-K filed May 17, 2005); 8-K/A with audited FUNimation financials and pro formas filed July 25, 2005</p>
+</div>
+</div>
+<div class="f">
+<span class="label">Headline value</span>
+<div class="t">
+<p>~$117.8m recorded purchase price — $100.4m cash + ~$14.1m stock + $3.3m transaction costs, plus up to $17.0m contingent cash over five years</p>
+</div>
+</div>
+</div>
+<h3 id="parties-1">Parties</h3>
+<ul>
+<li>Buyers: Navarre CP, LLC; Navarre CS, LLC; Navarre CLP, LLC — three wholly-owned Navarre subsidiaries</li>
+<li>Targets: FUNimation Productions, Ltd. and The FUNimation Store, Ltd. (Texas limited partnerships)</li>
+<li>Sellers: the FUNimation partners, principally Gen Fukunaga and affiliates</li>
+</ul>
+<h3 id="structure-1">Structure</h3>
+<ul>
+<li><strong>Cash:</strong> $100,400,000 at closing, “plus potential adjustments up to $5 million”</li>
+<li><strong>Stock:</strong> shares equal to $25.0m divided by the Closing Share Price, with a <strong>collar</strong>: not fewer than <strong>1,495,216</strong> and not more than <strong>1,827,486</strong> shares. The maximum, <strong>1,827,486 unregistered Navarre common shares</strong>, was issued at closing (share price collapsed into the low end of the collar, so the collar cap bound); the stock was recorded at a fair value of only <strong>$14.145m</strong>, not $25m</li>
+<li>Shares issued unregistered under a private placement, subject to a <strong>Registration Rights Agreement</strong> (Exhibit 10.1(e) form)</li>
+<li><strong>Earnout:</strong> $17,000,000 of cash payable over five years contingent on attainment of predetermined operating targets</li>
+<li><strong>Indemnification:</strong> $20,000,000 cap with a $1,000,000 deductible</li>
+<li><strong>Termination fee:</strong> $2,500,000 payable by either party in specified circumstances; outside termination date May 15, 2005</li>
+<li>Ancillary agreements filed as forms 10.1(a)–(f): Assignment and Assumption, Employment Agreement, <strong>Escrow Agreement</strong>, Non-Competition Agreement, Registration Rights Agreement, Release</li>
+<li>Closing conditions: Hart-Scott-Rodino clearance, accuracy of reps, execution of employment agreements, minimum cash condition</li>
+<li><strong>Gen Fukunaga employment:</strong> five-year term as President &amp; CEO of FUNimation Productions, Ltd.; base salary $350,000; option on 150,000 shares at $8.35, three-year vest; performance bonuses of <strong>up to $9.0m in aggregate</strong> tied to EBIT targets through 2010; severance of two years’ salary plus bonus on termination without cause</li>
+</ul>
+<h3 id="financing-1">Financing</h3>
+<ul>
+<li><strong>$165,000,000 senior secured credit facility with General Electric Capital Corporation / GE Commercial Finance</strong>, replacing Navarre’s existing lines</li>
+<li><strong>Term Loan B: $140,000,000</strong>, six-year maturity, <strong>fully drawn at closing</strong></li>
+<li><strong>Revolving sub-facility: $25,000,000</strong>, five-year maturity</li>
+<li>Initial interest rate 8%, adjustable per the agreement</li>
+<li>Security: first-priority lien on substantially all assets</li>
+<li>Documented as the Second Amended and Restated Credit Agreement (Exhibit 10.2 to the May 17, 2005 8-K)</li>
+<li><strong>$2,917,000 of debt issuance costs capitalized</strong>, amortized over six years</li>
+<li><em class="corr">Correction</em> No Bank of America / LaSalle facility and no subordinated notes were used for this acquisition — the acquisition financing was the GE Capital facility. Navarre separately completed a <strong>$19.95m private placement on March 21, 2006</strong> (Craig-Hallum Capital Group sole placement agent) to retire its highest-rate debt.</li>
+</ul>
+<h3 id="purchase-price-allocation-goodwill-and-impairments-1">Purchase price allocation, goodwill and impairments</h3>
+<ul>
+<li>Preliminary allocation, 8-K/A filed July 25, 2005 (Exhibit 99.4 pro formas):
+<ul>
+<li>Cash paid <strong>$100.400m</strong> + common stock issued <strong>$14.145m</strong> + transaction costs <strong>$3.300m</strong> = <strong>total consideration $117.845m</strong></li>
+<li><strong>Goodwill: $80.459m</strong> (“preliminary amount of purchase price assigned to goodwill”)</li>
+<li><strong>Identifiable intangible assets: $22.647m</strong> (not disaggregated in the pro forma exhibit into content library / licensing agreements / trade names; later 10-K disclosures refer to masters, license relationships and trademarks)</li>
+<li>Allocation “subject to finalization of a third party valuation”; goodwill could shift up to <strong>$5.0m</strong> based on final equity value and receivables holdback</li>
+<li>$17.0m contingent consideration excluded from the initial allocation</li>
+</ul></li>
+<li><strong>FY2009 impairment (the write-off):</strong> in the quarter ended September 30, 2008 Navarre recorded a <strong>$73.412m non-cash goodwill impairment</strong>, driven by market capitalization sustained below book value. Publishing-segment goodwill fell from <strong>$81.697m to $8.285m</strong>; distribution-segment goodwill of $3,000 went to $0. Note 14 to the Q2 FY2009 10-Q: “it was determined that the fair value of the Company’s FUNimation and BCI reporting units was less than their carrying value.” No separate FUNimation-only figure was published; FUNimation was the dominant component.</li>
+<li><strong>Full fiscal 2009:</strong> $111.1m of pre-tax impairment and other charges — <strong>publishing segment $110.5m</strong>, distribution segment $591,000 — including a further <strong>$3.1m goodwill impairment in Q4 FY2009</strong>. FY2009 net loss from continuing operations <strong>$88.4m, $(2.44)/diluted share</strong>. Selected Financial Data in the FY2009 10-K shows goodwill impairment of <strong>$(89,452) thousand</strong> for FY2009 vs. $0 for FY2008.</li>
+<li><strong>FY2011:</strong> an additional <strong>$2.1m of non-cash impairment charges</strong> in Q4 FY2011 on FUNimation, plus the loss on sale (below)</li>
+</ul>
+<h3 id="advisers-1">Advisers</h3>
+<ul>
+<li><strong>Bear, Stearns &amp; Co. Inc.</strong> — financial advisor to Navarre</li>
+<li><strong>A.G. Edwards &amp; Sons, Inc.</strong> — financial advisor to FUNimation</li>
+<li><strong>Houlihan Lokey</strong> — retained May 2010 for the eventual divestiture (see next entry)</li>
+</ul>
+<h3 id="key-people-1">Key people</h3>
+<ul>
+<li>Eric H. Paulson — Navarre Chairman, President &amp; CEO — deal principal; “The acquisition of FUNimation is an exciting transaction for everyone involved”</li>
+<li>Jim Gilbertson — Navarre VP &amp; CFO — deal contact on the press release (763-535-8333)</li>
+<li>Haug Scharnowski — Navarre VP Corporate Relations — IR contact</li>
+<li>Gen Fukunaga — FUNimation founder/President, post-closing President &amp; CEO of FUNimation Productions, Ltd. — principal seller and five-year employment agreement counterparty; “We are very excited to join the Navarre family”</li>
+<li>Cindy Brennan Fukunaga — FUNimation co-founder — not named in the 8-K, purchase agreement exhibits or press release [unverified as a named party]</li>
+<li>Charles Cheney — described in the commonly cited account as CFO — <strong>not named in any Navarre FUNimation deal filing</strong>; Navarre’s CFO on this deal was Jim Gilbertson <em class="unv">unverified</em></li>
+</ul>
+<h3 id="regulatory-and-litigation-1">Regulatory and litigation</h3>
+<p>Hart-Scott-Rodino waiting period expiry was a closing condition. Within months of closing Navarre restated: 10-K/A Amendment No. 2 and 10-Q/As filed November 21, 2005 restating FY2003–FY2005 and Q1–Q3 FY2005 and Q1 FY2006 for (i) FIN 46(R) consolidation of <strong>Mix &amp; Burn, Inc.</strong> as a variable interest entity — $343,000 FY2004 operating loss and $2.2m FY2005 operating loss; (ii) $388,000 additional expense for the <strong>former CFO’s April 2004 separation agreement</strong>; (iii) <strong>CEO deferred compensation under Eric Paulson’s 2001 employment agreement</strong> under APB 12 — $408,000 (FY2003), $288,000 (FY2004), $288,000 (FY2005). A prior June 2005 restatement had already added $1.5m (Q3 FY2004) and $2.2m (Q1 FY2005) of CEO compensation expense and reclassified a <strong>$2.4m deferred tax benefit</strong> out of Q3 FY2005 income into common stock. The company disclosed <strong>material weaknesses in internal control over financial reporting</strong> and told investors that prior financial statements “should no longer be relied upon.” <strong>No SEC inquiry or investigation is disclosed in the 10-K/A.</strong> [The brief’s “SEC issues” appear to be the restatement and material weaknesses, not an enforcement action — unverified beyond that.]</p>
+<h3 id="outcome-and-post-deal-performance-1">Outcome and post-deal performance</h3>
+<p>FY2006 guidance at announcement was $710–720m net sales and $40–45m EBITDA ($1.26–$1.42/fully diluted share); Navarre missed badly. FUNimation’s own pre-deal results were $63.7m sales / $24.9m pre-tax income (2002), $81.6m / $30.5m (2003), $72.4m / $29.8m (2004). Essentially the entire $80.5m of goodwill was impaired within 3.5 years. FUNimation was sold March 31, 2011 for $24.0m (see next entry) — roughly a <strong>$94m destruction of value against the $117.8m recorded purchase price</strong>.</p>
+<h3 id="key-numbers-1">Key numbers</h3>
+<div class="tbl-wrap"><table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Metric</th>
+<th>Value</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Cash consideration</td>
+<td>$100,400,000</td>
+<td>8-K 5/17/2005</td>
+</tr>
+<tr class="even">
+<td>Share collar (min / max)</td>
+<td>1,495,216 / 1,827,486</td>
+<td>8-K 1/11/2005</td>
+</tr>
+<tr class="odd">
+<td>Shares actually issued</td>
+<td>1,827,486</td>
+<td>8-K 5/17/2005</td>
+</tr>
+<tr class="even">
+<td>Stock fair value recorded</td>
+<td>$14,145,000</td>
+<td>8-K/A pro forma 7/25/2005</td>
+</tr>
+<tr class="odd">
+<td>Transaction costs</td>
+<td>$3,300,000</td>
+<td>8-K/A pro forma</td>
+</tr>
+<tr class="even">
+<td>Total recorded consideration</td>
+<td>$117,845,000</td>
+<td>8-K/A pro forma</td>
+</tr>
+<tr class="odd">
+<td>Goodwill (preliminary)</td>
+<td>$80,459,000</td>
+<td>8-K/A pro forma</td>
+</tr>
+<tr class="even">
+<td>Identifiable intangibles</td>
+<td>$22,647,000</td>
+<td>8-K/A pro forma</td>
+</tr>
+<tr class="odd">
+<td>Earnout (contingent cash)</td>
+<td>up to $17,000,000 over 5 yrs</td>
+<td>8-K 1/11/2005</td>
+</tr>
+<tr class="even">
+<td>Indemnity cap / deductible</td>
+<td>$20,000,000 / $1,000,000</td>
+<td>8-K 1/11/2005</td>
+</tr>
+<tr class="odd">
+<td>Termination fee</td>
+<td>$2,500,000</td>
+<td>8-K 1/11/2005</td>
+</tr>
+<tr class="even">
+<td>GE credit facility</td>
+<td>$165,000,000</td>
+<td>8-K 5/17/2005</td>
+</tr>
+<tr class="odd">
+<td>Term Loan B</td>
+<td>$140,000,000, 6-yr, fully drawn</td>
+<td>8-K 5/17/2005</td>
+</tr>
+<tr class="even">
+<td>Revolver</td>
+<td>$25,000,000, 5-yr</td>
+<td>8-K 5/17/2005</td>
+</tr>
+<tr class="odd">
+<td>Initial rate</td>
+<td>8%</td>
+<td>8-K 5/17/2005</td>
+</tr>
+<tr class="even">
+<td>Debt issuance costs capitalized</td>
+<td>$2,917,000</td>
+<td>8-K/A pro forma</td>
+</tr>
+<tr class="odd">
+<td>Fukunaga salary / option</td>
+<td>$350,000 / 150,000 sh @ $8.35</td>
+<td>8-K 5/17/2005</td>
+</tr>
+<tr class="even">
+<td>Fukunaga max EBIT bonuses</td>
+<td>$9,000,000 through 2010</td>
+<td>8-K 5/17/2005</td>
+</tr>
+<tr class="odd">
+<td>Q2 FY2009 goodwill impairment</td>
+<td>$73,412,000</td>
+<td>10-Q 11/10/2008</td>
+</tr>
+<tr class="even">
+<td>Publishing goodwill before/after</td>
+<td>$81,697,000 / $8,285,000</td>
+<td>10-Q 11/10/2008</td>
+</tr>
+<tr class="odd">
+<td>FY2009 impairment &amp; other charges</td>
+<td>$111.1m total; publishing $110.5m; distribution $591,000</td>
+<td>8-K 6/2/2009</td>
+</tr>
+<tr class="even">
+<td>FY2009 goodwill impairment (Selected Fin. Data)</td>
+<td>$(89,452) thousand</td>
+<td>FY2009 10-K</td>
+</tr>
+<tr class="odd">
+<td>FY2009 net loss cont. ops</td>
+<td>$(88.4)m, $(2.44)/sh</td>
+<td>8-K 6/2/2009</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="primary-sources-1">Primary sources</h3>
+<ul>
+<li><a href="https://www.sec.gov/Archives/edgar/data/911650/000095013405000536/c91035e8vk.htm">8-K announcing purchase agreement, 2005-01-11</a> · <a href="https://www.sec.gov/Archives/edgar/data/911650/000095013405000536/c91035exv10w1.htm">EX-10.1 Partnership Interest Purchase Agreement</a> · <a href="https://www.sec.gov/Archives/edgar/data/911650/000095013405000536/c91035exv10w1xay.htm">10.1(a) Assignment</a> · <a href="https://www.sec.gov/Archives/edgar/data/911650/000095013405000536/c91035exv10w1xby.htm">10.1(b) Employment</a> · <a href="https://www.sec.gov/Archives/edgar/data/911650/000095013405000536/c91035exv10w1xcy.htm">10.1(c) Escrow</a> · <a href="https://www.sec.gov/Archives/edgar/data/911650/000095013405000536/c91035exv10w1xdy.htm">10.1(d) Non-Competition</a> · <a href="https://www.sec.gov/Archives/edgar/data/911650/000095013405000536/c91035exv10w1xey.htm">10.1(e) Registration Rights</a> · <a href="https://www.sec.gov/Archives/edgar/data/911650/000095013405000536/c91035exv10w1xfy.htm">10.1(f) Release</a> · <a href="https://www.sec.gov/Archives/edgar/data/911650/000095013405000536/c91035exv99w1.htm">EX-99.1 announcement release</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/911650/000095013405010344/c95315e8vk.htm">8-K closing, 2005-05-17</a> · <a href="https://www.sec.gov/Archives/edgar/data/911650/000095013405010344/c95315exv10w1.htm">EX-10.1 Amendment No. 1 to Purchase Agreement</a> · <a href="https://www.sec.gov/Archives/edgar/data/911650/000095013405010344/c95315exv10w2.htm">EX-10.2 Second A&amp;R Credit Agreement (GE)</a> · <a href="https://www.sec.gov/Archives/edgar/data/911650/000095013405010344/c95315exv99w1.htm">EX-99.1 closing press release 5/11/2005</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/911650/000095013405013941/c96911e8vkza.htm">8-K/A with FUNimation audited financials and pro formas, 2005-07-25</a> · <a href="https://www.sec.gov/Archives/edgar/data/911650/000095013405013941/c96911exv99w4.htm">EX-99.4 pro forma / purchase price allocation</a> · <a href="https://www.sec.gov/Archives/edgar/data/911650/000095013405013941/c96911exv99w2.htm">EX-99.2</a> · <a href="https://www.sec.gov/Archives/edgar/data/911650/000095013405013941/c96911exv99w3.htm">EX-99.3</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/911650/000095013405022018/c00189a2e10vkza.htm">10-K/A Amendment No. 2 (restatement), 2005-11-21</a> · <a href="https://www.sec.gov/Archives/edgar/data/911650/000095013405022019/c00191e10vqza.htm">10-Q/A, 2005-11-21</a> · <a href="https://www.sec.gov/Archives/edgar/data/911650/000095013405022020/c99576a1e10vqza.htm">10-Q/A, 2005-11-21</a> · <a href="https://www.sec.gov/Archives/edgar/data/911650/000095013405012143/c95938a1e10vkza.htm">10-K/A Amendment No. 1, 2005-06-17</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/911650/000095013708013622/c47029e10vq.htm">Q2 FY2009 10-Q with $73.412m goodwill impairment, 2008-11-10</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/911650/000095013708013305/c47378exv99w1.htm">8-K announcing impairment assessment, 2008-10-31</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/911650/000095012309010335/c51673exv99w1.htm">8-K FY2009 results with segment impairment split, 2009-06-02</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/911650/000095012309012650/c51780e10vk.htm">FY2009 10-K, 2009-06-09</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/911650/000095012308017846/c48284exv99w1.htm">8-K BCI Eclipse closure, 2008-12-18</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/911650/000095013406005655/c03654exv99w1.htm">8-K $19.95m private placement, 2006-03-22</a></li>
+</ul>
+<hr />
+</section>
+<section id="txn-04">
+<div class="section-head">
+<div class="section-num">
+§ 04
+</div>
+<div class="section-title">
+<h2>
+Navarre Corporation — Divestiture of FUNimation Entertainment
+</h2>
+<p class="sub">
+Divestiture / carve-out sale of partnership interests to a management-led investment group (all-cash)
+</p>
+</div>
+</div>
+<div class="factstrip">
+<div class="f">
+<span class="label">Announced / closed</span>
+<div class="t">
+<p>Strategic-alternatives review announced May 27, 2010; <strong>closed March 31, 2011</strong> with funding April 1, 2011; 8-K filed April 5, 2011; 8-K/A filed April 6, 2011</p>
+</div>
+</div>
+<div class="f">
+<span class="label">Headline value</span>
+<div class="t">
+<p><strong>$24,000,000 cash</strong> (net proceeds ~$22.5m) — against a $117.8m recorded 2005 purchase price</p>
+</div>
+</div>
+</div>
+<h3 id="parties-2">Parties</h3>
+<ul>
+<li>Sellers: Navarre CS, LLC; Navarre CP, LLC; Navarre CLP, LLC, with <strong>Navarre Corporation as guarantor</strong></li>
+<li>Buyers: <strong>FUNimation GP, LLC; Anime LP Holdings, LLC; FUNimation LP, LLC</strong> — three Texas LLCs formed by an investment group including <strong>Gen Fukunaga</strong>, FUNimation’s CEO and a minority stakeholder in the buying group</li>
+<li>Assets: substantially all assets of FUNimation Productions, Ltd. and animeOnline, Ltd., conveyed via purchase of the partnership interests</li>
+</ul>
+<h3 id="structure-2">Structure</h3>
+<ul>
+<li>$24,000,000 aggregate consideration, “paid via wire transfer on the Funding Date of April 1, 2011” — <strong>all cash, no seller note, no escrow or holdback specified in the agreement</strong></li>
+<li>Indemnification: general cap <strong>$5,000,000</strong>; basket/threshold <strong>$500,000</strong>; independent-contractor liability sub-cap <strong>$250,000</strong></li>
+<li>Buyers obligated to seek release of Navarre’s <strong>$3.5m property lease guaranty</strong>; in exchange Navarre provided a <strong>five-year $1.5m letter of credit reducing by $300,000 per year</strong></li>
+<li>Continuing commercial arrangements: <strong>Transition Services Agreement</strong> (Navarre Corporation), <strong>Distribution Agreement</strong> (Navarre Distribution Services, Inc.), <strong>Logistics Agreement</strong> (Navarre Logistical Services, Inc.) — Navarre became FUNimation’s exclusive U.S. distributor and logistics/fulfillment provider</li>
+<li>8-K reported under Items 1.01, 2.01, <strong>2.06 (material impairment)</strong>, 5.02, 7.01, 9.01</li>
+</ul>
+<h3 id="financing-2">Financing</h3>
+<p>None on Navarre’s side. Navarre ended fiscal 2011 debt-free before receiving proceeds.</p>
+<h3 id="purchase-price-allocation-goodwill-and-impairments-2">Purchase price allocation, goodwill and impairments</h3>
+<ul>
+<li><strong>Loss on sale: $8.1m pre-tax / $5.198m after tax</strong>, recorded in fiscal 2011 as “Loss gain on sale of discontinued operations, net”</li>
+<li><strong>$2.1m of non-cash impairment charges</strong> in Q4 FY2011 on FUNimation</li>
+<li>8-K guided to “approximately $11 million” combined non-cash impairment and pre-tax loss on sale in Q4 FY2011</li>
+<li>All FUNimation results, assets and liabilities reclassified to <strong>discontinued operations for all periods presented</strong> in the FY2011 10-K; FY2011 discontinued-ops net loss $1.310m after tax; Q4 FY2011 discontinued-ops loss $849,000 pre-tax / $536,000 after tax</li>
+<li>Cumulative economic loss: <strong>~$94m</strong> of the $117.8m purchase price, split between the FY2009 goodwill write-off (see above) and the FY2011 loss on sale</li>
+</ul>
+<h3 id="advisers-2">Advisers</h3>
+<p><strong>Houlihan Lokey</strong> retained May 2010 to assist in structuring a potential sale. No advisor named in the April 2011 closing press release.</p>
+<h3 id="key-people-2">Key people</h3>
+<ul>
+<li>Cary L. Deacon — Navarre CEO (through the sale process) — “We ended fiscal 2011 debt free, prior to our receipt of the proceeds from this transaction”</li>
+<li>Reid Porter — Navarre COO, later Interim CEO — “This transaction ends a comprehensive sales process undertaken over the last year”; as Interim CEO said the Japanese anime business “was not a strategic fit”</li>
+<li>Gen Fukunaga — FUNimation CEO; minority stakeholder in the buyer group; management buyer</li>
+</ul>
+<h3 id="regulatory-and-litigation-2">Regulatory and litigation</h3>
+<p>None disclosed.</p>
+<h3 id="outcome-and-post-deal-performance-2">Outcome and post-deal performance</h3>
+<ul>
+<li><strong>Correction to the commonly cited account’s timeline:</strong> primary sources show <strong>no 2006 attempt and no November 2007 announced sale of FUNimation</strong>. The Nov 27, 2007 press release was the appointment of Brian Burke as COO; the April 2008 filing was an investor presentation. The only sale process was the one announced <strong>May 27, 2010</strong>, which nearly failed — the January 31, 2011 Q3 FY2011 release stated: “The company has not yet received an adequate offer in connection with its efforts to sell FUNimation Entertainment. Although this sales process continues, if the company does not receive an adequate offer in the fourth quarter, it anticipates that these efforts will be halted.” A deal closed two months later. [The “failed 2006 attempt” and “Nov 2007 announced sale that fell through” are unverified and appear not to exist in the EDGAR record.]</li>
+<li><strong>Correction:</strong> the 2011 buyer entities were FUNimation GP, LLC / Anime LP Holdings, LLC / FUNimation LP, LLC. <strong>“Group 1200 Media” was the name adopted in May 2013</strong>, two years later, when Fukunaga consolidated FUNimation’s divisions under a holding-company brand — it was not the 2011 acquirer. [per Anime News Network, May 10, 2013]</li>
+<li>Navarre FY2011 continuing-ops results: net sales $490.9m (down 1%), net income $11.2m / $0.30 per diluted share; Q4 net sales $124.3m (down 6.6%), net income $4.0m / $0.10 per diluted share</li>
+<li>Sale proceeds were earmarked to “build or acquire new businesses and services to diversify revenue streams” — this became the SpeedFC acquisition</li>
+</ul>
+<h3 id="key-numbers-2">Key numbers</h3>
+<div class="tbl-wrap"><table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Metric</th>
+<th>Value</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Purchase price</td>
+<td>$24,000,000 cash</td>
+<td>8-K 4/5/2011; EX-2.1</td>
+</tr>
+<tr class="even">
+<td>Net proceeds</td>
+<td>~$22,500,000</td>
+<td>8-K 6/8/2011 (FY2011 results)</td>
+</tr>
+<tr class="odd">
+<td>Loss on sale, pre-tax</td>
+<td>$8,100,000</td>
+<td>FY2011 results release</td>
+</tr>
+<tr class="even">
+<td>Loss on sale, after tax</td>
+<td>$5,198,000</td>
+<td>FY2011 10-K</td>
+</tr>
+<tr class="odd">
+<td>Q4 FY2011 impairment</td>
+<td>$2,100,000</td>
+<td>FY2011 results release</td>
+</tr>
+<tr class="even">
+<td>Guided combined impairment + loss</td>
+<td>~$11,000,000</td>
+<td>8-K 4/5/2011</td>
+</tr>
+<tr class="odd">
+<td>Indemnity cap / basket</td>
+<td>$5,000,000 / $500,000</td>
+<td>EX-2.1</td>
+</tr>
+<tr class="even">
+<td>Lease guaranty released</td>
+<td>$3,500,000</td>
+<td>8-K 4/5/2011</td>
+</tr>
+<tr class="odd">
+<td>Replacement letter of credit</td>
+<td>$1,500,000, 5-yr, -$300,000/yr</td>
+<td>8-K 4/5/2011</td>
+</tr>
+<tr class="even">
+<td>Closing / funding date</td>
+<td>3/31/2011 / 4/1/2011</td>
+<td>EX-2.1</td>
+</tr>
+<tr class="odd">
+<td>Value destroyed vs. 2005 price</td>
+<td>~$94m of $117.8m</td>
+<td>derived</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="primary-sources-2">Primary sources</h3>
+<ul>
+<li><a href="https://www.sec.gov/Archives/edgar/data/911650/000095012311032631/c63854e8vk.htm">8-K announcing FUNimation sale, 2011-04-05</a> · <a href="https://www.sec.gov/Archives/edgar/data/911650/000095012311032631/c63854exv2w1.htm">EX-2.1 Partnership Interest Purchase Agreement</a> · <a href="https://www.sec.gov/Archives/edgar/data/911650/000095012311032631/c63854exv99w1.htm">EX-99.1 press release 4/4/2011</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/911650/000095012311033384/c63854ae8vkza.htm">8-K/A, 2011-04-06</a> · <a href="https://www.sec.gov/Archives/edgar/data/911650/000095012311033384/c63854aexv99w2.htm">EX-99.2</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/911650/000095012310053667/c58456exv99w2.htm">8-K strategic alternatives / Houlihan Lokey, 2010-05-27</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/911650/000095012311007694/c62743exv99w1.htm">8-K Q3 FY2011 results — “not yet received an adequate offer,” 2011-02-01</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/911650/000119312511160889/dex991.htm">8-K FY2011 results with loss on sale, 2011-06-08</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/911650/000119312511161951/d10k.htm">FY2011 10-K, 2011-06-09</a></li>
+<li><a href="https://www.globenewswire.com/news-release/2011/04/04/443671/12027/en/Navarre-Corporation-Announces-Sale-of-FUNimation-Entertainment.html">Navarre press release via GlobeNewswire, 2011-04-04</a></li>
+<li><a href="https://icv2.com/articles/news/view/19782/navarre-sells-funimation">ICv2, “Navarre Sells FUNimation”</a></li>
+<li><a href="https://www.animenewsnetwork.com/news/2013-05-10/funimation-consolidates-divisions-under-group-1200-media-name">Anime News Network, Funimation consolidates under Group 1200 Media, 2013-05-10</a></li>
+</ul>
+<hr />
+</section>
+<section id="txn-05">
+<div class="section-head">
+<div class="section-num">
+§ 05
+</div>
+<div class="section-title">
+<h2>
+Navarre Corporation — Acquisition of SpeedFC, Inc.
+</h2>
+<p class="sub">
+Reverse-merger-like transformational acquisition (target holders took ~31.4% of the buyer, rising to ~38.5% on full earnout); cash + stock + cash/stock earnout
+</p>
+</div>
+</div>
+<div class="factstrip">
+<div class="f">
+<span class="label">Announced / closed</span>
+<div class="t">
+<p>Merger agreement September 27, 2012 (8-K filed September 28, 2012); Amendment No. 1 October 29, 2012; shareholder vote and <strong>closing November 20, 2012</strong> (8-K filed November 21, 2012); 8-K/A with target financials and pro formas January 25, 2013; Amendment No. 2 June 26, 2013</p>
+</div>
+</div>
+<div class="f">
+<span class="label">Headline value</span>
+<div class="t">
+<p><strong>$50,000,000</strong> initial consideration ($25m cash + $25m stock); total recorded consideration including contingent consideration <strong>$54,172,000</strong></p>
+</div>
+</div>
+</div>
+<h3 id="parties-3">Parties</h3>
+<ul>
+<li>Acquirer: Navarre Corporation (Minnesota); merger vehicle <strong>SFC Acquisition Co., Inc.</strong></li>
+<li>Target: <strong>SpeedFC, Inc.</strong> (Delaware) — e-commerce fulfillment, 3PL and call-center provider, Dallas/Richardson TX</li>
+<li>Equityholders’ representative: <strong>Jeffrey B. Zisk</strong>, SpeedFC President/CEO and founder (50.1% holder)</li>
+</ul>
+<h3 id="structure-3">Structure</h3>
+<ul>
+<li><strong>Cash at closing: $25,000,000</strong>, subject to escrow, holdback and net working capital adjustment</li>
+<li><strong>Stock at closing: 17,095,186 Navarre common shares</strong>, valued at $25,000,000</li>
+<li><strong>Earnout, as originally signed:</strong> up to $10.0m additional cash and up to 3,333,333 additional shares on 2012 adjusted-EBITDA targets</li>
+<li><strong>Earnout, as amended (Amendment No. 1, Oct 29, 2012):</strong> split <strong>50/50 cash and Parent Common Stock</strong>; reference <strong>Average Parent Stock Price $1.6926</strong>; 2,954,035 shares reserved; cash paid 25% on filing of the relevant Form 10-Q and the balance in <strong>eleven equal quarterly installments at 5% simple annual interest, maturing February 29, 2016</strong>; initial share tranche = 75% of estimated amount, issued within 15 days of the quarterly report and held in escrow pending final determination</li>
+<li><strong>Earnout, at closing 8-K:</strong> up to <strong>$5.0m cash</strong> ($1.25m early 2013; $3.75m quarterly 2013–2016 at 5%) and up to <strong>6,287,368 shares</strong> (2,215,526 early 2013; 738,509 late 2013; 3,333,333 thereafter) — <strong>maximum combined shares 23,382,554</strong></li>
+<li><strong>Earnout, as actually settled (Amendment No. 2, June 26, 2013):</strong> 2012 Adjusted EBITDA determined at <strong>$7,989,512</strong>; total contingent cash <strong>$3,994,756</strong> (of which $998,789 paid February 2013; balance $2,995,967 plus 5% interest in equal quarterly installments from October 1, 2013 to February 2016); total contingent stock <strong>2,360,129 shares</strong> (1,770,097 issued February 2013; 590,032 in July 2013)</li>
+<li><strong>Working capital adjustment: $835,962 payable to Navarre</strong> from the first escrow release</li>
+<li><strong>Escrow release schedule:</strong> $2,500,000 on June 27, 2013; $1,000,000 on November 20, 2013; $500,000 on June 20, 2014</li>
+<li><strong>Indemnification:</strong> SFC equityholders liable for losses exceeding a <strong>$250,000</strong> basket, with caps</li>
+<li>Governance: board expanded to add <strong>Jeffrey B. Zisk</strong> and <strong>M. David Bryant</strong>; <strong>David F. Dalvey</strong> did not stand for re-election; Zisk appointed President of the surviving corporation with an employment agreement; Registration Rights Agreement executed</li>
+<li><strong>No preferred stock was issued</strong> — the commonly cited account’s “cash + ~19.5m shares + preferred” is incorrect; the closing consideration was $25m cash + 17,095,186 common shares, with earnout stock issued later. [correction]</li>
+</ul>
+<h3 id="financing-3">Financing</h3>
+<ul>
+<li><strong>Wells Fargo Capital Finance, LLC</strong> — <strong>Consent and Amendment No. 7</strong> (November 12, 2012) to the existing Credit Agreement, providing <strong>$25,000,000</strong> to fund the cash consideration</li>
+<li>Pricing: base rate <strong>+1.50%</strong> when excess availability ≥ $15m; <strong>+1.75%</strong> when &lt; $15m</li>
+<li>Pro forma note (2) in the 8-K/A confirms the $25,000,000 was anticipated financing proceeds from a revolving line of credit facility</li>
+<li>Follow-on equity: <strong>S-3 shelf</strong> filed October 22, 2012 (amended Nov 5 and Dec 21, 2012, and Jan 21, 2013); <strong>424B5 takedowns September 25–26, 2013</strong></li>
+</ul>
+<h3 id="purchase-price-allocation-goodwill-and-impairments-3">Purchase price allocation, goodwill and impairments</h3>
+<ul>
+<li>Per 8-K/A pro forma, filed January 25, 2013 (Exhibit 99.3):
+<ul>
+<li><strong>Total consideration: $54,172,000</strong> (cash + stock + fair value of contingent consideration)</li>
+<li><strong>Goodwill: $31,862,000</strong></li>
+<li><strong>Identifiable intangibles: $23,280,000</strong> —
+<ul>
+<li>Customer relationships <strong>$15,890,000</strong>, 10-year life</li>
+<li>Internally developed technology <strong>$3,770,000</strong>, 4-year life</li>
+<li>Trademark <strong>$3,620,000</strong>, indefinite life</li>
+</ul></li>
+<li><strong>Deferred tax liability $7,915,000</strong> (34% effective rate applied to the $23,280,000 of intangibles)</li>
+<li>Contingent consideration liability split <strong>$2,146,000 short-term / $1,960,000 long-term</strong></li>
+<li>Navarre stock fair value measured as of September 30, 2012</li>
+</ul></li>
+<li><strong>Subsequent impairment:</strong> Speed Commerce recorded <strong>$18.8m of goodwill and other intangible asset impairment during fiscal year ended March 31, 2015</strong> (FY2015 10-K) — i.e. most of the SpeedFC/Fifth Gear intangible base was written down within 2.5 years</li>
+</ul>
+<h3 id="advisers-3">Advisers</h3>
+<p><strong>ROTH Capital Partners</strong> (lead financial advisor) and <strong>Craig-Hallum Capital Group</strong> (co-advisor) to Navarre.</p>
+<h3 id="key-people-3">Key people</h3>
+<ul>
+<li>Richard S. Willis — Navarre President &amp; CEO (appointed September 2011) — buyer principal; “The acquisition of SPEED rounds out our end-to-end retail distribution and e-commerce services platform”</li>
+<li>Jeffrey B. Zisk — SpeedFC founder, President &amp; CEO; post-closing President of the surviving corporation and Navarre director; largest individual seller</li>
+<li>M. David Bryant — SpeedFC director, added to the Navarre board; separate SC 13D filer</li>
+<li>Terry Tuttle — Speed Commerce CFO (resigned December 2015)</li>
+<li>Ryan F. Urness — Secretary and General Counsel — signatory on Speed Commerce filings through 2016</li>
+<li>Timothy R. Gentz — Navarre/Speed Commerce director — resigned with the rest of the board August 31, 2016</li>
+<li>David F. Dalvey — Navarre director who did not seek re-election at closing</li>
+</ul>
+<h3 id="regulatory-and-litigation-3">Regulatory and litigation</h3>
+<ul>
+<li>Shareholder approval required for the share issuance — PREM14A September 28, 2012; PRER14A October 9, 2012; <strong>DEFM14A October 10, 2012</strong>; DEFA14A November 2, 2012; approval reported under Item 5.07 in the closing 8-K</li>
+<li><strong>SEC comment letters:</strong> UPLOAD dated November 9, 2012 and January 4, 2013 with CORRESP responses December 21, 2012 and January 25, 2013, in connection with the S-3 registration of the merger shares</li>
+<li>SC 13D filings November 30, 2012 by Zisk and by Bryant; SC 13D/A amendments February 28, 2013 and July 12, 2013</li>
+</ul>
+<h3 id="outcome-and-post-deal-performance-3">Outcome and post-deal performance</h3>
+<p>SpeedFC had ~$57.5m net sales in the twelve months ended June 30, 2012, with 2012 growth expected “over 40%.” Post-closing the SpeedFC equityholders held <strong>31.4%</strong> of Navarre, up to <strong>38.5%</strong> with full earnout — effectively a reverse takeover of a legacy distributor by an e-commerce services business. Navarre renamed itself Speed Commerce in September 2013, sold the legacy distribution business in July 2014, levered up to $100m to buy Fifth Gear in November 2014, and was foreclosed on in June 2016.</p>
+<h3 id="key-numbers-3">Key numbers</h3>
+<div class="tbl-wrap"><table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Metric</th>
+<th>Value</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Headline value</td>
+<td>$50,000,000</td>
+<td>8-K 9/28/2012, EX-99.1</td>
+</tr>
+<tr class="even">
+<td>Cash at closing</td>
+<td>$25,000,000</td>
+<td>8-K 11/21/2012</td>
+</tr>
+<tr class="odd">
+<td>Shares at closing</td>
+<td>17,095,186</td>
+<td>8-K 11/21/2012</td>
+</tr>
+<tr class="even">
+<td>Max earnout shares (closing 8-K)</td>
+<td>6,287,368</td>
+<td>8-K 11/21/2012</td>
+</tr>
+<tr class="odd">
+<td>Max combined shares</td>
+<td>23,382,554</td>
+<td>8-K 11/21/2012</td>
+</tr>
+<tr class="even">
+<td>2012 Adjusted EBITDA (final)</td>
+<td>$7,989,512</td>
+<td>8-K 6/27/2013</td>
+</tr>
+<tr class="odd">
+<td>Final contingent cash</td>
+<td>$3,994,756</td>
+<td>8-K 6/27/2013</td>
+</tr>
+<tr class="even">
+<td>Final contingent shares</td>
+<td>2,360,129</td>
+<td>8-K 6/27/2013</td>
+</tr>
+<tr class="odd">
+<td>Working capital adjustment to Navarre</td>
+<td>$835,962</td>
+<td>8-K 6/27/2013</td>
+</tr>
+<tr class="even">
+<td>Escrow releases</td>
+<td>$2.5m (6/27/13), $1.0m (11/20/13), $0.5m (6/20/14)</td>
+<td>8-K 6/27/2013</td>
+</tr>
+<tr class="odd">
+<td>Total recorded consideration</td>
+<td>$54,172,000</td>
+<td>8-K/A pro forma 1/25/2013</td>
+</tr>
+<tr class="even">
+<td>Goodwill</td>
+<td>$31,862,000</td>
+<td>8-K/A pro forma</td>
+</tr>
+<tr class="odd">
+<td>Customer relationships</td>
+<td>$15,890,000 / 10 yr</td>
+<td>8-K/A pro forma</td>
+</tr>
+<tr class="even">
+<td>Internally developed technology</td>
+<td>$3,770,000 / 4 yr</td>
+<td>8-K/A pro forma</td>
+</tr>
+<tr class="odd">
+<td>Trademark</td>
+<td>$3,620,000 / indefinite</td>
+<td>8-K/A pro forma</td>
+</tr>
+<tr class="even">
+<td>Deferred tax liability</td>
+<td>$7,915,000</td>
+<td>8-K/A pro forma</td>
+</tr>
+<tr class="odd">
+<td>Wells Fargo financing</td>
+<td>$25,000,000; base +1.50%/+1.75%</td>
+<td>8-K 11/21/2012</td>
+</tr>
+<tr class="even">
+<td>Zisk consideration received</td>
+<td>~$10,141,770 cash + 8,596,923 shares for 50.1%</td>
+<td>SC 13D 11/30/2012</td>
+</tr>
+<tr class="odd">
+<td>Zisk total beneficial ownership</td>
+<td>10,198,639 sh / 18.6%</td>
+<td>SC 13D 11/30/2012</td>
+</tr>
+<tr class="even">
+<td>SFC holders’ post-close stake</td>
+<td>31.4%, up to 38.5% on earnout</td>
+<td>SC 13D 11/30/2012</td>
+</tr>
+<tr class="odd">
+<td>SpeedFC LTM net sales (to 6/30/12)</td>
+<td>~$57,500,000</td>
+<td>EX-99.1 9/28/2012</td>
+</tr>
+<tr class="even">
+<td>Amendment No. 1 reference share price</td>
+<td>$1.6926</td>
+<td>EX-2.1 10/30/2012</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="primary-sources-3">Primary sources</h3>
+<ul>
+<li><a href="https://www.sec.gov/Archives/edgar/data/911650/000143774912009807/navarre_8k-092712.htm">8-K merger agreement, 2012-09-28</a> · <a href="https://www.sec.gov/Archives/edgar/data/911650/000143774912009807/ex2-1.htm">EX-2.1 Merger Agreement</a> · <a href="https://www.sec.gov/Archives/edgar/data/911650/000143774912009807/ex10-1.htm">EX-10.1 Registration Rights</a> · <a href="https://www.sec.gov/Archives/edgar/data/911650/000143774912009807/ex10-2.htm">EX-10.2 Zisk Employment</a> · <a href="https://www.sec.gov/Archives/edgar/data/911650/000143774912009807/ex99-1.htm">EX-99.1 joint press release</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/911650/000139843212000770/navarre_8k-102912.htm">8-K Amendment No. 1, 2012-10-30</a> · <a href="https://www.sec.gov/Archives/edgar/data/911650/000139843212000770/ex2-1.htm">EX-2.1 Amendment No. 1</a> · <a href="https://www.sec.gov/Archives/edgar/data/911650/000139843212000770/ex99-1.htm">EX-99.1</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/911650/000143774912012081/navarre_8k-112012.htm">8-K closing, 2012-11-21</a> · <a href="https://www.sec.gov/Archives/edgar/data/911650/000143774912012081/ex10-1.htm">EX-10.1 Consent and Amendment No. 7 (Wells Fargo)</a> · <a href="https://www.sec.gov/Archives/edgar/data/911650/000143774912012081/ex99-1.htm">EX-99.1</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/911650/000143774913000685/navarre_8ka-112012.htm">8-K/A with SpeedFC financials and pro formas, 2013-01-25</a> · <a href="https://www.sec.gov/Archives/edgar/data/911650/000143774913000685/ex99-3.htm">EX-99.3 pro forma / PPA</a> · <a href="https://www.sec.gov/Archives/edgar/data/911650/000143774913000685/ex99-1.htm">EX-99.1</a> · <a href="https://www.sec.gov/Archives/edgar/data/911650/000143774913000685/ex99-2.htm">EX-99.2</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/911650/000143774913008142/navr20130627_8k.htm">8-K Amendment No. 2 / earnout settlement, 2013-06-27</a> · <a href="https://www.sec.gov/Archives/edgar/data/911650/000143774913008142/navr20130627_8kex2-1.htm">EX-2.1</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/911650/000143774912010184/navarre_defm14a-100912.htm">DEFM14A merger proxy, 2012-10-10</a> · <a href="https://www.sec.gov/Archives/edgar/data/911650/000143774912009834/navarre_prem14a-110812.htm">PREM14A, 2012-09-28</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/911650/000143774912012363/zisk_sc13d-112012.htm">SC 13D — Jeffrey B. Zisk, 2012-11-30</a> · <a href="https://www.sec.gov/Archives/edgar/data/911650/000143774912012367/bryant_sc13d-112012.htm">SC 13D — M. David Bryant, 2012-11-30</a> · <a href="https://www.sec.gov/Archives/edgar/data/911650/000143774913008724/zisk20130711_sc13da.htm">SC 13D/A Zisk, 2013-07-12</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/911650/000143774912010449/navarre_s3-102212.htm">S-3 shelf, 2012-10-22</a> · <a href="https://www.sec.gov/Archives/edgar/data/911650/000143774913000695/navarre_s3a2-012113.htm">S-3/A, 2013-01-25</a> · <a href="https://www.sec.gov/Archives/edgar/data/911650/000143774913001124/navarre_424b3-020513.htm">424B3, 2013-02-05</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/911650/000143774913006834/navr20130528_10k.htm">FY2013 10-K, 2013-05-29</a></li>
+</ul>
+<hr />
+</section>
+<section id="txn-06">
+<div class="section-head">
+<div class="section-num">
+§ 06
+</div>
+<div class="section-title">
+<h2>
+Navarre Corporation → Speed Commerce, Inc. — Rebrand, ticker change, and later reverse stock split
+</h2>
+<p class="sub">
+Corporate reorganization / identity change (not an M&amp;A transaction)
+</p>
+</div>
+</div>
+<div class="factstrip">
+<div class="f">
+<span class="label">Announced / closed</span>
+<div class="t">
+<p>Board approved July 31, 2013; articles amendment filed with the Minnesota Secretary of State September 3, 2013; <strong>name change effective September 9, 2013</strong>; ticker change effective September 12, 2013</p>
+</div>
+</div>
+<div class="f">
+<span class="label">Headline value</span>
+<div class="t">
+<p>n/a</p>
+</div>
+</div>
+</div>
+<h3 id="parties-4">Parties</h3>
+<p>Navarre Corporation (Minnesota) → <strong>Speed Commerce, Inc.</strong> (Minnesota); NASDAQ</p>
+<h3 id="structure-4">Structure</h3>
+<ul>
+<li>Name changed from Navarre Corporation to Speed Commerce, Inc. under Item 5.03 (amendment to articles of incorporation), effective September 9, 2013</li>
+<li><strong>Ticker changed from NAVR to SPDC</strong> on NASDAQ, effective September 12, 2013</li>
+<li>State of incorporation unchanged (Minnesota); SEC file number 000-22982; headquarters relocated to 1303 E. Arapaho Road, Suite 200, Richardson, Texas 75081</li>
+<li><strong>No reverse stock split accompanied the 2013 rebrand.</strong> The only reverse split was the <strong>1-for-16 reverse split effective 12:01 a.m. Central Time on March 30, 2016</strong>, done to cure a NASDAQ minimum-bid deficiency and to cash out small holders at <strong>$0.01 per pre-split share</strong> ahead of deregistration — a going-dark step, filed alongside SC 13E3 and SC 13E3/A in February–March 2016 [correction to the commonly cited account, which places the reverse split in 2013/2014]</li>
+</ul>
+<h3 id="financing-4">Financing</h3>
+<p>n/a</p>
+<h3 id="purchase-price-allocation-goodwill-and-impairments-4">Purchase price allocation, goodwill and impairments</h3>
+<p>n/a</p>
+<h3 id="advisers-4">Advisers</h3>
+<p>None disclosed.</p>
+<h3 id="key-people-4">Key people</h3>
+<p>Richard S. Willis — President &amp; CEO; Ryan F. Urness — Secretary &amp; General Counsel</p>
+<h3 id="regulatory-and-litigation-4">Regulatory and litigation</h3>
+<p>NASDAQ notified of symbol change; Minnesota Secretary of State filing September 3, 2013. The 2016 reverse split was executed under Items 1.01, 3.01, 5.03 with an accompanying intent to file Form 15 to terminate registration.</p>
+<h3 id="outcome-and-post-deal-performance-4">Outcome and post-deal performance</h3>
+<p>The rebrand marked the pivot from physical distribution to e-commerce services. Within three years the company was delisted, foreclosed on and dissolved.</p>
+<h3 id="key-numbers-4">Key numbers</h3>
+<div class="tbl-wrap"><table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Metric</th>
+<th>Value</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Board approval of name change</td>
+<td>7/31/2013</td>
+<td>8-K 9/9/2013</td>
+</tr>
+<tr class="even">
+<td>MN SoS filing</td>
+<td>9/3/2013</td>
+<td>8-K 9/9/2013</td>
+</tr>
+<tr class="odd">
+<td>Name change effective</td>
+<td>9/9/2013</td>
+<td>8-K 9/9/2013</td>
+</tr>
+<tr class="even">
+<td>Ticker change NAVR → SPDC</td>
+<td>9/12/2013</td>
+<td>8-K 9/9/2013</td>
+</tr>
+<tr class="odd">
+<td>Reverse split ratio</td>
+<td>1-for-16</td>
+<td>8-K 3/31/2016</td>
+</tr>
+<tr class="even">
+<td>Reverse split effective</td>
+<td>3/30/2016, 12:01 a.m. CT</td>
+<td>8-K 3/31/2016</td>
+</tr>
+<tr class="odd">
+<td>Fractional cash-out price</td>
+<td>$0.01 per pre-split share</td>
+<td>8-K 3/31/2016</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="primary-sources-4">Primary sources</h3>
+<ul>
+<li><a href="https://www.sec.gov/Archives/edgar/data/911650/000143774913011740/navr20130906b_8k.htm">8-K name and ticker change, 2013-09-09</a> · <a href="https://www.sec.gov/Archives/edgar/data/911650/000143774913011740/ex99-1.htm">EX-99.1</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/911650/000143774916028804/spdc20160331_8k.htm">8-K 1-for-16 reverse split and deregistration, 2016-03-31</a> · <a href="https://www.sec.gov/Archives/edgar/data/911650/000143774916028804/ex3-1.htm">EX-3.1 articles amendment</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/911650/000143774916025713/spdc20160219_sc13e3.htm">SC 13E3, 2016-02-19</a> · <a href="https://www.sec.gov/Archives/edgar/data/911650/000143774916027221/spdc20160309b_sc13e3a.htm">SC 13E3/A, 2016-03-10</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/911650/000143774913011905/navr20130904_def14a.htm">DEF 14A, 2013-09-12</a></li>
+</ul>
+<hr />
+</section>
+<section id="txn-07">
+<div class="section-head">
+<div class="section-num">
+§ 07
+</div>
+<div class="section-title">
+<h2>
+Speed Commerce, Inc. — Sale of the Navarre distribution and software publishing business to WYNIT Distribution, LLC
+</h2>
+<p class="sub">
+Divestiture / carve-out asset sale (cash + seller note), funded exit from physical distribution
+</p>
+</div>
+</div>
+<div class="factstrip">
+<div class="f">
+<span class="label">Announced / closed</span>
+<div class="t">
+<p>Asset Purchase Agreement effective July 9, 2014; the agreement recites a <strong>closing date of July 8, 2014</strong>; 8-K filed July 9, 2014. Amended by a <strong>Second Amendment dated October 9, 2015</strong>.</p>
+</div>
+</div>
+<div class="f">
+<span class="label">Headline value</span>
+<div class="t">
+<p><strong>$15,000,000 stated</strong> ($5m cash + $10m note) — <strong>not ~$26m</strong>. Net of post-closing adjustments the note was later written to <strong>$1.5m</strong> and ultimately <strong>reduced to zero</strong>, so realized proceeds were approximately <strong>$5m cash</strong>. [corrects the “approximately $26m” premise]</p>
+</div>
+</div>
+</div>
+<h3 id="parties-5">Parties</h3>
+<ul>
+<li>Sellers: <strong>Speed Commerce, Inc.; Navarre Distribution Services, Inc.; Navarre Distribution Services, ULC; Navarre Online Fulfillment Services, Inc.; Navarre Digital Services, Inc.; Navarre Logistical Services, Inc.; Encore Software, Inc.; Viva Media, Inc.</strong></li>
+<li>Purchasers: <strong>WYNIT Distribution, LLC; WD Encore Software, LLC; WD Navarre Distribution, LLC; WD Navarre Digital Services, LLC; WD Navarre Canada, ULC; WD Navarre Holdings, LLC</strong></li>
+</ul>
+<h3 id="structure-5">Structure</h3>
+<ul>
+<li><strong>$5,000,000 cash</strong> by wire transfer at closing</li>
+<li><strong>$10,000,000 secured promissory note</strong> — secured by all of the buyer’s assets, subordinated to the buyer’s secured lenders; <strong>no principal payments in year 1</strong>, amortizing over years 2–4; subject to reduction from post-closing adjustments</li>
+<li><strong>Working capital adjustment:</strong> target band <strong>$2,500,000 to $10,000,000</strong> with no adjustment inside the band; payments triggered outside the band, capped at <strong>$2,000,000</strong> for purchaser payments and tiered seller payments up to <strong>$4,500,000</strong></li>
+<li><strong>Repurchase of uncollectible accounts receivable</strong> by the sellers as a further adjustment</li>
+<li>Escrow Agreement referenced as Exhibit J to the APA (amount not stated in the 8-K)</li>
+<li>Assets: substantially all business assets — fixed assets, IP, inventory, contracts, software and receivables — of the retail distribution and software publishing business, including <strong>Encore Software</strong> (12 years after Navarre bought it out of bankruptcy)</li>
+<li><strong>Second Amendment (October 9, 2015):</strong> adjusted the net working capital deliverable, <strong>reduced the promissory note principal to zero</strong>, and eliminated buyer indemnification and rep-and-warranty claims</li>
+</ul>
+<h3 id="financing-5">Financing</h3>
+<ul>
+<li>Concurrent with the sale, Speed Commerce entered a <strong>five-year, $50,000,000 term loan credit facility</strong> (July 9, 2014): <strong>$35,000,000 Closing Date Loans funded</strong>, plus a <strong>$15,000,000 Delayed Draw Loan</strong> available before January 1, 2016</li>
+<li>Rate <strong>LIBOR + 5.50%</strong> with a <strong>1.00% LIBOR floor</strong>; <strong>maturity July 9, 2019</strong>; <strong>2.5% annual amortization</strong></li>
+<li>Asset sale proceeds plus the new facility were used to <strong>repay the prior Wells Fargo Capital Finance, LLC line of credit</strong></li>
+<li>This facility was replaced four months later by the $100m Garrison facility (below)</li>
+</ul>
+<h3 id="purchase-price-allocation-goodwill-and-impairments-5">Purchase price allocation, goodwill and impairments</h3>
+<ul>
+<li>Buyer-side allocation not disclosed by Speed Commerce</li>
+<li>Seller-side: FY2015 10-K discloses <strong>$18.8m of goodwill and other intangible asset impairment for the year ended March 31, 2015</strong></li>
+<li><strong>Wynit promissory note written down to $1.5m</strong> “based on final agreement on post-closing adjustments” (FY2015 10-K), then to <strong>zero</strong> by the October 2015 Second Amendment — a <strong>$10m receivable that produced nothing</strong></li>
+</ul>
+<h3 id="advisers-5">Advisers</h3>
+<p>None disclosed in the 8-K or press release.</p>
+<h3 id="key-people-5">Key people</h3>
+<ul>
+<li>Richard S. Willis — President &amp; CEO of Speed Commerce — seller principal</li>
+<li>Terry Tuttle — CFO</li>
+<li>Ryan F. Urness — Secretary &amp; General Counsel — filing signatory</li>
+<li>Item 5.02 in the same 8-K reports management changes accompanying the exit</li>
+</ul>
+<h3 id="regulatory-and-litigation-5">Regulatory and litigation</h3>
+<p>No antitrust or shareholder approval disclosed.</p>
+<h3 id="outcome-and-post-deal-performance-5">Outcome and post-deal performance</h3>
+<p>The sale completed Speed Commerce’s exit from physical distribution and consumer-electronics/software distribution, leaving a pure-play e-commerce fulfillment company carrying leverage sized for a much larger business. Realized consideration collapsed from a stated $15m to roughly $5m of cash. WYNIT itself later filed for bankruptcy. <strong>Correction:</strong> Encore Software was not sold “to Speed Commerce” — Speed Commerce was Navarre renamed, and Encore was sold <strong>out</strong> of it, to WD Encore Software, LLC, in this transaction.</p>
+<h3 id="key-numbers-5">Key numbers</h3>
+<div class="tbl-wrap"><table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Metric</th>
+<th>Value</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Stated purchase price</td>
+<td>$15,000,000</td>
+<td>EX-2.1 APA</td>
+</tr>
+<tr class="even">
+<td>Cash at closing</td>
+<td>$5,000,000</td>
+<td>EX-2.1 APA; 8-K 7/9/2014</td>
+</tr>
+<tr class="odd">
+<td>Secured promissory note</td>
+<td>$10,000,000</td>
+<td>EX-2.1 APA</td>
+</tr>
+<tr class="even">
+<td>Note amortization</td>
+<td>none yr 1; yrs 2–4</td>
+<td>8-K 7/9/2014</td>
+</tr>
+<tr class="odd">
+<td>Working capital band</td>
+<td>$2,500,000–$10,000,000</td>
+<td>EX-2.1 APA</td>
+</tr>
+<tr class="even">
+<td>Purchaser adjustment cap</td>
+<td>$2,000,000</td>
+<td>EX-2.1 APA</td>
+</tr>
+<tr class="odd">
+<td>Seller adjustment cap</td>
+<td>$4,500,000</td>
+<td>EX-2.1 APA</td>
+</tr>
+<tr class="even">
+<td>Closing date</td>
+<td>7/8/2014 (APA effective 7/9/2014)</td>
+<td>EX-2.1 APA</td>
+</tr>
+<tr class="odd">
+<td>Note written down to</td>
+<td>$1,500,000</td>
+<td>FY2015 10-K</td>
+</tr>
+<tr class="even">
+<td>Note finally reduced to</td>
+<td>$0</td>
+<td>8-K 10/9/2015</td>
+</tr>
+<tr class="odd">
+<td>Concurrent term loan</td>
+<td>$50,000,000 ( $35m funded + $15m delayed draw)</td>
+<td>8-K 7/9/2014</td>
+</tr>
+<tr class="even">
+<td>Rate / floor / maturity</td>
+<td>LIBOR + 5.50% / 1.00% floor / 7/9/2019</td>
+<td>8-K 7/9/2014</td>
+</tr>
+<tr class="odd">
+<td>Seller entities / buyer entities</td>
+<td>8 / 6</td>
+<td>EX-2.1 APA</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="primary-sources-5">Primary sources</h3>
+<ul>
+<li><a href="https://www.sec.gov/Archives/edgar/data/911650/000143774914012592/spdc20140708_8k.htm">8-K WYNIT sale and new credit facility, 2014-07-09</a> · <a href="https://www.sec.gov/Archives/edgar/data/911650/000143774914012592/ex2-1.htm">EX-2.1 Asset Purchase Agreement</a> · <a href="https://www.sec.gov/Archives/edgar/data/911650/000143774914012592/ex10-1.htm">EX-10.1 Credit Facility</a> · <a href="https://www.sec.gov/Archives/edgar/data/911650/000143774914012592/ex99-1.htm">EX-99.1 press release</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/911650/000143774915018259/spdc20151009_8k.htm">8-K Second Amendment to APA + Seventh Amendment to Credit Agreement, 2015-10-09</a> · <a href="https://www.sec.gov/Archives/edgar/data/911650/000143774915018259/ex10-2.htm">EX-10.2 Second Amendment to APA</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/911650/000143774914011657/spdc20140331_10k.htm">FY2014 10-K, 2014-06-23</a> · <a href="https://www.sec.gov/Archives/edgar/data/911650/000143774914011657/ex21-1.htm">EX-21.1 subsidiaries</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/911650/000143774915012323/spdc20150331_10k.htm">FY2015 10-K, 2015-06-15</a></li>
+</ul>
+<hr />
+</section>
+<section id="txn-08">
+<div class="section-head">
+<div class="section-num">
+§ 08
+</div>
+<div class="section-title">
+<h2>
+Speed Commerce, Inc. — Acquisition of the Fifth Gear businesses (Sigma Holdings / Sigma Micro / Lexton Group)
+</h2>
+<p class="sub">
+Debt-funded bolt-on acquisition of e-commerce fulfillment, 3PL and call-center assets; the leverage event that caused the collapse
+</p>
+</div>
+</div>
+<div class="factstrip">
+<div class="f">
+<span class="label">Announced / closed</span>
+<div class="t">
+<p>Asset Purchase Agreement effective <strong>November 21, 2014</strong>; 8-K filed November 26, 2014</p>
+</div>
+</div>
+<div class="f">
+<span class="label">Headline value</span>
+<div class="t">
+<p><strong>$55,000,000 base cash</strong>, plus an earnout of up to 7,000,000 shares (later increased to 8,400,000)</p>
+</div>
+</div>
+</div>
+<h3 id="parties-6">Parties</h3>
+<ul>
+<li>Purchaser: <strong>Fifth Gear Acquisitions, Inc.</strong> (Minnesota), a subsidiary of <strong>Speed Commerce, Inc.</strong> (Parent)</li>
+<li>Sellers: <strong>Sigma Holdings, LLC; Sigma Micro, LLC; Lexton Group, L.L.C.</strong> and their individual members</li>
+<li>Sellers’ Representative: <strong>Albert Langsenkamp</strong></li>
+</ul>
+<h3 id="structure-6">Structure</h3>
+<ul>
+<li><strong>$55,000,000 base cash</strong>, subject to working capital adjustment; <strong>working capital target $3,750,000</strong></li>
+<li><strong>Earnout:</strong> up to <strong>7,000,000 Parent shares</strong>, triggered if <strong>nine times 2014 Adjusted EBITDA</strong> exceeds the $55m base; valued at the 20-day VWAP Average Parent Stock Price; issued within 10 business days after the earnout amount becomes final. <strong>Amended April 16, 2015 to 8,400,000 shares</strong>, issuable on or before October 31, 2015</li>
+<li><strong>Escrow: $4,400,000</strong> securing indemnification; <strong>$2,930,000 released at 12 months</strong>, remainder at 18 months (accelerated by the April 2015 amendment: $2.9m within three days, balance November 21, 2015; indemnification expiring November 21, 2015; indemnity cap <strong>$3,500,000</strong>)</li>
+<li>Assumed liabilities limited to specified Assumed Contracts and working capital items; non-compete and restrictive covenants on Restricted Parties</li>
+<li>Assets: substantially all assets used in e-commerce fulfillment, third-party logistics and call-center services, plus software development and licensing</li>
+</ul>
+<h3 id="financing-6">Financing</h3>
+<ul>
+<li><strong>$100,000,000 Amended and Restated Credit and Guaranty Agreement dated November 21, 2014</strong> with <strong>Garrison Loan Agency Services, LLC</strong> as administrative agent and a lender syndicate</li>
+<li><strong>LIBOR + 7.50%</strong> with a <strong>1.00% LIBOR floor</strong>; default rate higher; <strong>maturity November 21, 2019</strong></li>
+<li>Amortization: <strong>2.5%/yr through 9/30/2015; 3.0%/yr through 9/30/2016; 3.5%/yr through 9/30/2017; 5.0%/yr thereafter</strong></li>
+<li>Secured by a first-priority security interest in substantially all company assets; replaced the July 2014 $50m facility</li>
+<li>Covenants: capital expenditure limits, minimum EBITDA, maximum fixed charge coverage ratio, maximum indebtedness-to-EBITDA; restrictions on debt, liens, investments and asset sales</li>
+<li>Use of proceeds: general corporate purposes and funding the $55m Fifth Gear acquisition</li>
+<li><strong>~$100.4 million of credit facilities outstanding at March 31, 2015</strong> (FY2015 10-K)</li>
+</ul>
+<h3 id="purchase-price-allocation-goodwill-and-impairments-6">Purchase price allocation, goodwill and impairments</h3>
+<p>Speed Commerce recorded <strong>$18.8m of goodwill and other intangible asset impairment in the fiscal year ended March 31, 2015</strong> — within five months of closing. Separate Fifth Gear allocation not extracted here <em class="unv">unverified</em>.</p>
+<h3 id="advisers-6">Advisers</h3>
+<p>Not disclosed in the 8-K.</p>
+<h3 id="key-people-6">Key people</h3>
+<p>Richard S. Willis — President &amp; CEO; Terry Tuttle — CFO; Albert Langsenkamp — Sellers’ Representative; Ryan F. Urness — Secretary &amp; General Counsel</p>
+<h3 id="regulatory-and-litigation-6">Regulatory and litigation</h3>
+<p>None disclosed at signing.</p>
+<h3 id="outcome-and-post-deal-performance-6">Outcome and post-deal performance</h3>
+<p>The company borrowed $100m at LIBOR+7.5% against a business whose only other asset sale had just produced $5m of cash. It breached covenants within seven months, and every subsequent event traced back to this facility.</p>
+<h3 id="key-numbers-6">Key numbers</h3>
+<div class="tbl-wrap"><table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Metric</th>
+<th>Value</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Base cash price</td>
+<td>$55,000,000</td>
+<td>EX-2.1 11/26/2014</td>
+</tr>
+<tr class="even">
+<td>Working capital target</td>
+<td>$3,750,000</td>
+<td>EX-2.1</td>
+</tr>
+<tr class="odd">
+<td>Earnout shares (original)</td>
+<td>up to 7,000,000</td>
+<td>EX-2.1</td>
+</tr>
+<tr class="even">
+<td>Earnout shares (as amended 4/16/2015)</td>
+<td>up to 8,400,000</td>
+<td>8-K 4/16/2015</td>
+</tr>
+<tr class="odd">
+<td>Earnout trigger</td>
+<td>9x 2014 Adjusted EBITDA &gt; $55m</td>
+<td>EX-2.1</td>
+</tr>
+<tr class="even">
+<td>Escrow</td>
+<td>$4,400,000 ($2.93m at 12 mo.)</td>
+<td>EX-2.1</td>
+</tr>
+<tr class="odd">
+<td>Indemnity cap (as amended)</td>
+<td>$3,500,000</td>
+<td>8-K 4/16/2015</td>
+</tr>
+<tr class="even">
+<td>Garrison facility</td>
+<td>$100,000,000</td>
+<td>8-K 11/26/2014</td>
+</tr>
+<tr class="odd">
+<td>Rate / floor</td>
+<td>LIBOR + 7.50% / 1.00%</td>
+<td>8-K 11/26/2014</td>
+</tr>
+<tr class="even">
+<td>Maturity</td>
+<td>11/21/2019</td>
+<td>8-K 11/26/2014</td>
+</tr>
+<tr class="odd">
+<td>Facilities outstanding at 3/31/2015</td>
+<td>~$100,400,000</td>
+<td>FY2015 10-K</td>
+</tr>
+<tr class="even">
+<td>FY2015 impairment</td>
+<td>$18,800,000</td>
+<td>FY2015 10-K</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="primary-sources-6">Primary sources</h3>
+<ul>
+<li><a href="https://www.sec.gov/Archives/edgar/data/911650/000143774914021439/spdc20141126_8k.htm">8-K Fifth Gear acquisition and Garrison credit agreement, 2014-11-26</a> · <a href="https://www.sec.gov/Archives/edgar/data/911650/000143774914021439/ex2-1.htm">EX-2.1 Asset Purchase Agreement</a> · <a href="https://www.sec.gov/Archives/edgar/data/911650/000143774914021439/ex10-1.htm">EX-10.1 Amended and Restated Credit and Guaranty Agreement</a> · <a href="https://www.sec.gov/Archives/edgar/data/911650/000143774914021439/ex99-1.htm">EX-99.1 press release</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/911650/000143774915007535/spdc20150416b_8k.htm">8-K amendments to APA and credit agreement + $7.3m equity raise, 2015-04-16</a> · <a href="https://www.sec.gov/Archives/edgar/data/911650/000143774915007535/ex2-1.htm">EX-2.1</a> · <a href="https://www.sec.gov/Archives/edgar/data/911650/000143774915007535/ex10-1.htm">EX-10.1</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/911650/000143774915007537/spdc20150416_424b5.htm">424B5 offering prospectus, 2015-04-16</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/911650/000143774915012323/spdc20150331_10k.htm">FY2015 10-K, 2015-06-15</a> · <a href="https://www.sec.gov/Archives/edgar/data/911650/000143774915012323/ex10-68.htm">EX-10.68 Garrison</a> · <a href="https://www.sec.gov/Archives/edgar/data/911650/000143774915021642/spdc20151201_10ka.htm">10-K/A, 2015-12-01</a></li>
+</ul>
+<hr />
+</section>
+<section id="txn-09">
+<div class="section-head">
+<div class="section-num">
+§ 09
+</div>
+<div class="section-title">
+<h2>
+Speed Commerce, Inc. — Garrison default, UCC Article 9 foreclosure and dissolution
+</h2>
+<p class="sub">
+Distressed workout → lender strict foreclosure under UCC §9-620 → voluntary dissolution of an insolvent issuer
+</p>
+</div>
+</div>
+<div class="factstrip">
+<div class="f">
+<span class="label">Announced / closed</span>
+<div class="t">
+<p>Covenant amendments June 30 / July 2, 2015 through the Seventh Amendment October 6, 2015; forbearance December 17, 2015; NASDAQ trading suspended January 21, 2016; Form 25 filed February 17, 2016; 1-for-16 reverse split March 30, 2016; inability to cure disclosed April 11, 2016; <strong>foreclosure completed June 8, 2016</strong>; board resignations and dissolution authorized <strong>August 31, 2016</strong></p>
+</div>
+</div>
+<div class="f">
+<span class="label">Headline value</span>
+<div class="t">
+<p>~$100.4m of secured debt outstanding at March 31, 2015; <strong>zero recovery to shareholders</strong></p>
+</div>
+</div>
+</div>
+<h3 id="parties-7">Parties</h3>
+<p>Speed Commerce, Inc. and subsidiaries (borrowers/guarantors); <strong>Garrison Loan Agency Services, LLC</strong> as administrative agent for the lender syndicate (individual lenders not named in the 8-Ks)</p>
+<h3 id="structure-and-chronology">Structure and chronology</h3>
+<ul>
+<li><strong>April 6, 2015</strong> — NASDAQ notice of failure to maintain the $1.00 minimum bid price</li>
+<li><strong>April 16, 2015</strong> — $7.3m equity offering of common shares and warrants; Garrison amendment permitted the company to retain the full $7.3m in exchange for a <strong>$1,250,000 accelerated amortization payment by April 21, 2015</strong>, replacing two scheduled $625,000 payments (June 30 and September 30, 2015)</li>
+<li><strong>June 30, 2015 (Third Amendment) / July 2, 2015 (Fourth Amendment)</strong> — altered timing of certain payments; <strong>reduced interest payments</strong> scheduled for the quarters ending June 30 and September 30, 2015, with the reductions <strong>capitalized into principal</strong>; removed the minimum excess liquidity covenant</li>
+<li><strong>October 6, 2015 (Seventh Amendment)</strong> — up to <strong>$3,000,000 of additional term loans</strong>, <strong>$1,500,000 funded immediately</strong>, the remaining $1,500,000 available through <strong>December 23, 2015</strong></li>
+<li><strong>October 7–8, 2015</strong> — transfer from the NASDAQ Global Market to the <strong>NASDAQ Capital Market</strong>, with a 180-day grace period to regain $1.00 bid compliance by <strong>April 4, 2016</strong>; company gave written notice of intent to cure by reverse split</li>
+<li><strong>December 17, 2015</strong> — <strong>45-day forbearance to January 30, 2016</strong> for failure to comply with covenants under the November 21, 2014 Amended and Restated Credit and Guaranty Agreement; <strong>Richard Willis and Terry Tuttle resigned effective immediately</strong>; <strong>Dalton Edgecomb</strong> named Interim CEO and <strong>Bruce Meier</strong> Interim CFO</li>
+<li><strong>January 12, 2016</strong> — NASDAQ notice of intent to delist; <strong>trading suspended at the open on January 21, 2016</strong></li>
+<li><strong>February 17, 2016</strong> — NASDAQ filed <strong>Form 25</strong>; delisting effective ~February 27, 2016</li>
+<li><strong>February 19 – March 10, 2016</strong> — SC 13E3 and three SC 13E3/A amendments (going-dark)</li>
+<li><strong>March 30, 2016</strong> — <strong>1-for-16 reverse stock split</strong> effective 12:01 a.m. CT; fractional holders cashed out at <strong>$0.01 per pre-split share</strong>; intent to file Form 15 to terminate registration</li>
+<li><strong>April 11, 2016</strong> — company disclosed it “is in default of the terms of the Credit Agreement and it is unable to cure the existing defaults”; received a <strong>$1,000,000 protective advance</strong> under Section 9.9 of the amended Credit Agreement; anticipated foreclosure “in the immediate future”</li>
+<li><strong>June 8, 2016</strong> — lenders “completed a foreclosure of all assets of the Company pursuant to <strong>Section 9-620 of the New York Uniform Commercial Code</strong>,” leaving the company unable to fulfill customer obligations</li>
+<li><strong>August 31, 2016</strong> — board authorized <strong>dissolution of the company and its subsidiaries</strong>; company declared <strong>insolvent with no planned distributions to shareholders</strong>; cautioned it could not assure “its ability to conduct an orderly wind down and dissolution, or that it will not pursue bankruptcy protection.” <strong>Six directors resigned effective immediately: Rebecca Lynn Atchison, Stephen F. Duchelle, Timothy R. Gentz, Fredrick C. Green IV, Scott A. Guilfoyle, Bradley J. Shisler</strong> — each stating no disagreement with the company</li>
+<li>Filings continued into 2017 (final EDGAR submissions in 2017); the former Navarre entity is reported to have entered bankruptcy protection in late 2017 [per Anime News Network, Nov 9, 2017 — unverified against a court docket]</li>
+</ul>
+<h3 id="financing-7">Financing</h3>
+<p>No rescue financing was obtained beyond the incremental Garrison advances and the $7.3m April 2015 equity raise.</p>
+<h3 id="purchase-price-allocation-goodwill-and-impairments-7">Purchase price allocation, goodwill and impairments</h3>
+<p>FY2015 (year ended March 31, 2015) goodwill and other intangible asset impairment of <strong>$18.8 million</strong>. Further FY2016 impairments were not filed in a completed annual report <em class="unv">unverified</em>.</p>
+<h3 id="advisers-7">Advisers</h3>
+<p>None disclosed in the 8-Ks.</p>
+<h3 id="key-people-7">Key people</h3>
+<ul>
+<li>Richard S. Willis — President &amp; CEO (appointed September 2011) — resigned December 17, 2015</li>
+<li>Terry Tuttle — CFO — resigned December 17, 2015</li>
+<li>Dalton Edgecomb — Interim CEO from December 17, 2015</li>
+<li>Bruce Meier — Interim CFO from December 17, 2015</li>
+<li>Ryan F. Urness — Secretary &amp; General Counsel — signed the April 12, 2016 default disclosure</li>
+<li>Timothy R. Gentz — director — resigned August 31, 2016 with the full board</li>
+<li>Jeffrey B. Zisk — SpeedFC founder and former director; had already filed SC 13D/A amendments reducing his position in 2013</li>
+</ul>
+<h3 id="regulatory-and-litigation-7">Regulatory and litigation</h3>
+<p>NASDAQ delisting determination and Form 25; SC 13E3 going-private filings; UCC Article 9 strict foreclosure under New York law. No SEC enforcement action disclosed.</p>
+<h3 id="outcome-and-post-deal-performance-7">Outcome and post-deal performance</h3>
+<p>Total loss for common equity. A company that in 2005 was guiding to $710–720m of net sales and $40–45m of EBITDA ended in 2016 with its assets seized by its lender and its board resigning en masse. Across the arc: ~$118m paid for FUNimation and ~$24m recovered; ~$10m paid for Encore and ~$5m realized on the sale of the whole distribution business that contained it; $54m paid for SpeedFC and $55m for Fifth Gear, both financed into a $100m secured facility that foreclosed.</p>
+<h3 id="key-numbers-7">Key numbers</h3>
+<div class="tbl-wrap"><table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Metric</th>
+<th>Value</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Debt outstanding 3/31/2015</td>
+<td>~$100,400,000</td>
+<td>FY2015 10-K</td>
+</tr>
+<tr class="even">
+<td>April 2015 equity raise</td>
+<td>$7,300,000 (shares + warrants)</td>
+<td>8-K 4/16/2015</td>
+</tr>
+<tr class="odd">
+<td>Accelerated amortization payment</td>
+<td>$1,250,000 by 4/21/2015</td>
+<td>8-K 4/16/2015</td>
+</tr>
+<tr class="even">
+<td>Seventh Amendment incremental loans</td>
+<td>up to $3,000,000 ($1.5m funded)</td>
+<td>8-K 10/9/2015</td>
+</tr>
+<tr class="odd">
+<td>Forbearance</td>
+<td>45 days, to 1/30/2016</td>
+<td>8-K 12/21/2015</td>
+</tr>
+<tr class="even">
+<td>Protective advance</td>
+<td>$1,000,000</td>
+<td>8-K 4/13/2016</td>
+</tr>
+<tr class="odd">
+<td>NASDAQ trading suspended</td>
+<td>1/21/2016</td>
+<td>8-K 2/23/2016</td>
+</tr>
+<tr class="even">
+<td>Form 25 filed</td>
+<td>2/17/2016</td>
+<td>8-K 2/23/2016</td>
+</tr>
+<tr class="odd">
+<td>Reverse split</td>
+<td>1-for-16, 3/30/2016</td>
+<td>8-K 3/31/2016</td>
+</tr>
+<tr class="even">
+<td>Foreclosure completed</td>
+<td>6/8/2016, UCC §9-620 (NY)</td>
+<td>8-K 8/31/2016</td>
+</tr>
+<tr class="odd">
+<td>Directors resigning</td>
+<td>6, on 8/31/2016</td>
+<td>8-K 8/31/2016</td>
+</tr>
+<tr class="even">
+<td>Shareholder recovery</td>
+<td>none; company insolvent</td>
+<td>8-K 8/31/2016</td>
+</tr>
+<tr class="odd">
+<td>FY2015 impairment</td>
+<td>$18,800,000</td>
+<td>FY2015 10-K</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="primary-sources-7">Primary sources</h3>
+<ul>
+<li><a href="https://www.sec.gov/Archives/edgar/data/911650/000143774915007202/spdc20150410_8k.htm">8-K NASDAQ deficiency, 2015-04-10</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/911650/000143774915007535/spdc20150416b_8k.htm">8-K amendments and equity raise, 2015-04-16</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/911650/000143774915013391/spdc20150702_8k.htm">8-K Third and Fourth Amendments to Credit Agreement, 2015-07-07</a> · <a href="https://www.sec.gov/Archives/edgar/data/911650/000143774915013391/ex10-1.htm">EX-10.1</a> · <a href="https://www.sec.gov/Archives/edgar/data/911650/000143774915013391/ex10-2.htm">EX-10.2</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/911650/000143774915018215/spdc20151008_8k.htm">8-K NASDAQ Capital Market transfer, 2015-10-08</a> · <a href="https://www.sec.gov/Archives/edgar/data/911650/000143774915018215/ex99-1.htm">EX-99.1</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/911650/000143774915018259/spdc20151009_8k.htm">8-K Seventh Amendment + WYNIT Second Amendment, 2015-10-09</a> · <a href="https://www.sec.gov/Archives/edgar/data/911650/000143774915018259/ex10-1.htm">EX-10.1</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/911650/000143774915022613/spdc20151221_8k.htm">8-K forbearance and management change, 2015-12-21</a> · <a href="https://www.sec.gov/Archives/edgar/data/911650/000143774915022613/ex10-1.htm">EX-10.1 Forbearance Agreement</a> · <a href="https://www.sec.gov/Archives/edgar/data/911650/000143774915022613/ex99-1.htm">EX-99.1 press release 12/17/2015</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/911650/000143774916025880/spdc20160223_8k.htm">8-K NASDAQ delisting / Form 25, 2016-02-23</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/911650/000143774916028804/spdc20160331_8k.htm">8-K reverse split and deregistration, 2016-03-31</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/911650/000143774916029417/spdc20160412_8k.htm">8-K uncurable default and protective advance, 2016-04-13</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/911650/000143774916038259/spdc20160831_8k.htm">8-K foreclosure, board resignations and dissolution, 2016-08-31</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/911650/000143774916025451/spdc20151231_10q.htm">Q3 FY2016 10-Q, 2016-02-16</a></li>
+<li><a href="https://www.animenewsnetwork.com/daily-briefs/2017-11-09/former-funimation-parent-company-navarre-enters-bankruptcy-protection/.123695">Anime News Network, former Funimation parent enters bankruptcy protection, 2017-11-09</a></li>
+<li><a href="https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&amp;CIK=0000911650&amp;type=8-K">EDGAR company filing index, CIK 0000911650</a></li>
+</ul>
+</section>
+<footer>
+<div>
+<strong style="color:var(--ink)">Market Logic Investors LLC</strong> · Transaction Experience<br> Compiled from primary filings. Internal reference. Not investment advice.
+</div>
+<div style="text-align:right">
+<a href="../" style="color:var(--teal);text-decoration:none">← Back to Transaction Experience</a>
+</div>
+</footer>
+
+</div>
+</body>
+</html>

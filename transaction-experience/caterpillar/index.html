@@ -1,0 +1,1515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Caterpillar — Transaction Experience — Market Logic Investors</title>
+<meta name="description" content="Fifteen transactions across four decades, and the cleanest available demonstration that acquisition accounting is where deal quality eventually shows up. Three separate goodwill im">
+<style>
+
+:root {
+  --ink: #0a1929; --ink-soft: #1c2e44;
+  --paper: #faf9f4; --paper-warm: #f3efe3;
+  --rule: #d4cfbf; --rule-soft: #e8e3d4;
+  --muted: #5b6b7a; --muted-light: #8a98a5;
+  --accent: #b8391c; --accent-soft: #d65a3a;
+  --teal: #1f6b6b; --teal-soft: #4a8b8b; --teal-light: #b8d4d4;
+  --positive: #2d6a4f; --warning: #b08800; --negative: #9b2226;
+  --negative-light: #e8c5c5;
+  --serif: 'Iowan Old Style','Palatino Linotype',Palatino,'Book Antiqua',Georgia,serif;
+  --sans: 'Helvetica Neue',Helvetica,-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
+  --mono: 'SF Mono',SFMono-Regular,Menlo,Monaco,Consolas,'Liberation Mono',monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{font-size:16px;-webkit-text-size-adjust:100%;}
+body{font-family:var(--sans);background:var(--paper);color:var(--ink);line-height:1.55;-webkit-font-smoothing:antialiased;}
+.page{max-width:1000px;margin:0 auto;padding:56px 56px 80px;}
+h1,h2,h3,h4,h5{font-family:var(--serif);font-weight:400;color:var(--ink);}
+h1{font-size:3.6rem;line-height:1.02;letter-spacing:-0.025em;}
+h2{font-size:2.05rem;line-height:1.12;letter-spacing:-0.015em;}
+h3{font-size:1.3rem;line-height:1.25;}
+h4{font-family:var(--sans);font-weight:600;font-size:0.7rem;text-transform:uppercase;letter-spacing:0.16em;color:var(--muted);}
+p{font-size:0.95rem;line-height:1.7;color:var(--ink-soft);}
+strong{color:var(--ink);font-weight:600;}
+.eyebrow{font-family:var(--sans);font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.2em;color:var(--accent);display:block;margin-bottom:18px;}
+.lede{font-family:var(--serif);font-size:1.25rem;line-height:1.5;color:var(--ink);}
+.kicker{font-family:var(--sans);font-size:0.75rem;font-weight:600;text-transform:uppercase;letter-spacing:0.12em;color:var(--teal);}
+.label{font-family:var(--sans);font-size:0.7rem;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);}
+.mono{font-family:var(--mono);font-size:0.85rem;}
+.cover{border-top:1px solid var(--ink);padding-top:32px;position:relative;}
+.cover-meta{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:84px;}
+.cover-meta .left,.cover-meta .right{font-family:var(--sans);font-size:0.78rem;color:var(--muted);}
+.cover-meta .right{text-align:right;}
+.cover-meta .right .stamp{display:inline-block;padding:4px 10px;border:1px solid var(--accent);color:var(--accent);font-weight:600;letter-spacing:0.12em;font-size:0.65rem;text-transform:uppercase;margin-bottom:8px;}
+.cover-title{margin-bottom:28px;}
+.cover-title .legal{display:block;font-family:var(--sans);font-size:0.78rem;color:var(--muted);margin-top:8px;letter-spacing:0.04em;}
+.cover-tag{font-family:var(--serif);font-style:italic;font-size:1.4rem;line-height:1.45;color:var(--ink-soft);max-width:720px;margin-bottom:56px;}
+.cover-tag::before{content:"\201C";font-size:2.2rem;line-height:0;vertical-align:-0.3em;color:var(--accent);margin-right:4px;}
+.cover-tag::after{content:"\201D";font-size:2.2rem;line-height:0;vertical-align:-0.3em;color:var(--accent);margin-left:2px;}
+.metric-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:0;border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);margin:32px 0;}
+.metric{padding:22px 16px 20px;border-right:1px solid var(--rule);text-align:left;}
+.metric:last-child{border-right:none;}
+.metric .v{font-family:var(--serif);font-size:2.1rem;line-height:1;letter-spacing:-0.02em;color:var(--ink);display:block;margin-bottom:6px;}
+.metric .v small{font-size:0.95rem;color:var(--muted);font-family:var(--serif);margin-left:1px;}
+.metric .l{font-family:var(--sans);font-size:0.68rem;font-weight:600;text-transform:uppercase;letter-spacing:0.12em;color:var(--muted);line-height:1.3;}
+.metric.accent .v{color:var(--accent);}
+.metric.teal .v{color:var(--teal);}
+section{margin-top:64px;padding-top:32px;border-top:1px solid var(--rule);}
+section.no-rule{border-top:none;}
+.section-head{display:grid;grid-template-columns:120px 1fr;gap:32px;margin-bottom:28px;align-items:baseline;}
+.section-num{font-family:var(--mono);font-size:0.78rem;color:var(--muted);letter-spacing:0.05em;border-top:2px solid var(--ink);padding-top:8px;text-transform:uppercase;font-weight:600;}
+.section-title h2{margin-bottom:8px;}
+.section-title .sub{font-family:var(--serif);font-style:italic;color:var(--muted);font-size:1.05rem;}
+.cols-2{display:grid;grid-template-columns:1fr 1fr;gap:36px;margin-top:16px;}
+.cols-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px;margin-top:16px;}
+.card{background:var(--paper-warm);padding:22px 24px;border:1px solid var(--rule);}
+.card.dark{background:var(--ink);color:var(--paper);}
+.card.dark h3,.card.dark h4{color:var(--paper);}
+.card.dark p{color:rgba(250,249,244,0.85);}
+.callout{border-left:3px solid var(--accent);padding:4px 0 4px 20px;margin:18px 0;font-family:var(--serif);font-style:italic;font-size:1.05rem;color:var(--ink);}
+.pull-quote{font-family:var(--serif);font-size:1.4rem;line-height:1.4;color:var(--ink);border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);padding:28px 0;margin:32px 0;text-align:center;letter-spacing:-0.005em;}
+table{width:100%;border-collapse:collapse;font-family:var(--sans);font-size:0.88rem;margin-top:14px;}
+thead th{text-align:left;font-weight:600;font-size:0.7rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);padding:10px 14px 10px 0;border-bottom:1.5px solid var(--ink);}
+thead th.num{text-align:right;}
+tbody td{padding:14px 14px 14px 0;border-bottom:1px solid var(--rule);color:var(--ink-soft);vertical-align:top;}
+tbody td.num{text-align:right;font-variant-numeric:tabular-nums;font-family:var(--mono);font-size:0.82rem;}
+tbody td strong{color:var(--ink);}
+tbody tr.highlight td{color:var(--ink);}
+tbody tr.highlight td:first-child{padding-left:12px;border-left:3px solid var(--accent);}
+ul.clean{list-style:none;}
+ul.clean li{padding:12px 0 12px 24px;border-bottom:1px solid var(--rule-soft);position:relative;font-size:0.93rem;color:var(--ink-soft);line-height:1.6;}
+ul.clean li::before{content:"→";position:absolute;left:0;top:12px;color:var(--accent);font-weight:600;}
+ol.clean{list-style:none;counter-reset:ck;}
+ol.clean li{counter-increment:ck;padding:12px 0 12px 36px;border-bottom:1px solid var(--rule-soft);position:relative;font-size:0.93rem;color:var(--ink-soft);line-height:1.6;}
+ol.clean li::before{content:counter(ck,decimal-leading-zero);position:absolute;left:0;top:12px;font-family:var(--mono);font-size:0.78rem;color:var(--accent);font-weight:600;}
+.tag{display:inline-block;font-family:var(--sans);font-size:0.68rem;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;padding:3px 9px;margin-right:6px;margin-bottom:4px;border:1px solid var(--rule);color:var(--ink-soft);background:var(--paper);}
+.tag.accent{border-color:var(--accent);color:var(--accent);}
+.tag.teal{border-color:var(--teal);color:var(--teal);}
+.tag.warn{border-color:var(--warning);color:var(--warning);}
+.tag.neg{border-color:var(--negative);color:var(--negative);}
+.tag.pos{border-color:var(--positive);color:var(--positive);}
+.thesis-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:24px;border:1px solid var(--ink);}
+.thesis-col{padding:28px 28px 24px;}
+.thesis-col.bull{border-right:1px solid var(--ink);}
+.thesis-col ul{list-style:none;margin-top:14px;}
+.thesis-col ul li{padding:10px 0 10px 22px;position:relative;font-size:0.9rem;color:var(--ink-soft);line-height:1.55;border-bottom:1px dashed var(--rule-soft);}
+.thesis-col.bull ul li::before{content:"+";position:absolute;left:0;top:9px;color:var(--positive);font-weight:700;}
+.thesis-col.bear ul li::before{content:"−";position:absolute;left:0;top:9px;color:var(--negative);font-weight:700;}
+.recommendation{background:var(--ink);color:var(--paper);padding:40px 44px;margin-top:40px;border-left:6px solid var(--accent);}
+.recommendation .head{font-family:var(--mono);font-size:0.74rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--accent-soft);margin-bottom:12px;font-weight:600;}
+.recommendation h2{color:var(--paper);margin-bottom:14px;}
+.recommendation p{color:rgba(250,249,244,0.86);font-size:1rem;}
+.recommendation .actions{margin-top:24px;padding-top:20px;border-top:1px solid rgba(250,249,244,0.18);display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+.recommendation .actions .h{font-family:var(--mono);font-size:0.7rem;text-transform:uppercase;letter-spacing:0.14em;color:var(--accent-soft);margin-bottom:10px;}
+.recommendation .actions ul{list-style:none;}
+.recommendation .actions ul li{padding:6px 0 6px 22px;position:relative;font-size:0.9rem;color:rgba(250,249,244,0.92);line-height:1.5;}
+.recommendation .actions ul li::before{content:"▸";position:absolute;left:0;top:5px;color:var(--accent-soft);}
+footer{margin-top:80px;padding-top:28px;border-top:1px solid var(--ink);font-family:var(--sans);font-size:0.74rem;color:var(--muted);display:flex;justify-content:space-between;}
+.chart{width:100%;margin:18px 0 6px;background:var(--paper);}
+.chart-caption{font-family:var(--sans);font-size:0.72rem;color:var(--muted);margin-top:4px;font-style:italic;line-height:1.5;}
+/* Dashboard */
+.dash-panel{background:var(--paper-warm);border:1px solid var(--rule);padding:24px;margin-top:24px;}
+.dash-controls{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:20px;}
+.ctrl-item{display:flex;flex-direction:column;gap:5px;}
+.ctrl-item label{font-family:var(--sans);font-size:0.7rem;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);}
+.ctrl-row{display:flex;align-items:center;gap:8px;}
+.ctrl-row input[type=range]{flex:1;accent-color:var(--teal);cursor:pointer;}
+.ctrl-val{font-family:var(--mono);font-size:0.82rem;font-weight:600;color:var(--ink);min-width:48px;text-align:right;}
+.scen-row{display:flex;gap:8px;margin-bottom:18px;flex-wrap:wrap;}
+.scen-btn{font-family:var(--sans);font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;padding:5px 14px;border:1px solid var(--rule);background:var(--paper);color:var(--muted);cursor:pointer;}
+.scen-btn:hover{border-color:var(--teal);color:var(--teal);}
+.scen-btn.active{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+.output-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--rule);margin-bottom:16px;}
+.output-cell{padding:16px 14px;border-right:1px solid var(--rule);}
+.output-cell:last-child{border-right:none;}
+.output-cell .ov{font-family:var(--serif);font-size:1.8rem;letter-spacing:-0.02em;color:var(--ink);display:block;line-height:1;margin-bottom:4px;}
+.output-cell .ol{font-family:var(--sans);font-size:0.65rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--muted);}
+.output-cell.ok .ov{color:var(--positive);}
+.output-cell.warn .ov{color:var(--warning);}
+.output-cell.bad .ov{color:var(--negative);}
+.verdict-box{padding:16px 20px;font-family:var(--sans);font-size:0.88rem;line-height:1.6;border-left:4px solid var(--rule);margin-bottom:16px;}
+.verdict-box.ok{border-left-color:var(--positive);background:#f0f7f4;}
+.verdict-box.warn{border-left-color:var(--warning);background:#fdf8ec;}
+.verdict-box.bad{border-left-color:var(--negative);background:#fdf0f0;}
+.verdict-box .vl{font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.14em;margin-bottom:5px;color:var(--muted);}
+.assump-list{list-style:none;margin-top:0;}
+.assump-list li{padding:14px 0 14px 24px;border-bottom:1px solid var(--rule-soft);position:relative;font-size:0.88rem;line-height:1.6;color:var(--ink-soft);}
+.assump-list li::before{content:"→";position:absolute;left:0;top:14px;color:var(--accent);font-weight:700;}
+.assump-list li strong{color:var(--ink);}
+.assump-flag{display:inline-block;font-family:var(--mono);font-size:0.65rem;font-weight:700;letter-spacing:0.08em;padding:2px 7px;border:1px solid;margin-left:8px;vertical-align:middle;}
+.assump-flag.ok{border-color:var(--positive);color:var(--positive);}
+.assump-flag.warn{border-color:var(--warning);color:var(--warning);}
+.assump-flag.bad{border-color:var(--negative);color:var(--negative);}
+.signal{font-family:var(--mono);font-size:0.72rem;color:var(--teal);margin-top:6px;display:block;line-height:1.5;}
+.entity-row{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--ink);margin-top:20px;}
+.entity-col{padding:20px 18px;border-right:1px solid var(--rule);}
+.entity-col:last-child{border-right:none;}
+.entity-col h4{margin-bottom:12px;}
+.entity-col.et h4{color:var(--teal);}
+.entity-col.sun h4{color:var(--positive);}
+.entity-col.usac h4{color:var(--warning);}
+.emet{display:flex;justify-content:space-between;font-size:0.8rem;padding:6px 0;border-bottom:1px solid var(--rule-soft);}
+.emet:last-child{border:none;}
+.emet .ek{color:var(--muted);}
+.emet .ev{font-weight:600;color:var(--ink);font-family:var(--mono);font-size:0.78rem;}
+.emet .ev.g{color:var(--positive);}
+.emet .ev.r{color:var(--negative);}
+.emet .ev.w{color:var(--warning);}
+.dc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--rule);margin-top:16px;}
+.dc-cell{padding:18px 16px;border-right:1px solid var(--rule);}
+.dc-cell:last-child{border-right:none;}
+.dc-name{font-family:var(--sans);font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--ink);margin-bottom:4px;}
+.dc-pipe{font-family:var(--sans);font-size:0.7rem;color:var(--muted);margin-bottom:10px;}
+.dc-vol{font-family:var(--serif);font-size:1.8rem;color:var(--teal);letter-spacing:-0.02em;line-height:1;margin-bottom:4px;}
+.dc-ebitda{font-family:var(--mono);font-size:0.8rem;color:var(--positive);font-weight:600;}
+.dc-note{font-size:0.72rem;color:var(--muted);margin-top:6px;line-height:1.45;}
+.site-nav{display:flex;align-items:center;justify-content:space-between;background:var(--ink);color:var(--paper);padding:10px 40px;font-family:var(--sans);font-size:0.78rem;letter-spacing:0.04em;position:sticky;top:0;z-index:100;gap:16px;}
+.site-nav a{color:rgba(250,249,244,0.7);text-decoration:none;}
+.site-nav a:hover{color:var(--paper);}
+.site-nav span[aria-hidden]{color:rgba(250,249,244,0.3);margin:0 4px;}
+.site-nav .nav-meta{color:rgba(250,249,244,0.45);font-size:0.75rem;}
+.site-nav .nav-action a{color:var(--accent);border:1px solid rgba(184,57,28,0.5);border-radius:3px;padding:3px 10px;}
+@media(max-width:760px){
+  .page{padding:32px 22px;}
+  h1{font-size:2.4rem;}
+  .metric-grid{grid-template-columns:repeat(2,1fr);}
+  .cols-2,.cols-3,.thesis-grid,.dash-controls,.output-grid,.entity-row,.dc-grid{grid-template-columns:1fr;}
+  .thesis-col.bull{border-right:none;border-bottom:1px solid var(--ink);}
+  .section-head{grid-template-columns:1fr;gap:8px;}
+  .recommendation .actions{grid-template-columns:1fr;}
+}
+
+/* ===== Glossary ===== */
+.glossary-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:0;border:1px solid var(--ink);margin-top:16px;}
+.glossary-col{padding:0;}
+.gterm{display:grid;grid-template-columns:160px 1fr;gap:0;border-bottom:1px solid var(--rule-soft);}
+.gterm:last-child{border-bottom:none;}
+.gt{font-family:var(--mono);font-size:0.78rem;font-weight:700;color:var(--teal);padding:12px 14px;border-right:1px solid var(--rule-soft);background:var(--paper-warm);display:flex;align-items:flex-start;}
+.gd{font-size:0.82rem;color:var(--ink-soft);padding:12px 14px;line-height:1.55;}
+.gd strong{color:var(--ink);}
+@media(max-width:760px){.glossary-grid{grid-template-columns:1fr;}.gterm{grid-template-columns:120px 1fr;}}
+
+
+
+section[id]{scroll-margin-top:64px}
+.tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin-top:14px}
+.tbl-wrap table{margin-top:0}
+em.unv{font-style:normal;font-family:var(--mono);font-size:0.68rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--warning);border:1px solid var(--warning);padding:1px 5px;margin:0 2px;white-space:nowrap}
+em.corr{font-style:normal;font-family:var(--mono);font-size:0.68rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--accent);border:1px solid var(--accent);padding:1px 5px;margin:0 2px}
+h3{font-family:var(--sans);font-size:0.78rem;font-weight:700;text-transform:uppercase;letter-spacing:0.13em;color:var(--accent);margin:26px 0 8px}
+h4{font-family:var(--serif);font-size:1.05rem;font-weight:400;margin:20px 0 6px}
+section ul{margin:6px 0 6px 20px}
+section ul li{font-size:0.9rem;line-height:1.6;color:var(--ink-soft);padding:3px 0}
+section ol{margin:6px 0 6px 22px}
+section ol li{font-size:0.9rem;line-height:1.6;color:var(--ink-soft);padding:3px 0}
+.factstrip{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--ink);margin:18px 0 4px}
+.factstrip .f{padding:16px 20px;border-right:1px solid var(--rule)}
+.factstrip .f:last-child{border-right:none}
+.factstrip .f .label{display:block;margin-bottom:5px}
+.factstrip .f .t{font-size:0.88rem;line-height:1.55;color:var(--ink)}
+.txn-map td:first-child{font-weight:600;color:var(--ink)}
+.srcnote{font-family:var(--sans);font-size:0.78rem;color:var(--muted);line-height:1.6;border-left:3px solid var(--rule);padding:2px 0 2px 16px;margin:14px 0}
+.toc{display:grid;grid-template-columns:repeat(2,1fr);gap:0;border:1px solid var(--ink);margin-top:20px}
+.toc a{display:block;padding:12px 18px;border-bottom:1px solid var(--rule-soft);border-right:1px solid var(--rule-soft);text-decoration:none;color:var(--ink);font-size:0.86rem}
+.toc a:hover{background:var(--paper-warm);color:var(--accent)}
+.toc a .n{font-family:var(--mono);font-size:0.68rem;color:var(--muted);margin-right:10px}
+@media(max-width:720px){.factstrip,.toc{grid-template-columns:1fr}}
+
+</style>
+</head>
+<body>
+<nav class="site-nav" aria-label="breadcrumb">
+  <div style="display:flex;align-items:center;gap:0;flex-wrap:wrap">
+    <a href="../../">Market Logic Investors</a><span aria-hidden="true">/</span>
+    <a href="../../">Deal Vault</a><span aria-hidden="true">/</span>
+    <a href="../">Transaction Experience</a><span aria-hidden="true">/</span>
+    <span>Caterpillar</span>
+  </div>
+  <div style="display:flex;align-items:center;gap:16px;">
+    <span class="nav-meta">ML-TXN-CAT &nbsp;|&nbsp; Industrials</span>
+  </div>
+</nav>
+<div class="page">
+<header class="cover">
+<div class="cover-meta">
+<div class="left">
+<p><strong style="color:var(--ink);display:block;margin-bottom:4px;">Market Logic Investors LLC</strong> Industrials · Transaction Record<br> Client engagement record · Primary-source reconstruction</p>
+</div>
+<div class="right">
+<p><span class="stamp">15 transactions</span><br> <strong style="color:var(--ink);">Ref: ML-TXN-CAT</strong><br> Period: 1981 – 2026<br> Compiled: September 6, 2026</p>
+</div>
+</div>
+<span class="eyebrow">Industrials · Forty-five years of acquisition programme</span>
+<div class="cover-title">
+<h1>
+Caterpillar
+</h1>
+<p><span class="legal">Caterpillar Inc. · NYSE: CAT · CIK 0000018230 · Irving / Peoria</span></p>
+</div>
+<p class="cover-tag">
+Fifteen transactions across four decades, and the cleanest available demonstration that acquisition accounting is where deal quality eventually shows up. Three separate goodwill impairments — Siwei, Surface Mining, Rail — total $2.1bn and each traces to a specific diligence or cycle-timing failure.
+</p>
+<div class="metric-grid">
+<div class="metric">
+<span class="v">15</span><span class="l">Transactions</span>
+</div>
+<div class="metric accent">
+<span class="v">$8.8<small>bn</small></span><span class="l">Bucyrus purchase price</span>
+</div>
+<div class="metric">
+<span class="v">$4,616<small>m</small></span><span class="l">Bucyrus goodwill</span>
+</div>
+<div class="metric teal">
+<span class="v">$2,122<small>m</small></span><span class="l">Accumulated impairment</span>
+</div>
+<div class="metric">
+<span class="v">$580<small>m</small></span><span class="l">Siwei write-off</span>
+</div>
+<div class="metric">
+<span class="v">$666<small>m</small></span><span class="l">Distribution divested</span>
+</div>
+</div>
+</header>
+<section class="no-rule" style="margin-top:48px">
+<div class="section-head">
+<div class="section-num">
+§ 01
+</div>
+<div class="section-title">
+<h2>
+Transaction map
+</h2>
+<p class="sub">
+Every transaction on this file, in order
+</p>
+</div>
+</div>
+<p style="margin-bottom:8px">
+Bucyrus at $92.00 a share and $8.8bn was the largest acquisition in Caterpillar’s history and closed at the top of the mining cycle; $595m of its goodwill was written off in 2016. ERA Mining / Siwei was acquired in June 2012 and ~93% of its goodwill written off seven months later after deliberate multi-year accounting misconduct was found. Progress Rail and EMD built a locomotive franchise written down by $925m in 2022.
+</p>
+<div class="tbl-wrap">
+<table class="txn-map">
+<thead>
+<tr>
+<th>
+Transaction
+</th>
+<th>
+Type
+</th>
+<th>
+Announced / closed
+</th>
+<th>
+Headline value
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="#txn-02" style="color:var(--ink);text-decoration:none;border-bottom:1px solid var(--rule)">Bucyrus International, Inc.</a>
+</td>
+<td>
+Public-to-public, one-step cash merger (reverse triangular; Badger Merger Sub, Inc. into Bucyrus); all-cash, no stock consideration; debt-financed
+</td>
+<td>
+Merger agreement signed Nov 14, 2010; announced Nov 15, 2010 / Closed July 8, 2011
+</td>
+<td>
+$92.00 per share cash; ~$7.6bn equity value; ~$8.6bn announced enterprise value including net debt; $8.8bn total purchase price…
+</td>
+</tr>
+<tr>
+<td>
+<a href="#txn-03" style="color:var(--ink);text-decoration:none;border-bottom:1px solid var(--rule)">Progress Rail Services Corporation</a>
+</td>
+<td>
+Corporate acquisition of a sponsor-owned platform (cash + stock + assumed debt)
+</td>
+<td>
+Announced May 16, 2006 / Closed end of Q2 2006
+</td>
+<td>
+~$1.0bn — approximately $800m in cash and Caterpillar stock plus assumption of ~$200m long-term debt
+</td>
+</tr>
+<tr>
+<td>
+<a href="#txn-04" style="color:var(--ink);text-decoration:none;border-bottom:1px solid var(--rule)">Electro-Motive Diesel, Inc. (EMD)</a>
+</td>
+<td>
+Sponsor-to-strategic sale; all-cash carve-out of a PE-owned locomotive OEM
+</td>
+<td>
+Announced June 1, 2010 / Closed August 2, 2010
+</td>
+<td>
+$820m cash plus a net working capital adjustment of ~$108m (≈$928m all-in)
+</td>
+</tr>
+<tr>
+<td>
+<a href="#txn-05" style="color:var(--ink);text-decoration:none;border-bottom:1px solid var(--rule)">MWM Holding GmbH</a>
+</td>
+<td>
+Sponsor-to-strategic carve-out; all-cash
+</td>
+<td>
+Announced Oct 22, 2010 / Closed November 1, 2011
+</td>
+<td>
+€580m (~$800–810m)
+</td>
+</tr>
+<tr>
+<td>
+<a href="#txn-06" style="color:var(--ink);text-decoration:none;border-bottom:1px solid var(--rule)">ERA Mining Machinery Ltd. / Zhengzhou Siwei (the fraud)</a>
+</td>
+<td>
+Cross-border public tender offer for a HKEX GEM-listed shell holding a Chinese operating company; cash + loan-note alternative
+</td>
+<td>
+Pre-conditional offer announced Nov 11, 2011; tender offer completed June 6, 2012; compulsory acquisition of the residual stub in…
+</td>
+<td>
+HK$5,064m–HK$5,693m on a fully diluted basis (≈US$653m–734m), performance-contingent; originally announced as a HK$4.5bn–HK$6.9bn…
+</td>
+</tr>
+<tr>
+<td>
+<a href="#txn-07" style="color:var(--ink);text-decoration:none;border-bottom:1px solid var(--rule)">Weir Oil &amp; Gas division (→ SPM Oil &amp; Gas)</a>
+</td>
+<td>
+Corporate carve-out from a UK listed parent; all-cash
+</td>
+<td>
+Agreement announced October 2020; completed February 1–2, 2021
+</td>
+<td>
+$405m cash
+</td>
+</tr>
+<tr>
+<td>
+<a href="#txn-08" style="color:var(--ink);text-decoration:none;border-bottom:1px solid var(--rule)">Other material transactions (compressed)</a>
+</td>
+<td>
+Mixed — corporate carve-outs, JV buy-ins, bolt-ons, divestitures
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="toc">
+<a href="#txn-02"><span class="n">§ 02</span>Bucyrus International, Inc.</a><a href="#txn-03"><span class="n">§ 03</span>Progress Rail Services Corporation</a><a href="#txn-04"><span class="n">§ 04</span>Electro-Motive Diesel, Inc. (EMD)</a><a href="#txn-05"><span class="n">§ 05</span>MWM Holding GmbH</a><a href="#txn-06"><span class="n">§ 06</span>ERA Mining Machinery Ltd. / Zhengzhou Siwei (the fraud)</a><a href="#txn-07"><span class="n">§ 07</span>Weir Oil &amp; Gas division (→ SPM Oil &amp; Gas)</a><a href="#txn-08"><span class="n">§ 08</span>Other material transactions (compressed)</a>
+</div>
+</section>
+<section id="txn-02">
+<div class="section-head">
+<div class="section-num">
+§ 02
+</div>
+<div class="section-title">
+<h2>
+Caterpillar Inc. — Bucyrus International, Inc.
+</h2>
+<p class="sub">
+Public-to-public, one-step cash merger (reverse triangular; Badger Merger Sub, Inc. into Bucyrus); all-cash, no stock consideration; debt-financed
+</p>
+</div>
+</div>
+<div class="factstrip">
+<div class="f">
+<span class="label">Announced / closed</span>
+<div class="t">
+<p>Merger agreement signed Nov 14, 2010; announced Nov 15, 2010 / Closed July 8, 2011</p>
+</div>
+</div>
+<div class="f">
+<span class="label">Headline value</span>
+<div class="t">
+<p>$92.00 per share cash; ~$7.6bn equity value; ~$8.6bn announced enterprise value including net debt; <strong>$8.8bn</strong> total purchase price as booked in the 2011 10-K (including $1.6bn assumed debt)</p>
+</div>
+</div>
+</div>
+<h3 id="parties">Parties</h3>
+<p>Caterpillar Inc. (NYSE: CAT) / Badger Merger Sub, Inc. (Delaware) / Bucyrus International, Inc. (NASDAQ: BUCY), South Milwaukee, WI</p>
+<h3 id="structure">Structure</h3>
+<ul>
+<li>One-step merger under Delaware law; Bucyrus survived as a wholly owned Caterpillar subsidiary. Merger agreement dated Nov 14, 2010 (Exhibit 2.1 to Bucyrus 8-K).</li>
+<li>Consideration: $92.00 in cash per share, without interest. Company SARs, RSUs and restricted stock treated per §5.04(a) of the merger agreement.</li>
+<li>No-shop in §4.02; efforts/regulatory covenant in §5.03; conditions in Article VI.</li>
+<li><strong>Termination fee: $200 million</strong> payable by Bucyrus to Caterpillar (board recommendation change / superior proposal); no reverse termination fee disclosed.</li>
+<li>Record date Dec 22, 2010; special meeting Jan 20, 2011, 11:00 a.m. CST; majority-of-outstanding vote required.</li>
+<li>Vote result: 59,822,881 shares FOR = ~99.7% of shares voted, ~73.8% of shares outstanding.</li>
+<li>Premium: <strong>32.0%</strong> to Bucyrus’ Nov 12, 2010 close of $69.62.</li>
+<li>Bucyrus had itself just acquired <strong>Terex Mining</strong> (closed Feb 2010), which contributed ~$1.03bn of 2010 surface mining sales — Caterpillar was buying a business mid-integration.</li>
+<li>On closing, Caterpillar formed a Mining Equipment group and announced it would <strong>divest the entire Bucyrus direct-sales distribution business to Cat dealers</strong>, converting Bucyrus from direct sales to the Cat dealer model.</li>
+</ul>
+<h3 id="financing">Financing</h3>
+<ul>
+<li>At announcement: balance-sheet cash + debt + <strong>up to $2bn of equity</strong>. The equity component was <strong>abandoned</strong> — Caterpillar confirmed at DOJ clearance (May 20, 2011) that funding would be “a combination of cash and debt” with <strong>no equity issuance</strong>.</li>
+<li>J.P. Morgan Securities LLC provided <strong>committed bridge financing</strong> as part of its exclusive advisory mandate.</li>
+<li><strong>$4.5bn senior notes offering priced May 24, 2011, settled May 27, 2011</strong> (five tranches):
+<ul>
+<li>$500m Floating Rate Senior Notes due Nov 2012 — 3M USD LIBOR + 10 bps, issued at 100</li>
+<li>$750m Floating Rate Senior Notes due 2013 — 3M USD LIBOR + 17 bps, issued at 100</li>
+<li>$750m 1.375% Senior Notes due 2014 — T+50 bps</li>
+<li>$1.25bn 3.900% Senior Notes due 2021 — T+85 bps</li>
+<li>$1.25bn 5.200% Senior Notes due 2041 — T+98 bps</li>
+<li>Fixed tranches priced 99.789–99.924% of par</li>
+</ul></li>
+<li><strong>Special mandatory redemption</strong> if the Bucyrus merger did not close by June 30, 2012.</li>
+<li>Ratings on the notes: <strong>A2 (Moody’s) / A (S&amp;P) / A (Fitch)</strong>.</li>
+<li>Joint book-runners: J.P. Morgan, Barclays, RBS, Citigroup, Merrill Lynch, SG Americas (+16 co-managers).</li>
+</ul>
+<h3 id="purchase-price-allocation-goodwill-and-impairments">Purchase price allocation, goodwill and impairments</h3>
+<ul>
+<li>Total purchase price <strong>$8,800m</strong>, including <strong>$1,600m debt assumed</strong>; net assets acquired <strong>$7,454m</strong> (2011 Form 10-K, Note on Business Combinations).</li>
+<li>Acquisition-date allocation (2011 10-K, $m): Cash 204 | Receivables 689 | Prepaid 161 | <strong>Inventories 2,248</strong> | PP&amp;E (net) 699 | <strong>Intangible assets 3,901</strong> | <strong>Goodwill 4,616</strong> | Other assets 79. Liabilities: ST borrowings 24 | Current LTD 16 | AP 465 | Accrued 427 | Customer advances 668 | Other current 78 | <strong>Long-term debt 1,528</strong> | Other liabilities 1,937.</li>
+<li>Intangibles $3,901m: customer relationships ~14-yr WAL, intellectual property ~15-yr WAL, other ~12-yr WAL. Component split reported in XBRL as customer relationships $2,337m / intellectual property $1,489m / other ~$75m [unverified — XBRL extraction ambiguous].</li>
+<li>Initial goodwill allocation was <strong>$5,263m</strong>, reduced by <strong>$647m</strong> of measurement-period adjustments during 2012 to the final <strong>$4,616m</strong> (2012 10-K goodwill rollforward).</li>
+<li>Amortization schedule for acquired intangibles: 2012 $389m | 2013 $382m | 2014 $379m | 2015 $373m | 2016 $364m | thereafter $2,481m.</li>
+<li>One-time charges: <strong>acquisition-related costs $373m</strong>; <strong>inventory fair-value step-up $303m</strong>; <strong>accelerated stock compensation $25m</strong>.</li>
+<li>Stub-period contribution (July 8 – Dec 31, 2011): sales <strong>$2,524m</strong>, <strong>pretax LOSS $403m</strong>.</li>
+<li>2011 pro forma (as if acquired Jan 1): sales and revenues <strong>$62,281m</strong>; profit <strong>$5,401m</strong>; basic EPS $8.37; diluted EPS $8.11.</li>
+<li><strong>Resource Industries goodwill impairment: $595m recorded in Q4 2016</strong>, against the Surface Mining &amp; Technology reporting unit (which carried $629m goodwill at Dec 31, 2015). Resource Industries goodwill: $3,707m (2014) → $3,565m (2015) → <strong>$2,935m (2016)</strong>. Tax benefit on the impairment $17m.</li>
+<li>Separately, <strong>$132m of finite-lived intangible impairment</strong> in Resource Industries (customer relationships $96m gross, intellectual property $111m gross, offset by accumulated amortization).</li>
+<li>Bucyrus distribution divestitures to Cat dealers: <strong>2013 — 19 transactions, aggregate price $467m</strong> (customer-relationship intangibles $127m, other assets $65m, allocated goodwill $56m; after-tax profit impact <strong>-$39m</strong>; Cat Financial financed $132m to five dealers). <strong>2014 — 32 transactions, aggregate price $199m</strong> (intangibles $82m, other assets $24m, allocated goodwill $63m; after-tax impact <strong>-$22m</strong>; Cat Financial financed $20m to two dealers). Asset impairment charges of $11m (2013) and $4m (2014) on disposal groups.</li>
+</ul>
+<h3 id="advisers">Advisers</h3>
+<ul>
+<li>Caterpillar — <strong>J.P. Morgan Securities LLC</strong> (exclusive financial advisor, with committed financing). Legal: <strong>Mayer Brown LLP; Sidley Austin LLP; Howrey LLP</strong>.</li>
+<li>Bucyrus — <strong>Deutsche Bank Securities Inc.</strong> and <strong>UBS Investment Bank</strong> (both delivered fairness opinions dated Nov 14, 2010). Legal: <strong>Sullivan &amp; Cromwell LLP; Arnold &amp; Porter LLP</strong>.</li>
+<li><em>(Note: the working hypothesis of Goldman Sachs / Citi for Bucyrus is incorrect. Citigroup appeared only as a bookrunner on the $4.5bn financing.)</em></li>
+</ul>
+<h3 id="key-people">Key people</h3>
+<ul>
+<li>Douglas R. Oberhelman — Chairman &amp; CEO, Caterpillar — deal sponsor and public face</li>
+<li>Timothy W. Sullivan — President &amp; CEO, Bucyrus International — seller-side CEO</li>
+<li>Edward J. Rapp — Group President &amp; CFO, Caterpillar — financing/capital structure [role unverified in primary sources reviewed]</li>
+<li>Steven H. Wunning — Group President, Caterpillar — executive accountability for Global Mining post-close</li>
+<li>Luis de Leon — Bucyrus COO → Caterpillar Corporate VP, Mining Products Division</li>
+<li>Chris Curfman — VP, Mining Sales and Marketing Division</li>
+<li>Dave Bozeman — VP, Integrated Manufacturing Operations Division</li>
+</ul>
+<h3 id="regulatory-and-litigation">Regulatory and litigation</h3>
+<ul>
+<li><strong>DOJ: HSR waiting period expired / clearance May 20, 2011</strong> — unconditional, no divestiture ordered. The Bucyrus distribution divestiture to Cat dealers was a <strong>commercial</strong> decision, not an antitrust remedy.</li>
+<li><strong>China MOFCOM approved July 8, 2011</strong> — characterized by Caterpillar as “the last major regulatory requirement”; no conditions disclosed in the company release.</li>
+<li>No EC Phase II or conditional clearance located in the primary sources reviewed [EC clearance details unverified].</li>
+</ul>
+<h3 id="outcome-and-post-deal-performance">Outcome and post-deal performance</h3>
+<ul>
+<li>The single largest acquisition in Caterpillar’s history. Closed at the top of the commodity supercycle; mining capex collapsed from 2012.</li>
+<li>Stub-period pretax loss of $403m in 2011 driven by purchase accounting (inventory step-up, intangible amortization, deal costs).</li>
+<li>$595m of the Bucyrus-related goodwill written off in Q4 2016; $132m of intangibles written down in the same segment.</li>
+<li>Distribution business divested to dealers for $666m aggregate across 51 transactions (2013–14), each transaction dilutive to reported profit.</li>
+<li>Resource Industries goodwill was still $2,949m at Dec 31, 2024, i.e. the bulk of the original $4,616m survives on the balance sheet.</li>
+</ul>
+<h3 id="key-numbers">Key numbers</h3>
+<div class="tbl-wrap"><table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Metric</th>
+<th>Value</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Price per share</td>
+<td>$92.00 cash</td>
+<td>Merger agreement Ex-2.1</td>
+</tr>
+<tr class="even">
+<td>Premium to unaffected (11/12/2010 close $69.62)</td>
+<td>32.0%</td>
+<td>DEFM14A</td>
+</tr>
+<tr class="odd">
+<td>Equity value</td>
+<td>~$7.6bn</td>
+<td>Announcement 11/15/2010</td>
+</tr>
+<tr class="even">
+<td>Enterprise value (announced)</td>
+<td>~$8.6bn</td>
+<td>Announcement 11/15/2010</td>
+</tr>
+<tr class="odd">
+<td>Total purchase price (booked)</td>
+<td>$8,800m</td>
+<td>CAT 2011 10-K</td>
+</tr>
+<tr class="even">
+<td>Debt assumed</td>
+<td>$1,600m</td>
+<td>CAT 2011 10-K</td>
+</tr>
+<tr class="odd">
+<td>Net assets acquired</td>
+<td>$7,454m</td>
+<td>CAT 2011 10-K</td>
+</tr>
+<tr class="even">
+<td>Goodwill (final)</td>
+<td>$4,616m</td>
+<td>CAT 2011/2012 10-K</td>
+</tr>
+<tr class="odd">
+<td>Goodwill (initial, later revised)</td>
+<td>$5,263m</td>
+<td>CAT 2012 10-K</td>
+</tr>
+<tr class="even">
+<td>Intangible assets</td>
+<td>$3,901m</td>
+<td>CAT 2011 10-K</td>
+</tr>
+<tr class="odd">
+<td>Inventories acquired</td>
+<td>$2,248m</td>
+<td>CAT 2011 10-K</td>
+</tr>
+<tr class="even">
+<td>Bucyrus FY2010 sales</td>
+<td>$3.65bn</td>
+<td>Bucyrus 8-K Ex-99, Feb 2011</td>
+</tr>
+<tr class="odd">
+<td>Bucyrus FY2010 EBITDA</td>
+<td>$637.3m</td>
+<td>Bucyrus 8-K Ex-99</td>
+</tr>
+<tr class="even">
+<td>Bucyrus FY2010 Adj. EBITDA</td>
+<td>$720.6m</td>
+<td>Bucyrus 8-K Ex-99</td>
+</tr>
+<tr class="odd">
+<td>Implied EV / FY2010 EBITDA</td>
+<td>~13.8x ($8.8bn / $637m)</td>
+<td>Derived</td>
+</tr>
+<tr class="even">
+<td>Implied EV / FY2010 Adj. EBITDA</td>
+<td>~12.2x ($8.8bn / $721m)</td>
+<td>Derived</td>
+</tr>
+<tr class="odd">
+<td>Bucyrus FY2010 backlog</td>
+<td>$2.71bn (+44%)</td>
+<td>Bucyrus 8-K Ex-99</td>
+</tr>
+<tr class="even">
+<td>Termination fee</td>
+<td>$200m</td>
+<td>DEFM14A</td>
+</tr>
+<tr class="odd">
+<td>Shareholder vote FOR</td>
+<td>59,822,881 sh (99.7% voted / 73.8% o/s)</td>
+<td>Bucyrus 8-K Ex-99.1, Jan 2011</td>
+</tr>
+<tr class="even">
+<td>Announced synergies</td>
+<td>&gt;$400m p.a. from 2015</td>
+<td>Announcement</td>
+</tr>
+<tr class="odd">
+<td>Acquisition financing bonds</td>
+<td>$4.5bn / 5 tranches</td>
+<td>FWP 5/24/2011</td>
+</tr>
+<tr class="even">
+<td>Bond ratings</td>
+<td>A2 / A / A</td>
+<td>FWP 5/24/2011</td>
+</tr>
+<tr class="odd">
+<td>Acquisition costs expensed</td>
+<td>$373m</td>
+<td>CAT 2011 10-K</td>
+</tr>
+<tr class="even">
+<td>Inventory step-up charge</td>
+<td>$303m</td>
+<td>CAT 2011 10-K</td>
+</tr>
+<tr class="odd">
+<td>Stub-period pretax loss</td>
+<td>$(403)m</td>
+<td>CAT 2011 10-K</td>
+</tr>
+<tr class="even">
+<td>2016 goodwill impairment (Surface Mining &amp; Tech)</td>
+<td>$595m</td>
+<td>CAT 2016 10-K</td>
+</tr>
+<tr class="odd">
+<td>Distribution divestiture proceeds 2013+2014</td>
+<td>$467m + $199m = $666m</td>
+<td>CAT 2015 10-K</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="primary-sources">Primary sources</h3>
+<ul>
+<li><a href="https://www.sec.gov/Archives/edgar/data/740761/000095012310105441/y87760exv99w1.htm">Bucyrus 8-K Ex-99.1 — merger announcement, Nov 15 2010</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/740761/000095012310106586/y87806exv2w1.htm">Agreement and Plan of Merger (Ex-2.1), Caterpillar / Badger Merger Sub / Bucyrus</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/740761/000119312510286150/ddefm14a.htm">Bucyrus DEFM14A, filed Dec 22 2010</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/740761/000119312511011336/dex991.htm">Bucyrus 8-K Ex-99.1 — stockholder approval, Jan 20 2011</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/740761/000119312511039516/dex99.htm">Bucyrus 8-K Ex-99 — FY2010 results (sales, EBITDA, backlog)</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/18230/000110465911031239/a11-13015_3fwp.htm">Caterpillar FWP — $4.5bn five-tranche notes offering, May 24 2011</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/740761/000119312511147077/dex991.htm">Joint Caterpillar/Bucyrus press release — DOJ clearance (SEC-filed)</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/18230/000110465912011331/">Caterpillar 2011 Form 10-K — filing index</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/18230/000110465912011331/R120.htm">CAT 2011 10-K — Business Combinations (Details) R120</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/18230/000110465912011331/R121.htm">CAT 2011 10-K — Business Combinations (Details 2) R121</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/18230/000001823013000075/R89.htm">CAT 2012 10-K — Intangible assets and goodwill (Details) R89</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/18230/000001823016000533/R34.htm">CAT 2015 10-K — Bucyrus distribution divestitures note R34</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/18230/000001823017000041/R89.htm">CAT 2016 10-K — goodwill by segment / impairment R89</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/18230/000001823017000041/R90.htm">CAT 2016 10-K — goodwill impairment detail R90</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/18230/000001823017000041/cat10k2016a01.pdf">CAT 2016 Form 10-K (full PDF)</a></li>
+<li><a href="https://www.prnewswire.com/news-releases/the-united-states-department-of-justice-clears-caterpillar-acquisition-of-bucyrus-122365318.html">DOJ clearance press release, May 20 2011</a></li>
+<li><a href="https://www.prnewswire.com/news-releases/china-approves-caterpillar-acquisition-of-bucyrus-125196904.html">China MOFCOM approval press release, July 8 2011</a></li>
+<li><a href="https://www.prnewswire.com/news-releases/caterpillar-completes-acquisition-of-bucyrus-creating-mining-equipment-group-with-unmatched-product-range-and-unrivaled-customer-support-125214769.html">Caterpillar completes Bucyrus acquisition, July 8 2011</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/740761/">Bucyrus International EDGAR company archive (CIK 740761)</a></li>
+</ul>
+<hr />
+</section>
+<section id="txn-03">
+<div class="section-head">
+<div class="section-num">
+§ 03
+</div>
+<div class="section-title">
+<h2>
+Caterpillar Inc. — Progress Rail Services Corporation
+</h2>
+<p class="sub">
+Corporate acquisition of a sponsor-owned platform (cash + stock + assumed debt)
+</p>
+</div>
+</div>
+<div class="factstrip">
+<div class="f">
+<span class="label">Announced / closed</span>
+<div class="t">
+<p>Announced May 16, 2006 / Closed end of Q2 2006</p>
+</div>
+</div>
+<div class="f">
+<span class="label">Headline value</span>
+<div class="t">
+<p>~$1.0bn — approximately <strong>$800m in cash and Caterpillar stock</strong> plus assumption of <strong>~$200m long-term debt</strong></p>
+</div>
+</div>
+</div>
+<h3 id="parties-1">Parties</h3>
+<p>Caterpillar Inc. / Progress Rail Services Inc. — majority-owned by <strong>One Equity Partners</strong>, the private equity arm of <strong>JPMorgan Chase &amp; Co.</strong></p>
+<h3 id="structure-1">Structure</h3>
+<ul>
+<li>Progress Rail became a wholly owned Caterpillar subsidiary, retaining its brand and Albertville, Alabama base.</li>
+<li>Mixed cash-and-stock consideration to selling shareholders plus debt assumption.</li>
+<li>Business at acquisition: 90+ facilities across the U.S., Canada and Mexico; reconditioned rail-car components, track materials, maintenance-of-way equipment, rail welding, scrap recycling, and repair services.</li>
+<li>Management retained: William (Billy) Ainsworth and the senior leadership team joined Caterpillar.</li>
+</ul>
+<h3 id="financing-1">Financing</h3>
+<p>Not separately disclosed; funded from Caterpillar balance sheet and Caterpillar shares.</p>
+<h3 id="purchase-price-allocation-goodwill-and-impairments-1">Purchase price allocation, goodwill and impairments</h3>
+<ul>
+<li>Acquisition-date PPA not separately disclosed in a 10-K business-combinations note at this size <em class="unv">unverified</em>.</li>
+<li><strong>Downstream consequence — Q4 2022: Caterpillar recorded a $925m non-cash goodwill impairment against its Rail division</strong>, “related to a lower outlook for the company’s locomotive offerings.” Tax benefit $36m. Recorded alongside $180m of Q4 2022 restructuring (largely inventory write-downs). Reported Q4 2022 EPS $2.79 vs adjusted $3.86.</li>
+<li>This $925m is the entire accumulated goodwill impairment sitting in Caterpillar’s <strong>Energy &amp; Transportation</strong> segment at Dec 31, 2024.</li>
+</ul>
+<h3 id="advisers-1">Advisers</h3>
+<p>Not disclosed in the announcement.</p>
+<h3 id="key-people-1">Key people</h3>
+<ul>
+<li>James W. Owens — Chairman &amp; CEO, Caterpillar — acquirer</li>
+<li>William P. “Billy” Ainsworth — President &amp; CEO, Progress Rail — retained; later led the EMD acquisition</li>
+<li>One Equity Partners (JPMorgan Chase) — controlling seller</li>
+</ul>
+<h3 id="regulatory-and-litigation-1">Regulatory and litigation</h3>
+<p>Customary regulatory approvals; no conditions disclosed.</p>
+<h3 id="outcome-and-post-deal-performance-1">Outcome and post-deal performance</h3>
+<ul>
+<li>Platform for Caterpillar’s rail strategy: ~$2bn invested in rail/transit from 2006 through the 2010 EMD deal.</li>
+<li><strong>Jan 2020:</strong> Progress Rail sold Progress Rail Equipment Leasing Corp. / R.E.L.A.M. (rail maintenance equipment leasing) to affiliates of <strong>Paceline Equity Partners</strong>; terms undisclosed.</li>
+<li><strong>Feb 2020:</strong> BSN Sports (Varsity Brands) bought Riddell’s Kollege Town Sports unit — unrelated, noted only to avoid confusion.</li>
+<li><strong>Q4 2022:</strong> the locomotive franchise built on Progress Rail + EMD was written down by $925m.</li>
+</ul>
+<h3 id="key-numbers-1">Key numbers</h3>
+<div class="tbl-wrap"><table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Metric</th>
+<th>Value</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Headline value</td>
+<td>~$1.0bn</td>
+<td>Progressive Railroading, May 16 2006</td>
+</tr>
+<tr class="even">
+<td>Cash + stock consideration</td>
+<td>~$800m</td>
+<td>Progressive Railroading</td>
+</tr>
+<tr class="odd">
+<td>Debt assumed</td>
+<td>~$200m</td>
+<td>Progressive Railroading</td>
+</tr>
+<tr class="even">
+<td>Facilities at acquisition</td>
+<td>90+ (US/Canada/Mexico)</td>
+<td>Progressive Railroading</td>
+</tr>
+<tr class="odd">
+<td>Seller</td>
+<td>One Equity Partners (JPMorgan Chase)</td>
+<td>Progressive Railroading</td>
+</tr>
+<tr class="even">
+<td>2022 Rail goodwill impairment</td>
+<td>$925m</td>
+<td>CAT Q4 2022 release; CAT 2024 10-K R88</td>
+</tr>
+<tr class="odd">
+<td>Tax benefit on 2022 impairment</td>
+<td>$36m</td>
+<td>CAT 2024 10-K R88</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="primary-sources-1">Primary sources</h3>
+<ul>
+<li><a href="https://www.progressiverailroading.com/m_a/news/Caterpillar-to-acquire-Progress-Rail-Services--7748">Progressive Railroading — Caterpillar to acquire Progress Rail Services (May 2006)</a></li>
+<li><a href="https://www.prnewswire.com/news-releases/caterpillar-reports-fourth-quarter-and-full-year-2022-results-301734585.html">Caterpillar Q4/FY2022 results — $925m Rail goodwill impairment</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/18230/000001823025000008/R88.htm">CAT 2024 10-K — intangibles &amp; goodwill detail R88</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/18230/000001823025000008/R90.htm">CAT 2024 10-K — goodwill rollforward R90</a></li>
+<li><a href="https://www.businesswire.com/news/home/20200102005069/en/Affiliates-of-Paceline-Equity-Partners-Acquire-Rail-Maintenance-Leasing-Business-From-Subsidiary-of-Caterpillar">Paceline Equity Partners — acquisition of rail maintenance leasing business from Caterpillar subsidiary (Jan 2020)</a></li>
+</ul>
+<hr />
+</section>
+<section id="txn-04">
+<div class="section-head">
+<div class="section-num">
+§ 04
+</div>
+<div class="section-title">
+<h2>
+Progress Rail Services (Caterpillar) — Electro-Motive Diesel, Inc. (EMD)
+</h2>
+<p class="sub">
+Sponsor-to-strategic sale; all-cash carve-out of a PE-owned locomotive OEM
+</p>
+</div>
+</div>
+<div class="factstrip">
+<div class="f">
+<span class="label">Announced / closed</span>
+<div class="t">
+<p>Announced June 1, 2010 / <strong>Closed August 2, 2010</strong></p>
+</div>
+</div>
+<div class="f">
+<span class="label">Headline value</span>
+<div class="t">
+<p><strong>$820m cash</strong> plus a net working capital adjustment of <strong>~$108m</strong> (≈$928m all-in)</p>
+</div>
+</div>
+</div>
+<h3 id="parties-2">Parties</h3>
+<p>Progress Rail Services Corp. (wholly owned by Caterpillar) / <strong>Berkshire Partners LLC</strong> and <strong>Greenbriar Equity Group LLC</strong> (sellers) / Electro-Motive Diesel, Inc. &gt; <strong>Correction:</strong> the seller was <strong>Berkshire Partners LLC</strong>, the Boston private equity firm — <strong>not</strong> Berkshire Hathaway. Berkshire Partners and Greenbriar had bought EMD from General Motors in 2005.</p>
+<h3 id="structure-2">Structure</h3>
+<ul>
+<li>EMD became a wholly owned subsidiary of Progress Rail, itself wholly owned by Caterpillar.</li>
+<li>HQ retained in LaGrange, Illinois; manufacturing in LaGrange (IL), London (Ontario), San Luis Potosí (Mexico).</li>
+<li>Management retained: John S. Hamilton continued as EMD President &amp; CEO, reporting to Billy Ainsworth.</li>
+</ul>
+<h3 id="financing-2">Financing</h3>
+<p>All cash, funded by Caterpillar; no acquisition debt separately disclosed.</p>
+<h3 id="purchase-price-allocation-goodwill-and-impairments-2">Purchase price allocation, goodwill and impairments</h3>
+<ul>
+<li>Standalone EMD PPA not separately disclosed <em class="unv">unverified</em>.</li>
+<li>EMD goodwill sits inside the Energy &amp; Transportation / Rail reporting unit written down by <strong>$925m in Q4 2022</strong>.</li>
+</ul>
+<h3 id="advisers-2">Advisers</h3>
+<ul>
+<li>Buyer (Progress Rail/Caterpillar) — US counsel <strong>Mayer Brown LLP</strong> (Paul Crimmins, John Sagan; Debra Hoffman, James Barry, Thomas Dimond, Patrick McNerney, Michael Gill); Canadian counsel <strong>Blake, Cassels &amp; Graydon LLP</strong> (Greg Frenette; Jake Gilbert, Dean Murray, Kathleen Penny, Andrew Spiro, Derek Rogers, Kate Macartney, Jess Bullock, Jonathan Kahn, John Hutmacher, Navin Joneja).</li>
+<li>Sellers (Berkshire Partners / Greenbriar) — US counsel <strong>Ropes &amp; Gray LLP</strong> (James Lidbury, Jonathan Grandon, Erik Corwin, Mit Spears); Canadian counsel <strong>McCarthy Tétrault LLP</strong> (Harold Huber; Suzanne Murphy, Patrick McCay, Alfred Macchione, Sunil Kapur, Oliver Borgers).</li>
+<li>Financial advisors not identified in the sources located <em class="unv">unverified</em>.</li>
+</ul>
+<h3 id="key-people-2">Key people</h3>
+<ul>
+<li>Douglas R. Oberhelman — Vice Chairman &amp; CEO-elect, Caterpillar</li>
+<li>William P. Ainsworth — President &amp; CEO, Progress Rail</li>
+<li>John S. Hamilton — President &amp; CEO, EMD (retained)</li>
+</ul>
+<h3 id="regulatory-and-litigation-2">Regulatory and litigation</h3>
+<p>Customary approvals in the US and Canada (Blakes/McCarthy competition teams engaged); closed ~2 months after announcement.</p>
+<h3 id="outcome-and-post-deal-performance-2">Outcome and post-deal performance</h3>
+<ul>
+<li>EMD gave Caterpillar the world’s largest installed base of diesel-electric locomotives; &gt;70,000 engines produced since 1922.</li>
+<li>2009 EMD revenue $1.8bn at acquisition.</li>
+<li>Caterpillar had invested ~$2bn in rail and transit since the 2006 Progress Rail deal.</li>
+<li>The locomotive franchise underperformed; Caterpillar wrote off $925m of Rail goodwill in Q4 2022.</li>
+</ul>
+<h3 id="key-numbers-2">Key numbers</h3>
+<div class="tbl-wrap"><table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Metric</th>
+<th>Value</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Cash price</td>
+<td>$820m</td>
+<td>PR Newswire, Aug 2 2010</td>
+</tr>
+<tr class="even">
+<td>Working capital adjustment</td>
+<td>~$108m</td>
+<td>PR Newswire, Aug 2 2010</td>
+</tr>
+<tr class="odd">
+<td>EMD 2009 revenue</td>
+<td>$1.8bn</td>
+<td>PR Newswire, June 1 2010</td>
+</tr>
+<tr class="even">
+<td>Announced</td>
+<td>June 1, 2010</td>
+<td>PR Newswire</td>
+</tr>
+<tr class="odd">
+<td>Closed</td>
+<td>August 2, 2010</td>
+<td>PR Newswire</td>
+</tr>
+<tr class="even">
+<td>Sellers</td>
+<td>Berkshire Partners LLC; Greenbriar Equity Group LLC</td>
+<td>PR Newswire / Lexpert</td>
+</tr>
+<tr class="odd">
+<td>Cumulative Cat rail investment 2006–2010</td>
+<td>~$2bn</td>
+<td>PR Newswire</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="primary-sources-2">Primary sources</h3>
+<ul>
+<li><a href="https://www.prnewswire.com/news-releases/progress-rail-services-to-acquire-electro-motive-diesel-creating-global-locomotive-manufacturing-and-rail-services-company-95304784.html">Progress Rail to acquire Electro-Motive Diesel (announcement, June 1 2010)</a></li>
+<li><a href="https://www.prnewswire.com/news-releases/progress-rail-services-finalizes-electro-motive-diesel-acquisition-99781934.html">Progress Rail finalizes EMD acquisition (Aug 2 2010)</a></li>
+<li><a href="https://www.lexpert.ca/big-deals/progress-rail-services-acquires-electro-motive-diesel-for-us820m/347130">Lexpert — full advisor roster on the EMD transaction</a></li>
+</ul>
+<hr />
+</section>
+<section id="txn-05">
+<div class="section-head">
+<div class="section-num">
+§ 05
+</div>
+<div class="section-title">
+<h2>
+Caterpillar Inc. — MWM Holding GmbH
+</h2>
+<p class="sub">
+Sponsor-to-strategic carve-out; all-cash
+</p>
+</div>
+</div>
+<div class="factstrip">
+<div class="f">
+<span class="label">Announced / closed</span>
+<div class="t">
+<p>Announced Oct 22, 2010 / <strong>Closed November 1, 2011</strong></p>
+</div>
+</div>
+<div class="f">
+<span class="label">Headline value</span>
+<div class="t">
+<p><strong>€580m</strong> (~$800–810m)</p>
+</div>
+</div>
+</div>
+<h3 id="parties-3">Parties</h3>
+<p>Caterpillar Inc. / <strong>3i Group plc</strong> and funds managed by 3i (sellers) / MWM Holding GmbH, Mannheim, Germany</p>
+<h3 id="structure-3">Structure</h3>
+<ul>
+<li>Share purchase; MWM folded into Caterpillar’s <strong>Electric Power Division</strong> (Energy &amp; Transportation).</li>
+<li>MWM: gas and alternative-fuel reciprocating engines and gensets (natural gas, biogas, landfill gas, syngas).</li>
+<li>Willy Schumacher appointed managing director, reporting to Bill Rohner; Peter Grosch (former MWM chairman) moved to an integration advisory role.</li>
+<li>The 12+ month gap between signing and closing reflects a lengthy multi-jurisdiction competition review.</li>
+<li>MWM was later rebranded <strong>Caterpillar Energy Solutions GmbH</strong>.</li>
+</ul>
+<h3 id="financing-3">Financing</h3>
+<p>Balance-sheet cash; no dedicated acquisition financing disclosed.</p>
+<h3 id="purchase-price-allocation-goodwill-and-impairments-3">Purchase price allocation, goodwill and impairments</h3>
+<ul>
+<li>MWM goodwill included in the “Other acquisitions $387m” line and Energy &amp; Transportation segment goodwill in the 2012 rollforward [specific MWM goodwill unverified].</li>
+<li>Reference point in the same 2011 10-K: <strong>Pyroban Group Limited</strong> (acquired Aug 31, 2011) — purchase price $69m, net tangible assets $5m, goodwill $23m (of which ~$0.5m tax-deductible).</li>
+</ul>
+<h3 id="advisers-3">Advisers</h3>
+<p>Not disclosed in the company releases <em class="unv">unverified</em>.</p>
+<h3 id="key-people-3">Key people</h3>
+<ul>
+<li>Gérard Vittecoq — Group President, Caterpillar</li>
+<li>Bill Rohner — Vice President, Electric Power, Caterpillar</li>
+<li>Willy Schumacher — Managing Director, MWM (post-close)</li>
+<li>Peter Grosch — former MWM Chairman → integration advisor</li>
+</ul>
+<h3 id="regulatory-and-litigation-3">Regulatory and litigation</h3>
+<p>Antitrust clearances required across multiple jurisdictions; deal took roughly 12 months from announcement to completion.</p>
+<h3 id="outcome-and-post-deal-performance-3">Outcome and post-deal performance</h3>
+<p>MWM became the core of Caterpillar’s gas-engine/distributed-generation portfolio, rebranded Caterpillar Energy Solutions.</p>
+<h3 id="key-numbers-3">Key numbers</h3>
+<div class="tbl-wrap"><table>
+<thead>
+<tr class="header">
+<th>Metric</th>
+<th>Value</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Price</td>
+<td>€580m (~$800–810m)</td>
+<td>Caterpillar press release, Nov 1 2011</td>
+</tr>
+<tr class="even">
+<td>Seller</td>
+<td>3i Group plc and managed funds</td>
+<td>Caterpillar press release</td>
+</tr>
+<tr class="odd">
+<td>Announced</td>
+<td>Oct 22, 2010</td>
+<td>Contemporaneous coverage</td>
+</tr>
+<tr class="even">
+<td>Closed</td>
+<td>Nov 1, 2011</td>
+<td>Caterpillar press release</td>
+</tr>
+<tr class="odd">
+<td>Segment</td>
+<td>Electric Power Division (E&amp;T)</td>
+<td>Caterpillar press release</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="primary-sources-3">Primary sources</h3>
+<ul>
+<li><a href="https://www.prnewswire.com/news-releases/caterpillar-completes-acquisition-of-mwm-132977678.html">Caterpillar Completes Acquisition of MWM (Nov 1 2011)</a></li>
+<li><a href="https://caterpillar-energy-solutions.de/en/news/news-releases/caterpillar-completes-acquisition-of-mwm/">Caterpillar Energy Solutions (MWM) — company release archive</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/18230/000110465912011331/R121.htm">CAT 2011 10-K — Business Combinations (Details 2), incl. Pyroban</a></li>
+</ul>
+<hr />
+</section>
+<section id="txn-06">
+<div class="section-head">
+<div class="section-num">
+§ 06
+</div>
+<div class="section-title">
+<h2>
+Caterpillar Inc. — ERA Mining Machinery Ltd. / Zhengzhou Siwei (the fraud)
+</h2>
+<p class="sub">
+Cross-border public tender offer for a HKEX GEM-listed shell holding a Chinese operating company; cash + loan-note alternative
+</p>
+</div>
+</div>
+<div class="factstrip">
+<div class="f">
+<span class="label">Announced / closed</span>
+<div class="t">
+<p>Pre-conditional offer announced <strong>Nov 11, 2011</strong>; tender offer <strong>completed June 6, 2012</strong>; compulsory acquisition of the residual stub in Q3 2012</p>
+</div>
+</div>
+<div class="f">
+<span class="label">Headline value</span>
+<div class="t">
+<p><strong>HK$5,064m–HK$5,693m</strong> on a fully diluted basis (≈US$653m–734m), performance-contingent; originally announced as a HK$4.5bn–HK$6.9bn (US$577m–885m) range</p>
+</div>
+</div>
+</div>
+<h3 id="parties-4">Parties</h3>
+<p>Caterpillar (HK) Ltd. / <strong>ERA Mining Machinery Limited</strong> (HKEX GEM: 8043) and its operating subsidiary <strong>Siwei</strong> (Zhengzhou, Henan) / selling shareholders including <strong>Mining Machinery Limited (MML)</strong> and directors Emory Williams and John Lee, plus James Thompson III</p>
+<h3 id="structure-4">Structure</h3>
+<ul>
+<li>Mixed tender offer: all-cash alternative plus a <strong>loan note alternative</strong> with performance-linked consideration (hence the HK$5.06bn–HK$5.69bn range).</li>
+<li>Acquired <strong>98.89% of ERA common stock</strong> and ~<strong>98.26% of outstanding options</strong>; compulsory squeeze-out of the remainder in Q3 2012.</li>
+<li>Siwei: designs, manufactures and supports underground coal-mining roof-support equipment; founded 2003; ~4,300 employees; 600,000 m² Zhengzhou plant.</li>
+<li>Existing management retained at closing — chairman/CEO Wang Fu continued to lead Siwei.</li>
+</ul>
+<h3 id="financing-4">Financing</h3>
+<p>Balance-sheet cash plus the loan-note consideration alternative issued to sellers.</p>
+<h3 id="purchase-price-allocation-goodwill-and-impairments-4">Purchase price allocation, goodwill and impairments</h3>
+<ul>
+<li>Goodwill recognized on ERA/Siwei: <strong>$625m</strong> (2012 goodwill rollforward; total goodwill acquired in 2012 was $5,026m, comprising Bucyrus $4,616m + ERA $625m + other $387m, less PPA adjustments).</li>
+<li><strong>Q4 2012 non-cash goodwill impairment: ~$580m = $0.87 per share</strong> — announced Jan 18, 2013 via Form 8-K. Accumulated goodwill impairments rose from $22m to <strong>$602m</strong>.</li>
+<li>The $580m sits in Resource Industries’ accumulated impairment of $1,175m (= $580m Siwei + $595m Surface Mining &amp; Technology).</li>
+</ul>
+<h3 id="advisers-4">Advisers</h3>
+<p>Caterpillar stated it used “outside accounting, legal and financial advisors” in diligence; firms not named <em class="unv">unverified</em>.</p>
+<h3 id="key-people-4">Key people</h3>
+<ul>
+<li>Douglas R. Oberhelman — Chairman &amp; CEO, Caterpillar</li>
+<li>Steven H. Wunning — Group President, Caterpillar (quoted on the acquisition rationale)</li>
+<li>Wang Fu — Chairman/CEO, Siwei (retained at close; Siwei senior managers responsible for the misconduct were subsequently removed)</li>
+<li>Qihua Chen — Caterpillar VP; took over Siwei manufacturing post-scandal</li>
+<li>Kebao Yang — Caterpillar; took over Siwei sales and support</li>
+<li>Emory Williams, John Lee — former ERA directors (MML Parties)</li>
+<li>James Thompson III — MML Party</li>
+</ul>
+<h3 id="regulatory-and-litigation-4">Regulatory and litigation</h3>
+<ul>
+<li>Chinese <strong>MOFCOM</strong> clearance was a condition of the offer.</li>
+<li><strong>The fraud:</strong> In November 2012, during post-close integration, Caterpillar found discrepancies between recorded inventory and physical inventory counts. The internal investigation concluded there had been <strong>“deliberate, multi-year, coordinated accounting misconduct”</strong> at Siwei, with two principal mechanisms: (i) <strong>improper cost allocation</strong> that overstated profits, and (ii) <strong>early and at times unsupported revenue recognition</strong>. The misconduct began before the acquisition and continued afterward.</li>
+<li>Caterpillar removed the responsible Siwei senior managers and installed new leadership. The board and audit committee review was disclosed via 8-K on Jan 18, 2013.</li>
+<li><strong>Settlement, May 16, 2013:</strong> Caterpillar and the MML Parties mutually released all claims relating to the ERA acquisition. Caterpillar’s remaining obligations to the MML Parties were reduced from <strong>$164.5m to $29.5m — a $135m reduction</strong>. An MML-affiliated company was permitted to purchase certain Siwei receivables and other assets. Caterpillar found no evidence that Williams, Lee or Thompson participated in the misconduct.</li>
+<li>HKEX filings: ERA (stock code 8043) was a GEM-listed issuer; the offer documents and compulsory-acquisition notices were filed with HKEX [specific document URLs unverified].</li>
+</ul>
+<h3 id="outcome-and-post-deal-performance-4">Outcome and post-deal performance</h3>
+<p>Caterpillar wrote off ~93% of the goodwill within seven months of closing. The deal became a standard case study in emerging-market diligence failure. Siwei operations were substantially wound down thereafter.</p>
+<h3 id="key-numbers-4">Key numbers</h3>
+<div class="tbl-wrap"><table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Metric</th>
+<th>Value</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Offer announced</td>
+<td>Nov 11, 2011</td>
+<td>KHL / Caterpillar</td>
+</tr>
+<tr class="even">
+<td>Tender offer completed</td>
+<td>June 6, 2012</td>
+<td>Caterpillar press release</td>
+</tr>
+<tr class="odd">
+<td>Total consideration (fully diluted)</td>
+<td>HK$5,064m–HK$5,693m</td>
+<td>Caterpillar press release</td>
+</tr>
+<tr class="even">
+<td>Original announced range</td>
+<td>HK$4.5bn–HK$6.9bn / US$577m–885m</td>
+<td>KHL</td>
+</tr>
+<tr class="odd">
+<td>Stake acquired at completion</td>
+<td>98.89% shares; 98.26% options</td>
+<td>Caterpillar press release</td>
+</tr>
+<tr class="even">
+<td>Goodwill recognized</td>
+<td>$625m</td>
+<td>CAT 2012 10-K R89</td>
+</tr>
+<tr class="odd">
+<td>Q4 2012 goodwill impairment</td>
+<td>~$580m ($0.87/share)</td>
+<td>CAT 8-K, Jan 18 2013</td>
+</tr>
+<tr class="even">
+<td>Accumulated impairment after charge</td>
+<td>$602m (from $22m)</td>
+<td>CAT 2012 10-K R89</td>
+</tr>
+<tr class="odd">
+<td>MML settlement reduction</td>
+<td>$164.5m → $29.5m (−$135m)</td>
+<td>Caterpillar, May 16 2013</td>
+</tr>
+<tr class="even">
+<td>Siwei employees</td>
+<td>~4,300</td>
+<td>Caterpillar press release</td>
+</tr>
+<tr class="odd">
+<td>Exchange / ticker</td>
+<td>HKEX GEM: 8043</td>
+<td>Caterpillar press release</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="primary-sources-4">Primary sources</h3>
+<ul>
+<li><a href="https://www.sec.gov/Archives/edgar/data/18230/000001823013000041/january18_form8k.htm">Caterpillar Form 8-K, Jan 18 2013 — Siwei accounting misconduct</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/18230/000001823013000041/pressrelease_ex9911.htm">Exhibit 99.1 to that 8-K — full misconduct press release</a></li>
+<li><a href="https://www.prnewswire.com/news-releases/caterpillar-completes-tender-offer-for-era-mining-machinery-limited-including-their-siwei-subsidiary-157603875.html">Caterpillar completes ERA tender offer (June 2012)</a></li>
+<li><a href="https://www.caterpillar.com/en/news/corporate-press-releases/h/caterpillar-and-mining-machinery-limited-announce-settlement-agreement-related-to-siwei-acquisition.html">Caterpillar / Mining Machinery Limited settlement, May 16 2013</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/18230/000001823013000075/R89.htm">CAT 2012 10-K — goodwill rollforward incl. ERA $625m R89</a></li>
+</ul>
+<hr />
+</section>
+<section id="txn-07">
+<div class="section-head">
+<div class="section-num">
+§ 07
+</div>
+<div class="section-title">
+<h2>
+Caterpillar Inc. — Weir Oil &amp; Gas division (→ SPM Oil &amp; Gas)
+</h2>
+<p class="sub">
+Corporate carve-out from a UK listed parent; all-cash
+</p>
+</div>
+</div>
+<div class="factstrip">
+<div class="f">
+<span class="label">Announced / closed</span>
+<div class="t">
+<p>Agreement announced <strong>October 2020</strong>; <strong>completed February 1–2, 2021</strong></p>
+</div>
+</div>
+<div class="f">
+<span class="label">Headline value</span>
+<div class="t">
+<p><strong>$405m cash</strong></p>
+</div>
+</div>
+</div>
+<h3 id="parties-5">Parties</h3>
+<p>Caterpillar Inc. / <strong>The Weir Group PLC</strong> (LSE: WEIR) — Oil &amp; Gas division, headquartered near Fort Worth, Texas</p>
+<h3 id="structure-5">Structure</h3>
+<ul>
+<li>Asset/entity carve-out of Weir’s entire Oil &amp; Gas division, rebranded <strong>SPM Oil &amp; Gas</strong> and placed in Caterpillar’s <strong>Energy &amp; Transportation</strong> segment.</li>
+<li>Scope: full line of pressure pumping and pressure control products — pumps, flow iron, consumable parts, wellhead and pressure-control equipment; <strong>40+ global service centers</strong>; <strong>~2,000 employees</strong>.</li>
+<li>Strategic logic: pair Weir’s pressure pumping/control portfolio with Cat engines and transmissions to sell integrated well-service packages.</li>
+<li>For Weir, the sale completed its exit from oil &amp; gas to become a pure-play mining technology company.</li>
+</ul>
+<h3 id="financing-5">Financing</h3>
+<p>Balance-sheet cash.</p>
+<h3 id="purchase-price-allocation-goodwill-and-impairments-5">Purchase price allocation, goodwill and impairments</h3>
+<p>PPA not separately disclosed given size relative to Caterpillar <em class="unv">unverified</em>. No goodwill impairment attributable to SPM through the 2024 10-K.</p>
+<h3 id="advisers-5">Advisers</h3>
+<p>Not disclosed in the company releases <em class="unv">unverified</em>.</p>
+<h3 id="key-people-5">Key people</h3>
+<ul>
+<li>Joe Creed — Group President, Caterpillar (later CEO)</li>
+<li>Jon Stanton — CEO, The Weir Group PLC</li>
+</ul>
+<h3 id="regulatory-and-litigation-5">Regulatory and litigation</h3>
+<p>Customary clearances; no conditions disclosed.</p>
+<h3 id="outcome-and-post-deal-performance-5">Outcome and post-deal performance</h3>
+<p>SPM Oil &amp; Gas operates as a Caterpillar brand within Energy &amp; Transportation.</p>
+<h3 id="key-numbers-5">Key numbers</h3>
+<div class="tbl-wrap"><table>
+<thead>
+<tr class="header">
+<th>Metric</th>
+<th>Value</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Price</td>
+<td>$405m cash</td>
+<td>Caterpillar/Weir releases</td>
+</tr>
+<tr class="even">
+<td>Closed</td>
+<td>Feb 2, 2021</td>
+<td>Caterpillar press release</td>
+</tr>
+<tr class="odd">
+<td>Employees acquired</td>
+<td>~2,000</td>
+<td>Caterpillar press release</td>
+</tr>
+<tr class="even">
+<td>Service centers</td>
+<td>40+</td>
+<td>Caterpillar press release</td>
+</tr>
+<tr class="odd">
+<td>New brand</td>
+<td>SPM Oil &amp; Gas</td>
+<td>Caterpillar press release</td>
+</tr>
+<tr class="even">
+<td>Segment</td>
+<td>Energy &amp; Transportation</td>
+<td>Caterpillar press release</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="primary-sources-5">Primary sources</h3>
+<ul>
+<li><a href="https://www.caterpillar.com/en/news/corporate-press-releases/h/caterpillar-acquires-weir-launches-spm-oil-gas.html">Caterpillar Acquires Weir Oil &amp; Gas, Launches SPM Oil &amp; Gas</a></li>
+<li><a href="https://investors.caterpillar.com/news/news-details/2021/Caterpillar-Acquires-Weir-Oil--Gas-Launches-SPM-Oil--Gas/default.aspx">Caterpillar Investor Relations — same release</a></li>
+<li><a href="https://www.global.weir/newsroom/global-news/weir-completes-sale-of-oil--gas-to-caterpillar-inc/">Weir Group — completion of sale of Oil &amp; Gas to Caterpillar</a></li>
+</ul>
+<hr />
+</section>
+<section id="txn-08">
+<div class="section-head">
+<div class="section-num">
+§ 08
+</div>
+<div class="section-title">
+<h2>
+Caterpillar Inc. — Other material transactions (compressed)
+</h2>
+<p class="sub">
+<p>Mixed — corporate carve-outs, JV buy-ins, bolt-ons, divestitures</p>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Transaction</th>
+<th>Type</th>
+<th>Date</th>
+<th>Value</th>
+<th>Counterparty</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Solar Turbines Incorporated</strong></td>
+<td>Corporate carve-out</td>
+<td>Signed May 15, 1981</td>
+<td>~$505m <em class="unv">unverified</em></td>
+<td>International Harvester Co.</td>
+<td>IH sold Solar to raise cash during its near-bankruptcy; gave Cat its industrial gas turbine franchise, still the core of E&amp;T's Solar business</td>
+</tr>
+<tr class="even">
+<td><strong>Perkins Engines Company</strong></td>
+<td>Corporate carve-out</td>
+<td>Announced Dec 11, 1997; closed Feb 1, 1998</td>
+<td><strong>$1.325bn</strong></td>
+<td><strong>LucasVarity plc</strong></td>
+<td>Facilities at Peterborough, Stafford, Shrewsbury (England) plus international alliance stakes; gave Cat sub-200 hp diesel coverage. Cat 1996 sales were $16.5bn, ~25% engines</td>
+</tr>
+<tr class="odd">
+<td><strong>Turbomach S.A.</strong></td>
+<td>Carve-out from insolvency estate</td>
+<td>June 17, 2004</td>
+<td>Undisclosed</td>
+<td><strong>Borsig Energy GmbH i.I.</strong></td>
+<td>Riazzino, Switzerland gas-turbine packager; had packaged Solar engines for ~20 years. Later renamed Solar Turbines Switzerland</td>
+</tr>
+<tr class="even">
+<td><strong>Caterpillar Japan Ltd. (CJL)</strong></td>
+<td>JV buy-in to 100%</td>
+<td>Announced Feb 29, 2012; closed Q2 2012</td>
+<td><strong>¥36.5bn</strong> (second redemption phase)</td>
+<td><strong>Mitsubishi Heavy Industries, Ltd.</strong></td>
+<td>Ends a 45-year JV (Shin Caterpillar Mitsubishi, renamed 1987). Cat had gone to majority in a 2008 first-phase redemption. CJL: 5,000+ employees, Sagami and Akashi plants; Akashi is Cat's global hydraulic excavator design center. 2012 goodwill rollforward shows a $(28)m Caterpillar Tohoku PPA adjustment</td>
+</tr>
+<tr class="odd">
+<td><strong>Pyroban Group Limited</strong></td>
+<td>Bolt-on</td>
+<td>Aug 31, 2011</td>
+<td><strong>$69m</strong></td>
+<td>—</td>
+<td>Net tangible assets $5m; goodwill $23m (~$0.5m tax-deductible)</td>
+</tr>
+<tr class="even">
+<td><strong>Tangent Energy Solutions</strong></td>
+<td>Bolt-on (energy-as-a-service)</td>
+<td>May 5, 2022</td>
+<td>Undisclosed</td>
+<td>—</td>
+<td>Turnkey EaaS / microgrid platform; folded into Cat Electric Power</td>
+</tr>
+<tr class="odd">
+<td><strong>RPMGlobal Holdings Ltd (ASX: RUL)</strong></td>
+<td>Public takeover (Australia)</td>
+<td>Agreement Oct 2025; <strong>completed Feb 17, 2026</strong></td>
+<td>Undisclosed in release <em class="unv">unverified</em></td>
+<td>ASX-listed public shareholders</td>
+<td>Mining planning/simulation/ERP software; Resource Industries. Denise Johnson (Group President, Resource Industries) and Richard Mathews (RPMGlobal CEO) quoted. RPMGlobal retains its brand</td>
+</tr>
+<tr class="even">
+<td><strong>Skycatch</strong></td>
+<td>Bolt-on (mining tech / drone data)</td>
+<td>2026</td>
+<td>Undisclosed</td>
+<td>—</td>
+<td>Expands Resource Industries technology stack</td>
+</tr>
+<tr class="odd">
+<td><strong>Progress Rail Equipment Leasing Corp. / R.E.L.A.M.</strong></td>
+<td><strong>Divestiture</strong></td>
+<td>Jan 2, 2020</td>
+<td>Undisclosed</td>
+<td><strong>Paceline Equity Partners</strong> affiliates</td>
+<td>Rail maintenance equipment leasing carve-out from Progress Rail</td>
+</tr>
+<tr class="even">
+<td><strong>Bucyrus distribution business</strong></td>
+<td><strong>Divestiture programme</strong></td>
+<td>2013–2014</td>
+<td><strong>$666m</strong> (51 transactions)</td>
+<td>Caterpillar dealers</td>
+<td>See Bucyrus section for full detail</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="caterpillar-goodwill-and-impairment-history-consolidated">Caterpillar goodwill and impairment history (consolidated)</h3>
+<div class="tbl-wrap"><table>
+<colgroup>
+<col style="width: 12%" />
+<col style="width: 12%" />
+<col style="width: 12%" />
+<col style="width: 12%" />
+<col style="width: 12%" />
+<col style="width: 12%" />
+<col style="width: 12%" />
+<col style="width: 12%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Item</th>
+<th>2011</th>
+<th>2012</th>
+<th>2015</th>
+<th>2016</th>
+<th>2022</th>
+<th>2023</th>
+<th>2024</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Goodwill, gross</td>
+<td>—</td>
+<td>$7,544m</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>$7,430m</td>
+<td>$7,363m</td>
+</tr>
+<tr class="even">
+<td>Goodwill, net</td>
+<td>$7,102m (BOY 2012)</td>
+<td>$6,942m</td>
+<td>$6,615m</td>
+<td>$6,020m</td>
+<td>—</td>
+<td>$5,308m</td>
+<td><strong>$5,241m</strong></td>
+</tr>
+<tr class="odd">
+<td>Accumulated impairment</td>
+<td>$22m</td>
+<td>$602m</td>
+<td>—</td>
+<td>~$1,197m</td>
+<td>~$2,122m</td>
+<td>$(2,122)m</td>
+<td><strong>$(2,122)m</strong></td>
+</tr>
+<tr class="even">
+<td>Impairment charge in year</td>
+<td>—</td>
+<td><strong>$580m</strong> (Siwei)</td>
+<td>—</td>
+<td><strong>$595m</strong> (Surface Mining &amp; Technology)</td>
+<td><strong>$925m</strong> (Rail)</td>
+<td>$0</td>
+<td>$0</td>
+</tr>
+<tr class="odd">
+<td>Intangible amortization</td>
+<td>—</td>
+<td>$389m (fcst)</td>
+<td>—</td>
+<td>—</td>
+<td>$284m</td>
+<td>$218m</td>
+<td>$176m</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<h3 id="accumulated-impairment-by-segment-at-dec-31-2024">Accumulated impairment by segment at Dec 31, 2024</h3>
+<p>Resource Industries <strong>$(1,175)m</strong> (= $580m Siwei 2012 + $595m Surface Mining &amp; Technology 2016); Energy &amp; Transportation <strong>$(925)m</strong> (= Rail 2022); Construction Industries <strong>$(22)m</strong>. Total <strong>$(2,122)m</strong>.</p>
+<h3 id="net-goodwill-by-segment-at-dec-31-2024">Net goodwill by segment at Dec 31, 2024</h3>
+<p>Resource Industries $2,949m | Energy &amp; Transportation $2,014m | Construction Industries $239m | All Other $39m | <strong>Total $5,241m</strong>.</p>
+<h3 id="primary-sources-6">Primary sources</h3>
+<ul>
+<li><a href="https://www.upi.com/Archives/1981/05/15/International-Harvester-and-Caterpillar-Tractor-Co-have-signed-an/2949358747200/">UPI archive — International Harvester / Caterpillar Solar Turbines agreement, May 15 1981</a> <em>(403 on automated fetch; cited as the contemporaneous wire report)</em></li>
+<li><a href="https://dieselnet.com/news/1997/12cat.php">DieselNet — Caterpillar buys Perkins Engines from LucasVarity for $1.325bn</a></li>
+<li><a href="https://www.equipmentworld.com/home/article/14941795/caterpillar-buys-turbomach-sa">Equipment World — Caterpillar completes acquisition of Turbomach S.A. (June 2004)</a></li>
+<li><a href="https://www.prnewswire.com/news-releases/caterpillar-to-become-sole-owner-of-japanese-joint-venture-140950833.html">Caterpillar to Become Sole Owner of Japanese Joint Venture (Feb 29 2012)</a></li>
+<li><a href="https://www.mhi.com/news/1203011506.html">MHI — transfer of entire retained shares of Caterpillar Japan</a></li>
+<li><a href="https://www.caterpillar.com/en/news/corporate-press-releases/h/050522-Caterpillar-acquires-tangent-energy-solutions.html">Caterpillar Acquires Tangent Energy Solutions (May 5 2022)</a></li>
+<li><a href="https://www.prnewswire.com/news-releases/caterpillar-bolsters-mining-technology-solutions-with-rpmglobal-acquisition-302691052.html">Caterpillar Bolsters Mining Technology Solutions with RPMGlobal Acquisition (completion)</a></li>
+<li><a href="https://www.prnewswire.com/news-releases/caterpillar-inc-enters-into-agreement-to-acquire-rpmglobal-302581527.html">Caterpillar Inc. Enters Into Agreement to Acquire RPMGlobal (announcement)</a></li>
+<li><a href="https://investors.caterpillar.com/news/news-details/2026/Caterpillar-expands-mining-technology-capabilities-with-Skycatch-acquisition/default.aspx">Caterpillar expands mining technology capabilities with Skycatch acquisition</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/18230/000001823025000008/">CAT 2024 Form 10-K — filing index (accession 0000018230-25-000008)</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/18230/000001823018000042/R90.htm">CAT 2017 10-K — goodwill rollforward 2015–2017 R90</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/18230/">Caterpillar EDGAR company archive (CIK 18230)</a></li>
+</ul>
+</section>
+<footer>
+<div>
+<strong style="color:var(--ink)">Market Logic Investors LLC</strong> · Transaction Experience<br> Compiled from primary filings. Internal reference. Not investment advice.
+</div>
+<div style="text-align:right">
+<a href="../" style="color:var(--teal);text-decoration:none">← Back to Transaction Experience</a>
+</div>
+</footer>
+
+</div>
+</body>
+</html>

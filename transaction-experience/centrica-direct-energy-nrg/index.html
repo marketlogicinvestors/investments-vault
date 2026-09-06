@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Centrica, Direct Energy and NRG — Transaction Experience — Market Logic Investors</title>
+<meta name="description" content="Twenty years of platform building sold in a single all-cash transaction at 7.9x EBITDA, and then Winter Storm Uri six weeks after closing. The clearest available case of a deal who">
+<style>
+
+:root {
+  --ink: #0a1929; --ink-soft: #1c2e44;
+  --paper: #faf9f4; --paper-warm: #f3efe3;
+  --rule: #d4cfbf; --rule-soft: #e8e3d4;
+  --muted: #5b6b7a; --muted-light: #8a98a5;
+  --accent: #b8391c; --accent-soft: #d65a3a;
+  --teal: #1f6b6b; --teal-soft: #4a8b8b; --teal-light: #b8d4d4;
+  --positive: #2d6a4f; --warning: #b08800; --negative: #9b2226;
+  --negative-light: #e8c5c5;
+  --serif: 'Iowan Old Style','Palatino Linotype',Palatino,'Book Antiqua',Georgia,serif;
+  --sans: 'Helvetica Neue',Helvetica,-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
+  --mono: 'SF Mono',SFMono-Regular,Menlo,Monaco,Consolas,'Liberation Mono',monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{font-size:16px;-webkit-text-size-adjust:100%;}
+body{font-family:var(--sans);background:var(--paper);color:var(--ink);line-height:1.55;-webkit-font-smoothing:antialiased;}
+.page{max-width:1000px;margin:0 auto;padding:56px 56px 80px;}
+h1,h2,h3,h4,h5{font-family:var(--serif);font-weight:400;color:var(--ink);}
+h1{font-size:3.6rem;line-height:1.02;letter-spacing:-0.025em;}
+h2{font-size:2.05rem;line-height:1.12;letter-spacing:-0.015em;}
+h3{font-size:1.3rem;line-height:1.25;}
+h4{font-family:var(--sans);font-weight:600;font-size:0.7rem;text-transform:uppercase;letter-spacing:0.16em;color:var(--muted);}
+p{font-size:0.95rem;line-height:1.7;color:var(--ink-soft);}
+strong{color:var(--ink);font-weight:600;}
+.eyebrow{font-family:var(--sans);font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.2em;color:var(--accent);display:block;margin-bottom:18px;}
+.lede{font-family:var(--serif);font-size:1.25rem;line-height:1.5;color:var(--ink);}
+.kicker{font-family:var(--sans);font-size:0.75rem;font-weight:600;text-transform:uppercase;letter-spacing:0.12em;color:var(--teal);}
+.label{font-family:var(--sans);font-size:0.7rem;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);}
+.mono{font-family:var(--mono);font-size:0.85rem;}
+.cover{border-top:1px solid var(--ink);padding-top:32px;position:relative;}
+.cover-meta{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:84px;}
+.cover-meta .left,.cover-meta .right{font-family:var(--sans);font-size:0.78rem;color:var(--muted);}
+.cover-meta .right{text-align:right;}
+.cover-meta .right .stamp{display:inline-block;padding:4px 10px;border:1px solid var(--accent);color:var(--accent);font-weight:600;letter-spacing:0.12em;font-size:0.65rem;text-transform:uppercase;margin-bottom:8px;}
+.cover-title{margin-bottom:28px;}
+.cover-title .legal{display:block;font-family:var(--sans);font-size:0.78rem;color:var(--muted);margin-top:8px;letter-spacing:0.04em;}
+.cover-tag{font-family:var(--serif);font-style:italic;font-size:1.4rem;line-height:1.45;color:var(--ink-soft);max-width:720px;margin-bottom:56px;}
+.cover-tag::before{content:"\201C";font-size:2.2rem;line-height:0;vertical-align:-0.3em;color:var(--accent);margin-right:4px;}
+.cover-tag::after{content:"\201D";font-size:2.2rem;line-height:0;vertical-align:-0.3em;color:var(--accent);margin-left:2px;}
+.metric-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:0;border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);margin:32px 0;}
+.metric{padding:22px 16px 20px;border-right:1px solid var(--rule);text-align:left;}
+.metric:last-child{border-right:none;}
+.metric .v{font-family:var(--serif);font-size:2.1rem;line-height:1;letter-spacing:-0.02em;color:var(--ink);display:block;margin-bottom:6px;}
+.metric .v small{font-size:0.95rem;color:var(--muted);font-family:var(--serif);margin-left:1px;}
+.metric .l{font-family:var(--sans);font-size:0.68rem;font-weight:600;text-transform:uppercase;letter-spacing:0.12em;color:var(--muted);line-height:1.3;}
+.metric.accent .v{color:var(--accent);}
+.metric.teal .v{color:var(--teal);}
+section{margin-top:64px;padding-top:32px;border-top:1px solid var(--rule);}
+section.no-rule{border-top:none;}
+.section-head{display:grid;grid-template-columns:120px 1fr;gap:32px;margin-bottom:28px;align-items:baseline;}
+.section-num{font-family:var(--mono);font-size:0.78rem;color:var(--muted);letter-spacing:0.05em;border-top:2px solid var(--ink);padding-top:8px;text-transform:uppercase;font-weight:600;}
+.section-title h2{margin-bottom:8px;}
+.section-title .sub{font-family:var(--serif);font-style:italic;color:var(--muted);font-size:1.05rem;}
+.cols-2{display:grid;grid-template-columns:1fr 1fr;gap:36px;margin-top:16px;}
+.cols-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px;margin-top:16px;}
+.card{background:var(--paper-warm);padding:22px 24px;border:1px solid var(--rule);}
+.card.dark{background:var(--ink);color:var(--paper);}
+.card.dark h3,.card.dark h4{color:var(--paper);}
+.card.dark p{color:rgba(250,249,244,0.85);}
+.callout{border-left:3px solid var(--accent);padding:4px 0 4px 20px;margin:18px 0;font-family:var(--serif);font-style:italic;font-size:1.05rem;color:var(--ink);}
+.pull-quote{font-family:var(--serif);font-size:1.4rem;line-height:1.4;color:var(--ink);border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);padding:28px 0;margin:32px 0;text-align:center;letter-spacing:-0.005em;}
+table{width:100%;border-collapse:collapse;font-family:var(--sans);font-size:0.88rem;margin-top:14px;}
+thead th{text-align:left;font-weight:600;font-size:0.7rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);padding:10px 14px 10px 0;border-bottom:1.5px solid var(--ink);}
+thead th.num{text-align:right;}
+tbody td{padding:14px 14px 14px 0;border-bottom:1px solid var(--rule);color:var(--ink-soft);vertical-align:top;}
+tbody td.num{text-align:right;font-variant-numeric:tabular-nums;font-family:var(--mono);font-size:0.82rem;}
+tbody td strong{color:var(--ink);}
+tbody tr.highlight td{color:var(--ink);}
+tbody tr.highlight td:first-child{padding-left:12px;border-left:3px solid var(--accent);}
+ul.clean{list-style:none;}
+ul.clean li{padding:12px 0 12px 24px;border-bottom:1px solid var(--rule-soft);position:relative;font-size:0.93rem;color:var(--ink-soft);line-height:1.6;}
+ul.clean li::before{content:"→";position:absolute;left:0;top:12px;color:var(--accent);font-weight:600;}
+ol.clean{list-style:none;counter-reset:ck;}
+ol.clean li{counter-increment:ck;padding:12px 0 12px 36px;border-bottom:1px solid var(--rule-soft);position:relative;font-size:0.93rem;color:var(--ink-soft);line-height:1.6;}
+ol.clean li::before{content:counter(ck,decimal-leading-zero);position:absolute;left:0;top:12px;font-family:var(--mono);font-size:0.78rem;color:var(--accent);font-weight:600;}
+.tag{display:inline-block;font-family:var(--sans);font-size:0.68rem;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;padding:3px 9px;margin-right:6px;margin-bottom:4px;border:1px solid var(--rule);color:var(--ink-soft);background:var(--paper);}
+.tag.accent{border-color:var(--accent);color:var(--accent);}
+.tag.teal{border-color:var(--teal);color:var(--teal);}
+.tag.warn{border-color:var(--warning);color:var(--warning);}
+.tag.neg{border-color:var(--negative);color:var(--negative);}
+.tag.pos{border-color:var(--positive);color:var(--positive);}
+.thesis-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:24px;border:1px solid var(--ink);}
+.thesis-col{padding:28px 28px 24px;}
+.thesis-col.bull{border-right:1px solid var(--ink);}
+.thesis-col ul{list-style:none;margin-top:14px;}
+.thesis-col ul li{padding:10px 0 10px 22px;position:relative;font-size:0.9rem;color:var(--ink-soft);line-height:1.55;border-bottom:1px dashed var(--rule-soft);}
+.thesis-col.bull ul li::before{content:"+";position:absolute;left:0;top:9px;color:var(--positive);font-weight:700;}
+.thesis-col.bear ul li::before{content:"−";position:absolute;left:0;top:9px;color:var(--negative);font-weight:700;}
+.recommendation{background:var(--ink);color:var(--paper);padding:40px 44px;margin-top:40px;border-left:6px solid var(--accent);}
+.recommendation .head{font-family:var(--mono);font-size:0.74rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--accent-soft);margin-bottom:12px;font-weight:600;}
+.recommendation h2{color:var(--paper);margin-bottom:14px;}
+.recommendation p{color:rgba(250,249,244,0.86);font-size:1rem;}
+.recommendation .actions{margin-top:24px;padding-top:20px;border-top:1px solid rgba(250,249,244,0.18);display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+.recommendation .actions .h{font-family:var(--mono);font-size:0.7rem;text-transform:uppercase;letter-spacing:0.14em;color:var(--accent-soft);margin-bottom:10px;}
+.recommendation .actions ul{list-style:none;}
+.recommendation .actions ul li{padding:6px 0 6px 22px;position:relative;font-size:0.9rem;color:rgba(250,249,244,0.92);line-height:1.5;}
+.recommendation .actions ul li::before{content:"▸";position:absolute;left:0;top:5px;color:var(--accent-soft);}
+footer{margin-top:80px;padding-top:28px;border-top:1px solid var(--ink);font-family:var(--sans);font-size:0.74rem;color:var(--muted);display:flex;justify-content:space-between;}
+.chart{width:100%;margin:18px 0 6px;background:var(--paper);}
+.chart-caption{font-family:var(--sans);font-size:0.72rem;color:var(--muted);margin-top:4px;font-style:italic;line-height:1.5;}
+/* Dashboard */
+.dash-panel{background:var(--paper-warm);border:1px solid var(--rule);padding:24px;margin-top:24px;}
+.dash-controls{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:20px;}
+.ctrl-item{display:flex;flex-direction:column;gap:5px;}
+.ctrl-item label{font-family:var(--sans);font-size:0.7rem;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);}
+.ctrl-row{display:flex;align-items:center;gap:8px;}
+.ctrl-row input[type=range]{flex:1;accent-color:var(--teal);cursor:pointer;}
+.ctrl-val{font-family:var(--mono);font-size:0.82rem;font-weight:600;color:var(--ink);min-width:48px;text-align:right;}
+.scen-row{display:flex;gap:8px;margin-bottom:18px;flex-wrap:wrap;}
+.scen-btn{font-family:var(--sans);font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;padding:5px 14px;border:1px solid var(--rule);background:var(--paper);color:var(--muted);cursor:pointer;}
+.scen-btn:hover{border-color:var(--teal);color:var(--teal);}
+.scen-btn.active{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+.output-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--rule);margin-bottom:16px;}
+.output-cell{padding:16px 14px;border-right:1px solid var(--rule);}
+.output-cell:last-child{border-right:none;}
+.output-cell .ov{font-family:var(--serif);font-size:1.8rem;letter-spacing:-0.02em;color:var(--ink);display:block;line-height:1;margin-bottom:4px;}
+.output-cell .ol{font-family:var(--sans);font-size:0.65rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--muted);}
+.output-cell.ok .ov{color:var(--positive);}
+.output-cell.warn .ov{color:var(--warning);}
+.output-cell.bad .ov{color:var(--negative);}
+.verdict-box{padding:16px 20px;font-family:var(--sans);font-size:0.88rem;line-height:1.6;border-left:4px solid var(--rule);margin-bottom:16px;}
+.verdict-box.ok{border-left-color:var(--positive);background:#f0f7f4;}
+.verdict-box.warn{border-left-color:var(--warning);background:#fdf8ec;}
+.verdict-box.bad{border-left-color:var(--negative);background:#fdf0f0;}
+.verdict-box .vl{font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.14em;margin-bottom:5px;color:var(--muted);}
+.assump-list{list-style:none;margin-top:0;}
+.assump-list li{padding:14px 0 14px 24px;border-bottom:1px solid var(--rule-soft);position:relative;font-size:0.88rem;line-height:1.6;color:var(--ink-soft);}
+.assump-list li::before{content:"→";position:absolute;left:0;top:14px;color:var(--accent);font-weight:700;}
+.assump-list li strong{color:var(--ink);}
+.assump-flag{display:inline-block;font-family:var(--mono);font-size:0.65rem;font-weight:700;letter-spacing:0.08em;padding:2px 7px;border:1px solid;margin-left:8px;vertical-align:middle;}
+.assump-flag.ok{border-color:var(--positive);color:var(--positive);}
+.assump-flag.warn{border-color:var(--warning);color:var(--warning);}
+.assump-flag.bad{border-color:var(--negative);color:var(--negative);}
+.signal{font-family:var(--mono);font-size:0.72rem;color:var(--teal);margin-top:6px;display:block;line-height:1.5;}
+.entity-row{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--ink);margin-top:20px;}
+.entity-col{padding:20px 18px;border-right:1px solid var(--rule);}
+.entity-col:last-child{border-right:none;}
+.entity-col h4{margin-bottom:12px;}
+.entity-col.et h4{color:var(--teal);}
+.entity-col.sun h4{color:var(--positive);}
+.entity-col.usac h4{color:var(--warning);}
+.emet{display:flex;justify-content:space-between;font-size:0.8rem;padding:6px 0;border-bottom:1px solid var(--rule-soft);}
+.emet:last-child{border:none;}
+.emet .ek{color:var(--muted);}
+.emet .ev{font-weight:600;color:var(--ink);font-family:var(--mono);font-size:0.78rem;}
+.emet .ev.g{color:var(--positive);}
+.emet .ev.r{color:var(--negative);}
+.emet .ev.w{color:var(--warning);}
+.dc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--rule);margin-top:16px;}
+.dc-cell{padding:18px 16px;border-right:1px solid var(--rule);}
+.dc-cell:last-child{border-right:none;}
+.dc-name{font-family:var(--sans);font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--ink);margin-bottom:4px;}
+.dc-pipe{font-family:var(--sans);font-size:0.7rem;color:var(--muted);margin-bottom:10px;}
+.dc-vol{font-family:var(--serif);font-size:1.8rem;color:var(--teal);letter-spacing:-0.02em;line-height:1;margin-bottom:4px;}
+.dc-ebitda{font-family:var(--mono);font-size:0.8rem;color:var(--positive);font-weight:600;}
+.dc-note{font-size:0.72rem;color:var(--muted);margin-top:6px;line-height:1.45;}
+.site-nav{display:flex;align-items:center;justify-content:space-between;background:var(--ink);color:var(--paper);padding:10px 40px;font-family:var(--sans);font-size:0.78rem;letter-spacing:0.04em;position:sticky;top:0;z-index:100;gap:16px;}
+.site-nav a{color:rgba(250,249,244,0.7);text-decoration:none;}
+.site-nav a:hover{color:var(--paper);}
+.site-nav span[aria-hidden]{color:rgba(250,249,244,0.3);margin:0 4px;}
+.site-nav .nav-meta{color:rgba(250,249,244,0.45);font-size:0.75rem;}
+.site-nav .nav-action a{color:var(--accent);border:1px solid rgba(184,57,28,0.5);border-radius:3px;padding:3px 10px;}
+@media(max-width:760px){
+  .page{padding:32px 22px;}
+  h1{font-size:2.4rem;}
+  .metric-grid{grid-template-columns:repeat(2,1fr);}
+  .cols-2,.cols-3,.thesis-grid,.dash-controls,.output-grid,.entity-row,.dc-grid{grid-template-columns:1fr;}
+  .thesis-col.bull{border-right:none;border-bottom:1px solid var(--ink);}
+  .section-head{grid-template-columns:1fr;gap:8px;}
+  .recommendation .actions{grid-template-columns:1fr;}
+}
+
+/* ===== Glossary ===== */
+.glossary-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:0;border:1px solid var(--ink);margin-top:16px;}
+.glossary-col{padding:0;}
+.gterm{display:grid;grid-template-columns:160px 1fr;gap:0;border-bottom:1px solid var(--rule-soft);}
+.gterm:last-child{border-bottom:none;}
+.gt{font-family:var(--mono);font-size:0.78rem;font-weight:700;color:var(--teal);padding:12px 14px;border-right:1px solid var(--rule-soft);background:var(--paper-warm);display:flex;align-items:flex-start;}
+.gd{font-size:0.82rem;color:var(--ink-soft);padding:12px 14px;line-height:1.55;}
+.gd strong{color:var(--ink);}
+@media(max-width:760px){.glossary-grid{grid-template-columns:1fr;}.gterm{grid-template-columns:120px 1fr;}}
+
+
+
+section[id]{scroll-margin-top:64px}
+.tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin-top:14px}
+.tbl-wrap table{margin-top:0}
+em.unv{font-style:normal;font-family:var(--mono);font-size:0.68rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--warning);border:1px solid var(--warning);padding:1px 5px;margin:0 2px;white-space:nowrap}
+em.corr{font-style:normal;font-family:var(--mono);font-size:0.68rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--accent);border:1px solid var(--accent);padding:1px 5px;margin:0 2px}
+h3{font-family:var(--sans);font-size:0.78rem;font-weight:700;text-transform:uppercase;letter-spacing:0.13em;color:var(--accent);margin:26px 0 8px}
+h4{font-family:var(--serif);font-size:1.05rem;font-weight:400;margin:20px 0 6px}
+section ul{margin:6px 0 6px 20px}
+section ul li{font-size:0.9rem;line-height:1.6;color:var(--ink-soft);padding:3px 0}
+section ol{margin:6px 0 6px 22px}
+section ol li{font-size:0.9rem;line-height:1.6;color:var(--ink-soft);padding:3px 0}
+.factstrip{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--ink);margin:18px 0 4px}
+.factstrip .f{padding:16px 20px;border-right:1px solid var(--rule)}
+.factstrip .f:last-child{border-right:none}
+.factstrip .f .label{display:block;margin-bottom:5px}
+.factstrip .f .t{font-size:0.88rem;line-height:1.55;color:var(--ink)}
+.txn-map td:first-child{font-weight:600;color:var(--ink)}
+.srcnote{font-family:var(--sans);font-size:0.78rem;color:var(--muted);line-height:1.6;border-left:3px solid var(--rule);padding:2px 0 2px 16px;margin:14px 0}
+.toc{display:grid;grid-template-columns:repeat(2,1fr);gap:0;border:1px solid var(--ink);margin-top:20px}
+.toc a{display:block;padding:12px 18px;border-bottom:1px solid var(--rule-soft);border-right:1px solid var(--rule-soft);text-decoration:none;color:var(--ink);font-size:0.86rem}
+.toc a:hover{background:var(--paper-warm);color:var(--accent)}
+.toc a .n{font-family:var(--mono);font-size:0.68rem;color:var(--muted);margin-right:10px}
+@media(max-width:720px){.factstrip,.toc{grid-template-columns:1fr}}
+
+</style>
+</head>
+<body>
+<nav class="site-nav" aria-label="breadcrumb">
+  <div style="display:flex;align-items:center;gap:0;flex-wrap:wrap">
+    <a href="../../">Market Logic Investors</a><span aria-hidden="true">/</span>
+    <a href="../../">Deal Vault</a><span aria-hidden="true">/</span>
+    <a href="../">Transaction Experience</a><span aria-hidden="true">/</span>
+    <span>Centrica, Direct Energy &amp; NRG</span>
+  </div>
+  <div style="display:flex;align-items:center;gap:16px;">
+    <span class="nav-meta">ML-TXN-NRG &nbsp;|&nbsp; Energy &middot; Retail power</span>
+  </div>
+</nav>
+<div class="page">
+<header class="cover">
+<div class="cover-meta">
+<div class="left">
+<p><strong style="color:var(--ink);display:block;margin-bottom:4px;">Market Logic Investors LLC</strong> Energy · Retail power · Transaction Record<br> Client engagement record · Primary-source reconstruction</p>
+</div>
+<div class="right">
+<p><span class="stamp">9 transactions</span><br> <strong style="color:var(--ink);">Ref: ML-TXN-NRG</strong><br> Period: 2000 – 2026<br> Compiled: September 6, 2026</p>
+</div>
+</div>
+<span class="eyebrow">Retail energy · Twenty-year build and exit</span>
+<div class="cover-title">
+<h1>
+Centrica, Direct Energy &amp; NRG
+</h1>
+<p><span class="legal">Centrica plc · LSE: CNA · NRG Energy, Inc. · NYSE: NRG · Direct Energy</span></p>
+</div>
+<p class="cover-tag">
+Twenty years of platform building sold in a single all-cash transaction at 7.9x EBITDA, and then Winter Storm Uri six weeks after closing. The clearest available case of a deal whose strategic logic held precisely because a $967m loss arrived immediately after it closed.
+</p>
+<div class="metric-grid">
+<div class="metric">
+<span class="v">9</span><span class="l">Transactions</span>
+</div>
+<div class="metric accent">
+<span class="v">$3.625<small>bn</small></span><span class="l">NRG / Direct Energy</span>
+</div>
+<div class="metric">
+<span class="v">7.9<small>x</small></span><span class="l">2019 EBITDA multiple</span>
+</div>
+<div class="metric teal">
+<span class="v">$1,250<small>m</small></span><span class="l">Final goodwill</span>
+</div>
+<div class="metric">
+<span class="v">$967<small>m</small></span><span class="l">Winter Storm Uri loss</span>
+</div>
+<div class="metric">
+<span class="v">$12.0<small>bn</small></span><span class="l">LS Power portfolio</span>
+</div>
+</div>
+</header>
+<section class="no-rule" style="margin-top:48px">
+<div class="section-head">
+<div class="section-num">
+§ 01
+</div>
+<div class="section-title">
+<h2>
+Transaction map
+</h2>
+<p class="sub">
+Every transaction on this file, in order
+</p>
+</div>
+</div>
+<p style="margin-bottom:8px">
+Centrica bought Direct Energy Marketing in 2000 for C$912m and spent twenty years bolting on customer books, then sold the whole platform to NRG for $3.625bn in cash, closing 5 January 2021. Six weeks later Winter Storm Uri cost NRG $967m. The non-Texas earnings the deal brought are what absorbed it.
+</p>
+<div class="tbl-wrap">
+<table class="txn-map">
+<thead>
+<tr>
+<th>
+Transaction
+</th>
+<th>
+Type
+</th>
+<th>
+Announced / closed
+</th>
+<th>
+Headline value
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="#txn-02" style="color:var(--ink);text-decoration:none;border-bottom:1px solid var(--rule)">Direct Energy North American Build-Out (2000–2019)</a>
+</td>
+<td>
+Serial cross-border platform build-out / bolt-on acquisition programme (UK acquirer, North American retail energy and home services)
+</td>
+<td>
+Platform acquired July–August 2000; bolt-ons through 2015; partial divestitures 2019
+</td>
+<td>
+Platform C$912m (£406m) in 2000; cumulative bolt-on spend roughly US$0.9–1.0bn across the material deals below
+</td>
+</tr>
+<tr>
+<td>
+<a href="#txn-03" style="color:var(--ink);text-decoration:none;border-bottom:1px solid var(--rule)">Acquisition of Direct Energy from Centrica plc</a>
+</td>
+<td>
+Cross-border corporate carve-out / divestiture; all-cash acquisition of a North American retail energy platform by a US IPP
+</td>
+<td>
+Announced 24 July 2020; Centrica shareholder approval 20 August 2020; closed 5 January 2021
+</td>
+<td>
+US$3.625bn cash, debt-free/cash-free (≈£2.85bn). 7.9x 2019 underlying adjusted EBITDA (Centrica basis); 4.9x post-synergy (NRG…
+</td>
+</tr>
+<tr>
+<td>
+<a href="#txn-04" style="color:var(--ink);text-decoration:none;border-bottom:1px solid var(--rule)">Related Portfolio Transactions (context)</a>
+</td>
+<td>
+Subsidiary Chapter 11 / deconsolidation; take-private of a listed smart-home platform; large-scale generation portfolio acquisition
+</td>
+<td>
+GenOn Chapter 11 filed 14 June 2017, emerged December 2018; Vivint announced 6 Dec 2022, closed March 2023; LS Power announced 12…
+</td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="toc">
+<a href="#txn-02"><span class="n">§ 02</span>Direct Energy North American Build-Out (2000–2019)</a><a href="#txn-03"><span class="n">§ 03</span>Acquisition of Direct Energy from Centrica plc</a><a href="#txn-04"><span class="n">§ 04</span>Related Portfolio Transactions (context)</a>
+</div>
+</section>
+<section id="txn-02">
+<div class="section-head">
+<div class="section-num">
+§ 02
+</div>
+<div class="section-title">
+<h2>
+Centrica plc — Direct Energy North American Build-Out (2000–2019)
+</h2>
+<p class="sub">
+Serial cross-border platform build-out / bolt-on acquisition programme (UK acquirer, North American retail energy and home services)
+</p>
+</div>
+</div>
+<div class="factstrip">
+<div class="f">
+<span class="label">Announced / closed</span>
+<div class="t">
+<p>Platform acquired July–August 2000; bolt-ons through 2015; partial divestitures 2019</p>
+</div>
+</div>
+<div class="f">
+<span class="label">Headline value</span>
+<div class="t">
+<p>Platform C$912m (£406m) in 2000; cumulative bolt-on spend roughly US$0.9–1.0bn across the material deals below</p>
+</div>
+</div>
+</div>
+<h3 id="parties">Parties</h3>
+<p>Centrica plc (LSE: CNA) / Direct Energy Marketing Ltd / Natural Gas Wholesalers / Energy America LLC / Sempra Energy / NewPower Holdings / American Electric Power / Great Plains Energy / PNM Resources / Clockwork Inc.</p>
+<h3 id="structure">Structure</h3>
+<ul>
+<li><strong>Direct Energy Marketing Ltd (2000)</strong> — recommended offer, C$912m / £406m <strong>including assumed debt</strong>; unitholders approved 18 Aug 2000; completed <strong>21 Aug 2000</strong>. Included Natural Gas Wholesalers (its primary marketing agent) and Alberta gas reserves supplying ~20% of customer demand. ~820,000 gas customers, primarily Ontario. Simultaneously gave Centrica a <strong>27.5% stake in Energy America LLC</strong>, a JV with Sempra Energy (~450,000 US customers). CEO Roy Gardner framed it as “a strong base for growth.”</li>
+<li><strong>Energy America (2001)</strong> — Centrica acquired the balance of the Sempra JV, consolidating US retail. [Primary-source price not verified — Centrica media page not retrievable; see filing index note in sources.]</li>
+<li><strong>CPL Retail Energy / WTU Retail Energy (April 2002)</strong> — acquired the electricity supply operations of Central Power and Light and West Texas Utilities from <strong>American Electric Power</strong> for <strong>US$133–153m (£92.4–106.3m)</strong>, plus an earnings-sharing mechanism running to 2006. ~800,000 customers (680,000 CPL + 180,000 WTU). Announced 17 April 2002. This, not a “Texas Genco retail” deal, is the Texas entry point.</li>
+<li><strong>NewPower Holdings (2002)</strong> — Energy America LLC acquired <strong>212,000 natural gas customers</strong> in Ohio and Pennsylvania out of NewPower for <strong>US$23.2m (£14.7m)</strong>, plus adjustments for gas inventory and imbalance charges. Announced 15 July 2002, completed <strong>1 Aug 2002</strong>. Asset purchase (customers, gas inventory, certain IT systems) — not a corporate acquisition of NewPower Holdings.</li>
+<li><strong>Strategic Energy LLC (2008)</strong> — acquired from <strong>Great Plains Energy</strong> for <strong>US$300m cash</strong>. C&amp;I retail electricity platform.</li>
+<li><strong>Clockwork Inc. / Clockwork Home Services (2010)</strong> — <strong>US$183m (£126m) including assumed debt</strong>, completion expected July 2010. Franchise home services: One Hour Heating &amp; Air Conditioning, Benjamin Franklin Plumbing, Mister Sparky. ~1 million households served annually, 47 US states + 2 Canadian provinces, ~1,000 staff. Rationale: raised the share of households where Direct Energy could sell both energy and services from <strong>30% to 55%</strong>; combined Clockwork + DE Services revenues cited at “almost $4 billion.”</li>
+<li><strong>First Choice Power (2011)</strong> — acquired from <strong>PNM Resources (NYSE: PNM)</strong> for <strong>US$270m cash plus working capital</strong>. Announced <strong>23 Sept 2011</strong>, expected Q4 2011 close. Texas retail electricity incl. the rural Texas-New Mexico Power territory and a prepaid electricity business.</li>
+<li><strong>Panoramic Power (2015)</strong> — Israeli sensor/energy-monitoring startup, reported ~<strong>US$60m</strong> [unverified against primary source]. Announced 12 Nov 2015.</li>
+<li><strong>Bounce Energy (2014)</strong> — Texas retail brand; terms not publicly disclosed <em class="unv">unverified</em>.</li>
+<li><strong>Clockwork divested (2019)</strong> — Direct Energy sold the franchise home services business Clockwork, Inc. ahead of the NRG sale, narrowing the perimeter.</li>
+</ul>
+<h3 id="financing">Financing</h3>
+<p>Funded from Centrica group balance sheet and cash flow; no dedicated acquisition facilities disclosed for the individual bolt-ons.</p>
+<h3 id="purchase-price-allocation-goodwill-and-impairments">Purchase price allocation, goodwill and impairments</h3>
+<ul>
+<li>Centrica took substantial write-downs on the North American business over the 2010s; Direct Energy’s <strong>2019 gross assets were £4.0bn</strong> at 30 June 2020 against a £2.85bn sale price, implying carrying-value pressure.</li>
+<li><strong>2019 Direct Energy underlying adjusted EBITDA: US$457m</strong>; adjusted operating profit <strong>£221m (US$282m)</strong>; profit for the year <strong>£105m (US$134m)</strong>.</li>
+</ul>
+<h3 id="advisers">Advisers</h3>
+<p>Not disclosed on a per-bolt-on basis.</p>
+<h3 id="key-people">Key people</h3>
+<ul>
+<li>Roy Gardner — Group Chief Executive, Centrica — led the 2000 platform acquisition</li>
+<li>Chris Weston — President &amp; CEO, Direct Energy (later Centrica Group CEO) — quoted on First Choice Power 2011</li>
+<li>Steven Murray — President, Direct Energy Residential — First Choice Power</li>
+<li>Pat Vincent-Collawn — President &amp; CEO, PNM Resources — seller, First Choice Power</li>
+</ul>
+<h3 id="regulatory-and-litigation">Regulatory and litigation</h3>
+<p>Texas PUC and state retail-electricity certifications for the CPL/WTU and First Choice transfers; Canadian and US competition clearances on the 2000 platform deal.</p>
+<h3 id="outcome-and-post-deal-performance">Outcome and post-deal performance</h3>
+<p>Direct Energy reached <strong>3.3m+ residential customers</strong> and <strong>~160,000 C&amp;I customers across ~500,000 sites</strong> in 27 US states and 6 Canadian provinces, but returns disappointed. Under Chris O’Shea’s “simpler, leaner” strategy the entire platform was sold to NRG in 2020–21 at <strong>7.9x 2019 EBITDA</strong>, ending 20 years of North American expansion.</p>
+<h3 id="key-numbers">Key numbers</h3>
+<div class="tbl-wrap"><table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Metric</th>
+<th>Value</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Direct Energy Marketing Ltd (2000)</td>
+<td>C$912m / £406m incl. debt</td>
+<td>Centrica 2000 release</td>
+</tr>
+<tr class="even">
+<td>Direct Energy gas customers at acquisition</td>
+<td>~820,000 (Ontario)</td>
+<td>Centrica 2000 release</td>
+</tr>
+<tr class="odd">
+<td>Energy America stake acquired 2000</td>
+<td>27.5% (JV w/ Sempra)</td>
+<td>Centrica 2000 release</td>
+</tr>
+<tr class="even">
+<td>CPL + WTU retail (2002)</td>
+<td>US$133–153m / £92.4–106.3m</td>
+<td>Centrica 2002 release</td>
+</tr>
+<tr class="odd">
+<td>CPL + WTU customers</td>
+<td>~800,000 (680k + 180k)</td>
+<td>Centrica 2002 release</td>
+</tr>
+<tr class="even">
+<td>NewPower customers (2002)</td>
+<td>US$23.2m / £14.7m, 212,000 customers</td>
+<td>Centrica 2002 release</td>
+</tr>
+<tr class="odd">
+<td>Strategic Energy (2008)</td>
+<td>US$300m cash</td>
+<td>Centrica 2008 release</td>
+</tr>
+<tr class="even">
+<td>Clockwork (2010)</td>
+<td>US$183m / £126m incl. debt</td>
+<td>Centrica 2010 release</td>
+</tr>
+<tr class="odd">
+<td>First Choice Power (2011)</td>
+<td>US$270m cash + working capital</td>
+<td>PR Newswire 23 Sep 2011</td>
+</tr>
+<tr class="even">
+<td>Panoramic Power (2015)</td>
+<td>~US$60m <em class="unv">unverified</em></td>
+<td>Press reports</td>
+</tr>
+<tr class="odd">
+<td>Direct Energy 2019 underlying adj. EBITDA</td>
+<td>US$457m</td>
+<td>Centrica Class 1 circular</td>
+</tr>
+<tr class="even">
+<td>Direct Energy gross assets 30 Jun 2020</td>
+<td>£4.0bn</td>
+<td>Centrica Class 1 circular</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="primary-sources">Primary sources</h3>
+<ul>
+<li><a href="https://www.centrica.com/media-centre/news/2000/north-american-acquisition-marks-major-step-in-centricas-international-expansion/">Centrica — North American acquisition marks major step in international expansion (2000)</a></li>
+<li><a href="https://www.centrica.com/media-centre/news/2000/recommended-offer-by-centrica-plc-for-direct-energy-marketing-limited-paves-way-for-international-expansion/">Centrica — Recommended offer for Direct Energy Marketing Limited (2000)</a></li>
+<li><a href="https://www.centrica.com/media-centre/news/2002/centrica-agrees-acquisition-of-more-than-800-000-customers-in-texas/">Centrica — Acquisition of more than 800,000 customers in Texas (2002)</a></li>
+<li><a href="https://www.centrica.com/media-centre/news/2002/centrica-completes-acquisition-of-newpower-customers/">Centrica — Completes acquisition of NewPower customers (2002)</a></li>
+<li><a href="https://www.centrica.com/media-centre/news/2008/centrica-enters-into-agreement-to-acquire-north-american-ci-business/">Centrica — Enters agreement to acquire North American C&amp;I business / Strategic Energy (2008)</a></li>
+<li><a href="https://www.centrica.com/media-centre/news/2010/centrica-to-acquire-north-american-home-services-business/">Centrica — To acquire North American home services business / Clockwork (2010)</a></li>
+<li><a href="https://www.centrica.com/media-centre/news/2010/direct-energy-completes-clockwork-home-services-combination/">Centrica — Direct Energy completes Clockwork Home Services combination (2010)</a></li>
+<li><a href="https://www.prnewswire.com/news-releases/direct-energy-to-acquire-first-choice-power-for-270-million-130411228.html">PR Newswire — Direct Energy to Acquire First Choice Power for $270 Million (2011)</a></li>
+<li><a href="https://www.centrica.com/media-centre/news/2019/direct-energy-completes-sale-of-franchise-home-services-business-clockwork-inc/">Centrica — Direct Energy completes sale of Clockwork, Inc. (2019)</a></li>
+<li>Energy America 2001 completion: Centrica media-centre index — <a href="https://www.centrica.com/media-centre/">Centrica news archive</a> (specific release URL could not be verified)</li>
+</ul>
+<hr />
+</section>
+<section id="txn-03">
+<div class="section-head">
+<div class="section-num">
+§ 03
+</div>
+<div class="section-title">
+<h2>
+NRG Energy, Inc. — Acquisition of Direct Energy from Centrica plc
+</h2>
+<p class="sub">
+Cross-border corporate carve-out / divestiture; all-cash acquisition of a North American retail energy platform by a US IPP
+</p>
+</div>
+</div>
+<div class="factstrip">
+<div class="f">
+<span class="label">Announced / closed</span>
+<div class="t">
+<p>Announced <strong>24 July 2020</strong>; Centrica shareholder approval <strong>20 August 2020</strong>; <strong>closed 5 January 2021</strong></p>
+</div>
+</div>
+<div class="f">
+<span class="label">Headline value</span>
+<div class="t">
+<p><strong>US$3.625bn cash</strong>, debt-free/cash-free (≈£2.85bn). <strong>7.9x 2019 underlying adjusted EBITDA</strong> (Centrica basis); <strong>4.9x</strong> post-synergy (NRG basis). Final accounting purchase price <strong>US$3,724m</strong>.</p>
+</div>
+</div>
+</div>
+<h3 id="parties-1">Parties</h3>
+<p>NRG Energy, Inc. (NYSE: NRG) — buyer, acquiring Centrica US Holdings Inc. and Direct Energy Marketing Limited from Centrica Beta Holdings Limited and Centrica Gamma Holdings Limited (Centrica plc, LSE: CNA)</p>
+<h3 id="structure-1">Structure</h3>
+<ul>
+<li>All-cash acquisition on a <strong>debt-free, cash-free basis</strong>; two acquisition vehicles covering the US and Canadian legs.</li>
+<li><strong>Class 1 transaction</strong> for Centrica under the UK Listing Rules, requiring a shareholder circular and simple-majority vote — approved <strong>20 August 2020</strong>.</li>
+<li>Perimeter: <strong>Direct Energy Home</strong> (3.3m+ residential customers, US and Canada) and <strong>Direct Energy Business</strong> (~160,000 C&amp;I customers across ~500,000 sites, 27 US states, 6 Canadian provinces), plus the North American energy supply, services and trading operations.</li>
+<li><strong>Excluded:</strong> Centrica retained its North American <strong>Centrica Business Solutions</strong> operations; a transition services agreement governed separation.</li>
+<li><strong>Break fees:</strong> Centrica → NRG <strong>~US$30m</strong> (board recommendation withdrawal, superior proposal, or shareholder rejection); NRG → Centrica <strong>US$180m</strong> (regulatory failure, final blocking judgment, or failure to use reasonable best efforts) — a notably asymmetric reverse-termination structure favouring the seller.</li>
+<li>“Reasonable best efforts” standard on regulatory approvals.</li>
+<li>Centrica net cash proceeds estimated <strong>£2.7bn</strong> after ~£0.1bn debt-like items and ~£0.1bn transaction costs.</li>
+<li>Post-close, <strong>76% of Direct Energy’s Home Energy customers sat outside Texas</strong>, materially diversifying NRG away from ERCOT concentration — an irony given what followed six weeks later.</li>
+</ul>
+<h3 id="financing-1">Financing</h3>
+<ul>
+<li><strong>Priced 18 November 2020</strong>, all used to fund the purchase price and related fees:
+<ul>
+<li><strong>Senior secured first lien notes — US$1.40bn total:</strong> $500m <strong>2.000%</strong> due 2 Dec 2025 (at 99.943%); $900m <strong>2.450%</strong> due 2 Dec 2027 (at 99.859%)</li>
+<li><strong>Senior unsecured notes — US$1.53bn total:</strong> $500m <strong>3.375%</strong> due 15 Feb 2029 (at par); $1,030m <strong>3.625%</strong> due 15 Feb 2031 (at par)</li>
+<li><strong>US$900m pre-capitalized trust securities (P-Caps)</strong> issued by <strong>Alexander Funding Trust</strong>, redeemable 15 Nov 2023; the trust holds US Treasury strips and provides collateral support for up to $900m of letters of credit</li>
+</ul></li>
+<li><strong>Revolving credit facility upsized by US$1.037bn</strong> — existing commitments +$779m, plus a new <strong>$258m tranche</strong> maturing 30 months post-closing; total revolving commitments at closing <strong>$3.64bn</strong></li>
+<li><strong>Collateral facility expansion of ~$3.5bn</strong> (LCs and revolver increases) to support the enlarged retail book</li>
+<li><strong>$148m</strong> receivables securitization short-term borrowings</li>
+<li><strong>Note:</strong> no term loan B and no drawn bridge in the final structure — the commonly cited account’s “$900m senior secured + $1.1bn senior unsecured + TLB + bridge” does not match the executed financing.</li>
+</ul>
+<h3 id="purchase-price-allocation-goodwill-and-impairments-1">Purchase price allocation, goodwill and impairments</h3>
+<ul>
+<li><strong>Preliminary (8-K, 13 Nov 2020 pro formas):</strong> total consideration $3,625m; current assets $2,353m; PP&amp;E $191m; identifiable intangibles <strong>$2,825m</strong>; other non-current assets $255m; current liabilities $(1,960)m; non-current liabilities $(660)m; <strong>goodwill $621m</strong>. Deferred tax liability adjustment <strong>$341m</strong>. Estimated transaction costs <strong><sub>$40m<strong>. Projected annual amortization </strong></sub>$225m</strong>, WAUL ~13 years.</li>
+<li><strong>Final (FY2021 10-K, filed 2022):</strong> <strong>purchase price $3,724m</strong>; identified assets <strong>$7,794m</strong> less liabilities <strong>$4,070m</strong>. <strong>Goodwill $1,250m</strong> (of which <strong>$322m</strong> expected to be tax deductible). Identifiable intangibles <strong>$2,321m</strong>:
+<ul>
+<li>Customer relationships <strong>$1,277m</strong> — 12 years</li>
+<li>Customer and supply contracts <strong>$610m</strong> — 12 years</li>
+<li>Trade names <strong>$310m</strong> — 12 years</li>
+<li>Renewable energy credits <strong>$124m</strong></li>
+</ul></li>
+<li>Measurement-period movement was large: goodwill roughly <strong>doubled</strong> ($621m → $1,250m) while intangibles fell ~$504m ($2,825m → $2,321m).</li>
+<li>Pro forma FY2019 combined revenue <strong>$23,703m</strong>; 9M2020 combined revenue <strong>$16,058m</strong>, net income $916m, diluted EPS $3.71.</li>
+</ul>
+<h3 id="advisers-1">Advisers</h3>
+<ul>
+<li><strong>NRG:</strong> Citi and <strong>Credit Suisse</strong> (financial); <strong>Latham &amp; Watkins</strong> and <strong>Baker Botts LLP</strong> (legal). <em>Goldman Sachs did not advise NRG on this deal — the commonly cited account’s assumption is incorrect.</em></li>
+<li><strong>Centrica:</strong> <strong>Goldman Sachs International</strong> (sponsor and joint lead financial adviser) and <strong>Robey Warshaw LLP</strong> (joint lead financial adviser); <strong>UBS</strong> and <strong>Goldman Sachs</strong> (corporate brokers); <strong>Cravath, Swaine &amp; Moore LLP</strong> and <strong>Slaughter and May</strong> (legal); <strong>McCarthy Tétrault</strong> (Canadian counsel).</li>
+</ul>
+<h3 id="key-people-1">Key people</h3>
+<ul>
+<li>Mauricio Gutierrez — President &amp; CEO, NRG Energy — deal principal and public face</li>
+<li>Kirkland Andrews — EVP &amp; CFO, NRG Energy — financing architecture</li>
+<li>Chris O’Shea — Group Chief Executive, Centrica — seller principal; “simpler, leaner business” rationale</li>
+<li>Chris Weston — former Direct Energy President &amp; CEO, later Centrica Group CEO — built much of the asset being sold</li>
+<li>Elizabeth Killinger — EVP, NRG, head of Retail — integration of the combined retail platform</li>
+<li>Larry Coben — later NRG Chair, President &amp; CEO (from 2023) — inherited the integrated model</li>
+</ul>
+<h3 id="regulatory-and-litigation-1">Regulatory and litigation</h3>
+<ul>
+<li><strong>FERC</strong> Section 203 authorization</li>
+<li><strong>Hart-Scott-Rodino</strong> clearance (DOJ/FTC)</li>
+<li><strong>Canadian Commissioner of Competition</strong> approval</li>
+<li>State PUC/retail-licensing consents across the ~27 states of operation</li>
+<li><strong>Centrica shareholder approval</strong> (Class 1) obtained 20 Aug 2020</li>
+<li>No material deal litigation.</li>
+</ul>
+<h3 id="outcome-and-post-deal-performance-1">Outcome and post-deal performance</h3>
+<ul>
+<li>Closed <strong>5 January 2021</strong>, creating a combined base of <strong>more than 3.7 million</strong> residential, small business and C&amp;I customers across all 50 states and parts of Canada.</li>
+<li><strong>Six weeks later, Winter Storm Uri (February 2021) hit ERCOT.</strong> NRG’s initial 17 March 2021 estimate was a <strong>$750m</strong> loss versus prior guidance, driven by ERCOT resettlement data, a <strong>$3.1bn system-wide default</strong> allocated across load, and increased uplift charges to load-serving entities. Corporate liquidity fell from <strong>$3.8bn (26 Feb 2021) to $3.259bn (15 Mar 2021)</strong>. NRG withdrew 2021 guidance.</li>
+<li><strong>Q1 2021 actual: $967m Uri loss</strong>, with full-year 2021 pre-tax loss estimated at <strong>$975m</strong> and net cash flow impact of <strong>$350–550m</strong> after deducting <strong>$150m</strong> of bill credits owed to large C&amp;I customers. Q1 2021 net loss <strong>$(82)m / $(0.33)</strong> per diluted share. The $967m was excluded from Q1 Adjusted EBITDA of $567m.</li>
+<li>Guidance reinstated excluding Uri: Adjusted EBITDA <strong>$2,400–2,600m</strong>, Adjusted CFO $1,630–1,830m, FCFbG <strong>$1,440–1,640m</strong>.</li>
+<li><strong>Synergies delivered:</strong> $51m realized in Q1 2021; on track for <strong>$135m in 2021</strong> and <strong>$300m annual run-rate by 2023</strong> — the original target was met.</li>
+<li>Investment-grade credit ratios were targeted within 12 months of closing.</li>
+<li>Strategically the deal worked: the non-Texas, non-commodity-levered earnings from Direct Energy cushioned NRG through Uri and became the base for the later Vivint and LS Power expansions.</li>
+</ul>
+<h3 id="key-numbers-1">Key numbers</h3>
+<div class="tbl-wrap"><table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Metric</th>
+<th>Value</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Headline consideration</td>
+<td>US$3.625bn cash (£2.85bn)</td>
+<td>Centrica / NRG releases</td>
+</tr>
+<tr class="even">
+<td>Final accounting purchase price</td>
+<td>US$3,724m</td>
+<td>NRG FY2021 10-K R76</td>
+</tr>
+<tr class="odd">
+<td>EV / 2019 underlying adj. EBITDA</td>
+<td>7.9x (EBITDA $457m)</td>
+<td>Centrica Class 1 circular</td>
+</tr>
+<tr class="even">
+<td>Post-synergy multiple (NRG basis)</td>
+<td>4.9x</td>
+<td>NRG 24 Jul 2020 release</td>
+</tr>
+<tr class="odd">
+<td>Run-rate synergy target</td>
+<td>US$300m (by 2023)</td>
+<td>NRG release; Q1’21 results</td>
+</tr>
+<tr class="even">
+<td>2021 synergies realized / target</td>
+<td>$51m Q1; $135m FY2021</td>
+<td>NRG Q1 2021 results</td>
+</tr>
+<tr class="odd">
+<td>Goodwill (preliminary → final)</td>
+<td>$621m → <strong>$1,250m</strong></td>
+<td>8-K pro formas; FY2021 10-K</td>
+</tr>
+<tr class="even">
+<td>Identifiable intangibles (prelim → final)</td>
+<td>$2,825m → <strong>$2,321m</strong></td>
+<td>8-K pro formas; FY2021 10-K</td>
+</tr>
+<tr class="odd">
+<td>Tax-deductible goodwill</td>
+<td>$322m</td>
+<td>FY2021 10-K R76</td>
+</tr>
+<tr class="even">
+<td>Secured first lien notes</td>
+<td>$1.40bn (2.000% ’25; 2.450% ’27)</td>
+<td>18 Nov 2020 pricing release</td>
+</tr>
+<tr class="odd">
+<td>Senior unsecured notes</td>
+<td>$1.53bn (3.375% ’29; 3.625% ’31)</td>
+<td>18 Nov 2020 pricing release</td>
+</tr>
+<tr class="even">
+<td>Pre-capitalized trust securities</td>
+<td>$900m (Alexander Funding Trust)</td>
+<td>18 Nov 2020 pricing release</td>
+</tr>
+<tr class="odd">
+<td>Revolver upsize / total commitments</td>
+<td>+$1.037bn / $3.64bn</td>
+<td>NRG 20 Aug 2020 release</td>
+</tr>
+<tr class="even">
+<td>Centrica net cash proceeds</td>
+<td>£2.7bn</td>
+<td>Centrica Class 1 circular</td>
+</tr>
+<tr class="odd">
+<td>Centrica pension package</td>
+<td>£240m deferred payments; £745m LCs; £250m escrow</td>
+<td>Centrica Class 1 circular</td>
+</tr>
+<tr class="even">
+<td>Break fee — Centrica to NRG</td>
+<td>~US$30m</td>
+<td>Centrica Class 1 circular</td>
+</tr>
+<tr class="odd">
+<td>Reverse break fee — NRG to Centrica</td>
+<td>US$180m</td>
+<td>Centrica Class 1 circular</td>
+</tr>
+<tr class="even">
+<td>Winter Storm Uri — initial estimate</td>
+<td>$750m</td>
+<td>NRG 17 Mar 2021 release</td>
+</tr>
+<tr class="odd">
+<td>Winter Storm Uri — Q1 2021 actual</td>
+<td><strong>$967m</strong> (FY est. $975m pre-tax)</td>
+<td>NRG Q1 2021 results</td>
+</tr>
+<tr class="even">
+<td>ERCOT system-wide default</td>
+<td>$3.1bn</td>
+<td>NRG 17 Mar 2021 release</td>
+</tr>
+<tr class="odd">
+<td>Combined customers at close</td>
+<td>3.7m+</td>
+<td>NRG 5 Jan 2021 release</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="primary-sources-1">Primary sources</h3>
+<ul>
+<li><a href="https://www.centrica.com/media-centre/news/2020/proposed-sale-of-direct-energy-for-3625-billion-to-nrg-energy/">Centrica — Proposed sale of Direct Energy for $3.625bn to NRG Energy</a></li>
+<li><a href="https://www.centrica.com/media/4462/centrica-proposed-sale-of-direct-energy.pdf">Centrica — Proposed sale of Direct Energy, full announcement (PDF)</a></li>
+<li><a href="https://investors.nrg.com/news-releases/news-release-details/nrg-energy-inc-acquire-direct-energy">NRG — NRG Energy Inc. to Acquire Direct Energy (24 Jul 2020)</a></li>
+<li><a href="https://investors.nrg.com/news-releases/news-release-details/nrg-energy-inc-announces-approval-direct-energy-acquisition">NRG — Announces Approval of Direct Energy Acquisition by Centrica Shareholders and Increase to Revolving Credit Facility Commitments</a></li>
+<li><a href="https://www.businesswire.com/news/home/20201118005710/en/NRG-Energy-Inc.-Announces-Pricing-of-$1.40-Billion-of-Senior-Secured-First-Lien-Notes-$1.53-Billion-of-Senior-Unsecured-Notes-and-$900-Million-of-Pre-Capitalized-Trust-Securities">NRG — Pricing of $1.40bn Senior Secured First Lien Notes, $1.53bn Senior Unsecured Notes and $900m Pre-Capitalized Trust Securities (18 Nov 2020)</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/1013871/000101387120000043/a8-knovember132020ex993.htm">SEC EDGAR — NRG 8-K Exhibit 99.3, Unaudited Pro Forma Combined Financial Information (13 Nov 2020)</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/1013871/000101387122000010/R76.htm">SEC EDGAR — NRG FY2021 10-K, Direct Energy final purchase price allocation (R76)</a></li>
+<li><a href="https://investors.nrg.com/news-releases/news-release-details/nrg-completes-direct-energy-acquisition-forming-leading">NRG — Completes Direct Energy Acquisition (5 Jan 2021)</a></li>
+<li><a href="https://investors.nrg.com/news-releases/news-release-details/nrg-energy-inc-financial-update-winter-storm-uri-impacts">NRG — Financial Update on Winter Storm Uri Impacts (17 Mar 2021)</a></li>
+<li><a href="https://www.businesswire.com/news/home/20210506005628/en/NRG-Energy-Inc.-Reports-First-Quarter-2021-Results">NRG — First Quarter 2021 Results (6 May 2021)</a></li>
+<li><a href="https://www.bakerbotts.com/news/2020/07/baker-botts-represents-nrg-energy-inc-in-its-acquisition-of-direct-energy">Baker Botts — Represents NRG in its Acquisition of Direct Energy</a></li>
+<li><a href="https://www.mccarthy.ca/en/experience/centrica-plc-completes-agreement-to-sell-direct-energy-to-nrg-energy-for-us-3-625b">McCarthy Tétrault — Centrica completes agreement to sell Direct Energy to NRG</a></li>
+</ul>
+<hr />
+</section>
+<section id="txn-04">
+<div class="section-head">
+<div class="section-num">
+§ 04
+</div>
+<div class="section-title">
+<h2>
+NRG Energy — Related Portfolio Transactions (context)
+</h2>
+<p class="sub">
+Subsidiary Chapter 11 / deconsolidation; take-private of a listed smart-home platform; large-scale generation portfolio acquisition
+</p>
+</div>
+</div>
+<div class="factstrip">
+<div class="f">
+<span class="label">Announced / closed</span>
+<div class="t">
+<p>GenOn Chapter 11 filed <strong>14 June 2017</strong>, emerged <strong>December 2018</strong>; Vivint announced <strong>6 Dec 2022</strong>, closed <strong>March 2023</strong>; LS Power announced <strong>12 May 2025</strong>, closed <strong>30 January 2026</strong></p>
+</div>
+</div>
+</div>
+<h3 id="structure-2">Structure</h3>
+<ul>
+<li><strong>GenOn Energy (2017–18):</strong> NRG’s leveraged merchant-generation subsidiary (legacy of the 2012 GenOn merger) filed Chapter 11 with a plan to cut ~<strong>$1.8bn</strong> of debt. NRG <strong>deconsolidated</strong> GenOn, severing the recourse and removing the most commodity-levered part of the fleet ahead of the “Transformation Plan.” GenOn completed reorganization and emerged in <strong>December 2018</strong> with a new board and management, fully separated from NRG.</li>
+<li><strong>Vivint Smart Home (2022–23):</strong> all-cash take-private at <strong>$12.00 per share</strong>, <strong>$2.8bn equity value</strong>, <strong>$5.2bn enterprise value</strong> including ~$2.4bn of assumed debt. Premium <strong>~33%</strong> to the 5 Dec 2022 close. No stockholder meeting required — holders of <strong>~59% of Class A shares</strong> (Blackstone-affiliated control block) delivered <strong>written consents</strong>. Synergy target <strong>$100m</strong> run-rate. Announced 6 Dec 2022; closed March 2023.</li>
+<li><strong>LS Power portfolio (2025–26):</strong> <strong>~$12.0bn enterprise value</strong> at <strong>7.5x 2026 EV/EBITDA</strong> for <strong>18 natural gas-fired facilities, ~13 GW across nine states</strong>, plus <strong>CPower</strong>, a C&amp;I virtual power plant platform with <strong>~6 GW</strong> under management and 2,000+ customers. Consideration: <strong>$6.4bn cash + $2.8bn stock (24.25m NRG shares at $114.98 trailing VWAP) + $3.2bn net debt assumed, less ~$0.4bn NPV of transaction tax benefits.</strong> LS Power took <strong>~11% of pro forma NRG</strong> with a <strong>6-month lock-up</strong>. Doubled NRG’s fleet to <strong>~25 GW</strong>.</li>
+</ul>
+<h3 id="financing-2">Financing</h3>
+<ul>
+<li>Vivint: <strong>Goldman Sachs Bank USA</strong> provided fully committed financing.</li>
+<li>LS Power: committed financing from <strong>Citi</strong> and <strong>Goldman Sachs</strong>.</li>
+</ul>
+<h3 id="purchase-price-allocation-goodwill-and-impairments-2">Purchase price allocation, goodwill and impairments</h3>
+<p>GenOn deconsolidation removed the subsidiary’s assets and liabilities from NRG’s balance sheet in 2017. Vivint and LS Power allocations reported in NRG’s FY2023 and FY2026 10-Ks respectively [LS Power PPA not yet verified as of Sept 2026].</p>
+<h3 id="advisers-2">Advisers</h3>
+<ul>
+<li><strong>Vivint</strong> — NRG: Goldman Sachs &amp; Co. LLC (financial), White &amp; Case LLP (legal). Vivint: J.P. Morgan Securities LLC (financial), Simpson Thacher &amp; Bartlett LLP (legal).</li>
+<li><strong>LS Power</strong> — NRG: Citi and Goldman Sachs &amp; Co. LLC (lead M&amp;A advisors, with committed financing); Scotiabank (M&amp;A advisor).</li>
+</ul>
+<h3 id="key-people-2">Key people</h3>
+<ul>
+<li>Mauricio Gutierrez — President &amp; CEO, NRG — GenOn restructuring and Vivint</li>
+<li>Larry Coben — Chair, President &amp; CEO, NRG — LS Power; “doubling down on power generation to respond to the incredible power demand supercycle”</li>
+<li>Paul Segal — CEO, LS Power — seller principal</li>
+<li>David Bywater — CEO, Vivint Smart Home</li>
+</ul>
+<h3 id="regulatory-and-litigation-2">Regulatory and litigation</h3>
+<p>LS Power required <strong>HSR, FERC and NYSPSC</strong> approvals — all obtained ahead of the 30 January 2026 close. Vivint required HSR only, given the written-consent structure.</p>
+<h3 id="outcome-and-post-deal-performance-2">Outcome and post-deal performance</h3>
+<p>LS Power lifted NRG’s 5-year Adjusted EPS CAGR target from <strong>10% to at least 14%</strong>, raised the target leverage ceiling to <strong>below 3.0x</strong> Net Debt/Adjusted EBITDA (from 2.50–2.75x) to be achieved within <strong>24–36 months</strong>, and set <strong>$1bn annual share repurchases</strong> until sub-3.0x leverage, reverting thereafter to the 80/20 capital allocation framework. Immediately accretive to Adjusted EPS.</p>
+<h3 id="key-numbers-2">Key numbers</h3>
+<div class="tbl-wrap"><table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Metric</th>
+<th>Value</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>GenOn debt reduction (Ch. 11 plan)</td>
+<td>~$1.8bn</td>
+<td>Law360 / GenOn plan</td>
+</tr>
+<tr class="even">
+<td>Vivint price per share / equity value</td>
+<td>$12.00 / $2.8bn</td>
+<td>NRG 6 Dec 2022 release</td>
+</tr>
+<tr class="odd">
+<td>Vivint enterprise value / debt assumed</td>
+<td>$5.2bn / $2.4bn</td>
+<td>NRG 6 Dec 2022 release</td>
+</tr>
+<tr class="even">
+<td>Vivint premium / synergies</td>
+<td>~33% / $100m run-rate</td>
+<td>NRG 6 Dec 2022 release</td>
+</tr>
+<tr class="odd">
+<td>LS Power enterprise value / multiple</td>
+<td>~$12.0bn / 7.5x 2026E EBITDA</td>
+<td>NRG 12 May 2025 release</td>
+</tr>
+<tr class="even">
+<td>LS Power consideration</td>
+<td>$6.4bn cash + $2.8bn stock + $3.2bn net debt − $0.4bn tax NPV</td>
+<td>NRG 12 May 2025 release</td>
+</tr>
+<tr class="odd">
+<td>NRG shares issued to LS Power</td>
+<td>24.25m at $114.98 VWAP (~11% pro forma)</td>
+<td>NRG 12 May 2025 release</td>
+</tr>
+<tr class="even">
+<td>Capacity acquired</td>
+<td>~13 GW gas + ~6 GW CPower VPP</td>
+<td>NRG releases</td>
+</tr>
+<tr class="odd">
+<td>NRG fleet post-close</td>
+<td>~25 GW (doubled)</td>
+<td>NRG 30 Jan 2026 release</td>
+</tr>
+<tr class="even">
+<td>Revised EPS CAGR target</td>
+<td>≥14% (from 10%)</td>
+<td>NRG 12 May 2025 release</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="primary-sources-2">Primary sources</h3>
+<ul>
+<li><a href="https://investors.nrg.com/news-releases/news-release-details/nrg-energy-inc-acquire-vivint-smart-home-inc">NRG — NRG Energy, Inc. to Acquire Vivint Smart Home (6 Dec 2022)</a></li>
+<li><a href="https://investors.nrg.com/news-releases/news-release-details/nrg-energy-inc-acquire-premier-power-portfolio-ls-power">NRG — to Acquire Premier Power Portfolio from LS Power (12 May 2025)</a></li>
+<li><a href="https://investors.nrg.com/static-files/79ac114c-268c-4852-a7f0-80b72a8724db">NRG — Form 8-K filed 12 May 2025 (LS Power)</a></li>
+<li><a href="https://investors.nrg.com/news-releases/news-release-details/nrg-energy-receives-all-regulatory-approvals-ls-power-portfolio">NRG — Receives All Regulatory Approvals for LS Power Portfolio Acquisition</a></li>
+<li><a href="https://investors.nrg.com/news-releases/news-release-details/nrg-energy-completes-acquisition-13-gw-power-generation-and-ci">NRG — Completes Acquisition of 13 GW of Power Generation and C&amp;I VPP Portfolio from LS Power (30 Jan 2026)</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/1126294/000110465917058477/a17-22299_1ex99d2.htm">SEC EDGAR — GenOn Chapter 11 Disclosure Statement (2017)</a></li>
+<li><a href="https://www.businesswire.com/news/home/20181214005423/en/GenOn-Completes-Reorganization-Emerges-Chapter-11-New">GenOn — Completes Reorganization and Emerges from Chapter 11 (Dec 2018)</a></li>
+</ul>
+<hr />
+</section>
+<footer>
+<div>
+<strong style="color:var(--ink)">Market Logic Investors LLC</strong> · Transaction Experience<br> Compiled from primary filings. Internal reference. Not investment advice.
+</div>
+<div style="text-align:right">
+<a href="../" style="color:var(--teal);text-decoration:none">← Back to Transaction Experience</a>
+</div>
+</footer>
+
+</div>
+</body>
+</html>

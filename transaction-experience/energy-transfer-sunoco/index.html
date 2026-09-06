@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Energy Transfer and Sunoco LP — Transaction Experience — Market Logic Investors</title>
+<meta name="description" content="Roughly $34bn of announced acquisitions in five years across two listed partnerships, executed almost entirely in units rather than cash, with the sponsor capturing GP economics an">
+<style>
+
+:root {
+  --ink: #0a1929; --ink-soft: #1c2e44;
+  --paper: #faf9f4; --paper-warm: #f3efe3;
+  --rule: #d4cfbf; --rule-soft: #e8e3d4;
+  --muted: #5b6b7a; --muted-light: #8a98a5;
+  --accent: #b8391c; --accent-soft: #d65a3a;
+  --teal: #1f6b6b; --teal-soft: #4a8b8b; --teal-light: #b8d4d4;
+  --positive: #2d6a4f; --warning: #b08800; --negative: #9b2226;
+  --negative-light: #e8c5c5;
+  --serif: 'Iowan Old Style','Palatino Linotype',Palatino,'Book Antiqua',Georgia,serif;
+  --sans: 'Helvetica Neue',Helvetica,-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
+  --mono: 'SF Mono',SFMono-Regular,Menlo,Monaco,Consolas,'Liberation Mono',monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{font-size:16px;-webkit-text-size-adjust:100%;}
+body{font-family:var(--sans);background:var(--paper);color:var(--ink);line-height:1.55;-webkit-font-smoothing:antialiased;}
+.page{max-width:1000px;margin:0 auto;padding:56px 56px 80px;}
+h1,h2,h3,h4,h5{font-family:var(--serif);font-weight:400;color:var(--ink);}
+h1{font-size:3.6rem;line-height:1.02;letter-spacing:-0.025em;}
+h2{font-size:2.05rem;line-height:1.12;letter-spacing:-0.015em;}
+h3{font-size:1.3rem;line-height:1.25;}
+h4{font-family:var(--sans);font-weight:600;font-size:0.7rem;text-transform:uppercase;letter-spacing:0.16em;color:var(--muted);}
+p{font-size:0.95rem;line-height:1.7;color:var(--ink-soft);}
+strong{color:var(--ink);font-weight:600;}
+.eyebrow{font-family:var(--sans);font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.2em;color:var(--accent);display:block;margin-bottom:18px;}
+.lede{font-family:var(--serif);font-size:1.25rem;line-height:1.5;color:var(--ink);}
+.kicker{font-family:var(--sans);font-size:0.75rem;font-weight:600;text-transform:uppercase;letter-spacing:0.12em;color:var(--teal);}
+.label{font-family:var(--sans);font-size:0.7rem;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);}
+.mono{font-family:var(--mono);font-size:0.85rem;}
+.cover{border-top:1px solid var(--ink);padding-top:32px;position:relative;}
+.cover-meta{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:84px;}
+.cover-meta .left,.cover-meta .right{font-family:var(--sans);font-size:0.78rem;color:var(--muted);}
+.cover-meta .right{text-align:right;}
+.cover-meta .right .stamp{display:inline-block;padding:4px 10px;border:1px solid var(--accent);color:var(--accent);font-weight:600;letter-spacing:0.12em;font-size:0.65rem;text-transform:uppercase;margin-bottom:8px;}
+.cover-title{margin-bottom:28px;}
+.cover-title .legal{display:block;font-family:var(--sans);font-size:0.78rem;color:var(--muted);margin-top:8px;letter-spacing:0.04em;}
+.cover-tag{font-family:var(--serif);font-style:italic;font-size:1.4rem;line-height:1.45;color:var(--ink-soft);max-width:720px;margin-bottom:56px;}
+.cover-tag::before{content:"\201C";font-size:2.2rem;line-height:0;vertical-align:-0.3em;color:var(--accent);margin-right:4px;}
+.cover-tag::after{content:"\201D";font-size:2.2rem;line-height:0;vertical-align:-0.3em;color:var(--accent);margin-left:2px;}
+.metric-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:0;border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);margin:32px 0;}
+.metric{padding:22px 16px 20px;border-right:1px solid var(--rule);text-align:left;}
+.metric:last-child{border-right:none;}
+.metric .v{font-family:var(--serif);font-size:2.1rem;line-height:1;letter-spacing:-0.02em;color:var(--ink);display:block;margin-bottom:6px;}
+.metric .v small{font-size:0.95rem;color:var(--muted);font-family:var(--serif);margin-left:1px;}
+.metric .l{font-family:var(--sans);font-size:0.68rem;font-weight:600;text-transform:uppercase;letter-spacing:0.12em;color:var(--muted);line-height:1.3;}
+.metric.accent .v{color:var(--accent);}
+.metric.teal .v{color:var(--teal);}
+section{margin-top:64px;padding-top:32px;border-top:1px solid var(--rule);}
+section.no-rule{border-top:none;}
+.section-head{display:grid;grid-template-columns:120px 1fr;gap:32px;margin-bottom:28px;align-items:baseline;}
+.section-num{font-family:var(--mono);font-size:0.78rem;color:var(--muted);letter-spacing:0.05em;border-top:2px solid var(--ink);padding-top:8px;text-transform:uppercase;font-weight:600;}
+.section-title h2{margin-bottom:8px;}
+.section-title .sub{font-family:var(--serif);font-style:italic;color:var(--muted);font-size:1.05rem;}
+.cols-2{display:grid;grid-template-columns:1fr 1fr;gap:36px;margin-top:16px;}
+.cols-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px;margin-top:16px;}
+.card{background:var(--paper-warm);padding:22px 24px;border:1px solid var(--rule);}
+.card.dark{background:var(--ink);color:var(--paper);}
+.card.dark h3,.card.dark h4{color:var(--paper);}
+.card.dark p{color:rgba(250,249,244,0.85);}
+.callout{border-left:3px solid var(--accent);padding:4px 0 4px 20px;margin:18px 0;font-family:var(--serif);font-style:italic;font-size:1.05rem;color:var(--ink);}
+.pull-quote{font-family:var(--serif);font-size:1.4rem;line-height:1.4;color:var(--ink);border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);padding:28px 0;margin:32px 0;text-align:center;letter-spacing:-0.005em;}
+table{width:100%;border-collapse:collapse;font-family:var(--sans);font-size:0.88rem;margin-top:14px;}
+thead th{text-align:left;font-weight:600;font-size:0.7rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);padding:10px 14px 10px 0;border-bottom:1.5px solid var(--ink);}
+thead th.num{text-align:right;}
+tbody td{padding:14px 14px 14px 0;border-bottom:1px solid var(--rule);color:var(--ink-soft);vertical-align:top;}
+tbody td.num{text-align:right;font-variant-numeric:tabular-nums;font-family:var(--mono);font-size:0.82rem;}
+tbody td strong{color:var(--ink);}
+tbody tr.highlight td{color:var(--ink);}
+tbody tr.highlight td:first-child{padding-left:12px;border-left:3px solid var(--accent);}
+ul.clean{list-style:none;}
+ul.clean li{padding:12px 0 12px 24px;border-bottom:1px solid var(--rule-soft);position:relative;font-size:0.93rem;color:var(--ink-soft);line-height:1.6;}
+ul.clean li::before{content:"→";position:absolute;left:0;top:12px;color:var(--accent);font-weight:600;}
+ol.clean{list-style:none;counter-reset:ck;}
+ol.clean li{counter-increment:ck;padding:12px 0 12px 36px;border-bottom:1px solid var(--rule-soft);position:relative;font-size:0.93rem;color:var(--ink-soft);line-height:1.6;}
+ol.clean li::before{content:counter(ck,decimal-leading-zero);position:absolute;left:0;top:12px;font-family:var(--mono);font-size:0.78rem;color:var(--accent);font-weight:600;}
+.tag{display:inline-block;font-family:var(--sans);font-size:0.68rem;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;padding:3px 9px;margin-right:6px;margin-bottom:4px;border:1px solid var(--rule);color:var(--ink-soft);background:var(--paper);}
+.tag.accent{border-color:var(--accent);color:var(--accent);}
+.tag.teal{border-color:var(--teal);color:var(--teal);}
+.tag.warn{border-color:var(--warning);color:var(--warning);}
+.tag.neg{border-color:var(--negative);color:var(--negative);}
+.tag.pos{border-color:var(--positive);color:var(--positive);}
+.thesis-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:24px;border:1px solid var(--ink);}
+.thesis-col{padding:28px 28px 24px;}
+.thesis-col.bull{border-right:1px solid var(--ink);}
+.thesis-col ul{list-style:none;margin-top:14px;}
+.thesis-col ul li{padding:10px 0 10px 22px;position:relative;font-size:0.9rem;color:var(--ink-soft);line-height:1.55;border-bottom:1px dashed var(--rule-soft);}
+.thesis-col.bull ul li::before{content:"+";position:absolute;left:0;top:9px;color:var(--positive);font-weight:700;}
+.thesis-col.bear ul li::before{content:"−";position:absolute;left:0;top:9px;color:var(--negative);font-weight:700;}
+.recommendation{background:var(--ink);color:var(--paper);padding:40px 44px;margin-top:40px;border-left:6px solid var(--accent);}
+.recommendation .head{font-family:var(--mono);font-size:0.74rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--accent-soft);margin-bottom:12px;font-weight:600;}
+.recommendation h2{color:var(--paper);margin-bottom:14px;}
+.recommendation p{color:rgba(250,249,244,0.86);font-size:1rem;}
+.recommendation .actions{margin-top:24px;padding-top:20px;border-top:1px solid rgba(250,249,244,0.18);display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+.recommendation .actions .h{font-family:var(--mono);font-size:0.7rem;text-transform:uppercase;letter-spacing:0.14em;color:var(--accent-soft);margin-bottom:10px;}
+.recommendation .actions ul{list-style:none;}
+.recommendation .actions ul li{padding:6px 0 6px 22px;position:relative;font-size:0.9rem;color:rgba(250,249,244,0.92);line-height:1.5;}
+.recommendation .actions ul li::before{content:"▸";position:absolute;left:0;top:5px;color:var(--accent-soft);}
+footer{margin-top:80px;padding-top:28px;border-top:1px solid var(--ink);font-family:var(--sans);font-size:0.74rem;color:var(--muted);display:flex;justify-content:space-between;}
+.chart{width:100%;margin:18px 0 6px;background:var(--paper);}
+.chart-caption{font-family:var(--sans);font-size:0.72rem;color:var(--muted);margin-top:4px;font-style:italic;line-height:1.5;}
+/* Dashboard */
+.dash-panel{background:var(--paper-warm);border:1px solid var(--rule);padding:24px;margin-top:24px;}
+.dash-controls{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:20px;}
+.ctrl-item{display:flex;flex-direction:column;gap:5px;}
+.ctrl-item label{font-family:var(--sans);font-size:0.7rem;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);}
+.ctrl-row{display:flex;align-items:center;gap:8px;}
+.ctrl-row input[type=range]{flex:1;accent-color:var(--teal);cursor:pointer;}
+.ctrl-val{font-family:var(--mono);font-size:0.82rem;font-weight:600;color:var(--ink);min-width:48px;text-align:right;}
+.scen-row{display:flex;gap:8px;margin-bottom:18px;flex-wrap:wrap;}
+.scen-btn{font-family:var(--sans);font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;padding:5px 14px;border:1px solid var(--rule);background:var(--paper);color:var(--muted);cursor:pointer;}
+.scen-btn:hover{border-color:var(--teal);color:var(--teal);}
+.scen-btn.active{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+.output-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--rule);margin-bottom:16px;}
+.output-cell{padding:16px 14px;border-right:1px solid var(--rule);}
+.output-cell:last-child{border-right:none;}
+.output-cell .ov{font-family:var(--serif);font-size:1.8rem;letter-spacing:-0.02em;color:var(--ink);display:block;line-height:1;margin-bottom:4px;}
+.output-cell .ol{font-family:var(--sans);font-size:0.65rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--muted);}
+.output-cell.ok .ov{color:var(--positive);}
+.output-cell.warn .ov{color:var(--warning);}
+.output-cell.bad .ov{color:var(--negative);}
+.verdict-box{padding:16px 20px;font-family:var(--sans);font-size:0.88rem;line-height:1.6;border-left:4px solid var(--rule);margin-bottom:16px;}
+.verdict-box.ok{border-left-color:var(--positive);background:#f0f7f4;}
+.verdict-box.warn{border-left-color:var(--warning);background:#fdf8ec;}
+.verdict-box.bad{border-left-color:var(--negative);background:#fdf0f0;}
+.verdict-box .vl{font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.14em;margin-bottom:5px;color:var(--muted);}
+.assump-list{list-style:none;margin-top:0;}
+.assump-list li{padding:14px 0 14px 24px;border-bottom:1px solid var(--rule-soft);position:relative;font-size:0.88rem;line-height:1.6;color:var(--ink-soft);}
+.assump-list li::before{content:"→";position:absolute;left:0;top:14px;color:var(--accent);font-weight:700;}
+.assump-list li strong{color:var(--ink);}
+.assump-flag{display:inline-block;font-family:var(--mono);font-size:0.65rem;font-weight:700;letter-spacing:0.08em;padding:2px 7px;border:1px solid;margin-left:8px;vertical-align:middle;}
+.assump-flag.ok{border-color:var(--positive);color:var(--positive);}
+.assump-flag.warn{border-color:var(--warning);color:var(--warning);}
+.assump-flag.bad{border-color:var(--negative);color:var(--negative);}
+.signal{font-family:var(--mono);font-size:0.72rem;color:var(--teal);margin-top:6px;display:block;line-height:1.5;}
+.entity-row{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--ink);margin-top:20px;}
+.entity-col{padding:20px 18px;border-right:1px solid var(--rule);}
+.entity-col:last-child{border-right:none;}
+.entity-col h4{margin-bottom:12px;}
+.entity-col.et h4{color:var(--teal);}
+.entity-col.sun h4{color:var(--positive);}
+.entity-col.usac h4{color:var(--warning);}
+.emet{display:flex;justify-content:space-between;font-size:0.8rem;padding:6px 0;border-bottom:1px solid var(--rule-soft);}
+.emet:last-child{border:none;}
+.emet .ek{color:var(--muted);}
+.emet .ev{font-weight:600;color:var(--ink);font-family:var(--mono);font-size:0.78rem;}
+.emet .ev.g{color:var(--positive);}
+.emet .ev.r{color:var(--negative);}
+.emet .ev.w{color:var(--warning);}
+.dc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--rule);margin-top:16px;}
+.dc-cell{padding:18px 16px;border-right:1px solid var(--rule);}
+.dc-cell:last-child{border-right:none;}
+.dc-name{font-family:var(--sans);font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--ink);margin-bottom:4px;}
+.dc-pipe{font-family:var(--sans);font-size:0.7rem;color:var(--muted);margin-bottom:10px;}
+.dc-vol{font-family:var(--serif);font-size:1.8rem;color:var(--teal);letter-spacing:-0.02em;line-height:1;margin-bottom:4px;}
+.dc-ebitda{font-family:var(--mono);font-size:0.8rem;color:var(--positive);font-weight:600;}
+.dc-note{font-size:0.72rem;color:var(--muted);margin-top:6px;line-height:1.45;}
+.site-nav{display:flex;align-items:center;justify-content:space-between;background:var(--ink);color:var(--paper);padding:10px 40px;font-family:var(--sans);font-size:0.78rem;letter-spacing:0.04em;position:sticky;top:0;z-index:100;gap:16px;}
+.site-nav a{color:rgba(250,249,244,0.7);text-decoration:none;}
+.site-nav a:hover{color:var(--paper);}
+.site-nav span[aria-hidden]{color:rgba(250,249,244,0.3);margin:0 4px;}
+.site-nav .nav-meta{color:rgba(250,249,244,0.45);font-size:0.75rem;}
+.site-nav .nav-action a{color:var(--accent);border:1px solid rgba(184,57,28,0.5);border-radius:3px;padding:3px 10px;}
+@media(max-width:760px){
+  .page{padding:32px 22px;}
+  h1{font-size:2.4rem;}
+  .metric-grid{grid-template-columns:repeat(2,1fr);}
+  .cols-2,.cols-3,.thesis-grid,.dash-controls,.output-grid,.entity-row,.dc-grid{grid-template-columns:1fr;}
+  .thesis-col.bull{border-right:none;border-bottom:1px solid var(--ink);}
+  .section-head{grid-template-columns:1fr;gap:8px;}
+  .recommendation .actions{grid-template-columns:1fr;}
+}
+
+/* ===== Glossary ===== */
+.glossary-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:0;border:1px solid var(--ink);margin-top:16px;}
+.glossary-col{padding:0;}
+.gterm{display:grid;grid-template-columns:160px 1fr;gap:0;border-bottom:1px solid var(--rule-soft);}
+.gterm:last-child{border-bottom:none;}
+.gt{font-family:var(--mono);font-size:0.78rem;font-weight:700;color:var(--teal);padding:12px 14px;border-right:1px solid var(--rule-soft);background:var(--paper-warm);display:flex;align-items:flex-start;}
+.gd{font-size:0.82rem;color:var(--ink-soft);padding:12px 14px;line-height:1.55;}
+.gd strong{color:var(--ink);}
+@media(max-width:760px){.glossary-grid{grid-template-columns:1fr;}.gterm{grid-template-columns:120px 1fr;}}
+
+
+
+section[id]{scroll-margin-top:64px}
+.tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin-top:14px}
+.tbl-wrap table{margin-top:0}
+em.unv{font-style:normal;font-family:var(--mono);font-size:0.68rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--warning);border:1px solid var(--warning);padding:1px 5px;margin:0 2px;white-space:nowrap}
+em.corr{font-style:normal;font-family:var(--mono);font-size:0.68rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--accent);border:1px solid var(--accent);padding:1px 5px;margin:0 2px}
+h3{font-family:var(--sans);font-size:0.78rem;font-weight:700;text-transform:uppercase;letter-spacing:0.13em;color:var(--accent);margin:26px 0 8px}
+h4{font-family:var(--serif);font-size:1.05rem;font-weight:400;margin:20px 0 6px}
+section ul{margin:6px 0 6px 20px}
+section ul li{font-size:0.9rem;line-height:1.6;color:var(--ink-soft);padding:3px 0}
+section ol{margin:6px 0 6px 22px}
+section ol li{font-size:0.9rem;line-height:1.6;color:var(--ink-soft);padding:3px 0}
+.factstrip{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--ink);margin:18px 0 4px}
+.factstrip .f{padding:16px 20px;border-right:1px solid var(--rule)}
+.factstrip .f:last-child{border-right:none}
+.factstrip .f .label{display:block;margin-bottom:5px}
+.factstrip .f .t{font-size:0.88rem;line-height:1.55;color:var(--ink)}
+.txn-map td:first-child{font-weight:600;color:var(--ink)}
+.srcnote{font-family:var(--sans);font-size:0.78rem;color:var(--muted);line-height:1.6;border-left:3px solid var(--rule);padding:2px 0 2px 16px;margin:14px 0}
+.toc{display:grid;grid-template-columns:repeat(2,1fr);gap:0;border:1px solid var(--ink);margin-top:20px}
+.toc a{display:block;padding:12px 18px;border-bottom:1px solid var(--rule-soft);border-right:1px solid var(--rule-soft);text-decoration:none;color:var(--ink);font-size:0.86rem}
+.toc a:hover{background:var(--paper-warm);color:var(--accent)}
+.toc a .n{font-family:var(--mono);font-size:0.68rem;color:var(--muted);margin-right:10px}
+@media(max-width:720px){.factstrip,.toc{grid-template-columns:1fr}}
+
+</style>
+</head>
+<body>
+<nav class="site-nav" aria-label="breadcrumb">
+  <div style="display:flex;align-items:center;gap:0;flex-wrap:wrap">
+    <a href="../../">Market Logic Investors</a><span aria-hidden="true">/</span>
+    <a href="../../">Deal Vault</a><span aria-hidden="true">/</span>
+    <a href="../">Transaction Experience</a><span aria-hidden="true">/</span>
+    <span>Energy Transfer &amp; Sunoco LP</span>
+  </div>
+  <div style="display:flex;align-items:center;gap:16px;">
+    <span class="nav-meta">ML-TXN-ET &nbsp;|&nbsp; Midstream &amp; fuel distribution</span><a href="../../pe-deals/energy-transfer/" style="background:#1f6b6b;color:#fff;font-family:monospace;font-size:0.72rem;font-weight:700;padding:5px 14px;text-decoration:none;letter-spacing:0.06em;border-radius:2px;white-space:nowrap;margin-left:8px;">&#9654; ET INVESTMENT MEMO</a>
+  </div>
+</nav>
+<div class="page">
+<header class="cover">
+<div class="cover-meta">
+<div class="left">
+<p><strong style="color:var(--ink);display:block;margin-bottom:4px;">Market Logic Investors LLC</strong> Midstream &amp; fuel distribution · Transaction Record<br> Client engagement record · Primary-source reconstruction</p>
+</div>
+<div class="right">
+<p><span class="stamp">7 transactions</span><br> <strong style="color:var(--ink);">Ref: ML-TXN-ET</strong><br> Period: 2016 – 2026<br> Compiled: September 6, 2026</p>
+</div>
+</div>
+<span class="eyebrow">Midstream &amp; fuel distribution · The roll-up complex</span>
+<div class="cover-title">
+<h1>
+Energy Transfer &amp; Sunoco LP
+</h1>
+<p><span class="legal">Energy Transfer LP · NYSE: ET · Sunoco LP · NYSE: SUN · Parkland Corporation</span></p>
+</div>
+<p class="cover-tag">
+Roughly $34bn of announced acquisitions in five years across two listed partnerships, executed almost entirely in units rather than cash, with the sponsor capturing GP economics and incentive distribution rights on every one. Set against a $601.5m judgment from the merger that did not close.
+</p>
+<div class="metric-grid">
+<div class="metric">
+<span class="v">7</span><span class="l">Transactions</span>
+</div>
+<div class="metric accent">
+<span class="v">$9.1<small>bn</small></span><span class="l">Sunoco / Parkland</span>
+</div>
+<div class="metric teal">
+<span class="v">$24.5<small>bn</small></span><span class="l">Combined enterprise value</span>
+</div>
+<div class="metric">
+<span class="v">~21<small>%</small></span><span class="l">ET stake in Sunoco LP</span>
+</div>
+<div class="metric">
+<span class="v">$601.5<small>m</small></span><span class="l">Williams judgment</span>
+</div>
+<div class="metric">
+<span class="v">$600<small>m</small></span><span class="l">Offen, pending</span>
+</div>
+</div>
+</header>
+<section class="no-rule" style="margin-top:48px">
+<div class="section-head">
+<div class="section-num">
+§ 01
+</div>
+<div class="section-title">
+<h2>
+Transaction map
+</h2>
+<p class="sub">
+Every transaction on this file, in order
+</p>
+</div>
+</div>
+<p style="margin-bottom:8px">
+Energy Transfer rolled up Enable, Crestwood and WTG while Sunoco LP took NuStar and then Parkland, a US$9.1bn cross-border plan of arrangement that closed 31 October 2025 and created the largest independent fuel distributor in the Americas. Offen Petroleum was announced in August 2026 and is still pending. The Williams merger that never closed still cost $601.5m.
+</p>
+<div class="tbl-wrap">
+<table class="txn-map">
+<thead>
+<tr>
+<th>
+Transaction
+</th>
+<th>
+Type
+</th>
+<th>
+Announced / closed
+</th>
+<th>
+Headline value
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="#txn-02" style="color:var(--ink);text-decoration:none;border-bottom:1px solid var(--rule)">Structure and Precedent Transactions (context)</a>
+</td>
+<td>
+MLP sponsor structure; serial midstream roll-up; busted-merger litigation
+</td>
+<td>
+Various, 2016–2025
+</td>
+<td>
+~$24.9bn of announced acquisition value across the five transactions below, plus a $601.5m adverse judgment
+</td>
+</tr>
+<tr>
+<td>
+<a href="#txn-03" style="color:var(--ink);text-decoration:none;border-bottom:1px solid var(--rule)">Acquisition of Parkland Corporation</a>
+</td>
+<td>
+Cross-border MLP roll-up via Canadian plan of arrangement; part-cash / part-equity with a novel Up-C-style corporate vehicle;…
+</td>
+<td>
+Announced 5 May 2025; Parkland shareholder approval 24 June 2025; closed 31 October 2025
+</td>
+<td>
+~US$9.1bn including assumed debt; C$44.00 per Parkland share headline cash election (≈C$43.33 blended value at announcement), a…
+</td>
+</tr>
+<tr>
+<td>
+<a href="#txn-04" style="color:var(--ink);text-decoration:none;border-bottom:1px solid var(--rule)">Acquisition of Offen Petroleum</a>
+</td>
+<td>
+Sponsor exit / bolt-on fuel distribution acquisition
+</td>
+<td>
+Announced 6 August 2026; expected close Q4 2026 (open as of September 2026)
+</td>
+<td>
+~US$600m, all cash
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="toc">
+<a href="#txn-02"><span class="n">§ 02</span>Structure and Precedent Transactions (context)</a><a href="#txn-03"><span class="n">§ 03</span>Acquisition of Parkland Corporation</a><a href="#txn-04"><span class="n">§ 04</span>Acquisition of Offen Petroleum</a>
+</div>
+</section>
+<section id="txn-02">
+<div class="section-head">
+<div class="section-num">
+§ 02
+</div>
+<div class="section-title">
+<h2>
+Energy Transfer Complex — Structure and Precedent Transactions (context)
+</h2>
+<p class="sub">
+MLP sponsor structure; serial midstream roll-up; busted-merger litigation
+</p>
+</div>
+</div>
+<div class="factstrip">
+<div class="f">
+<span class="label">Announced / closed</span>
+<div class="t">
+<p>Various, 2016–2025</p>
+</div>
+</div>
+<div class="f">
+<span class="label">Headline value</span>
+<div class="t">
+<p>~$24.9bn of announced acquisition value across the five transactions below, plus a $601.5m adverse judgment</p>
+</div>
+</div>
+</div>
+<h3 id="parties">Parties</h3>
+<p>Energy Transfer LP (NYSE: ET) and affiliates; Sunoco LP (NYSE: SUN); USA Compression Partners (NYSE: USAC); NuStar, WTG, Crestwood, Enable, Williams</p>
+<h3 id="structure">Structure</h3>
+<h3 id="sponsor-architecture-as-of-may-2025">Sponsor architecture (as of May 2025)</h3>
+<ul>
+<li>Energy Transfer LP holds the <strong>general partner interest, the incentive distribution rights (IDRs), and approximately 21% of the outstanding common units of Sunoco LP</strong> — so ET captures both GP economics and the IDR waterfall from every Sunoco acquisition, including Parkland.</li>
+<li>ET also holds the <strong>GP interests and ~39% of the common units of USA Compression Partners (USAC)</strong>.</li>
+<li>ET operates <strong>135,000+ miles of pipeline across 44 states</strong> and moves approximately <strong>30% of total US natural gas transportation</strong>. 2025E Adjusted EBITDA mix: Midstream 27%, Intrastate &amp; Interstate 19%, NGL &amp; Refined Products 21%, Crude Oil 13%, SUN/USAC/Other 20%. Annualized distribution $1.31/unit as of May 2025.</li>
+</ul>
+<h3 id="sunoco-lp-nustar-energy-l.p.-2024">Sunoco LP — NuStar Energy L.P. (2024)</h3>
+<ul>
+<li>Announced <strong>22 January 2024</strong>, closed <strong>3 May 2024</strong>. <strong>~$7.3bn including assumed debt</strong>, all-equity at <strong>0.400 Sunoco common units per NuStar common unit</strong>. <strong>24% premium</strong> to 30-day VWAPs as of 19 January 2024. Unanimous board approval both sides; NuStar unitholder approval required.</li>
+<li>Synergies <strong>at least $150m run-rate by year 3</strong>; <strong>10%+ DCF/unit accretion</strong> by year 3. Sunoco announced a <strong>4% quarterly distribution increase</strong> on closing.</li>
+<li>Advisors — Sunoco: <strong>Truist Securities</strong> (exclusive financial advisor); Truist and <strong>Bank of America</strong> (committed financing); <strong>Weil, Gotshal &amp; Manges</strong> and <strong>Vinson &amp; Elkins</strong> (legal). NuStar: <strong>Barclays</strong> (exclusive financial advisor); <strong>Wachtell, Lipton, Rosen &amp; Katz</strong> and <strong>Sidley Austin</strong> (legal).</li>
+</ul>
+<h3 id="energy-transfer-wtg-midstream-2024">Energy Transfer — WTG Midstream (2024)</h3>
+<ul>
+<li>Announced <strong>28 May 2024</strong>, closed <strong>Q3 2024</strong>. <strong>$3.25bn</strong>: <strong>$2.45bn cash + ~50.8 million newly issued ET common units</strong>.</li>
+<li>Assets: <strong>6,000+ miles</strong> of gas gathering pipelines; <strong>eight operating processing plants (~1.3 Bcf/d)</strong>; two under construction (~0.4 Bcf/d); <strong>20% interest in the BANGL NGL Pipeline</strong> (425 miles, 125,000 Bbls/d).</li>
+<li>Accretion: <strong>~$0.04/unit DCF in 2025</strong>, <strong>~$0.07/unit by 2027</strong>.</li>
+<li>Advisors — ET: <strong>RBC Capital Markets</strong> (financial), <strong>Vinson &amp; Elkins</strong> (legal). WTG: <strong>Jefferies LLC</strong> (financial), <strong>Sidley Austin</strong> (legal).</li>
+</ul>
+<h3 id="energy-transfer-crestwood-equity-partners-2023">Energy Transfer — Crestwood Equity Partners (2023)</h3>
+<ul>
+<li>Announced <strong>16 August 2023</strong>, closed <strong>3 November 2023</strong>. <strong>~$7.1bn including $3.3bn of assumed debt</strong>, all-equity at <strong>2.07 ET common units per Crestwood common unit</strong>. Crestwood holders received <strong>~6.5%</strong> of ET’s outstanding common units.</li>
+<li>Synergies: <strong>at least $40m</strong> annual run-rate cost synergies.</li>
+<li>Advisors — ET: <strong>BofA Securities</strong> (sole financial advisor), <strong>Kirkland &amp; Ellis</strong> (legal). Crestwood: <strong>Intrepid Partners</strong> and <strong>Evercore</strong> (financial), <strong>Vinson &amp; Elkins</strong> (legal).</li>
+</ul>
+<h3 id="energy-transfer-enable-midstream-partners-2021">Energy Transfer — Enable Midstream Partners (2021)</h3>
+<ul>
+<li>Announced <strong>17 February 2021</strong>, closed <strong>December 2021</strong>. <strong>~$7.2bn all-equity</strong> at <strong>0.8595 ET common units per Enable common unit</strong>; each Enable Series A preferred unit exchanged for <strong>0.0265 ET Series G preferred units</strong>; <strong>$10m cash</strong> for Enable’s general partner.</li>
+<li>Sellers: <strong>CenterPoint Energy</strong> and <strong>OGE Energy</strong>, together <strong>~79.2%</strong> of Enable’s common units, both bound by support agreements. The transaction began CenterPoint’s exit from midstream.</li>
+<li>Synergies: <strong>more than $100m</strong> annual run-rate cost and efficiency synergies, plus commercial synergies from integrating Anadarko G&amp;P with Gulf Coast fractionation.</li>
+<li>Advisors — ET: <strong>Citi</strong> and <strong>RBC Capital Markets</strong> (financial), <strong>Latham &amp; Watkins</strong> (legal). Enable: <strong>Goldman Sachs</strong> (financial), <strong>Vinson &amp; Elkins</strong> (legal). Enable Conflicts Committee: <strong>Intrepid Partners</strong> (financial), <strong>Richards, Layton &amp; Finger</strong> (legal).</li>
+</ul>
+<h3 id="energy-transfer-williams-companies-busted-merger-and-litigation-20152023">Energy Transfer / Williams Companies — busted merger and litigation (2015–2023)</h3>
+<ul>
+<li>The <strong>~$33bn</strong> 2015–16 “Up-C” merger of Energy Transfer Equity and Williams contemplated ~<strong>$6.05bn cash</strong> plus stock in a new entity, Energy Transfer Corp LP, with former Williams shareholders holding <strong>~81%</strong>.</li>
+<li>ETE terminated after tax counsel <strong>Latham &amp; Watkins</strong> stated it could not deliver the required <strong>Section 721(a)</strong> tax opinion. The Delaware courts held the failure of that condition precedent excused ETE’s obligation to close — but separately found ETE <strong>materially breached its covenants</strong> through a <strong>Preferred Offering that preferenced ETE insiders</strong>.</li>
+<li><strong>Court of Chancery, December 2021:</strong> awarded Williams the <strong>$410m WPZ Termination Fee Reimbursement</strong>, plus attorneys’ fees under a 15% contingency arrangement and prejudgment interest compounded quarterly.</li>
+<li><strong>Total judgment $601.5m</strong> as of August 2022 (break fee plus <strong>more than $190m</strong> of interest and fees).</li>
+<li><strong>Delaware Supreme Court affirmed 10 October 2023</strong> (<em>Energy Transfer, LP v. The Williams Companies, Inc.</em>, No. 391, 2022), leaving a judgment of over $600m against Energy Transfer.</li>
+</ul>
+<h3 id="financing">Financing</h3>
+<p>Enable and Crestwood were all-equity (no financing). WTG was $2.45bn cash plus units, funded from ET liquidity. NuStar was all-equity with Truist/BofA committed financing available. Parkland financing is set out in the section above.</p>
+<h3 id="purchase-price-allocation-goodwill-and-impairments">Purchase price allocation, goodwill and impairments</h3>
+<p>Recorded in ET’s FY2021 (Enable), FY2023 (Crestwood), FY2024 (WTG) and Sunoco LP’s FY2024 (NuStar) Forms 10-K. [Individual goodwill figures not verified for this document — see EDGAR filing index links below.]</p>
+<h3 id="advisers">Advisers</h3>
+<p>Listed per transaction above. Note <strong>Vinson &amp; Elkins</strong> appears on the Energy Transfer side of nearly every deal in the complex (WTG, Enable, NuStar, Parkland) — and on the opposite side in Crestwood.</p>
+<h3 id="key-people">Key people</h3>
+<ul>
+<li>Kelcy Warren — Executive Chairman (formerly CEO), Energy Transfer LP — founder and architect of the roll-up strategy</li>
+<li>Marshall (Mackie) McCrea — Co-Chief Executive Officer, Energy Transfer LP</li>
+<li>Tom Long — former Co-Chief Executive Officer, Energy Transfer LP (previously CFO)</li>
+<li>Dylan Bramhall — EVP &amp; Group Chief Financial Officer, Energy Transfer LP</li>
+<li>Joseph Kim — President &amp; CEO, Sunoco LP (named President &amp; COO in 2017, succeeding Bob Owens as CEO)</li>
+<li>Bradford D. Whitehurst — Chief Financial Officer, Energy Transfer (appointed January 2021)</li>
+</ul>
+<h3 id="regulatory-and-litigation">Regulatory and litigation</h3>
+<p>HSR clearance on each acquisition; FERC where interstate assets transferred; unitholder votes at NuStar, Crestwood and Enable. The Williams matter is the significant litigation exposure — a <strong>$601.5m</strong> adverse judgment affirmed on appeal.</p>
+<h3 id="outcome-and-post-deal-performance">Outcome and post-deal performance</h3>
+<p>The complex executed roughly <strong>$24.9bn</strong> of announced acquisitions from 2021 to 2025 (Enable $7.2bn, Crestwood $7.1bn, NuStar $7.3bn, WTG $3.25bn) plus Parkland’s $9.1bn at Sunoco, building one of the largest integrated midstream and fuel distribution platforms in North America. Energy Transfer captures value from each Sunoco deal through its GP interest, IDRs and ~21% LP stake. The Williams judgment stands as the principal offsetting cost of the era’s dealmaking.</p>
+<h3 id="key-numbers">Key numbers</h3>
+<div class="tbl-wrap"><table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Metric</th>
+<th>Value</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>ET stake in Sunoco LP</td>
+<td>GP + IDRs + ~21% of common units</td>
+<td>ET Investor Fact Sheet, May 2025</td>
+</tr>
+<tr class="even">
+<td>ET stake in USA Compression</td>
+<td>GP + ~39% of common units</td>
+<td>ET Investor Fact Sheet, May 2025</td>
+</tr>
+<tr class="odd">
+<td>ET pipeline network</td>
+<td>135,000+ miles, 44 states</td>
+<td>ET Investor Fact Sheet, May 2025</td>
+</tr>
+<tr class="even">
+<td>ET share of US gas transportation</td>
+<td>~30%</td>
+<td>ET Investor Fact Sheet, May 2025</td>
+</tr>
+<tr class="odd">
+<td>Sunoco / NuStar (2024)</td>
+<td>$7.3bn; 0.400 SUN units per NS unit; 24% premium</td>
+<td>Sunoco 22 Jan 2024 release</td>
+</tr>
+<tr class="even">
+<td>NuStar synergies / accretion</td>
+<td>≥$150m run-rate; 10%+ DCF by yr 3</td>
+<td>Sunoco 22 Jan 2024 release</td>
+</tr>
+<tr class="odd">
+<td>NuStar close</td>
+<td>3 May 2024; 4% distribution increase</td>
+<td>Sunoco completion release</td>
+</tr>
+<tr class="even">
+<td>ET / WTG Midstream (2024)</td>
+<td>$3.25bn = $2.45bn cash + ~50.8m ET units</td>
+<td>ET 27 May 2024 release</td>
+</tr>
+<tr class="odd">
+<td>WTG assets</td>
+<td>6,000+ mi; ~1.3 Bcf/d operating; 20% BANGL</td>
+<td>ET 27 May 2024 release</td>
+</tr>
+<tr class="even">
+<td>ET / Crestwood (2023)</td>
+<td>$7.1bn incl. $3.3bn debt; 2.07 ET per CEQP</td>
+<td>ET 16 Aug 2023 release</td>
+</tr>
+<tr class="odd">
+<td>Crestwood synergies / ownership</td>
+<td>≥$40m p.a.; ~6.5% of ET units</td>
+<td>ET 16 Aug 2023 release</td>
+</tr>
+<tr class="even">
+<td>ET / Enable Midstream (2021)</td>
+<td>~$7.2bn all-equity; 0.8595 ET per ENBL</td>
+<td>ET 17 Feb 2021 release</td>
+</tr>
+<tr class="odd">
+<td>Enable sellers</td>
+<td>CenterPoint + OGE, ~79.2% of units</td>
+<td>ET 17 Feb 2021 release</td>
+</tr>
+<tr class="even">
+<td>Enable synergies</td>
+<td>&gt;$100m annual run-rate</td>
+<td>ET 17 Feb 2021 release</td>
+</tr>
+<tr class="odd">
+<td>Williams break fee</td>
+<td>$410m</td>
+<td>Cravath; Del. Ch. Dec 2021</td>
+</tr>
+<tr class="even">
+<td>Williams total judgment</td>
+<td>$601.5m (Aug 2022); &gt;$600m affirmed</td>
+<td>Cravath; Del. Supr. 10 Oct 2023</td>
+</tr>
+<tr class="odd">
+<td>Original ETE/Williams merger value</td>
+<td>~$33bn (~$6.05bn cash + stock; 81% WMB)</td>
+<td>Del. Supr. opinion</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="primary-sources">Primary sources</h3>
+<ul>
+<li><a href="https://www.energytransfer.com/wp-content/uploads/2025/05/ET-IR-Fact-Sheet_May-2025_Final.pdf">Energy Transfer — May 2025 Investor Fact Sheet (PDF)</a></li>
+<li><a href="https://www.sunocolp.com/press-release/item/sunoco-lp-to-acquire-nustar-energy-l.p.-in-transaction-valued-at-7.3-billion-2024">Sunoco LP — To Acquire NuStar Energy L.P. in Transaction Valued at $7.3 Billion (22 Jan 2024)</a></li>
+<li><a href="https://www.sunocolp.com/press-release/item/sunoco-lp-completes-acquisition-of-nustar-energy-l.p.-announces-a-4-increase-in-quarterly-distribution-2024">Sunoco LP — Completes Acquisition of NuStar Energy L.P.; Announces 4% Distribution Increase (3 May 2024)</a></li>
+<li><a href="https://ir.energytransfer.com/news-releases/news-release-details/energy-transfer-acquire-wtg-midstream-325-billion-transaction">Energy Transfer — To Acquire WTG Midstream in a $3.25 Billion Transaction (27 May 2024)</a></li>
+<li><a href="https://ir.energytransfer.com/news-releases/news-release-details/energy-transfer-completes-acquisition-wtg-midstream">Energy Transfer — Completes Acquisition of WTG Midstream</a></li>
+<li><a href="https://ir.energytransfer.com/news-releases/news-release-details/energy-transfer-acquire-crestwood-71-billion-all-equity/">Energy Transfer — To Acquire Crestwood in a $7.1 Billion All-Equity Transaction (16 Aug 2023)</a></li>
+<li><a href="https://ir.energytransfer.com/news-releases/news-release-details/energy-transfer-completes-acquisition-crestwood">Energy Transfer — Completes Acquisition of Crestwood</a></li>
+<li><a href="https://ir.energytransfer.com/news-releases/news-release-details/energy-transfer-acquire-enable-midstream-7-billion-all-equity">Energy Transfer — To Acquire Enable Midstream in $7 Billion All-Equity Transaction (17 Feb 2021)</a></li>
+<li><a href="https://ir.energytransfer.com/news-releases/news-release-details/energy-transfer-completes-acquisition-enable-midstream">Energy Transfer — Completes Acquisition of Enable Midstream (Dec 2021)</a></li>
+<li><a href="https://law.justia.com/cases/delaware/supreme-court/2023/391-2022.html">Justia — Energy Transfer, LP v. The Williams Companies, Inc., Del. Supr. No. 391, 2022 (10 Oct 2023)</a></li>
+<li><a href="https://www.cravath.com/news-insights/williams-secures-delaware-supreme-court-victory-affirming-trial-win-with-dollar600-million-judgment.html">Cravath — Williams Secures Delaware Supreme Court Victory Affirming Trial Win with $600 Million Judgment</a></li>
+<li><a href="https://www.cravath.com/news-insights/the-williams-companies-wins-judgment-for-dollar410-million-contractual-breakup-fee.html">Cravath — The Williams Companies Wins Judgment for $410 Million Contractual Breakup Fee</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/107263/000119312516633077/d218792dex991.htm">SEC EDGAR — Energy Transfer / Williams merger press release (EX-99.1, 2016)</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/1552275/000155227517000049/joekimpressrelease.htm">SEC EDGAR — Sunoco LP / Joe Kim appointment press release (EX-99.1, 2017)</a></li>
+<li><a href="https://www.businesswire.com/news/home/20210111006015/en/Energy-Transfer-Announces-Bradford-D.-Whitehurst-as-Chief-Financial-Officer">Energy Transfer — Announces Bradford D. Whitehurst as Chief Financial Officer (Jan 2021)</a></li>
+<li><a href="https://ir.energytransfer.com/news-releases/news-release-details/energy-transfer-lp-files-2025-annual-report">Energy Transfer — LP Files 2025 Annual Report</a></li>
+</ul>
+</section>
+<section id="txn-03">
+<div class="section-head">
+<div class="section-num">
+§ 03
+</div>
+<div class="section-title">
+<h2>
+Sunoco LP — Acquisition of Parkland Corporation
+</h2>
+<p class="sub">
+Cross-border MLP roll-up via Canadian plan of arrangement; part-cash / part-equity with a novel Up-C-style corporate vehicle; shareholder-activism-driven sale process
+</p>
+</div>
+</div>
+<div class="factstrip">
+<div class="f">
+<span class="label">Announced / closed</span>
+<div class="t">
+<p>Announced <strong>5 May 2025</strong>; Parkland shareholder approval <strong>24 June 2025</strong>; <strong>closed 31 October 2025</strong></p>
+</div>
+</div>
+<div class="f">
+<span class="label">Headline value</span>
+<div class="t">
+<p><strong>~US$9.1bn including assumed debt</strong>; <strong>C$44.00 per Parkland share</strong> headline cash election (≈C$43.33 blended value at announcement), a <strong>25% premium</strong></p>
+</div>
+</div>
+</div>
+<h3 id="parties-1">Parties</h3>
+<p>Sunoco LP (NYSE: SUN) — buyer, sponsored by Energy Transfer LP (NYSE: ET) / Parkland Corporation (TSX: PKI) — target / Simpson Oil Limited — Parkland’s 19.8% shareholder and catalyst</p>
+<h3 id="structure-1">Structure</h3>
+<ul>
+<li><strong>Canadian plan of arrangement</strong> under Alberta law, requiring a special resolution and <strong>final approval of the Court of King’s Bench of Alberta</strong>.</li>
+<li><strong>Three-way election</strong> per Parkland share, subject to proration against aggregate caps of <strong>C$19.80 cash and 0.295 units</strong> per share:
+<ul>
+<li><strong>Default/mixed:</strong> <strong>0.295 SunocoCorp units + C$19.80 cash</strong></li>
+<li><strong>All cash:</strong> <strong>C$44.00</strong></li>
+<li><strong>All equity:</strong> <strong>~0.536 SunocoCorp units</strong></li>
+</ul></li>
+<li><strong>SunocoCorp, LLC</strong> — a newly formed <strong>Delaware limited liability company</strong> holding Sunoco LP units and <strong>treated as a corporation for US tax purposes</strong>. This solves the classic problem of paying MLP units to a broad Canadian retail shareholder base (K-1s, UBTI, foreign-holder complications) by handing them a corporate-taxed, 1099-style listed security instead. Listed on <strong>NYSE under “SUNC”</strong> from <strong>6 November 2025</strong>.</li>
+<li><strong>Dividend equivalence:</strong> for <strong>two years post-close</strong>, SunocoCorp unitholders receive the same distribution equivalent as Sunoco LP common unitholders.</li>
+<li><strong>Final consideration paid:</strong> <strong>C$3,457,770,643.42 in cash</strong> plus <strong>51,517,198 SunocoCorp units</strong>.</li>
+<li>Parkland delisted from the <strong>TSX effective close of business 4 November 2025</strong>.</li>
+<li><strong>Canadian commitments</strong> (politically necessary for Investment Canada Act clearance): maintain <strong>Canadian headquarters in Calgary</strong> with significant employment; continue investment in the <strong>Burnaby Refinery</strong> for low-carbon fuel production; support infrastructure expansion.</li>
+<li><strong>Backstory — the Simpson Oil overhang:</strong> Simpson Oil Limited (Cayman Islands), Parkland’s largest shareholder at <strong>19.8%</strong>, was bound by a <strong>Governance Agreement</strong> containing voting restrictions and standstill provisions. Simpson contended these had expired; Parkland’s board disputed this and threatened enforcement. Simpson litigated and won a <strong>court-adjudicated affirmation of its shareholder rights</strong>; Parkland stock rose <strong>17% over two trading days</strong> on the ruling. In <strong>April 2024</strong> Simpson publicly demanded a strategic review including a potential sale, citing <strong>–3.1% annualized 5-year TSR</strong> and <strong>3.8% ROIC</strong> (below cost of capital) against peers averaging <strong>23.2%</strong> annualized returns. Simpson also alleged the board had prematurely rejected unsolicited acquisition interest at a material premium in <strong>summer 2023 — reportedly from Sunoco itself.</strong> The board initially rejected the review, then relented; the process culminated in the 2025 sale. Simpson publicly attacked a subsequent AGM delay as a board tactic to retain control.</li>
+<li>Parkland ran <strong>consent solicitations</strong> on its outstanding senior notes in connection with the acquisition.</li>
+</ul>
+<h3 id="financing-1">Financing</h3>
+<ul>
+<li><strong>US$2.65bn 364-day bridge term loan</strong> committed at announcement by <strong>Barclays</strong> and <strong>RBC Capital Markets</strong>, to fund the cash consideration.</li>
+<li>Take-out financing priced <strong>4 September 2025</strong>, settling 18 September 2025:
+<ul>
+<li><strong>Senior notes — US$1.9bn upsized</strong>: <strong>$1.0bn at 5.625% due 2031</strong> and <strong>$900m at 5.875% due 2034</strong>, both at par. Carried a <strong>special mandatory redemption</strong> if the acquisition did not close by <strong>5 May 2026</strong>.</li>
+<li><strong>Preferred equity — US$1.5bn upsized</strong> (from 1.0m units): <strong>1.5 million 7.875% Series A Fixed-Rate Reset Cumulative Redeemable Perpetual Preferred Units</strong> at <strong>$1,000 per unit</strong>. Fixed at <strong>7.875% to 18 September 2030</strong>, then resetting to the <strong>five-year US Treasury rate + 4.230%</strong>. Semi-annual distributions from 18 March 2026; callable at $1,000 plus accrued after the first reset date.</li>
+<li>Combined <strong>US$3.4bn</strong> of upsized notes and preferred equity.</li>
+</ul></li>
+<li>Pre-closing, proceeds temporarily paid down revolver borrowings.</li>
+</ul>
+<h3 id="purchase-price-allocation-goodwill-and-impairments-1">Purchase price allocation, goodwill and impairments</h3>
+<p>Sunoco LP’s FY2025 10-K carries the Parkland purchase price allocation; the transaction closed 31 October 2025, so allocation was preliminary at FY2025 year-end. [Specific goodwill and intangible figures not verified — see Sunoco LP EDGAR filing index in sources.]</p>
+<h3 id="advisers-1">Advisers</h3>
+<ul>
+<li><strong>Sunoco LP:</strong> <strong>Barclays</strong> and <strong>RBC Capital Markets</strong> (exclusive financial advisors <strong>and</strong> committed financing providers); <strong>Stikeman Elliott LLP</strong>, <strong>Weil, Gotshal &amp; Manges LLP</strong>, <strong>Vinson &amp; Elkins LLP</strong> (legal)</li>
+<li><strong>Parkland:</strong> <strong>Goldman Sachs Canada Inc.</strong> and <strong>BofA Securities</strong> (financial advisors); <strong>BMO Capital Markets</strong> (Special Committee financial advisor); <strong>Norton Rose Fulbright Canada LLP</strong> (legal); <strong>Torys LLP</strong> (Special Committee counsel)</li>
+<li><em>Correction to the commonly cited account: RBC advised Sunoco, not Parkland; Goldman Sachs Canada advised Parkland.</em></li>
+</ul>
+<h3 id="key-people-1">Key people</h3>
+<ul>
+<li>Joseph (Joe) Kim — President &amp; CEO, Sunoco LP — “This transaction creates the largest independent fuel distributor in the Americas”</li>
+<li>Karl Fails — Chief Operating Officer, Sunoco LP — “The $250 million synergy number we included should be considered very doable at this point”</li>
+<li>Austin Harkness — Chief Commercial Officer, Sunoco LP — supply chain optimization</li>
+<li>Scott Grischow — SVP Investor Relations &amp; Finance / Treasurer, Sunoco LP — SunocoCorp tax structuring</li>
+<li>Robert (Bob) Espey — President &amp; CEO, Parkland Corporation — “This combination delivers compelling financial benefits that will maximize value for shareholders”</li>
+<li>Michael Jennings — Executive Chairman, Parkland Corporation</li>
+<li>Kelcy Warren — Executive Chairman, Energy Transfer LP — ultimate sponsor</li>
+<li>Marshall (Mackie) McCrea — Co-CEO, Energy Transfer LP</li>
+<li>Tom Long — former Co-CEO, Energy Transfer LP</li>
+<li>Dylan Bramhall — EVP &amp; Group Chief Financial Officer, Energy Transfer LP</li>
+</ul>
+<h3 id="regulatory-and-litigation-1">Regulatory and litigation</h3>
+<ul>
+<li><strong>Parkland shareholder approval: 24 June 2025 — 93.46% in favour</strong> (127,089,612 for; 8,890,026 against), passed as a special resolution.</li>
+<li><strong>Court of King’s Bench of Alberta</strong> final order approving the arrangement.</li>
+<li><strong>Investment Canada Act</strong> net-benefit approval — a significant hurdle given the Burnaby Refinery and Canadian fuel-security sensitivities; obtained ahead of closing.</li>
+<li><strong>Competition Act (Canada)</strong> clearance; <strong>HSR</strong> clearance in the US.</li>
+<li><strong>NYSE listing approval</strong> for SunocoCorp units.</li>
+<li>Antecedent litigation: <strong>Simpson Oil v. Parkland</strong> over the Governance Agreement, resolved in Simpson Oil’s favour, which unlocked the sale process.</li>
+</ul>
+<h3 id="outcome-and-post-deal-performance-1">Outcome and post-deal performance</h3>
+<ul>
+<li>Closed <strong>31 October 2025</strong>, creating the <strong>largest independent fuel distributor in the Americas</strong>, with combined enterprise value of approximately <strong>US$24.5bn</strong>.</li>
+<li>Synergy target <strong>US$250m run-rate by year 3</strong>; management characterized it as “very doable” at announcement.</li>
+<li><strong>10%+ accretion to distributable cash flow per common unit</strong> by year 3, immediately accretive.</li>
+<li>Leverage: return to the <strong>4x long-term target within 12–18 months</strong> post-close.</li>
+<li>Parkland’s corporate web presence now redirects to Sunoco LP’s investor site, reflecting full integration.</li>
+<li>Simpson Oil’s activist campaign — from the 2024 governance litigation through the strategic review to the 2025 sale — is the direct causal chain producing an exit at a 25% premium after five years of negative shareholder returns.</li>
+</ul>
+<h3 id="key-numbers-1">Key numbers</h3>
+<div class="tbl-wrap"><table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Metric</th>
+<th>Value</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Total transaction value</td>
+<td>~US$9.1bn incl. assumed debt</td>
+<td>Sunoco 5 May 2025 release</td>
+</tr>
+<tr class="even">
+<td>Cash election</td>
+<td>C$44.00 per share</td>
+<td>Sunoco / Parkland releases</td>
+</tr>
+<tr class="odd">
+<td>Mixed consideration</td>
+<td>0.295 SunocoCorp units + C$19.80 cash</td>
+<td>Sunoco 5 May 2025 release</td>
+</tr>
+<tr class="even">
+<td>All-equity election</td>
+<td>~0.536 SunocoCorp units</td>
+<td>Sunoco 5 May 2025 release</td>
+</tr>
+<tr class="odd">
+<td>Blended value at announcement</td>
+<td>~C$43.33 per share</td>
+<td>SEC Form 425</td>
+</tr>
+<tr class="even">
+<td>Premium</td>
+<td>25% (7-day VWAPs as of 2 May 2025)</td>
+<td>Sunoco 5 May 2025 release</td>
+</tr>
+<tr class="odd">
+<td>Total cash paid at close</td>
+<td>C$3,457,770,643.42</td>
+<td>Parkland completion release</td>
+</tr>
+<tr class="even">
+<td>SunocoCorp units issued</td>
+<td>51,517,198</td>
+<td>Parkland completion release</td>
+</tr>
+<tr class="odd">
+<td>Shareholder vote</td>
+<td>93.46% in favour (24 Jun 2025)</td>
+<td>Parkland AGM results</td>
+</tr>
+<tr class="even">
+<td>Closing date</td>
+<td>31 October 2025</td>
+<td>Parkland completion release</td>
+</tr>
+<tr class="odd">
+<td>TSX delisting</td>
+<td>4 November 2025</td>
+<td>Parkland completion release</td>
+</tr>
+<tr class="even">
+<td>SUNC NYSE listing</td>
+<td>6 November 2025</td>
+<td>Parkland completion release</td>
+</tr>
+<tr class="odd">
+<td>Bridge facility</td>
+<td>US$2.65bn 364-day term loan</td>
+<td>Sunoco 5 May 2025 release</td>
+</tr>
+<tr class="even">
+<td>Senior notes</td>
+<td>$1.0bn 5.625% ’31; $900m 5.875% ’34</td>
+<td>Sunoco 4 Sep 2025 pricing</td>
+</tr>
+<tr class="odd">
+<td>Preferred equity</td>
+<td>$1.5bn 7.875% Series A reset perpetual</td>
+<td>Sunoco Sep 2025 pricing</td>
+</tr>
+<tr class="even">
+<td>Preferred reset spread</td>
+<td>5Y UST + 4.230% from 18 Sep 2030</td>
+<td>Sunoco Sep 2025 pricing</td>
+</tr>
+<tr class="odd">
+<td>Synergy target</td>
+<td>US$250m run-rate by year 3</td>
+<td>Sunoco 5 May 2025 release</td>
+</tr>
+<tr class="even">
+<td>DCF accretion</td>
+<td>10%+ per common unit by year 3</td>
+<td>Sunoco 5 May 2025 release</td>
+</tr>
+<tr class="odd">
+<td>Leverage target</td>
+<td>4x within 12–18 months post-close</td>
+<td>Sunoco 5 May 2025 release</td>
+</tr>
+<tr class="even">
+<td>Combined enterprise value</td>
+<td>~US$24.5bn</td>
+<td>SEC Form 425</td>
+</tr>
+<tr class="odd">
+<td>Simpson Oil stake</td>
+<td>19.8%</td>
+<td>Simpson Oil public letter</td>
+</tr>
+<tr class="even">
+<td>Parkland 5-yr TSR (Simpson Oil)</td>
+<td>–3.1% annualized</td>
+<td>Simpson Oil public letter</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="primary-sources-1">Primary sources</h3>
+<ul>
+<li><a href="https://www.sunocolp.com/press-release/item/sunoco-lp-to-acquire-parkland-corporation-in-transaction-valued-at-9-1-billion-2025">Sunoco LP — To Acquire Parkland Corporation in Transaction Valued at $9.1 Billion (5 May 2025)</a></li>
+<li><a href="https://www.prnewswire.com/news-releases/parkland-corporation-to-be-acquired-by-sunoco-lp-302445888.html">PR Newswire — Parkland Corporation to be Acquired by Sunoco LP (5 May 2025)</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/1552275/000119312525113456/d831300d425.htm">SEC EDGAR — Sunoco LP Form 425 re Parkland (transcript with executive quotes)</a></li>
+<li><a href="https://www.prnewswire.com/news-releases/parkland-corporation-announces-results-of-the-2025-annual-and-special-meeting-of-shareholders-302490170.html">PR Newswire — Parkland Announces Results of the 2025 Annual and Special Meeting of Shareholders (24 Jun 2025)</a></li>
+<li><a href="https://www.prnewswire.com/news-releases/parkland-corporation-and-sunoco-lp-receive-investment-canada-act-approval-302583394.html">PR Newswire — Parkland and Sunoco Receive Investment Canada Act Approval</a></li>
+<li><a href="https://www.prnewswire.com/news-releases/parkland-corporation-announces-completion-of-acquisition-by-sunoco-lp-302602282.html">PR Newswire — Parkland Announces Completion of Acquisition by Sunoco LP (31 Oct 2025)</a></li>
+<li><a href="https://www.prnewswire.com/news-releases/sunoco-lp-announces-pricing-of-upsized-private-offering-of-senior-notes-302547204.html">PR Newswire — Sunoco LP Announces Pricing of Upsized Private Offering of Senior Notes (4 Sep 2025)</a></li>
+<li><a href="https://www.sunocolp.com/press-release/item/sunoco-lp-announces-pricing-of-upsized-preferred-equity-offering-2025">Sunoco LP — Announces Pricing of Upsized Preferred Equity Offering (Sep 2025)</a></li>
+<li><a href="https://www.newswire.ca/news-releases/simpson-oil-limited-issues-public-letter-to-board-of-parkland-corporation-812070011.html">Newswire.ca — Simpson Oil Limited Issues Public Letter to the Board of Parkland Corporation</a></li>
+<li><a href="https://www.torys.com/work/2025/05/bc5cc8cc-1f45-4099-8e26-c4e68626ab25">Torys LLP — Parkland acquired by Sunoco LP (deal record)</a></li>
+<li><a href="https://www.mccarthy.ca/en/experience/parkland-corporation-to-be-acquired-by-sunoco-lp">McCarthy Tétrault — Parkland Corporation to be acquired by Sunoco LP</a></li>
+<li>Sunoco LP SEC filings (FY2025 10-K, Parkland PPA): <a href="https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&amp;CIK=0001552275&amp;type=10-K">SEC EDGAR — Sunoco LP filing index, CIK 0001552275</a> — specific PPA document not individually verified</li>
+<li>Parkland SEDAR+ filings (management information circular dated 26 May 2025): <a href="https://www.sedarplus.ca">SEDAR+</a> — Parkland’s own newsroom URLs now redirect to Sunoco’s investor site post-close, so the circular should be retrieved via SEDAR+ issuer search</li>
+</ul>
+<hr />
+</section>
+<section id="txn-04">
+<div class="section-head">
+<div class="section-num">
+§ 04
+</div>
+<div class="section-title">
+<h2>
+Sunoco LP — Acquisition of Offen Petroleum
+</h2>
+<p class="sub">
+Sponsor exit / bolt-on fuel distribution acquisition
+</p>
+</div>
+</div>
+<div class="factstrip">
+<div class="f">
+<span class="label">Announced / closed</span>
+<div class="t">
+<p>Announced <strong>6 August 2026</strong>; expected close <strong>Q4 2026</strong> (open as of September 2026)</p>
+</div>
+</div>
+<div class="f">
+<span class="label">Headline value</span>
+<div class="t">
+<p><strong>~US$600m, all cash</strong></p>
+</div>
+</div>
+</div>
+<h3 id="parties-2">Parties</h3>
+<p>Sunoco LP (NYSE: SUN) — buyer / Offen Petroleum, a Denver-based fuel distributor and portfolio company of <strong>Court Square Capital Partners</strong> — target</p>
+<h3 id="structure-2">Structure</h3>
+<ul>
+<li><strong>All-cash acquisition</strong>, approximately <strong>$600 million</strong>.</li>
+<li><em>Correction to the commonly cited account: this is a ~$600m deal announced August 2026, not a ~$1.0bn deal announced/closed in 2025.</em></li>
+<li>Offen distributes approximately <strong>2.5 billion gallons annually</strong>, serving approximately <strong>7,000 customers</strong> and <strong>over 800 retail stations</strong> across the <strong>Midwest, Mountain West and Southwest</strong> United States.</li>
+<li>Extends Sunoco’s fuel distribution footprint into Mountain West geographies complementary to the Parkland and NuStar assets; management framed it as creating “additional opportunities for organic growth and bolt-on acquisitions.”</li>
+<li>Classic private-equity exit: Court Square Capital Partners realizing a platform investment into a strategic buyer that is itself consolidating the sector.</li>
+</ul>
+<h3 id="financing-2">Financing</h3>
+<p>All-cash; specific financing sources not detailed in the announcement. Sunoco retains revolver capacity and post-Parkland balance-sheet flexibility.</p>
+<h3 id="purchase-price-allocation-goodwill-and-impairments-2">Purchase price allocation, goodwill and impairments</h3>
+<p>Not yet applicable — transaction had not closed as of September 2026.</p>
+<h3 id="advisers-2">Advisers</h3>
+<p>Not disclosed in the announcement press release.</p>
+<h3 id="key-people-2">Key people</h3>
+<ul>
+<li>Joseph Kim — President &amp; CEO, Sunoco LP</li>
+<li>Scott Grischow — Treasurer, SVP – Finance, Sunoco LP</li>
+<li>Brian Brungardt — Director, Investor Relations, Sunoco LP</li>
+<li>Chris Cho — Director, Communications, Sunoco LP</li>
+</ul>
+<h3 id="regulatory-and-litigation-2">Regulatory and litigation</h3>
+<p>Subject to regulatory approval (HSR clearance). No litigation disclosed.</p>
+<h3 id="outcome-and-post-deal-performance-2">Outcome and post-deal performance</h3>
+<p>Described as <strong>immediately accretive</strong>, increasing cash flow available for distribution growth and reinvestment. EBITDA multiple not disclosed; at ~$600m against 2.5bn gallons the implied price per gallon is roughly $0.24, in line with recent fuel-distribution comparables. Outcome pending close.</p>
+<h3 id="key-numbers-2">Key numbers</h3>
+<div class="tbl-wrap"><table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Metric</th>
+<th>Value</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Purchase price</td>
+<td>~US$600m, all cash</td>
+<td>Sunoco 6 Aug 2026 release</td>
+</tr>
+<tr class="even">
+<td>Announcement date</td>
+<td>6 August 2026</td>
+<td>Sunoco 6 Aug 2026 release</td>
+</tr>
+<tr class="odd">
+<td>Expected close</td>
+<td>Q4 2026</td>
+<td>Sunoco 6 Aug 2026 release</td>
+</tr>
+<tr class="even">
+<td>Annual volume</td>
+<td>~2.5 billion gallons</td>
+<td>Sunoco 6 Aug 2026 release</td>
+</tr>
+<tr class="odd">
+<td>Customers</td>
+<td>~7,000</td>
+<td>Sunoco 6 Aug 2026 release</td>
+</tr>
+<tr class="even">
+<td>Retail stations</td>
+<td>800+</td>
+<td>Sunoco 6 Aug 2026 release</td>
+</tr>
+<tr class="odd">
+<td>Geography</td>
+<td>Midwest, Mountain West, Southwest US</td>
+<td>Sunoco 6 Aug 2026 release</td>
+</tr>
+<tr class="even">
+<td>Seller</td>
+<td>Court Square Capital Partners (portfolio co.)</td>
+<td>PE Hub / The Middle Market</td>
+</tr>
+<tr class="odd">
+<td>EBITDA multiple</td>
+<td>Not disclosed</td>
+<td>—</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="primary-sources-2">Primary sources</h3>
+<ul>
+<li><a href="https://www.sunocolp.com/press-release/item/sunoco-lp-to-acquire-offen-petroleum-2026">Sunoco LP — To Acquire Offen Petroleum (6 Aug 2026)</a></li>
+<li><a href="https://www.businesswire.com/news/home/20260806623357/en/Sunoco-LP-to-Acquire-Offen-Petroleum">Business Wire — Sunoco LP to Acquire Offen Petroleum</a></li>
+<li><a href="https://www.pehub.com/sunoco-to-acquire-court-square-backed-oil-transporter-offen-petroleum-for-600m/">PE Hub — Sunoco to acquire Court Square-backed Offen Petroleum for $600m</a></li>
+<li><a href="https://www.sunocolp.com/investors/news">Sunoco LP — Investor news index</a></li>
+</ul>
+<hr />
+</section>
+<footer>
+<div>
+<strong style="color:var(--ink)">Market Logic Investors LLC</strong> · Transaction Experience<br> Compiled from primary filings. Internal reference. Not investment advice.
+</div>
+<div style="text-align:right">
+<a href="../" style="color:var(--teal);text-decoration:none">← Back to Transaction Experience</a>
+</div>
+</footer>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sub-Zero and Wolf — Transaction Experience — Market Logic Investors</title>
+<meta name="description" content="A deal with no disclosed price and no securities filings anywhere, reconstructed instead from a trademark prosecution history and a federal preliminary-injunction opinion. The most">
+<style>
+
+:root {
+  --ink: #0a1929; --ink-soft: #1c2e44;
+  --paper: #faf9f4; --paper-warm: #f3efe3;
+  --rule: #d4cfbf; --rule-soft: #e8e3d4;
+  --muted: #5b6b7a; --muted-light: #8a98a5;
+  --accent: #b8391c; --accent-soft: #d65a3a;
+  --teal: #1f6b6b; --teal-soft: #4a8b8b; --teal-light: #b8d4d4;
+  --positive: #2d6a4f; --warning: #b08800; --negative: #9b2226;
+  --negative-light: #e8c5c5;
+  --serif: 'Iowan Old Style','Palatino Linotype',Palatino,'Book Antiqua',Georgia,serif;
+  --sans: 'Helvetica Neue',Helvetica,-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
+  --mono: 'SF Mono',SFMono-Regular,Menlo,Monaco,Consolas,'Liberation Mono',monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{font-size:16px;-webkit-text-size-adjust:100%;}
+body{font-family:var(--sans);background:var(--paper);color:var(--ink);line-height:1.55;-webkit-font-smoothing:antialiased;}
+.page{max-width:1000px;margin:0 auto;padding:56px 56px 80px;}
+h1,h2,h3,h4,h5{font-family:var(--serif);font-weight:400;color:var(--ink);}
+h1{font-size:3.6rem;line-height:1.02;letter-spacing:-0.025em;}
+h2{font-size:2.05rem;line-height:1.12;letter-spacing:-0.015em;}
+h3{font-size:1.3rem;line-height:1.25;}
+h4{font-family:var(--sans);font-weight:600;font-size:0.7rem;text-transform:uppercase;letter-spacing:0.16em;color:var(--muted);}
+p{font-size:0.95rem;line-height:1.7;color:var(--ink-soft);}
+strong{color:var(--ink);font-weight:600;}
+.eyebrow{font-family:var(--sans);font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.2em;color:var(--accent);display:block;margin-bottom:18px;}
+.lede{font-family:var(--serif);font-size:1.25rem;line-height:1.5;color:var(--ink);}
+.kicker{font-family:var(--sans);font-size:0.75rem;font-weight:600;text-transform:uppercase;letter-spacing:0.12em;color:var(--teal);}
+.label{font-family:var(--sans);font-size:0.7rem;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);}
+.mono{font-family:var(--mono);font-size:0.85rem;}
+.cover{border-top:1px solid var(--ink);padding-top:32px;position:relative;}
+.cover-meta{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:84px;}
+.cover-meta .left,.cover-meta .right{font-family:var(--sans);font-size:0.78rem;color:var(--muted);}
+.cover-meta .right{text-align:right;}
+.cover-meta .right .stamp{display:inline-block;padding:4px 10px;border:1px solid var(--accent);color:var(--accent);font-weight:600;letter-spacing:0.12em;font-size:0.65rem;text-transform:uppercase;margin-bottom:8px;}
+.cover-title{margin-bottom:28px;}
+.cover-title .legal{display:block;font-family:var(--sans);font-size:0.78rem;color:var(--muted);margin-top:8px;letter-spacing:0.04em;}
+.cover-tag{font-family:var(--serif);font-style:italic;font-size:1.4rem;line-height:1.45;color:var(--ink-soft);max-width:720px;margin-bottom:56px;}
+.cover-tag::before{content:"\201C";font-size:2.2rem;line-height:0;vertical-align:-0.3em;color:var(--accent);margin-right:4px;}
+.cover-tag::after{content:"\201D";font-size:2.2rem;line-height:0;vertical-align:-0.3em;color:var(--accent);margin-left:2px;}
+.metric-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:0;border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);margin:32px 0;}
+.metric{padding:22px 16px 20px;border-right:1px solid var(--rule);text-align:left;}
+.metric:last-child{border-right:none;}
+.metric .v{font-family:var(--serif);font-size:2.1rem;line-height:1;letter-spacing:-0.02em;color:var(--ink);display:block;margin-bottom:6px;}
+.metric .v small{font-size:0.95rem;color:var(--muted);font-family:var(--serif);margin-left:1px;}
+.metric .l{font-family:var(--sans);font-size:0.68rem;font-weight:600;text-transform:uppercase;letter-spacing:0.12em;color:var(--muted);line-height:1.3;}
+.metric.accent .v{color:var(--accent);}
+.metric.teal .v{color:var(--teal);}
+section{margin-top:64px;padding-top:32px;border-top:1px solid var(--rule);}
+section.no-rule{border-top:none;}
+.section-head{display:grid;grid-template-columns:120px 1fr;gap:32px;margin-bottom:28px;align-items:baseline;}
+.section-num{font-family:var(--mono);font-size:0.78rem;color:var(--muted);letter-spacing:0.05em;border-top:2px solid var(--ink);padding-top:8px;text-transform:uppercase;font-weight:600;}
+.section-title h2{margin-bottom:8px;}
+.section-title .sub{font-family:var(--serif);font-style:italic;color:var(--muted);font-size:1.05rem;}
+.cols-2{display:grid;grid-template-columns:1fr 1fr;gap:36px;margin-top:16px;}
+.cols-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px;margin-top:16px;}
+.card{background:var(--paper-warm);padding:22px 24px;border:1px solid var(--rule);}
+.card.dark{background:var(--ink);color:var(--paper);}
+.card.dark h3,.card.dark h4{color:var(--paper);}
+.card.dark p{color:rgba(250,249,244,0.85);}
+.callout{border-left:3px solid var(--accent);padding:4px 0 4px 20px;margin:18px 0;font-family:var(--serif);font-style:italic;font-size:1.05rem;color:var(--ink);}
+.pull-quote{font-family:var(--serif);font-size:1.4rem;line-height:1.4;color:var(--ink);border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);padding:28px 0;margin:32px 0;text-align:center;letter-spacing:-0.005em;}
+table{width:100%;border-collapse:collapse;font-family:var(--sans);font-size:0.88rem;margin-top:14px;}
+thead th{text-align:left;font-weight:600;font-size:0.7rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);padding:10px 14px 10px 0;border-bottom:1.5px solid var(--ink);}
+thead th.num{text-align:right;}
+tbody td{padding:14px 14px 14px 0;border-bottom:1px solid var(--rule);color:var(--ink-soft);vertical-align:top;}
+tbody td.num{text-align:right;font-variant-numeric:tabular-nums;font-family:var(--mono);font-size:0.82rem;}
+tbody td strong{color:var(--ink);}
+tbody tr.highlight td{color:var(--ink);}
+tbody tr.highlight td:first-child{padding-left:12px;border-left:3px solid var(--accent);}
+ul.clean{list-style:none;}
+ul.clean li{padding:12px 0 12px 24px;border-bottom:1px solid var(--rule-soft);position:relative;font-size:0.93rem;color:var(--ink-soft);line-height:1.6;}
+ul.clean li::before{content:"→";position:absolute;left:0;top:12px;color:var(--accent);font-weight:600;}
+ol.clean{list-style:none;counter-reset:ck;}
+ol.clean li{counter-increment:ck;padding:12px 0 12px 36px;border-bottom:1px solid var(--rule-soft);position:relative;font-size:0.93rem;color:var(--ink-soft);line-height:1.6;}
+ol.clean li::before{content:counter(ck,decimal-leading-zero);position:absolute;left:0;top:12px;font-family:var(--mono);font-size:0.78rem;color:var(--accent);font-weight:600;}
+.tag{display:inline-block;font-family:var(--sans);font-size:0.68rem;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;padding:3px 9px;margin-right:6px;margin-bottom:4px;border:1px solid var(--rule);color:var(--ink-soft);background:var(--paper);}
+.tag.accent{border-color:var(--accent);color:var(--accent);}
+.tag.teal{border-color:var(--teal);color:var(--teal);}
+.tag.warn{border-color:var(--warning);color:var(--warning);}
+.tag.neg{border-color:var(--negative);color:var(--negative);}
+.tag.pos{border-color:var(--positive);color:var(--positive);}
+.thesis-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:24px;border:1px solid var(--ink);}
+.thesis-col{padding:28px 28px 24px;}
+.thesis-col.bull{border-right:1px solid var(--ink);}
+.thesis-col ul{list-style:none;margin-top:14px;}
+.thesis-col ul li{padding:10px 0 10px 22px;position:relative;font-size:0.9rem;color:var(--ink-soft);line-height:1.55;border-bottom:1px dashed var(--rule-soft);}
+.thesis-col.bull ul li::before{content:"+";position:absolute;left:0;top:9px;color:var(--positive);font-weight:700;}
+.thesis-col.bear ul li::before{content:"−";position:absolute;left:0;top:9px;color:var(--negative);font-weight:700;}
+.recommendation{background:var(--ink);color:var(--paper);padding:40px 44px;margin-top:40px;border-left:6px solid var(--accent);}
+.recommendation .head{font-family:var(--mono);font-size:0.74rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--accent-soft);margin-bottom:12px;font-weight:600;}
+.recommendation h2{color:var(--paper);margin-bottom:14px;}
+.recommendation p{color:rgba(250,249,244,0.86);font-size:1rem;}
+.recommendation .actions{margin-top:24px;padding-top:20px;border-top:1px solid rgba(250,249,244,0.18);display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+.recommendation .actions .h{font-family:var(--mono);font-size:0.7rem;text-transform:uppercase;letter-spacing:0.14em;color:var(--accent-soft);margin-bottom:10px;}
+.recommendation .actions ul{list-style:none;}
+.recommendation .actions ul li{padding:6px 0 6px 22px;position:relative;font-size:0.9rem;color:rgba(250,249,244,0.92);line-height:1.5;}
+.recommendation .actions ul li::before{content:"▸";position:absolute;left:0;top:5px;color:var(--accent-soft);}
+footer{margin-top:80px;padding-top:28px;border-top:1px solid var(--ink);font-family:var(--sans);font-size:0.74rem;color:var(--muted);display:flex;justify-content:space-between;}
+.chart{width:100%;margin:18px 0 6px;background:var(--paper);}
+.chart-caption{font-family:var(--sans);font-size:0.72rem;color:var(--muted);margin-top:4px;font-style:italic;line-height:1.5;}
+/* Dashboard */
+.dash-panel{background:var(--paper-warm);border:1px solid var(--rule);padding:24px;margin-top:24px;}
+.dash-controls{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:20px;}
+.ctrl-item{display:flex;flex-direction:column;gap:5px;}
+.ctrl-item label{font-family:var(--sans);font-size:0.7rem;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);}
+.ctrl-row{display:flex;align-items:center;gap:8px;}
+.ctrl-row input[type=range]{flex:1;accent-color:var(--teal);cursor:pointer;}
+.ctrl-val{font-family:var(--mono);font-size:0.82rem;font-weight:600;color:var(--ink);min-width:48px;text-align:right;}
+.scen-row{display:flex;gap:8px;margin-bottom:18px;flex-wrap:wrap;}
+.scen-btn{font-family:var(--sans);font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;padding:5px 14px;border:1px solid var(--rule);background:var(--paper);color:var(--muted);cursor:pointer;}
+.scen-btn:hover{border-color:var(--teal);color:var(--teal);}
+.scen-btn.active{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+.output-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--rule);margin-bottom:16px;}
+.output-cell{padding:16px 14px;border-right:1px solid var(--rule);}
+.output-cell:last-child{border-right:none;}
+.output-cell .ov{font-family:var(--serif);font-size:1.8rem;letter-spacing:-0.02em;color:var(--ink);display:block;line-height:1;margin-bottom:4px;}
+.output-cell .ol{font-family:var(--sans);font-size:0.65rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--muted);}
+.output-cell.ok .ov{color:var(--positive);}
+.output-cell.warn .ov{color:var(--warning);}
+.output-cell.bad .ov{color:var(--negative);}
+.verdict-box{padding:16px 20px;font-family:var(--sans);font-size:0.88rem;line-height:1.6;border-left:4px solid var(--rule);margin-bottom:16px;}
+.verdict-box.ok{border-left-color:var(--positive);background:#f0f7f4;}
+.verdict-box.warn{border-left-color:var(--warning);background:#fdf8ec;}
+.verdict-box.bad{border-left-color:var(--negative);background:#fdf0f0;}
+.verdict-box .vl{font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.14em;margin-bottom:5px;color:var(--muted);}
+.assump-list{list-style:none;margin-top:0;}
+.assump-list li{padding:14px 0 14px 24px;border-bottom:1px solid var(--rule-soft);position:relative;font-size:0.88rem;line-height:1.6;color:var(--ink-soft);}
+.assump-list li::before{content:"→";position:absolute;left:0;top:14px;color:var(--accent);font-weight:700;}
+.assump-list li strong{color:var(--ink);}
+.assump-flag{display:inline-block;font-family:var(--mono);font-size:0.65rem;font-weight:700;letter-spacing:0.08em;padding:2px 7px;border:1px solid;margin-left:8px;vertical-align:middle;}
+.assump-flag.ok{border-color:var(--positive);color:var(--positive);}
+.assump-flag.warn{border-color:var(--warning);color:var(--warning);}
+.assump-flag.bad{border-color:var(--negative);color:var(--negative);}
+.signal{font-family:var(--mono);font-size:0.72rem;color:var(--teal);margin-top:6px;display:block;line-height:1.5;}
+.entity-row{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--ink);margin-top:20px;}
+.entity-col{padding:20px 18px;border-right:1px solid var(--rule);}
+.entity-col:last-child{border-right:none;}
+.entity-col h4{margin-bottom:12px;}
+.entity-col.et h4{color:var(--teal);}
+.entity-col.sun h4{color:var(--positive);}
+.entity-col.usac h4{color:var(--warning);}
+.emet{display:flex;justify-content:space-between;font-size:0.8rem;padding:6px 0;border-bottom:1px solid var(--rule-soft);}
+.emet:last-child{border:none;}
+.emet .ek{color:var(--muted);}
+.emet .ev{font-weight:600;color:var(--ink);font-family:var(--mono);font-size:0.78rem;}
+.emet .ev.g{color:var(--positive);}
+.emet .ev.r{color:var(--negative);}
+.emet .ev.w{color:var(--warning);}
+.dc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--rule);margin-top:16px;}
+.dc-cell{padding:18px 16px;border-right:1px solid var(--rule);}
+.dc-cell:last-child{border-right:none;}
+.dc-name{font-family:var(--sans);font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--ink);margin-bottom:4px;}
+.dc-pipe{font-family:var(--sans);font-size:0.7rem;color:var(--muted);margin-bottom:10px;}
+.dc-vol{font-family:var(--serif);font-size:1.8rem;color:var(--teal);letter-spacing:-0.02em;line-height:1;margin-bottom:4px;}
+.dc-ebitda{font-family:var(--mono);font-size:0.8rem;color:var(--positive);font-weight:600;}
+.dc-note{font-size:0.72rem;color:var(--muted);margin-top:6px;line-height:1.45;}
+.site-nav{display:flex;align-items:center;justify-content:space-between;background:var(--ink);color:var(--paper);padding:10px 40px;font-family:var(--sans);font-size:0.78rem;letter-spacing:0.04em;position:sticky;top:0;z-index:100;gap:16px;}
+.site-nav a{color:rgba(250,249,244,0.7);text-decoration:none;}
+.site-nav a:hover{color:var(--paper);}
+.site-nav span[aria-hidden]{color:rgba(250,249,244,0.3);margin:0 4px;}
+.site-nav .nav-meta{color:rgba(250,249,244,0.45);font-size:0.75rem;}
+.site-nav .nav-action a{color:var(--accent);border:1px solid rgba(184,57,28,0.5);border-radius:3px;padding:3px 10px;}
+@media(max-width:760px){
+  .page{padding:32px 22px;}
+  h1{font-size:2.4rem;}
+  .metric-grid{grid-template-columns:repeat(2,1fr);}
+  .cols-2,.cols-3,.thesis-grid,.dash-controls,.output-grid,.entity-row,.dc-grid{grid-template-columns:1fr;}
+  .thesis-col.bull{border-right:none;border-bottom:1px solid var(--ink);}
+  .section-head{grid-template-columns:1fr;gap:8px;}
+  .recommendation .actions{grid-template-columns:1fr;}
+}
+
+/* ===== Glossary ===== */
+.glossary-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:0;border:1px solid var(--ink);margin-top:16px;}
+.glossary-col{padding:0;}
+.gterm{display:grid;grid-template-columns:160px 1fr;gap:0;border-bottom:1px solid var(--rule-soft);}
+.gterm:last-child{border-bottom:none;}
+.gt{font-family:var(--mono);font-size:0.78rem;font-weight:700;color:var(--teal);padding:12px 14px;border-right:1px solid var(--rule-soft);background:var(--paper-warm);display:flex;align-items:flex-start;}
+.gd{font-size:0.82rem;color:var(--ink-soft);padding:12px 14px;line-height:1.55;}
+.gd strong{color:var(--ink);}
+@media(max-width:760px){.glossary-grid{grid-template-columns:1fr;}.gterm{grid-template-columns:120px 1fr;}}
+
+
+
+section[id]{scroll-margin-top:64px}
+.tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin-top:14px}
+.tbl-wrap table{margin-top:0}
+em.unv{font-style:normal;font-family:var(--mono);font-size:0.68rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--warning);border:1px solid var(--warning);padding:1px 5px;margin:0 2px;white-space:nowrap}
+em.corr{font-style:normal;font-family:var(--mono);font-size:0.68rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--accent);border:1px solid var(--accent);padding:1px 5px;margin:0 2px}
+h3{font-family:var(--sans);font-size:0.78rem;font-weight:700;text-transform:uppercase;letter-spacing:0.13em;color:var(--accent);margin:26px 0 8px}
+h4{font-family:var(--serif);font-size:1.05rem;font-weight:400;margin:20px 0 6px}
+section ul{margin:6px 0 6px 20px}
+section ul li{font-size:0.9rem;line-height:1.6;color:var(--ink-soft);padding:3px 0}
+section ol{margin:6px 0 6px 22px}
+section ol li{font-size:0.9rem;line-height:1.6;color:var(--ink-soft);padding:3px 0}
+.factstrip{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--ink);margin:18px 0 4px}
+.factstrip .f{padding:16px 20px;border-right:1px solid var(--rule)}
+.factstrip .f:last-child{border-right:none}
+.factstrip .f .label{display:block;margin-bottom:5px}
+.factstrip .f .t{font-size:0.88rem;line-height:1.55;color:var(--ink)}
+.txn-map td:first-child{font-weight:600;color:var(--ink)}
+.srcnote{font-family:var(--sans);font-size:0.78rem;color:var(--muted);line-height:1.6;border-left:3px solid var(--rule);padding:2px 0 2px 16px;margin:14px 0}
+.toc{display:grid;grid-template-columns:repeat(2,1fr);gap:0;border:1px solid var(--ink);margin-top:20px}
+.toc a{display:block;padding:12px 18px;border-bottom:1px solid var(--rule-soft);border-right:1px solid var(--rule-soft);text-decoration:none;color:var(--ink);font-size:0.86rem}
+.toc a:hover{background:var(--paper-warm);color:var(--accent)}
+.toc a .n{font-family:var(--mono);font-size:0.68rem;color:var(--muted);margin-right:10px}
+@media(max-width:720px){.factstrip,.toc{grid-template-columns:1fr}}
+
+</style>
+</head>
+<body>
+<nav class="site-nav" aria-label="breadcrumb">
+  <div style="display:flex;align-items:center;gap:0;flex-wrap:wrap">
+    <a href="../../">Market Logic Investors</a><span aria-hidden="true">/</span>
+    <a href="../../">Deal Vault</a><span aria-hidden="true">/</span>
+    <a href="../">Transaction Experience</a><span aria-hidden="true">/</span>
+    <span>Sub-Zero &amp; Wolf</span>
+  </div>
+  <div style="display:flex;align-items:center;gap:16px;">
+    <span class="nav-meta">ML-TXN-SZW &nbsp;|&nbsp; Consumer durables</span>
+  </div>
+</nav>
+<div class="page">
+<header class="cover">
+<div class="cover-meta">
+<div class="left">
+<p><strong style="color:var(--ink);display:block;margin-bottom:4px;">Market Logic Investors LLC</strong> Consumer durables · Transaction Record<br> Client engagement record · Primary-source reconstruction</p>
+</div>
+<div class="right">
+<p><span class="stamp">1 transactions</span><br> <strong style="color:var(--ink);">Ref: ML-TXN-SZW</strong><br> Period: 2000 – present<br> Compiled: September 6, 2026</p>
+</div>
+</div>
+<span class="eyebrow">Consumer durables · Private transaction with no filings</span>
+<div class="cover-title">
+<h1>
+Sub-Zero &amp; Wolf
+</h1>
+<p><span class="legal">Sub-Zero Group, Inc. · Wolf Appliance, Inc. · Privately held · Madison, WI</span></p>
+</div>
+<p class="cover-tag">
+A deal with no disclosed price and no securities filings anywhere, reconstructed instead from a trademark prosecution history and a federal preliminary-injunction opinion. The most useful file in this book for showing what can be established about a private transaction when the usual sources do not exist.
+</p>
+<div class="metric-grid">
+<div class="metric">
+<span class="v">1</span><span class="l">Transaction</span>
+</div>
+<div class="metric accent">
+<span class="v">Undisclosed</span><span class="l">Consideration</span>
+</div>
+<div class="metric">
+<span class="v">0</span><span class="l">SEC filings</span>
+</div>
+<div class="metric teal">
+<span class="v">325k<small>+</small></span><span class="l">Units sold post-deal</span>
+</div>
+<div class="metric">
+<span class="v">$800<small>m</small></span><span class="l">Revenue on the acquired mark</span>
+</div>
+<div class="metric">
+<span class="v">$41<small>m</small></span><span class="l">Advertising spend</span>
+</div>
+</div>
+</header>
+<section class="no-rule" style="margin-top:48px">
+<div class="section-head">
+<div class="section-num">
+§ 01
+</div>
+<div class="section-title">
+<h2>
+Transaction map
+</h2>
+<p class="sub">
+Every transaction on this file, in order
+</p>
+</div>
+</div>
+<p style="margin-bottom:8px">
+Sub-Zero acquired the residential Wolf Gourmet business in 2000, leaving the commercial range business with Vulcan. No price was ever disclosed and none ever will be. What the record does contain is the red-knob trademark file and Wolf Appliance v. Viking Range, which put the acquired line’s post-deal revenue, unit volume and advertising spend on the public docket.
+</p>
+<div class="tbl-wrap">
+<table class="txn-map">
+<thead>
+<tr>
+<th>
+Transaction
+</th>
+<th>
+Type
+</th>
+<th>
+Announced / closed
+</th>
+<th>
+Headline value
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="#txn-02" style="color:var(--ink);text-decoration:none;border-bottom:1px solid var(--rule)">Acquisition of the Wolf residential appliance business (2000)</a>
+</td>
+<td>
+Private strategic bolt-on / product-line carve-out from a privately held manufacturer; family-held acquirer, no public financing
+</td>
+<td>
+<ol start="2000" type="1">
+<li>Wolf Appliance's federal trademark registration records the first use in commerce of the red-knob mark on domestic ranges…
+</td>
+<td>
+Undisclosed. Sub-Zero is privately held and files no financial statements with any securities regulator; no consideration,…
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="toc">
+<a href="#txn-02"><span class="n">§ 02</span>Acquisition of the Wolf residential appliance business (2000)</a>
+</div>
+</section></li>
+</ol>
+<section id="txn-02">
+<div class="section-head">
+<div class="section-num">
+§ 02
+</div>
+<div class="section-title">
+<h2>
+Sub-Zero Freezer Company — Acquisition of the Wolf residential appliance business (2000)
+</h2>
+<p class="sub">
+Private strategic bolt-on / product-line carve-out from a privately held manufacturer; family-held acquirer, no public financing
+</p>
+</div>
+</div>
+<div class="factstrip">
+<div class="f">
+<span class="label">Announced / closed</span>
+<div class="t">
+<ol start="2000" type="1">
+<li>
+Wolf Appliance’s federal trademark registration records the <strong>first use in commerce of the red-knob mark on domestic ranges as February 28, 2000</strong>, which brackets the transition. No exact signing/closing date is in the public record. <strong><em class="unv">unverified</em></strong>
+</li>
+</ol>
+</div>
+</div>
+<div class="f">
+<span class="label">Headline value</span>
+<div class="t">
+<p><strong>Undisclosed.</strong> Sub-Zero is privately held and files no financial statements with any securities regulator; no consideration, multiple or financing terms have ever been made public. <strong>[unverified — and likely permanently non-public]</strong></p>
+</div>
+</div>
+</div>
+<h3 id="parties">Parties</h3>
+<ul>
+<li>Buyer: <strong>Sub-Zero Freezer Company, Inc.</strong> (Madison, Wisconsin; founded August 20, 1945 by Westye F. Bakke), today the operating subsidiary group of <strong>Sub-Zero Group, Inc.</strong></li>
+<li>Target: the <strong>residential / “Wolf Gourmet”</strong> business of <strong>Wolf Range Company</strong> — professional-style ranges, rangetops, cooktops and grills for the home</li>
+<li>Wolf Range was founded in <strong>1934 in Los Angeles by brothers Al and Hyman Wolf</strong>; it began as a range repair business, moved into commercial ranges for restaurants, and created the Wolf Gourmet residential line around <strong>1985</strong>. <strong>Note: the premise that Wolf Range Company LLC was a Kansas City company is not supported by any source located; Los Angeles / Compton, California is what the record shows. [flagged as likely incorrect]</strong></li>
+</ul>
+<h3 id="structure">Structure</h3>
+<ul>
+<li>Sub-Zero acquired only the <strong>residential</strong> product line. The <strong>commercial</strong> Wolf range business did not transfer and continues under the Vulcan / ITW Food Equipment Group umbrella — Wolf-branded commercial equipment is manufactured “in association with Vulcan FEG.”</li>
+<li>The acquired residential business was operated as <strong>Wolf Appliance Company, LLC</strong>, later reorganized and incorporated as <strong>Wolf Appliance, Inc.</strong> (the entity that prosecuted the red-knob trademark; the application was filed by Wolf Appliance Company, Inc. and ownership transferred to Wolf Appliance, Inc. before publication).</li>
+<li>Both Sub-Zero, Inc. and Wolf Appliance, Inc. sit under the <strong>Sub-Zero Group, Inc.</strong> holding company (Madison, WI). <strong>Cove</strong> (dishwashers) was added as the third brand.</li>
+<li>Sub-Zero deliberately preserved the Wolf <strong>red knob</strong> as the acquired brand’s signature trade dress — a decision that later became the subject of federal trademark litigation.</li>
+</ul>
+<h3 id="financing">Financing</h3>
+<p>Not disclosed. Sub-Zero has no public debt or equity; there is no SEC filer, no rated debt and no public credit agreement. <strong><em class="unv">unverified</em></strong></p>
+<h3 id="purchase-price-allocation-goodwill-and-impairments">Purchase price allocation, goodwill and impairments</h3>
+<p>None available and none will be — the company publishes no financial statements.</p>
+<h3 id="advisers">Advisers</h3>
+<p>Not disclosed. <strong><em class="unv">unverified</em></strong></p>
+<h3 id="key-people">Key people</h3>
+<ul>
+<li><strong>Westye F. Bakke</strong> — founder, Sub-Zero Freezer Company (1945); developed the first free-standing freezer (1943) to store his son’s insulin; earlier worked with Frank Lloyd Wright on custom refrigeration</li>
+<li><strong>Jim (James) Bakke</strong> — third-generation President &amp; CEO of Sub-Zero Group, in the role <strong>since 1992</strong>; the acquirer’s decision-maker on the Wolf deal</li>
+<li><strong>Bud Bakke</strong> — second generation [unverified — no primary source located naming Bud Bakke or a “Fisher family” ownership interest; the company describes itself consistently as <strong>third-generation family-owned</strong>, with no Fisher family reference found in any source reviewed]</li>
+<li><strong>Tim McDonough</strong> — SVP, Marketing and Innovation</li>
+<li><strong>Chuck Verri</strong> — VP, Human Resources (spokesman on the 2010 manufacturing realignment)</li>
+<li><strong>Al Wolf and Hyman Wolf</strong> — founders, Wolf Range (1934)</li>
+</ul>
+<h3 id="regulatory-and-litigation">Regulatory and litigation</h3>
+<ul>
+<li><strong>No Sub-Zero v. Whirlpool trade dress case was found.</strong> Searches surfaced only unrelated Whirlpool/KitchenAid/Maytag refrigerator defect class actions (e.g., <em>Paperno v. Whirlpool Corp.</em>). <strong>Treat the Sub-Zero/Whirlpool trade dress premise as unsubstantiated.</strong></li>
+<li>The <strong>real</strong> and directly relevant case is <strong><em>Wolf Appliance, Inc. v. Viking Range Corp.</em></strong>, No. 3:09-cv-00697 (W.D. Wis.), Chief Judge <strong>Barbara B. Crabb</strong>, decision <strong>February 11, 2010</strong>. Claims: federal trademark infringement (15 U.S.C. §§ 1114–1118) and unfair competition (15 U.S.C. § 1125(a) and common law) over red knobs on ranges and rangetops. Wolf’s <strong>U.S. Reg. No. 3,485,025</strong> (registered August 12, 2008 under § 2(f), acquired distinctiveness) covers “a red knob or knobs of the goods.” The court <strong>granted a preliminary injunction</strong>, barring Viking from advertising, promoting, offering or selling red knobs for its ranges and rangetops pending the case, conditioned on Wolf posting a bond.</li>
+<li>Evidentiary record from that opinion (rare quantitative disclosure from this private company): since 2000 Wolf sold <strong>over 325,000 units with red knobs, generating more than US$800 million in revenue</strong>, and spent approximately <strong>US$41 million on advertising</strong> featuring the red knobs. Wolf Range had used red knobs on commercial ranges since approximately <strong>1933</strong>; Wolf Gourmet residential launched ~<strong>1985</strong>; <strong>“In 2000, Sub-Zero Freezer Company acquired Wolf Gourmet”</strong> — a court finding, and the most authoritative public description of the transaction’s scope.</li>
+<li>Related later litigation: <strong><em>Wolf Appliance Inc. v. American Range Corporation</em></strong> (Wis. Ct. App. 2020); <strong><em>Sharp v. Wolf Appliance, Inc.</em></strong>, No. 1:18-cv-01723 (consumer class action).</li>
+</ul>
+<h3 id="what-public-documentation-does-exist-given-no-sec-filings">What public documentation DOES exist (given no SEC filings)</h3>
+<ol type="1">
+<li><strong>USPTO</strong> — trademark registrations and, critically, <strong>assignment records</strong> at the Assignment Center, which capture the assignor/assignee entity names and execution dates for the WOLF marks transferring out of the Wolf Range entity. Reg. No. 3,485,025 / Ser. No. 78948732 is the red-knob mark; TSDR gives full prosecution histories.</li>
+<li><strong>Federal court dockets (PACER) and published opinions</strong> — <em>Wolf Appliance v. Viking Range</em> (W.D. Wis. 2009–10) is the single richest public source on the deal’s scope, timing and the acquired business’s post-deal economics.</li>
+<li><strong>Wisconsin Department of Financial Institutions corporate registry</strong> — registration and annual-report filings for Sub-Zero Group, Inc., Sub-Zero, Inc. and Wolf Appliance, Inc.</li>
+<li><strong>Wisconsin Economic Development Corporation (WEDC)</strong> award records — e.g., the 2019 Fitchburg R&amp;D award: <strong>up to US$1 million in state income tax credits over four years</strong>, tied to a <strong>US$70 million, 350,000 sq ft</strong> R&amp;D facility and <strong>100 jobs in three years</strong> (plus 122 modelled indirect jobs; ~US$2.8m projected state income tax over five years). These are public, itemized and auditable.</li>
+<li><strong>Company press releases</strong> on subzero-wolf.com and PR Newswire (75th and 70th anniversary releases; the 2010 manufacturing realignment release; product launches).</li>
+<li><strong>Local government records</strong> — Fitchburg WI and Goodyear/Phoenix AZ planning, permitting and incentive files.</li>
+<li><strong>CPSC recall notices</strong> and UL/AHAM certifications.</li>
+</ol>
+<h3 id="outcome-and-post-deal-performance">Outcome and post-deal performance</h3>
+<ul>
+<li>The Wolf acquisition converted Sub-Zero from a single-category refrigeration maker into a full luxury built-in kitchen suite (refrigeration + cooking), and <strong>Cove</strong> dishwashers completed the trio in <strong>2018</strong> — <strong>not 2013</strong>. The 2013 event was Sub-Zero and Wolf’s <em>“largest product rollout in company history,”</em> a product launch, not a brand launch. <strong>[premise corrected]</strong></li>
+<li>Manufacturing footprint: <strong>Madison, WI</strong> (HQ), <strong>Fitchburg, WI</strong>, <strong>Phoenix, AZ</strong> (165,000 sq ft) and <strong>Goodyear, AZ</strong> (440,000 sq ft, acquired in the 2010 realignment), plus <strong>Richmond, KY</strong>; a new <strong>400,000 sq ft Cedar Rapids, Iowa</strong> plant was slated to open in 2025. The August 31, 2010 realignment moved ~100 jobs from Madison to Arizona (WS-30 wine storage and PRO48 built-in refrigeration production to Phoenix by Q4 2011; service parts by Q2 2012).</li>
+<li>2019: US$70 million, 350,000 sq ft R&amp;D facility in Fitchburg with WEDC credits of up to US$1 million.</li>
+</ul>
+<h3 id="key-numbers">Key numbers</h3>
+<div class="tbl-wrap"><table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Metric</th>
+<th>Value</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Sub-Zero founded</td>
+<td>August 20, 1945, Madison WI, by Westye F. Bakke</td>
+<td>Sub-Zero 75th anniversary release</td>
+</tr>
+<tr class="even">
+<td>Wolf Range founded</td>
+<td>1934, Los Angeles, by Al and Hyman Wolf</td>
+<td>Box Appliance history</td>
+</tr>
+<tr class="odd">
+<td>Wolf Gourmet residential line created</td>
+<td>~1985</td>
+<td><em>Wolf Appliance v. Viking Range</em> opinion</td>
+</tr>
+<tr class="even">
+<td>Sub-Zero acquires Wolf residential</td>
+<td>2000</td>
+<td>Sub-Zero release; court opinion</td>
+</tr>
+<tr class="odd">
+<td>Consideration</td>
+<td><strong>Undisclosed</strong></td>
+<td>—</td>
+</tr>
+<tr class="even">
+<td>Red-knob mark first use in commerce</td>
+<td>February 28, 2000</td>
+<td>USPTO Reg. 3,485,025</td>
+</tr>
+<tr class="odd">
+<td>Red-knob mark registered</td>
+<td>August 12, 2008 (§ 2(f)); renewed May 24, 2018</td>
+<td>USPTO Reg. 3,485,025</td>
+</tr>
+<tr class="even">
+<td>Red-knob units sold since 2000 (as of 2010)</td>
+<td>&gt;325,000 units</td>
+<td>Court opinion</td>
+</tr>
+<tr class="odd">
+<td>Red-knob revenue since 2000 (as of 2010)</td>
+<td>&gt;US$800 million</td>
+<td>Court opinion</td>
+</tr>
+<tr class="even">
+<td>Red-knob advertising spend since 2000</td>
+<td>~US$41 million</td>
+<td>Court opinion</td>
+</tr>
+<tr class="odd">
+<td>Cove brand launched</td>
+<td>2018</td>
+<td>Sub-Zero history/milestones</td>
+</tr>
+<tr class="even">
+<td>Goodyear AZ plant</td>
+<td>440,000 sq ft (2010)</td>
+<td>Sub-Zero realignment release</td>
+</tr>
+<tr class="odd">
+<td>Phoenix AZ plant</td>
+<td>165,000 sq ft</td>
+<td>Sub-Zero realignment release</td>
+</tr>
+<tr class="even">
+<td>2010 realignment</td>
+<td>~100 Madison jobs to Arizona</td>
+<td>Sub-Zero realignment release</td>
+</tr>
+<tr class="odd">
+<td>Fitchburg R&amp;D facility (2019)</td>
+<td>US$70m, 350,000 sq ft, 100 jobs</td>
+<td>WEDC via WisBusiness</td>
+</tr>
+<tr class="even">
+<td>WEDC incentive</td>
+<td>up to US$1m tax credits over 4 years</td>
+<td>WEDC via WisBusiness</td>
+</tr>
+<tr class="odd">
+<td>CEO</td>
+<td>Jim Bakke, since 1992, third generation</td>
+<td>Sub-Zero 75th anniversary release</td>
+</tr>
+<tr class="even">
+<td>SEC filings</td>
+<td><strong>None — no SEC registrant exists</strong></td>
+<td>EDGAR</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="primary-sources">Primary sources</h3>
+<ul>
+<li><a href="https://www.subzero-wolf.com/our-story/history-milestones">Sub-Zero, Wolf and Cove — History &amp; Milestones (company timeline: Wolf 2000, Cove 2018)</a></li>
+<li><a href="https://www.subzero-wolf.com/company/press-releases/sub-zero-freezer-company-celebrates-75-years-of-premier-american-manufacturing">Sub-Zero press release — “Sub-Zero Freezer Company Celebrates 75 Years of Premier American Manufacturing”</a></li>
+<li><a href="https://www.prnewswire.com/news-releases/sub-zero-realigns-manufacturing-101897753.html">Sub-Zero press release — “Sub-Zero Realigns Manufacturing,” Aug 31, 2010 (Goodyear AZ 440,000 sq ft; Phoenix 165,000 sq ft; ~100 jobs)</a></li>
+<li><a href="https://www.prnewswire.com/news-releases/sub-zero-group-inc-celebrates-milestone-70-years-of-quality-and-innovation-300058446.html">Sub-Zero press release — “Sub-Zero Group, Inc. Celebrates Milestone: 70 Years of Quality and Innovation”</a></li>
+<li><a href="https://www.prnewswire.com/news-releases/sub-zero-and-wolf-ready-for-the-largest-product-rollout-in-company-history-209929931.html">Sub-Zero press release — “Sub-Zero and Wolf Ready for the Largest Product Rollout in Company History” (the actual 2013 event)</a></li>
+<li><a href="https://www.wisbusiness.com/2019/wisconsin-economic-development-corporation-sub-zero-group-inc-expands-operations-in-fitchburg/">WEDC / WisBusiness — “Sub-Zero Group Inc. expands operations in Fitchburg,” 2019 (US$1m tax credits, US$70m, 100 jobs)</a></li>
+<li><a href="https://law.justia.com/cases/federal/district-courts/wisconsin/wiwdc/3:2009cv00697/26667/71/"><em>Wolf Appliance, Inc. v. Viking Range Corp.</em>, No. 3:09-cv-00697, Doc. 71 (W.D. Wis. Feb. 11, 2010) — full opinion, Justia</a></li>
+<li><a href="https://trademarks.justia.com/789/48/n-78948732.html">USPTO Reg. No. 3,485,025 / Ser. No. 78948732 — WOLF red-knob mark record (Justia Trademarks)</a></li>
+<li><a href="https://tsdr.uspto.gov/">USPTO Trademark Status &amp; Document Retrieval (TSDR)</a> — full prosecution files</li>
+<li><a href="https://assignmentcenter.uspto.gov/search/trademark">USPTO Assignment Center — trademark assignment search</a> — the mechanism to retrieve the Wolf Range → Sub-Zero-entity assignment records</li>
+<li><a href="https://www.finnegan.com/files/Upload/Incontestable_Mar10_4.html">Finnegan — <em>Incontestable</em>, March 2010, case note on <em>Wolf Appliance v. Viking Range</em></a></li>
+<li><a href="https://caselaw.findlaw.com/court/wi-court-of-appeals/2050897.html"><em>Wolf Appliance Inc. v. American Range Corp.</em> (Wis. Ct. App. 2020), FindLaw</a></li>
+<li><a href="https://www.classaction.org/media/sharp-v-wolf-appliance-inc_1.pdf"><em>Sharp v. Wolf Appliance, Inc.</em>, No. 1:18-cv-01723 — complaint (ClassAction.org)</a></li>
+<li><a href="https://boxappliance.com/blog/tbt-the-history-of-your-wolf-range-and-oven/">Box Appliance — history of Wolf Range (1934 founding, Al and Hyman Wolf, Vulcan FEG commercial continuation)</a></li>
+</ul>
+<hr />
+</section>
+<footer>
+<div>
+<strong style="color:var(--ink)">Market Logic Investors LLC</strong> · Transaction Experience<br> Compiled from primary filings. Internal reference. Not investment advice.
+</div>
+<div style="text-align:right">
+<a href="../" style="color:var(--teal);text-decoration:none">← Back to Transaction Experience</a>
+</div>
+</footer>
+
+</div>
+</body>
+</html>

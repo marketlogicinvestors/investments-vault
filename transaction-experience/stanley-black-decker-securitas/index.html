@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stanley Black and Decker and Securitas — Transaction Experience — Market Logic Investors</title>
+<meta name="description" content="Stanley outbid Securitas for Niscayah in 2011 with cash against paper and won. Eleven years later it sold the entire security business to Securitas for $3.2bn. The same two parties">
+<style>
+
+:root {
+  --ink: #0a1929; --ink-soft: #1c2e44;
+  --paper: #faf9f4; --paper-warm: #f3efe3;
+  --rule: #d4cfbf; --rule-soft: #e8e3d4;
+  --muted: #5b6b7a; --muted-light: #8a98a5;
+  --accent: #b8391c; --accent-soft: #d65a3a;
+  --teal: #1f6b6b; --teal-soft: #4a8b8b; --teal-light: #b8d4d4;
+  --positive: #2d6a4f; --warning: #b08800; --negative: #9b2226;
+  --negative-light: #e8c5c5;
+  --serif: 'Iowan Old Style','Palatino Linotype',Palatino,'Book Antiqua',Georgia,serif;
+  --sans: 'Helvetica Neue',Helvetica,-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
+  --mono: 'SF Mono',SFMono-Regular,Menlo,Monaco,Consolas,'Liberation Mono',monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{font-size:16px;-webkit-text-size-adjust:100%;}
+body{font-family:var(--sans);background:var(--paper);color:var(--ink);line-height:1.55;-webkit-font-smoothing:antialiased;}
+.page{max-width:1000px;margin:0 auto;padding:56px 56px 80px;}
+h1,h2,h3,h4,h5{font-family:var(--serif);font-weight:400;color:var(--ink);}
+h1{font-size:3.6rem;line-height:1.02;letter-spacing:-0.025em;}
+h2{font-size:2.05rem;line-height:1.12;letter-spacing:-0.015em;}
+h3{font-size:1.3rem;line-height:1.25;}
+h4{font-family:var(--sans);font-weight:600;font-size:0.7rem;text-transform:uppercase;letter-spacing:0.16em;color:var(--muted);}
+p{font-size:0.95rem;line-height:1.7;color:var(--ink-soft);}
+strong{color:var(--ink);font-weight:600;}
+.eyebrow{font-family:var(--sans);font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.2em;color:var(--accent);display:block;margin-bottom:18px;}
+.lede{font-family:var(--serif);font-size:1.25rem;line-height:1.5;color:var(--ink);}
+.kicker{font-family:var(--sans);font-size:0.75rem;font-weight:600;text-transform:uppercase;letter-spacing:0.12em;color:var(--teal);}
+.label{font-family:var(--sans);font-size:0.7rem;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);}
+.mono{font-family:var(--mono);font-size:0.85rem;}
+.cover{border-top:1px solid var(--ink);padding-top:32px;position:relative;}
+.cover-meta{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:84px;}
+.cover-meta .left,.cover-meta .right{font-family:var(--sans);font-size:0.78rem;color:var(--muted);}
+.cover-meta .right{text-align:right;}
+.cover-meta .right .stamp{display:inline-block;padding:4px 10px;border:1px solid var(--accent);color:var(--accent);font-weight:600;letter-spacing:0.12em;font-size:0.65rem;text-transform:uppercase;margin-bottom:8px;}
+.cover-title{margin-bottom:28px;}
+.cover-title .legal{display:block;font-family:var(--sans);font-size:0.78rem;color:var(--muted);margin-top:8px;letter-spacing:0.04em;}
+.cover-tag{font-family:var(--serif);font-style:italic;font-size:1.4rem;line-height:1.45;color:var(--ink-soft);max-width:720px;margin-bottom:56px;}
+.cover-tag::before{content:"\201C";font-size:2.2rem;line-height:0;vertical-align:-0.3em;color:var(--accent);margin-right:4px;}
+.cover-tag::after{content:"\201D";font-size:2.2rem;line-height:0;vertical-align:-0.3em;color:var(--accent);margin-left:2px;}
+.metric-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:0;border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);margin:32px 0;}
+.metric{padding:22px 16px 20px;border-right:1px solid var(--rule);text-align:left;}
+.metric:last-child{border-right:none;}
+.metric .v{font-family:var(--serif);font-size:2.1rem;line-height:1;letter-spacing:-0.02em;color:var(--ink);display:block;margin-bottom:6px;}
+.metric .v small{font-size:0.95rem;color:var(--muted);font-family:var(--serif);margin-left:1px;}
+.metric .l{font-family:var(--sans);font-size:0.68rem;font-weight:600;text-transform:uppercase;letter-spacing:0.12em;color:var(--muted);line-height:1.3;}
+.metric.accent .v{color:var(--accent);}
+.metric.teal .v{color:var(--teal);}
+section{margin-top:64px;padding-top:32px;border-top:1px solid var(--rule);}
+section.no-rule{border-top:none;}
+.section-head{display:grid;grid-template-columns:120px 1fr;gap:32px;margin-bottom:28px;align-items:baseline;}
+.section-num{font-family:var(--mono);font-size:0.78rem;color:var(--muted);letter-spacing:0.05em;border-top:2px solid var(--ink);padding-top:8px;text-transform:uppercase;font-weight:600;}
+.section-title h2{margin-bottom:8px;}
+.section-title .sub{font-family:var(--serif);font-style:italic;color:var(--muted);font-size:1.05rem;}
+.cols-2{display:grid;grid-template-columns:1fr 1fr;gap:36px;margin-top:16px;}
+.cols-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px;margin-top:16px;}
+.card{background:var(--paper-warm);padding:22px 24px;border:1px solid var(--rule);}
+.card.dark{background:var(--ink);color:var(--paper);}
+.card.dark h3,.card.dark h4{color:var(--paper);}
+.card.dark p{color:rgba(250,249,244,0.85);}
+.callout{border-left:3px solid var(--accent);padding:4px 0 4px 20px;margin:18px 0;font-family:var(--serif);font-style:italic;font-size:1.05rem;color:var(--ink);}
+.pull-quote{font-family:var(--serif);font-size:1.4rem;line-height:1.4;color:var(--ink);border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);padding:28px 0;margin:32px 0;text-align:center;letter-spacing:-0.005em;}
+table{width:100%;border-collapse:collapse;font-family:var(--sans);font-size:0.88rem;margin-top:14px;}
+thead th{text-align:left;font-weight:600;font-size:0.7rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);padding:10px 14px 10px 0;border-bottom:1.5px solid var(--ink);}
+thead th.num{text-align:right;}
+tbody td{padding:14px 14px 14px 0;border-bottom:1px solid var(--rule);color:var(--ink-soft);vertical-align:top;}
+tbody td.num{text-align:right;font-variant-numeric:tabular-nums;font-family:var(--mono);font-size:0.82rem;}
+tbody td strong{color:var(--ink);}
+tbody tr.highlight td{color:var(--ink);}
+tbody tr.highlight td:first-child{padding-left:12px;border-left:3px solid var(--accent);}
+ul.clean{list-style:none;}
+ul.clean li{padding:12px 0 12px 24px;border-bottom:1px solid var(--rule-soft);position:relative;font-size:0.93rem;color:var(--ink-soft);line-height:1.6;}
+ul.clean li::before{content:"→";position:absolute;left:0;top:12px;color:var(--accent);font-weight:600;}
+ol.clean{list-style:none;counter-reset:ck;}
+ol.clean li{counter-increment:ck;padding:12px 0 12px 36px;border-bottom:1px solid var(--rule-soft);position:relative;font-size:0.93rem;color:var(--ink-soft);line-height:1.6;}
+ol.clean li::before{content:counter(ck,decimal-leading-zero);position:absolute;left:0;top:12px;font-family:var(--mono);font-size:0.78rem;color:var(--accent);font-weight:600;}
+.tag{display:inline-block;font-family:var(--sans);font-size:0.68rem;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;padding:3px 9px;margin-right:6px;margin-bottom:4px;border:1px solid var(--rule);color:var(--ink-soft);background:var(--paper);}
+.tag.accent{border-color:var(--accent);color:var(--accent);}
+.tag.teal{border-color:var(--teal);color:var(--teal);}
+.tag.warn{border-color:var(--warning);color:var(--warning);}
+.tag.neg{border-color:var(--negative);color:var(--negative);}
+.tag.pos{border-color:var(--positive);color:var(--positive);}
+.thesis-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:24px;border:1px solid var(--ink);}
+.thesis-col{padding:28px 28px 24px;}
+.thesis-col.bull{border-right:1px solid var(--ink);}
+.thesis-col ul{list-style:none;margin-top:14px;}
+.thesis-col ul li{padding:10px 0 10px 22px;position:relative;font-size:0.9rem;color:var(--ink-soft);line-height:1.55;border-bottom:1px dashed var(--rule-soft);}
+.thesis-col.bull ul li::before{content:"+";position:absolute;left:0;top:9px;color:var(--positive);font-weight:700;}
+.thesis-col.bear ul li::before{content:"−";position:absolute;left:0;top:9px;color:var(--negative);font-weight:700;}
+.recommendation{background:var(--ink);color:var(--paper);padding:40px 44px;margin-top:40px;border-left:6px solid var(--accent);}
+.recommendation .head{font-family:var(--mono);font-size:0.74rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--accent-soft);margin-bottom:12px;font-weight:600;}
+.recommendation h2{color:var(--paper);margin-bottom:14px;}
+.recommendation p{color:rgba(250,249,244,0.86);font-size:1rem;}
+.recommendation .actions{margin-top:24px;padding-top:20px;border-top:1px solid rgba(250,249,244,0.18);display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+.recommendation .actions .h{font-family:var(--mono);font-size:0.7rem;text-transform:uppercase;letter-spacing:0.14em;color:var(--accent-soft);margin-bottom:10px;}
+.recommendation .actions ul{list-style:none;}
+.recommendation .actions ul li{padding:6px 0 6px 22px;position:relative;font-size:0.9rem;color:rgba(250,249,244,0.92);line-height:1.5;}
+.recommendation .actions ul li::before{content:"▸";position:absolute;left:0;top:5px;color:var(--accent-soft);}
+footer{margin-top:80px;padding-top:28px;border-top:1px solid var(--ink);font-family:var(--sans);font-size:0.74rem;color:var(--muted);display:flex;justify-content:space-between;}
+.chart{width:100%;margin:18px 0 6px;background:var(--paper);}
+.chart-caption{font-family:var(--sans);font-size:0.72rem;color:var(--muted);margin-top:4px;font-style:italic;line-height:1.5;}
+/* Dashboard */
+.dash-panel{background:var(--paper-warm);border:1px solid var(--rule);padding:24px;margin-top:24px;}
+.dash-controls{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:20px;}
+.ctrl-item{display:flex;flex-direction:column;gap:5px;}
+.ctrl-item label{font-family:var(--sans);font-size:0.7rem;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);}
+.ctrl-row{display:flex;align-items:center;gap:8px;}
+.ctrl-row input[type=range]{flex:1;accent-color:var(--teal);cursor:pointer;}
+.ctrl-val{font-family:var(--mono);font-size:0.82rem;font-weight:600;color:var(--ink);min-width:48px;text-align:right;}
+.scen-row{display:flex;gap:8px;margin-bottom:18px;flex-wrap:wrap;}
+.scen-btn{font-family:var(--sans);font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;padding:5px 14px;border:1px solid var(--rule);background:var(--paper);color:var(--muted);cursor:pointer;}
+.scen-btn:hover{border-color:var(--teal);color:var(--teal);}
+.scen-btn.active{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+.output-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--rule);margin-bottom:16px;}
+.output-cell{padding:16px 14px;border-right:1px solid var(--rule);}
+.output-cell:last-child{border-right:none;}
+.output-cell .ov{font-family:var(--serif);font-size:1.8rem;letter-spacing:-0.02em;color:var(--ink);display:block;line-height:1;margin-bottom:4px;}
+.output-cell .ol{font-family:var(--sans);font-size:0.65rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--muted);}
+.output-cell.ok .ov{color:var(--positive);}
+.output-cell.warn .ov{color:var(--warning);}
+.output-cell.bad .ov{color:var(--negative);}
+.verdict-box{padding:16px 20px;font-family:var(--sans);font-size:0.88rem;line-height:1.6;border-left:4px solid var(--rule);margin-bottom:16px;}
+.verdict-box.ok{border-left-color:var(--positive);background:#f0f7f4;}
+.verdict-box.warn{border-left-color:var(--warning);background:#fdf8ec;}
+.verdict-box.bad{border-left-color:var(--negative);background:#fdf0f0;}
+.verdict-box .vl{font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.14em;margin-bottom:5px;color:var(--muted);}
+.assump-list{list-style:none;margin-top:0;}
+.assump-list li{padding:14px 0 14px 24px;border-bottom:1px solid var(--rule-soft);position:relative;font-size:0.88rem;line-height:1.6;color:var(--ink-soft);}
+.assump-list li::before{content:"→";position:absolute;left:0;top:14px;color:var(--accent);font-weight:700;}
+.assump-list li strong{color:var(--ink);}
+.assump-flag{display:inline-block;font-family:var(--mono);font-size:0.65rem;font-weight:700;letter-spacing:0.08em;padding:2px 7px;border:1px solid;margin-left:8px;vertical-align:middle;}
+.assump-flag.ok{border-color:var(--positive);color:var(--positive);}
+.assump-flag.warn{border-color:var(--warning);color:var(--warning);}
+.assump-flag.bad{border-color:var(--negative);color:var(--negative);}
+.signal{font-family:var(--mono);font-size:0.72rem;color:var(--teal);margin-top:6px;display:block;line-height:1.5;}
+.entity-row{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--ink);margin-top:20px;}
+.entity-col{padding:20px 18px;border-right:1px solid var(--rule);}
+.entity-col:last-child{border-right:none;}
+.entity-col h4{margin-bottom:12px;}
+.entity-col.et h4{color:var(--teal);}
+.entity-col.sun h4{color:var(--positive);}
+.entity-col.usac h4{color:var(--warning);}
+.emet{display:flex;justify-content:space-between;font-size:0.8rem;padding:6px 0;border-bottom:1px solid var(--rule-soft);}
+.emet:last-child{border:none;}
+.emet .ek{color:var(--muted);}
+.emet .ev{font-weight:600;color:var(--ink);font-family:var(--mono);font-size:0.78rem;}
+.emet .ev.g{color:var(--positive);}
+.emet .ev.r{color:var(--negative);}
+.emet .ev.w{color:var(--warning);}
+.dc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--rule);margin-top:16px;}
+.dc-cell{padding:18px 16px;border-right:1px solid var(--rule);}
+.dc-cell:last-child{border-right:none;}
+.dc-name{font-family:var(--sans);font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--ink);margin-bottom:4px;}
+.dc-pipe{font-family:var(--sans);font-size:0.7rem;color:var(--muted);margin-bottom:10px;}
+.dc-vol{font-family:var(--serif);font-size:1.8rem;color:var(--teal);letter-spacing:-0.02em;line-height:1;margin-bottom:4px;}
+.dc-ebitda{font-family:var(--mono);font-size:0.8rem;color:var(--positive);font-weight:600;}
+.dc-note{font-size:0.72rem;color:var(--muted);margin-top:6px;line-height:1.45;}
+.site-nav{display:flex;align-items:center;justify-content:space-between;background:var(--ink);color:var(--paper);padding:10px 40px;font-family:var(--sans);font-size:0.78rem;letter-spacing:0.04em;position:sticky;top:0;z-index:100;gap:16px;}
+.site-nav a{color:rgba(250,249,244,0.7);text-decoration:none;}
+.site-nav a:hover{color:var(--paper);}
+.site-nav span[aria-hidden]{color:rgba(250,249,244,0.3);margin:0 4px;}
+.site-nav .nav-meta{color:rgba(250,249,244,0.45);font-size:0.75rem;}
+.site-nav .nav-action a{color:var(--accent);border:1px solid rgba(184,57,28,0.5);border-radius:3px;padding:3px 10px;}
+@media(max-width:760px){
+  .page{padding:32px 22px;}
+  h1{font-size:2.4rem;}
+  .metric-grid{grid-template-columns:repeat(2,1fr);}
+  .cols-2,.cols-3,.thesis-grid,.dash-controls,.output-grid,.entity-row,.dc-grid{grid-template-columns:1fr;}
+  .thesis-col.bull{border-right:none;border-bottom:1px solid var(--ink);}
+  .section-head{grid-template-columns:1fr;gap:8px;}
+  .recommendation .actions{grid-template-columns:1fr;}
+}
+
+/* ===== Glossary ===== */
+.glossary-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:0;border:1px solid var(--ink);margin-top:16px;}
+.glossary-col{padding:0;}
+.gterm{display:grid;grid-template-columns:160px 1fr;gap:0;border-bottom:1px solid var(--rule-soft);}
+.gterm:last-child{border-bottom:none;}
+.gt{font-family:var(--mono);font-size:0.78rem;font-weight:700;color:var(--teal);padding:12px 14px;border-right:1px solid var(--rule-soft);background:var(--paper-warm);display:flex;align-items:flex-start;}
+.gd{font-size:0.82rem;color:var(--ink-soft);padding:12px 14px;line-height:1.55;}
+.gd strong{color:var(--ink);}
+@media(max-width:760px){.glossary-grid{grid-template-columns:1fr;}.gterm{grid-template-columns:120px 1fr;}}
+
+
+
+section[id]{scroll-margin-top:64px}
+.tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin-top:14px}
+.tbl-wrap table{margin-top:0}
+em.unv{font-style:normal;font-family:var(--mono);font-size:0.68rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--warning);border:1px solid var(--warning);padding:1px 5px;margin:0 2px;white-space:nowrap}
+em.corr{font-style:normal;font-family:var(--mono);font-size:0.68rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--accent);border:1px solid var(--accent);padding:1px 5px;margin:0 2px}
+h3{font-family:var(--sans);font-size:0.78rem;font-weight:700;text-transform:uppercase;letter-spacing:0.13em;color:var(--accent);margin:26px 0 8px}
+h4{font-family:var(--serif);font-size:1.05rem;font-weight:400;margin:20px 0 6px}
+section ul{margin:6px 0 6px 20px}
+section ul li{font-size:0.9rem;line-height:1.6;color:var(--ink-soft);padding:3px 0}
+section ol{margin:6px 0 6px 22px}
+section ol li{font-size:0.9rem;line-height:1.6;color:var(--ink-soft);padding:3px 0}
+.factstrip{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--ink);margin:18px 0 4px}
+.factstrip .f{padding:16px 20px;border-right:1px solid var(--rule)}
+.factstrip .f:last-child{border-right:none}
+.factstrip .f .label{display:block;margin-bottom:5px}
+.factstrip .f .t{font-size:0.88rem;line-height:1.55;color:var(--ink)}
+.txn-map td:first-child{font-weight:600;color:var(--ink)}
+.srcnote{font-family:var(--sans);font-size:0.78rem;color:var(--muted);line-height:1.6;border-left:3px solid var(--rule);padding:2px 0 2px 16px;margin:14px 0}
+.toc{display:grid;grid-template-columns:repeat(2,1fr);gap:0;border:1px solid var(--ink);margin-top:20px}
+.toc a{display:block;padding:12px 18px;border-bottom:1px solid var(--rule-soft);border-right:1px solid var(--rule-soft);text-decoration:none;color:var(--ink);font-size:0.86rem}
+.toc a:hover{background:var(--paper-warm);color:var(--accent)}
+.toc a .n{font-family:var(--mono);font-size:0.68rem;color:var(--muted);margin-right:10px}
+@media(max-width:720px){.factstrip,.toc{grid-template-columns:1fr}}
+
+</style>
+</head>
+<body>
+<nav class="site-nav" aria-label="breadcrumb">
+  <div style="display:flex;align-items:center;gap:0;flex-wrap:wrap">
+    <a href="../../">Market Logic Investors</a><span aria-hidden="true">/</span>
+    <a href="../../">Deal Vault</a><span aria-hidden="true">/</span>
+    <a href="../">Transaction Experience</a><span aria-hidden="true">/</span>
+    <span>Stanley Black &amp; Decker &amp; Securitas</span>
+  </div>
+  <div style="display:flex;align-items:center;gap:16px;">
+    <span class="nav-meta">ML-TXN-SWK &nbsp;|&nbsp; Industrials &middot; Security</span>
+  </div>
+</nav>
+<div class="page">
+<header class="cover">
+<div class="cover-meta">
+<div class="left">
+<p><strong style="color:var(--ink);display:block;margin-bottom:4px;">Market Logic Investors LLC</strong> Industrials · Security · Transaction Record<br> Client engagement record · Primary-source reconstruction</p>
+</div>
+<div class="right">
+<p><span class="stamp">5 transactions</span><br> <strong style="color:var(--ink);">Ref: ML-TXN-SWK</strong><br> Period: 2010 – 2022<br> Compiled: September 6, 2026</p>
+</div>
+</div>
+<span class="eyebrow">Industrials &amp; security · Won the auction, lost the thesis</span>
+<div class="cover-title">
+<h1>
+Stanley Black &amp; Decker &amp; Securitas
+</h1>
+<p><span class="legal">Stanley Black &amp; Decker, Inc. · NYSE: SWK · Securitas AB · Niscayah Group AB</span></p>
+</div>
+<p class="cover-tag">
+Stanley outbid Securitas for Niscayah in 2011 with cash against paper and won. Eleven years later it sold the entire security business to Securitas for $3.2bn. The same two parties, the same assets, the opposite direction, and a $1.2bn book gain that says nothing about whether the original thesis worked.
+</p>
+<div class="metric-grid">
+<div class="metric">
+<span class="v">5</span><span class="l">Transactions</span>
+</div>
+<div class="metric accent">
+<span class="v">SEK 18.00</span><span class="l">Winning Niscayah bid</span>
+</div>
+<div class="metric">
+<span class="v">$1.2<small>bn</small></span><span class="l">Niscayah cost</span>
+</div>
+<div class="metric teal">
+<span class="v">$3.2<small>bn</small></span><span class="l">Sold to Securitas</span>
+</div>
+<div class="metric">
+<span class="v">~16<small>x</small></span><span class="l">Exit EBITDA multiple</span>
+</div>
+<div class="metric">
+<span class="v">$1,197<small>m</small></span><span class="l">Pre-tax gain on sale</span>
+</div>
+</div>
+</header>
+<section class="no-rule" style="margin-top:48px">
+<div class="section-head">
+<div class="section-num">
+§ 01
+</div>
+<div class="section-title">
+<h2>
+Transaction map
+</h2>
+<p class="sub">
+Every transaction on this file, in order
+</p>
+</div>
+</div>
+<p style="margin-bottom:8px">
+The 2010 Stanley Works / Black &amp; Decker merger of equals created the platform. In 2011 Stanley beat Securitas’ all-share offer for Niscayah with SEK 18.00 in cash and ran open-market purchases alongside the tender to reach 94.9%. In 2022 it sold Convergent Security to Securitas for $3.2bn, Access Technologies to Allegion for $900m, and exited the category entirely.
+</p>
+<div class="tbl-wrap">
+<table class="txn-map">
+<thead>
+<tr>
+<th>
+Transaction
+</th>
+<th>
+Type
+</th>
+<th>
+Announced / closed
+</th>
+<th>
+Headline value
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="#txn-02" style="color:var(--ink);text-decoration:none;border-bottom:1px solid var(--rule)">The Stanley Works / Black &amp; Decker Merger of Equals (context)</a>
+</td>
+<td>
+All-stock merger of equals
+</td>
+<td>
+Announced 2 November 2009; closed 12 March 2010
+</td>
+<td>
+~US$4.5bn all-stock; combined company ~US$8.4bn revenue
+</td>
+</tr>
+<tr>
+<td>
+<a href="#txn-03" style="color:var(--ink);text-decoration:none;border-bottom:1px solid var(--rule)">Acquisition of Niscayah Group AB</a>
+</td>
+<td>
+Cross-border competitive public tender offer (Swedish takeover rules); contested auction against a strategic rival
+</td>
+<td>
+Securitas offer announced ~13 June 2011; Stanley Black &amp; Decker counter-offer announced 27 June 2011; offer document 22 July…
+</td>
+<td>
+SEK 18.00 per share, ~SEK 6.5bn total (~US$1.2bn)
+</td>
+</tr>
+<tr>
+<td>
+<a href="#txn-04" style="color:var(--ink);text-decoration:none;border-bottom:1px solid var(--rule)">Sale of Security Business to Securitas AB</a>
+</td>
+<td>
+Corporate carve-out / divestiture; cross-border sale of a US-headquartered business to a Swedish listed acquirer, funded by a rights issue
+</td>
+<td>
+Announced 8 December 2021; closed 22 July 2022
+</td>
+<td>
+US$3.2bn cash, debt-free and cash-free. ~16x trailing adjusted EBITDA (SBD basis, pre-synergy); ~13x 2021E adjusted EBITDA…
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="toc">
+<a href="#txn-02"><span class="n">§ 02</span>The Stanley Works / Black &amp; Decker Merger of Equals (context)</a><a href="#txn-03"><span class="n">§ 03</span>Acquisition of Niscayah Group AB</a><a href="#txn-04"><span class="n">§ 04</span>Sale of Security Business to Securitas AB</a>
+</div>
+</section>
+<section id="txn-02">
+<div class="section-head">
+<div class="section-num">
+§ 02
+</div>
+<div class="section-title">
+<h2>
+The Stanley Works / Black &amp; Decker Merger of Equals (context)
+</h2>
+<p class="sub">
+All-stock merger of equals
+</p>
+</div>
+</div>
+<div class="factstrip">
+<div class="f">
+<span class="label">Announced / closed</span>
+<div class="t">
+<p>Announced 2 November 2009; <strong>closed 12 March 2010</strong></p>
+</div>
+</div>
+<div class="f">
+<span class="label">Headline value</span>
+<div class="t">
+<p>~US$4.5bn all-stock; combined company ~US$8.4bn revenue</p>
+</div>
+</div>
+</div>
+<h3 id="parties">Parties</h3>
+<p>The Stanley Works (NYSE: SWK) / The Black &amp; Decker Corporation (NYSE: BDK) → Stanley Black &amp; Decker, Inc.</p>
+<h3 id="structure">Structure</h3>
+<ul>
+<li>Each Black &amp; Decker share converted into <strong>1.275 Stanley Works shares</strong>.</li>
+<li>Stanley Works shareholders held <strong>~50.5%</strong> of the combined company — the near-even split that made this a genuine merger of equals rather than an acquisition.</li>
+<li>Black &amp; Decker shareholder approval obtained 12 March 2010; renamed <strong>Stanley Black &amp; Decker, Inc.</strong>, NYSE: SWK.</li>
+<li>Created a diversified industrial with hand tools, power tools and accessories, <strong>mechanical access solutions and electronic security solutions</strong>, and engineered fastening — the security businesses divested in 2022 trace to both legacy companies plus Niscayah.</li>
+</ul>
+<h3 id="financing">Financing</h3>
+<p>All-stock; no external financing.</p>
+<h3 id="advisers">Advisers</h3>
+<p>Not disclosed in the completion release.</p>
+<h3 id="key-people">Key people</h3>
+<ul>
+<li>John F. Lundgren — President &amp; CEO of the combined company</li>
+<li>Nolan D. Archibald — Chairman/President &amp; CEO of Black &amp; Decker; became Executive Chairman of the combined company [role not stated in the completion release reviewed]</li>
+</ul>
+<h3 id="regulatory-and-litigation">Regulatory and litigation</h3>
+<p>HSR and international competition clearances obtained pre-closing.</p>
+<h3 id="outcome-and-post-deal-performance">Outcome and post-deal performance</h3>
+<p>Produced the platform whose non-core segments were systematically divested from 2017 onward (mechanical security majority sale 2017; CSS, MAS and Oil &amp; Gas in 2022), leaving Tools &amp; Outdoor plus Industrial.</p>
+<h3 id="key-numbers">Key numbers</h3>
+<div class="tbl-wrap"><table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Metric</th>
+<th>Value</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Exchange ratio</td>
+<td>1.275 SWK shares per BDK share</td>
+<td>SEC EX-99.2, 12 Mar 2010</td>
+</tr>
+<tr class="even">
+<td>Stanley Works shareholder ownership</td>
+<td>~50.5%</td>
+<td>SEC EX-99.2, 12 Mar 2010</td>
+</tr>
+<tr class="odd">
+<td>Closing date</td>
+<td>12 March 2010</td>
+<td>SEC EX-99.2</td>
+</tr>
+<tr class="even">
+<td>Combined revenue</td>
+<td>~US$8.4bn</td>
+<td>Merger announcement</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="primary-sources">Primary sources</h3>
+<ul>
+<li><a href="https://www.sec.gov/Archives/edgar/data/93556/000095015710000400/ex99-2.htm">SEC EDGAR — Stanley Works / Black &amp; Decker merger completion press release (EX-99.2, 12 Mar 2010)</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/93556/000095012310007776/y80739a2sv4za.htm">SEC EDGAR — Form S-4/A registration statement for the merger</a></li>
+<li><a href="https://www.annualreports.com/HostedData/AnnualReportArchive/s/NYSE_SWK_2010.pdf">Stanley Black &amp; Decker 2010 Annual Report (PDF)</a></li>
+</ul>
+<hr />
+</section>
+<section id="txn-03">
+<div class="section-head">
+<div class="section-num">
+§ 03
+</div>
+<div class="section-title">
+<h2>
+The Stanley Works — Acquisition of Niscayah Group AB
+</h2>
+<p class="sub">
+Cross-border competitive public tender offer (Swedish takeover rules); contested auction against a strategic rival
+</p>
+</div>
+</div>
+<div class="factstrip">
+<div class="f">
+<span class="label">Announced / closed</span>
+<div class="t">
+<p>Securitas offer announced ~<strong>13 June 2011</strong>; Stanley Black &amp; Decker counter-offer announced <strong>27 June 2011</strong>; offer document <strong>22 July 2011</strong>; acceptance period <strong>25 July – 1 September 2011</strong>; declared unconditional and settled <strong>September 2011</strong></p>
+</div>
+</div>
+<div class="f">
+<span class="label">Headline value</span>
+<div class="t">
+<p><strong>SEK 18.00 per share</strong>, ~<strong>SEK 6.5bn</strong> total (~<strong>US$1.2bn</strong>)</p>
+</div>
+</div>
+</div>
+<h3 id="parties-1">Parties</h3>
+<p>Stanley Black &amp; Decker, Inc. (NYSE: SWK), via SBD Holding (Swedish bidco) / Niscayah Group AB (NASDAQ OMX Stockholm) / Securitas AB (competing bidder)</p>
+<h3 id="structure-1">Structure</h3>
+<ul>
+<li><strong>Correction to the commonly cited account:</strong> the winning price was <strong>SEK 18.00</strong>, not SEK 20.00. Securitas’ offer was an <strong>all-share exchange offer</strong>, not a SEK 18 cash bid.</li>
+<li><strong>Securitas’ offer (June 2011):</strong> <strong>1 new Securitas class A share for every 4.19 Niscayah shares</strong> (same ratio for class A and class B), plus <strong>SEK 0.05 cash per warrant</strong>. Total value <strong>~SEK 5.8bn</strong>, a <strong>34% premium</strong> to the 3-month VWAP ending 13 May 2011. Acceptance period 20 June – 18 July 2011. Securitas projected <strong>~SEK 200m</strong> annual cost synergies, <strong>~SEK 250m</strong> restructuring costs across 2011–12, and EPS accretion from 2013. Securitas convened an EGM to approve the share issuance.</li>
+<li><strong>Stanley’s counter (27 June 2011):</strong> <strong>SEK 18.00 cash</strong> per class A and class B share, <strong>SEK 0.05</strong> per warrant — a <strong>~23.8% premium</strong> to the value of Securitas’ all-share offer using Securitas’ SEK 60.90 close on 23 June 2011. Cash certainty was the decisive differentiator against paper.</li>
+<li><strong>Conditions:</strong> acceptance by <strong>more than 90%</strong> of shares on a fully diluted basis; all class A holders to accept and waive pre-emption rights; competition clearances; no MAC; no superior competing offer.</li>
+<li><strong>Irrevocables:</strong> <strong>Triton III (Nimble) S.à r.l.</strong> and <strong>Noonday Asset Management LLP</strong>, together holding <strong>19.5% of shares / 13.7% of votes</strong>, committed irrevocably — subject to a carve-out permitting them to accept a competing offer at a <strong>7.5%+ premium</strong>.</li>
+<li><strong>Market purchases:</strong> on 9 August 2011 Stanley’s Swedish subsidiary disclosed open-market purchases of <strong>72,005,890 class B shares (~19.8% of shares, 13.9% of votes)</strong> at prices <strong>not exceeding SEK 18</strong> — running the market bid alongside the tender to lock up the stake.</li>
+<li><strong>Outcome of acceptance period:</strong> <strong>74.8%</strong> tendered by 1 September 2011; combined with market purchases, <strong>~94.9% of shares and ~96.4% of votes</strong> on a fully diluted basis. All conditions satisfied; offer declared unconditional. Extended acceptance period to <strong>23 September 2011</strong>. Settlement <strong>9 September 2011</strong> (early acceptors) and <strong>~30 September 2011</strong> (extended period). <strong>Compulsory acquisition (squeeze-out)</strong> initiated for the residual and the stock delisted from NASDAQ OMX Stockholm.</li>
+<li>Securitas withdrew rather than raise; it would return for these assets a decade later by buying the Stanley Security business itself.</li>
+</ul>
+<h3 id="financing-1">Financing</h3>
+<p><strong>Not subject to a financing condition.</strong> Funded from existing cash — <strong>US$1.9bn available as of 4 June 2011</strong> — plus a <strong>US$1.25bn credit facility</strong> from <strong>Barclays Capital</strong> and <strong>J.P. Morgan</strong>. SBD credit ratings <strong>A / Baa1</strong> at the time.</p>
+<h3 id="purchase-price-allocation-goodwill-and-impairments">Purchase price allocation, goodwill and impairments</h3>
+<p>Niscayah was folded into SBD’s Security segment. That segment subsequently underperformed; SBD recorded <strong>$168.4m of asset impairment charges</strong> in connection with the 2022 Security divestitures (per the FY2022 10-K divestitures note), a substantial portion economically traceable to the Niscayah-era build-out.</p>
+<h3 id="advisers-1">Advisers</h3>
+<ul>
+<li><strong>Stanley Black &amp; Decker:</strong> Barclays Capital, J.P. Morgan (financial); <strong>Cleary Gottlieb Steen &amp; Hamilton LLP</strong> and <strong>Gernandt &amp; Danielsson Advokatbyrå KB</strong> (legal)</li>
+<li><strong>Niscayah independent committee:</strong> <strong>UBS</strong> (fairness opinion)</li>
+</ul>
+<h3 id="key-people-1">Key people</h3>
+<ul>
+<li>John F. Lundgren — President &amp; CEO, Stanley Black &amp; Decker — bidder principal</li>
+<li>Tomas Franzén — member, Niscayah independent board committee — recommended the Stanley offer</li>
+<li>Alf Göransson — President &amp; CEO, Securitas AB — losing bidder; presented the acquisition case to the Securitas EGM</li>
+</ul>
+<h3 id="regulatory-and-litigation-1">Regulatory and litigation</h3>
+<p>EU and national competition clearances; conducted under the <strong>NASDAQ OMX Stockholm Takeover Rules</strong> and the Swedish Takeover Act, with Swedish squeeze-out proceedings for the minority. No litigation.</p>
+<h3 id="outcome-and-post-deal-performance-1">Outcome and post-deal performance</h3>
+<p>Stanley won the asset but the strategic logic did not hold. The combined Security segment never achieved the margins of Tools, and SBD exited the entire commercial electronic security business in 2022 — selling it to <strong>Securitas</strong>, the very bidder it had outbid in 2011.</p>
+<h3 id="key-numbers-1">Key numbers</h3>
+<div class="tbl-wrap"><table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Metric</th>
+<th>Value</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Stanley offer price</td>
+<td>SEK 18.00/share; SEK 0.05/warrant</td>
+<td>SEC EX-99.1, 27 Jun 2011</td>
+</tr>
+<tr class="even">
+<td>Stanley total offer value</td>
+<td>~SEK 6.5bn (~US$1.2bn)</td>
+<td>SEC EX-99.1, 27 Jun 2011</td>
+</tr>
+<tr class="odd">
+<td>Premium to Securitas offer</td>
+<td>~23.8%</td>
+<td>SEC EX-99.1, 27 Jun 2011</td>
+</tr>
+<tr class="even">
+<td>Securitas exchange ratio</td>
+<td>1 Securitas A per 4.19 Niscayah shares</td>
+<td>Securitas EGM 2011 presentation</td>
+</tr>
+<tr class="odd">
+<td>Securitas offer value</td>
+<td>~SEK 5.8bn</td>
+<td>Securitas EGM 2011 presentation</td>
+</tr>
+<tr class="even">
+<td>Securitas premium to 3-mo VWAP</td>
+<td>34%</td>
+<td>Securitas EGM 2011 presentation</td>
+</tr>
+<tr class="odd">
+<td>Securitas synergy estimate</td>
+<td>~SEK 200m p.a.; SEK 250m restructuring</td>
+<td>Securitas EGM 2011 presentation</td>
+</tr>
+<tr class="even">
+<td>Irrevocables (Triton/Noonday)</td>
+<td>19.5% shares / 13.7% votes</td>
+<td>SEC EX-99.1, 27 Jun 2011</td>
+</tr>
+<tr class="odd">
+<td>Market purchase (9 Aug 2011)</td>
+<td>72,005,890 B shares (~19.8%/13.9%) at ≤SEK 18</td>
+<td>SEC EX-99.1, 9 Aug 2011</td>
+</tr>
+<tr class="even">
+<td>Acceptance at 1 Sep 2011</td>
+<td>74.8% tendered; 94.9% shares / 96.4% votes total</td>
+<td>SEC EX-99.1, Sep 2011</td>
+</tr>
+<tr class="odd">
+<td>Acceptance condition</td>
+<td>&gt;90% fully diluted</td>
+<td>SEC EX-99.1, 27 Jun 2011</td>
+</tr>
+<tr class="even">
+<td>SBD cash available 4 Jun 2011</td>
+<td>US$1.9bn</td>
+<td>SEC EX-99.1, 27 Jun 2011</td>
+</tr>
+<tr class="odd">
+<td>Backstop facility</td>
+<td>US$1.25bn (Barclays, J.P. Morgan)</td>
+<td>SEC EX-99.1, 27 Jun 2011</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="primary-sources-1">Primary sources</h3>
+<ul>
+<li><a href="https://www.sec.gov/Archives/edgar/data/93556/000119312511174169/dex991.htm">SEC EDGAR — SBD press release announcing the Niscayah offer (EX-99.1, 27 Jun 2011)</a></li>
+<li><a href="https://sec.gov/Archives/edgar/data/93556/000119312511216367/dex991.htm">SEC EDGAR — SBD announcement of Niscayah market purchases (EX-99.1, 9 Aug 2011)</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/93556/000119312511240211/dex991.htm">SEC EDGAR — SBD announcement that all offer conditions satisfied (EX-99.1, Sep 2011)</a></li>
+<li><a href="https://www.securitas.com/globalassets/com/files/annual-general-meetings/egm-2011/eng/egm_2011_presentation_en_final.pdf">Securitas AB — EGM 2011 presentation: Acquisition of Niscayah (PDF)</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/93556/000095012311015782/y04394e10vk.htm">SEC EDGAR — SBD FY2011 Form 10-K</a></li>
+</ul>
+<hr />
+</section>
+<section id="txn-04">
+<div class="section-head">
+<div class="section-num">
+§ 04
+</div>
+<div class="section-title">
+<h2>
+Stanley Black &amp; Decker — Sale of Security Business to Securitas AB
+</h2>
+<p class="sub">
+Corporate carve-out / divestiture; cross-border sale of a US-headquartered business to a Swedish listed acquirer, funded by a rights issue
+</p>
+</div>
+</div>
+<div class="factstrip">
+<div class="f">
+<span class="label">Announced / closed</span>
+<div class="t">
+<p>Announced <strong>8 December 2021</strong>; <strong>closed 22 July 2022</strong></p>
+</div>
+</div>
+<div class="f">
+<span class="label">Headline value</span>
+<div class="t">
+<p><strong>US$3.2bn cash</strong>, debt-free and cash-free. <strong>~16x</strong> trailing adjusted EBITDA (SBD basis, pre-synergy); <strong>~13x</strong> 2021E adjusted EBITDA including US$50m of cost synergies (Securitas basis)</p>
+</div>
+</div>
+</div>
+<h3 id="parties-2">Parties</h3>
+<p>Stanley Black &amp; Decker, Inc. (NYSE: SWK) — seller / Securitas AB (STO: SECU B) — buyer</p>
+<h3 id="structure-2">Structure</h3>
+<ul>
+<li>Sale of the <strong>Convergent Security Solutions (CSS)</strong> business — the <strong>commercial electronic security and healthcare security</strong> business lines.</li>
+<li><strong>Excluded from the Securitas transaction: Stanley Access Technologies</strong>, the automatic doors business (<strong>Mechanical Access Solutions, MAS</strong>). <em>This answers the commonly cited account’s open question — SBD did not retain it either.</em> MAS was sold separately to <strong>Allegion plc</strong> for <strong>$900m cash</strong> (announced 22 April 2022, closed <strong>5 July 2022</strong>), on 2021 revenue of ~<strong>$340m</strong> with mid-teens adjusted EBITDA margins. SBD’s FY2022 10-K records MAS <strong>net proceeds of $922.2m</strong>.</li>
+<li>A third disposal, the <strong>Oil &amp; Gas business</strong>, closed <strong>19 August 2022</strong>.</li>
+<li>CSS 2021 revenue: <strong>~$1.7bn forecast</strong> at announcement; <strong>~$1.6bn</strong> as stated at closing; adjusted EBITDA margin <strong>close to 12% before synergies</strong>, <strong>~40% recurring revenue</strong>.</li>
+<li>Both CSS and MAS were presented as <strong>discontinued operations</strong> in SBD’s FY2022 financial statements.</li>
+<li>Part of SBD’s portfolio reshaping to a focused <strong>Tools &amp; Outdoor + Industrial</strong> company.</li>
+</ul>
+<h3 id="financing-buyer-side">Financing (buyer side)</h3>
+<ul>
+<li><strong>Bridge facility underwritten by SEB</strong>, drawn at closing.</li>
+<li><strong>Rights issue: MSEK 9,583 (~US$915m)</strong> before transaction costs, at <strong>SEK 46.00 per share</strong>, on a <strong>4 new shares for every 7 existing</strong> basis (same ratio for class A and class B). Record date 20 Sept 2022; subscription 22 Sept – 11 Oct 2022; outcome announced <strong>14 Oct 2022</strong>. <strong>~99.0% subscribed with rights</strong> and fully subscribed overall. Proceeds applied to <strong>repay part of the bridge</strong>.</li>
+<li>Pre-committed shareholder support at announcement: <strong>44.6% subscription coverage, 42.4% voting support</strong>.</li>
+<li>Balance of the bridge refinanced through long-term bond issuance.</li>
+</ul>
+<h3 id="purchase-price-allocation-goodwill-impairments-sbd-fy2022-10-k">Purchase price allocation / goodwill / impairments (SBD, FY2022 10-K)</h3>
+<ul>
+<li><strong>Pre-tax gain on sale of discontinued operations: $1,197.4m</strong>, comprising <strong>CSS ~$588.0m</strong> and <strong>MAS ~$609.0m</strong>.</li>
+<li>CSS net sales in discontinued operations: <strong>2022 $1,056.3m</strong> (part-year to 22 July), <strong>2021 $1,971.4m</strong>, <strong>2020 $1,784.7m</strong>.</li>
+<li>CSS pre-tax earnings from discontinued operations: <strong>2022 $1,210.9m</strong> (including the $1,197.4m gain, i.e. ~$13.5m operating), <strong>2021 $124.3m</strong>, <strong>2020 $83.3m</strong>.</li>
+<li><strong>Asset impairment charges of $168.4m</strong> recorded in connection with the divestitures.</li>
+<li>Net proceeds: <strong>CSS ~$3.1bn</strong>; <strong>MAS $922.2m</strong>; Oil &amp; Gas — <strong>$8.6m loss on sale</strong>.</li>
+<li>Continuing-operations divestiture losses: <strong>2022 $(8.4)m</strong>, 2021 $(0.6)m, 2020 $(13.5)m.</li>
+</ul>
+<h3 id="advisers-2">Advisers</h3>
+<ul>
+<li><strong>Securitas:</strong> <strong>Morgan Stanley &amp; Co. International Plc</strong> (M&amp;A); <strong>SEB</strong> (financial adviser and bridge underwriter); <strong>K&amp;L Gates</strong> and <strong>Mannheimer Swartling Advokatbyrå</strong> (legal). <em>Neither Goldman Sachs nor Citi advised Securitas — the commonly cited account’s assumption is incorrect.</em></li>
+<li><strong>Stanley Black &amp; Decker:</strong> not disclosed in the transaction press releases.</li>
+</ul>
+<h3 id="key-people-2">Key people</h3>
+<ul>
+<li>James M. Loree — CEO, Stanley Black &amp; Decker (at announcement) — seller principal; also fronted the Allegion sale</li>
+<li>Donald Allan, Jr. — President &amp; CFO at announcement; <strong>President &amp; CEO</strong> by closing — “another major milestone in creating a more focused Stanley Black &amp; Decker”</li>
+<li>Magnus Ahlqvist — President &amp; CEO, Securitas AB — “This transformational acquisition makes us a strong provider of tech-enabled security solutions”</li>
+<li>Andreas Lindback — CFO, Securitas AB — rights issue and bridge refinancing</li>
+</ul>
+<h3 id="regulatory-and-litigation-2">Regulatory and litigation</h3>
+<p>Multi-jurisdictional competition clearances. Securitas announced on <strong>14 July 2022</strong> that it had been granted all required regulatory approvals; specific agencies were not enumerated in the release. Closing followed on 22 July 2022. No litigation.</p>
+<h3 id="outcome-and-post-deal-performance-2">Outcome and post-deal performance</h3>
+<ul>
+<li><strong>SBD use of proceeds:</strong> ~<strong>$3bn</strong> of net proceeds earmarked at announcement toward a <strong>$4bn share repurchase programme</strong> ($2.0–2.5bn in Q1 2022, remainder in summer 2022); a <strong>$2.3bn buyback was completed in Q1 2022</strong>, with the remainder of proceeds directed to <strong>debt reduction</strong>. Combined with the Allegion and Oil &amp; Gas disposals, SBD raised roughly <strong>$4.0bn+</strong> of gross divestiture proceeds in 2022 — into a year of severe tool-market destocking and margin compression.</li>
+<li><strong>Securitas:</strong> created a combined <strong>electronic security business of ~US$3.0bn</strong> in sales within a <strong>~US$4.2bn</strong> group technology/solutions footprint, addressing a <strong>~$70bn</strong> electronic security market with access to <strong>500,000+ existing and potential clients</strong>. Targeted <strong>US$50m</strong> of cost synergies fully realized within three years, immediate operating-margin accretion, EPS accretion in the first full year post-completion, and ~<strong>50%</strong> of future profit contribution from higher-margin technology and solutions. New group financial targets and strategy were presented <strong>24 August 2022</strong>.</li>
+<li>Strategic symmetry: Securitas acquired in 2022 the electronic security platform it had failed to win in 2011, at a far higher price than its Niscayah bid — while Stanley exited the category entirely.</li>
+</ul>
+<h3 id="key-numbers-2">Key numbers</h3>
+<div class="tbl-wrap"><table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Metric</th>
+<th>Value</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>CSS purchase price</td>
+<td>US$3.2bn cash (debt/cash free)</td>
+<td>SBD and Securitas releases</td>
+</tr>
+<tr class="even">
+<td>Multiple (SBD basis, pre-synergy)</td>
+<td>~16x trailing adj. EBITDA</td>
+<td>SBD 8 Dec 2021 release</td>
+</tr>
+<tr class="odd">
+<td>Multiple (Securitas basis, post-synergy)</td>
+<td>~13x 2021E adj. EBITDA incl. $50m synergies</td>
+<td>Securitas 8 Dec 2021 release</td>
+</tr>
+<tr class="even">
+<td>CSS 2021 sales</td>
+<td>~US$1,700m (fcst) / ~$1.6bn at close</td>
+<td>SBD releases</td>
+</tr>
+<tr class="odd">
+<td>CSS recurring revenue</td>
+<td>~40%</td>
+<td>Securitas 8 Dec 2021 release</td>
+</tr>
+<tr class="even">
+<td>CSS adj. EBITDA margin</td>
+<td>close to 12% pre-synergy</td>
+<td>Securitas 8 Dec 2021 release</td>
+</tr>
+<tr class="odd">
+<td><strong>Pre-tax gain on sale, total</strong></td>
+<td><strong>$1,197.4m</strong></td>
+<td>SBD FY2022 10-K (R132/R133)</td>
+</tr>
+<tr class="even">
+<td>— CSS gain</td>
+<td>~$588.0m</td>
+<td>SBD FY2022 10-K (R131)</td>
+</tr>
+<tr class="odd">
+<td>— MAS gain</td>
+<td>~$609.0m</td>
+<td>SBD FY2022 10-K (R131)</td>
+</tr>
+<tr class="even">
+<td>CSS net proceeds</td>
+<td>~$3.1bn</td>
+<td>SBD FY2022 10-K</td>
+</tr>
+<tr class="odd">
+<td>MAS net proceeds</td>
+<td>$922.2m</td>
+<td>SBD FY2022 10-K (R131)</td>
+</tr>
+<tr class="even">
+<td>Oil &amp; Gas loss on sale</td>
+<td>$(8.6)m</td>
+<td>SBD FY2022 10-K (R131)</td>
+</tr>
+<tr class="odd">
+<td>Asset impairment charges</td>
+<td>$168.4m</td>
+<td>SBD FY2022 10-K (R131)</td>
+</tr>
+<tr class="even">
+<td>CSS disc. ops net sales 2021 / 2020</td>
+<td>$1,971.4m / $1,784.7m</td>
+<td>SBD FY2022 10-K (R133)</td>
+</tr>
+<tr class="odd">
+<td>Securitas rights issue</td>
+<td>MSEK 9,583 at SEK 46.00; 4:7 ratio</td>
+<td>Securitas rights issue 2022 page</td>
+</tr>
+<tr class="even">
+<td>Rights issue take-up</td>
+<td>~99.0% with rights; fully subscribed</td>
+<td>Securitas, 14 Oct 2022</td>
+</tr>
+<tr class="odd">
+<td>Securitas synergy target</td>
+<td>US$50m over 3 years</td>
+<td>Securitas 8 Dec 2021 release</td>
+</tr>
+<tr class="even">
+<td>SBD buyback programme</td>
+<td>$4bn authorized; $2.3bn completed Q1 2022</td>
+<td>SBD releases</td>
+</tr>
+<tr class="odd">
+<td>Allegion / Access Technologies price</td>
+<td>US$900m cash (2021 rev ~$340m)</td>
+<td>SBD 22 Apr 2022 release</td>
+</tr>
+<tr class="even">
+<td>MAS closing date</td>
+<td>5 July 2022</td>
+<td>SBD FY2022 10-K (R131)</td>
+</tr>
+<tr class="odd">
+<td>CSS closing date</td>
+<td>22 July 2022</td>
+<td>SBD 22 Jul 2022 release</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="primary-sources-2">Primary sources</h3>
+<ul>
+<li><a href="https://ir.stanleyblackanddecker.com/news-events/press-releases/news-details/2021/Stanley-Black--Decker-to-Sell-Security-Business-for-3.2-Billion-to-Securitas/default.aspx">SBD — Stanley Black &amp; Decker to Sell Security Business for $3.2 Billion to Securitas (8 Dec 2021)</a></li>
+<li><a href="https://ir.stanleyblackanddecker.com/news-events/press-releases/news-details/2022/Stanley-Black--Decker-Completes-Sale-of-Security-Business-to-Securitas-AB-for-3.2-Billion/default.aspx">SBD — Completes Sale of Security Business to Securitas AB for $3.2 Billion (22 Jul 2022)</a></li>
+<li><a href="https://view.news.eu.nasdaq.com/view?id=bd7e1c1459690b65c4448b47050e33498&amp;lang=en">Securitas — Transformative acquisition of the Electronic Security Solutions business from Stanley Black &amp; Decker (8 Dec 2021)</a></li>
+<li><a href="https://www.securitas.com/en/newsroom/regulatory-press-releases/securitas-has-completed-the-acquisition-of-stanley-security/">Securitas — Has completed the acquisition of Stanley Security (22 Jul 2022)</a></li>
+<li><a href="https://www.securitas.com/en/investors/rights-issue-2022/">Securitas — Rights Issue 2022</a></li>
+<li><a href="https://www.securitas.com/en/investors/acquisitions-and-divestitures/">Securitas — Acquisitions and divestitures</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/93556/000009355623000007/swk-20221231.htm">SEC EDGAR — SBD FY2022 Form 10-K (swk-20221231.htm)</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/93556/000009355623000007/R131.htm">SEC EDGAR — SBD FY2022 10-K, Divestitures – Additional Information (R131)</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/93556/000009355623000007/R132.htm">SEC EDGAR — SBD FY2022 10-K, Divestitures – Pre-Tax Gains/Losses (R132)</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/93556/000009355623000007/R133.htm">SEC EDGAR — SBD FY2022 10-K, Operating Results of Divested Businesses (R133)</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/93556/000009355623000007/">SEC EDGAR — SBD FY2022 10-K filing index</a></li>
+<li><a href="https://ir.stanleyblackanddecker.com/news-events/press-releases/news-details/2022/Stanley-Black--Decker-to-Sell-Access-Technologies-Business-for-900-Million-in-Cash-to-Allegion/default.aspx">SBD — To Sell Access Technologies Business for $900 Million in Cash to Allegion (22 Apr 2022)</a></li>
+<li><a href="https://www.allegion.com/corp/en/news/year/2022/sbd-acquisition.html">Allegion — Completes Acquisition of Stanley Black &amp; Decker’s Access Technologies Business</a></li>
+</ul>
+<hr />
+</section>
+<footer>
+<div>
+<strong style="color:var(--ink)">Market Logic Investors LLC</strong> · Transaction Experience<br> Compiled from primary filings. Internal reference. Not investment advice.
+</div>
+<div style="text-align:right">
+<a href="../" style="color:var(--teal);text-decoration:none">← Back to Transaction Experience</a>
+</div>
+</footer>
+
+</div>
+</body>
+</html>

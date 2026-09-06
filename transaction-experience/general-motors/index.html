@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>General Motors — Transaction Experience — Market Logic Investors</title>
+<meta name="description" content="A Section 363 sale executed 40 days after filing, funded by a sovereign credit bid, that eliminated $92.7bn of liabilities and rebuilt a national industrial champion around a new c">
+<style>
+
+:root {
+  --ink: #0a1929; --ink-soft: #1c2e44;
+  --paper: #faf9f4; --paper-warm: #f3efe3;
+  --rule: #d4cfbf; --rule-soft: #e8e3d4;
+  --muted: #5b6b7a; --muted-light: #8a98a5;
+  --accent: #b8391c; --accent-soft: #d65a3a;
+  --teal: #1f6b6b; --teal-soft: #4a8b8b; --teal-light: #b8d4d4;
+  --positive: #2d6a4f; --warning: #b08800; --negative: #9b2226;
+  --negative-light: #e8c5c5;
+  --serif: 'Iowan Old Style','Palatino Linotype',Palatino,'Book Antiqua',Georgia,serif;
+  --sans: 'Helvetica Neue',Helvetica,-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
+  --mono: 'SF Mono',SFMono-Regular,Menlo,Monaco,Consolas,'Liberation Mono',monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{font-size:16px;-webkit-text-size-adjust:100%;}
+body{font-family:var(--sans);background:var(--paper);color:var(--ink);line-height:1.55;-webkit-font-smoothing:antialiased;}
+.page{max-width:1000px;margin:0 auto;padding:56px 56px 80px;}
+h1,h2,h3,h4,h5{font-family:var(--serif);font-weight:400;color:var(--ink);}
+h1{font-size:3.6rem;line-height:1.02;letter-spacing:-0.025em;}
+h2{font-size:2.05rem;line-height:1.12;letter-spacing:-0.015em;}
+h3{font-size:1.3rem;line-height:1.25;}
+h4{font-family:var(--sans);font-weight:600;font-size:0.7rem;text-transform:uppercase;letter-spacing:0.16em;color:var(--muted);}
+p{font-size:0.95rem;line-height:1.7;color:var(--ink-soft);}
+strong{color:var(--ink);font-weight:600;}
+.eyebrow{font-family:var(--sans);font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.2em;color:var(--accent);display:block;margin-bottom:18px;}
+.lede{font-family:var(--serif);font-size:1.25rem;line-height:1.5;color:var(--ink);}
+.kicker{font-family:var(--sans);font-size:0.75rem;font-weight:600;text-transform:uppercase;letter-spacing:0.12em;color:var(--teal);}
+.label{font-family:var(--sans);font-size:0.7rem;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);}
+.mono{font-family:var(--mono);font-size:0.85rem;}
+.cover{border-top:1px solid var(--ink);padding-top:32px;position:relative;}
+.cover-meta{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:84px;}
+.cover-meta .left,.cover-meta .right{font-family:var(--sans);font-size:0.78rem;color:var(--muted);}
+.cover-meta .right{text-align:right;}
+.cover-meta .right .stamp{display:inline-block;padding:4px 10px;border:1px solid var(--accent);color:var(--accent);font-weight:600;letter-spacing:0.12em;font-size:0.65rem;text-transform:uppercase;margin-bottom:8px;}
+.cover-title{margin-bottom:28px;}
+.cover-title .legal{display:block;font-family:var(--sans);font-size:0.78rem;color:var(--muted);margin-top:8px;letter-spacing:0.04em;}
+.cover-tag{font-family:var(--serif);font-style:italic;font-size:1.4rem;line-height:1.45;color:var(--ink-soft);max-width:720px;margin-bottom:56px;}
+.cover-tag::before{content:"\201C";font-size:2.2rem;line-height:0;vertical-align:-0.3em;color:var(--accent);margin-right:4px;}
+.cover-tag::after{content:"\201D";font-size:2.2rem;line-height:0;vertical-align:-0.3em;color:var(--accent);margin-left:2px;}
+.metric-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:0;border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);margin:32px 0;}
+.metric{padding:22px 16px 20px;border-right:1px solid var(--rule);text-align:left;}
+.metric:last-child{border-right:none;}
+.metric .v{font-family:var(--serif);font-size:2.1rem;line-height:1;letter-spacing:-0.02em;color:var(--ink);display:block;margin-bottom:6px;}
+.metric .v small{font-size:0.95rem;color:var(--muted);font-family:var(--serif);margin-left:1px;}
+.metric .l{font-family:var(--sans);font-size:0.68rem;font-weight:600;text-transform:uppercase;letter-spacing:0.12em;color:var(--muted);line-height:1.3;}
+.metric.accent .v{color:var(--accent);}
+.metric.teal .v{color:var(--teal);}
+section{margin-top:64px;padding-top:32px;border-top:1px solid var(--rule);}
+section.no-rule{border-top:none;}
+.section-head{display:grid;grid-template-columns:120px 1fr;gap:32px;margin-bottom:28px;align-items:baseline;}
+.section-num{font-family:var(--mono);font-size:0.78rem;color:var(--muted);letter-spacing:0.05em;border-top:2px solid var(--ink);padding-top:8px;text-transform:uppercase;font-weight:600;}
+.section-title h2{margin-bottom:8px;}
+.section-title .sub{font-family:var(--serif);font-style:italic;color:var(--muted);font-size:1.05rem;}
+.cols-2{display:grid;grid-template-columns:1fr 1fr;gap:36px;margin-top:16px;}
+.cols-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px;margin-top:16px;}
+.card{background:var(--paper-warm);padding:22px 24px;border:1px solid var(--rule);}
+.card.dark{background:var(--ink);color:var(--paper);}
+.card.dark h3,.card.dark h4{color:var(--paper);}
+.card.dark p{color:rgba(250,249,244,0.85);}
+.callout{border-left:3px solid var(--accent);padding:4px 0 4px 20px;margin:18px 0;font-family:var(--serif);font-style:italic;font-size:1.05rem;color:var(--ink);}
+.pull-quote{font-family:var(--serif);font-size:1.4rem;line-height:1.4;color:var(--ink);border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);padding:28px 0;margin:32px 0;text-align:center;letter-spacing:-0.005em;}
+table{width:100%;border-collapse:collapse;font-family:var(--sans);font-size:0.88rem;margin-top:14px;}
+thead th{text-align:left;font-weight:600;font-size:0.7rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);padding:10px 14px 10px 0;border-bottom:1.5px solid var(--ink);}
+thead th.num{text-align:right;}
+tbody td{padding:14px 14px 14px 0;border-bottom:1px solid var(--rule);color:var(--ink-soft);vertical-align:top;}
+tbody td.num{text-align:right;font-variant-numeric:tabular-nums;font-family:var(--mono);font-size:0.82rem;}
+tbody td strong{color:var(--ink);}
+tbody tr.highlight td{color:var(--ink);}
+tbody tr.highlight td:first-child{padding-left:12px;border-left:3px solid var(--accent);}
+ul.clean{list-style:none;}
+ul.clean li{padding:12px 0 12px 24px;border-bottom:1px solid var(--rule-soft);position:relative;font-size:0.93rem;color:var(--ink-soft);line-height:1.6;}
+ul.clean li::before{content:"→";position:absolute;left:0;top:12px;color:var(--accent);font-weight:600;}
+ol.clean{list-style:none;counter-reset:ck;}
+ol.clean li{counter-increment:ck;padding:12px 0 12px 36px;border-bottom:1px solid var(--rule-soft);position:relative;font-size:0.93rem;color:var(--ink-soft);line-height:1.6;}
+ol.clean li::before{content:counter(ck,decimal-leading-zero);position:absolute;left:0;top:12px;font-family:var(--mono);font-size:0.78rem;color:var(--accent);font-weight:600;}
+.tag{display:inline-block;font-family:var(--sans);font-size:0.68rem;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;padding:3px 9px;margin-right:6px;margin-bottom:4px;border:1px solid var(--rule);color:var(--ink-soft);background:var(--paper);}
+.tag.accent{border-color:var(--accent);color:var(--accent);}
+.tag.teal{border-color:var(--teal);color:var(--teal);}
+.tag.warn{border-color:var(--warning);color:var(--warning);}
+.tag.neg{border-color:var(--negative);color:var(--negative);}
+.tag.pos{border-color:var(--positive);color:var(--positive);}
+.thesis-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:24px;border:1px solid var(--ink);}
+.thesis-col{padding:28px 28px 24px;}
+.thesis-col.bull{border-right:1px solid var(--ink);}
+.thesis-col ul{list-style:none;margin-top:14px;}
+.thesis-col ul li{padding:10px 0 10px 22px;position:relative;font-size:0.9rem;color:var(--ink-soft);line-height:1.55;border-bottom:1px dashed var(--rule-soft);}
+.thesis-col.bull ul li::before{content:"+";position:absolute;left:0;top:9px;color:var(--positive);font-weight:700;}
+.thesis-col.bear ul li::before{content:"−";position:absolute;left:0;top:9px;color:var(--negative);font-weight:700;}
+.recommendation{background:var(--ink);color:var(--paper);padding:40px 44px;margin-top:40px;border-left:6px solid var(--accent);}
+.recommendation .head{font-family:var(--mono);font-size:0.74rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--accent-soft);margin-bottom:12px;font-weight:600;}
+.recommendation h2{color:var(--paper);margin-bottom:14px;}
+.recommendation p{color:rgba(250,249,244,0.86);font-size:1rem;}
+.recommendation .actions{margin-top:24px;padding-top:20px;border-top:1px solid rgba(250,249,244,0.18);display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+.recommendation .actions .h{font-family:var(--mono);font-size:0.7rem;text-transform:uppercase;letter-spacing:0.14em;color:var(--accent-soft);margin-bottom:10px;}
+.recommendation .actions ul{list-style:none;}
+.recommendation .actions ul li{padding:6px 0 6px 22px;position:relative;font-size:0.9rem;color:rgba(250,249,244,0.92);line-height:1.5;}
+.recommendation .actions ul li::before{content:"▸";position:absolute;left:0;top:5px;color:var(--accent-soft);}
+footer{margin-top:80px;padding-top:28px;border-top:1px solid var(--ink);font-family:var(--sans);font-size:0.74rem;color:var(--muted);display:flex;justify-content:space-between;}
+.chart{width:100%;margin:18px 0 6px;background:var(--paper);}
+.chart-caption{font-family:var(--sans);font-size:0.72rem;color:var(--muted);margin-top:4px;font-style:italic;line-height:1.5;}
+/* Dashboard */
+.dash-panel{background:var(--paper-warm);border:1px solid var(--rule);padding:24px;margin-top:24px;}
+.dash-controls{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:20px;}
+.ctrl-item{display:flex;flex-direction:column;gap:5px;}
+.ctrl-item label{font-family:var(--sans);font-size:0.7rem;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);}
+.ctrl-row{display:flex;align-items:center;gap:8px;}
+.ctrl-row input[type=range]{flex:1;accent-color:var(--teal);cursor:pointer;}
+.ctrl-val{font-family:var(--mono);font-size:0.82rem;font-weight:600;color:var(--ink);min-width:48px;text-align:right;}
+.scen-row{display:flex;gap:8px;margin-bottom:18px;flex-wrap:wrap;}
+.scen-btn{font-family:var(--sans);font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;padding:5px 14px;border:1px solid var(--rule);background:var(--paper);color:var(--muted);cursor:pointer;}
+.scen-btn:hover{border-color:var(--teal);color:var(--teal);}
+.scen-btn.active{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+.output-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--rule);margin-bottom:16px;}
+.output-cell{padding:16px 14px;border-right:1px solid var(--rule);}
+.output-cell:last-child{border-right:none;}
+.output-cell .ov{font-family:var(--serif);font-size:1.8rem;letter-spacing:-0.02em;color:var(--ink);display:block;line-height:1;margin-bottom:4px;}
+.output-cell .ol{font-family:var(--sans);font-size:0.65rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--muted);}
+.output-cell.ok .ov{color:var(--positive);}
+.output-cell.warn .ov{color:var(--warning);}
+.output-cell.bad .ov{color:var(--negative);}
+.verdict-box{padding:16px 20px;font-family:var(--sans);font-size:0.88rem;line-height:1.6;border-left:4px solid var(--rule);margin-bottom:16px;}
+.verdict-box.ok{border-left-color:var(--positive);background:#f0f7f4;}
+.verdict-box.warn{border-left-color:var(--warning);background:#fdf8ec;}
+.verdict-box.bad{border-left-color:var(--negative);background:#fdf0f0;}
+.verdict-box .vl{font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.14em;margin-bottom:5px;color:var(--muted);}
+.assump-list{list-style:none;margin-top:0;}
+.assump-list li{padding:14px 0 14px 24px;border-bottom:1px solid var(--rule-soft);position:relative;font-size:0.88rem;line-height:1.6;color:var(--ink-soft);}
+.assump-list li::before{content:"→";position:absolute;left:0;top:14px;color:var(--accent);font-weight:700;}
+.assump-list li strong{color:var(--ink);}
+.assump-flag{display:inline-block;font-family:var(--mono);font-size:0.65rem;font-weight:700;letter-spacing:0.08em;padding:2px 7px;border:1px solid;margin-left:8px;vertical-align:middle;}
+.assump-flag.ok{border-color:var(--positive);color:var(--positive);}
+.assump-flag.warn{border-color:var(--warning);color:var(--warning);}
+.assump-flag.bad{border-color:var(--negative);color:var(--negative);}
+.signal{font-family:var(--mono);font-size:0.72rem;color:var(--teal);margin-top:6px;display:block;line-height:1.5;}
+.entity-row{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--ink);margin-top:20px;}
+.entity-col{padding:20px 18px;border-right:1px solid var(--rule);}
+.entity-col:last-child{border-right:none;}
+.entity-col h4{margin-bottom:12px;}
+.entity-col.et h4{color:var(--teal);}
+.entity-col.sun h4{color:var(--positive);}
+.entity-col.usac h4{color:var(--warning);}
+.emet{display:flex;justify-content:space-between;font-size:0.8rem;padding:6px 0;border-bottom:1px solid var(--rule-soft);}
+.emet:last-child{border:none;}
+.emet .ek{color:var(--muted);}
+.emet .ev{font-weight:600;color:var(--ink);font-family:var(--mono);font-size:0.78rem;}
+.emet .ev.g{color:var(--positive);}
+.emet .ev.r{color:var(--negative);}
+.emet .ev.w{color:var(--warning);}
+.dc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--rule);margin-top:16px;}
+.dc-cell{padding:18px 16px;border-right:1px solid var(--rule);}
+.dc-cell:last-child{border-right:none;}
+.dc-name{font-family:var(--sans);font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--ink);margin-bottom:4px;}
+.dc-pipe{font-family:var(--sans);font-size:0.7rem;color:var(--muted);margin-bottom:10px;}
+.dc-vol{font-family:var(--serif);font-size:1.8rem;color:var(--teal);letter-spacing:-0.02em;line-height:1;margin-bottom:4px;}
+.dc-ebitda{font-family:var(--mono);font-size:0.8rem;color:var(--positive);font-weight:600;}
+.dc-note{font-size:0.72rem;color:var(--muted);margin-top:6px;line-height:1.45;}
+.site-nav{display:flex;align-items:center;justify-content:space-between;background:var(--ink);color:var(--paper);padding:10px 40px;font-family:var(--sans);font-size:0.78rem;letter-spacing:0.04em;position:sticky;top:0;z-index:100;gap:16px;}
+.site-nav a{color:rgba(250,249,244,0.7);text-decoration:none;}
+.site-nav a:hover{color:var(--paper);}
+.site-nav span[aria-hidden]{color:rgba(250,249,244,0.3);margin:0 4px;}
+.site-nav .nav-meta{color:rgba(250,249,244,0.45);font-size:0.75rem;}
+.site-nav .nav-action a{color:var(--accent);border:1px solid rgba(184,57,28,0.5);border-radius:3px;padding:3px 10px;}
+@media(max-width:760px){
+  .page{padding:32px 22px;}
+  h1{font-size:2.4rem;}
+  .metric-grid{grid-template-columns:repeat(2,1fr);}
+  .cols-2,.cols-3,.thesis-grid,.dash-controls,.output-grid,.entity-row,.dc-grid{grid-template-columns:1fr;}
+  .thesis-col.bull{border-right:none;border-bottom:1px solid var(--ink);}
+  .section-head{grid-template-columns:1fr;gap:8px;}
+  .recommendation .actions{grid-template-columns:1fr;}
+}
+
+/* ===== Glossary ===== */
+.glossary-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:0;border:1px solid var(--ink);margin-top:16px;}
+.glossary-col{padding:0;}
+.gterm{display:grid;grid-template-columns:160px 1fr;gap:0;border-bottom:1px solid var(--rule-soft);}
+.gterm:last-child{border-bottom:none;}
+.gt{font-family:var(--mono);font-size:0.78rem;font-weight:700;color:var(--teal);padding:12px 14px;border-right:1px solid var(--rule-soft);background:var(--paper-warm);display:flex;align-items:flex-start;}
+.gd{font-size:0.82rem;color:var(--ink-soft);padding:12px 14px;line-height:1.55;}
+.gd strong{color:var(--ink);}
+@media(max-width:760px){.glossary-grid{grid-template-columns:1fr;}.gterm{grid-template-columns:120px 1fr;}}
+
+
+
+section[id]{scroll-margin-top:64px}
+.tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin-top:14px}
+.tbl-wrap table{margin-top:0}
+em.unv{font-style:normal;font-family:var(--mono);font-size:0.68rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--warning);border:1px solid var(--warning);padding:1px 5px;margin:0 2px;white-space:nowrap}
+em.corr{font-style:normal;font-family:var(--mono);font-size:0.68rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--accent);border:1px solid var(--accent);padding:1px 5px;margin:0 2px}
+h3{font-family:var(--sans);font-size:0.78rem;font-weight:700;text-transform:uppercase;letter-spacing:0.13em;color:var(--accent);margin:26px 0 8px}
+h4{font-family:var(--serif);font-size:1.05rem;font-weight:400;margin:20px 0 6px}
+section ul{margin:6px 0 6px 20px}
+section ul li{font-size:0.9rem;line-height:1.6;color:var(--ink-soft);padding:3px 0}
+section ol{margin:6px 0 6px 22px}
+section ol li{font-size:0.9rem;line-height:1.6;color:var(--ink-soft);padding:3px 0}
+.factstrip{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--ink);margin:18px 0 4px}
+.factstrip .f{padding:16px 20px;border-right:1px solid var(--rule)}
+.factstrip .f:last-child{border-right:none}
+.factstrip .f .label{display:block;margin-bottom:5px}
+.factstrip .f .t{font-size:0.88rem;line-height:1.55;color:var(--ink)}
+.txn-map td:first-child{font-weight:600;color:var(--ink)}
+.srcnote{font-family:var(--sans);font-size:0.78rem;color:var(--muted);line-height:1.6;border-left:3px solid var(--rule);padding:2px 0 2px 16px;margin:14px 0}
+.toc{display:grid;grid-template-columns:repeat(2,1fr);gap:0;border:1px solid var(--ink);margin-top:20px}
+.toc a{display:block;padding:12px 18px;border-bottom:1px solid var(--rule-soft);border-right:1px solid var(--rule-soft);text-decoration:none;color:var(--ink);font-size:0.86rem}
+.toc a:hover{background:var(--paper-warm);color:var(--accent)}
+.toc a .n{font-family:var(--mono);font-size:0.68rem;color:var(--muted);margin-right:10px}
+@media(max-width:720px){.factstrip,.toc{grid-template-columns:1fr}}
+
+</style>
+</head>
+<body>
+<nav class="site-nav" aria-label="breadcrumb">
+  <div style="display:flex;align-items:center;gap:0;flex-wrap:wrap">
+    <a href="../../">Market Logic Investors</a><span aria-hidden="true">/</span>
+    <a href="../../">Deal Vault</a><span aria-hidden="true">/</span>
+    <a href="../">Transaction Experience</a><span aria-hidden="true">/</span>
+    <span>General Motors</span>
+  </div>
+  <div style="display:flex;align-items:center;gap:16px;">
+    <span class="nav-meta">ML-TXN-GM &nbsp;|&nbsp; Automotive</span>
+  </div>
+</nav>
+<div class="page">
+<header class="cover">
+<div class="cover-meta">
+<div class="left">
+<p><strong style="color:var(--ink);display:block;margin-bottom:4px;">Market Logic Investors LLC</strong> Automotive · Transaction Record<br> Client engagement record · Primary-source reconstruction</p>
+</div>
+<div class="right">
+<p><span class="stamp">2 transactions</span><br> <strong style="color:var(--ink);">Ref: ML-TXN-GM</strong><br> Period: 2009 – 2014<br> Compiled: September 6, 2026</p>
+</div>
+</div>
+<span class="eyebrow">Automotive · Government-sponsored restructuring</span>
+<div class="cover-title">
+<h1>
+General Motors
+</h1>
+<p><span class="legal">General Motors Corporation · Motors Liquidation Company · General Motors Company · NYSE: GM</span></p>
+</div>
+<p class="cover-tag">
+A Section 363 sale executed 40 days after filing, funded by a sovereign credit bid, that eliminated $92.7bn of liabilities and rebuilt a national industrial champion around a new corporate shell. Then the largest US IPO to that date, and a staged government exit that closed at a documented loss.
+</p>
+<div class="metric-grid">
+<div class="metric accent">
+<span class="v">$49.5<small>bn</small></span><span class="l">US Treasury commitment</span>
+</div>
+<div class="metric teal">
+<span class="v">$92.7<small>bn</small></span><span class="l">Liabilities eliminated</span>
+</div>
+<div class="metric">
+<span class="v">40</span><span class="l">Days filing to sale</span>
+</div>
+<div class="metric">
+<span class="v">$23.1<small>bn</small></span><span class="l">2010 IPO size</span>
+</div>
+<div class="metric">
+<span class="v">60.8<small>%</small></span><span class="l">Treasury equity at emergence</span>
+</div>
+<div class="metric">
+<span class="v">$11.2<small>bn</small></span><span class="l">Net taxpayer loss</span>
+</div>
+</div>
+</header>
+<section class="no-rule" style="margin-top:48px">
+<div class="section-head">
+<div class="section-num">
+§ 01
+</div>
+<div class="section-title">
+<h2>
+Transaction map
+</h2>
+<p class="sub">
+Every transaction on this file, in order
+</p>
+</div>
+</div>
+<p style="margin-bottom:8px">
+Chapter 11 on 1 June 2009, a Section 363 free-and-clear sale approved 5 July and closed 10 July, and a capital structure rebuilt around Treasury, Canada, the UAW VEBA and the unsecured bondholders. The November 2010 IPO raised ~$23.1bn. Treasury exited on 9 December 2013 having recovered ~$39bn of $49.5bn.
+</p>
+<div class="tbl-wrap">
+<table class="txn-map">
+<thead>
+<tr>
+<th>
+Transaction
+</th>
+<th>
+Type
+</th>
+<th>
+Announced / closed
+</th>
+<th>
+Headline value
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="#txn-02" style="color:var(--ink);text-decoration:none;border-bottom:1px solid var(--rule)">Chapter 11, §363 sale to New GM, TARP recapitalization and 2010 IPO</a>
+</td>
+<td>
+Government-sponsored restructuring — Chapter 11 §363(b) asset sale funded by sovereign credit bids and DIP financing, followed by an equity carve-out…
+</td>
+<td>
+<ul>
+<li>Chapter 11 petition filed June 1, 2009, Bankr. S.D.N.Y., Case No. 09-50026 (REG), Judge Robert E. Gerber.
+</td>
+<td>
+$49.5bn total US Treasury commitment to GM; C$10.8bn / ~US$9.5bn from Canada and Ontario; $92.7bn reduction in debt and other…
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="toc">
+<a href="#txn-02"><span class="n">§ 02</span>Chapter 11, §363 sale to New GM, TARP recapitalization and 2010 IPO</a>
+</div>
+</section></li>
+</ul>
+<section id="txn-02">
+<div class="section-head">
+<div class="section-num">
+§ 02
+</div>
+<div class="section-title">
+<h2>
+General Motors Corporation — Chapter 11, §363 sale to New GM, TARP recapitalization and 2010 IPO
+</h2>
+<p class="sub">
+Government-sponsored restructuring — Chapter 11 §363(b) asset sale funded by sovereign credit bids and DIP financing, followed by an equity carve-out IPO and staged government exit
+</p>
+</div>
+</div>
+<div class="factstrip">
+<div class="f">
+<span class="label">Announced / closed</span>
+<div class="t">
+<ul>
+<li>
+Chapter 11 petition filed <strong>June 1, 2009</strong>, Bankr. S.D.N.Y., <strong>Case No. 09-50026 (REG)</strong>, Judge <strong>Robert E. Gerber</strong>.
+</li>
+<li>
+§363 sale opinion issued <strong>July 5, 2009</strong> (In re General Motors Corp., 407 B.R. 463 (Bankr. S.D.N.Y. 2009)); <strong>sale closed July 10, 2009</strong>.
+</li>
+<li>
+Debtor renamed <strong>Motors Liquidation Company</strong> (“Old GM”); purchaser <strong>General Motors Company</strong> (“New GM”).
+</li>
+<li>
+IPO priced <strong>November 17, 2010</strong>, traded November 18, 2010.
+</li>
+<li>
+Treasury sold its final GM shares <strong>December 9, 2013</strong>. Canada fully exited <strong>April 2015</strong>. Ally Financial (ex-GMAC) exit <strong>December 19, 2014</strong>, closing the AIFP.
+</li>
+</ul>
+</div>
+</div>
+<div class="f">
+<span class="label">Headline value</span>
+<div class="t">
+<p><strong>$49.5bn</strong> total US Treasury commitment to GM; <strong>C$10.8bn / ~US$9.5bn</strong> from Canada and Ontario; <strong>$92.7bn</strong> reduction in debt and other liabilities at the 363 sale; <strong>~$23.1bn</strong> IPO (largest US IPO at the time).</p>
+</div>
+</div>
+</div>
+<h3 id="parties">Parties</h3>
+<p>General Motors Corporation (debtor/Old GM → Motors Liquidation Company) / <strong>NGMCO, Inc.</strong> (purchaser; originally formed as <strong>Vehicle Acquisition Holdings LLC</strong>, renamed NGMCO, Inc., then <strong>General Motors Company</strong>) / US Department of the Treasury (UST) / <strong>Export Development Canada (EDC)</strong> and <strong>Canada GEN Investment Corporation</strong> / <strong>UAW Retiree Medical Benefits Trust (“New VEBA”)</strong> / unsecured bondholders</p>
+<h3 id="structure">Structure</h3>
+<ul>
+<li><strong>§363(b) sale free and clear</strong>, executed 40 days after filing, rather than a plan of reorganization. Judge Gerber found liquidation the only realistic alternative and overruled objections on sub rosa plan, successor liability (following the <em>Chrysler</em> precedent), recharacterization/equitable subordination of the government debt, credit-bid limits, future asbestos claims and environmental compliance.</li>
+<li><strong>Purchase price components</strong> per the Master Sale and Purchase Agreement: (i) a <strong>credit bid of the UST/EDC prepetition secured debt</strong> (~<strong>$19.4bn</strong> of pre-petition UST loans and the senior secured facilities), (ii) <strong>assumption of ~$6.7bn of DIP indebtedness</strong> plus a <strong>$1.175bn wind-down facility</strong> for the estate, (iii) surrender of the warrant issued under the Treasury prepetition loan, (iv) <strong>10% of New GM common stock</strong> to Old GM (with an additional 2% top-up if allowed general unsecured claims exceeded $35bn), and (v) <strong>two warrants for 7.5% each</strong> of New GM common, struck at implied equity valuations of $15bn and $30bn. Total consideration was estimated by the court at <strong>~$45bn</strong>.</li>
+<li><strong>UST funding: $49.5bn total — $19.4bn provided pre-petition (Dec 2008–May 2009) and $30.1bn provided to effectuate the bankruptcy (DIP + exit).</strong></li>
+<li><strong>Canada/Ontario: C$10.8bn (federal two-thirds / Ontario one-third), ~US$9.5bn.</strong> C$9.8bn of loans exchanged for <strong>11.7% of New GM common (175,105,932 shares) plus US$403m of preferred shares</strong>.</li>
+<li><strong>Equity split at emergence (July 10, 2009):</strong>
+<ul>
+<li><strong>US Treasury 60.8%</strong> common (≈50% fully diluted) + <strong>$8.8bn in debt and preferred securities</strong> (a $6.7bn secured note and $2.1bn of 9% Series A Preferred);</li>
+<li><strong>Canada GEN Investment Corp 11.7%</strong> + US$403m preferred;</li>
+<li><strong>New VEBA 17.5%</strong> + <strong>$6.5bn of 9% perpetual Series A Preferred</strong> + a <strong>$2.5bn note payable in three installments through 2017</strong> + a warrant for an additional <strong>2.5%</strong>;</li>
+<li><strong>Motors Liquidation Company (for unsecured creditors) 10%</strong> + warrants for an additional <strong>15%</strong>.</li>
+</ul></li>
+<li><strong>Warrants</strong> (as registered on Form 10, pre-split): to MLC, two warrants for <strong>45,454,545 shares each</strong>, exercise <strong>$30.00</strong> expiring <strong>July 10, 2016</strong> and <strong>$55.00</strong> expiring <strong>July 10, 2019</strong>; to New VEBA, <strong>15,151,515 shares</strong> at <strong>$126.92</strong> expiring <strong>December 31, 2015</strong>. After the pre-IPO 3-for-1 stock split these became <strong>136,363,635 shares each at $10.00 and $18.33</strong>, and <strong>45,454,545 shares at $42.31</strong>.</li>
+<li><strong>Series A Preferred Stock:</strong> 360,000,000 shares authorized/issued, <strong>$25.00 liquidation preference, 9% cumulative</strong> ($6,998m carrying value at Sept 30, 2010).</li>
+<li><strong>Debt/liability reduction:</strong> New GM began operations on July 10, 2009 with total debt and other liabilities <strong>$92.7bn lower</strong> than Old GM’s at July 9, 2009. <strong>$27.1bn of GM unsecured bonds</strong> were converted into the 10% equity + 15% warrants; ≥54% of bondholders had consented pre-petition. UAW retiree health obligations of <strong>~$20bn (fixed obligation)</strong> were exchanged for the $2.5bn note plus New VEBA equity/preferred.</li>
+<li><strong>Old GM estate:</strong> Motors Liquidation Company plan of liquidation confirmed <strong>March 29, 2011</strong>, effective <strong>March 31, 2011</strong>, creating the <strong>Motors Liquidation Company GUC Trust</strong> (SEC-reporting, CIK 40730) to distribute New GM shares and warrants to holders of allowed general unsecured claims.</li>
+</ul>
+<h3 id="financing">Financing</h3>
+<ul>
+<li><strong>DIP facility ~$33.3bn</strong> from UST and EDC (the Form 10 references a Second Amended and Restated Secured Credit Agreement with UST; the court cited ~$6.7bn of DIP debt assumed by the purchaser plus the $1.175bn wind-down facility).</li>
+<li><strong>Exit capitalization:</strong> ~$17bn of debt, ~$9bn of perpetual preferred, and the common equity split above (per Treasury’s June 1, 2009 term sheet).</li>
+<li><strong>November 2010 IPO:</strong> <strong>478,000,000 common shares</strong> offered by selling stockholders at <strong>$33.00</strong>, plus a <strong>71,700,000-share over-allotment</strong> (fully exercised → <strong>549.7m shares</strong>, ~<strong>$18.1bn</strong> gross); concurrent <strong>Series B mandatory convertible preferred</strong>: 87,000,000 shares at $50.00 (over-allotment to 100,000,000; <strong>$4.9bn net proceeds</strong>). <strong>Aggregate ~$23.1bn</strong>, the largest US IPO to that date. GM itself received no proceeds from the common offering. Underwriting fee reduced to <strong>0.75%</strong>. Joint book-runners: <strong>Morgan Stanley, J.P. Morgan, Bank of America Merrill Lynch, Citi</strong>, with Barclays, Credit Suisse, Deutsche Bank, Goldman Sachs, RBC and others.</li>
+<li>Treasury’s post-IPO stake fell to <strong>~36.9%</strong> (<strong>33.3%</strong> with full over-allotment) of ~1.5bn shares outstanding.</li>
+</ul>
+<h3 id="purchase-price-allocation-goodwill-and-accounting">Purchase price allocation, goodwill and accounting</h3>
+<ul>
+<li>New GM applied <strong>fresh-start reporting</strong> at July 10, 2009; the excess of reorganization value over identifiable net assets produced goodwill of <strong>$30.5bn</strong> [unverified from the fetched excerpt — recorded principally because certain liabilities (pensions, OPEB) were recorded at fair value while the going-concern value did not support it; substantially all of it was impaired by 2012].</li>
+<li>Old GM recognized a <strong>gain on the 363 sale</strong> and reorganization items in its final period; Motors Liquidation reported on a liquidation basis thereafter.</li>
+</ul>
+<h3 id="advisers">Advisers</h3>
+<ul>
+<li><strong>GM (debtor):</strong> financial — <strong>Evercore Partners</strong> and <strong>Morgan Stanley</strong>; restructuring — <strong>AlixPartners</strong> (Al Koch as CRO of Motors Liquidation); legal — <strong>Weil, Gotshal &amp; Manges</strong> (Harvey R. Miller, Stephen Karotkin) as lead bankruptcy counsel, with <strong>Jenner &amp; Block</strong> and <strong>Honigman Miller Schwartz and Cohn</strong> as special counsel.</li>
+<li><strong>US Treasury / Auto Task Force:</strong> financial — <strong>Rothschild</strong> and <strong>Boston Consulting Group</strong>; legal — <strong>Cadwalader, Wickersham &amp; Taft</strong> and <strong>Sonnenschein Nath &amp; Rosenthal</strong> (Matthew Feldman). [Advisor roster is drawn from contemporaneous reporting and retention applications; not verified in a single primary document — treat as reported.]</li>
+<li><strong>UAW / New VEBA:</strong> <strong>Lazard</strong> (financial), <strong>Cleary Gottlieb</strong> (legal) <em class="unv">unverified</em>.</li>
+<li><strong>Unsecured bondholders’ ad hoc committee:</strong> <strong>Houlihan Lokey</strong> (financial), <strong>Paul, Weiss</strong> (legal) <em class="unv">unverified</em>.</li>
+<li><strong>Canada/EDC:</strong> <strong>Ernst &amp; Young</strong> and <strong>Blake, Cassels &amp; Graydon</strong> <em class="unv">unverified</em>.</li>
+<li><strong>IPO:</strong> Morgan Stanley, J.P. Morgan, BofA Merrill Lynch, Citi (lead book-runners).</li>
+</ul>
+<h3 id="key-people">Key people</h3>
+<div class="tbl-wrap"><table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>Title</th>
+<th>Role</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>G. Richard “Rick” Wagoner</td>
+<td>Chairman &amp; CEO, GM</td>
+<td>Removed by the Administration March 29, 2009 as a condition of further aid</td>
+</tr>
+<tr class="even">
+<td>Frederick “Fritz” Henderson</td>
+<td>President &amp; CEO, GM (Mar–Dec 2009)</td>
+<td>Led GM through the filing and 363 sale</td>
+</tr>
+<tr class="odd">
+<td>Edward E. Whitacre, Jr.</td>
+<td>Chairman (June 2009), CEO (Dec 2009–Sept 2010)</td>
+<td>Repaid UST loans, launched the IPO</td>
+</tr>
+<tr class="even">
+<td>Daniel F. Akerson</td>
+<td>CEO from Sept 1, 2010</td>
+<td>Priced and executed the November 2010 IPO</td>
+</tr>
+<tr class="odd">
+<td>Chris Liddell</td>
+<td>Vice Chairman &amp; CFO (Jan 2010–2011)</td>
+<td>IPO CFO</td>
+</tr>
+<tr class="even">
+<td>Ray Young</td>
+<td>CFO through 2009</td>
+<td>Bankruptcy-period CFO</td>
+</tr>
+<tr class="odd">
+<td>Steven Rattner</td>
+<td>Lead adviser, Presidential Task Force on the Auto Industry (Feb–July 2009)</td>
+<td>Designed the GM/Chrysler restructurings</td>
+</tr>
+<tr class="even">
+<td>Ron Bloom</td>
+<td>Senior Adviser, Treasury; succeeded Rattner as lead</td>
+<td>Negotiated UAW/VEBA terms; testified to Congress on the structure</td>
+</tr>
+<tr class="odd">
+<td>Harry J. Wilson</td>
+<td>Member, Auto Task Force</td>
+<td>Led GM balance-sheet and equity work</td>
+</tr>
+<tr class="even">
+<td>Matthew Feldman</td>
+<td>Auto Task Force legal lead (from Willkie Farr)</td>
+<td>Bankruptcy structuring</td>
+</tr>
+<tr class="odd">
+<td>Timothy F. Geithner</td>
+<td>Secretary of the Treasury</td>
+<td>Program authority under TARP/EESA</td>
+</tr>
+<tr class="even">
+<td>Lawrence Summers / Brian Deese</td>
+<td>NEC Director / NEC staff</td>
+<td>Policy oversight</td>
+</tr>
+<tr class="odd">
+<td>Hon. Robert E. Gerber</td>
+<td>US Bankruptcy Judge, S.D.N.Y.</td>
+<td>Approved the 363 sale July 5, 2009</td>
+</tr>
+<tr class="even">
+<td>Harvey R. Miller</td>
+<td>Partner, Weil Gotshal</td>
+<td>Lead debtor’s counsel</td>
+</tr>
+<tr class="odd">
+<td>Al Koch</td>
+<td>AlixPartners; CRO of Motors Liquidation</td>
+<td>Wound down Old GM</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="regulatory-and-litigation">Regulatory and litigation</h3>
+<ul>
+<li>§363 sale approved over objections from tort claimants, asbestos future claimants, dealers, certain bondholders and states; the sale order’s free-and-clear provisions were later litigated for years.</li>
+<li><strong>In re Motors Liquidation Co., 529 B.R. 510 (Bankr. S.D.N.Y. 2015)</strong> and the <strong>Second Circuit’s 2016 decision</strong> held that the 2009 sale order’s successor-liability shield could <strong>not</strong> be enforced against ignition-switch claimants who had received no notice — reopening New GM’s exposure to pre-2009 claims (due-process holding).</li>
+<li>Dealer terminations: ~1,100 US dealers wound down in 2009; Congress enacted an arbitration remedy (Section 747 of the FY2010 Consolidated Appropriations Act) restoring ~two-thirds of contested franchises.</li>
+<li>SIGTARP and GAO issued repeated reports on Treasury’s exit strategy and valuation methodology.</li>
+</ul>
+<h3 id="outcome-and-post-deal-performance">Outcome and post-deal performance</h3>
+<ul>
+<li><strong>Treasury: $49.5bn invested / ~$39bn recovered → net loss ~$10.5bn on a cash basis at exit (Dec 9, 2013); ~$11.2bn including the $826m still owed on Old GM’s original loan (SIGTARP/Treasury, April 30, 2014).</strong> Treasury’s own AIFP page states ~$51bn disbursed, $39bn recovered, ~$12bn net loss (inclusive of related outlays).</li>
+<li><strong>Chrysler:</strong> $12.5bn committed, &gt;$11.2bn recovered, net loss &lt;$1.3bn.</li>
+<li><strong>Ally Financial (GMAC):</strong> $17.2bn invested, <strong>$19.6bn recovered — a $2.4bn net gain</strong>; final 54.9m shares sold at $23.25 on December 19, 2014, ending the AIFP.</li>
+<li><strong>Chrysler Financial:</strong> $1.5bn commitment, repaid in full with interest July 2009. <strong>Auto Supplier Support Program</strong> and <strong>Auto Warranty Commitment Program</strong>: fully recovered, no loss.</li>
+<li><strong>Canada/Ontario:</strong> C$10.8bn invested; exited via 35,021,186 shares at $33.00 (Nov 2010), 30,000,000 shares at $36.65 (Sept 2013), a transfer of 36,694,915 shares to Ontario (Dec 2014), and the sale of the final 73,389,831 shares to Goldman Sachs (April 2015). Ontario realized ~C$1.1bn on its final tranche.</li>
+<li><strong>Brands:</strong> <strong>Pontiac</strong> phased out by end-2010; <strong>Saturn</strong> wind-down announced September 2009 after the Penske deal collapsed; <strong>Hummer</strong> wound down after Sichuan Tengzhong could not complete the acquisition (February 2010); <strong>Saab</strong> sold to <strong>Spyker Cars N.V.</strong>, completed February 2010. GM retained Chevrolet, Cadillac, Buick and GMC in North America.</li>
+<li><strong>Plants/dealers:</strong> the June 2009 restructuring plan closed <strong>11 facilities and idled 3 more</strong>; break-even reduced from &gt;16m US SAAR to ~10m; US-content production share raised from ~66% toward &gt;70%. US dealers: <strong>5,619 at Dec 31, 2009</strong>; worldwide authorized dealerships <strong>20,215 at Dec 31, 2010</strong> vs <strong>21,822 at Dec 31, 2009</strong>.</li>
+<li><strong>Delphi:</strong> GM and a lender group took Delphi out of Chapter 11 in <strong>October 2009</strong>; GM acquired Delphi’s <strong>global steering business (renamed Nexteer Automotive)</strong> and <strong>four US component plants</strong> for reported consideration of ~$2.8bn drawn from GM’s TARP funds (aggregate GM support to Delphi across 2005–2011 exceeded $12bn) [both figures unverified from primary filings]. GM completed its separation from Delphi in March 2011.</li>
+<li><strong>GMAC/Ally:</strong> separated from GM; GM’s residual interest was diluted to a minority, with Treasury holding up to 73.8% before the Ally IPO; GM sold its remaining Ally stake in 2013.</li>
+</ul>
+<h3 id="key-numbers">Key numbers</h3>
+<div class="tbl-wrap"><table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Metric</th>
+<th>Value</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Chapter 11 filing / case no. / judge</td>
+<td>June 1, 2009 / 09-50026 (REG) / Robert E. Gerber</td>
+<td>Bankr. S.D.N.Y.</td>
+</tr>
+<tr class="even">
+<td>363 sale opinion / closing</td>
+<td>July 5, 2009 / July 10, 2009</td>
+<td>407 B.R. 463; GM 424B1</td>
+</tr>
+<tr class="odd">
+<td>Purchaser</td>
+<td>Vehicle Acquisition Holdings LLC → NGMCO, Inc. → General Motors Company</td>
+<td>GM Form 10</td>
+</tr>
+<tr class="even">
+<td>Total UST commitment</td>
+<td>$49.5bn ($19.4bn pre-petition + $30.1bn bankruptcy)</td>
+<td>Ron Bloom testimony (Treasury tg222)</td>
+</tr>
+<tr class="odd">
+<td>Canada + Ontario</td>
+<td>C$10.8bn (~US$9.5bn); C$9.8bn converted</td>
+<td>Gov’t of Canada backgrounder; White House fact sheet</td>
+</tr>
+<tr class="even">
+<td>Assumed DIP debt / wind-down facility</td>
+<td>~$6.7bn / $1.175bn</td>
+<td>407 B.R. 463</td>
+</tr>
+<tr class="odd">
+<td>Court-estimated total consideration</td>
+<td>~$45bn</td>
+<td>407 B.R. 463</td>
+</tr>
+<tr class="even">
+<td>Liability reduction at 363 sale</td>
+<td>$92.7bn</td>
+<td>GM 424B1 (Nov 2010)</td>
+</tr>
+<tr class="odd">
+<td>Equity at emergence</td>
+<td>UST 60.8% / Canada 11.7% / VEBA 17.5% / MLC 10%</td>
+<td>CRS R41401; White House fact sheet</td>
+</tr>
+<tr class="even">
+<td>UST debt + preferred received</td>
+<td>$8.8bn ($6.7bn note + $2.1bn 9% preferred)</td>
+<td>Treasury tg222</td>
+</tr>
+<tr class="odd">
+<td>VEBA consideration</td>
+<td>17.5% equity + $6.5bn 9% perpetual preferred + $2.5bn note (3 installments to 2017) + 2.5% warrant</td>
+<td>White House fact sheet</td>
+</tr>
+<tr class="even">
+<td>Bondholder consideration</td>
+<td>10% equity + warrants for 15%; $27.1bn unsecured debt extinguished</td>
+<td>White House fact sheet</td>
+</tr>
+<tr class="odd">
+<td>Canada preferred</td>
+<td>US$403m; 175,105,932 common shares</td>
+<td>Gov’t of Canada backgrounder</td>
+</tr>
+<tr class="even">
+<td>Series A Preferred</td>
+<td>360,000,000 shares, $25 liquidation pref, 9%</td>
+<td>GM Form 10</td>
+</tr>
+<tr class="odd">
+<td>MLC warrants (pre-split)</td>
+<td>2 × 45,454,545 sh @ $30.00 (7/10/2016) and $55.00 (7/10/2019)</td>
+<td>GM Form 10</td>
+</tr>
+<tr class="even">
+<td>New VEBA warrant (pre-split)</td>
+<td>15,151,515 sh @ $126.92 (12/31/2015)</td>
+<td>GM Form 10</td>
+</tr>
+<tr class="odd">
+<td>Post 3-for-1 split equivalents</td>
+<td>2 × 136,363,635 @ $10.00 / $18.33; 45,454,545 @ $42.31</td>
+<td>derived from Form 10</td>
+</tr>
+<tr class="even">
+<td>Plant actions (June 2009 plan)</td>
+<td>close 11, idle 3</td>
+<td>White House fact sheet</td>
+</tr>
+<tr class="odd">
+<td>Break-even SAAR</td>
+<td>&gt;16m → 10m</td>
+<td>White House fact sheet</td>
+</tr>
+<tr class="even">
+<td>US dealers at 12/31/2009</td>
+<td>5,619 (plus 568 Canada, 263 Mexico)</td>
+<td>GM FY2009 10-K</td>
+</tr>
+<tr class="odd">
+<td>Worldwide dealerships</td>
+<td>20,215 (2010) vs 21,822 (2009)</td>
+<td>GM FY2010 10-K</td>
+</tr>
+<tr class="even">
+<td>IPO price / common shares</td>
+<td>$33.00 / 478m + 71.7m greenshoe</td>
+<td>GM 424B1</td>
+</tr>
+<tr class="odd">
+<td>IPO common gross proceeds</td>
+<td>~$15.8bn base; ~$18.1bn with greenshoe</td>
+<td>GM 424B1</td>
+</tr>
+<tr class="even">
+<td>Series B preferred</td>
+<td>87m sh @ $50 (to 100m); $4.9bn net proceeds</td>
+<td>GM 424B1; GM FY2010 10-K</td>
+</tr>
+<tr class="odd">
+<td>Total IPO size</td>
+<td>~$23.1bn</td>
+<td>derived (GM 424B1 + 10-K)</td>
+</tr>
+<tr class="even">
+<td>UST stake post-IPO</td>
+<td>36.9% (33.3% w/ greenshoe) of ~1.5bn shares</td>
+<td>GM 424B1</td>
+</tr>
+<tr class="odd">
+<td>UST break-even market cap</td>
+<td>~$67bn</td>
+<td>CRS R41401</td>
+</tr>
+<tr class="even">
+<td>Treasury exit / recovery</td>
+<td>Dec 9, 2013; $39bn recovered</td>
+<td>Treasury jl2236</td>
+</tr>
+<tr class="odd">
+<td>Treasury net loss on GM</td>
+<td>~$10.5bn cash / <strong>$11.2bn</strong> all-in; ~$12bn per Treasury AIFP page</td>
+<td>CNBC/SIGTARP 4/30/2014; Treasury AIFP overview</td>
+</tr>
+<tr class="even">
+<td>Chrysler TARP</td>
+<td>$12.5bn committed / &gt;$11.2bn recovered / &lt;$1.3bn loss</td>
+<td>Treasury AIFP overview</td>
+</tr>
+<tr class="odd">
+<td>Ally (GMAC) TARP</td>
+<td>$17.2bn invested / $19.6bn recovered / +$2.4bn</td>
+<td>Treasury jl9727</td>
+</tr>
+<tr class="even">
+<td>Final AIFP exit</td>
+<td>Dec 19, 2014 (54.9m Ally shares @ $23.25 = $1.3bn)</td>
+<td>Treasury jl9727</td>
+</tr>
+<tr class="odd">
+<td>MLC plan effective</td>
+<td>March 31, 2011 (GUC Trust)</td>
+<td>MLC GUC Trust filings, CIK 40730</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="primary-sources">Primary sources</h3>
+<ul>
+<li><a href="https://www.sec.gov/Archives/edgar/data/1467858/000119312510263484/d424b1.htm">General Motors Company final IPO prospectus, Form 424B1 (common), Nov 2010</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/1467858/000119312510263635/d424b1.htm">General Motors Company final IPO prospectus, Form 424B1 (Series B preferred), Nov 2010</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/1467858/000119312510192195/ds1.htm">General Motors Company Form S-1 (IPO registration), filed Aug 18 2010</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/1467858/000119312510078147/d1012g.htm">General Motors Company Form 10 registration statement (Apr 2010) — capital structure, warrants, preferred</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/1467858/000119312510078119/d10k.htm">General Motors Company Form 10-K for FY2009</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/1467858/000119312511051462/d10k.htm">General Motors Company Form 10-K for FY2010</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/40730/000119312509119940/d8k.htm">Old GM (General Motors Corporation) Form 8-K, May 28 2009 — 363 sale framework</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/40730/">Motors Liquidation Company / GUC Trust EDGAR archive (CIK 40730)</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/40730/000119312511205787/dex991.htm">Motors Liquidation Company GUC Trust report (Aug 2011)</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/40730/000119312512267910/d364142dex991.htm">Amended and Restated Motors Liquidation Co. GUC Trust Agreement</a></li>
+<li><a href="https://www.courtlistener.com/opinion/1538958/in-re-general-motors-corp/">In re General Motors Corp., 407 B.R. 463 (Bankr. S.D.N.Y. 2009) — §363 sale opinion</a></li>
+<li><a href="http://www.nysb.uscourts.gov/content/re-09-50026-reg-general-motors-corporation">US Bankruptcy Court S.D.N.Y. — In re 09-50026-reg General Motors Corporation case page</a></li>
+<li><a href="https://dm.epiq11.com/case/mlc/info">Motors Liquidation Company case information (Epiq, claims agent), Case 09-50026</a></li>
+<li><a href="https://home.treasury.gov/data/troubled-assets-relief-program/automotive-programs/overview">US Treasury — TARP Automotive Industry Financing Program overview</a></li>
+<li><a href="https://home.treasury.gov/data/troubled-assets-relief-program/automotive-programs">US Treasury — Auto Industry program hub</a></li>
+<li><a href="https://home.treasury.gov/news/press-releases/tg222">Ron Bloom written testimony, House Judiciary, July 2009 (Treasury tg222) — $19.4bn + $30.1bn, $8.8bn, 60.8%</a></li>
+<li><a href="https://home.treasury.gov/news/press-releases/tg1810">Treasury press release tg1810 (Dec 19, 2012) — exit plan, $49.5bn, $28.7bn recovered to date</a></li>
+<li><a href="https://home.treasury.gov/news/press-releases/jl1976">Treasury press release jl1976 (June 6, 2013) — 30m shares at $34.41</a></li>
+<li><a href="https://home.treasury.gov/news/press-releases/jl2236">Treasury press release jl2236 (Dec 9, 2013) — final GM share sale, $39bn recovered</a></li>
+<li><a href="https://home.treasury.gov/news/press-releases/jl9727">Treasury press release jl9727 (Dec 19, 2014) — Ally exit, $19.6bn on $17.2bn</a></li>
+<li><a href="https://obamawhitehouse.archives.gov/realitycheck/the-press-office/fact-sheet-obama-administration-auto-restructuring-initiative-general-motors">White House Fact Sheet, June 1 2009 — Obama Administration Auto Restructuring Initiative: General Motors</a></li>
+<li><a href="https://www.canada.ca/en/news/archive/2015/04/backgrounder-divestiture-government-remaining-shares-general-motors.html">Government of Canada backgrounder — divestiture of remaining GM shares (April 2015)</a></li>
+<li><a href="https://www.everycrsreport.com/reports/R41401.html">CRS Report R41401 — General Motors’ Initial Public Offering: Review of Issues and Implications for TARP</a></li>
+<li><a href="https://www.congress.gov/crs_external_products/R/PDF/R41846/R41846.14.pdf">CRS Report R41846 — Government Assistance for GMAC/Ally Financial</a></li>
+<li>SIGTARP quarterly reports are published at https://www.sigtarp.gov/ ; the specific April 30, 2014 quarterly report PDF URL could not be retrieved in this session — the <strong>$11.2bn</strong> figure is reported from that SIGTARP quarterly report via <a href="https://www.cnbc.com/2014/04/30/us-government-says-it-lost-112b-on-gm-bailout.html">CNBC, Apr 30 2014</a> [secondary].</li>
+</ul>
+<hr />
+</section>
+<footer>
+<div>
+<strong style="color:var(--ink)">Market Logic Investors LLC</strong> · Transaction Experience<br> Compiled from primary filings. Internal reference. Not investment advice.
+</div>
+<div style="text-align:right">
+<a href="../" style="color:var(--teal);text-decoration:none">← Back to Transaction Experience</a>
+</div>
+</footer>
+
+</div>
+</body>
+</html>
