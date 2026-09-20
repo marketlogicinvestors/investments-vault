@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Prometheus · ML-2026-PM-01 · Marketlogic Investors LLC</title>
+<style>
+:root{
+  --paper:#FCFBF8; --ink:#16202B; --slate:#5C6672; --rule:#D8D5CC;
+  --ok:#2F6B4F; --warn:#9A6B12; --bad:#A32D2D; --accent:#1E4C7A;
+  --okbg:#EAF2ED; --warnbg:#F7EEDC; --badbg:#F8EAEA; --accbg:#E9EFF6;
+  --serif:Georgia,'Iowan Old Style','Palatino Linotype',serif;
+  --sans:system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  --mono:ui-monospace,'SF Mono',Menlo,Consolas,'Liberation Mono',monospace;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--serif);font-size:16.5px;line-height:1.62}
+.wrap{max-width:940px;margin:0 auto;padding:48px 28px 96px}
+h1{font-size:31px;line-height:1.18;font-weight:normal;letter-spacing:-.01em;margin:0 0 6px}
+h2{font-size:21px;font-weight:normal;margin:0 0 10px;letter-spacing:-.005em}
+h3{font-size:16px;font-family:var(--sans);font-weight:600;margin:22px 0 8px}
+p{margin:0 0 14px}
+a{color:var(--accent)}
+.eyebrow{font-family:var(--sans);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--slate);font-weight:600}
+.sec{border-top:1px solid var(--rule);padding-top:16px;margin-top:44px}
+.sec>.eyebrow{display:block;margin-bottom:9px}
+.mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.small{font-size:13.5px;color:var(--slate)}
+.lede{font-size:18px;line-height:1.55}
+
+.masthead{border:1.5px solid var(--ink);padding:22px 24px;margin-bottom:14px}
+.mrow{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;flex-wrap:wrap}
+.verdict{font-family:var(--mono);font-size:13px;letter-spacing:.1em;text-transform:uppercase;background:var(--badbg);color:var(--bad);padding:5px 12px;border:1px solid var(--bad);white-space:nowrap}
+.bigscore{font-family:var(--mono);font-size:52px;line-height:1;letter-spacing:-.03em}
+.scorelab{font-family:var(--sans);font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:var(--slate)}
+
+.seal{display:flex;align-items:center;gap:10px;font-family:var(--sans);font-size:11.5px;color:var(--slate);border:1px dashed var(--rule);padding:8px 12px;margin:14px 0 0}
+.seal b{font-family:var(--mono);color:var(--ink);font-weight:normal}
+
+.tier{font-family:var(--mono);font-size:10px;letter-spacing:.04em;padding:1px 5px;border:1px solid;vertical-align:1px;white-space:nowrap}
+.t-co{color:var(--slate);border-color:var(--rule);background:#F2F1EC}
+.t-ext{color:var(--accent);border-color:#B9CBE0;background:var(--accbg)}
+.t-mod{color:var(--warn);border-color:#DFC48A;background:var(--warnbg)}
+.t-unv{color:var(--bad);border-color:#DDA9A9;background:var(--badbg)}
+
+table{width:100%;border-collapse:collapse;font-size:14px;margin:12px 0 6px}
+th{font-family:var(--sans);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--slate);text-align:left;font-weight:600;border-bottom:1px solid var(--ink);padding:7px 9px 7px 0;vertical-align:bottom}
+td{border-bottom:1px solid var(--rule);padding:9px 9px 9px 0;vertical-align:top}
+td.n,th.n{text-align:right;font-family:var(--mono);font-variant-numeric:tabular-nums;padding-right:0}
+.sowhat{font-size:13.5px;color:var(--slate);font-style:italic;margin:6px 0 0}
+
+.bar{display:inline-block;height:7px;background:var(--ink);vertical-align:middle}
+.bartrack{display:inline-block;width:76px;height:7px;background:#E8E6DF;vertical-align:middle;margin-right:7px}
+
+.ctrls{border:1px solid var(--rule);background:#F7F6F1;padding:16px 18px;margin:16px 0}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px 22px}
+label.f{display:block;font-family:var(--sans);font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--slate);margin-bottom:3px;font-weight:600}
+.ln{display:flex;align-items:center;gap:9px}
+input[type=range]{flex:1;accent-color:var(--ink);min-width:0}
+.out{font-family:var(--mono);font-size:13.5px;min-width:62px;text-align:right}
+button{font-family:var(--sans);font-size:12px;background:transparent;border:1px solid var(--ink);color:var(--ink);padding:6px 12px;cursor:pointer}
+button:hover{background:var(--ink);color:var(--paper)}
+button.chip{border-color:var(--rule);color:var(--slate);padding:4px 10px;margin:0 6px 6px 0}
+button.chip[aria-pressed=true]{border-color:var(--ink);color:var(--paper);background:var(--ink)}
+.metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(132px,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule);margin:16px 0}
+.met{background:var(--paper);padding:12px 14px}
+.met .k{font-family:var(--sans);font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--slate)}
+.met .v{font-family:var(--mono);font-size:25px;line-height:1.25;letter-spacing:-.02em}
+.flag{padding:7px 12px;font-family:var(--sans);font-size:12.5px;display:inline-block;margin-top:4px}
+.f-bad{background:var(--badbg);color:var(--bad)} .f-ok{background:var(--okbg);color:var(--ok)}
+
+.callout{border-left:3px solid var(--ink);padding:2px 0 2px 18px;margin:18px 0}
+.kill{font-family:var(--sans);font-size:12.5px;color:var(--bad)}
+.q{margin:0 0 4px}
+.dq{border-bottom:1px solid var(--rule);padding:11px 0}
+.dq .top{display:flex;gap:11px;align-items:baseline}
+.dq .d{font-family:var(--mono);font-size:12.5px;color:var(--bad);white-space:nowrap}
+.foot{border-top:1.5px solid var(--ink);margin-top:52px;padding-top:16px;font-size:12.5px;color:var(--slate);font-family:var(--sans);line-height:1.75}
+input[type=checkbox]{accent-color:var(--ink);margin-right:9px;transform:translateY(1px)}
+@media print{
+  .ctrls,button,.noprint{display:none !important}
+  body{font-size:11pt;background:#fff}
+  .wrap{max-width:none;padding:0}
+  .sec{break-inside:avoid;page-break-inside:avoid}
+  a{color:var(--ink);text-decoration:none}
+}
+.site-nav{display:flex;align-items:center;justify-content:space-between;gap:16px;background:var(--ink);color:var(--paper);padding:11px 28px;font-family:var(--sans);font-size:12.5px;letter-spacing:.02em;position:sticky;top:0;z-index:100}
+.site-nav a{color:rgba(252,251,248,.72);text-decoration:none}
+.site-nav a:hover{color:var(--paper)}
+.site-nav .sep{color:rgba(252,251,248,.32);margin:0 6px}
+.site-nav .here{color:rgba(252,251,248,.5)}
+.site-nav .nav-action a{color:var(--paper);border:1px solid rgba(252,251,248,.42);border-radius:3px;padding:3px 11px}
+.site-nav .nav-action a:hover{background:var(--paper);color:var(--ink)}
+.backlink{display:inline-block;margin-top:22px;font-family:var(--sans);font-size:13px;color:var(--accent);text-decoration:none}
+.backlink:hover{text-decoration:underline}
+@media print{.site-nav,.backlink{display:none !important}}
+</style>
+</head><body>
+<nav class="site-nav" aria-label="breadcrumb">
+<span><a href="../../">Market Logic Investors</a><span class="sep">/</span><a href="../../">Deal Vault</a><span class="sep">/</span><a href="../">VC Deals</a><span class="sep">/</span><span class="here">Prometheus</span></span>
+<span class="nav-action"><a href="../">&larr; All VC Deals</a></span>
+</nav>
+<div class="wrap">
+
+<div class="eyebrow">Marketlogic Investors LLC &middot; Investment Committee Memorandum &middot; Confidential</div>
+<h1>Prometheus Industries, Inc.</h1>
+<p class="small mono">ML-2026-PM-01 &middot; Delaware C-corp, operations San Francisco / London / Zurich / West Oakland &middot; Series B secondary access via third-party SPV &middot; Prepared 19 September 2026 &middot; Author: H. Reganti<br>Underwritten from a circulated third-party investment memorandum plus independent verification: the June 2026 financing coverage, company principals' on-record interviews, secondary-platform listings, the marketed SPV offering documents, listed-comparable trading data, and the published technical literature on AI-generated physical design. No company data room, no management access, no company-supplied financials.</p>
+
+<!-- ===== 00 DEAL CARD ===== -->
+<div class="sec" id="s00">
+<span class="eyebrow">&sect;00 &middot; Deal card</span>
+<div class="masthead">
+  <div class="mrow">
+    <div>
+      <div class="scorelab">Composite score</div>
+      <div class="bigscore">4.0</div>
+      <div class="small mono" style="margin-top:4px">Band: below 6.0</div>
+    </div>
+    <div style="flex:1;min-width:260px">
+      <div class="verdict">Pass &mdash; Stay Warm</div>
+      <p style="margin:12px 0 0;font-size:15px">A genuinely exceptional team attacking a correctly identified problem, offered to us at a price that already contains the success and through an instrument that takes half of whatever is left. Prometheus has no revenue, no shipped product, no named paying customer, no published benchmark and no product timeline, at a <b>$41B post-money mark</b>. The pass is not a view on the technology. It is that a pre-revenue company at $41B, bought through an unaffiliated three-layer vehicle with no evidence of company consent, is not a venture position for this fund at any size.</p>
+    </div>
+    <div style="min-width:150px">
+      <div class="scorelab">Conviction</div>
+      <div class="mono" style="font-size:19px">High</div>
+      <div class="small" style="margin-top:8px">Proposed check<br><span class="mono" style="font-size:17px;color:var(--ink)">$0</span><br>Re-open only on written consent</div>
+    </div>
+  </div>
+</div>
+
+<div class="callout">
+<p style="margin:0"><b>Underwriting statement.</b> We would be underwriting Prometheus on the belief that an AI system can learn engineering from physical experimentation well enough to compress the design-to-manufacture cycle for complex hardware by roughly an order of magnitude, that industrial customers will pay eight figures a year for that, and that the resulting business supports an enterprise value between $250B and $500B within a decade. We are wrong if the evaluation bottleneck in physical engineering is qualification and test rather than design, because then the intelligence layer compresses the cheap half of the programme and the addressable value collapses to conventional engineering software, a category the public market is currently <i>de-rating</i>. Separately and independently of the company, we are wrong if the vehicle on offer is not recorded on the company's cap table, in which case the position is worth nothing at any outcome.</p>
+</div>
+
+<h3>The five numbers that matter</h3>
+<div class="metrics">
+  <div class="met"><div class="k">Revenue at a $41B mark</div><div class="v">$0</div></div>
+  <div class="met"><div class="k">Revenue implied at 8.6x</div><div class="v">$4.8B</div></div>
+  <div class="met"><div class="k">Break-even, fees only</div><div class="v">$63B</div></div>
+  <div class="met"><div class="k">Break-even, fees + dilution</div><div class="v">$107B</div></div>
+  <div class="met"><div class="k">Weighted net MOIC</div><div class="v">0.89x</div></div>
+</div>
+<p class="sowhat">None of these required a company document, because there are none. The first is the company's own disclosure position. The second is arithmetic against the multiple its closest listed comparable actually trades at. The third and fourth are the same deal priced through the vehicle that is actually on offer, with and without the dilution the founder himself has signalled. The fifth is what those inputs produce once weighted.</p>
+
+<p><b>Biggest risk, in five words:</b> <span class="mono">Paying for proof not yet produced.</span></p>
+</div>
+
+<!-- ===== 01 SCORECARD ===== -->
+<div class="sec" id="s01">
+<span class="eyebrow">&sect;01 &middot; Weighted scorecard</span>
+<h2>The composite is derived, not asserted</h2>
+<p>Twelve dimensions, weighted. Move the weights to test whether the answer depends on the rubric or on the deal.</p>
+
+<table id="sctab">
+<thead><tr><th>Dimension</th><th class="n">Weight</th><th class="n">Raw</th><th class="n">Weighted</th><th style="width:34%">Basis</th></tr></thead>
+<tbody></tbody>
+</table>
+
+<div class="ctrls noprint">
+  <div class="grid2" id="wgrid"></div>
+  <div style="margin-top:14px;display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+    <button id="wreset">Reset to committed baseline</button>
+    <span class="small">Composite <span class="mono" id="compout" style="font-size:16px;color:var(--ink)">4.0</span> &middot; <span id="bandout" class="mono">Pass band</span></span>
+  </div>
+</div>
+<p class="sowhat">Reweighting any single dimension across a defensible range keeps the composite between 3.7 and 4.4. Tripling the weight on team, the dimension where this company is strongest in the entire book, moves it to 4.4. The score cannot be reweighted into the Monitor band because the four dimensions that carry it &mdash; traction, unit economics, terms and go-to-market &mdash; are scored below 3.0 on facts the company itself discloses. Read the score correctly: it is not a score of Prometheus the company, which on a rubric built for frontier research would score very well. It is a score of <i>this position, at this price, through this instrument, for this fund.</i></p>
+
+</div>
+
+<!-- ===== 02 RECALL ===== -->
+<div class="sec" id="s02">
+<span class="eyebrow">&sect;02 &middot; Recall block</span>
+<h2>Seven things to carry into the room without notes</h2>
+<ol class="lede">
+<li style="margin-bottom:12px"><b>The circulated memo's arithmetic is correct and its conclusion is still wrong.</b> Every multiple in it ties out to the cent: 2.44x at $100B, 6.10x at $250B, 12.20x at $500B. It reaches the wrong answer because three inputs that decide the outcome &mdash; the instrument, the fee stack and the holding period &mdash; were never entered.</li>
+<li style="margin-bottom:12px">We are not being offered the cap table. JPMorgan, Goldman Sachs, BlackRock, DST Global and ARCH bought the Series B directly at a $29B pre-money with information rights. What is available to us is indirect exposure through an unaffiliated vehicle whose sponsor states it is not acting as broker-dealer, placement agent, adviser or fiduciary.</li>
+<li style="margin-bottom:12px"><b>An unapproved transfer can be worth zero regardless of the company's value.</b> OpenAI's published policy voids non-compliant transfers outright and says they "will not be recognized and carry no economic value to you," naming SPVs specifically. Anthropic has taken the same posture. Prometheus is fifteen months old with no employee liquidity event and no float; secondary platforms state company approval and a right of first refusal apply.</li>
+<li style="margin-bottom:12px">The company discloses no revenue, no shipped product, no named paying customer, no benchmark, no technical publication and no product timeline. The only customer relationship named on the record is Blue Origin, described by Bezos as "a case study for a customer" &mdash; a related party he owns.</li>
+<li style="margin-bottom:12px">The data the entire thesis depends on does not exist yet, and the company says so: there is no internet of manufacturing data. The plan to obtain it is a <i>separate</i> reported $100B vehicle to acquire industrial companies, which has no named backers and has not closed.</li>
+<li style="margin-bottom:12px">The exit multiple is capped by a category the market is marking down. The four listed engineering-software companies of scale trade at 4.0x to 8.6x revenue and are worth about $170B combined. Prometheus at $41B is roughly a quarter of that entire enterprise value, on zero revenue.</li>
+<li>The relevant base rate is Blue Origin, not Amazon. Bezos's one prior capital-intensive physical-engineering company took a reported $28B of his own money over 26 years, started two years before its focused competitor, and has three lifetime orbital launches against roughly 660, with its only operational pad out of action since May 2026 and no liquidity ever returned to an outside investor &mdash; because until July 2026 it had none.</li>
+</ol>
+</div>
+
+<!-- ===== 03 SNAPSHOT ===== -->
+<div class="sec" id="s03">
+<span class="eyebrow">&sect;03 &middot; Deal snapshot</span>
+<table>
+<tbody>
+<tr><td style="width:34%">Instrument offered</td><td>Indirect membership interest in a third-party SPV holding an interest in another fund that holds Series B preferred. <b>Three layers between the investor and the share.</b> Not an offer from the company <span class="tier t-ext">EXT</span></td></tr>
+<tr><td>Issuer</td><td>Prometheus Industries, Inc., Delaware corporation. "Project Prometheus" was the code name and remains in use on secondary platforms <span class="tier t-ext">EXT</span></td></tr>
+<tr><td>Entry valuation</td><td><b>US$41,000,000,000 post-money</b>, 11 June 2026. Corroborated independently: the marketed SPV documents cite a $29B pre-money on a $12B round <span class="tier t-ext">EXT</span></td></tr>
+<tr><td>Round size</td><td>US$12B Series B. Prior round US$6.2B. Total reported US$18.2B <span class="tier t-ext">EXT</span></td></tr>
+<tr><td>Named investors</td><td>JPMorgan, Goldman Sachs, BlackRock, DST Global, ARCH Venture Partners, and Bezos personally, who was the largest backer of the Series A. No lead designated in any tier-one report <span class="tier t-ext">EXT</span></td></tr>
+<tr><td>Minimum and access</td><td>US$10,000 minimum on the marketed vehicle, accredited investors only, launched 12 August 2026 <span class="tier t-ext">EXT</span></td></tr>
+<tr><td>Fee structure</td><td><b>Not disclosed in the offering release.</b> Modelled here at market for a two-layer feeder: master 2% and 20%, feeder 1.5% and 10%, plus setup, an access fee and the undisclosed spread between what the master paid per share and what the investor pays <span class="tier t-mod">MOD</span></td></tr>
+<tr><td>Company consent</td><td><b>No evidence of any.</b> The sponsor states it is not acting as broker-dealer, placement agent, investment adviser or fiduciary. Secondary platforms state company approval and ROFR apply to Prometheus transfers <span class="tier t-unv">UNV</span></td></tr>
+<tr><td>Investor rights</td><td>None. No information rights, no pro rata, no board or observer seat, no protective provisions, no direct liquidation preference, no control over exit timing. The master vehicle holds the security; we would hold a claim on a claim <span class="tier t-mod">MOD</span></td></tr>
+<tr><td>Preference stack ahead</td><td>US$18.2B of preferred. Assuming the market-standard 1x non-participating, it binds only below about $18B; above that it converts and the risk is entry price rather than preference. <b>Forward risk is the round after next</b> <span class="tier t-mod">MOD</span></td></tr>
+<tr><td>Tax treatment</td><td>QSBS under &sect;1202 is <b>unavailable and cannot be engineered</b>. The issuer gross-asset ceiling is $75M post-OBBBA for stock acquired after 4 July 2025; Prometheus has raised $18.2B against it <span class="tier t-ext">EXT</span></td></tr>
+<tr><td>Liquidity path</td><td>None identified. Bezos on an IPO, June 2026: "too early to think about that." No tender, no employee liquidity event, no float <span class="tier t-ext">EXT</span></td></tr>
+<tr><td>Secondary marks</td><td>Platform indications imply roughly $52.7B, a ~29% premium. Treated as evidence of nothing: quotes diverged ~24% across scrapes within a month, one major platform still shows a stale $38B, and no executed trade has been reported <span class="tier t-unv">UNV</span></td></tr>
+<tr><td>Deal source</td><td>Inbound access offer with a circulated third-party investment memorandum. No prior relationship with the company. No data room, no management meeting, no company-supplied financials of any kind <span class="tier t-co">CO</span></td></tr>
+</tbody>
+</table>
+</div>
+
+<!-- ===== 04 OVERVIEW ===== -->
+<div class="sec" id="s04">
+<span class="eyebrow">&sect;04 &middot; What the company actually does</span>
+<h2>An AI research laboratory, fifteen months old, building a design tool</h2>
+<p>About 150 people across San Francisco, London and Zurich, plus a 100,000 square foot manufacturing lease in West Oakland signed in August 2026 <span class="tier t-ext">EXT</span>. The stated objective is an "artificial general engineer": a system that learns from real-world physical experiment rather than only from digital corpora, and that can design, simulate, test and ultimately help manufacture complex physical products &mdash; jet engines, semiconductors, medical devices, vehicles.</p>
+<p>It is worth stating plainly what the principals themselves have said the product is, because the circulated memo frames it more expansively than they do. In May 2026 Bezos described it as "a very, very modern version" of CAD and said the company has "nothing to do with robotics" <span class="tier t-ext">EXT</span>. The headline ambition is the productivity claim he gave on CNBC on 11 June 2026: something that "was going to take 100 engineers 10 years to build," done instead by "10 engineers one year" <span class="tier t-co">CO</span>.</p>
+<p>The company has made one acquisition, General Agents, in November 2025 &mdash; a video-language-action agent team whose founders include a co-author of the original GAN paper and a former OpenAI research scientist <span class="tier t-ext">EXT</span>. Beyond that there is no public artefact: no paper, no model card, no benchmark, no demonstration. As one trade outlet put the position, this is a company that raised ten figures without a prototype.</p>
+</div>
+
+<!-- ===== 05 ANALOGY ===== -->
+<div class="sec" id="s05">
+<span class="eyebrow">&sect;05 &middot; Analogy anchor</span>
+<h2>Start with the toy version</h2>
+<p><b>The company's implicit analogy is AlphaFold for hardware.</b> Take a domain where human expertise is the bottleneck, learn the underlying structure from data, and collapse a multi-year discovery cycle into a computation. That analogy is the strongest argument in the file and it is why serious institutions wrote the cheque.</p>
+<p><b>Where it breaks is the evaluation function.</b> Protein folding has a cheap, fast, objective scoring signal and a digital manufacturing step. Jet engines have neither. The evaluation is a multi-month physical test campaign followed by a multi-year certification process, and the thing being evaluated cannot be simulated to the required fidelity &mdash; which is precisely why the programmes take a decade.</p>
+<p><b>The better analogy is Blue Origin, and it is not flattering.</b> Same founder, same pattern: correctly identified opportunity, effectively unlimited capital, a genuinely hard physical domain, and a competitor who gets the iteration data as a by-product of a business they already operate. See &sect;10 and &sect;12.</p>
+</div>
+
+<!-- ===== 06 MARKET ===== -->
+<div class="sec" id="s06">
+<span class="eyebrow">&sect;06 &middot; Market, rebuilt from the bottom</span>
+<h2>Rebuild it from enterprises and contract value, not from category reports</h2>
+<p>The circulated memo anchors on a $58.4B engineering-software market growing to $120.7B by 2034, a $41.9B industrial-robotics market, and a constructed $60&ndash;100B software TAM <span class="tier t-ext">EXT</span>. Those published figures check out. The problem is that a category total tells you nothing about who captures it, at what share, at what margin, or when. Co-founder Bajaj has separately cited a market of roughly $70 trillion, about 60% of world GDP <span class="tier t-co">CO</span>. That is not a market size; it is the denominator of the economy.</p>
+<p>Rebuild it the way the vault rebuilds any market: count the enterprises that could plausibly buy, assign a contract value, and pick a penetration.</p>
+
+<div class="ctrls noprint">
+<div class="grid2">
+  <div><label class="f">Target industrial enterprises</label><div class="ln"><input type="range" id="m_n" min="200" max="5000" step="100" value="2000"><span class="out" id="m_n_o">2,000</span></div></div>
+  <div><label class="f">Average annual contract value</label><div class="ln"><input type="range" id="m_acv" min="1" max="30" step="1" value="10"><span class="out" id="m_acv_o">$10.0M</span></div></div>
+  <div><label class="f">Penetration achieved</label><div class="ln"><input type="range" id="m_sh" min="1" max="100" step="1" value="50"><span class="out" id="m_sh_o">50%</span></div></div>
+</div>
+<div style="margin-top:12px"><button id="m_reset">Reset to committed baseline</button></div>
+</div>
+<div class="metrics">
+  <div class="met"><div class="k">Serviceable market</div><div class="v" id="m_sam">$20.0B</div></div>
+  <div class="met"><div class="k">Revenue at that penetration</div><div class="v" id="m_som">$10.0B</div></div>
+  <div class="met"><div class="k">Customers needed for $25B</div><div class="v" id="m_need">2,500</div></div>
+  <div class="met"><div class="k">As share of the target set</div><div class="v" id="m_pct">125.0%</div></div>
+</div>
+<p class="sowhat">This is the finding, and it is arithmetic rather than opinion. A $250B exit at the circulated memo's own 10x multiple requires about $25B of annual revenue. At a very aggressive $10M average contract value, that is 2,500 large industrial enterprises paying Prometheus $10M a year each &mdash; more than the entire plausible target set. To reach the memo's central case the company must either sell to essentially every major industrial enterprise on earth, or move to contract values no engineering-software vendor has ever achieved, or monetise outside software altogether through the manufacturing participation described in &sect;09. The memo asserts the third route. Nothing in the public record demonstrates it.</p>
+<p>For scale: the combined annual revenue of Synopsys, Autodesk, PTC and Dassault Syst&egrave;mes is roughly $27B <span class="tier t-ext">EXT</span>. The base case asks Prometheus, alone, to earn approximately what the entire listed engineering-software industry earns between them.</p>
+</div>
+
+<!-- ===== 07 FACT CHECK ===== -->
+<div class="sec" id="s07">
+<span class="eyebrow">&sect;07 &middot; Claim-by-claim verification</span>
+<h2>Sixteen headline claims, checked</h2>
+<p class="noprint" style="margin-bottom:10px">
+<button class="chip" data-f="all" aria-pressed="true">All 16</button>
+<button class="chip" data-f="ver" aria-pressed="false">Verified 9</button>
+<button class="chip" data-f="part" aria-pressed="false">Partly 3</button>
+<button class="chip" data-f="rej" aria-pressed="false">Rejected 2</button>
+<button class="chip" data-f="unv" aria-pressed="false">Unverified 2</button>
+</p>
+<table id="fctab">
+<thead><tr><th style="width:30%">Claim</th><th style="width:12%">Verdict</th><th>What we found</th></tr></thead>
+<tbody>
+<tr data-v="part"><td>$18.2B raised across two rounds</td><td class="small">Partly</td><td class="small">The $6.2B Series A and the $12B Series B are confirmed. But Bloomberg and the FT reported a $10B round closing at $38B in April 2026, and outlets disagree on whether that was the same Series B mid-close or a separate round. If separate, cumulative funding is nearer $28B. <b>Unresolved, and it changes the cash-adjusted entry price.</b> <span class="tier t-ext">EXT</span></td></tr>
+<tr data-v="ver"><td>$41B post-money valuation, June 2026</td><td class="small">Verified</td><td class="small">Confirmed as post-money by Axios, TechCrunch and GeekWire, and corroborated independently by the marketed SPV documents citing a $29B pre-money on a $12B round. $29B + $12B = $41B. <span class="tier t-ext">EXT</span></td></tr>
+<tr data-v="ver"><td>About 150 employees</td><td class="small">Verified</td><td class="small">Four independent outlets, 11 June 2026. Progression from ~100 at launch. No September 2026 update exists. <span class="tier t-ext">EXT</span></td></tr>
+<tr data-v="ver"><td>No disclosed revenue or customers</td><td class="small">Verified</td><td class="small">Stated explicitly in the financial press. The co-CEOs declined to give a product timeline, saying only that early rollouts are coming. <span class="tier t-ext">EXT</span></td></tr>
+<tr data-v="unv"><td>100 engineers over 10 years becomes 10 engineers over 1 year</td><td class="small">Unverified</td><td class="small">The quote is authentic &mdash; Bezos to CNBC, 11 June 2026. The <i>claim</i> is unfalsifiable at present: no benchmark, no demonstration, no customer result, no paper. It is the thesis, not evidence for it. <span class="tier t-co">CO</span></td></tr>
+<tr data-v="rej"><td>A roughly $70 trillion addressable market</td><td class="small">Rejected</td><td class="small">About 60% of global GDP. A denominator, not an addressable market. Rebuilt bottom-up in &sect;06 at $10&ndash;30B of serviceable annual contract value. <span class="tier t-co">CO</span></td></tr>
+<tr data-v="ver"><td>"Nothing to do with robotics" &mdash; a modern version of CAD</td><td class="small">Verified</td><td class="small">Bezos's own framing, May 2026. Materially narrower than the circulated memo's "intelligence layer for the physical economy," and it puts Prometheus squarely into the category whose listed comparables trade at 4.0&ndash;8.6x revenue. <span class="tier t-ext">EXT</span></td></tr>
+<tr data-v="ver"><td>100,000 sq ft West Oakland manufacturing lease</td><td class="small">Verified</td><td class="small">Found via property records by the San Francisco Business Times, August 2026; characterised as manufacturing rather than office. Lease term, rent and landlord undisclosed. Genuine evidence of intent to build physical infrastructure. <span class="tier t-ext">EXT</span></td></tr>
+<tr data-v="part"><td>A separate ~$100B vehicle will acquire industrial companies</td><td class="small">Partly</td><td class="small">WSJ-sourced, March 2026; Bezos reportedly met sovereign funds in the Middle East and Singapore. <b>No named backers, no disclosed commitments, no close.</b> The co-CEOs declined to discuss it on the record. This is the plan to obtain the training data. <span class="tier t-ext">EXT</span></td></tr>
+<tr data-v="ver"><td>Blue Origin as a customer</td><td class="small">Verified</td><td class="small">Bezos called it "a case study for a customer." It is a company he owns. Useful as a development partner; it is not an arm's-length commercial validation and should not be counted as one. <span class="tier t-ext">EXT</span></td></tr>
+<tr data-v="ver"><td>"This is a capital-intensive startup, there's no question about that"</td><td class="small">Verified</td><td class="small">Bezos, 11 June 2026, adding that a big chunk of the raise goes to compute. <b>This directly contradicts the circulated memo's 20% cumulative dilution assumption</b>, which is the single most load-bearing unexamined input in that document. <span class="tier t-ext">EXT</span></td></tr>
+<tr data-v="unv"><td>Proprietary physical data will be the moat</td><td class="small">Unverified</td><td class="small">The logic is sound and it is the best argument in the file. But the company concedes there is no internet of manufacturing data to ingest, no manufacturing partnership has been named, and the acquisition vehicle intended to solve it has not closed. Competitors who own physical assets obtain the same data as a by-product. <span class="tier t-co">CO</span></td></tr>
+<tr data-v="rej"><td>Secondary marks validate a premium to $41B</td><td class="small">Rejected</td><td class="small">Platform indications imply ~$52.7B, but quotes diverged roughly 24% across scrapes within a month, one major platform still carries a stale $38B, another publishes a funding history that contradicts all journalism, and <b>no executed transaction has been reported anywhere.</b> These are asks on a name with essentially no float. <span class="tier t-unv">UNV</span></td></tr>
+<tr data-v="ver"><td>Access is available at a $10,000 minimum</td><td class="small">Verified</td><td class="small">A third-party SPV launched 12 August 2026 offering indirect exposure through three layers: investor, to SPV, to a QP opportunity fund, to the Series B preferred. Fees not disclosed in the release. Sponsor states it is not a broker-dealer, placement agent, adviser or fiduciary. No evidence of company authorisation. <span class="tier t-ext">EXT</span></td></tr>
+<tr data-v="ver"><td>Engineering software is $58.4B growing to $120.7B by 2034</td><td class="small">Verified</td><td class="small">The published figures are accurate as cited. They are also the ceiling argument rather than the bull argument: the four listed companies serving that market trade at 4.0x to 8.6x revenue and are worth about $170B combined. <span class="tier t-ext">EXT</span></td></tr>
+<tr data-v="part"><td>$250B&ndash;$500B is the relevant return range</td><td class="small">Partly</td><td class="small">The arithmetic is correct and we reproduced it exactly: 6.10x and 12.20x gross from a $41B entry. <b>Accepted as arithmetic, rejected as underwriting.</b> The multiples are computed gross of the instrument, gross of fees, gross of realistic dilution and without a holding period. See &sect;14. <span class="tier t-mod">MOD</span></td></tr>
+</tbody>
+</table>
+<p class="sowhat">Note the shape of this table against a normal seed file. There is almost no gap between company claims and outside verification, because the company has claimed almost nothing that could be checked. That is not a clean bill of health &mdash; it is the absence of a bill. Every verified row above concerns capital, real estate or personnel. Not one concerns a product, a customer, a benchmark or a result.</p>
+</div>
+
+<!-- ===== 08 TRACTION ===== -->
+<div class="sec" id="s08">
+<span class="eyebrow">&sect;08 &middot; Traction and revenue quality</span>
+<h2>There is no traction to assess, and that is the finding</h2>
+<table>
+<thead><tr><th style="width:38%">What we would normally underwrite</th><th>What exists</th></tr></thead>
+<tbody>
+<tr><td>ARR and growth rate</td><td class="small">None disclosed. No revenue of any kind reported anywhere <span class="tier t-ext">EXT</span></td></tr>
+<tr><td>Named customers or design partners</td><td class="small">None, other than Blue Origin, which Bezos owns <span class="tier t-ext">EXT</span></td></tr>
+<tr><td>Pipeline or letters of intent</td><td class="small">None disclosed <span class="tier t-unv">UNV</span></td></tr>
+<tr><td>Product in market</td><td class="small">None. "Early rollouts are coming"; no date offered <span class="tier t-ext">EXT</span></td></tr>
+<tr><td>Benchmark, demo or technical publication</td><td class="small">None found. No arXiv paper, model card, blog result or public demonstration attributable to the company <span class="tier t-unv">UNV</span></td></tr>
+<tr><td>Retention, concentration, cohort behaviour</td><td class="small">Not applicable <span class="tier t-ext">EXT</span></td></tr>
+<tr><td>Headcount</td><td class="small">~150, from OpenAI, Google DeepMind, Meta and xAI. This is the one genuinely strong input <span class="tier t-ext">EXT</span></td></tr>
+<tr><td>Physical build-out</td><td class="small">100,000 sq ft, West Oakland, August 2026. Consistent with the stated strategy <span class="tier t-ext">EXT</span></td></tr>
+</tbody>
+</table>
+<p class="sowhat">A pre-revenue company is not automatically un-investable; the vault has backed pre-revenue businesses. What is unusual here is the combination of no revenue, no product, no customer, no benchmark <i>and</i> a $41B mark. In every other file in this book, the absence of traction was priced at seed. Here it is priced above the enterprise value of Autodesk.</p>
+</div>
+
+<!-- ===== 09 UNIT ECONOMICS ===== -->
+<div class="sec" id="s09">
+<span class="eyebrow">&sect;09 &middot; Unit economics, rebuilt</span>
+<h2>With no revenue, the entry price is the only unit economic there is</h2>
+<p>There is no ACV, no CAC, no gross margin and no payback to rebuild. What can be rebuilt is the revenue the mark already assumes, at the multiples this sector actually clears. That is the honest substitute, and it is unforgiving.</p>
+
+<div class="ctrls noprint">
+<div class="grid2">
+  <div><label class="f">Entry valuation</label><div class="ln"><input type="range" id="u_ev" min="10" max="80" step="1" value="41"><span class="out" id="u_ev_o">$41B</span></div></div>
+  <div><label class="f">Revenue multiple applied</label><div class="ln"><input type="range" id="u_mult" min="3" max="25" step="1" value="9"><span class="out" id="u_mult_o">9.0x</span></div></div>
+  <div><label class="f">Target exit valuation</label><div class="ln"><input type="range" id="u_ex" min="50" max="1000" step="25" value="250"><span class="out" id="u_ex_o">$250B</span></div></div>
+</div>
+<div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap">
+  <button id="u_reset">Reset to committed baseline</button>
+  <button id="u_memo">Circulated memo's assumption (10x)</button>
+</div>
+</div>
+<div class="metrics">
+  <div class="met"><div class="k">Revenue implied today</div><div class="v" id="u_rnow">$4.6B</div></div>
+  <div class="met"><div class="k">Revenue implied at exit</div><div class="v" id="u_rex">$27.8B</div></div>
+  <div class="met"><div class="k">As a multiple of Synopsys</div><div class="v" id="u_rsyn">2.9x</div></div>
+  <div class="met"><div class="k">Gross MOIC before anything</div><div class="v" id="u_moic">6.1x</div></div>
+</div>
+<div id="u_flag" class="flag f-bad">Implied exit revenue exceeds the entire listed sector's revenue</div>
+
+<h3>The multiples the sector actually clears</h3>
+<table>
+<thead><tr><th style="width:44%">Benchmark</th><th class="n">EV / Revenue</th><th class="n">Revenue implied at $41B</th></tr></thead>
+<tbody>
+<tr><td>Dassault Syst&egrave;mes, trading <span class="tier t-ext">EXT</span></td><td class="n">4.0x</td><td class="n">$10.2B</td></tr>
+<tr><td>PTC, trading <span class="tier t-ext">EXT</span></td><td class="n">5.4x</td><td class="n">$7.7B</td></tr>
+<tr><td>Autodesk, trading <span class="tier t-ext">EXT</span></td><td class="n">5.7x</td><td class="n">$7.1B</td></tr>
+<tr><td>Synopsys with Ansys, trading <span class="tier t-ext">EXT</span></td><td class="n">8.6x</td><td class="n">$4.8B</td></tr>
+<tr><td>The circulated memo's assumption <span class="tier t-mod">MOD</span></td><td class="n">10.0x</td><td class="n">$4.1B</td></tr>
+<tr><td>Siemens / Altair, the richest comparable we can find <span class="tier t-ext">EXT</span></td><td class="n">15.9x</td><td class="n">$2.6B</td></tr>
+</tbody>
+</table>
+<p class="sowhat">Read the last row carefully, because it is the most generous construction available to the bull case. Siemens paid $10.6B of equity value for Altair on $665.8M of FY2024 revenue, closing March 2025 &mdash; the highest revenue multiple we can find anywhere in engineering software, for a profitable business with two decades of customers. Applying <i>that</i> multiple, the $41B entry still assumes $2.6B of revenue Prometheus does not have. At the 4.0&ndash;8.6x band where these companies actually trade, it assumes $4.8B to $10.2B &mdash; between the whole of Synopsys and rather more than the whole of Autodesk.</p>
+<p>One adjustment belongs to the bull case and we make it here rather than leave it to be raised in the room. Of the $41B, roughly $14&ndash;16B is cash the company is sitting on. Ex-cash, the operating business is marked nearer <b>$26B</b> <span class="tier t-mod">MOD</span>. That is a real and material discount, and it is the single strongest technical argument for the entry price. It is also a melting asset: Bezos has said a big chunk of the raise goes to compute, so the discount shrinks every quarter and reaches zero on the day the money is spent.</p>
+</div>
+
+<!-- ===== 10 COMPETITION ===== -->
+<div class="sec" id="s10">
+<span class="eyebrow">&sect;10 &middot; Competitive position and the capital gap</span>
+<h2>For once the capital gap runs the right way, and it still does not help</h2>
+<p>At $18.2B raised, Prometheus is better capitalised than any competitor in its specific niche. That is not the binding constraint. <b>The binding constraint is that the scarce input is proprietary physical data, and every serious competitor obtains it as a by-product of a business they already operate, while Prometheus must buy it.</b></p>
+<table>
+<thead><tr><th style="width:20%">Competitor</th><th>Position, and what it means for us</th></tr></thead>
+<tbody>
+<tr><td><b>Siemens</b></td><td class="small">The incumbent that matters. Digital Industries software growing 15% with roughly &euro;5.7B of organic ARR; the Altair acquisition added simulation and HPC. Customers hand Siemens design and operational data as a condition of using Teamcenter. It already sells a quantified outcome: a measured 20% throughput gain at a PepsiCo plant within three months, with PepsiCo separately <i>estimating</i> 10&ndash;15% lower capital expenditure across operations. <b>That is the most concrete AI-in-engineering ROI figure in the public record and a competitor already has it, with a named customer.</b> <span class="tier t-ext">EXT</span></td></tr>
+<tr><td><b>Synopsys / Ansys</b></td><td class="small">The strongest evidence that AI-assisted design works commercially &mdash; and it belongs to the incumbent. More than 100 commercial tape-outs using AI-driven design as of 2023, with agentic design engagements and customers validating up to 10x faster design closure in 2026. Note the bear signal inside the bull signal: a Synopsys executive stated in 2026 that reinforcement learning "hasn't really panned out" in core EDA algorithms. The company with the most chip-design data on earth is saying the method underdelivered. <span class="tier t-ext">EXT</span></td></tr>
+<tr><td><b>Nvidia</b></td><td class="small">Simultaneously Prometheus's largest cost line, the supplier of the free simulation and world-model stack competitors build on, a partner to Siemens and Dassault, and an equity holder in most of the physical-AI startup field. <b>Nvidia captures this thesis whether or not any single company wins</b>, which is a reason to prefer the listed security to the private one. <span class="tier t-ext">EXT</span></td></tr>
+<tr><td><b>Google DeepMind</b></td><td class="small">The most credible direct competitor on both halves of the claim. AlphaEvolve has <i>deployed</i> results &mdash; a production heuristic cutting write amplification 20%, circuit work in next-generation TPUs &mdash; and is now generally available on Google Cloud. Gemini Robotics 2 adapts to a new embodiment from under 200 examples. Prometheus must out-execute this while also running an acquisition programme. <span class="tier t-ext">EXT</span></td></tr>
+<tr><td><b>Musk entities</b></td><td class="small">Not the competitor who reaches market first; the competitor who demonstrates the structural problem. Tesla FSD is the best physical data flywheel in existence &mdash; 8.4 billion supervised miles as of February 2026, roughly 1.5 million subscribers <i>paying to generate the training data</i> &mdash; and it is locked to driving. SpaceX designs, builds and flies its own hardware, generating an engineering corpus no vendor can buy, from roughly 660 Falcon launches. Optimus is the weakest link and should not be over-rated: Musk said in January 2026 it is "still in the R&amp;D phase" and "not in usage in our factories in a material way." <span class="tier t-ext">EXT</span></td></tr>
+<tr><td><b>Cheaper analogues</b></td><td class="small">Periodic Labs is pursuing the same "you have to actually run the experiments" premise, founded by OpenAI's former post-training lead and a Google Brain materials lead, on a $300M seed. Orbital has an actually synthesised molecule family in qualification with chip vendors on $50M. <b>Bezos is personally an investor in several of these.</b> The Prometheus cap table is therefore not a differentiated bet even for its own founder; it is one leg of a diversified position whose other legs cost one to three percent as much. <span class="tier t-ext">EXT</span></td></tr>
+</tbody>
+</table>
+<p class="sowhat">Prometheus is the only serious entrant that must spend a reported $100B acquiring factories to obtain what its rivals are handed. That is a permanent structural cost disadvantage on the one input the entire thesis rests on, and the vehicle intended to close it has no named backers and has not closed.</p>
+</div>
+
+<!-- ===== 11 MOAT ===== -->
+<div class="sec" id="s11">
+<span class="eyebrow">&sect;11 &middot; Moat under model-capability doubling</span>
+<h2>Has an AI ever designed a complex physical thing that was built and worked?</h2>
+<p>Yes &mdash; and the pattern in where it worked is the most important technical finding in this memo. Autonomous AI design has produced artefacts that were built and functioned only where three conditions hold simultaneously: <b>the design space is fully digital, the evaluation function is cheap, fast and objective, and manufacturing is itself digital.</b> Chips, code and, to a degree, proteins satisfy all three.</p>
+<p>Outside those conditions, the two landmark claims have both been substantially rebutted. A UCSD re-implementation of Google's AlphaChip found it did not outperform established techniques; <i>Nature</i> retracted the accompanying commentary in September 2023; and we could find no published independent replication <span class="tier t-ext">EXT</span>. On GNoME, independent reviewers reported they could identify no strikingly novel compounds among the proposed structures, most being minor variants of known materials <span class="tier t-ext">EXT</span>. In drug discovery, the flagship AI-designed candidates missed their efficacy endpoints or were discontinued <span class="tier t-ext">EXT</span>. In mechanical CAD there is no credible evidence at all: the best-funded incumbent attempt produces crude, non-parametric geometry.</p>
+<p><b>Prometheus's own headline example sits at the far end of the hard case.</b> A jet engine programme is long because of qualification and physical test, not because engineers cannot draw. Compressing the drawing tenfold does not compress the programme tenfold. Aerospace and medical-device certification regimes will not accept AI-generated designs quickly; adoption in those markets is measured in years.</p>
+<div class="callout">
+<p style="margin:0">Under model-capability doubling the moat question inverts in an uncomfortable way. If frontier models get much better and cheaper, the design-generation layer Prometheus is building becomes commoditised and the durable advantage moves entirely to whoever holds the proprietary test-and-qualification corpus. That is Siemens, Synopsys and the manufacturers themselves. <b>The better frontier models get, the more the value accrues to the data holder rather than the model builder</b> &mdash; which is precisely why the $100B acquisition vehicle exists, and precisely why its failure to close is the most important open item in the file.</p>
+</div>
+</div>
+
+<!-- ===== 12 TEAM ===== -->
+<div class="sec" id="s12">
+<span class="eyebrow">&sect;12 &middot; Team</span>
+<h2>The strongest dimension in the file, and the base rate that qualifies it</h2>
+<p><b>Vik Bajaj</b> is the most underrated name in the deal. MIT PhD in physical chemistry, Berkeley postdoc, seven years as a principal investigator at Lawrence Berkeley National Laboratory, co-founder of Google Life Sciences inside Google X and Chief Scientific Officer of Verily, CSO at Grail, founding CEO of Foresite Labs, co-founder of Xaira <span class="tier t-ext">EXT</span>. That is a career built precisely at the junction of physical science and machine learning, with real operating scars. If the thesis is executable by anyone, this is a credible person to execute it.</p>
+<p><b>The technical bench is genuine.</b> Kyle Kosic, an xAI co-founder, joined from OpenAI in April 2026 to work on AI infrastructure. The General Agents acquisition brought Sherjil Ozair (DeepMind, Tesla, a co-author of the original GAN paper) and William Guss (formerly OpenAI) in as co-founders. Researchers have been recruited from OpenAI, DeepMind, Meta and xAI <span class="tier t-ext">EXT</span>. Widely circulated claims that two of the transformer paper's authors are founding advisors are weakly sourced and we do not rely on them <span class="tier t-unv">UNV</span>.</p>
+<h3>The Bezos question, answered with the only clean observation available</h3>
+<p>The circulated memo lists Bezos himself as the fifth moat. That deserves testing rather than assertion, and there is exactly one prior case of Bezos building a capital-intensive physical-engineering company against a focused competitor.</p>
+<table>
+<thead><tr><th style="width:40%">Since 2000</th><th class="n">Blue Origin</th><th class="n">SpaceX</th></tr></thead>
+<tbody>
+<tr><td>Founded</td><td class="n">2000</td><td class="n">2002</td></tr>
+<tr><td>Years to reach orbit</td><td class="n">24</td><td class="n">6</td></tr>
+<tr><td>Lifetime orbital launches</td><td class="n">3</td><td class="n">~660</td></tr>
+<tr><td>2025 revenue</td><td class="n">not disclosed</td><td class="n">$18.7B</td></tr>
+<tr><td>Valuation, September 2026</td><td class="n">$130B</td><td class="n">~$2.1T, public</td></tr>
+<tr><td>Liquidity returned to an outside investor</td><td class="n">none in 26 years</td><td class="n">six tenders, then IPO</td></tr>
+</tbody>
+</table>
+<p>Bezos is reported to have put about $28B of his own money into Blue Origin over 26 years, starting two years <i>before</i> SpaceX, and arrived at roughly 6% of its value <span class="tier t-ext">EXT</span>. Its only operational launch pad was severely damaged in a static-fire explosion in May 2026 and the vehicle remains grounded. Blue Origin took its first outside capital in July 2026 &mdash; year 26 &mdash; at $130B, with a flying rocket, 11,000 staff and a $3.4B NASA contract. <b>Prometheus is asking $41B for 150 people and none of those assets.</b></p>
+<div class="callout">
+<p style="margin:0"><b>The fair counter, which the committee should hear before anyone else makes it.</b> The most common diagnosis of the Blue Origin gap is that it was the gap between a part-time owner and a full-time obsessive. That argument now cuts the other way: this is Bezos's first chief executive role since leaving Amazon in 2021, he has described the work as "a grind, but a good grind," and he replaced Blue Origin's CEO in 2024 precisely because he was frustrated by the pace. He is also, on his own account, no longer allocating attention exclusively &mdash; he remains Amazon's executive chairman and continues funding Blue Origin, and has said the common thread across all three is AI. We score the team 8.0, the highest raw score in this book, and we hold the base rate as a qualifier rather than a disqualifier.</p>
+</div>
+</div>
+
+<!-- ===== 13 GTM ===== -->
+<div class="sec" id="s13">
+<span class="eyebrow">&sect;13 &middot; Go-to-market credibility</span>
+<h2>The hardest enterprise sale there is, with nothing yet to sell</h2>
+<p>The target buyers are aerospace, defence, semiconductor, automotive, energy and pharmaceutical engineering organisations. These are the slowest-validating customers in the economy, and for good reasons: mistakes are expensive and sometimes fatal. Certification regimes in aerospace and medical devices will not accept AI-generated designs on a software procurement timetable. Adoption in these markets is measured in years and gated on qualification evidence that does not yet exist.</p>
+<p>Three structural obstacles, none of which capital solves:</p>
+<ul>
+<li><b>Trust and traceability.</b> An engineering organisation must be able to defend a design to a regulator and to its own liability insurers. "The model proposed it" is not a defence. Validation dominates generation, and validation is where the cost sits.</li>
+<li><b>Change propagation.</b> A design change cascades through drawings, bills of material, supplier quotations, tooling and inspection plans. Systems that demo well tend to fail here, and this is the part no public artefact addresses.</li>
+<li><b>Incumbent bundling.</b> Siemens, Dassault, PTC, Autodesk and Synopsys can attach AI to contracts these customers already hold, at zero switching cost, and they are all shipping. Prometheus must displace a system of record.</li>
+</ul>
+<p class="sowhat">Against this, the company has no named paying customer, no disclosed pilot, no reference design win and no product date. The one relationship on record is with a company the founder owns. Scored 3.0, and the score would not move on a customer logo alone &mdash; it would move on a customer <i>result</i>.</p>
+</div>
+
+<!-- ===== 14 SCENARIOS ===== -->
+<div class="sec" id="s14">
+<span class="eyebrow">&sect;14 &middot; Scenarios and returns</span>
+<h2>What the cheque is actually betting on</h2>
+<p>Entry at a $41B post-money mark. The circulated memo's headline figures &mdash; 2.44x at $100B, 6.10x at $250B, 12.20x at $500B &mdash; reproduce exactly, and they are <i>gross</i>: gross of the instrument, gross of the fee stack, gross of dilution and with no holding period attached. The model below is the same deal priced through the vehicle actually on offer. Drag the layers slider from two to zero to see what the structure alone is worth.</p>
+
+<div class="ctrls noprint">
+<div class="grid2">
+  <div><label class="f">Bull probability</label><div class="ln"><input type="range" id="p_bull" min="0" max="45" step="1" value="10"><span class="out" id="p_bull_o">10%</span></div></div>
+  <div><label class="f">Bear probability</label><div class="ln"><input type="range" id="p_bear" min="0" max="85" step="1" value="42"><span class="out" id="p_bear_o">42%</span></div></div>
+  <div><label class="f">Base exit value</label><div class="ln"><input type="range" id="e_base" min="25" max="500" step="25" value="100"><span class="out" id="e_base_o">$100B</span></div></div>
+  <div><label class="f">Bull exit value</label><div class="ln"><input type="range" id="e_bull" min="100" max="1500" step="50" value="500"><span class="out" id="e_bull_o">$500B</span></div></div>
+  <div><label class="f">Total dilution to exit</label><div class="ln"><input type="range" id="e_dil" min="0" max="70" step="1" value="41"><span class="out" id="e_dil_o">41%</span></div></div>
+  <div><label class="f">SPV layers between us and the share</label><div class="ln"><input type="range" id="e_lay" min="0" max="2" step="1" value="2"><span class="out" id="e_lay_o">2</span></div></div>
+  <div><label class="f">Years to liquidity</label><div class="ln"><input type="range" id="e_yr" min="3" max="20" step="1" value="7"><span class="out" id="e_yr_o">7 yr</span></div></div>
+</div>
+<div style="margin-top:12px"><button id="e_reset">Reset to committed baseline</button></div>
+</div>
+<div class="metrics">
+  <div class="met"><div class="k">Bull net MOIC</div><div class="v" id="r_bull">4.4x</div></div>
+  <div class="met"><div class="k">Base net MOIC <span id="p_base_o" class="mono">48%</span></div><div class="v" id="r_base">0.9x</div></div>
+  <div class="met"><div class="k">Bear</div><div class="v" style="color:var(--slate)">0.0x</div></div>
+  <div class="met"><div class="k">Weighted net MOIC</div><div class="v" id="r_wtd">0.9x</div></div>
+</div>
+<div id="r_flag" class="flag f-bad">Below 1.0x &mdash; the weighted case loses money</div>
+<div class="metrics" style="margin-top:14px">
+  <div class="met"><div class="k">Break-even valuation</div><div class="v" id="r_be">$107B</div></div>
+  <div class="met"><div class="k">Weighted net IRR</div><div class="v" id="r_irr">&minus;1.7%</div></div>
+  <div class="met"><div class="k">Base gross, before fees and dilution</div><div class="v" id="r_gross">2.4x</div></div>
+</div>
+
+<h3>The three cases, stated</h3>
+<table>
+<thead><tr><th style="width:12%">Case</th><th class="n">Prob</th><th>What has to be true</th></tr></thead>
+<tbody>
+<tr><td><b>Bull</b></td><td class="n">10%</td><td class="small">The physical-AI flywheel closes: the acquisition vehicle funds, proprietary test data compounds, and Prometheus becomes the intelligence layer for physical innovation with monetisation beyond software licences. $30&ndash;50B of revenue supporting $500B. Requires joining the 25 companies on earth worth half a trillion dollars, from zero revenue, faster than any company has ever done it.</td></tr>
+<tr><td><b>Base</b></td><td class="n">48%</td><td class="small">The technology works in the digital-adjacent subset &mdash; simulation, semiconductors, some materials &mdash; and Prometheus becomes a very large industrial-AI software company at $10&ndash;20B of revenue. <b>$100B outcome.</b> An extraordinary result from nothing, and at 41% dilution through the offered vehicle it still returns less than we put in. That is the entire argument against this entry price, and it lives in the <i>base</i> case, not the bear case.</td></tr>
+<tr><td><b>Bear</b></td><td class="n">42%</td><td class="small">Two paths, both ending near zero for us. Either the evaluation bottleneck proves binding, capital is consumed, and the outcome is the modal one for a pre-revenue laboratory with excellent people &mdash; an acqui-hire or licence deal that makes direct investors nominally whole (Adept returned about 1.0x, Inflection 1.1&ndash;1.5x) and, after a three-layer fee stack, returns a fraction of that to us. Or the transfer is never recorded on the company's cap table and the interest is void, which is a total loss <i>independent of how Prometheus performs</i>.</td></tr>
+</tbody>
+</table>
+<p class="sowhat">Three things to take from the sliders. <b>First</b>, drag layers from 2 to 0 and hold everything else: the same company outcome pays materially more direct than through the marketed vehicle. That difference is the deal. <b>Second</b>, the break-even is $107B on the baseline &mdash; Prometheus must become larger than all but a handful of software companies on earth before we recover our capital. Fees alone, with no dilution, put break-even at $63B. <b>Third</b>, set years to liquidity at 20 and watch the IRR: Blue Origin has returned nothing to an outside investor in 26 years and SpaceX took 24 years to list. A long hold here is not the pessimistic case, it is the precedent.</p>
+<div class="callout">
+<p style="margin:0"><b>Do not argue with the probabilities. Invert them.</b> Hold the 42% bear weight fixed and solve for the conviction needed on the upside: reaching even a 2.0x expected net multiple requires roughly a <b>30% probability that Prometheus is worth $500B or more</b>, with essentially the entire remainder on $250B and nothing below it. A 3.0x expectation is unreachable at any distribution over these outcomes without first shrinking the bad tail &mdash; which means fixing the structure, not believing harder in the company. Twenty-five companies on earth are worth $500B. The claim required is that this one has close to a one-in-three chance of joining them from a standing start, and someone has to say that sentence out loud in the room.</p>
+</div>
+</div>
+
+<!-- ===== 15 RISK ===== -->
+<div class="sec" id="s15">
+<span class="eyebrow">&sect;15 &middot; Risk register with kill criteria</span>
+<table>
+<thead><tr><th style="width:30%">Risk</th><th>Kill or pause threshold</th></tr></thead>
+<tbody>
+<tr><td><b>The transfer is not recognised</b><br><span class="small">Structure. Binary, and independent of company performance.</span></td><td class="small"><span class="kill">KILL.</span> No written confirmation <i>from Prometheus</i>, not from the sponsor, that the transfer has company consent and is recorded on the cap table. This is not a diligence item to be worked through; it is a gate. If the answer is anything other than a document, nothing else in this memo matters.</td></tr>
+<tr><td><b>Undisclosed fee and spread stack</b><br><span class="small">Structure.</span></td><td class="small"><span class="kill">KILL.</span> Sponsor will not disclose every fee at every layer <i>and</i> the actual price per share the master vehicle paid. The spread is the largest and least visible cost in vehicles of this shape and it cannot be estimated from outside.</td></tr>
+<tr><td><b>Evaluation bottleneck is binding</b><br><span class="small">Technical. The core thesis risk.</span></td><td class="small"><span class="kill">PAUSE indefinitely.</span> No published benchmark, customer result or third-party-verifiable demonstration of AI-generated physical design passing real test and qualification by the end of 2027.</td></tr>
+<tr><td><b>The $100B acquisition vehicle does not close</b><br><span class="small">Strategic. This is the data plan.</span></td><td class="small"><span class="kill">KILL.</span> No named anchor commitment disclosed by mid-2027. Without it the proprietary-data moat reduces to synthetic-data speculation and the company is an expensive research lab competing with DeepMind for free.</td></tr>
+<tr><td><b>Capital intensity outruns the mark</b><br><span class="small">Dilution.</span></td><td class="small"><span class="kill">PAUSE.</span> Any further primary round raised at or below $41B, or cumulative post-entry primary above $55B without a corresponding revenue base. At 41% dilution a $100B outcome already returns less than cost.</td></tr>
+<tr><td><b>Senior preference inserted ahead</b><br><span class="small">Forward structural risk.</span></td><td class="small"><span class="kill">KILL.</span> Any future round with participating preferred, a multiple above 1x, or a full ratchet senior to the Series B. The current stack is benign; the round after next in a cold market is where this risk lives.</td></tr>
+<tr><td><b>Sector multiple compression continues</b><br><span class="small">Exit ceiling.</span></td><td class="small"><span class="kill">PAUSE.</span> The engineering-software comparable set trading below 4x revenue on a sustained basis. Dassault lost about 20% in a single session in February 2026, its worst in over two decades, and has not recovered.</td></tr>
+<tr><td><b>Key-person concentration</b><br><span class="small">Team.</span></td><td class="small"><span class="kill">PAUSE.</span> Departure of Vik Bajaj, or any public signal that Bezos has materially reduced his operating involvement. The entire team premium in &sect;01 rests on these two.</td></tr>
+<tr><td><b>No liquidity path emerges</b><br><span class="small">Realisation.</span></td><td class="small"><span class="kill">PAUSE.</span> No tender, employee liquidity programme or registration signal by 2030. The comparable precedent is 24 to 26 years.</td></tr>
+<tr><td><b>The April 2026 round was separate</b><br><span class="small">Fact risk.</span></td><td class="small"><span class="kill">RE-PRICE.</span> If the $10B at $38B reported in April was a distinct financing, cumulative funding is nearer $28B, the cash adjustment in &sect;09 changes, and the effective dilution path worsens. Resolve before any capital moves.</td></tr>
+</tbody>
+</table>
+</div>
+
+<!-- ===== 16 FALSIFIERS ===== -->
+<div class="sec" id="s16">
+<span class="eyebrow">&sect;16 &middot; What would change the score</span>
+<table>
+<thead><tr><th style="width:52%">Evidence</th><th class="n">Score move</th></tr></thead>
+<tbody>
+<tr><td>Written confirmation from Prometheus that the transfer is consented and cap-table recorded, plus a single-layer vehicle with full fee and per-share-price disclosure</td><td class="n">+1.4</td></tr>
+<tr><td>A named arm's-length industrial customer, under contract, with a disclosed contract value</td><td class="n">+1.0</td></tr>
+<tr><td>A published, third-party-reproducible benchmark showing AI-generated physical design passing real qualification</td><td class="n">+1.0</td></tr>
+<tr><td>The $100B acquisition vehicle closing with named anchors</td><td class="n">+0.7</td></tr>
+<tr><td>A customer ROI result in the shape Siemens has published with PepsiCo</td><td class="n">+0.6</td></tr>
+<tr><td>Entry repriced materially below $41B, or a structured entry with downside protection</td><td class="n">+0.6</td></tr>
+<tr><td>A credible, stated liquidity mechanism &mdash; tender programme or registration intent</td><td class="n">+0.4</td></tr>
+<tr><td>Confirmation that April 2026 was a separate round, taking cumulative funding to ~$28B</td><td class="n">&minus;0.4</td></tr>
+<tr><td>A further primary round at or below the $41B mark</td><td class="n">&minus;0.8</td></tr>
+<tr><td>Departure of Vik Bajaj</td><td class="n">&minus;1.0</td></tr>
+</tbody>
+</table>
+<p class="sowhat">Read the top row against the rest. <b>The single largest available score move is structural, not commercial.</b> Fixing the instrument is worth more than a named customer, and it is the only item on this list we can influence &mdash; by asking. Everything else requires the company to do something.</p>
+</div>
+
+<!-- ===== 17 THESIS FIT ===== -->
+<div class="sec" id="s17">
+<span class="eyebrow">&sect;17 &middot; Thesis fit</span>
+<table>
+<thead><tr><th style="width:38%">Marketlogic thesis</th><th>Fit</th></tr></thead>
+<tbody>
+<tr><td>Deeptech reimagining enterprise transformation</td><td class="small"><b>Strong.</b> This is close to a pure expression of the thesis: intelligence applied to the operational complexity of designing and building physical things. Conceptually, it is the most on-thesis company in the book.</td></tr>
+<tr><td>Enterprise buyer in ops, finance or supply chain</td><td class="small"><b>Strong.</b> The buyer is exactly the engineering and manufacturing organisation the fund claims fluency with, and the M&amp;A carve-out wedge is directly relevant to the acquisition vehicle.</td></tr>
+<tr><td>Pre-seed and seed stage</td><td class="small"><b>None.</b> This is a $41B Series B secondary. It is four orders of magnitude outside the fund's stage mandate.</td></tr>
+<tr><td>Ability to add operational value</td><td class="small"><b>None.</b> No information rights, no board access, no contact with management. The fund's twenty years of enterprise-transformation experience is the one asset that would be genuinely useful to this company and there is no mechanism to apply it.</td></tr>
+<tr><td>Position sizing and portfolio construction</td><td class="small"><b>Poor.</b> A cheque this fund can write buys an immaterial economic interest in a $41B company while consuming diligence capacity that should go to deals where the fund can lead, influence and own a meaningful percentage.</td></tr>
+</tbody>
+</table>
+<p class="sowhat">This is worth separating carefully, because the thesis fit is real and it is what makes the deal tempting. Prometheus is doing the thing the fund believes in. It is simply doing it at a stage, price and structure that have nothing to do with a pre-seed and seed fund. Thesis fit is a reason to <i>follow</i> this company closely. It is not a reason to buy it.</p>
+</div>
+
+<!-- ===== 18 DILIGENCE ===== -->
+<div class="sec" id="s18">
+<span class="eyebrow">&sect;18 &middot; Diligence queue</span>
+<h2>Ranked by score at risk, not by topic</h2>
+<div class="ctrls noprint" style="display:flex;gap:16px;align-items:center;flex-wrap:wrap">
+  <span class="small">Score still at risk: <span class="mono" id="dq_out" style="font-size:17px;color:var(--bad)">-9.3</span></span>
+  <button id="dq_reset">Clear all</button>
+</div>
+<div id="dqlist"></div>
+<p class="sowhat">Items one and two are gates rather than questions, and they are answerable this week at no cost to anyone. If the sponsor cannot produce company consent and a full fee schedule including the master's purchase price, the rest of this queue is academic and the file closes. Note how much of this list is about the wrapper rather than the company: that is the correct emphasis for this deal, and it is exactly what the circulated memo omitted.</p>
+</div>
+
+<!-- ===== 19 TERMS ===== -->
+<div class="sec" id="s19">
+<span class="eyebrow">&sect;19 &middot; Terms and structure</span>
+<h2>The wrapper is the deal</h2>
+<p>Hold the company outcome fixed at the circulated memo's showcase case &mdash; a $250B exit, 6.10x gross, no dilution &mdash; and vary only how the position is held. Nothing about Prometheus changes down this column.</p>
+<table>
+<thead><tr><th style="width:46%">How the position is held</th><th class="n">Net MOIC</th><th class="n">Gain kept</th><th class="n">Break-even</th></tr></thead>
+<tbody>
+<tr><td>Direct on the cap table <span class="tier t-mod">MOD</span></td><td class="n">6.10x</td><td class="n">100%</td><td class="n">$41B</td></tr>
+<tr><td>Single clean SPV, no management fee</td><td class="n">5.03x</td><td class="n">79%</td><td class="n">$42B</td></tr>
+<tr><td>Single SPV, 2% and 20%</td><td class="n">4.92x</td><td class="n">77%</td><td class="n">$47B</td></tr>
+<tr><td>Two layers, feeder into master</td><td class="n">4.34x</td><td class="n">66%</td><td class="n">$54B</td></tr>
+<tr><td><b>Two layers, plus access fee and share markup</b> <span class="tier t-mod">MOD</span></td><td class="n"><b>3.72x</b></td><td class="n"><b>53%</b></td><td class="n"><b>$63B</b></td></tr>
+<tr><td>Aggressively stacked</td><td class="n">3.14x</td><td class="n">42%</td><td class="n">$76B</td></tr>
+</tbody>
+</table>
+<p class="sowhat">Modelled on a seven-year hold: master 2% and 20%, feeder 1.5% and 10%, 5% access fee, 10% markup on the shares the master bought. Fee schedules per published SPV market data; the actual schedule was not disclosed in the offering release, which is itself the finding. On the marketed structure, a little over half the gain reaches the investor and Prometheus must be worth $63B &mdash; a 54% gain &mdash; before the first dollar comes back. Add the 41% dilution of &sect;14 and break-even moves to $107B.</p>
+<h3>What we would not receive</h3>
+<table>
+<thead><tr><th style="width:44%">Right</th><th>Through this vehicle</th></tr></thead>
+<tbody>
+<tr><td>Information rights</td><td class="small">None. Two layers of intermediation; no company reporting obligation to us</td></tr>
+<tr><td>Pro rata / participation in future rounds</td><td class="small">None. The dilution in &sect;14 is entirely involuntary</td></tr>
+<tr><td>Board seat or observer</td><td class="small">None, and none contemplated</td></tr>
+<tr><td>Protective provisions</td><td class="small">None. No ability to block a subsequent senior preference</td></tr>
+<tr><td>Direct liquidation preference</td><td class="small">None. The master holds the security; we hold a claim on a claim</td></tr>
+<tr><td>Control of exit timing</td><td class="small">None. The vehicle managers decide when to sell and when to distribute</td></tr>
+<tr><td>Visibility into the master's cost basis</td><td class="small">None disclosed. This is the spread, and it is the largest unquantified cost in the deal</td></tr>
+<tr><td>QSBS treatment</td><td class="small">Unavailable. $18.2B raised against a $75M gross-asset ceiling; roughly 240x over. Model at full long-term capital gains</td></tr>
+</tbody>
+</table>
+<div class="callout">
+<p style="margin:0"><b>One structural point deserves to be stated on its own, because it is the difference between a bad deal and a worthless one.</b> OpenAI's published policy on unauthorized equity transactions states that a non-compliant transfer "is void" and that such a sale "will not be recognized and carry no economic value to you," naming investments in SPVs and tokenized interests explicitly. Anthropic has taken a comparable posture. We have no evidence of Prometheus's position on transfers, and no evidence that the marketed vehicle has its consent. A Bezos-controlled company fifteen months old, with no employee liquidity event and no float, has every incentive and every ability to take the same line. <b>Until that is resolved in writing from the company, the correct assumed value of this interest is zero &mdash; not as a bear case about Prometheus, but as a fact about the instrument.</b></p>
+</div>
+</div>
+
+<!-- ===== 20 MONITORING ===== -->
+<div class="sec" id="s20">
+<span class="eyebrow">&sect;20 &middot; Pre-committed monitoring milestones</span>
+<p>Written now so that any future conversation is verification rather than debate. With no position and no information rights, every test below has been chosen to be readable from public disclosure alone, because that is the whole of our access and will remain so.</p>
+<table>
+<thead><tr><th style="width:16%">Checkpoint</th><th>Test</th></tr></thead>
+<tbody>
+<tr><td class="mono">Q1 2027</td><td>A named arm's-length customer under contract, or a published benchmark a third party can reproduce. Either, not neither. Yes or no.</td></tr>
+<tr><td class="mono">Q3 2027</td><td>The $100B acquisition vehicle closed with at least one named anchor commitment. Yes or no.</td></tr>
+<tr><td class="mono">Q4 2027</td><td>Disclosed revenue above $250M, or a customer-verified engineering result in a regulated end market. Yes or no.</td></tr>
+<tr><td class="mono">2028</td><td>Next primary round priced above $41B without a senior preference structure inserted ahead of the Series B. Yes or no.</td></tr>
+<tr><td class="mono">2029&ndash;30</td><td>A stated liquidity mechanism: tender programme, employee liquidity event, or registration intent. Yes or no.</td></tr>
+<tr><td class="mono">Re-open</td><td>If the first three pass and a company-consented, single-layer instrument becomes available, re-underwrite with a fresh score. If two or fewer pass by end-2027, close the file.</td></tr>
+</tbody>
+</table>
+<p class="sowhat">Note that none of these require access. That is deliberate: this is a company to follow through the public record, and the fund should be able to answer every question above from what is published.</p>
+</div>
+
+<!-- ===== 21 GAPS ===== -->
+<div class="sec" id="s21">
+<span class="eyebrow">&sect;21 &middot; Data gaps</span>
+<table>
+<thead><tr><th style="width:38%">Not available</th><th>Cost to confidence</th></tr></thead>
+<tbody>
+<tr><td>Company consent for the transfer, and cap-table recording</td><td class="small">Decisive. Without it the instrument may be void regardless of company performance. Everything else in this memo is downstream of this one document.</td></tr>
+<tr><td>Full fee schedule at every layer, and the master vehicle's cost basis per share</td><td class="small">Decisive. The undisclosed spread is typically the largest single cost in a vehicle of this shape and cannot be estimated from outside.</td></tr>
+<tr><td>Any financial statement, revenue figure, burn rate or runway</td><td class="small">High. Nothing has been disclosed. "Pre-revenue" is an inference from the company's own refusal to name a product timeline, not a reported figure.</td></tr>
+<tr><td>Technical approach, training methodology or data sources</td><td class="small">High. No paper, model card, benchmark or demonstration exists. The central technical claim cannot be assessed on its merits by anyone outside the company.</td></tr>
+<tr><td>Whether April 2026 was a separate financing</td><td class="small">High. Determines whether cumulative funding is $18.2B or nearer $28B, which changes the cash-adjusted entry price and the dilution path.</td></tr>
+<tr><td>Compute commitments, cloud contracts or chip supply agreements</td><td class="small">Medium-high. Bezos says a big chunk of the raise goes to compute. No dollar figure, no counterparty, no term has been reported.</td></tr>
+<tr><td>Named manufacturing partners or data-sharing arrangements</td><td class="small">Medium-high. The moat is proprietary physical data and no source of it has been named beyond a related party.</td></tr>
+<tr><td>Full capitalisation table and the preference terms of both rounds</td><td class="small">Medium-high. We assume 1x non-participating on market convention. The actual terms of an $18.2B stack have never been published.</td></tr>
+<tr><td>Current headcount and attrition</td><td class="small">Medium. The ~150 figure is June 2026 and no update exists. Team is the highest-scored dimension in the file and rests on a three-month-old count.</td></tr>
+<tr><td>Any executed secondary transaction and its price</td><td class="small">Medium. Platform indications diverge ~24% across scrapes with no reported trade. The "29% premium" cannot be relied on in either direction.</td></tr>
+</tbody>
+</table>
+<p class="sowhat">This is the longest gap table in the book, and the first two rows are not gaps in the ordinary sense. They are the terms of the deal, undisclosed.</p>
+</div>
+
+<!-- ===== 22 CONCLUSION ===== -->
+<div class="sec" id="s22">
+<span class="eyebrow">&sect;22 &middot; Recommendation</span>
+<p class="lede">Pass, and stay warm. Prometheus may well become an important company; the team is the best in this book by a wide margin and the problem they have chosen is correctly identified. The pass is not a prediction about the company. It is that a pre-revenue business at a $41B mark, bought through an unaffiliated three-layer vehicle with no evidence of company consent, no information rights, no pro rata, no QSBS and no identified liquidity path, is not a venture position at any cheque size this fund could write.</p>
+<p>Three things make this the most interesting file in the current VC series. The founding pair is genuinely exceptional &mdash; Vik Bajaj's career sits exactly at the junction of physical science and machine learning, and the technical bench came from OpenAI, DeepMind, Meta and xAI. The thesis identifies the right scarce input: proprietary physical-experiment data really would be a moat that a pure software company could not reproduce. And the institutional syndicate is not naive; JPMorgan, Goldman Sachs, BlackRock, DST Global and ARCH all wrote cheques at this mark after diligence we have not seen.</p>
+<p>Four things hold it at 4.0. The entry price already contains the success: at the multiples this sector actually clears, $41B assumes $4.8B to $10.2B of revenue that does not exist, and at the richest multiple ever paid in engineering software it still assumes $2.6B. The data the thesis depends on does not exist and the plan to obtain it is a second, larger, unclosed financing. The technical precedent for autonomous physical design holds only where evaluation is cheap, fast and digital, and the company's own headline example &mdash; a jet engine &mdash; satisfies none of those conditions. And the instrument takes roughly half of whatever is left, with a binary risk on top that is not priced anywhere.</p>
+<p><b>Would I take this at $41B directly on the cap table, with information rights and pro rata?</b> As a small, deliberate, sub-1% portfolio position &mdash; possibly yes, after two answers: a reproducible benchmark, and a named arm's-length customer. Even then the expected net multiple is around 2.5x on a decade-plus hold with no liquidity mechanism, which is at or below what the late-stage venture asset class returns as a whole, for a single undiversified position. That corner of the table is available to BlackRock. It is not available to us.</p>
+<p><b>Would I take it through the vehicle actually on offer?</b> No, and not at any size. The probability-weighted net multiple is below 1.0x, roughly two thirds of the outcome distribution returns less than cost, and the base case &mdash; Prometheus becoming a $100B company, an extraordinary result from nothing &mdash; still loses money after dilution and fees. A deal whose <i>base case</i> is a loss is not a deal with a sizing problem. It is the wrong deal.</p>
+<p>One thing deserves saying without hedging, because it is the finding this memo would want carried forward. The circulated memorandum is a good piece of company analysis and its arithmetic is correct to the cent; we reproduced every multiple in it. It reaches the wrong conclusion because it underwrites <i>a company</i> when the committee has to underwrite <i>a trade</i>. The instrument, the fee stack, the dilution path and the holding period are not details that refine the answer at the margin. Each of them independently reverses it. That gap &mdash; between analysing an asset and underwriting a position in it &mdash; is the transferable lesson here, and it will recur on every late-stage access offer that reaches this fund.</p>
+<p class="small">This memo was produced without company access, without a data room and without management contact, from public sources and a circulated third-party document. That is a material limitation and it is why the call is Stay Warm rather than a permanent close. It is also, in itself, informative: a $41B company that has disclosed no product, no customer and no benchmark cannot be underwritten to an investment standard by anyone outside its cap table, which is a reason for a fund of this size to decline rather than a reason to reach.</p>
+</div>
+
+<!-- ===== 23 REFERENCES ===== -->
+<div class="sec" id="s23">
+<span class="eyebrow">&sect;23 &middot; References</span>
+<table>
+<thead><tr><th style="width:6%" class="n">#</th><th style="width:34%">Source</th><th>Used for</th></tr></thead>
+<tbody>
+<tr><td class="n">1</td><td>Circulated third-party investment memorandum, "Investment Memorandum: Prometheus", received 19 September 2026</td><td class="small">The underwriting under review: TAM/SAM/SOM construction, bull/base/bear framing, and the MOIC ladder reproduced and tested in &sect;07 and &sect;14.</td></tr>
+<tr><td class="n">2</td><td>Axios, TechCrunch, GeekWire, Semafor and Bloomberg coverage of the Series B announcement, 11 June 2026</td><td class="small">$12B round, $41B post-money, investor syndicate, ~150 headcount, offices, the capital-intensity and IPO quotes, and the absence of product, customer and timeline disclosure.</td></tr>
+<tr><td class="n">3</td><td>Jeff Bezos and Vik Bajaj interview, CNBC "Squawk on the Street", 11 June 2026</td><td class="small">The "100 engineers 10 years to 10 engineers one year" productivity claim, verified via two independent secondary reports that agree verbatim.</td></tr>
+<tr><td class="n">4</td><td>GeekWire, May 2026 &mdash; first extended description of the company by Bezos</td><td class="small">"Nothing to do with robotics"; "a very, very modern version" of CAD; Blue Origin as "a case study for a customer".</td></tr>
+<tr><td class="n">5</td><td>Bloomberg and Financial Times reporting, 21&ndash;23 April 2026</td><td class="small">The reported $10B round closing at $38B, and the unresolved question of whether it was a separate financing. &sect;07 row one and &sect;15 re-price trigger.</td></tr>
+<tr><td class="n">6</td><td>Wall Street Journal, 19 March 2026, on the reported ~$100B manufacturing-acquisition vehicle</td><td class="small">The data-acquisition strategy, its target sectors, and its unresolved funding status.</td></tr>
+<tr><td class="n">7</td><td>San Francisco Business Times property-record reporting, August 2026, and follow-on trade coverage</td><td class="small">100,000 sq ft West Oakland manufacturing lease at the American Steel complex.</td></tr>
+<tr><td class="n">8</td><td>EquiDeFi Prometheus AI SPV, LLC offering release, 12 August 2026, and secondary-platform listings (Forge, Hiive, EquityZen, UpMarket) retrieved 18&ndash;19 September 2026</td><td class="small">The three-layer structure, $10,000 minimum, the $29B pre-money corroboration, transfer restrictions and ROFR language, and the unstable platform marks rejected in &sect;07.</td></tr>
+<tr><td class="n">9</td><td>OpenAI, "Unauthorized OpenAI Equity Transactions" policy page; PitchBook reporting on Anthropic's syndication restrictions</td><td class="small">The void-transfer precedent quoted in &sect;02, &sect;15 and &sect;19.</td></tr>
+<tr><td class="n">10</td><td>stockanalysis.com trading data for SNPS, ADSK, PTC and DSY, retrieved 18&ndash;19 September 2026</td><td class="small">EV/revenue multiples of 8.6x, 5.7x, 5.4x and 4.0x; combined enterprise value of about $170B; combined revenue of about $27B. Basis for &sect;09 and &sect;11.</td></tr>
+<tr><td class="n">11</td><td>Siemens and Altair press releases, October 2024 and March 2025; Synopsys completion release, 17 July 2025</td><td class="small">Altair at $10.6B equity value on $665.8M FY2024 revenue (~15.9x; Siemens states ~$10.0B enterprise value, ~15.0x); Synopsys/Ansys at ~$35B.</td></tr>
+<tr><td class="n">12</td><td>Siemens blog and CES 2026 materials, January 2026</td><td class="small">The PepsiCo digital-twin result: a measured 20% throughput gain at one plant in three months, and PepsiCo's own estimate of 10&ndash;15% lower capital expenditure.</td></tr>
+<tr><td class="n">13</td><td>Synopsys investor release, 7 February 2023, and Q3 FY2026 results, August 2026</td><td class="small">100+ commercial tape-outs using AI-driven design; agentic design engagements; the executive statement that reinforcement learning "hasn't really panned out" in core EDA.</td></tr>
+<tr><td class="n">14</td><td>UCSD, "An Updated Assessment of Reinforcement Learning for Macro Placement" (arXiv 2302.11014); <i>Nature</i> retraction notice, 21 September 2023</td><td class="small">The AlphaChip replication failure and retracted commentary cited in &sect;11.</td></tr>
+<tr><td class="n">15</td><td>Cheetham and Seshadri review of GNoME structures; trade coverage of the A-Lab companion work</td><td class="small">The materials-discovery rebuttal in &sect;11.</td></tr>
+<tr><td class="n">16</td><td>BenevolentAI press release, 5 April 2023; trade reporting on Exscientia and Recursion pipeline decisions</td><td class="small">AI-designed drug candidates missing efficacy endpoints or being discontinued. &sect;11.</td></tr>
+<tr><td class="n">17</td><td>CNBC, Forbes and Motley Fool coverage of Blue Origin, July 2026; SpaceNews and Spaceflight Now on the 28 May 2026 LC-36 explosion; New Glenn launch record</td><td class="small">The &sect;12 base-rate table: ~$28B reported personal funding, first outside round at $130B in year 26, three lifetime orbital launches, pad damage and grounding.</td></tr>
+<tr><td class="n">18</td><td>Semafor, August 2024 on Adept; TechCrunch and The Information, March 2024 on Inflection AI</td><td class="small">The modal downside for a pre-revenue laboratory: roughly 1.0x and 1.1&ndash;1.5x returns via acqui-hire. &sect;14 bear case.</td></tr>
+<tr><td class="n">19</td><td>Industry Ventures, "The Venture Capital Risk and Return Matrix"; Yale Journal on Regulation unicorn retrospective</td><td class="small">Late-stage venture base rates: ~1.8x net and ~12.6% IRR over thirty years, structured around 3x winners. Hurdle context in &sect;14 and &sect;22.</td></tr>
+<tr><td class="n">20</td><td>Holland &amp; Knight analysis of &sect;1202 following the One Big Beautiful Bill Act, July 2025</td><td class="small">The $75M issuer gross-asset ceiling for stock acquired after 4 July 2025. QSBS unavailability in &sect;03 and &sect;19.</td></tr>
+<tr><td class="n">21</td><td>companiesmarketcap.com and 8marketcap.com, retrieved 19 September 2026; Meta market-capitalisation milestone reporting, 2015 and 2017</td><td class="small">Approximately 25 companies above $500B; Meta's 11.4 years from founding to $250B and 13.5 to $500B, the fastest we can find. &sect;14.</td></tr>
+<tr><td class="n">22</td><td>Engineering.com and Dassault Syst&egrave;mes Q4 2025 results, 11 February 2026</td><td class="small">The roughly 20% single-session decline, its worst in over two decades, and the structural re-rating argument for industrial software. &sect;15.</td></tr>
+<tr><td class="n">23</td><td>Electrek reporting on the Tesla Q4 2025 earnings call, 28 January 2026; Teslarati on cumulative FSD miles, February 2026; Falcon launch record</td><td class="small">Optimus "still in the R&amp;D phase" and "not in usage in our factories in a material way"; 8.4 billion supervised miles; ~1.5M subscribers; ~660 Falcon launches. &sect;10.</td></tr>
+</tbody>
+</table>
+<p class="sowhat">Where a primary source sat behind a paywall, the claim is carried only if two independent secondary reports agree, and it is flagged as such in the text. Several load-bearing items in the circulated memorandum could not be verified at all and were removed rather than softened.</p>
+</div>
+
+<div class="foot">
+Marketlogic Investors LLC &middot; Investment Memorandum &middot; Confidential<br>
+Prepared for internal investment committee use only. Not investment advice. All figures subject to verification.<br>
+Prometheus Industries, Inc. &middot; ML-2026-PM-01 &middot; Author: H. Reganti &middot; Prepared 19 September 2026<br>
+Source documents: circulated third-party investment memorandum "Investment Memorandum: Prometheus" (received 19 September 2026). No company data room, no management access, no company-supplied financials.<br>
+External verification: Axios, TechCrunch, GeekWire, Semafor, Bloomberg, Financial Times, Wall Street Journal, CNBC, San Francisco Business Times, SpaceNews, Spaceflight Now, Electrek, Engineering.com, Siemens, Synopsys, Dassault Syst&egrave;mes, OpenAI policy pages, arXiv, <i>Nature</i>, stockanalysis.com, companiesmarketcap.com. Retrieved 18&ndash;19 September 2026.<br>
+Unresolved at publication: whether the April 2026 report of $10B at $38B describes a separate financing. If so, cumulative funding is nearer $28B and &sect;09's cash adjustment changes. Flagged as a re-price trigger in &sect;15.<br>
+Fee and structure figures in &sect;14 and &sect;19 are modelled at published SPV market rates, not disclosed terms. The offering release did not state a fee schedule.<br>
+Interactive controls explore sensitivity around a locked baseline. They do not alter the committed position above.
+</div>
+
+<a class="backlink" href="../">&larr; Back to all VC Deals</a>
+
+</div>
+
+<script>
+(function(){
+  var $=function(i){return document.getElementById(i)};
+  var fmt=function(n){return n.toLocaleString('en-US')};
+  var ENTRY=41;
+  var SYN=9.42, SECTOR=27;
+
+  /* ---- 01 scorecard ---- */
+  var DIMS=[
+    ['Founder and team quality',12,8.0,'Bajaj: MIT PhD, LBNL PI, Verily CSO, Xaira. Bench from OpenAI, DeepMind, xAI.'],
+    ['Traction quality',12,1.5,'No revenue, no product, no customer, no benchmark, no date.'],
+    ['Moat and defensibility',12,4.0,'Right input identified. Must buy for $100B what rivals are handed free.'],
+    ['Market size and structure',10,7.5,'Engineering software $58B growing. Economic TAM genuinely large.'],
+    ['Unit economics',10,2.0,'None exist. Compute-heavy cost base, no pricing, no margin disclosed.'],
+    ['Competitive position',8,3.5,'Siemens, Synopsys, Nvidia, DeepMind all better positioned on data.'],
+    ['Go-to-market credibility',8,3.0,'Slowest-validating buyers on earth. No customer, no pilot, no date.'],
+    ['Product and technical depth',8,4.0,'Credible team; nothing shipped. Premise unproven outside digital domains.'],
+    ['Capital efficiency and runway',6,3.0,'$18.2B for 150 people and no product. Founder calls it capital-intensive.'],
+    ['Terms and structure',6,1.5,'Three layers, no rights, no QSBS, undisclosed fees, unconsented transfer.'],
+    ['Marketlogic thesis fit',5,4.0,'Thesis-perfect, stage-impossible. No mechanism to add operational value.'],
+    ['Evidence integrity',3,4.5,'Little claimed that could be checked. $70T TAM rejected; April round unresolved.']
+  ];
+  var tb=$('sctab').getElementsByTagName('tbody')[0], wg=$('wgrid');
+  DIMS.forEach(function(d,i){
+    var tr=document.createElement('tr');
+    tr.innerHTML='<td>'+d[0]+'</td><td class="n" id="w'+i+'">'+d[1]+'%</td><td class="n">'+d[2].toFixed(1)+
+      '</td><td class="n"><span class="bartrack"><span class="bar" style="width:'+(d[2]*7.6)+'%"></span></span><span id="wv'+i+'">'+(d[1]*d[2]/100).toFixed(2)+'</span></td><td class="small">'+d[3]+'</td>';
+    tb.appendChild(tr);
+    var c=document.createElement('div');
+    c.innerHTML='<label class="f">'+d[0]+'</label><div class="ln"><input type="range" id="ws'+i+'" min="0" max="36" step="1" value="'+d[1]+'"><span class="out" id="wo'+i+'">'+d[1]+'%</span></div>';
+    wg.appendChild(c);
+  });
+  function scalc(){
+    var tot=0,acc=0;
+    DIMS.forEach(function(d,i){ tot+=+$('ws'+i).value; });
+    if(tot===0) tot=1;
+    DIMS.forEach(function(d,i){
+      var w=+$('ws'+i).value, nw=w/tot*100;
+      $('wo'+i).textContent=w+'%';
+      $('w'+i).textContent=nw.toFixed(1)+'%';
+      $('wv'+i).textContent=(nw*d[2]/100).toFixed(2);
+      acc+=nw*d[2]/100;
+    });
+    $('compout').textContent=acc.toFixed(1);
+    $('bandout').textContent = acc>=7.5?'Invest band':(acc>=6.0?'Monitor band':'Pass band');
+  }
+  DIMS.forEach(function(d,i){ $('ws'+i).addEventListener('input',scalc); });
+  $('wreset').addEventListener('click',function(){ DIMS.forEach(function(d,i){$('ws'+i).value=d[1];}); scalc(); });
+  scalc();
+
+  /* ---- 06 market ---- */
+  function mcalc(){
+    var n=+$('m_n').value, a=+$('m_acv').value, s=+$('m_sh').value;
+    $('m_n_o').textContent=fmt(n); $('m_acv_o').textContent='$'+a.toFixed(1)+'M'; $('m_sh_o').textContent=s+'%';
+    var sam=n*a/1000, som=sam*s/100, need=Math.ceil(25000/a);
+    $('m_sam').textContent='$'+sam.toFixed(1)+'B';
+    $('m_som').textContent='$'+som.toFixed(1)+'B';
+    $('m_need').textContent=fmt(need);
+    $('m_pct').textContent=(need/n*100).toFixed(1)+'%';
+  }
+  ['m_n','m_acv','m_sh'].forEach(function(i){$(i).addEventListener('input',mcalc)});
+  $('m_reset').addEventListener('click',function(){$('m_n').value=2000;$('m_acv').value=10;$('m_sh').value=50;mcalc();});
+  mcalc();
+
+  /* ---- 07 filter ---- */
+  var chips=document.querySelectorAll('.chip[data-f]');
+  chips.forEach(function(b){
+    b.addEventListener('click',function(){
+      chips.forEach(function(x){x.setAttribute('aria-pressed','false')});
+      b.setAttribute('aria-pressed','true');
+      var f=b.getAttribute('data-f');
+      Array.prototype.forEach.call($('fctab').querySelectorAll('tbody tr'),function(r){
+        r.style.display=(f==='all'||r.getAttribute('data-v')===f)?'':'none';
+      });
+    });
+  });
+
+  /* ---- 09 the entry price as a unit economic ---- */
+  function ucalc(){
+    var ev=+$('u_ev').value, m=+$('u_mult').value, ex=+$('u_ex').value;
+    $('u_ev_o').textContent='$'+ev+'B'; $('u_mult_o').textContent=m.toFixed(1)+'x'; $('u_ex_o').textContent='$'+fmt(ex)+'B';
+    var rnow=ev/m, rex=ex/m;
+    $('u_rnow').textContent='$'+rnow.toFixed(1)+'B';
+    $('u_rex').textContent='$'+rex.toFixed(1)+'B';
+    $('u_rsyn').textContent=(rex/SYN).toFixed(1)+'x';
+    $('u_moic').textContent=(ex/ev).toFixed(1)+'x';
+    var f=$('u_flag');
+    if(rex>=SECTOR){f.className='flag f-bad';f.textContent="Implied exit revenue exceeds the entire listed sector's revenue";}
+    else{f.className='flag f-ok';f.textContent='Implied exit revenue sits inside the listed sector’s revenue base';}
+  }
+  ['u_ev','u_mult','u_ex'].forEach(function(i){$(i).addEventListener('input',ucalc)});
+  $('u_reset').addEventListener('click',function(){$('u_ev').value=41;$('u_mult').value=9;$('u_ex').value=250;ucalc();});
+  $('u_memo').addEventListener('click',function(){$('u_ev').value=41;$('u_mult').value=10;$('u_ex').value=250;ucalc();});
+  ucalc();
+
+  /* ---- 14 scenarios, net of the wrapper ---- */
+  var MG=[0.02,0.015], CR=[0.20,0.10], SU=[0.01,0.02], ACCESS=0.05, SPREAD=0.10;
+  function spvnet(g,years,layers){
+    if(layers<=0) return g;
+    var cap=1-ACCESS, vg=g*(1-SPREAD), i;
+    for(i=0;i<layers;i++) cap*=(1-SU[i]);
+    var val=cap*vg;
+    for(i=0;i<layers;i++){
+      var fee=cap*MG[i]*years, gain=Math.max(0,val-cap-fee);
+      val=val-fee-gain*CR[i];
+    }
+    return Math.max(0,val);
+  }
+  function netAt(exB,dil,lay,yr){ return spvnet((exB/ENTRY)*(1-dil/100),yr,lay); }
+  function ecalc(){
+    var pb=+$('p_bull').value, pr=+$('p_bear').value;
+    if(pb+pr>100){pr=100-pb;$('p_bear').value=pr;}
+    var pbase=100-pb-pr;
+    var eb=+$('e_base').value, ebu=+$('e_bull').value, d=+$('e_dil').value, lay=+$('e_lay').value, yr=+$('e_yr').value;
+    $('p_bull_o').textContent=pb+'%'; $('p_bear_o').textContent=pr+'%'; $('p_base_o').textContent=pbase+'%';
+    $('e_base_o').textContent='$'+fmt(eb)+'B'; $('e_bull_o').textContent='$'+fmt(ebu)+'B';
+    $('e_dil_o').textContent=d+'%'; $('e_lay_o').textContent=lay; $('e_yr_o').textContent=yr+' yr';
+    var mBase=netAt(eb,d,lay,yr), mBull=netAt(ebu,d,lay,yr);
+    var wtd=(pb/100)*mBull+(pbase/100)*mBase;
+    $('r_bull').textContent=mBull.toFixed(1)+'x';
+    $('r_base').textContent=mBase.toFixed(1)+'x';
+    $('r_wtd').textContent=wtd.toFixed(1)+'x';
+    $('r_gross').textContent=(eb/ENTRY).toFixed(1)+'x';
+    var lo=ENTRY, hi=4000, k;
+    for(k=0;k<200;k++){ var mid=(lo+hi)/2; if(netAt(mid,d,lay,yr)<1) lo=mid; else hi=mid; }
+    $('r_be').textContent='$'+Math.round((lo+hi)/2)+'B';
+    var irr = wtd>0 ? (Math.pow(wtd,1/yr)-1)*100 : -100;
+    $('r_irr').textContent=(irr<0?'−':'')+Math.abs(irr).toFixed(1)+'%';
+    var f=$('r_flag');
+    if(wtd>=3){f.className='flag f-ok';f.textContent='Clears a 3x late-stage hurdle';}
+    else if(wtd>=1){f.className='flag f-bad';f.textContent='Returns capital but below any venture hurdle';}
+    else {f.className='flag f-bad';f.textContent='Below 1.0x — the weighted case loses money';}
+  }
+  ['p_bull','p_bear','e_base','e_bull','e_dil','e_lay','e_yr'].forEach(function(i){$(i).addEventListener('input',ecalc)});
+  $('e_reset').addEventListener('click',function(){$('p_bull').value=10;$('p_bear').value=42;$('e_base').value=100;$('e_bull').value=500;$('e_dil').value=41;$('e_lay').value=2;$('e_yr').value=7;ecalc();});
+  ecalc();
+
+  /* ---- 18 diligence queue ---- */
+  var DQ=[
+   [2.0,'Written confirmation from Prometheus — not the SPV sponsor — that the transfer is consented and recorded on the company cap table.','A gate, not a question. OpenAI’s published policy voids unapproved transfers and states they carry no economic value; Anthropic has taken the same posture. Without this document the correct assumed value of the interest is zero at every outcome.'],
+   [1.5,'Complete structure diagram with every layer named, every fee at every level in writing, and the price per share the master vehicle actually paid.','The spread between the master’s cost and our entry is typically the largest and least visible cost in a vehicle of this shape. The offering release disclosed no fee schedule at all.'],
+   [1.2,'Any reproducible benchmark, technical paper or third-party-verifiable demonstration of the core capability.','Nothing exists publicly. The central technical claim cannot currently be assessed on its merits by anyone outside the company.'],
+   [0.9,'A named arm’s-length industrial customer under contract, with disclosed contract value and scope.','The only customer relationship on record is Blue Origin, which the founder owns. That is a development partner, not commercial validation.'],
+   [0.8,'Status of the reported $100B acquisition vehicle: named anchor commitments, amount closed, and its legal relationship to Prometheus.','This is the plan to obtain the training data the entire moat depends on. It has no named backers and has not closed, and reporting suggests it would sit under the same holding company rather than being wholly separate.'],
+   [0.6,'Whether the April 2026 report of $10B at $38B describes the same Series B or a separate financing.','Determines whether cumulative funding is $18.2B or nearer $28B. Changes the cash-adjusted entry price and the dilution path.'],
+   [0.5,'Full capitalisation table with the preference terms of both rounds, including any participation, multiple or ratchet.','We assume 1x non-participating on market convention. The actual terms of an $18.2B preference stack have never been published.'],
+   [0.4,'Compute commitments, cloud or chip supply agreements, current burn rate and runway.','Bezos says a big chunk of the raise goes to compute. No dollar figure, counterparty or term has been reported anywhere.'],
+   [0.4,'What happens to our interest if an intermediate vehicle in the chain fails, and whether the master holds actual shares or a forward contract.','Each layer is a separate point of failure, and a master holding a forward rather than shares makes this a claim on a claim.'],
+   [0.4,'Any named manufacturing partner or data-sharing arrangement supplying real engineering data.','The company concedes there is no internet of manufacturing data. No source of it has been named beyond the related party.'],
+   [0.3,'Current headcount and attrition since June 2026.','Team is the highest-scored dimension in this file and rests on a three-month-old count of about 150.'],
+   [0.3,'Evidence of any executed secondary transaction in Prometheus and its price.','Platform indications diverge roughly 24% across scrapes with no reported trade. The implied premium cannot be relied on in either direction.']
+  ];
+  var list=$('dqlist');
+  DQ.forEach(function(q,i){
+    var d=document.createElement('div');
+    d.className='dq';
+    d.innerHTML='<div class="top"><input type="checkbox" id="dq'+i+'" data-d="'+q[0]+'"><div style="flex:1"><p class="q"><b>'+(i+1)+'.</b> '+q[1]+'</p><p class="small" style="margin:0">'+q[2]+'</p></div><span class="d">-'+q[0].toFixed(1)+'</span></div>';
+    list.appendChild(d);
+  });
+  function dcalc(){
+    var t=0;
+    DQ.forEach(function(q,i){ if(!$('dq'+i).checked) t+=q[0]; });
+    $('dq_out').textContent='-'+t.toFixed(1);
+  }
+  DQ.forEach(function(q,i){ $('dq'+i).addEventListener('change',dcalc); });
+  $('dq_reset').addEventListener('click',function(){DQ.forEach(function(q,i){$('dq'+i).checked=false;});dcalc();});
+  dcalc();
+})();
+</script>
+</body>
+</html>
